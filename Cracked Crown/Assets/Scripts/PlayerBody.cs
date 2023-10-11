@@ -17,12 +17,13 @@ public class PlayerBody : MonoBehaviour
     private Transform primaryAttackPoint;
 
     [SerializeField]
-    private float dashSpeed = 10f;
+    private float dashSpeed = 15f;
     [SerializeField]
     private float dashTime = 0.5f;
 
     private bool canAttack = true;
     private bool dashOnCD = false;
+    private bool canTakeDamage = true;
 
     private void Update()
     {
@@ -70,11 +71,12 @@ public class PlayerBody : MonoBehaviour
 
     private IEnumerator DashCoroutine()
     {
-        float startTime = Time.time; // need to remember this to know how long to dash
+        canTakeDamage = false;
         canAttack = false;
 
         float zInput = controller.ForwardMagnitude;
         float xInput = controller.HorizontalMagnitude;
+        float startTime = Time.time; // need to remember this to know how long to dash
 
         Vector3 dashDirection = new Vector3(xInput, 0, zInput);
         if (dashDirection.magnitude > 1)
@@ -82,13 +84,14 @@ public class PlayerBody : MonoBehaviour
             dashDirection.Normalize();
         }
 
-
         while (Time.time < startTime + dashTime)
         {
             transform.Translate(dashDirection * dashSpeed * Time.deltaTime);
             yield return null;
         }
+
         canAttack = true;
+        canTakeDamage = true;
     }
 
     private IEnumerator Cooldown()
