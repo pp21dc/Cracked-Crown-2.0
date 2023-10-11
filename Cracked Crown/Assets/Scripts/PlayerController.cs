@@ -21,10 +21,14 @@ public class PlayerController : MonoBehaviour
     private bool executeDown = false;
     public bool ExecuteDown { get { return executeDown; } }
 
+    private bool dashDown = false;
+    public bool DashDown { get { return dashDown; } }
+
     private void LateUpdate()
     {
         primaryAttackDown = false;
         executeDown = false;
+        dashDown = false;
     }
 
     public void OnMove(InputValue inputValue)
@@ -43,5 +47,10 @@ public class PlayerController : MonoBehaviour
     public void OnExecute()
     {
         executeDown = true;
+    }
+
+    public void OnDash()
+    {
+        dashDown = true;
     }
 }
