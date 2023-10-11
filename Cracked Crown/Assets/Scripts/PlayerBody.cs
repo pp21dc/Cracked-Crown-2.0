@@ -11,15 +11,18 @@ public class PlayerBody : MonoBehaviour
     [SerializeField]
     private Rigidbody rb;
 
-    // Start is called before the first frame update
-    void Start()
+    private void FixedUpdate()
     {
-        
-    }
+        float zInput = controller.ForwardMagnitude;
+        float xInput = controller.HorizontalMagnitude;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Vector3 movementVector = new Vector3(xInput, 0, zInput); // swapped z and x so that movement feels like its rotated 45 degrees for isometric
+        if (movementVector.magnitude > 1)
+        {
+            movementVector.Normalize();
+        }
+        movementVector = rb.position + (movementVector * movementSpeed * Time.deltaTime);
+
+        rb.MovePosition(movementVector);
     }
 }
