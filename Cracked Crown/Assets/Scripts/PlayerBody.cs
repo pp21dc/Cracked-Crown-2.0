@@ -25,6 +25,11 @@ public class PlayerBody : MonoBehaviour
     private bool dashOnCD = false;
     private bool canTakeDamage = true;
 
+
+    private void Start()
+    {
+        controller = GameObject.FindGameObjectWithTag("PlayerController");
+    }
     private void Update()
     {
         Attack();
