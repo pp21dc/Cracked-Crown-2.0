@@ -6,6 +6,8 @@ using UnityEngine;
 public class PlayerBody : MonoBehaviour
 {
     [SerializeField]
+    private GameObject controllerParent;
+    [SerializeField]
     private PlayerController controller;
     [SerializeField]
     private float movementSpeed = 5f;
@@ -28,7 +30,8 @@ public class PlayerBody : MonoBehaviour
 
     private void Start()
     {
-        controller = GameObject.FindGameObjectWithTag("PlayerController");
+        controllerParent = GameObject.FindGameObjectWithTag("PlayerController");
+        controller = controllerParent.GetComponent<PlayerController>();
     }
     private void Update()
     {
