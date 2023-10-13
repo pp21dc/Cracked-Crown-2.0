@@ -24,11 +24,15 @@ public class PlayerController : MonoBehaviour
     private bool dashDown = false;
     public bool DashDown { get { return dashDown; } }
 
+    private bool pauseDown = false;
+    public bool PauseDown { get { return pauseDown; } }
+
     private void LateUpdate()
     {
         primaryAttackDown = false;
         executeDown = false;
         dashDown = false;
+        pauseDown = false;
     }
 
     public void OnMove(InputValue inputValue)
@@ -52,5 +56,11 @@ public class PlayerController : MonoBehaviour
     public void OnDash()
     {
         dashDown = true;
+    }
+
+    public void OnPause()
+    {
+        pauseDown = true;
+        Debug.Log("Pause Down");
     }
 }
