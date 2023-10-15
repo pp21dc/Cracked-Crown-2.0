@@ -9,19 +9,19 @@ public class EnemyController : MonoBehaviour
     private float speed = 8f;
 
     [SerializeField]
-    private GameObject[] Players;
+    private GameObject[] Players = new GameObject[4];
 
     public GameObject[] players { get { return Players; } }
 
-    [SerializeField]
-    private GameObject group;
+    private GameObject playerLocator;
 
     
 
     private void Awake()
     {
 
-        
+        Players = GameObject.FindGameObjectsWithTag("AddPlayer");
+
 
     }
 }

@@ -132,6 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 88858222}
+  - component: {fileID: 88858223}
   m_Layer: 0
   m_Name: Enemy controller
   m_TagString: Untagged
@@ -154,6 +155,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1226687346}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &88858223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 88858221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f703306e039ae4b4c85868c912430031, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 8
+  Players: []
 --- !u!1 &144069877
 GameObject:
   m_ObjectHideFlags: 0
@@ -436,7 +451,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8551303128544101305, guid: f443ae70529b14f42951265ea553e920,
+        type: 3}
+      propertyPath: m_TagString
+      value: AddPlayer
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6654494920966148094, guid: f443ae70529b14f42951265ea553e920, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -504,7 +525,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8551303128544101305, guid: 4197d0bea05489c43831c418d3bbdcd5,
+        type: 3}
+      propertyPath: m_TagString
+      value: AddPlayer
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 2585498265488483675, guid: 4197d0bea05489c43831c418d3bbdcd5, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -678,7 +705,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player 3
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8551303128544101305, guid: 27aded8b23129a543bc59ad6ce33db2a,
+        type: 3}
+      propertyPath: m_TagString
+      value: AddPlayer
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 7119525611576766489, guid: 27aded8b23129a543bc59ad6ce33db2a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1002,7 +1035,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player 2
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8551303128544101305, guid: dfb18f8191482c94fa5b1ecd34c9297d,
+        type: 3}
+      propertyPath: m_TagString
+      value: AddPlayer
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4973997288644241625, guid: dfb18f8191482c94fa5b1ecd34c9297d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
