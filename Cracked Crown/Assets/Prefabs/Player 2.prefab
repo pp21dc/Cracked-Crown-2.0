@@ -342,7 +342,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adaeb1e18a6ffae4295fa9a7cd32af42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controllerParent: {fileID: 0}
   controller: {fileID: 1075067857252033172}
   movementSpeed: 6
   rb: {fileID: 4499349734575164199}
@@ -360,6 +359,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7826077369860087090}
+  - component: {fileID: 4973997288644241625}
   m_Layer: 0
   m_Name: Player 2
   m_TagString: Untagged
@@ -384,3 +384,15 @@ Transform:
   - {fileID: 7736142204809174035}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4973997288644241625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8551303128544101305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a46fb8bfaeb6f524086d23c8b32e284e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
