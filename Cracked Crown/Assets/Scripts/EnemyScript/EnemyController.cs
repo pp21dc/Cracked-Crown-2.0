@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -14,7 +15,8 @@ public class EnemyController : MonoBehaviour
 
     public GameObject[] players { get { return Players; } }
 
-    private GameObject playerLocator;
+    private GameObject closest;
+
 
 
 
@@ -24,18 +26,26 @@ public class EnemyController : MonoBehaviour
         Players = GameObject.FindGameObjectsWithTag("AddPlayer");
 
 
-        StartCoroutine("findDistance");
+        StartCoroutine(findDistance(closest));
 
     }
 
-    IEnumerator findDistance()
+    private void Update()
+    {
+
+        gameObject.transform.position = Vector3.MoveTowards(closest.transform.position, Vector3.up, speed * Time.deltaTime);
+
+
+    }
+
+    IEnumerator findDistance(GameObject closest)
     {
 
         float check;
         float currShortest = 10000000000f;
-        GameObject closest;
-    
-       for (int i = 0; i < Players.Length; i++)
+
+
+        for (int i = 0; i < Players.Length; i++)
         {
             
             check = Vector3.Distance(gameObject.transform.position, Players[i].transform.position);
@@ -50,10 +60,10 @@ public class EnemyController : MonoBehaviour
         
         }
 
-
+        
          yield return new WaitForSeconds(5);
 
-        StartCoroutine("findDistance");
+        StartCoroutine(findDistance(closest));
     
     
     }
