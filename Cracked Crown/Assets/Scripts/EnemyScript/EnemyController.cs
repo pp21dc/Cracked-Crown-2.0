@@ -17,6 +17,9 @@ public class EnemyController : MonoBehaviour
 
     private GameObject closest;
 
+    [SerializeField]
+    private GameObject enemyBody;
+
 
 
 
@@ -33,7 +36,10 @@ public class EnemyController : MonoBehaviour
     private void Update()
     {
 
-        gameObject.transform.position = Vector3.MoveTowards(closest.transform.position, Vector3.up, speed * Time.deltaTime);
+        closest = Players[0];
+        enemyBody.transform.position = Vector3.MoveTowards(closest.transform.position, Vector3.up, speed * Time.deltaTime) * Time.deltaTime;
+        enemyBody.transform.position = new Vector3 (enemyBody.transform.position.x, 0, enemyBody.transform.position.z);
+
 
 
     }
