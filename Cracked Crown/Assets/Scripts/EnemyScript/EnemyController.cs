@@ -21,6 +21,7 @@ public class EnemyController : MonoBehaviour
     private Transform enemyBody;
 
     private float currShortest = 100000f;
+    private Vector3 movementVector = Vector3.zero;
 
 
 
@@ -33,6 +34,7 @@ public class EnemyController : MonoBehaviour
         Players = GameObject.FindGameObjectsWithTag("AddPlayer");
 
 
+
         StartCoroutine("findDistance");
 
     }
@@ -40,34 +42,16 @@ public class EnemyController : MonoBehaviour
     private void Update()
     {
 
+        checkShortestDistance();
         
-        enemyBody.transform.position = Vector3.MoveTowards(enemyBody.transform.position, closest.transform.position, speed * Time.deltaTime);
+        enemyBody.transform.position += movementVector * Time.deltaTime;
         enemyBody.transform.position = new Vector3 (enemyBody.position.x, 0f, enemyBody.position.z);
 
 
 
     }
 
-    IEnumerator findDistance()
-    {
-
-        float check;
-       
-        
-
-            
-
-            checkShortestDistance();
-
-        
-
-        
-         yield return new WaitForSeconds(5);
-
-        StartCoroutine("findDistance");
     
-    
-    }
 
     private void checkShortestDistance()
     {
@@ -89,6 +73,15 @@ public class EnemyController : MonoBehaviour
 
         }
 
+        setTarget();
+
+    }
+
+    private void setTarget() 
+    {
+    
+        movementVector = (closest.transform.position - enemyBody.transform.position).normalized * speed;
+    
     }
         
         
