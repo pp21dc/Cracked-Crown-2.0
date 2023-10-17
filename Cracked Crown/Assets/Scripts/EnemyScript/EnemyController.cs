@@ -30,7 +30,7 @@ public class EnemyController : MonoBehaviour
     private void Awake()
     {
 
-        Players = GameObject.FindGameObjectsWithTag("AddPlayer");//finds and add all players to array
+        Players = GameObject.FindGameObjectsWithTag("Player");//finds and add all players to array
 
 
 
