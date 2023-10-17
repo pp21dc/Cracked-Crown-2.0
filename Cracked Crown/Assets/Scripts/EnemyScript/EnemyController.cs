@@ -8,7 +8,7 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     [SerializeField]
-    private float speed = 8f;
+    private float speed = 0.008f;
 
     [SerializeField]
     private GameObject[] Players = new GameObject[4];
@@ -18,7 +18,11 @@ public class EnemyController : MonoBehaviour
     private GameObject closest;
 
     [SerializeField]
-    private GameObject enemyBody;
+    private Transform enemyBody;
+
+    private float currShortest = 100000f;
+
+
 
 
 
@@ -29,49 +33,62 @@ public class EnemyController : MonoBehaviour
         Players = GameObject.FindGameObjectsWithTag("AddPlayer");
 
 
-        StartCoroutine(findDistance(closest));
+        StartCoroutine("findDistance");
 
     }
 
     private void Update()
     {
 
-        closest = Players[0];
-        enemyBody.transform.position = Vector3.MoveTowards(closest.transform.position, Vector3.up, speed * Time.deltaTime) * Time.deltaTime;
-        enemyBody.transform.position = new Vector3 (enemyBody.transform.position.x, 0, enemyBody.transform.position.z);
+        
+        enemyBody.transform.position = Vector3.MoveTowards(enemyBody.transform.position, closest.transform.position, speed * Time.deltaTime);
+        enemyBody.transform.position = new Vector3 (enemyBody.position.x, 0f, enemyBody.position.z);
 
 
 
     }
 
-    IEnumerator findDistance(GameObject closest)
+    IEnumerator findDistance()
     {
 
         float check;
-        float currShortest = 10000000000f;
-
-
-        for (int i = 0; i < Players.Length; i++)
-        {
-            
-            check = Vector3.Distance(gameObject.transform.position, Players[i].transform.position);
-
-            if (check < currShortest) 
-            {
-            
-                currShortest = check;
-                closest = Players[i];
-            
-            }
+       
         
-        }
+
+            
+
+            checkShortestDistance();
+
+        
 
         
          yield return new WaitForSeconds(5);
 
-        StartCoroutine(findDistance(closest));
+        StartCoroutine("findDistance");
     
     
+    }
+
+    private void checkShortestDistance()
+    {
+
+        float check;
+
+        for (int i = 0; i < Players.Length; i++)
+        {
+
+            check = Vector3.Distance(gameObject.transform.position, Players[i].transform.position);
+
+            if (check < currShortest)
+            {
+
+                currShortest = check;
+                closest = Players[i];
+
+            }
+
+        }
+
     }
         
         
