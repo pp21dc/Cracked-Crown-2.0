@@ -8,20 +8,19 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     [SerializeField]
-    private float speed = 0.008f;
+    private float speed = 0.008f; //speed of the enemy
 
     [SerializeField]
-    private GameObject[] Players = new GameObject[4];
+    private GameObject[] Players = new GameObject[4]; //holds all players
 
-    public GameObject[] players { get { return Players; } }
 
-    private GameObject closest;
+    private GameObject closest;//holds the closest player
 
     [SerializeField]
-    private Transform enemyBody;
+    private Transform enemyBody; //holds the enemy player position
 
-    private float currShortest = 100000f;
-    private Vector3 movementVector = Vector3.zero;
+    private float currShortest = 100000f; //current shortest distance
+    private Vector3 movementVector = Vector3.zero; // the vector that the enemy is moving towards
 
 
 
@@ -31,28 +30,27 @@ public class EnemyController : MonoBehaviour
     private void Awake()
     {
 
-        Players = GameObject.FindGameObjectsWithTag("AddPlayer");
+        Players = GameObject.FindGameObjectsWithTag("AddPlayer");//finds and add all players to array
 
 
 
-        StartCoroutine("findDistance");
+        
 
     }
 
     private void Update()
     {
 
-        checkShortestDistance();
+        checkShortestDistance();//finds closest player
         
-        enemyBody.transform.position += movementVector * Time.deltaTime;
-        enemyBody.transform.position = new Vector3 (enemyBody.position.x, 0f, enemyBody.position.z);
+        
 
 
 
     }
 
     
-
+    //finds the closest player and sets the target position
     private void checkShortestDistance()
     {
 
@@ -73,15 +71,18 @@ public class EnemyController : MonoBehaviour
 
         }
 
-        setTarget();
+        setAndMoveToTarget();
 
     }
 
-    private void setTarget() 
+    //sets enemy target position and moves towards it
+    private void setAndMoveToTarget() 
     {
     
         movementVector = (closest.transform.position - enemyBody.transform.position).normalized * speed;
-    
+        enemyBody.transform.position += movementVector * Time.deltaTime;//moves to player
+        enemyBody.transform.position = new Vector3(enemyBody.position.x, 0f, enemyBody.position.z); //keeps it on ground
+
     }
         
         
