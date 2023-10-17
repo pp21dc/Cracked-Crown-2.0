@@ -5,21 +5,23 @@ using UnityEngine;
 
 public class PlayerBody : MonoBehaviour
 {
-    [SerializeField]
-    private PlayerController controller;
+    [Header("Stuff you should play with ;)")]
     [SerializeField]
     private float movementSpeed = 5f;
+    [SerializeField]
+    private float dashSpeed = 15f;
+    [SerializeField]
+    private float dashTime = 0.5f;
+
+    [Header("Do Not Touch")]
+    [SerializeField]
+    private PlayerController controller;
     [SerializeField]
     private Rigidbody rb;
     [SerializeField]
     private GameObject prefabForAttack;
     [SerializeField]
     private Transform primaryAttackPoint;
-
-    [SerializeField]
-    private float dashSpeed = 15f;
-    [SerializeField]
-    private float dashTime = 0.5f;
 
     private bool canAttack = true;
     private bool dashOnCD = false;
