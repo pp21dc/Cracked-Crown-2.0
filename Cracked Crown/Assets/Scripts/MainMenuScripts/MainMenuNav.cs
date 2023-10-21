@@ -9,15 +9,17 @@ public class MainMenuNav : MonoBehaviour
 
     public GameObject Settings;
 
+    GameObject CurrentSelection;
+
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Submit"))
         {
-            // clears current menu selection
-            EventSystem.current.SetSelectedGameObject(null);
-            // sets a new selected object
-            EventSystem.current.SetSelectedGameObject(Settings);
+            // finds currently selected GameObject
+            CurrentSelection = EventSystem.current.currentSelectedGameObject;
+            // Acts based on the GameObject selected
+            CurrentSelection.SetActive(false);
         }
     }
 
