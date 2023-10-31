@@ -8,17 +8,21 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     [SerializeField]
-    private float speed = 8f;
+    private float speed = 0.008f; //speed of the enemy
 
     [SerializeField]
-    private GameObject[] Players = new GameObject[4];
+    private GameObject[] Players = new GameObject[4]; //holds all players
 
-    public GameObject[] players { get { return Players; } }
 
-    private GameObject closest;
+    private GameObject closest;//holds the closest player
 
     [SerializeField]
-    private GameObject enemyBody;
+    private Transform enemyBody; //holds the enemy player position
+
+    private float currShortest = 100000f; //current shortest distance
+    private Vector3 movementVector = Vector3.zero; // the vector that the enemy is moving towards
+
+
 
 
 
@@ -26,52 +30,59 @@ public class EnemyController : MonoBehaviour
     private void Awake()
     {
 
-        Players = GameObject.FindGameObjectsWithTag("AddPlayer");
+        Players = GameObject.FindGameObjectsWithTag("Player");//finds and add all players to array
 
 
-        StartCoroutine(findDistance(closest));
+
+        
 
     }
 
     private void Update()
     {
 
-        closest = Players[0];
-        enemyBody.transform.position = Vector3.MoveTowards(closest.transform.position, Vector3.up, speed * Time.deltaTime) * Time.deltaTime;
-        enemyBody.transform.position = new Vector3 (enemyBody.transform.position.x, 0, enemyBody.transform.position.z);
+        checkShortestDistance();//finds closest player
+        
+        
 
 
 
     }
 
-    IEnumerator findDistance(GameObject closest)
+    
+    //finds the closest player and sets the target position
+    private void checkShortestDistance()
     {
 
         float check;
-        float currShortest = 10000000000f;
-
 
         for (int i = 0; i < Players.Length; i++)
         {
-            
+
             check = Vector3.Distance(gameObject.transform.position, Players[i].transform.position);
 
-            if (check < currShortest) 
+            if (check < currShortest)
             {
-            
+
                 currShortest = check;
                 closest = Players[i];
-            
+
             }
-        
+
         }
 
-        
-         yield return new WaitForSeconds(5);
+        setAndMoveToTarget();
 
-        StartCoroutine(findDistance(closest));
+    }
+
+    //sets enemy target position and moves towards it
+    private void setAndMoveToTarget() 
+    {
     
-    
+        movementVector = (closest.transform.position - enemyBody.transform.position).normalized * speed;
+        enemyBody.transform.position += movementVector * Time.deltaTime;//moves to player
+        enemyBody.transform.position = new Vector3(enemyBody.position.x, 0f, enemyBody.position.z); //keeps it on ground
+
     }
         
         
