@@ -27,6 +27,26 @@ public class PlayerController : MonoBehaviour
     private bool pauseDown = false;
     public bool PauseDown { get { return pauseDown; } }
 
+
+    private bool navRight = false;
+    public bool NavRight { get { return navRight; } set { navRight = value; } }
+
+    private bool navLeft = false;
+    public bool NavLeft { get { return navLeft; } set { navLeft = value; } }
+
+    [SerializeField]
+    private PlayerInput PI;
+    private int ID;
+    public int id
+    {
+        get { return ID; }
+    }
+
+    private void Awake()
+    {
+        ID = PI.playerIndex;
+    }
+
     private void LateUpdate()
     {
         primaryAttackDown = false;
@@ -63,4 +83,12 @@ public class PlayerController : MonoBehaviour
         pauseDown = true;
         Debug.Log("Pause Down");
     }
+
+    public void OnNavigate(InputValue inputValue)
+    {
+        Vector2 inputVal = inputValue.Get<Vector2>();
+        if (inputVal.x > 0) { navRight = true; }
+        else if (inputVal.x < 0) { navLeft = true; }
+    }
+
 }

@@ -23,6 +23,8 @@ public class PlayerBody : MonoBehaviour
     [SerializeField]
     private Transform primaryAttackPoint;
 
+    public GameObject CharacterFolder;
+
     private bool canAttack = true;
     private bool dashOnCD = false;
     private bool canTakeDamage = true;
