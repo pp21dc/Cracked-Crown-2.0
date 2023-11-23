@@ -5,13 +5,15 @@ using UnityEngine;
 
 public class PlayerBody : MonoBehaviour
 {
-    [Header("Stuff you should play with ;)")]
+    [Header("Controlled By Scriptable Object CharacterType")]
     [SerializeField]
     private float movementSpeed = 5f;
     [SerializeField]
     private float dashSpeed = 15f;
     [SerializeField]
     private float dashTime = 0.5f;
+    [SerializeField]
+    public CharacterType CharacterType;
 
     [Header("Do Not Touch")]
     [SerializeField]
@@ -48,6 +50,13 @@ public class PlayerBody : MonoBehaviour
         movementVector = rb.position + (movementVector * movementSpeed * Time.deltaTime);
 
         rb.MovePosition(movementVector);
+    }
+
+    public void SetCharacterData()
+    {
+        movementSpeed = CharacterType.moveSpeed;
+        dashSpeed = CharacterType.dashSpeed;
+        dashTime = CharacterType.dashTime;
     }
 
     private void Attack()

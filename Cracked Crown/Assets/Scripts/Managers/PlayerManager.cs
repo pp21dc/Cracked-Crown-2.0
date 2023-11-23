@@ -8,7 +8,9 @@ public class PlayerManager : MonoBehaviour
 {
 
     [SerializeField]
-    private GameObject[] characterTypes;
+    private GameObject[] CharacterPrefabs;
+    [SerializeField]
+    private CharacterType[] CharacterTypes;
     [SerializeField]
     private GameObject[] CharacterImages;
     [SerializeField]
@@ -37,6 +39,8 @@ public class PlayerManager : MonoBehaviour
             launch_lock = true;
             START_Text.SetActive(false);
             CharacterImages[0].SetActive(true);
+            PB.CharacterType = CharacterTypes[0];
+            PB.SetCharacterData();
         }
         if (PI != null)
         {
@@ -62,14 +66,18 @@ public class PlayerManager : MonoBehaviour
             Destroy(PB.CharacterFolder.transform.GetChild(0).gameObject);
             if (arrayPos + 1 > 3)
             {
-                Instantiate(characterTypes[0], PB.CharacterFolder.transform);
+                Instantiate(CharacterPrefabs[0], PB.CharacterFolder.transform);
+                PB.CharacterType = CharacterTypes[0];
+                PB.SetCharacterData();
                 CharacterImages[0].SetActive(true);
                 arrayPos = 0;
             }
             else
             {
                 arrayPos++;
-                Instantiate(characterTypes[arrayPos], PB.CharacterFolder.transform);
+                Instantiate(CharacterPrefabs[arrayPos], PB.CharacterFolder.transform);
+                PB.CharacterType = CharacterTypes[arrayPos];
+                PB.SetCharacterData();
                 CharacterImages[arrayPos].SetActive(true);
             }
             
@@ -87,14 +95,18 @@ public class PlayerManager : MonoBehaviour
             Destroy(PB.CharacterFolder.transform.GetChild(0).gameObject);
             if (arrayPos - 1 < 0)
             {
-                Instantiate(characterTypes[3], PB.CharacterFolder.transform);
+                Instantiate(CharacterPrefabs[3], PB.CharacterFolder.transform);
+                PB.CharacterType = CharacterTypes[3];
+                PB.SetCharacterData();
                 CharacterImages[3].SetActive(true);
                 arrayPos = 3;
             }
             else
             {
                 arrayPos--;
-                Instantiate(characterTypes[arrayPos], PB.CharacterFolder.transform);
+                Instantiate(CharacterPrefabs[arrayPos], PB.CharacterFolder.transform);
+                PB.CharacterType = CharacterTypes[arrayPos];
+                PB.SetCharacterData();
                 CharacterImages[arrayPos].SetActive(true);
             }
         }

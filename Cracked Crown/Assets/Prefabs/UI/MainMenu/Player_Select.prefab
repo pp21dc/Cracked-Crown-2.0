@@ -1386,11 +1386,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 573ef24c392472148a404f50e9dff0fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterTypes:
+  CharacterPrefabs:
   - {fileID: 4633882350821034748, guid: f7d79151a7f0bd344843f470d4ca4d9c, type: 3}
   - {fileID: 4633882350821034748, guid: 5632ad5fb914db84f99a2bbeca6c37b6, type: 3}
   - {fileID: 4633882350821034748, guid: 91f6a09d9a9e95a44a69b31163ed9434, type: 3}
   - {fileID: 4633882350821034748, guid: f9c77d6c9f327c54d9cc940bf4947d24, type: 3}
+  CharacterTypes:
+  - {fileID: 11400000, guid: e7f8cce932dc34745b685b2ccff928ef, type: 2}
+  - {fileID: 11400000, guid: c95e942f2b7912a46b0b877edc05bc0d, type: 2}
+  - {fileID: 11400000, guid: af4d3361d5305ac4886c180637d80700, type: 2}
+  - {fileID: 11400000, guid: d9c2d2a7c807f3942adffde2acde29b9, type: 2}
   CharacterImages:
   - {fileID: 7232164395329197371}
   - {fileID: 5613954048204392740}

@@ -109,6 +109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PI: {fileID: 897695858892963317}
+  PB: {fileID: 908568366204445390}
 --- !u!114 &897695858892963317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -251,8 +252,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.9994419, y: 3.7105272, z: 1}
-  m_Center: {x: -0.0059257746, y: 0.100994706, z: 0}
+  m_Size: {x: 8.222618, y: 5.86144, z: 1.0937738}
+  m_Center: {x: 3.111309, y: -1.19928, z: -2.3632016}
 --- !u!54 &4499349734575164199
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -292,9 +293,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adaeb1e18a6ffae4295fa9a7cd32af42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 10
-  dashSpeed: 16
-  dashTime: 0.25
+  movementSpeed: 64
+  dashSpeed: 128
+  dashTime: 1
+  CharacterType: {fileID: 0}
   controller: {fileID: 1075067857252033172}
   rb: {fileID: 4499349734575164199}
   prefabForAttack: {fileID: 4997932976077368095, guid: 71e59e620a150324bb6dfb8975cf4e6b,
