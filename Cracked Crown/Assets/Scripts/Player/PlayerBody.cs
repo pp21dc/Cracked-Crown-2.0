@@ -29,6 +29,8 @@ public class PlayerBody : MonoBehaviour
 
     public GameObject CharacterFolder;
 
+    public PlayAnim SwordSlash;
+
     private bool canAttack = true;
     private bool dashOnCD = false;
     private bool canTakeDamage = true;
@@ -77,6 +79,7 @@ public class PlayerBody : MonoBehaviour
         if (controller.PrimaryAttackDown & canAttack)
         {
             GameObject attack = Instantiate(prefabForAttack, primaryAttackSpawnPoint);
+            SwordSlash.sword.Play();
             Debug.Log("primary attack happened");
         }
     }
