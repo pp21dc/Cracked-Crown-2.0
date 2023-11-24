@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &147177727663276873
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4808969439308641443}
+  m_Layer: 0
+  m_Name: Spawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4808969439308641443
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 147177727663276873}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 9.42}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7736142204809174035}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1605487308005146413
 GameObject:
   m_ObjectHideFlags: 0
@@ -231,6 +262,7 @@ Transform:
   m_Children:
   - {fileID: 604303399575099641}
   - {fileID: 3588408607692446184}
+  - {fileID: 4808969439308641443}
   m_Father: {fileID: 7826077369860087090}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &7636848779068916370
@@ -302,6 +334,7 @@ MonoBehaviour:
   prefabForAttack: {fileID: 4997932976077368095, guid: 71e59e620a150324bb6dfb8975cf4e6b,
     type: 3}
   primaryAttackPoint: {fileID: 3588408607692446184}
+  primaryAttackSpawnPoint: {fileID: 4808969439308641443}
   CharacterFolder: {fileID: 4064884496430378951}
 --- !u!1 &8551303128544101305
 GameObject:

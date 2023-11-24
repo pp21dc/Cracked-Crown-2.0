@@ -24,6 +24,8 @@ public class PlayerBody : MonoBehaviour
     private GameObject prefabForAttack;
     [SerializeField]
     private Transform primaryAttackPoint;
+    [SerializeField]
+    private Transform primaryAttackSpawnPoint;
 
     public GameObject CharacterFolder;
 
@@ -35,6 +37,7 @@ public class PlayerBody : MonoBehaviour
     {
         Attack();
         Dash();
+        
     }
 
     private void FixedUpdate()
@@ -42,7 +45,13 @@ public class PlayerBody : MonoBehaviour
         float zInput = controller.ForwardMagnitude;
         float xInput = controller.HorizontalMagnitude;
 
+
         Vector3 movementVector = new Vector3(xInput, 0, zInput);
+        primaryAttackSpawnPoint.localPosition = (movementVector) * 10;
+        primaryAttackSpawnPoint.localRotation = primaryAttackPoint.localRotation;
+        primaryAttackPoint.LookAt(primaryAttackSpawnPoint);
+        primaryAttackPoint.eulerAngles = new Vector3(0,primaryAttackPoint.eulerAngles.y,0);
+
         if (movementVector.magnitude > 1)
         {
             movementVector.Normalize();
@@ -67,7 +76,7 @@ public class PlayerBody : MonoBehaviour
         }
         if (controller.PrimaryAttackDown & canAttack)
         {
-            GameObject attack = Instantiate(prefabForAttack, primaryAttackPoint.position, primaryAttackPoint.rotation);
+            GameObject attack = Instantiate(prefabForAttack, primaryAttackSpawnPoint);
             Debug.Log("primary attack happened");
         }
     }
