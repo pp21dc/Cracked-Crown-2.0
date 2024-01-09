@@ -58,9 +58,10 @@ public class PlayerBody : MonoBehaviour
         {
             movementVector.Normalize();
         }
-        movementVector = rb.position + (movementVector * movementSpeed * Time.deltaTime);
+        movementVector = (movementVector * movementSpeed * Time.deltaTime);
 
-        rb.MovePosition(movementVector);
+        rb.AddForce(movementVector*500);
+        
     }
 
     public void SetCharacterData()
