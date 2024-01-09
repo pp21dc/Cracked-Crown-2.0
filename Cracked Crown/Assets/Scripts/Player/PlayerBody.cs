@@ -60,7 +60,7 @@ public class PlayerBody : MonoBehaviour
         }
         movementVector = (movementVector * movementSpeed * Time.deltaTime);
 
-        rb.AddForce(movementVector*500);
+        rb.AddForce(movementVector*400);
         
     }
 
@@ -112,7 +112,7 @@ public class PlayerBody : MonoBehaviour
 
         while (Time.time < startTime + dashTime)
         {
-            transform.Translate(dashDirection * dashSpeed * Time.deltaTime);
+            rb.AddForce((dashDirection * dashSpeed * Time.deltaTime)*400);
             yield return null;
         }
 
