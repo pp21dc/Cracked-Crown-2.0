@@ -29,6 +29,12 @@ public class MonsterControllerAI : AdvancedFSM
     }
 
 
+    [SerializeField]
+    private float maxHealth;
+    public float MaxHealth
+    {
+        get { return maxHealth; }
+    }
 
     private float health;
     public float Health

@@ -94,10 +94,6 @@ public class PlayerBody : MonoBehaviour
     float x = 0;
     private void Attack()
     {
-        if (controller.ExecuteDown)
-        {
-            // havnt made yet
-        }
         if (controller.PrimaryAttackDown & canAttack)
         {
             animController.Attacking = true;
@@ -115,6 +111,11 @@ public class PlayerBody : MonoBehaviour
         {
             x += Time.deltaTime;
         }
+
+    }
+
+    public void Execute(GameObject enemy)
+    {
 
     }
 
