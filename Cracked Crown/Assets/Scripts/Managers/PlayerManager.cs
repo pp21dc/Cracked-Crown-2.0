@@ -59,7 +59,7 @@ public class PlayerManager : MonoBehaviour
 
     public void nextButton() // for ui to swap to next character
     {
-        if (PC.NavRight)
+        if (PC != null && PC.NavRight)
         {
             PC.NavRight = false;
             CharacterImages[arrayPos].SetActive(false);
@@ -88,7 +88,7 @@ public class PlayerManager : MonoBehaviour
 
     public void backButton() // for ui to swap to previous character
     {
-        if (PC.NavLeft)
+        if (PC != null && PC.NavLeft)
         {
             PC.NavLeft = false;
             CharacterImages[arrayPos].SetActive(false);
