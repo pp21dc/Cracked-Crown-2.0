@@ -83,9 +83,9 @@ public class MonsterControllerAI : AdvancedFSM
         //
 
         //Create the Dead state
-        DeadState deadState = new DeadState(this);
+       // DeadState deadState = new DeadState(this);
         //there are no transitions out of the dead state
-        AddFSMState(deadState);
+       // AddFSMState(deadState);
     }
 
     public void StartDeath()
