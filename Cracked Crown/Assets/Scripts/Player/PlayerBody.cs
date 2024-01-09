@@ -25,6 +25,8 @@ public class PlayerBody : MonoBehaviour
     [SerializeField]
     private PlayerController controller;
     [SerializeField]
+    private PlayerAnimController animController;
+    [SerializeField]
     private Rigidbody rb;
     [SerializeField]
     private GameObject prefabForAttack;
@@ -70,6 +72,15 @@ public class PlayerBody : MonoBehaviour
 
         rb.AddForce(movementVector*400);
         
+        if (rb.velocity.magnitude > 30f)
+        {
+            animController.Moving = true;
+        }
+        else
+        {
+            animController.Moving = false;
+        }
+
     }
 
     public void SetCharacterData()
@@ -80,7 +91,7 @@ public class PlayerBody : MonoBehaviour
         finisherRadius = CharacterType.finisherRadius;
         finisherColliderGO.GetComponent<CapsuleCollider>().radius = finisherRadius;
     }
-
+    float x = 0;
     private void Attack()
     {
         if (controller.ExecuteDown)
@@ -89,17 +100,31 @@ public class PlayerBody : MonoBehaviour
         }
         if (controller.PrimaryAttackDown & canAttack)
         {
+            animController.Attacking = true;
             GameObject attack = Instantiate(prefabForAttack, primaryAttackSpawnPoint);
             SwordSlash.sword.Play();
             Debug.Log("primary attack happened");
         }
+
+        if (x > 1)
+        {
+            x = 0;
+            animController.Attacking = false;
+        }
+        else
+        {
+            x += Time.deltaTime;
+        }
+
     }
 
     private void Dash()
     {
         if (controller.DashDown & dashOnCD == false)
         {
+            
             StartCoroutine(DashCoroutine());
+            
             dashOnCD = true;
             StartCoroutine(Cooldown());
         }
@@ -109,6 +134,7 @@ public class PlayerBody : MonoBehaviour
     {
         canTakeDamage = false;
         canAttack = false;
+        animController.Dashing = true;
 
         float zInput = controller.ForwardMagnitude;
         float xInput = controller.HorizontalMagnitude;
@@ -128,6 +154,7 @@ public class PlayerBody : MonoBehaviour
 
         canAttack = true;
         canTakeDamage = true;
+        animController.Dashing = false;
     }
 
     private IEnumerator Cooldown()
