@@ -22,6 +22,8 @@ public class EnemyController : MonoBehaviour
     private float currShortest = 100000f; //current shortest distance
     private Vector3 movementVector = Vector3.zero; // the vector that the enemy is moving towards
 
+    public int health = 100;
+
 
 
 
