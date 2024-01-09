@@ -77,6 +77,74 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sword: {fileID: 4745303971870586871}
+--- !u!1 &3892952694850963964
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4831111542555380044}
+  - component: {fileID: 6208975298166634594}
+  - component: {fileID: 2358329642197499249}
+  m_Layer: 0
+  m_Name: FinisherRadius
+  m_TagString: FinisherRadius
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4831111542555380044
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3892952694850963964}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7736142204809174035}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &6208975298166634594
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3892952694850963964}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 20
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2358329642197499249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3892952694850963964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60b24f4855d395f4ca952753c32c2d47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4064884496430378951
 GameObject:
   m_ObjectHideFlags: 0
@@ -278,6 +346,7 @@ Transform:
   - {fileID: 604303399575099641}
   - {fileID: 3588408607692446184}
   - {fileID: 4808969439308641443}
+  - {fileID: 4831111542555380044}
   m_Father: {fileID: 7826077369860087090}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &7636848779068916370
@@ -343,6 +412,7 @@ MonoBehaviour:
   movementSpeed: 64
   dashSpeed: 128
   dashTime: 1
+  finisherRadius: 20
   CharacterType: {fileID: 0}
   controller: {fileID: 1075067857252033172}
   rb: {fileID: 4499349734575164199}
@@ -350,6 +420,7 @@ MonoBehaviour:
     type: 3}
   primaryAttackPoint: {fileID: 3588408607692446184}
   primaryAttackSpawnPoint: {fileID: 4808969439308641443}
+  finisherColliderGO: {fileID: 3892952694850963964}
   CharacterFolder: {fileID: 4064884496430378951}
   SwordSlash: {fileID: 5989917852546650526}
 --- !u!1 &8551303128544101305

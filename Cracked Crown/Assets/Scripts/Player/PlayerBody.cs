@@ -13,6 +13,12 @@ public class PlayerBody : MonoBehaviour
     [SerializeField]
     private float dashTime = 0.5f;
     [SerializeField]
+    private float finisherRadius = 20f;
+    [SerializeField]
+    private float health = 10f;
+    public float Health { get { return health; } }
+
+    [SerializeField]
     public CharacterType CharacterType;
 
     [Header("Do Not Touch")]
@@ -26,6 +32,8 @@ public class PlayerBody : MonoBehaviour
     private Transform primaryAttackPoint;
     [SerializeField]
     private Transform primaryAttackSpawnPoint;
+    [SerializeField]
+    private GameObject finisherColliderGO;
 
     public GameObject CharacterFolder;
 
@@ -69,6 +77,8 @@ public class PlayerBody : MonoBehaviour
         movementSpeed = CharacterType.moveSpeed;
         dashSpeed = CharacterType.dashSpeed;
         dashTime = CharacterType.dashTime;
+        finisherRadius = CharacterType.finisherRadius;
+        finisherColliderGO.GetComponent<CapsuleCollider>().radius = finisherRadius;
     }
 
     private void Attack()

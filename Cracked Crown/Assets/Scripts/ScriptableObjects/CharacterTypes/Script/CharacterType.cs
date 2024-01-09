@@ -10,4 +10,5 @@ public class CharacterType : ScriptableObject
     public float dashTime;
     public float attack;
     public float attackSpeed;
+    public float finisherRadius;
 }
