@@ -145,6 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60b24f4855d395f4ca952753c32c2d47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemiesInRange: []
 --- !u!1 &4064884496430378951
 GameObject:
   m_ObjectHideFlags: 0
@@ -323,6 +324,7 @@ GameObject:
   - component: {fileID: 7636848779068916370}
   - component: {fileID: 4499349734575164199}
   - component: {fileID: 908568366204445390}
+  - component: {fileID: 8089469534137136360}
   m_Layer: 0
   m_Name: Player Body
   m_TagString: Player
@@ -413,8 +415,10 @@ MonoBehaviour:
   dashSpeed: 128
   dashTime: 1
   finisherRadius: 20
+  health: 10
   CharacterType: {fileID: 0}
   controller: {fileID: 1075067857252033172}
+  animController: {fileID: 8089469534137136360}
   rb: {fileID: 4499349734575164199}
   prefabForAttack: {fileID: 4997932976077368095, guid: 71e59e620a150324bb6dfb8975cf4e6b,
     type: 3}
@@ -423,6 +427,19 @@ MonoBehaviour:
   finisherColliderGO: {fileID: 3892952694850963964}
   CharacterFolder: {fileID: 4064884496430378951}
   SwordSlash: {fileID: 5989917852546650526}
+--- !u!114 &8089469534137136360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8421034233438563337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c02e5b62be9bc449950649d1c18eea0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Animator: {fileID: 2490379965934321005}
 --- !u!1 &8551303128544101305
 GameObject:
   m_ObjectHideFlags: 0
@@ -540,6 +557,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7d79151a7f0bd344843f470d4ca4d9c, type: 3}
+--- !u!95 &2490379965934321005 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5618469975322912861, guid: f7d79151a7f0bd344843f470d4ca4d9c,
+    type: 3}
+  m_PrefabInstance: {fileID: 8031971812282881328}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7770123717005326333 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 333914622876902093, guid: f7d79151a7f0bd344843f470d4ca4d9c,

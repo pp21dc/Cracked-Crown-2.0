@@ -7,7 +7,7 @@ public class PlayerAnimController : MonoBehaviour
 {
 
     [SerializeField]
-    AnimatorController AC;
+    Animator Animator;
 
     private bool moving;
     [HideInInspector]
@@ -33,11 +33,19 @@ public class PlayerAnimController : MonoBehaviour
         set { dead = value; }
     }
 
-    private void Update()
+    private bool attacking;
+    [HideInInspector]
+    public bool Attacking
     {
-        AC.parameters.SetValue(dead, 0);
-        AC.parameters.SetValue(moving, 1);
-        AC.parameters.SetValue(dashing, 2);
+        get { return attacking; }
+        set { attacking = value; }
+    }
+
+    private void FixedUpdate()
+    {
+        Animator.SetBool("Moving", moving);
+        Animator.SetBool("Dashing", dashing);
+        Animator.SetBool("Attacking", attacking);
     }
 
  
