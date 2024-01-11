@@ -22,9 +22,10 @@ public abstract class FSMState
     protected FSMStateID stateID;
     public FSMStateID ID { get { return stateID; } }
     protected Vector3 destPos;
-    
+    protected Transform[] waypoints;
     protected float curRotSpeed;
     protected float curSpeed;
+    protected float maxBullets;
 
     public void AddTransition(Transition transition, FSMStateID id)
     {
@@ -116,6 +117,59 @@ public abstract class FSMState
     /// <summary>
     /// Find the next point
     /// </summary>
-    
+    public virtual void FindNextPoint()
+    {
+        int randomIndex = Random.Range(0, waypoints.Length);
+        destPos = waypoints[randomIndex].position;
+    }
+
+    public Transform GetFurthestWayPoint(Transform trans)
+    {
+        return GetWayPoint(trans, true);
+    }
+
+    public Transform GetClosestWaypoint(Transform trans)
+    {
+        return GetWayPoint(trans);
+    }
+
+    private Transform GetWayPoint(Transform trans, bool furthest = false)
+    {
+        if (waypoints == null || waypoints.Length == 0)
+        {
+            return null;
+        }
+
+        float currSqrMagnitude = (trans.position - waypoints[0].position).sqrMagnitude;
+        Transform retValue = waypoints[0];
+
+        for (int i = 1; i < waypoints.Length; i++)
+        {
+            float sqrMagnitude = (trans.position - waypoints[i].position).sqrMagnitude;
+
+            if ((furthest && (sqrMagnitude > currSqrMagnitude)) || (!furthest && (sqrMagnitude < currSqrMagnitude)))
+            {
+               retValue = waypoints[i];
+               currSqrMagnitude = sqrMagnitude;
+            }
+        }
+
+        return retValue;
+    }
+
+    /// <summary>
+    /// Check whether the next random position is the same as current position
+    /// </summary>
+    /// <param name="pos">position to check</param>
+    protected virtual bool IsInCurrentRange(Transform trans, Vector3 pos, float range)
+    {
+        bool inRange = false;
+        float dist = Vector3.Distance(trans.position, pos);
+        if (dist <= range)
+        {
+            inRange = true;
+        }
+        return inRange;
+    }
 
 }

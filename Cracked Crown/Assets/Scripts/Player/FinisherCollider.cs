@@ -7,8 +7,9 @@ public class FinisherCollider : MonoBehaviour
 {
 
     [SerializeField]
-    private List<MonsterControllerAI> enemiesInRange;
-    [SerializeField]
+   // private List<MonsterControllerAI> enemiesInRange;
+
+   // [SerializeField]
     private PlayerBody PB;
     [SerializeField]
     private PlayerController controller;
@@ -17,13 +18,13 @@ public class FinisherCollider : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy") // need to add if its under 50% health but no health in game yet so meh
         {
-            enemiesInRange.Add(collision.gameObject.GetComponent<MonsterControllerAI>()); // add enemy to nearby list
+           // enemiesInRange.Add(collision.gameObject.GetComponent<MonsterControllerAI>()); // add enemy to nearby list
 
-            if (collision.gameObject.GetComponent<MonsterControllerAI>().Health /collision.gameObject.GetComponent<MonsterControllerAI>().MaxHealth <= 0.5) // if health is less then 50% can execute
+           // if (collision.gameObject.GetComponent<MonsterControllerAI>().Health /collision.gameObject.GetComponent<MonsterControllerAI>().MaxHealth <= 0.5) // if health is less then 50% can execute
             {
                 if (controller.ExecuteDown)
                 {
-                    PB.Execute(enemiesInRange[0].gameObject);
+                   // PB.Execute(enemiesInRange[0].gameObject);
                 }
             }
         }
@@ -33,7 +34,7 @@ public class FinisherCollider : MonoBehaviour
     {
         if(collision.gameObject.tag == "Enemy")
         {
-            enemiesInRange.Remove(collision.gameObject.GetComponent<MonsterControllerAI>());
+            //enemiesInRange.Remove(collision.gameObject.GetComponent<MonsterControllerAI>());
         }
     }
 }
