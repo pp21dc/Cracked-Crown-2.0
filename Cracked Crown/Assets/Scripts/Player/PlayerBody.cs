@@ -24,6 +24,7 @@ public class PlayerBody : MonoBehaviour
     [Header("Do Not Touch")]
     [SerializeField]
     private PlayerController controller;
+    public PlayerContainer playerContainer;
     [SerializeField]
     private PlayerAnimController animController;
     [SerializeField]
