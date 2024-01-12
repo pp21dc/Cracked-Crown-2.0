@@ -43,11 +43,10 @@ public class PlayerBody : MonoBehaviour
     private Vector3 forExecutePosition = new Vector3(15, 0, 0);
 
     public GameObject CharacterFolder;
-
+    public bool canMove = true;
     public PlayAnim SwordSlash;
 
     private bool canAttack = true;
-    private bool canMove = true;
     private bool dashOnCD = false;
     private bool canTakeDamage = true;
     private float executeHeal = 5f;
@@ -181,6 +180,7 @@ public class PlayerBody : MonoBehaviour
         executePos = toExecute.transform.position + forExecutePosition;
         //transform.position = Vector3.MoveTowards(gameObject.transform.position, executePos, executeMoveSpeed * Time.deltaTime);
         transform.position = executePos;
+        // make sprite face the enemy
 
         canMove = false;
         canTakeDamage = false;

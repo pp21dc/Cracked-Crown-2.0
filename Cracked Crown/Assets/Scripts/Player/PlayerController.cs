@@ -66,8 +66,11 @@ public class PlayerController : MonoBehaviour
         horizontalMagnitude = inputVal.x;
         Transform sprite = PB.CharacterFolder.transform.GetChild(0);
         float scale = Mathf.Abs(sprite.localScale.x);
-        if (inputVal.x > 0) { sprite.localScale = new Vector3(-scale, sprite.localScale.y, 1); }
-        else if (inputVal.x < 0 ) { PB.CharacterFolder.transform.GetChild(0).localScale = new Vector3(scale, sprite.localScale.y, 1); }
+        if (PB.canMove)
+        {
+            if (inputVal.x > 0) { sprite.localScale = new Vector3(-scale, sprite.localScale.y, 1); }
+            else if (inputVal.x < 0) { PB.CharacterFolder.transform.GetChild(0).localScale = new Vector3(scale, sprite.localScale.y, 1); }
+        }
     }
 
     public void OnPrimaryAttack()
