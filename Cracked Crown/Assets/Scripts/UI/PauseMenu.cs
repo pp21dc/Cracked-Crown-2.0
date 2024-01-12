@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using UnityEngine.EventSystems;
+
 public class PauseMenu : MonoBehaviour
 {
 
@@ -11,6 +13,9 @@ public class PauseMenu : MonoBehaviour
     GameObject menuUI;
     [SerializeField]
     GameObject settingsMenu;
+
+    [SerializeField]
+    GameObject settingsInitButton;
 
     [SerializeField]
     PlayerController Player1;
@@ -63,8 +68,9 @@ public class PauseMenu : MonoBehaviour
 
     public void OpenSettings()
     {
-        closePause();
         settingsMenu.SetActive(true);
+        closePause();
+        EventSystem.current.SetSelectedGameObject(settingsInitButton);
     }
 
     public void CloseSettings()
