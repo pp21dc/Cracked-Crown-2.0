@@ -25,33 +25,24 @@ public class EnemyAIController : AdvancedFSM
     private Text HealthText;//shows enemy current health
 
     [SerializeField]
-    private GameObject Bullet;//add a bullet for the enmy to shoot
+    private GameObject[] Players = new GameObject[4]; //holds all players
+
+
+    private GameObject closest;//holds the closest player
 
     [SerializeField]
-    private Transform firelocation;//adds a fire location later used to help find the direction for the bullet when instantiated
-    [SerializeField]
-    private Transform gun;//adds a gun transform later used to help find the direction for the bullet when instantiated
+    private Transform enemyBody; //holds the enemy player position
 
-    public float magSize = 8;//amount of bullet that can be shot before needing to reload
+    private float currShortest = 100000f; //current shortest distance
+    private Vector3 movementVector = Vector3.zero; // the vector that the enemy is moving towards
 
-    private bool canShoot = true; //if the enemy can shoot
-
-    private bool isReloading = true; //if the enemy is reloading
+    private bool isPlayerFound = false;
+    public bool isPlayerfound {  get { return isPlayerFound; } }
 
     [SerializeField]
-    private Animator animator; //grabs the animator
+    private float speed = 0.008f; //speed of the enemy
 
-    [SerializeField]
-    private ParticleSystem deathEffect;
 
-    [SerializeField]
-    private AudioSource audioSource;//what manages the noises
-
-    [SerializeField]
-    private AudioClip ouch;//when the enemy is hit
-
-    [SerializeField]
-    private AudioClip death; //when the enemy dies
 
 
     private float health;//health of the enemy
@@ -64,7 +55,7 @@ public class EnemyAIController : AdvancedFSM
 
     public void Awake()
     {
-        audioSource.clip = ouch;//sets the default audio to ouch
+        
     }
 
     //allows us to grab the state in which the enemy should be on
@@ -168,55 +159,62 @@ public class EnemyAIController : AdvancedFSM
         AddFSMState(deadState);
     }
 
+    //finds the closest player and sets the target position
+    public void checkShortestDistance()
+    {
+
+        float check;
+
+        for (int i = 0; i < Players.Length; i++)
+        {
+
+            check = Vector3.Distance(gameObject.transform.position, Players[i].transform.position);
+
+            if (check < currShortest)
+            {
+
+                currShortest = check;
+                closest = Players[i];
+
+            }
+
+        }
+
+        setAndMoveToTarget();
+
+    }
+
+    //sets enemy target position and moves towards it
+    private void setAndMoveToTarget()
+    {
+
+        movementVector = (closest.transform.position - enemyBody.transform.position).normalized * speed;
+        enemyBody.transform.position += movementVector * Time.deltaTime;//moves to player
+        enemyBody.transform.position = new Vector3(enemyBody.position.x, 0f, enemyBody.position.z); //keeps it on ground
+
+    } 
+
+
     //starts a death coroutine
     public void StartDeath()
     {
 
-        audioSource.volume = 0.15f;//turns down volume (your welcome)
-        audioSource.PlayOneShot(death);//plays death audio (I am so sorry)
+        
         StartCoroutine(Death());
     }
 
-    //Starts a firing coroutine
-    public void StartFiring()
-    {
-        if (canShoot)
-        {
-            StartCoroutine(Fire(firelocation, gun));
-            canShoot = false;
-        }
-    }
+    
 
     
-    //set a reloading coroutine
-    public void StartReloading()
-    {
-        
+    
 
-        animator.SetFloat("Speed", 1);//sets animation to run
-        
-
-        if (isReloading)
-        {
-
-            isReloading = false;
-            StartCoroutine(Reload(this));
-
-        }
-    }
-
-    public void StartFleeAnimation()
-    {
-        animator.SetFloat("Speed", 1); //sets the animation to run
-    }
+    
 
     //destroys the enemy game object
     IEnumerator Death()
     {
 
-        deathEffect.Play();
-
-        animator.SetTrigger("isDead");
+        
 
         
 
@@ -228,7 +226,7 @@ public class EnemyAIController : AdvancedFSM
     }
 
     //Same logic as the player and turret fire, uses the firelocation and gun to find the direction to shoot and instantiates a bullet going in said direction 
-    IEnumerator Fire(Transform fireLocation, Transform Gun) 
+   /* IEnumerator Fire(Transform fireLocation, Transform Gun) 
     {
 
         for (int i = 0; i < 8; i++)//runs until the mag is empty, decreasing the mag by one every shot
@@ -236,7 +234,7 @@ public class EnemyAIController : AdvancedFSM
 
             Shoot(fireLocation, Gun);
 
-            magSize--;
+            
 
             //decrease mag
 
@@ -248,24 +246,9 @@ public class EnemyAIController : AdvancedFSM
         yield return null;
 
     }
-
+   */
     //set the mag back to 8 after waiting a bit of time so we can shoot again
-    IEnumerator Reload(EnemyAIController enemy)
-    {
-
-        animator.SetTrigger("isReloading");//starts reloading animation
-
-        yield return new WaitForSeconds(4f);
-
-        magSize = 8;
-        isReloading = true;//allows us to reload again
-
-        animator.SetFloat("Speed", 0);
-
-
-        yield return null;
     
-    }
 
     //when the enemy is hit with a playerBullet, it decreases the enemy health by ten
     private void OnTriggerEnter(Collider other)
@@ -274,7 +257,7 @@ public class EnemyAIController : AdvancedFSM
         {
 
             this.DecHealth(10);
-            audioSource.Play();//plays hit audio
+            
             other.gameObject.SetActive(false);
 
         }
@@ -284,7 +267,7 @@ public class EnemyAIController : AdvancedFSM
     public void Shoot(Transform fireLocation, Transform Gun)
     {
 
-        if (Bullet)
+       /* if (Bullet)
         {
 
             Vector3 direction = fireLocation.position - Gun.position;
@@ -301,7 +284,7 @@ public class EnemyAIController : AdvancedFSM
 
             animator.SetTrigger("isFiring");//runs the shoot animation
 
-        }
+        }*/
 
     }
 
