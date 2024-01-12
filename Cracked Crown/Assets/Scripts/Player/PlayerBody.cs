@@ -47,6 +47,7 @@ public class PlayerBody : MonoBehaviour
     public PlayAnim SwordSlash;
 
     private bool canAttack = true;
+    private bool canMove = true;
     private bool dashOnCD = false;
     private bool canTakeDamage = true;
     private float executeHeal = 5f;
@@ -61,33 +62,35 @@ public class PlayerBody : MonoBehaviour
 
     private void FixedUpdate()
     {
-        float zInput = controller.ForwardMagnitude;
-        float xInput = controller.HorizontalMagnitude;
-
-
-        Vector3 movementVector = new Vector3(xInput, 0, zInput);
-        primaryAttackSpawnPoint.localPosition = (movementVector) * 10;
-        primaryAttackSpawnPoint.localRotation = primaryAttackPoint.localRotation;
-        primaryAttackPoint.LookAt(primaryAttackSpawnPoint);
-        primaryAttackPoint.eulerAngles = new Vector3(0,primaryAttackPoint.eulerAngles.y,0);
-
-        if (movementVector.magnitude > 1)
+        if (canMove)
         {
-            movementVector.Normalize();
-        }
-        movementVector = (movementVector * movementSpeed * Time.deltaTime);
+            float zInput = controller.ForwardMagnitude;
+            float xInput = controller.HorizontalMagnitude;
 
-        rb.AddForce(movementVector*400);
-        
-        if (rb.velocity.magnitude > 30f)
-        {
-            animController.Moving = true;
-        }
-        else
-        {
-            animController.Moving = false;
-        }
 
+            Vector3 movementVector = new Vector3(xInput, 0, zInput);
+            primaryAttackSpawnPoint.localPosition = (movementVector) * 10;
+            primaryAttackSpawnPoint.localRotation = primaryAttackPoint.localRotation;
+            primaryAttackPoint.LookAt(primaryAttackSpawnPoint);
+            primaryAttackPoint.eulerAngles = new Vector3(0, primaryAttackPoint.eulerAngles.y, 0);
+
+            if (movementVector.magnitude > 1)
+            {
+                movementVector.Normalize();
+            }
+            movementVector = (movementVector * movementSpeed * Time.deltaTime);
+
+            rb.AddForce(movementVector * 400);
+
+            if (rb.velocity.magnitude > 30f)
+            {
+                animController.Moving = true;
+            }
+            else
+            {
+                animController.Moving = false;
+            }
+        }
     }
 
     public void SetCharacterData()
@@ -179,6 +182,7 @@ public class PlayerBody : MonoBehaviour
         //transform.position = Vector3.MoveTowards(gameObject.transform.position, executePos, executeMoveSpeed * Time.deltaTime);
         transform.position = executePos;
 
+        canMove = false;
         canTakeDamage = false;
         // take enemy out of list
 
@@ -187,5 +191,6 @@ public class PlayerBody : MonoBehaviour
         Destroy(toExecute);
         health = health + executeHeal;
         canTakeDamage = true;
+        canMove = true;
     }
 }
