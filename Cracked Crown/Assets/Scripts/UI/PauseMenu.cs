@@ -9,6 +9,8 @@ public class PauseMenu : MonoBehaviour
 
     [SerializeField]
     GameObject menuUI;
+    [SerializeField]
+    GameObject settingsMenu;
 
     [SerializeField]
     PlayerController Player1;
@@ -52,5 +54,22 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
 
         gamePaused = false;
+    }
+
+    private void closePause()
+    {
+        menuUI.SetActive(false);
+    }
+
+    public void OpenSettings()
+    {
+        closePause();
+        settingsMenu.SetActive(true);
+    }
+
+    public void CloseSettings()
+    {
+        settingsMenu.SetActive(false);
+        Pause();
     }
 }
