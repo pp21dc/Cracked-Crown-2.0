@@ -76,21 +76,29 @@ public class EnemyAIController : AdvancedFSM
         {
             state = "DEAD";
         }
-        else if (CurrentState.ID == FSMStateID.Idle)
+        else if (CurrentState.ID == FSMStateID.FindPlayer)
         {
-            state = "IDLE";
+            state = "FindPlayer";
         }
-        else if (CurrentState.ID == FSMStateID.Ranged)
+        else if (CurrentState.ID == FSMStateID.FollowPlayer)
         {
-            state = "RANGED";
+            state = "FollowPlayer";
         }
-        else if (CurrentState.ID == FSMStateID.Flee)
+        else if (CurrentState.ID == FSMStateID.SlamGround)
         {
-            state = "FLEE";
+            state = "SlamGround";
         }
-        else if (CurrentState.ID == FSMStateID.Reload)
+        else if (CurrentState.ID == FSMStateID.Carry)
         {
-            state = "RELOAD";
+            state = "Carry";
+        }
+        else if (CurrentState.ID == FSMStateID.Stunned)
+        {
+            state = "Stunned";
+        }
+        else if (CurrentState.ID == FSMStateID.Finished)
+        {
+            state = "Finished";
         }
 
 
@@ -100,8 +108,8 @@ public class EnemyAIController : AdvancedFSM
     //intializes the enemy with the player location and sets enemy health to 100 theb calls Construct FSM
     protected override void Initialize()
     {
-        GameObject objPlayer = GameObject.FindGameObjectWithTag("Player");
-        playerTransform = objPlayer.transform;
+       // GameObject objPlayer = GameObject.FindGameObjectWithTag("Player");
+       // playerTransform = objPlayer.transform;
         health = 100;
         ConstructFSM();
     }
@@ -123,40 +131,40 @@ public class EnemyAIController : AdvancedFSM
     private void ConstructFSM()
     {
 
-        IdleState idleState = new IdleState(this);
-        idleState.AddTransition(Transition.lowHealth, FSMStateID.Flee);
-        idleState.AddTransition(Transition.seePlayer, FSMStateID.Ranged);
-        idleState.AddTransition(Transition.NoHealth, FSMStateID.Dead);
+        FindPlayerState findPlayerState = new FindPlayerState(this);
+        findPlayerState.AddTransition(Transition.PlayerFound, FSMStateID.FollowPlayer);
 
-        FleeState fleeState = new FleeState(this);
-        fleeState.AddTransition(Transition.NoHealth, FSMStateID.Dead);
-        
+        FollowPlayerState followPlayerState = new FollowPlayerState(this);
+        followPlayerState.AddTransition(Transition.AbovePlayer, FSMStateID.SlamGround);
 
-        RangedState rangedState = new RangedState(this);
-        rangedState.AddTransition(Transition.NoBullets, FSMStateID.Reload);
-        rangedState.AddTransition(Transition.lowHealth, FSMStateID.Flee);
-        rangedState.AddTransition(Transition.NoHealth, FSMStateID.Dead);
+        SlamGroundState slamGroundState = new SlamGroundState(this);
+        slamGroundState.AddTransition(Transition.SlamSuceeded, FSMStateID.Carry);
+        slamGroundState.AddTransition(Transition.SlamFailed, FSMStateID.Stunned);
+        slamGroundState.AddTransition(Transition.LowHealth, FSMStateID.Finished);
+        slamGroundState.AddTransition(Transition.NoHealth, FSMStateID.Dead);
 
+        CarryState carryState = new CarryState(this);
+        carryState.AddTransition(Transition.LookForPlayer, FSMStateID.FindPlayer);
 
-        ReloadState reloadState = new ReloadState(this);
-        reloadState.AddTransition(Transition.lowHealth, FSMStateID.Flee);
-        reloadState.AddTransition(Transition.seePlayer, FSMStateID.Ranged);
-        reloadState.AddTransition(Transition.NoHealth, FSMStateID.Dead);
+        StunnedState stunnedState = new StunnedState(this);
+        stunnedState.AddTransition(Transition.LookForPlayer, FSMStateID.FindPlayer);
+        stunnedState.AddTransition(Transition.LowHealth, FSMStateID.Finished);
+        stunnedState.AddTransition(Transition.NoHealth, FSMStateID.Dead);
 
-        
+        FinishedState finishedState = new FinishedState(this);
+        finishedState.AddTransition(Transition.NoHealth, FSMStateID.Dead);
 
         DeadState deadState = new DeadState(this);
 
 
-
-
-
         //Add all states to the state list
 
-        AddFSMState(idleState);
-        AddFSMState(fleeState);
-        AddFSMState(rangedState);
-        AddFSMState(reloadState);
+        AddFSMState(findPlayerState);
+        AddFSMState(followPlayerState);
+        AddFSMState(slamGroundState);
+        AddFSMState(carryState);
+        AddFSMState(stunnedState);
+        AddFSMState(finishedState);
         AddFSMState(deadState);
     }
 

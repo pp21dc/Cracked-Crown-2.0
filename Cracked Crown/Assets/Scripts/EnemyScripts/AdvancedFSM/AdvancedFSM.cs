@@ -13,9 +13,12 @@ using System.Collections.Generic;
 public enum Transition
 {
     None = 0,
-    seePlayer,
-    lowHealth,
-    NoBullets,
+    LookForPlayer,
+    PlayerFound,
+    AbovePlayer,
+    SlamSuceeded,
+    SlamFailed,
+    LowHealth,
     NoHealth
     
 }
@@ -23,11 +26,12 @@ public enum Transition
 public enum FSMStateID
 {
     None = 0,
-    Idle,
-    Ranged,
-    Rush,
-    Reload,
-    Flee,
+    FindPlayer,
+    FollowPlayer,
+    SlamGround,
+    Carry,
+    Stunned,
+    Finished,
     Dead
 }
 
