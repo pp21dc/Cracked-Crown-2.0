@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class PlayerBody : MonoBehaviour
 {
@@ -37,6 +39,8 @@ public class PlayerBody : MonoBehaviour
     private Transform primaryAttackSpawnPoint;
     [SerializeField]
     private GameObject finisherColliderGO;
+    [SerializeField]
+    private Vector3 forExecutePosition = new Vector3(15, 0, 0);
 
     public GameObject CharacterFolder;
 
@@ -45,6 +49,8 @@ public class PlayerBody : MonoBehaviour
     private bool canAttack = true;
     private bool dashOnCD = false;
     private bool canTakeDamage = true;
+    private float executeHeal = 5f;
+    private float executeMoveSpeed = 10f;
 
     private void Update()
     {
@@ -91,6 +97,7 @@ public class PlayerBody : MonoBehaviour
         dashTime = CharacterType.dashTime;
         finisherRadius = CharacterType.finisherRadius;
         finisherColliderGO.GetComponent<CapsuleCollider>().radius = finisherRadius;
+        forExecutePosition = CharacterType.executePosition;
     }
     float x = 0;
     private void Attack()
@@ -117,7 +124,7 @@ public class PlayerBody : MonoBehaviour
 
     public void Execute(GameObject enemy)
     {
-
+        StartCoroutine(InExecute(enemy));
     }
 
     private void Dash()
@@ -163,5 +170,22 @@ public class PlayerBody : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         dashOnCD = false;
+    }
+
+    private IEnumerator InExecute(GameObject toExecute)
+    {
+        Vector3 executePos = new Vector3();
+        executePos = toExecute.transform.position + forExecutePosition;
+        //transform.position = Vector3.MoveTowards(gameObject.transform.position, executePos, executeMoveSpeed * Time.deltaTime);
+        transform.position = executePos;
+
+        canTakeDamage = false;
+        // take enemy out of list
+
+        yield return new WaitForSeconds(1.5f);
+
+        Destroy(toExecute);
+        health = health + executeHeal;
+        canTakeDamage = true;
     }
 }
