@@ -1,40 +1,53 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
 
 public class FinisherCollider : MonoBehaviour
 {
 
-    [SerializeField]
-   // private List<MonsterControllerAI> enemiesInRange;
+   [SerializeField]
+   private List<GameObject> enemiesInRange;
 
-   // [SerializeField]
+   [SerializeField]
     private PlayerBody PB;
     [SerializeField]
     private PlayerController controller;
 
-    private void OnCollisionEnter(Collision collision)
+    private void Update()
     {
-        if (collision.gameObject.tag == "Enemy") // need to add if its under 50% health but no health in game yet so meh
+        if (enemiesInRange != null)
         {
-           // enemiesInRange.Add(collision.gameObject.GetComponent<MonsterControllerAI>()); // add enemy to nearby list
-
-           // if (collision.gameObject.GetComponent<MonsterControllerAI>().Health /collision.gameObject.GetComponent<MonsterControllerAI>().MaxHealth <= 0.5) // if health is less then 50% can execute
+            foreach (GameObject enemy in enemiesInRange)
             {
+                //if (((enemy.gameObject.GetComponent<EnemyAIController>().Health) / (enemy.gameObject.GetComponent<EnemyAIController>().MaxHealth)) <= 0.5) // if health is less then 50% can execute
+                //{
                 if (controller.ExecuteDown)
                 {
-                   // PB.Execute(enemiesInRange[0].gameObject);
+                    Debug.Log("pressed execute");
+                    PB.Execute(enemiesInRange[0].gameObject);
                 }
+                //}
             }
         }
     }
 
-    private void OnCollisionExit(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if(collision.gameObject.tag == "Enemy")
+        if (other.gameObject.tag == "Enemy")
         {
-            //enemiesInRange.Remove(collision.gameObject.GetComponent<MonsterControllerAI>());
+            Debug.Log("Collided with enemy");
+            enemiesInRange.Add(other.gameObject); // add enemy to nearby list
         }
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
+            enemiesInRange.Remove(other.gameObject);
+        }
+    }
+
 }

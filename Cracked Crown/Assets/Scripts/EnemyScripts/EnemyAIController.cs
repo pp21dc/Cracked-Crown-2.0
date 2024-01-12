@@ -25,33 +25,24 @@ public class EnemyAIController : AdvancedFSM
     private Text HealthText;//shows enemy current health
 
     [SerializeField]
-    private GameObject Bullet;//add a bullet for the enmy to shoot
+    private GameObject[] Players = new GameObject[4]; //holds all players
+
+
+    private GameObject closest;//holds the closest player
 
     [SerializeField]
-    private Transform firelocation;//adds a fire location later used to help find the direction for the bullet when instantiated
-    [SerializeField]
-    private Transform gun;//adds a gun transform later used to help find the direction for the bullet when instantiated
+    private Transform enemyBody; //holds the enemy player position
 
-    public float magSize = 8;//amount of bullet that can be shot before needing to reload
+    private float currShortest = 100000f; //current shortest distance
+    private Vector3 movementVector = Vector3.zero; // the vector that the enemy is moving towards
 
-    private bool canShoot = true; //if the enemy can shoot
-
-    private bool isReloading = true; //if the enemy is reloading
+    private bool isPlayerFound = false;
+    public bool isPlayerfound {  get { return isPlayerFound; } }
 
     [SerializeField]
-    private Animator animator; //grabs the animator
+    private float speed = 0.008f; //speed of the enemy
 
-    [SerializeField]
-    private ParticleSystem deathEffect;
 
-    [SerializeField]
-    private AudioSource audioSource;//what manages the noises
-
-    [SerializeField]
-    private AudioClip ouch;//when the enemy is hit
-
-    [SerializeField]
-    private AudioClip death; //when the enemy dies
 
 
     private float health;//health of the enemy
@@ -64,7 +55,7 @@ public class EnemyAIController : AdvancedFSM
 
     public void Awake()
     {
-        audioSource.clip = ouch;//sets the default audio to ouch
+        
     }
 
     //allows us to grab the state in which the enemy should be on
@@ -76,21 +67,29 @@ public class EnemyAIController : AdvancedFSM
         {
             state = "DEAD";
         }
-        else if (CurrentState.ID == FSMStateID.Idle)
+        else if (CurrentState.ID == FSMStateID.FindPlayer)
         {
-            state = "IDLE";
+            state = "FindPlayer";
         }
-        else if (CurrentState.ID == FSMStateID.Ranged)
+        else if (CurrentState.ID == FSMStateID.FollowPlayer)
         {
-            state = "RANGED";
+            state = "FollowPlayer";
         }
-        else if (CurrentState.ID == FSMStateID.Flee)
+        else if (CurrentState.ID == FSMStateID.SlamGround)
         {
-            state = "FLEE";
+            state = "SlamGround";
         }
-        else if (CurrentState.ID == FSMStateID.Reload)
+        else if (CurrentState.ID == FSMStateID.Carry)
         {
-            state = "RELOAD";
+            state = "Carry";
+        }
+        else if (CurrentState.ID == FSMStateID.Stunned)
+        {
+            state = "Stunned";
+        }
+        else if (CurrentState.ID == FSMStateID.Finished)
+        {
+            state = "Finished";
         }
 
 
@@ -100,8 +99,8 @@ public class EnemyAIController : AdvancedFSM
     //intializes the enemy with the player location and sets enemy health to 100 theb calls Construct FSM
     protected override void Initialize()
     {
-        GameObject objPlayer = GameObject.FindGameObjectWithTag("Player");
-        playerTransform = objPlayer.transform;
+       // GameObject objPlayer = GameObject.FindGameObjectWithTag("Player");
+       // playerTransform = objPlayer.transform;
         health = 100;
         ConstructFSM();
     }
@@ -123,92 +122,99 @@ public class EnemyAIController : AdvancedFSM
     private void ConstructFSM()
     {
 
-        IdleState idleState = new IdleState(this);
-        idleState.AddTransition(Transition.lowHealth, FSMStateID.Flee);
-        idleState.AddTransition(Transition.seePlayer, FSMStateID.Ranged);
-        idleState.AddTransition(Transition.NoHealth, FSMStateID.Dead);
+        FindPlayerState findPlayerState = new FindPlayerState(this);
+        findPlayerState.AddTransition(Transition.PlayerFound, FSMStateID.FollowPlayer);
 
-        FleeState fleeState = new FleeState(this);
-        fleeState.AddTransition(Transition.NoHealth, FSMStateID.Dead);
-        
+        FollowPlayerState followPlayerState = new FollowPlayerState(this);
+        followPlayerState.AddTransition(Transition.AbovePlayer, FSMStateID.SlamGround);
 
-        RangedState rangedState = new RangedState(this);
-        rangedState.AddTransition(Transition.NoBullets, FSMStateID.Reload);
-        rangedState.AddTransition(Transition.lowHealth, FSMStateID.Flee);
-        rangedState.AddTransition(Transition.NoHealth, FSMStateID.Dead);
+        SlamGroundState slamGroundState = new SlamGroundState(this);
+        slamGroundState.AddTransition(Transition.SlamSuceeded, FSMStateID.Carry);
+        slamGroundState.AddTransition(Transition.SlamFailed, FSMStateID.Stunned);
+        slamGroundState.AddTransition(Transition.LowHealth, FSMStateID.Finished);
+        slamGroundState.AddTransition(Transition.NoHealth, FSMStateID.Dead);
 
+        CarryState carryState = new CarryState(this);
+        carryState.AddTransition(Transition.LookForPlayer, FSMStateID.FindPlayer);
 
-        ReloadState reloadState = new ReloadState(this);
-        reloadState.AddTransition(Transition.lowHealth, FSMStateID.Flee);
-        reloadState.AddTransition(Transition.seePlayer, FSMStateID.Ranged);
-        reloadState.AddTransition(Transition.NoHealth, FSMStateID.Dead);
+        StunnedState stunnedState = new StunnedState(this);
+        stunnedState.AddTransition(Transition.LookForPlayer, FSMStateID.FindPlayer);
+        stunnedState.AddTransition(Transition.LowHealth, FSMStateID.Finished);
+        stunnedState.AddTransition(Transition.NoHealth, FSMStateID.Dead);
 
-        
+        FinishedState finishedState = new FinishedState(this);
+        finishedState.AddTransition(Transition.NoHealth, FSMStateID.Dead);
 
         DeadState deadState = new DeadState(this);
 
 
-
-
-
         //Add all states to the state list
 
-        AddFSMState(idleState);
-        AddFSMState(fleeState);
-        AddFSMState(rangedState);
-        AddFSMState(reloadState);
+        AddFSMState(findPlayerState);
+        AddFSMState(followPlayerState);
+        AddFSMState(slamGroundState);
+        AddFSMState(carryState);
+        AddFSMState(stunnedState);
+        AddFSMState(finishedState);
         AddFSMState(deadState);
     }
+
+    //finds the closest player and sets the target position
+    public void checkShortestDistance()
+    {
+
+        float check;
+
+        for (int i = 0; i < Players.Length; i++)
+        {
+
+            check = Vector3.Distance(gameObject.transform.position, Players[i].transform.position);
+
+            if (check < currShortest)
+            {
+
+                currShortest = check;
+                closest = Players[i];
+
+            }
+
+        }
+
+        setAndMoveToTarget();
+
+    }
+
+    //sets enemy target position and moves towards it
+    private void setAndMoveToTarget()
+    {
+
+        movementVector = (closest.transform.position - enemyBody.transform.position).normalized * speed;
+        enemyBody.transform.position += movementVector * Time.deltaTime;//moves to player
+        enemyBody.transform.position = new Vector3(enemyBody.position.x, 0f, enemyBody.position.z); //keeps it on ground
+
+    } 
+
 
     //starts a death coroutine
     public void StartDeath()
     {
 
-        audioSource.volume = 0.15f;//turns down volume (your welcome)
-        audioSource.PlayOneShot(death);//plays death audio (I am so sorry)
+        
         StartCoroutine(Death());
     }
 
-    //Starts a firing coroutine
-    public void StartFiring()
-    {
-        if (canShoot)
-        {
-            StartCoroutine(Fire(firelocation, gun));
-            canShoot = false;
-        }
-    }
+    
 
     
-    //set a reloading coroutine
-    public void StartReloading()
-    {
-        
+    
 
-        animator.SetFloat("Speed", 1);//sets animation to run
-        
-
-        if (isReloading)
-        {
-
-            isReloading = false;
-            StartCoroutine(Reload(this));
-
-        }
-    }
-
-    public void StartFleeAnimation()
-    {
-        animator.SetFloat("Speed", 1); //sets the animation to run
-    }
+    
 
     //destroys the enemy game object
     IEnumerator Death()
     {
 
-        deathEffect.Play();
-
-        animator.SetTrigger("isDead");
+        
 
         
 
@@ -220,7 +226,7 @@ public class EnemyAIController : AdvancedFSM
     }
 
     //Same logic as the player and turret fire, uses the firelocation and gun to find the direction to shoot and instantiates a bullet going in said direction 
-    IEnumerator Fire(Transform fireLocation, Transform Gun) 
+   /* IEnumerator Fire(Transform fireLocation, Transform Gun) 
     {
 
         for (int i = 0; i < 8; i++)//runs until the mag is empty, decreasing the mag by one every shot
@@ -228,7 +234,7 @@ public class EnemyAIController : AdvancedFSM
 
             Shoot(fireLocation, Gun);
 
-            magSize--;
+            
 
             //decrease mag
 
@@ -240,24 +246,9 @@ public class EnemyAIController : AdvancedFSM
         yield return null;
 
     }
-
+   */
     //set the mag back to 8 after waiting a bit of time so we can shoot again
-    IEnumerator Reload(EnemyAIController enemy)
-    {
-
-        animator.SetTrigger("isReloading");//starts reloading animation
-
-        yield return new WaitForSeconds(4f);
-
-        magSize = 8;
-        isReloading = true;//allows us to reload again
-
-        animator.SetFloat("Speed", 0);
-
-
-        yield return null;
     
-    }
 
     //when the enemy is hit with a playerBullet, it decreases the enemy health by ten
     private void OnTriggerEnter(Collider other)
@@ -266,7 +257,7 @@ public class EnemyAIController : AdvancedFSM
         {
 
             this.DecHealth(10);
-            audioSource.Play();//plays hit audio
+            
             other.gameObject.SetActive(false);
 
         }
@@ -276,7 +267,7 @@ public class EnemyAIController : AdvancedFSM
     public void Shoot(Transform fireLocation, Transform Gun)
     {
 
-        if (Bullet)
+       /* if (Bullet)
         {
 
             Vector3 direction = fireLocation.position - Gun.position;
@@ -293,7 +284,7 @@ public class EnemyAIController : AdvancedFSM
 
             animator.SetTrigger("isFiring");//runs the shoot animation
 
-        }
+        }*/
 
     }
 

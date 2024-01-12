@@ -145,7 +145,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60b24f4855d395f4ca952753c32c2d47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemiesInRange: []
   PB: {fileID: 908568366204445390}
   controller: {fileID: 1075067857252033172}
 --- !u!1 &4064884496430378951
@@ -420,6 +419,7 @@ MonoBehaviour:
   health: 10
   CharacterType: {fileID: 0}
   controller: {fileID: 1075067857252033172}
+  playerContainer: {fileID: 6603263003768947704}
   animController: {fileID: 8089469534137136360}
   rb: {fileID: 4499349734575164199}
   prefabForAttack: {fileID: 4997932976077368095, guid: 71e59e620a150324bb6dfb8975cf4e6b,

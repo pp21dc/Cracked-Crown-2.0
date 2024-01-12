@@ -5,13 +5,13 @@ public class DeadState : FSMState
 {
     
 
-    private EnemyAIController monster;//grabs the monster controller
+    private EnemyAIController enemy;//grabs the monster controller
 
     //sets the stateID to dead and sets speed and rotation to 0 so enemy does not move
     public DeadState(EnemyAIController controller)
     {
         stateID = FSMStateID.Dead;
-        monster = controller;
+        enemy = controller;
         curSpeed = 0.0f;
         curRotSpeed = 0.0f;
     }
@@ -25,7 +25,7 @@ public class DeadState : FSMState
     public override void Act(Transform player, Transform npc)
     {
         
-            monster.StartDeath();
+            enemy.StartDeath();
         
     }
 }

@@ -2,17 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class HandlePlayersJoin : MonoBehaviour
 {
     [SerializeField]
     private PlayerInputManager PIM;
     private GameManager GM;
+    [SerializeField]
+    private Scene persistentScene;
     int players;
 
     private void Awake()
     {
         GM = GameManager.Instance;
+        persistentScene = SceneManager.GetSceneByBuildIndex(0);
     }
 
     private void Update()
@@ -28,6 +32,7 @@ public class HandlePlayersJoin : MonoBehaviour
             GM.PMs[x].PI = GM.Players[i].PI;
             GM.PMs[x].PC = GM.Players[i].PC;
             GM.PMs[x].PB = GM.Players[i].PB;
+            SceneManager.MoveGameObjectToScene(GM.PMs[x].PB.playerContainer.gameObject, persistentScene);
             x++;
         }
     }

@@ -72,6 +72,20 @@ public class GameManager : MonoBehaviour
         ReturnToMainMenu();
     }
 
+    private void FixedUpdate()
+    {
+        if (Input.GetKeyUp(KeyCode.KeypadEnter))
+        {
+            StartNewGame();
+        }
+        if (Input.GetKeyUp(KeyCode.N))
+        {
+            Debug.Log(currentLevel);
+            NextLevel();
+        }
+        
+    }
+
     public PlayerInput GetPlayer(int ID)
     {
         for (int i = 0; i < Players.Length; i++)
@@ -91,6 +105,7 @@ public class GameManager : MonoBehaviour
         if (levelName == MainMenuName)
         {
             CampaignStart = false;
+            //currentLevelName = null;
             //Pause = false;
         }
         else
@@ -105,6 +120,7 @@ public class GameManager : MonoBehaviour
 
         if ((!string.IsNullOrEmpty(currentLevelName)))
         {
+            //Debug.Log(currentLevelName);
             AsyncOperation asyncUnload = SceneManager.UnloadSceneAsync(currentLevelName);
             //yield return AudioManager.Instance.UnloadLevel();
             while (!asyncUnload.isDone)
@@ -112,6 +128,7 @@ public class GameManager : MonoBehaviour
                 //loadingScreen.UpdateSlider(asyncUnload.progress / 2);
                 yield return null;
             }
+
         }
 
         yield return new WaitForSeconds(0.5f);
@@ -127,17 +144,25 @@ public class GameManager : MonoBehaviour
 
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(levelName));
 
-        if (levelName.Equals(MainMenuName) != true && levelName.Equals(CutSceneName) != true)
+        if (!levelName.Equals(MainMenuName) && currentLevel < levelName.Length)
         {
             //AudioManager.LoadLevelComplete();
+            //Debug.Log(currentLevel);
+            currentLevelName = levelNames[currentLevel];
+
+            currentLevelName = levelName;
+        }
+        else if (levelName.Equals(MainMenuName))
+        {
+            currentLevelName = MainMenuName;
+            MainMenu.SetActive(true);
+            currentLevel = -1;
         }
 
         yield return new WaitForSeconds(0.25f);
         //AudioManager.Instance.AudioFadeLevelStart();
 
-        currentLevelName = levelNames[currentLevel];
-
-        currentLevelName = levelName;
+        
 
         //PlayerUI.SetActive(false);
        // playerGO.SetActive(false);
@@ -150,8 +175,9 @@ public class GameManager : MonoBehaviour
     public void ReturnToMainMenu()
     {
         //playerGO.SetActive(false);
-        MainMenu.SetActive(true);
+        
         StartCoroutine("LoadLevel", MainMenuName);
+        //currentLevelName = MainMenuName;
     }
 
     public void NextLevel()
@@ -159,6 +185,7 @@ public class GameManager : MonoBehaviour
         currentLevel++;
         if (currentLevel < levelNames.Length)
         {
+            
             StartCoroutine("LoadLevel", levelNames[currentLevel]);
         }
         else
