@@ -31,11 +31,25 @@ public class FindPlayerState : FSMState
         }
         else if (enemy.CompareTag("Medium"))
         {
-
+            if (IsInCurrentRange(npc, player.position, 15f))
+            {
+                enemy.PerformTransition(Transition.InFirstRange);
+            }
+            else if (IsInCurrentRange(npc, player.position, 7.5f))
+            {
+                enemy.PerformTransition(Transition.InSecondRange);
+            }
         }
         else if (enemy.CompareTag("Heavy"))
         {
-
+            if (IsInCurrentRange(npc, player.position, 15f))
+            {
+                enemy.PerformTransition(Transition.InShootingRange);
+            }
+            else if (IsInCurrentRange(npc, player.position, 4.5f))
+            {
+                enemy.PerformTransition(Transition.InShockwaveRange);
+            }
         }
         
     }

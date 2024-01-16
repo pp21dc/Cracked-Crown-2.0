@@ -47,6 +47,10 @@ public class EnemyAIController : AdvancedFSM
 
     public float maxHealth = 100;
 
+    private bool isInFinishedState = false;
+
+    public bool isinFinishedState { get { return isInFinishedState; } set { isInFinishedState = value; } }
+
     
 
 
@@ -70,6 +74,11 @@ public class EnemyAIController : AdvancedFSM
         if(isFollowing)
         {
             checkShortestDistance();
+        }
+
+        if(isInFinishedState)
+        {
+            AddHealth(0.5f * Time.deltaTime);
         }
     }
 
@@ -171,10 +180,12 @@ public class EnemyAIController : AdvancedFSM
         //if at low health it allows the enemy to be finished, tranistions if no health and not finished.
         FinishedState finishedState = new FinishedState(this);
         finishedState.AddTransition(Transition.NoHealth, FSMStateID.Dead);
-        findPlayerState.AddTransition(Transition.WasNotExecuted, FSMStateID.Hole);
+        finishedState.AddTransition(Transition.HealthBack, FSMStateID.FindPlayer);
+        
 
         //ded
         DeadState deadState = new DeadState(this);
+        findPlayerState.AddTransition(Transition.WasNotExecuted, FSMStateID.Hole);
 
         //light enemy states down here
 
@@ -303,8 +314,10 @@ public class EnemyAIController : AdvancedFSM
     
     IEnumerator Finished()
     {
-        
+
         //stunned animation here
+
+        isInFinishedState = true;
 
         yield return new WaitForSeconds(3f);
 
@@ -357,7 +370,7 @@ public class EnemyAIController : AdvancedFSM
     
 
     //when the enemy is hit with a playerBullet, it decreases the enemy health by ten
-    private void OnTriggerEnter(Collider other)
+   /* private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("playerBullet"))
         {
@@ -367,7 +380,7 @@ public class EnemyAIController : AdvancedFSM
             other.gameObject.SetActive(false);
 
         }
-    }
+    }*/
 
     //fires a bullet when called
     public void Shoot(Transform fireLocation, Transform Gun)
