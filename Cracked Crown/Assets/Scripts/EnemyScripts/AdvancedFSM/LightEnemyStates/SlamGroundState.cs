@@ -10,7 +10,7 @@ public class SlamGroundState : FSMState
 
     public SlamGroundState(EnemyAIController controller)
     {
-        stateID = FSMStateID.FindPlayer;//sets the FSM state ID to Idle
+        stateID = FSMStateID.SlamGround;//sets the FSM state ID to Idle
         enemy = controller;
         curSpeed = 0.0f;
         curRotSpeed = 0.0f;

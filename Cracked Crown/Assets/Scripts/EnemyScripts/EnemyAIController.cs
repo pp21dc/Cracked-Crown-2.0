@@ -44,6 +44,8 @@ public class EnemyAIController : AdvancedFSM
 
     [SerializeField]
     private float speed = 0.008f; //speed of the enemy
+    private float HeavyDashSpeed = 0.08f;
+    private float LightDashSpeed = 0.002f;
 
     public float maxHealth = 100;
 
@@ -51,10 +53,10 @@ public class EnemyAIController : AdvancedFSM
 
     public bool isinFinishedState { get { return isInFinishedState; } set { isInFinishedState = value; } }
 
+    [SerializeField]
+    private Collider Damage;
+
     
-
-
-
 
     private float health;//health of the enemy
     public float Health
@@ -67,6 +69,8 @@ public class EnemyAIController : AdvancedFSM
     public void Awake()
     {
         Players = GameObject.FindGameObjectsWithTag("Player");//finds and add all players to array
+        Damage = gameObject.GetComponent<Collider>();
+        Damage.enabled = false; // deactivates the damage collider
     }
 
     private void Update()
@@ -93,47 +97,47 @@ public class EnemyAIController : AdvancedFSM
         }
         else if (CurrentState.ID == FSMStateID.FindPlayer)
         {
-            state = "FindPlayer";
+            state = "FINDPLAYER";
         }
         else if (CurrentState.ID == FSMStateID.Finished)
         {
-            state = "Finished";
+            state = "FINISHED";
         }
         else if (CurrentState.ID == FSMStateID.SlamGround)
         {
-            state = "SlamGround";
+            state = "SLAMGROUND";
         }
         else if (CurrentState.ID == FSMStateID.Carry)
         {
-            state = "Carry";
+            state = "CARRY";
         }
         else if (CurrentState.ID == FSMStateID.Stunned)
         {
-            state = "Stunned";
+            state = "STUNNED";
         }
         else if (CurrentState.ID == FSMStateID.HeavyDash)
         {
-            state = "HeavyDash";
+            state = "HEAVYDASH";
         }
         else if (CurrentState.ID == FSMStateID.LightDash)
         {
-            state = "LightDash";
+            state = "LIGHTDASH";
         }
         else if (CurrentState.ID == FSMStateID.Gun)
         {
-            state = "Gun";
+            state = "GUN";
         }
         else if (CurrentState.ID == FSMStateID.Shockwave)
         {
-            state = "Shockwave";
+            state = "SHOCKWAVE";
         }
         else if (CurrentState.ID == FSMStateID.Reload)
         {
-            state = "Reload";
+            state = "RELOAD";
         }
         else if (CurrentState.ID == FSMStateID.Hole)
         {
-            state = "Hole";
+            state = "HOLE";
         }
         
 
@@ -185,7 +189,7 @@ public class EnemyAIController : AdvancedFSM
 
         //ded
         DeadState deadState = new DeadState(this);
-        findPlayerState.AddTransition(Transition.WasNotExecuted, FSMStateID.Hole);
+        deadState.AddTransition(Transition.WasNotExecuted, FSMStateID.Hole);
 
         //light enemy states down here
 
@@ -283,15 +287,15 @@ public class EnemyAIController : AdvancedFSM
 
         }
 
-        setAndMoveToTarget();
+        setAndMoveToTarget(speed);
 
     }
 
     //sets enemy target position and moves towards it
-    private void setAndMoveToTarget()
+    private void setAndMoveToTarget(float Speed)
     {
 
-        movementVector = (closest.transform.position - enemyBody.transform.position).normalized * speed;
+        movementVector = (closest.transform.position - enemyBody.transform.position).normalized * Speed;
         enemyBody.transform.position += movementVector * Time.deltaTime;//moves to player
         enemyBody.transform.position = new Vector3(enemyBody.position.x, 0f, enemyBody.position.z); //keeps it on ground
 
@@ -405,6 +409,44 @@ public class EnemyAIController : AdvancedFSM
 
         }*/
 
+    }
+
+    public void StartHeavyDash()
+    {
+        StartCoroutine(HeavyDash());
+    }
+
+    IEnumerator HeavyDash()
+    {
+
+        yield return new WaitForSeconds(0.5f);
+
+        Damage.enabled = true;
+
+        setAndMoveToTarget(HeavyDashSpeed);
+
+        Damage.enabled = false;
+
+        yield return null;
+    }
+
+    public void StartLightDash()
+    {
+        StartCoroutine (LightDash());
+    }
+
+    IEnumerator LightDash()
+    {
+
+        yield return new WaitForSeconds(0.5f);
+
+        Damage.enabled = true;
+
+        setAndMoveToTarget(LightDashSpeed);
+
+        Damage.enabled = false;
+
+        yield return null;
     }
 
 }
