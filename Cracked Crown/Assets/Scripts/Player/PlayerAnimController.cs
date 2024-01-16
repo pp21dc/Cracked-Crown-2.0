@@ -8,6 +8,8 @@ public class PlayerAnimController : MonoBehaviour
 
     [SerializeField]
     Animator Animator;
+    [SerializeField]
+    GameObject CharacterFolder;
 
     private bool moving;
     [HideInInspector]
@@ -17,13 +19,7 @@ public class PlayerAnimController : MonoBehaviour
         set { moving = value; }
     }
 
-    private bool dashing;
-    [HideInInspector]
-    public bool Dashing
-    {
-        get { return Dashing; }
-        set { Dashing = value; }
-    }
+    public bool dashing;
 
     private bool dead;
     [HideInInspector]
@@ -43,9 +39,16 @@ public class PlayerAnimController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Animator.SetBool("Moving", moving);
-        Animator.SetBool("Dashing", dashing);
-        Animator.SetBool("Attacking", attacking);
+        if (Animator != null)
+        {
+            Animator.SetBool("Moving", moving);
+            Animator.SetBool("Dashing", dashing);
+            Animator.SetBool("Attacking", attacking);
+        }
+        else if (CharacterFolder.transform.GetChild(0).GetChild(0).TryGetComponent<Animator>(out Animator anim))
+        {
+            Animator = anim;
+        }
     }
 
  

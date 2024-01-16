@@ -107,19 +107,6 @@ public class GameManager : MonoBehaviour
     private IEnumerator LoadLevel(string levelName)
     {
         isLoading = true;
-        //playerGO.SetActive(false);
-        if (levelName == MainMenuName)
-        {
-            CampaignStart = false;
-            //currentLevelName = null;
-            //Pause = false;
-        }
-        else
-        {
-            //GetSaveGame();
-            //Pause = false;
-            CampaignStart = true;
-        }
 
         //loadingScreen.gameObject.SetActive(true);
         yield return new WaitForSeconds(0.25f);

@@ -10,7 +10,7 @@ public class StunnedState : FSMState
 
     public StunnedState(EnemyAIController controller)
     {
-        stateID = FSMStateID.FindPlayer;//sets the FSM state ID to Idle
+        stateID = FSMStateID.Stunned;//sets the FSM state ID to Idle
         enemy = controller;
         curSpeed = 0.0f;
         curRotSpeed = 0.0f;
