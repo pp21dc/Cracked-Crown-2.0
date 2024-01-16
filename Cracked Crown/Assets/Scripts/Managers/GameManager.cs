@@ -35,9 +35,13 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private string[] levelNames;
     private bool isLoading = false;
+    private bool LevelCleared = false;
+    public bool IsLevelCleared
+    {
+        get { return LevelCleared; }
+        set { LevelCleared = value; }
+    }
     private int currentLevel = 0; //index of levelNames
-
-
     public int CurrentLevel
     {
         get { return currentLevel; }

@@ -53,7 +53,7 @@ public class PlayerBody : MonoBehaviour
     private bool dashOnCD = false;
     private bool canTakeDamage = true;
     private float executeHeal = 5f;
-    private float executeMoveSpeed = 50f;
+    private float executeMoveSpeed = 75f;
     private GameObject executeTarget;
     private bool canMovePlayerForexecute = false;
 
@@ -61,6 +61,13 @@ public class PlayerBody : MonoBehaviour
     {
         Attack();
         Dash();
+
+        if (health <= 0)
+        {
+            Debug.Log("You Died");
+            canMove = false;
+            // have to do ghost stuff
+        }
         
     }
 
@@ -198,13 +205,22 @@ public class PlayerBody : MonoBehaviour
             canMove = false;
             canMovePlayerForexecute = true;
 
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(0.75f);
             Destroy(toExecute);
 
             executeCollideScript.enemiesInRange.Remove(toExecute); // remove enemy from list
             health = health + executeHeal;
             canMove = true;
             canTakeDamage = true;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            health = health - 1;
+            Debug.Log(health);
         }
     }
 }
