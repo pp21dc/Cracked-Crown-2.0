@@ -29,7 +29,7 @@ public class PrototypePrimaryAttack : MonoBehaviour
         { 
             enemyController = other.GetComponent<EnemyAIController>();
             enemyController.DecHealth(playerBody.damage);
-            Debug.Log("Enemy got hit");
+            Debug.Log("Enemy Health: " + enemyController.Health);
         }
     }
 }

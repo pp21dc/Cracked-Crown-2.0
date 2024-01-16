@@ -61,6 +61,13 @@ public class PlayerBody : MonoBehaviour
     {
         Attack();
         Dash();
+
+        if (health <= 0)
+        {
+            Debug.Log("You Died");
+            canMove = false;
+            // have to do ghost stuff
+        }
         
     }
 
@@ -205,6 +212,15 @@ public class PlayerBody : MonoBehaviour
             health = health + executeHeal;
             canMove = true;
             canTakeDamage = true;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            health = health - 1;
+            Debug.Log(health);
         }
     }
 }
