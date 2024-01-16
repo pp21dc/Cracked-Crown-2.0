@@ -20,7 +20,15 @@ public class FindPlayerState : FSMState
     public override void Reason(Transform player, Transform npc)
     {
 
-        if (enemy.CompareTag("Light"))
+        if (enemy.Health <= 20 && enemy.Health >= 1) 
+        {
+            enemy.PerformTransition(Transition.LowHealth);
+        }
+        else if (enemy.Health <= 0)
+        {
+            enemy.PerformTransition(Transition.NoHealth);
+        }
+        else if (enemy.CompareTag("Light"))
         {
             if (0 == 1)
             {

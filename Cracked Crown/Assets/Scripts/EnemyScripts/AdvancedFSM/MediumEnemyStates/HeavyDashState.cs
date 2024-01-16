@@ -10,7 +10,7 @@ public class HeavyDashState : FSMState
 
     public HeavyDashState(EnemyAIController controller)
     {
-        stateID = FSMStateID.Finished;//sets the FSM state ID to Idle
+        stateID = FSMStateID.HeavyDash;//sets the FSM state ID to Idle
         enemy = controller;
         curSpeed = 0.0f;
         curRotSpeed = 0.0f;
@@ -20,11 +20,15 @@ public class HeavyDashState : FSMState
     public override void Reason(Transform player, Transform npc)
     {
 
-        if (enemy.Health <= 0)
+        if (enemy.Health <= 20 && enemy.Health >= 1)
+        {
+            enemy.PerformTransition(Transition.LowHealth);
+        }
+        else if (enemy.Health <= 0)
         {
             enemy.PerformTransition(Transition.NoHealth);
         }
-
+        
 
     }
 
