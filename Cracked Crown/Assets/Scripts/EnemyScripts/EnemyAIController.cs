@@ -97,47 +97,47 @@ public class EnemyAIController : AdvancedFSM
         }
         else if (CurrentState.ID == FSMStateID.FindPlayer)
         {
-            state = "FindPlayer";
+            state = "FINDPLAYER";
         }
         else if (CurrentState.ID == FSMStateID.Finished)
         {
-            state = "Finished";
+            state = "FINISHED";
         }
         else if (CurrentState.ID == FSMStateID.SlamGround)
         {
-            state = "SlamGround";
+            state = "SLAMGROUND";
         }
         else if (CurrentState.ID == FSMStateID.Carry)
         {
-            state = "Carry";
+            state = "CARRY";
         }
         else if (CurrentState.ID == FSMStateID.Stunned)
         {
-            state = "Stunned";
+            state = "STUNNED";
         }
         else if (CurrentState.ID == FSMStateID.HeavyDash)
         {
-            state = "HeavyDash";
+            state = "HEAVYDASH";
         }
         else if (CurrentState.ID == FSMStateID.LightDash)
         {
-            state = "LightDash";
+            state = "LIGHTDASH";
         }
         else if (CurrentState.ID == FSMStateID.Gun)
         {
-            state = "Gun";
+            state = "GUN";
         }
         else if (CurrentState.ID == FSMStateID.Shockwave)
         {
-            state = "Shockwave";
+            state = "SHOCKWAVE";
         }
         else if (CurrentState.ID == FSMStateID.Reload)
         {
-            state = "Reload";
+            state = "RELOAD";
         }
         else if (CurrentState.ID == FSMStateID.Hole)
         {
-            state = "Hole";
+            state = "HOLE";
         }
         
 
@@ -189,7 +189,7 @@ public class EnemyAIController : AdvancedFSM
 
         //ded
         DeadState deadState = new DeadState(this);
-        findPlayerState.AddTransition(Transition.WasNotExecuted, FSMStateID.Hole);
+        deadState.AddTransition(Transition.WasNotExecuted, FSMStateID.Hole);
 
         //light enemy states down here
 
