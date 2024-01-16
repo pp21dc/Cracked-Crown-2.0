@@ -19,6 +19,12 @@ public class DeadState : FSMState
     //no reasoning as there is no transition out of death state
     public override void Reason(Transform player, Transform npc)
     {
+
+        if (enemy.CompareTag("Heavy"))
+        {
+            enemy.PerformTransition(Transition.WasNotExecuted);
+        }
+
     }
 
     //runs the enemy Death script

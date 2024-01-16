@@ -17,6 +17,7 @@ public enum Transition
     LookForPlayer,
     LowHealth,
     NoHealth,
+    HealthBack,
 
     //Light enemy transitions
     AbovePlayer,
