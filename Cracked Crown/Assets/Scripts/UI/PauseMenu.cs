@@ -16,6 +16,8 @@ public class PauseMenu : MonoBehaviour
 
     [SerializeField]
     GameObject settingsInitButton;
+    [SerializeField]
+    GameObject pauseMenuInitButton;
 
     [SerializeField]
     PlayerController Player1;
@@ -68,6 +70,7 @@ public class PauseMenu : MonoBehaviour
 
     public void OpenSettings()
     {
+        pauseMenuInitButton = EventSystem.current.currentSelectedGameObject;
         settingsMenu.SetActive(true);
         closePause();
         EventSystem.current.SetSelectedGameObject(settingsInitButton);
@@ -77,5 +80,6 @@ public class PauseMenu : MonoBehaviour
     {
         settingsMenu.SetActive(false);
         Pause();
+        EventSystem.current.SetSelectedGameObject(pauseMenuInitButton);
     }
 }
