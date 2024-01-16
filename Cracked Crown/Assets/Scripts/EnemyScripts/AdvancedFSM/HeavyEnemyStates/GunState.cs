@@ -10,7 +10,7 @@ public class GunState : FSMState
 
     public GunState(EnemyAIController controller)
     {
-        stateID = FSMStateID.Finished;//sets the FSM state ID to Idle
+        stateID = FSMStateID.Gun;//sets the FSM state ID to Idle
         enemy = controller;
         curSpeed = 0.0f;
         curRotSpeed = 0.0f;

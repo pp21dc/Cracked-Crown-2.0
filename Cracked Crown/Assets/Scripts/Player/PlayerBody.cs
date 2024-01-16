@@ -18,7 +18,7 @@ public class PlayerBody : MonoBehaviour
     [SerializeField]
     private float finisherRadius = 20f;
     [SerializeField]
-    private float health = 10f;
+    private float health = 100f;
     public float Health { get { return health; } }
     public float damage = 3f;
 
@@ -53,52 +53,72 @@ public class PlayerBody : MonoBehaviour
     private bool dashOnCD = false;
     private bool canTakeDamage = true;
     private float executeHeal = 5f;
-    private float executeMoveSpeed = 50f;
+    private float executeMoveSpeed = 75f;
     private GameObject executeTarget;
     private bool canMovePlayerForexecute = false;
+    private bool ifHopper = false;
 
     private void Update()
     {
         Attack();
         Dash();
+
+        if (health <= 0)
+        {
+            Debug.Log("You Died");
+            canMove = false;
+            // have to do ghost stuff
+        }
         
     }
 
     private void FixedUpdate()
     {
-        if (canMove)
+        if (ifHopper)
         {
-            float zInput = controller.ForwardMagnitude;
-            float xInput = controller.HorizontalMagnitude;
-
-
-            Vector3 movementVector = new Vector3(xInput, 0, zInput);
-            primaryAttackSpawnPoint.localPosition = (movementVector) * 10;
-            primaryAttackSpawnPoint.localRotation = primaryAttackPoint.localRotation;
-            primaryAttackPoint.LookAt(primaryAttackSpawnPoint);
-            primaryAttackPoint.eulerAngles = new Vector3(0, primaryAttackPoint.eulerAngles.y, 0);
-
-            if (movementVector.magnitude > 1)
+            if (canMove)
             {
-                movementVector.Normalize();
+                float zInput = controller.ForwardMagnitude;
+                float xInput = controller.HorizontalMagnitude;
+
+
+                Vector3 movementVector = new Vector3(xInput, 0, zInput);
+                primaryAttackSpawnPoint.localPosition = (movementVector) * 10;
+                primaryAttackSpawnPoint.localRotation = primaryAttackPoint.localRotation;
+                primaryAttackPoint.LookAt(primaryAttackSpawnPoint);
+                primaryAttackPoint.eulerAngles = new Vector3(0, primaryAttackPoint.eulerAngles.y, 0);
+
+                if (movementVector.magnitude > 1)
+                {
+                    movementVector.Normalize();
+                }
+                movementVector = (movementVector * movementSpeed * Time.deltaTime);
+
+                rb.AddForce(movementVector * 400);
+
+                if (rb.velocity.magnitude > 30f)
+                {
+                    animController.Moving = true;
+                }
+                else
+                {
+                    animController.Moving = false;
+                }
             }
-            movementVector = (movementVector * movementSpeed * Time.deltaTime);
-
-            rb.AddForce(movementVector * 400);
-
-            if (rb.velocity.magnitude > 30f)
+            if (canMovePlayerForexecute && executeTarget != null)
             {
-                animController.Moving = true;
-            }
-            else
-            {
-                animController.Moving = false;
+                transform.position = Vector3.MoveTowards(gameObject.transform.position, executeTarget.transform.position + forExecutePosition, executeMoveSpeed * Time.deltaTime);
             }
         }
-        if (canMovePlayerForexecute && executeTarget != null)
-        {
-            transform.position = Vector3.MoveTowards(gameObject.transform.position, executeTarget.transform.position + forExecutePosition, executeMoveSpeed * Time.deltaTime);
-        }
+    }
+
+    public void DecHealth(float amount) 
+    { 
+        health = Mathf.Max(0, health - amount); //allows us to decrease the health of an enemy
+    }
+    public void AddHealth(float amount) 
+    {
+        health = Mathf.Min(100, health + amount); //allows us to add health to the enemy
     }
 
     public void SetCharacterData()
@@ -110,25 +130,43 @@ public class PlayerBody : MonoBehaviour
         finisherColliderGO.GetComponent<CapsuleCollider>().radius = finisherRadius;
         forExecutePosition = CharacterType.executePosition;
         damage = CharacterType.attack;
+        ifHopper = CharacterType.hop;
     }
     float x = 0;
+    float attackTimer = 0;
     private void Attack()
     {
         if (controller.PrimaryAttackDown & canAttack)
         {
+            canMove = false;
+            canAttack = false;
+            rb.velocity = Vector3.zero;
+            //add force in opp dir from input
+            
             animController.Attacking = true;
             GameObject attack = Instantiate(prefabForAttack, primaryAttackSpawnPoint);
             SwordSlash.sword.Play();
         }
 
-        if (x > 1)
+        if (x > 0.1f)
         {
             x = 0;
             animController.Attacking = false;
+            canMove = true;
         }
         else
         {
             x += Time.deltaTime;
+        }
+
+        if (attackTimer > 0.2f)
+        {
+            attackTimer = 0;
+            canAttack = true;
+        }
+        else
+        {
+            attackTimer += Time.deltaTime;
         }
 
     }
@@ -198,13 +236,22 @@ public class PlayerBody : MonoBehaviour
             canMove = false;
             canMovePlayerForexecute = true;
 
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(0.75f);
             Destroy(toExecute);
 
             executeCollideScript.enemiesInRange.Remove(toExecute); // remove enemy from list
             health = health + executeHeal;
             canMove = true;
             canTakeDamage = true;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            health = health - 1;
+            Debug.Log(health);
         }
     }
 }

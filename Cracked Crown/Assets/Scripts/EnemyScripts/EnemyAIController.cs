@@ -45,6 +45,12 @@ public class EnemyAIController : AdvancedFSM
     [SerializeField]
     private float speed = 0.008f; //speed of the enemy
 
+    public float maxHealth = 100;
+
+    private bool isInFinishedState = false;
+
+    public bool isinFinishedState { get { return isInFinishedState; } set { isInFinishedState = value; } }
+
     
 
 
@@ -68,6 +74,11 @@ public class EnemyAIController : AdvancedFSM
         if(isFollowing)
         {
             checkShortestDistance();
+        }
+
+        if(isInFinishedState)
+        {
+            AddHealth(0.5f * Time.deltaTime);
         }
     }
 
@@ -159,13 +170,22 @@ public class EnemyAIController : AdvancedFSM
         //follows player, transitions out if it is above the player
         FindPlayerState findPlayerState = new FindPlayerState(this);
         findPlayerState.AddTransition(Transition.AbovePlayer, FSMStateID.SlamGround);
+        findPlayerState.AddTransition(Transition.InFirstRange, FSMStateID.HeavyDash);
+        findPlayerState.AddTransition(Transition.InSecondRange, FSMStateID.LightDash);
+        findPlayerState.AddTransition(Transition.InShootingRange, FSMStateID.Gun);
+        findPlayerState.AddTransition(Transition.InShockwaveRange, FSMStateID.Shockwave);
+        findPlayerState.AddTransition(Transition.LowHealth, FSMStateID.Finished);
+        findPlayerState.AddTransition(Transition.NoHealth, FSMStateID.Dead);
 
         //if at low health it allows the enemy to be finished, tranistions if no health and not finished.
         FinishedState finishedState = new FinishedState(this);
         finishedState.AddTransition(Transition.NoHealth, FSMStateID.Dead);
+        finishedState.AddTransition(Transition.HealthBack, FSMStateID.FindPlayer);
+        
 
         //ded
         DeadState deadState = new DeadState(this);
+        findPlayerState.AddTransition(Transition.WasNotExecuted, FSMStateID.Hole);
 
         //light enemy states down here
 
@@ -202,17 +222,43 @@ public class EnemyAIController : AdvancedFSM
 
         //Heavy enemy states down here
 
-        
+        GunState gunState = new GunState(this);
+        gunState.AddTransition(Transition.NoBullets, FSMStateID.Reload);
+        gunState.AddTransition(Transition.LowHealth, FSMStateID.Finished);
+        gunState.AddTransition(Transition.NoHealth, FSMStateID.Dead);
+
+        ShockwaveState shockwaveState = new ShockwaveState(this);
+        shockwaveState.AddTransition(Transition.LookForPlayer, FSMStateID.FindPlayer);
+        shockwaveState.AddTransition(Transition.LowHealth, FSMStateID.Finished);
+        shockwaveState.AddTransition(Transition.NoHealth, FSMStateID.Dead);
+
+        ReloadState reloadState = new ReloadState(this);
+        reloadState.AddTransition(Transition.LookForPlayer, FSMStateID.FindPlayer);
+        reloadState.AddTransition(Transition.LowHealth, FSMStateID.Finished);
+        reloadState.AddTransition(Transition.NoHealth, FSMStateID.Dead);
+
+        HoleState holeState = new HoleState(this);
 
 
         //Add all states to the state list
 
         AddFSMState(findPlayerState);
+        AddFSMState(finishedState);
+        AddFSMState(deadState);
+
         AddFSMState(slamGroundState);
         AddFSMState(carryState);
         AddFSMState(stunnedState);
-        AddFSMState(finishedState);
-        AddFSMState(deadState);
+
+        AddFSMState(heavyDashState);
+        AddFSMState(lightDashState);
+
+        AddFSMState(gunState);
+        AddFSMState(shockwaveState);
+        AddFSMState(reloadState);
+        AddFSMState(holeState);
+        
+        
     }
 
     //finds the closest player and sets the target position
@@ -268,8 +314,10 @@ public class EnemyAIController : AdvancedFSM
     
     IEnumerator Finished()
     {
-        
+
         //stunned animation here
+
+        isInFinishedState = true;
 
         yield return new WaitForSeconds(3f);
 
@@ -322,7 +370,7 @@ public class EnemyAIController : AdvancedFSM
     
 
     //when the enemy is hit with a playerBullet, it decreases the enemy health by ten
-    private void OnTriggerEnter(Collider other)
+   /* private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("playerBullet"))
         {
@@ -332,7 +380,7 @@ public class EnemyAIController : AdvancedFSM
             other.gameObject.SetActive(false);
 
         }
-    }
+    }*/
 
     //fires a bullet when called
     public void Shoot(Transform fireLocation, Transform Gun)

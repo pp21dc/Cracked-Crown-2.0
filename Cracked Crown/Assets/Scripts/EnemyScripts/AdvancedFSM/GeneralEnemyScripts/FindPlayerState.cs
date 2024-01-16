@@ -20,7 +20,15 @@ public class FindPlayerState : FSMState
     public override void Reason(Transform player, Transform npc)
     {
 
-        if (enemy.CompareTag("Light"))
+        if (enemy.Health <= 20 && enemy.Health >= 1) 
+        {
+            enemy.PerformTransition(Transition.LowHealth);
+        }
+        else if (enemy.Health <= 0)
+        {
+            enemy.PerformTransition(Transition.NoHealth);
+        }
+        else if (enemy.CompareTag("Light"))
         {
             if (0 == 1)
             {
@@ -31,11 +39,25 @@ public class FindPlayerState : FSMState
         }
         else if (enemy.CompareTag("Medium"))
         {
-
+            if (IsInCurrentRange(npc, player.position, 15f))
+            {
+                enemy.PerformTransition(Transition.InFirstRange);
+            }
+            else if (IsInCurrentRange(npc, player.position, 7.5f))
+            {
+                enemy.PerformTransition(Transition.InSecondRange);
+            }
         }
         else if (enemy.CompareTag("Heavy"))
         {
-
+            if (IsInCurrentRange(npc, player.position, 15f))
+            {
+                enemy.PerformTransition(Transition.InShootingRange);
+            }
+            else if (IsInCurrentRange(npc, player.position, 4.5f))
+            {
+                enemy.PerformTransition(Transition.InShockwaveRange);
+            }
         }
         
     }

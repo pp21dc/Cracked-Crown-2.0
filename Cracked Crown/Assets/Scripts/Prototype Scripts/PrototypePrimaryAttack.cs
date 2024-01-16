@@ -9,11 +9,12 @@ public class PrototypePrimaryAttack : MonoBehaviour
 
     private void Awake()
     {
-        playerBody = GetComponentInParent<PlayerBody>();
+        playerBody = gameObject.GetComponentInParent<PlayerBody>();
     }
 
     void Start()
     {
+        transform.position = transform.position + new Vector3(1, 0, 0);
         StartCoroutine(destroyObject());
     }
 
@@ -29,7 +30,7 @@ public class PrototypePrimaryAttack : MonoBehaviour
         { 
             enemyController = other.GetComponent<EnemyAIController>();
             enemyController.DecHealth(playerBody.damage);
-            Debug.Log("Enemy got hit");
+            Debug.Log("Enemy Health: " + enemyController.Health);
         }
     }
 }

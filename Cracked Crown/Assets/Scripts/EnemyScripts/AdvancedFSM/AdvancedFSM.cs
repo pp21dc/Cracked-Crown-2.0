@@ -17,6 +17,7 @@ public enum Transition
     LookForPlayer,
     LowHealth,
     NoHealth,
+    HealthBack,
 
     //Light enemy transitions
     AbovePlayer,
@@ -30,7 +31,8 @@ public enum Transition
     //Heavy Enemy Transitions
     InShootingRange,
     InShockwaveRange,
-    NoBullets
+    NoBullets,
+    WasNotExecuted
     
 }
 

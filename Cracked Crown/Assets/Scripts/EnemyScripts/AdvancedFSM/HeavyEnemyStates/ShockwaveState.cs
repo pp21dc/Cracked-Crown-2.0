@@ -10,7 +10,7 @@ public class ShockwaveState : FSMState
 
     public ShockwaveState(EnemyAIController controller)
     {
-        stateID = FSMStateID.Finished;//sets the FSM state ID to Idle
+        stateID = FSMStateID.Shockwave;//sets the FSM state ID to Idle
         enemy = controller;
         curSpeed = 0.0f;
         curRotSpeed = 0.0f;

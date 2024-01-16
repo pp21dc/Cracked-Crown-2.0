@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 619a2391952fe4c43bf35415cad72a46, type: 3}
   m_Name: Frog
   m_EditorClassIdentifier: 
-  moveSpeed: 58
+  moveSpeed: 180
   dashSpeed: 100
   dashTime: 1
   attack: 3
   attackSpeed: 0
   finisherRadius: 50
   executePosition: {x: 30, y: 0, z: 0}
+  hop: 1

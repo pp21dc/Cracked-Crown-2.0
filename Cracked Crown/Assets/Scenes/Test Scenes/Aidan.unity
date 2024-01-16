@@ -170,6 +170,7 @@ MonoBehaviour:
   speed: 8
   Players: []
   enemyBody: {fileID: 1226687346}
+  health: 100
 --- !u!1 &144069877
 GameObject:
   m_ObjectHideFlags: 0
@@ -400,12 +401,12 @@ PrefabInstance:
     - target: {fileID: 7826077369860087090, guid: f443ae70529b14f42951265ea553e920,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 16.01
+      value: 9.6
       objectReference: {fileID: 0}
     - target: {fileID: 7826077369860087090, guid: f443ae70529b14f42951265ea553e920,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.02
+      value: 5.1
       objectReference: {fileID: 0}
     - target: {fileID: 7826077369860087090, guid: f443ae70529b14f42951265ea553e920,
         type: 3}
@@ -474,7 +475,7 @@ PrefabInstance:
     - target: {fileID: 7826077369860087090, guid: 4197d0bea05489c43831c418d3bbdcd5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -44.8
+      value: -16.1
       objectReference: {fileID: 0}
     - target: {fileID: 7826077369860087090, guid: 4197d0bea05489c43831c418d3bbdcd5,
         type: 3}
@@ -664,7 +665,7 @@ PrefabInstance:
     - target: {fileID: 7826077369860087090, guid: 27aded8b23129a543bc59ad6ce33db2a,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -72.3
+      value: -8.1
       objectReference: {fileID: 0}
     - target: {fileID: 7826077369860087090, guid: 27aded8b23129a543bc59ad6ce33db2a,
         type: 3}
@@ -994,7 +995,7 @@ PrefabInstance:
     - target: {fileID: 7826077369860087090, guid: dfb18f8191482c94fa5b1ecd34c9297d,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 91
+      value: 4.8
       objectReference: {fileID: 0}
     - target: {fileID: 7826077369860087090, guid: dfb18f8191482c94fa5b1ecd34c9297d,
         type: 3}
