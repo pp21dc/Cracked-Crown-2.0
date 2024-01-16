@@ -17,13 +17,7 @@ public class PlayerAnimController : MonoBehaviour
         set { moving = value; }
     }
 
-    private bool dashing;
-    [HideInInspector]
-    public bool Dashing
-    {
-        get { return Dashing; }
-        set { Dashing = value; }
-    }
+    public bool dashing;
 
     private bool dead;
     [HideInInspector]

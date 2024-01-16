@@ -175,12 +175,13 @@ public class PlayerBody : MonoBehaviour
     {
         StartCoroutine(InExecute(enemy));
     }
-
+    bool lockDash;
     private void Dash()
     {
-        if (controller.DashDown & dashOnCD == false)
+        if (controller.DashDown & dashOnCD == false && !lockDash)
         {
-            
+            lockDash = true;
+            animController.dashing = true;
             StartCoroutine(DashCoroutine());
             
             dashOnCD = true;
@@ -192,27 +193,33 @@ public class PlayerBody : MonoBehaviour
     {
         canTakeDamage = false;
         canAttack = false;
-        animController.Dashing = true;
+        canMove = false;
 
         float zInput = controller.ForwardMagnitude;
         float xInput = controller.HorizontalMagnitude;
         float startTime = Time.time; // need to remember this to know how long to dash
 
         Vector3 dashDirection = new Vector3(xInput, 0, zInput);
-        if (dashDirection.magnitude > 1)
+        if (dashDirection.magnitude > 0f)
         {
             dashDirection.Normalize();
+        }
+        else
+        {
+            dashDirection = new Vector3(1, 0, 0);
         }
 
         while (Time.time < startTime + dashTime)
         {
-            rb.AddForce((dashDirection * dashSpeed * Time.deltaTime)*400);
+            rb.AddForce((dashDirection * dashSpeed * Time.deltaTime)*2000);
             yield return null;
         }
 
         canAttack = true;
         canTakeDamage = true;
-        animController.Dashing = false;
+        canMove = true;
+        animController.dashing = false;
+        lockDash = false;
     }
 
     private IEnumerator Cooldown()
