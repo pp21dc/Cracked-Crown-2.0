@@ -120,6 +120,10 @@ public class EnemyAIController : AdvancedFSM
         {
             state = "Reload";
         }
+        else if (CurrentState.ID == FSMStateID.Hole)
+        {
+            state = "Hole";
+        }
         
 
 
@@ -184,7 +188,21 @@ public class EnemyAIController : AdvancedFSM
 
         //Medium enemy states down here
 
-        
+        //Slams into player knocking them back, Transition if done to find player, low health to finished, no health to dead
+        HeavyDashState heavyDashState = new HeavyDashState(this);
+        heavyDashState.AddTransition(Transition.LookForPlayer, FSMStateID.FindPlayer);
+        heavyDashState.AddTransition(Transition.LowHealth, FSMStateID.Finished);
+        heavyDashState.AddTransition(Transition.NoHealth, FSMStateID.Dead);
+
+        //Slam into player dealing damage, Transition if done to find player, low health to finished, no health to dead
+        LightDashState lightDashState = new LightDashState(this);
+        lightDashState.AddTransition(Transition.LookForPlayer, FSMStateID.FindPlayer);
+        lightDashState.AddTransition(Transition.LowHealth, FSMStateID.Finished);
+        lightDashState.AddTransition(Transition.NoHealth, FSMStateID.Dead);
+
+        //Heavy enemy states down here
+
+
 
 
         //Add all states to the state list
