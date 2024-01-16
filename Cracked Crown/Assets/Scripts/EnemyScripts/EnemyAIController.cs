@@ -100,7 +100,26 @@ public class EnemyAIController : AdvancedFSM
         {
             state = "Stunned";
         }
-
+        else if (CurrentState.ID == FSMStateID.HeavyDash)
+        {
+            state = "HeavyDash";
+        }
+        else if (CurrentState.ID == FSMStateID.LightDash)
+        {
+            state = "LightDash";
+        }
+        else if (CurrentState.ID == FSMStateID.Gun)
+        {
+            state = "Gun";
+        }
+        else if (CurrentState.ID == FSMStateID.Shockwave)
+        {
+            state = "Shockwave";
+        }
+        else if (CurrentState.ID == FSMStateID.Reload)
+        {
+            state = "Reload";
+        }
         
 
 
@@ -137,6 +156,15 @@ public class EnemyAIController : AdvancedFSM
         FindPlayerState findPlayerState = new FindPlayerState(this);
         findPlayerState.AddTransition(Transition.AbovePlayer, FSMStateID.SlamGround);
 
+        //if at low health it allows the enemy to be finished, tranistions if no health and not finished.
+        FinishedState finishedState = new FinishedState(this);
+        finishedState.AddTransition(Transition.NoHealth, FSMStateID.Dead);
+
+        //ded
+        DeadState deadState = new DeadState(this);
+
+        //light enemy states down here
+
         //Slams the ground bellow it, transistions if it succeeds to carry, fails to stunned, low health to finished, no health to dead
         SlamGroundState slamGroundState = new SlamGroundState(this);
         slamGroundState.AddTransition(Transition.SlamSuceeded, FSMStateID.Carry);
@@ -154,12 +182,9 @@ public class EnemyAIController : AdvancedFSM
         stunnedState.AddTransition(Transition.LowHealth, FSMStateID.Finished);
         stunnedState.AddTransition(Transition.NoHealth, FSMStateID.Dead);
 
-        //if at low health it allows the enemy to be finished, tranistions if no health and not finished.
-        FinishedState finishedState = new FinishedState(this);
-        finishedState.AddTransition(Transition.NoHealth, FSMStateID.Dead);
+        //Medium enemy states down here
 
-        //ded
-        DeadState deadState = new DeadState(this);
+        
 
 
         //Add all states to the state list
