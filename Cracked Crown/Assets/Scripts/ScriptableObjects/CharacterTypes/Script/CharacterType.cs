@@ -12,4 +12,5 @@ public class CharacterType : ScriptableObject
     public float attackSpeed;
     public float finisherRadius;
     public Vector3 executePosition;
+    public bool hop;
 }

@@ -56,6 +56,7 @@ public class PlayerBody : MonoBehaviour
     private float executeMoveSpeed = 75f;
     private GameObject executeTarget;
     private bool canMovePlayerForexecute = false;
+    private bool ifHopper = false;
 
     private void Update()
     {
@@ -73,38 +74,41 @@ public class PlayerBody : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (canMove)
+        if (ifHopper)
         {
-            float zInput = controller.ForwardMagnitude;
-            float xInput = controller.HorizontalMagnitude;
-
-
-            Vector3 movementVector = new Vector3(xInput, 0, zInput);
-            primaryAttackSpawnPoint.localPosition = (movementVector) * 10;
-            primaryAttackSpawnPoint.localRotation = primaryAttackPoint.localRotation;
-            primaryAttackPoint.LookAt(primaryAttackSpawnPoint);
-            primaryAttackPoint.eulerAngles = new Vector3(0, primaryAttackPoint.eulerAngles.y, 0);
-
-            if (movementVector.magnitude > 1)
+            if (canMove)
             {
-                movementVector.Normalize();
-            }
-            movementVector = (movementVector * movementSpeed * Time.deltaTime);
+                float zInput = controller.ForwardMagnitude;
+                float xInput = controller.HorizontalMagnitude;
 
-            rb.AddForce(movementVector * 400);
 
-            if (rb.velocity.magnitude > 30f)
-            {
-                animController.Moving = true;
+                Vector3 movementVector = new Vector3(xInput, 0, zInput);
+                primaryAttackSpawnPoint.localPosition = (movementVector) * 10;
+                primaryAttackSpawnPoint.localRotation = primaryAttackPoint.localRotation;
+                primaryAttackPoint.LookAt(primaryAttackSpawnPoint);
+                primaryAttackPoint.eulerAngles = new Vector3(0, primaryAttackPoint.eulerAngles.y, 0);
+
+                if (movementVector.magnitude > 1)
+                {
+                    movementVector.Normalize();
+                }
+                movementVector = (movementVector * movementSpeed * Time.deltaTime);
+
+                rb.AddForce(movementVector * 400);
+
+                if (rb.velocity.magnitude > 30f)
+                {
+                    animController.Moving = true;
+                }
+                else
+                {
+                    animController.Moving = false;
+                }
             }
-            else
+            if (canMovePlayerForexecute && executeTarget != null)
             {
-                animController.Moving = false;
+                transform.position = Vector3.MoveTowards(gameObject.transform.position, executeTarget.transform.position + forExecutePosition, executeMoveSpeed * Time.deltaTime);
             }
-        }
-        if (canMovePlayerForexecute && executeTarget != null)
-        {
-            transform.position = Vector3.MoveTowards(gameObject.transform.position, executeTarget.transform.position + forExecutePosition, executeMoveSpeed * Time.deltaTime);
         }
     }
 
@@ -126,6 +130,7 @@ public class PlayerBody : MonoBehaviour
         finisherColliderGO.GetComponent<CapsuleCollider>().radius = finisherRadius;
         forExecutePosition = CharacterType.executePosition;
         damage = CharacterType.attack;
+        ifHopper = CharacterType.hop;
     }
     float x = 0;
     private void Attack()
