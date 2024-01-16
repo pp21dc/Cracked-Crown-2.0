@@ -18,7 +18,7 @@ public class PlayerBody : MonoBehaviour
     [SerializeField]
     private float finisherRadius = 20f;
     [SerializeField]
-    private float health = 10f;
+    private float health = 100f;
     public float Health { get { return health; } }
     public float damage = 3f;
 
@@ -106,6 +106,15 @@ public class PlayerBody : MonoBehaviour
         {
             transform.position = Vector3.MoveTowards(gameObject.transform.position, executeTarget.transform.position + forExecutePosition, executeMoveSpeed * Time.deltaTime);
         }
+    }
+
+    public void DecHealth(float amount) 
+    { 
+        health = Mathf.Max(0, health - amount); //allows us to decrease the health of an enemy
+    }
+    public void AddHealth(float amount) 
+    {
+        health = Mathf.Min(100, health + amount); //allows us to add health to the enemy
     }
 
     public void SetCharacterData()
