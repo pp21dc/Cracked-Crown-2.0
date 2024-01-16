@@ -17,6 +17,9 @@ public abstract class AIProperties // the properties that are most commonly used
 
 public class EnemyAIController : AdvancedFSM
 {
+
+    
+
     [SerializeField]
     private bool debugDraw;//draws the debug text
     [SerializeField]
@@ -36,11 +39,13 @@ public class EnemyAIController : AdvancedFSM
     private float currShortest = 100000f; //current shortest distance
     private Vector3 movementVector = Vector3.zero; // the vector that the enemy is moving towards
 
-    private bool isPlayerFound = false;
-    public bool isPlayerfound {  get { return isPlayerFound; } }
+    private bool isFollowing = false;
+    public bool isfollowing {  get { return isFollowing; } set { isFollowing = value; } }
 
     [SerializeField]
     private float speed = 0.008f; //speed of the enemy
+
+    
 
 
 
@@ -55,7 +60,15 @@ public class EnemyAIController : AdvancedFSM
 
     public void Awake()
     {
-        
+        Players = GameObject.FindGameObjectsWithTag("Player");//finds and add all players to array
+    }
+
+    private void Update()
+    {
+        if(isFollowing)
+        {
+            checkShortestDistance();
+        }
     }
 
     //allows us to grab the state in which the enemy should be on
@@ -122,36 +135,38 @@ public class EnemyAIController : AdvancedFSM
     private void ConstructFSM()
     {
 
+        //follows player, transitions out if it is above the player
         FindPlayerState findPlayerState = new FindPlayerState(this);
-        findPlayerState.AddTransition(Transition.PlayerFound, FSMStateID.FollowPlayer);
+        findPlayerState.AddTransition(Transition.AbovePlayer, FSMStateID.SlamGround);
 
-        FollowPlayerState followPlayerState = new FollowPlayerState(this);
-        followPlayerState.AddTransition(Transition.AbovePlayer, FSMStateID.SlamGround);
-
+        //Slams the ground bellow it, transistions if it succeeds to carry, fails to stunned, low health to finished, no health to dead
         SlamGroundState slamGroundState = new SlamGroundState(this);
         slamGroundState.AddTransition(Transition.SlamSuceeded, FSMStateID.Carry);
         slamGroundState.AddTransition(Transition.SlamFailed, FSMStateID.Stunned);
         slamGroundState.AddTransition(Transition.LowHealth, FSMStateID.Finished);
         slamGroundState.AddTransition(Transition.NoHealth, FSMStateID.Dead);
 
+        //carries the player, transitions if it drops player to find
         CarryState carryState = new CarryState(this);
         carryState.AddTransition(Transition.LookForPlayer, FSMStateID.FindPlayer);
 
+        //if it fails to slam its stunned, transitions if stun finishes to find, low health to finsished, no health to dead.
         StunnedState stunnedState = new StunnedState(this);
         stunnedState.AddTransition(Transition.LookForPlayer, FSMStateID.FindPlayer);
         stunnedState.AddTransition(Transition.LowHealth, FSMStateID.Finished);
         stunnedState.AddTransition(Transition.NoHealth, FSMStateID.Dead);
 
+        //if at low health it allows the enemy to be finished, tranistions if no health and not finished.
         FinishedState finishedState = new FinishedState(this);
         finishedState.AddTransition(Transition.NoHealth, FSMStateID.Dead);
 
+        //ded
         DeadState deadState = new DeadState(this);
 
 
         //Add all states to the state list
 
         AddFSMState(findPlayerState);
-        AddFSMState(followPlayerState);
         AddFSMState(slamGroundState);
         AddFSMState(carryState);
         AddFSMState(stunnedState);
@@ -164,7 +179,8 @@ public class EnemyAIController : AdvancedFSM
     {
 
         float check;
-
+        
+        //simple distance check where it checks the current shortest and compares to the other players, replacing when neccisary
         for (int i = 0; i < Players.Length; i++)
         {
 
@@ -194,6 +210,11 @@ public class EnemyAIController : AdvancedFSM
 
     } 
 
+    public void StartFinish()
+    {
+        StartCoroutine(Finished());
+    }
+
 
     //starts a death coroutine
     public void StartDeath()
@@ -204,7 +225,16 @@ public class EnemyAIController : AdvancedFSM
     }
 
     
+    IEnumerator Finished()
+    {
+        
+        //stunned animation here
 
+        yield return new WaitForSeconds(3f);
+
+        
+    
+    }
     
     
 
@@ -215,9 +245,9 @@ public class EnemyAIController : AdvancedFSM
     {
 
         
-
+        //animation here
         
-
+        //scale time to animation
         yield return new WaitForSeconds(2.2f);
 
         Destroy(gameObject);

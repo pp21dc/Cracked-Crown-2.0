@@ -20,34 +20,17 @@ public class FinishedState : FSMState
     public override void Reason(Transform player, Transform npc)
     {
 
-
-
-        /*
         if (enemy.Health <= 0)
         {
             enemy.PerformTransition(Transition.NoHealth);
-            return;
         }
-        else if (IsInCurrentRange(npc, player.position, 15f))
-        {
 
-            enemy.PerformTransition(Transition.seePlayer);
-            return;
-
-        }
-        else if (enemy.Health <= 10)
-        {
-
-            enemy.PerformTransition(Transition.lowHealth);
-            return;
-
-        }
-        */
+        
     }
 
     //no need for anything in act as you are jsut standing there until a player attacks you or you see them
     public override void Act(Transform player, Transform npc)
     {
-
+        enemy.StartFinish();
     }
 }

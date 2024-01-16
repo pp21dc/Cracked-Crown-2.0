@@ -20,18 +20,29 @@ public class FindPlayerState : FSMState
     public override void Reason(Transform player, Transform npc)
     {
 
-        if (enemy.isPlayerfound)
+        if (enemy.CompareTag("Light"))
         {
-            enemy.PerformTransition(Transition.PlayerFound);
-            return;
+            if (0 == 1)
+            {
+                enemy.PerformTransition(Transition.AbovePlayer);
+                enemy.isfollowing = false;
+                return;
+            }
         }
+        else if (enemy.CompareTag("Medium"))
+        {
 
+        }
+        else if (enemy.CompareTag("Heavy"))
+        {
+
+        }
         
     }
 
     //no need for anything in act as you are jsut standing there until a player attacks you or you see them
     public override void Act(Transform player, Transform npc)
     {
-       enemy.checkShortestDistance();
+        enemy.isfollowing = true;
     }
 }
