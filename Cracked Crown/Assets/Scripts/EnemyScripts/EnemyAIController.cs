@@ -45,6 +45,8 @@ public class EnemyAIController : AdvancedFSM
     [SerializeField]
     private float speed = 0.008f; //speed of the enemy
 
+    public float maxHealth = 100;
+
     
 
 
