@@ -202,17 +202,43 @@ public class EnemyAIController : AdvancedFSM
 
         //Heavy enemy states down here
 
+        GunState gunState = new GunState(this);
+        gunState.AddTransition(Transition.NoBullets, FSMStateID.Reload);
+        gunState.AddTransition(Transition.LowHealth, FSMStateID.Finished);
+        gunState.AddTransition(Transition.NoHealth, FSMStateID.Dead);
 
+        ShockwaveState shockwaveState = new ShockwaveState(this);
+        shockwaveState.AddTransition(Transition.LookForPlayer, FSMStateID.FindPlayer);
+        shockwaveState.AddTransition(Transition.LowHealth, FSMStateID.Finished);
+        shockwaveState.AddTransition(Transition.NoHealth, FSMStateID.Dead);
+
+        ReloadState reloadState = new ReloadState(this);
+        reloadState.AddTransition(Transition.LookForPlayer, FSMStateID.FindPlayer);
+        reloadState.AddTransition(Transition.LowHealth, FSMStateID.Finished);
+        reloadState.AddTransition(Transition.NoHealth, FSMStateID.Dead);
+
+        HoleState holeState = new HoleState(this);
 
 
         //Add all states to the state list
 
         AddFSMState(findPlayerState);
+        AddFSMState(finishedState);
+        AddFSMState(deadState);
+
         AddFSMState(slamGroundState);
         AddFSMState(carryState);
         AddFSMState(stunnedState);
-        AddFSMState(finishedState);
-        AddFSMState(deadState);
+
+        AddFSMState(heavyDashState);
+        AddFSMState(lightDashState);
+
+        AddFSMState(gunState);
+        AddFSMState(shockwaveState);
+        AddFSMState(reloadState);
+        AddFSMState(holeState);
+        
+        
     }
 
     //finds the closest player and sets the target position

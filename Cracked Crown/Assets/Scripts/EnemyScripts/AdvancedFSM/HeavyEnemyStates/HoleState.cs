@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
-public class ShockwaveState : FSMState
+public class HoleState : FSMState
 {
 
     private EnemyAIController enemy;//grabs the enemy controller
 
-    public ShockwaveState(EnemyAIController controller)
+    public HoleState(EnemyAIController controller)
     {
         stateID = FSMStateID.Finished;//sets the FSM state ID to Idle
         enemy = controller;
