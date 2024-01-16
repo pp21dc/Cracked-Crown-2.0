@@ -72,8 +72,10 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-
-        ReturnToMainMenu();
+        if (CampaignStart)
+        {
+            ReturnToMainMenu();
+        }
     }
 
     private void FixedUpdate()
