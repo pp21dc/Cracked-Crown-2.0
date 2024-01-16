@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 using static UnityEngine.EventSystems.EventTrigger;
 
 public class PlayerBody : MonoBehaviour
@@ -19,6 +20,8 @@ public class PlayerBody : MonoBehaviour
     [SerializeField]
     private float health = 10f;
     public float Health { get { return health; } }
+    [SerializeField]
+    private float damage = 3f;
 
     [SerializeField]
     public CharacterType CharacterType;
@@ -27,6 +30,7 @@ public class PlayerBody : MonoBehaviour
     [SerializeField]
     private PlayerController controller;
     public PlayerContainer playerContainer;
+    public FinisherCollider executeCollideScript;
     [SerializeField]
     private PlayerAnimController animController;
     [SerializeField]
@@ -50,7 +54,9 @@ public class PlayerBody : MonoBehaviour
     private bool dashOnCD = false;
     private bool canTakeDamage = true;
     private float executeHeal = 5f;
-    private float executeMoveSpeed = 10f;
+    private float executeMoveSpeed = 50f;
+    private GameObject executeTarget;
+    private bool canMovePlayerForexecute = false;
 
     private void Update()
     {
@@ -90,6 +96,10 @@ public class PlayerBody : MonoBehaviour
                 animController.Moving = false;
             }
         }
+        if (canMovePlayerForexecute && executeTarget != null)
+        {
+            transform.position = Vector3.MoveTowards(gameObject.transform.position, executeTarget.transform.position + forExecutePosition, executeMoveSpeed * Time.deltaTime);
+        }
     }
 
     public void SetCharacterData()
@@ -100,6 +110,7 @@ public class PlayerBody : MonoBehaviour
         finisherRadius = CharacterType.finisherRadius;
         finisherColliderGO.GetComponent<CapsuleCollider>().radius = finisherRadius;
         forExecutePosition = CharacterType.executePosition;
+        damage = CharacterType.attack;
     }
     float x = 0;
     private void Attack()
@@ -176,21 +187,26 @@ public class PlayerBody : MonoBehaviour
 
     private IEnumerator InExecute(GameObject toExecute)
     {
-        Vector3 executePos = new Vector3();
-        executePos = toExecute.transform.position + forExecutePosition;
-        //transform.position = Vector3.MoveTowards(gameObject.transform.position, executePos, executeMoveSpeed * Time.deltaTime);
-        transform.position = executePos;
-        // make sprite face the enemy
+        if (toExecute != null)
+        {
+            executeTarget = toExecute;
+            float xInput = controller.HorizontalMagnitude;
 
-        canMove = false;
-        canTakeDamage = false;
-        // take enemy out of list
+            controller.sprite = CharacterFolder.transform.GetChild(0);
+            float scale = Mathf.Abs(controller.sprite.localScale.x);
+            controller.sprite.localScale = new Vector3(scale, controller.sprite.localScale.y, 1); // to swap so its always facing enemy
 
-        yield return new WaitForSeconds(1.5f);
+            canTakeDamage = false;
+            canMove = false;
+            canMovePlayerForexecute = true;
 
-        Destroy(toExecute);
-        health = health + executeHeal;
-        canTakeDamage = true;
-        canMove = true;
+            yield return new WaitForSeconds(1.5f);
+            Destroy(toExecute);
+
+            executeCollideScript.enemiesInRange.Remove(toExecute); // remove enemy from list
+            health = health + executeHeal;
+            canMove = true;
+            canTakeDamage = true;
+        }
     }
 }

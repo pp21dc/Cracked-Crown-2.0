@@ -7,8 +7,7 @@ using UnityEngine.InputSystem.XR;
 public class FinisherCollider : MonoBehaviour
 {
 
-   [SerializeField]
-   private List<GameObject> enemiesInRange;
+   public List<GameObject> enemiesInRange;
 
    [SerializeField]
     private PlayerBody PB;

@@ -45,6 +45,8 @@ public class PlayerController : MonoBehaviour
         get { return ID; }
     }
 
+    public Transform sprite;
+
     private void Awake()
     {
         ID = PI.playerIndex;
@@ -61,10 +63,10 @@ public class PlayerController : MonoBehaviour
     public void OnMove(InputValue inputValue)
     {
         Vector2 inputVal = inputValue.Get<Vector2>();
-
+        sprite = PB.CharacterFolder.transform.GetChild(0);
         forwardMagnitude = inputVal.y;
         horizontalMagnitude = inputVal.x;
-        Transform sprite = PB.CharacterFolder.transform.GetChild(0);
+
         float scale = Mathf.Abs(sprite.localScale.x);
         if (PB.canMove)
         {
