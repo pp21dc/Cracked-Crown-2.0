@@ -9,7 +9,7 @@ public class PrototypePrimaryAttack : MonoBehaviour
 
     private void Awake()
     {
-        playerBody = GetComponentInParent<PlayerBody>();
+        playerBody = gameObject.GetComponentInParent<PlayerBody>();
     }
 
     void Start()
