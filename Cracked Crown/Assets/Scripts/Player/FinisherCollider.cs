@@ -20,13 +20,14 @@ public class FinisherCollider : MonoBehaviour
         {
             foreach (GameObject enemy in enemiesInRange)
             {
-                //if (((enemy.gameObject.GetComponent<EnemyAIController>().Health) / (enemy.gameObject.GetComponent<EnemyAIController>().MaxHealth)) <= 0.5) // if health is less then 50% can execute
-                //{
-                if (controller.ExecuteDown)
+                if (((enemy.gameObject.GetComponent<EnemyAIController>().Health) / (enemy.gameObject.GetComponent<EnemyAIController>().maxHealth)) <= 0.5) // if health is less then 50% can execute
                 {
-                    PB.Execute(enemiesInRange[0].gameObject);
+                    Debug.Log("Can Execute");
+                    if (controller.ExecuteDown)
+                    {
+                        PB.Execute(enemiesInRange[0].gameObject);
+                    }
                 }
-                //}
             }
         }
     }
