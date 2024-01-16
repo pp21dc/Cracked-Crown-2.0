@@ -133,23 +133,40 @@ public class PlayerBody : MonoBehaviour
         ifHopper = CharacterType.hop;
     }
     float x = 0;
+    float attackTimer = 0;
     private void Attack()
     {
         if (controller.PrimaryAttackDown & canAttack)
         {
+            canMove = false;
+            canAttack = false;
+            rb.velocity = Vector3.zero;
+            //add force in opp dir from input
+            
             animController.Attacking = true;
             GameObject attack = Instantiate(prefabForAttack, primaryAttackSpawnPoint);
             SwordSlash.sword.Play();
         }
 
-        if (x > 1)
+        if (x > 0.1f)
         {
             x = 0;
             animController.Attacking = false;
+            canMove = true;
         }
         else
         {
             x += Time.deltaTime;
+        }
+
+        if (attackTimer > 0.2f)
+        {
+            attackTimer = 0;
+            canAttack = true;
+        }
+        else
+        {
+            attackTimer += Time.deltaTime;
         }
 
     }
