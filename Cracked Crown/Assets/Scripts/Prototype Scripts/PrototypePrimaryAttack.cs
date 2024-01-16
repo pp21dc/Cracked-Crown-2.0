@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class PrototypePrimaryAttack : MonoBehaviour
 {
-
     private EnemyAIController enemyController;
     private PlayerBody playerBody;
+
+    private void Awake()
+    {
+        playerBody = GetComponentInParent<PlayerBody>();
+    }
 
     void Start()
     {
@@ -21,9 +25,11 @@ public class PrototypePrimaryAttack : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (gameObject.tag == "Enemy")
-        {
-            
+        if (other.tag == "Enemy")
+        { 
+            enemyController = other.GetComponent<EnemyAIController>();
+            enemyController.DecHealth(playerBody.damage);
+            Debug.Log("Enemy got hit");
         }
     }
 }

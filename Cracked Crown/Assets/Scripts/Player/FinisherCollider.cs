@@ -24,7 +24,6 @@ public class FinisherCollider : MonoBehaviour
                 //{
                 if (controller.ExecuteDown)
                 {
-                    Debug.Log("pressed execute");
                     PB.Execute(enemiesInRange[0].gameObject);
                 }
                 //}
@@ -36,7 +35,6 @@ public class FinisherCollider : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
-            Debug.Log("Collided with enemy");
             enemiesInRange.Add(other.gameObject); // add enemy to nearby list
         }
     }
