@@ -17,8 +17,9 @@ public class LevelChange : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (players.Count >= GM.Players.Length && !locked)
+        if (players.Count >= GM.Players.Length && !locked && GM.Players.Length > 0 && GM.IsLevelCleared)
         {
+            GM.IsLevelCleared = false;
             locked = true;
             GM.NextLevel();
         }
