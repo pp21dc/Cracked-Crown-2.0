@@ -1162,6 +1162,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 616016100}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &638290302 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2358329642197499249, guid: f443ae70529b14f42951265ea553e920,
+    type: 3}
+  m_PrefabInstance: {fileID: 1039366923}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60b24f4855d395f4ca952753c32c2d47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &667465563
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1572,6 +1584,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 908568366204445390, guid: f443ae70529b14f42951265ea553e920,
+        type: 3}
+      propertyPath: executeCollideScript
+      value: 
+      objectReference: {fileID: 638290302}
     - target: {fileID: 7770475566863007251, guid: f443ae70529b14f42951265ea553e920,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y

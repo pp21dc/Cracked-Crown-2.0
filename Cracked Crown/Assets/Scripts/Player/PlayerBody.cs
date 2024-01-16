@@ -20,8 +20,7 @@ public class PlayerBody : MonoBehaviour
     [SerializeField]
     private float health = 10f;
     public float Health { get { return health; } }
-    [SerializeField]
-    private float damage = 3f;
+    public float damage = 3f;
 
     [SerializeField]
     public CharacterType CharacterType;
@@ -120,7 +119,6 @@ public class PlayerBody : MonoBehaviour
             animController.Attacking = true;
             GameObject attack = Instantiate(prefabForAttack, primaryAttackSpawnPoint);
             SwordSlash.sword.Play();
-            Debug.Log("primary attack happened");
         }
 
         if (x > 1)
