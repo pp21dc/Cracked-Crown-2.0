@@ -74,7 +74,7 @@ public class PlayerBody : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (ifHopper)
+        if (true || !ifHopper)
         {
             if (canMove)
             {
@@ -151,7 +151,7 @@ public class PlayerBody : MonoBehaviour
         if (x > 0.1f)
         {
             x = 0;
-            animController.Attacking = false;
+            //animController.Attacking = false;
             canMove = true;
         }
         else
@@ -163,6 +163,7 @@ public class PlayerBody : MonoBehaviour
         {
             attackTimer = 0;
             canAttack = true;
+            animController.Attacking = false;
         }
         else
         {
@@ -182,6 +183,7 @@ public class PlayerBody : MonoBehaviour
         {
             lockDash = true;
             animController.dashing = true;
+            animController.Moving = false;
             StartCoroutine(DashCoroutine());
             
             dashOnCD = true;
@@ -211,7 +213,7 @@ public class PlayerBody : MonoBehaviour
 
         while (Time.time < startTime + dashTime)
         {
-            rb.AddForce((dashDirection * dashSpeed * Time.deltaTime)*2000);
+            rb.AddForce((dashDirection * dashSpeed * Time.deltaTime)*1400);
             yield return null;
         }
 
