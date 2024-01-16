@@ -30,7 +30,8 @@ public enum Transition
     //Heavy Enemy Transitions
     InShootingRange,
     InShockwaveRange,
-    NoBullets
+    NoBullets,
+    WasNotExecuted
     
 }
 

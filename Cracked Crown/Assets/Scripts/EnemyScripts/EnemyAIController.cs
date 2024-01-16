@@ -159,10 +159,17 @@ public class EnemyAIController : AdvancedFSM
         //follows player, transitions out if it is above the player
         FindPlayerState findPlayerState = new FindPlayerState(this);
         findPlayerState.AddTransition(Transition.AbovePlayer, FSMStateID.SlamGround);
+        findPlayerState.AddTransition(Transition.InFirstRange, FSMStateID.HeavyDash);
+        findPlayerState.AddTransition(Transition.InSecondRange, FSMStateID.LightDash);
+        findPlayerState.AddTransition(Transition.InShootingRange, FSMStateID.Gun);
+        findPlayerState.AddTransition(Transition.InShockwaveRange, FSMStateID.Shockwave);
+        findPlayerState.AddTransition(Transition.LowHealth, FSMStateID.Finished);
+        findPlayerState.AddTransition(Transition.NoHealth, FSMStateID.Dead);
 
         //if at low health it allows the enemy to be finished, tranistions if no health and not finished.
         FinishedState finishedState = new FinishedState(this);
         finishedState.AddTransition(Transition.NoHealth, FSMStateID.Dead);
+        findPlayerState.AddTransition(Transition.WasNotExecuted, FSMStateID.Hole);
 
         //ded
         DeadState deadState = new DeadState(this);
