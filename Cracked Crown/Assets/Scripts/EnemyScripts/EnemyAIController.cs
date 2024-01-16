@@ -40,7 +40,7 @@ public class EnemyAIController : AdvancedFSM
     private Vector3 movementVector = Vector3.zero; // the vector that the enemy is moving towards
 
     private bool isFollowing = false;
-    public bool isfollowing {  get { return isFollowing; } set { isFollowing = value; } }
+    public bool isfollowing { get { return isFollowing; } set { isFollowing = value; } }
 
     [SerializeField]
     private float speed = 0.008f; //speed of the enemy
@@ -84,9 +84,9 @@ public class EnemyAIController : AdvancedFSM
         {
             state = "FindPlayer";
         }
-        else if (CurrentState.ID == FSMStateID.FollowPlayer)
+        else if (CurrentState.ID == FSMStateID.Finished)
         {
-            state = "FollowPlayer";
+            state = "Finished";
         }
         else if (CurrentState.ID == FSMStateID.SlamGround)
         {
@@ -100,10 +100,8 @@ public class EnemyAIController : AdvancedFSM
         {
             state = "Stunned";
         }
-        else if (CurrentState.ID == FSMStateID.Finished)
-        {
-            state = "Finished";
-        }
+
+        
 
 
         return state;

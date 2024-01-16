@@ -12,27 +12,52 @@ using System.Collections.Generic;
 
 public enum Transition
 {
+    //General Tranisitions
     None = 0,
     LookForPlayer,
-    PlayerFound,
+    LowHealth,
+    NoHealth,
+
+    //Light enemy transitions
     AbovePlayer,
     SlamSuceeded,
     SlamFailed,
-    LowHealth,
-    NoHealth
+
+    //Medium Enemy Tranisitions
+    InFirstRange,
+    InSecondRange,
+
+    //Heavy Enemy Transitions
+    InShootingRange,
+    InShockwaveRange,
+    NoBullets
     
 }
 
 public enum FSMStateID
 {
+    //General States
     None = 0,
     FindPlayer,
-    FollowPlayer,
+    Finished,
+    Dead,
+
+    //light States
     SlamGround,
     Carry,
     Stunned,
-    Finished,
-    Dead
+
+    //Medium States
+    LightDash,
+    HeavyDash,
+
+
+    //Heavy States
+    Gun,
+    Shockwave,
+    Reload,
+    Hole
+    
 }
 
 public class AdvancedFSM : FSM
