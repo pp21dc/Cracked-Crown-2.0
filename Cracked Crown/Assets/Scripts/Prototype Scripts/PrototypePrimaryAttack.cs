@@ -14,6 +14,7 @@ public class PrototypePrimaryAttack : MonoBehaviour
 
     void Start()
     {
+        transform.position = transform.position + new Vector3(1, 0, 0);
         StartCoroutine(destroyObject());
     }
 
