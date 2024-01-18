@@ -39,8 +39,6 @@ public class EnemyAIController : AdvancedFSM
     private float currShortest = 100000f; //current shortest distance
     private Vector3 movementVector = Vector3.zero; // the vector that the enemy is moving towards
 
-    private bool isFollowing = false;
-    public bool isfollowing { get { return isFollowing; } set { isFollowing = value; } }
 
     [SerializeField]
     private float speed = 0.008f; //speed of the enemy
@@ -75,10 +73,7 @@ public class EnemyAIController : AdvancedFSM
 
     private void Update()
     {
-        if(isFollowing)
-        {
-            checkShortestDistance();
-        }
+        
 
         if(isInFinishedState)
         {
@@ -329,9 +324,6 @@ public class EnemyAIController : AdvancedFSM
     
     }
     
-    
-
-    
 
     //destroys the enemy game object
     IEnumerator Death()
@@ -348,68 +340,7 @@ public class EnemyAIController : AdvancedFSM
         yield return null;
     }
 
-    //Same logic as the player and turret fire, uses the firelocation and gun to find the direction to shoot and instantiates a bullet going in said direction 
-   /* IEnumerator Fire(Transform fireLocation, Transform Gun) 
-    {
-
-        for (int i = 0; i < 8; i++)//runs until the mag is empty, decreasing the mag by one every shot
-        {
-
-            Shoot(fireLocation, Gun);
-
-            
-
-            //decrease mag
-
-            yield return new WaitForSeconds(0.75f);
-
-        }
-
-        canShoot = true;//allows us to shoot again once reloaded
-        yield return null;
-
-    }
-   */
-    //set the mag back to 8 after waiting a bit of time so we can shoot again
     
-
-    //when the enemy is hit with a playerBullet, it decreases the enemy health by ten
-   /* private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("playerBullet"))
-        {
-
-            this.DecHealth(10);
-            
-            other.gameObject.SetActive(false);
-
-        }
-    }*/
-
-    //fires a bullet when called
-    public void Shoot(Transform fireLocation, Transform Gun)
-    {
-
-       /* if (Bullet)
-        {
-
-            Vector3 direction = fireLocation.position - Gun.position;
-            direction.y = 0f;
-            direction.Normalize();
-
-            GameObject bulletGo = GameObject.Instantiate(Bullet, fireLocation.position, Quaternion.identity);
-
-           // Bullet bullet = bulletGo.GetComponent<Bullet>();
-
-            bulletGo.SetActive(true);
-
-            //bullet.Fire(direction);
-
-            animator.SetTrigger("isFiring");//runs the shoot animation
-
-        }*/
-
-    }
 
     public void StartHeavyDash()
     {
