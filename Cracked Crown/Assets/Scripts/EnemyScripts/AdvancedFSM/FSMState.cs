@@ -25,7 +25,7 @@ public abstract class FSMState
     protected Transform[] waypoints;
     protected float curRotSpeed;
     protected float curSpeed;
-    protected float maxBullets;
+    
 
     public void AddTransition(Transition transition, FSMStateID id)
     {

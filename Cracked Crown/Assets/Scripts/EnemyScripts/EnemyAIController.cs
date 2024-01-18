@@ -48,8 +48,7 @@ public class EnemyAIController : AdvancedFSM
     //health, finisher, and death states
     public float maxHealth = 100; // its total Health
     private float health = 100;//health of the enemy
-    private bool isInFinishedState = false;
-    public bool isinFinishedState { get { return isInFinishedState; } set { isInFinishedState = value; } }
+    
 
     [SerializeField]
     private Collider Damage;
@@ -66,15 +65,7 @@ public class EnemyAIController : AdvancedFSM
 
     
 
-    private void Update()
-    {
-        
-
-        if(isInFinishedState)
-        {
-            AddHealth(0.5f * Time.deltaTime);
-        }
-    }
+    
 
     //allows us to grab the state in which the enemy should be on
     private string GetStateString()
@@ -150,7 +141,7 @@ public class EnemyAIController : AdvancedFSM
 
     protected override void FSMUpdate()
     {
-
+        Debug.Log("we FSM updating!");
         if (CurrentState != null)
         {
             CurrentState.Reason(playerTransform, transform);
@@ -321,7 +312,7 @@ public class EnemyAIController : AdvancedFSM
 
         //stunned animation here
 
-        isInFinishedState = true;
+        
 
         yield return new WaitForSeconds(3f);
 
