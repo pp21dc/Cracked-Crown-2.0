@@ -6,9 +6,8 @@ using System.Runtime.InteropServices;
 [System.Serializable]
 public abstract class AIProperties // the properties that are most commonly used by all states and are now accesible to those states
 {
-    public float speed = 3.0f;
-    public float rotSpeed = 2.0f;
-    public float maxSize = 8;
+    public float speed = 3.0f; //speed of enemy
+    
 }
 
 
@@ -27,28 +26,29 @@ public class EnemyAIController : AdvancedFSM
     [SerializeField]
     private Text HealthText;//shows enemy current health
 
+    //for finding the players
     [SerializeField]
     private GameObject[] Players = new GameObject[4]; //holds all players
-
-
     private GameObject closest;//holds the closest player
-
-    [SerializeField]
-    private Transform enemyBody; //holds the enemy player position
-
     private float currShortest = 100000f; //current shortest distance
     private Vector3 movementVector = Vector3.zero; // the vector that the enemy is moving towards
 
+    //the enemy body
+    [SerializeField]
+    private Transform enemyBody; //holds the enemy player position
 
+    
+
+    //speedChanges
     [SerializeField]
     private float speed = 0.008f; //speed of the enemy
     private float HeavyDashSpeed = 0.08f;
     private float LightDashSpeed = 0.002f;
 
-    public float maxHealth = 100;
-
+    //health, finisher, and death states
+    public float maxHealth = 100; // its total Health
+    private float health = 100;//health of the enemy
     private bool isInFinishedState = false;
-
     public bool isinFinishedState { get { return isInFinishedState; } set { isInFinishedState = value; } }
 
     [SerializeField]
@@ -56,7 +56,7 @@ public class EnemyAIController : AdvancedFSM
 
     
 
-    private float health;//health of the enemy
+    
     public float Health
     {
         get { return health; }
@@ -66,6 +66,8 @@ public class EnemyAIController : AdvancedFSM
 
     public void Awake()
     {
+        Debug.Log("Made It to Awake");
+
         Players = GameObject.FindGameObjectsWithTag("Player");//finds and add all players to array
         Damage = gameObject.GetComponent<Collider>();
         Damage.enabled = false; // deactivates the damage collider
@@ -221,21 +223,25 @@ public class EnemyAIController : AdvancedFSM
 
         //Heavy enemy states down here
 
+        //Shoots at the player from a distance, Transition to reload if out of bullets, low health to finish, no health to dead
         GunState gunState = new GunState(this);
         gunState.AddTransition(Transition.NoBullets, FSMStateID.Reload);
         gunState.AddTransition(Transition.LowHealth, FSMStateID.Finished);
         gunState.AddTransition(Transition.NoHealth, FSMStateID.Dead);
 
+        //sends out a mini shockwave to knock players away from it, Tranisition if done to find player, low health if finish, no health to dead
         ShockwaveState shockwaveState = new ShockwaveState(this);
         shockwaveState.AddTransition(Transition.LookForPlayer, FSMStateID.FindPlayer);
         shockwaveState.AddTransition(Transition.LowHealth, FSMStateID.Finished);
         shockwaveState.AddTransition(Transition.NoHealth, FSMStateID.Dead);
 
+        //Reloads if out of teeth, Tranisition if done to find player, low health if finished, no health to dead
         ReloadState reloadState = new ReloadState(this);
         reloadState.AddTransition(Transition.LookForPlayer, FSMStateID.FindPlayer);
         reloadState.AddTransition(Transition.LowHealth, FSMStateID.Finished);
         reloadState.AddTransition(Transition.NoHealth, FSMStateID.Dead);
 
+        //hole
         HoleState holeState = new HoleState(this);
 
 
@@ -296,6 +302,7 @@ public class EnemyAIController : AdvancedFSM
 
     } 
 
+    //starts the finished coroutine
     public void StartFinish()
     {
         StartCoroutine(Finished());
@@ -310,7 +317,7 @@ public class EnemyAIController : AdvancedFSM
         StartCoroutine(Death());
     }
 
-    
+    //stops the enemy starts the animation and heals the enemy overtime until it can move again
     IEnumerator Finished()
     {
 
@@ -341,12 +348,13 @@ public class EnemyAIController : AdvancedFSM
     }
 
     
-
+    //starts the heavy dash if in range
     public void StartHeavyDash()
     {
         StartCoroutine(HeavyDash());
     }
 
+    //moves fastly towars the player direction to try and knock them back
     IEnumerator HeavyDash()
     {
 
@@ -361,11 +369,13 @@ public class EnemyAIController : AdvancedFSM
         yield return null;
     }
 
+    //dashes to deal damage to close player
     public void StartLightDash()
     {
         StartCoroutine (LightDash());
     }
 
+    //dashes to deal damage to close player
     IEnumerator LightDash()
     {
 

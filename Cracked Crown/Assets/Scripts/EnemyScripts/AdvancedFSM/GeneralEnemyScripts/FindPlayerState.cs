@@ -12,8 +12,7 @@ public class FindPlayerState : FSMState
     {
         stateID = FSMStateID.FindPlayer;//sets the FSM state ID to Idle
         enemy = controller;
-        curSpeed = 0.0f;
-        curRotSpeed = 0.0f;
+        
     }
 
     //creates transition reasoning for if the enemy has no health, die, if the enemy has low health, flee, and if the enemy is in range of the player, attack
@@ -33,7 +32,7 @@ public class FindPlayerState : FSMState
             if (0 == 1)
             {
                 enemy.PerformTransition(Transition.AbovePlayer);
-                enemy.isfollowing = false;
+                
                 return;
             }
         }
