@@ -41,9 +41,9 @@ public class EnemyAIController : AdvancedFSM
 
     //speedChanges
     [SerializeField]
-    private float speed = 0.008f; //speed of the enemy
-    private float HeavyDashSpeed = 0.08f;
-    private float LightDashSpeed = 0.002f;
+    private float speed = 1f; //speed of the enemy
+    private float HeavyDashSpeed = 2f;
+    private float LightDashSpeed = 1.5f;
 
     //health, finisher, and death states
     public float maxHealth = 100; // its total Health
@@ -257,7 +257,7 @@ public class EnemyAIController : AdvancedFSM
     //finds the closest player and sets the target position
     public void checkShortestDistance()
     {
-
+        Debug.Log("We now checking players");
         float check;
         
         //simple distance check where it checks the current shortest and compares to the other players, replacing when neccisary
@@ -274,7 +274,7 @@ public class EnemyAIController : AdvancedFSM
                 playerTransform = closest.transform;
 
             }
-
+            Debug.Log(i + " Player");
         }
 
         setAndMoveToTarget(speed);
@@ -284,7 +284,7 @@ public class EnemyAIController : AdvancedFSM
     //sets enemy target position and moves towards it
     private void setAndMoveToTarget(float Speed)
     {
-
+        
         movementVector = (closest.transform.position - enemyBody.transform.position).normalized * Speed;
         enemyBody.transform.position += movementVector * Time.deltaTime;//moves to player
         enemyBody.transform.position = new Vector3(enemyBody.position.x, 0f, enemyBody.position.z); //keeps it on ground
