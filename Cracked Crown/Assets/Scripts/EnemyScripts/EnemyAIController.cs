@@ -64,14 +64,7 @@ public class EnemyAIController : AdvancedFSM
     public void DecHealth(float amount) { health = Mathf.Max(0, health - amount); }//allows us to decrease the health of an enemy
     public void AddHealth(float amount) { health = Mathf.Min(100, health + amount); }//allows us to add health to the enemy
 
-    public void Awake()
-    {
-        Debug.Log("Made It to Awake");
-
-        Players = GameObject.FindGameObjectsWithTag("Player");//finds and add all players to array
-        Damage = gameObject.GetComponent<Collider>();
-        Damage.enabled = false; // deactivates the damage collider
-    }
+    
 
     private void Update()
     {
@@ -145,8 +138,12 @@ public class EnemyAIController : AdvancedFSM
     //intializes the enemy with the player location and sets enemy health to 100 theb calls Construct FSM
     protected override void Initialize()
     {
-       // GameObject objPlayer = GameObject.FindGameObjectWithTag("Player");
-       // playerTransform = objPlayer.transform;
+        Debug.Log("Made It to Intialize");
+
+        Players = GameObject.FindGameObjectsWithTag("Player");//finds and add all players to array
+        playerTransform = Players[0].transform;
+        Damage = gameObject.GetComponent<Collider>();
+        Damage.enabled = false; // deactivates the damage collider
         health = 100;
         ConstructFSM();
     }
@@ -283,6 +280,7 @@ public class EnemyAIController : AdvancedFSM
 
                 currShortest = check;
                 closest = Players[i];
+                playerTransform = closest.transform;
 
             }
 
