@@ -6,6 +6,7 @@ public class Collect : MonoBehaviour
 {
 
     private PlayerBody body;
+    private PlayerController controller;
     private GameManager gameManager;
 
     private void Awake()
@@ -17,24 +18,35 @@ public class Collect : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-
-           body = other.GetComponent<PlayerBody>();
+            body = other.GetComponent<PlayerBody>();
+            controller = other.GetComponent<PlayerController>();
             
             if (gameObject.tag == "Eye")
             {
                 gameManager.eyeCount = gameManager.eyeCount + 1;
                 Debug.Log(gameManager.eyeCount);
+                gameObject.SetActive(false);
             }
             if (gameObject.tag == "Bomb")
             {
-                //body.hasBomb = true;
+                //if (controller.interactDown && gameManager.eyeCount >= 5 && hasPotion = false && hasBomb = false)
+                //{
+                //    gameManager.eyeCount -= 5;
+                //    body.hasBomb = true;
+                //    gameObject.SetActive(false);
+                //}
             }
             if (gameObject.tag == "Potion")
             {
-                //body.hasPotion = true;
+                //if (controller.interactDown && gameManager.eyeCount >= 5 && hasPotion = false && hasBomb = false)
+                //{
+                //    gameManager.eyeCount -= 5;
+                //    body.hasPotion = true;
+                //    gameObject.SetActive(false);
+                //}
             }
 
-            gameObject.SetActive(false);
+
         }
     }
 }
