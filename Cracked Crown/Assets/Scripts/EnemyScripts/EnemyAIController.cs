@@ -41,7 +41,7 @@ public class EnemyAIController : AdvancedFSM
 
     //speedChanges
     [SerializeField]
-    private float speed = 1f; //speed of the enemy
+    private float speed = 5f; //speed of the enemy
     private float HeavyDashSpeed = 2f;
     private float LightDashSpeed = 1.5f;
 
@@ -284,7 +284,7 @@ public class EnemyAIController : AdvancedFSM
     //sets enemy target position and moves towards it
     private void setAndMoveToTarget(float Speed)
     {
-        
+        Debug.Log("Hiiiiii");
         movementVector = (closest.transform.position - enemyBody.transform.position).normalized * Speed;
         enemyBody.transform.position += movementVector * Time.deltaTime;//moves to player
         enemyBody.transform.position = new Vector3(enemyBody.position.x, 0f, enemyBody.position.z); //keeps it on ground

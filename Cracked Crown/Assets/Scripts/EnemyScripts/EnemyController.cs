@@ -73,14 +73,14 @@ public class EnemyController : MonoBehaviour
 
         }
 
-        setAndMoveToTarget();
+        //setAndMoveToTarget();
 
     }
 
     //sets enemy target position and moves towards it
     private void setAndMoveToTarget() 
     {
-    
+        Debug.Log("HIIIIII");
         movementVector = (closest.transform.position - enemyBody.transform.position).normalized * speed;
         enemyBody.transform.position += movementVector * Time.deltaTime;//moves to player
         enemyBody.transform.position = new Vector3(enemyBody.position.x, 0f, enemyBody.position.z); //keeps it on ground
