@@ -64,6 +64,8 @@ public class GameManager : MonoBehaviour
 
     public bool Pause = false;
 
+    public float eyeCount = 0;
+
     private void Awake()
     {
         if (instance == null)
