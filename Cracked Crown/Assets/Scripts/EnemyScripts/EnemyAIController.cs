@@ -49,6 +49,9 @@ public class EnemyAIController : AdvancedFSM
 
     //Medium needed variables
     public Transform TargetPlayerPos;
+    public bool isHeavyDashing = false;
+    public bool isLightDashing = false;
+    public bool isDoneDashing = false;
 
     //health, finisher, and death states
     public float maxHealth = 100; // its total Health
@@ -345,7 +348,11 @@ public class EnemyAIController : AdvancedFSM
     //starts the heavy dash if in range
     public void StartHeavyDash()
     {
-        StartCoroutine(HeavyDash());
+        if (isHeavyDashing)
+        {
+            isHeavyDashing = false;
+            StartCoroutine(HeavyDash());
+        }
     }
 
     //moves fastly towars the player direction to try and knock them back
@@ -356,33 +363,46 @@ public class EnemyAIController : AdvancedFSM
 
         yield return new WaitForSeconds(1.5f);
 
-        while (enemyBody != TargetPlayerPos)
+        while (enemyBody.transform.position != TargetPlayerPos.position)
         {
             movementVector = (TargetPlayerPos.transform.position - enemyBody.transform.position).normalized * HeavyDashSpeed;
             enemyBody.transform.position += movementVector * Time.deltaTime;//moves to player
             enemyBody.transform.position = new Vector3(enemyBody.position.x, 0f, enemyBody.position.z); //keeps it on ground
         }
+
+        isHeavyDashing = true;
+        isDoneDashing = true;
+        yield return null;
         
     }
 
     //dashes to deal damage to close player
     public void StartLightDash()
     {
-        StartCoroutine (LightDash());
+        if (isLightDashing)
+        {
+            isLightDashing = false;
+            StartCoroutine(LightDash());
+        }
     }
 
     //dashes to deal damage to close player
     IEnumerator LightDash()
     {
 
-        yield return new WaitForSeconds(0.5f);
+        TargetPlayerPos = closest.transform;
 
-        Damage.enabled = true;
+        yield return new WaitForSeconds(1.5f);
 
-        setAndMoveToTarget(LightDashSpeed);
+        while (enemyBody.transform.position != TargetPlayerPos.position)
+        {
+            movementVector = (TargetPlayerPos.transform.position - enemyBody.transform.position).normalized * LightDashSpeed;
+            enemyBody.transform.position += movementVector * Time.deltaTime;//moves to player
+            enemyBody.transform.position = new Vector3(enemyBody.position.x, 0f, enemyBody.position.z); //keeps it on ground
+        }
 
-        Damage.enabled = false;
-
+        isLightDashing = true;
+        isDoneDashing = true;
         yield return null;
     }
 

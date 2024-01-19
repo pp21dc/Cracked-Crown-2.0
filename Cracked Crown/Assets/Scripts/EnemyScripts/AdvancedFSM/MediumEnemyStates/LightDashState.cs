@@ -28,6 +28,11 @@ public class LightDashState : FSMState
         {
             enemy.PerformTransition(Transition.NoHealth);
         }
+        else if (enemy.isDoneDashing)
+        {
+            enemy.isDoneDashing = false;
+            enemy.PerformTransition(Transition.LookForPlayer);
+        }
 
 
     }
@@ -36,6 +41,7 @@ public class LightDashState : FSMState
     public override void Act(Transform player, Transform npc)
     {
         Debug.Log("Light");
+        
         enemy.StartLightDash();
     }
 }
