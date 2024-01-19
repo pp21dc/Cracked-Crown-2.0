@@ -28,6 +28,11 @@ public class HeavyDashState : FSMState
         {
             enemy.PerformTransition(Transition.NoHealth);
         }
+        else if(enemy.isDoneDashing)
+        {
+            enemy.isDoneDashing = false;
+            enemy.PerformTransition(Transition.LookForPlayer);
+        }
         
 
     }
@@ -35,6 +40,8 @@ public class HeavyDashState : FSMState
     //no need for anything in act as you are jsut standing there until a player attacks you or you see them
     public override void Act(Transform player, Transform npc)
     {
+        Debug.Log("Heavy");
+        
         enemy.StartHeavyDash();
     }
 }
