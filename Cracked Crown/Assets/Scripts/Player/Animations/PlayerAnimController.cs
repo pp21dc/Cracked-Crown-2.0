@@ -37,6 +37,14 @@ public class PlayerAnimController : MonoBehaviour
         set { attacking = value; }
     }
 
+    PlayerContainer PC;
+
+    private void Awake()
+    {
+        PC = transform.parent.GetComponent<PlayerContainer>();
+        PC.PAC = this;
+    }
+
     private void FixedUpdate()
     {
         if (Animator != null)
@@ -49,6 +57,8 @@ public class PlayerAnimController : MonoBehaviour
         {
             Animator = anim;
         }
+        //PC = transform.parent.parent.parent.parent.GetComponent<PlayerContainer>();
+
     }
 
  

@@ -97,9 +97,10 @@ public class PlayerBody : MonoBehaviour
                 {
                     movementVector.Normalize();
                 }
-                movementVector = (movementVector * movementSpeed);
+                movementVector = (movementVector * movementSpeed/2 );
 
-                rb.AddForce(movementVector * 10);
+                //rb.MovePosition(rb.position + (movementVector * Time.fixedDeltaTime));
+                rb.AddForce(movementVector * 650 * Time.fixedDeltaTime);
                 //transform.position += (movementVector/2) * Time.deltaTime;
 
                 if (rb.velocity.magnitude > 30f || movementVector.magnitude > 1)
@@ -154,7 +155,7 @@ public class PlayerBody : MonoBehaviour
             SwordSlash.sword.Play();
         }
         //Move Delay
-        if (x > 0.25f)
+        if (x > 0.7f)
         {
             x = 0;
             //animController.Attacking = false;
@@ -165,7 +166,7 @@ public class PlayerBody : MonoBehaviour
             x += Time.deltaTime;
         }
 
-        if (attackTimer > 0.4f)
+        if (attackTimer > 0.9f)
         {
             attackTimer = 0;
             canAttack = true;
