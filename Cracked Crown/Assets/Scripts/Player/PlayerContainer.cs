@@ -16,4 +16,21 @@ public class PlayerContainer : MonoBehaviour
     [SerializeField]
     private PlayerBody pb;
     public PlayerBody PB { get { return pb; } }
+
+    public PlayerAnimController PAC;
+
+    private void FixedUpdate()
+    {
+        if (PAC == null)
+        {
+            if (transform.GetChild(1).GetChild(0).GetChild(0).GetChild(0).TryGetComponent<PlayerAnimController>(out PlayerAnimController Pac))
+            {
+                PAC = Pac;
+            }
+            else
+            {
+                PAC = null;
+            }
+        }
+    }
 }
