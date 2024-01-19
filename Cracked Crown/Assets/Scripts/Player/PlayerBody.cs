@@ -92,9 +92,9 @@ public class PlayerBody : MonoBehaviour
                 {
                     movementVector.Normalize();
                 }
-                movementVector = (movementVector * movementSpeed * Time.deltaTime);
+                movementVector = (movementVector * movementSpeed);
 
-                rb.AddForce(movementVector * 400);
+                rb.AddForce(movementVector * 10);
 
                 if (rb.velocity.magnitude > 30f)
                 {
