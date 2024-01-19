@@ -69,14 +69,19 @@ public class PlayerBody : MonoBehaviour
             canMove = false;
             // have to do ghost stuff
         }
-        
+        Move();
     }
 
     private void FixedUpdate()
     {
+        //Move();
+    }
+
+    private void Move()
+    {
         if (true || !ifHopper)
         {
-            if (canMove)
+            if (canMove && !GameManager.Instance.Pause)
             {
                 float zInput = controller.ForwardMagnitude;
                 float xInput = controller.HorizontalMagnitude;
@@ -92,11 +97,12 @@ public class PlayerBody : MonoBehaviour
                 {
                     movementVector.Normalize();
                 }
-                movementVector = (movementVector * movementSpeed * Time.deltaTime);
+                movementVector = (movementVector * movementSpeed);
 
-                rb.AddForce(movementVector * 400);
+                rb.AddForce(movementVector * 10);
+                //transform.position += (movementVector/2) * Time.deltaTime;
 
-                if (rb.velocity.magnitude > 30f)
+                if (rb.velocity.magnitude > 30f || movementVector.magnitude > 1)
                 {
                     animController.Moving = true;
                 }
@@ -147,8 +153,8 @@ public class PlayerBody : MonoBehaviour
             GameObject attack = Instantiate(prefabForAttack, primaryAttackSpawnPoint);
             SwordSlash.sword.Play();
         }
-
-        if (x > 0.1f)
+        //Move Delay
+        if (x > 0.25f)
         {
             x = 0;
             //animController.Attacking = false;
@@ -159,7 +165,7 @@ public class PlayerBody : MonoBehaviour
             x += Time.deltaTime;
         }
 
-        if (attackTimer > 0.2f)
+        if (attackTimer > 0.4f)
         {
             attackTimer = 0;
             canAttack = true;

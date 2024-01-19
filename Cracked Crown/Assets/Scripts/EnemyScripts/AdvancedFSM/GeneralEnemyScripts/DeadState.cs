@@ -23,6 +23,7 @@ public class DeadState : FSMState
         if (enemy.CompareTag("Heavy"))
         {
             enemy.PerformTransition(Transition.WasNotExecuted);
+            return;
         }
 
     }

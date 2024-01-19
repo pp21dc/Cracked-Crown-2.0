@@ -23,12 +23,14 @@ public class FinishedState : FSMState
         if (enemy.Health <= 0)
         {
             enemy.PerformTransition(Transition.NoHealth);
+            return;
         }
 
         if(enemy.Health >= 75)
         {
             
             enemy.PerformTransition(Transition.HealthBack);
+            return;
         }
 
         

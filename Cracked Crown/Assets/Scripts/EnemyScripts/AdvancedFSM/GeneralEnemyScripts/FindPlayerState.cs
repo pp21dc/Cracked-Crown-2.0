@@ -37,15 +37,18 @@ public class FindPlayerState : FSMState
                 return;
             }
         }
-        else if (enemy.CompareTag("Medium"))
+        else if (enemy.CompareTag("Medium") == true)
         {
-            if (IsInCurrentRange(npc, player.position, 15f))
+            Debug.Log("Found the Medium");
+            if (Vector3.Distance(npc.position,player.position) <= 10f)
             {
                 enemy.PerformTransition(Transition.InFirstRange);
+                return;
             }
-            else if (IsInCurrentRange(npc, player.position, 7.5f))
+            else if (Vector3.Distance(npc.position, player.position) <= 7.5f)
             {
                 enemy.PerformTransition(Transition.InSecondRange);
+                return;
             }
         }
         else if (enemy.CompareTag("Heavy"))
@@ -53,10 +56,12 @@ public class FindPlayerState : FSMState
             if (IsInCurrentRange(npc, player.position, 15f))
             {
                 enemy.PerformTransition(Transition.InShootingRange);
+                return;
             }
             else if (IsInCurrentRange(npc, player.position, 4.5f))
             {
                 enemy.PerformTransition(Transition.InShockwaveRange);
+                return;
             }
         }
         
