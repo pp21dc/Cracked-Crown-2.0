@@ -62,6 +62,8 @@ public class GameManager : MonoBehaviour
     public GameObject MainMenu;
     public bool CampaignStart = false;
 
+    public bool Pause = false;
+
     private void Awake()
     {
         if (instance == null)
@@ -76,6 +78,9 @@ public class GameManager : MonoBehaviour
         {
             ReturnToMainMenu();
         }
+        Application.targetFrameRate = 120;
+        //Screen.SetResolution(1920, 1080, true, 120);
+        Debug.Log(Screen.currentResolution);
     }
 
     private void FixedUpdate()
