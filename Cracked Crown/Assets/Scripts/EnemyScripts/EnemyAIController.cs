@@ -49,8 +49,8 @@ public class EnemyAIController : AdvancedFSM
 
     //Medium needed variables
     public Transform TargetPlayerPos;
-    public bool isHeavyDashing = false;
-    public bool isLightDashing = false;
+    public bool isHeavyDashing = true;
+    public bool isLightDashing = true;
     public bool isDoneDashing = false;
 
     //health, finisher, and death states
@@ -363,8 +363,9 @@ public class EnemyAIController : AdvancedFSM
 
         yield return new WaitForSeconds(1.5f);
 
-        while (enemyBody.transform.position != TargetPlayerPos.position)
+        while (Vector3.Distance(enemyBody.position,TargetPlayerPos.position) > 0)
         {
+            Debug.Log("Made it to the while loop");
             movementVector = (TargetPlayerPos.transform.position - enemyBody.transform.position).normalized * HeavyDashSpeed;
             enemyBody.transform.position += movementVector * Time.deltaTime;//moves to player
             enemyBody.transform.position = new Vector3(enemyBody.position.x, 0f, enemyBody.position.z); //keeps it on ground
