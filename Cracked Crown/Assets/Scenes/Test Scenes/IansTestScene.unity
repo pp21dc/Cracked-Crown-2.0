@@ -1576,7 +1576,7 @@ GameObject:
   - component: {fileID: 557098260}
   m_Layer: 0
   m_Name: Eye
-  m_TagString: Collectable
+  m_TagString: Eye
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1732,7 +1732,7 @@ GameObject:
   - component: {fileID: 607526072}
   m_Layer: 0
   m_Name: Eye
-  m_TagString: Collectable
+  m_TagString: Eye
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2557,6 +2557,8 @@ MonoBehaviour:
   WinScreen: {fileID: 1490583463}
   MainMenu: {fileID: 1490583463}
   CampaignStart: 0
+  Pause: 0
+  eyeCount: 0
 --- !u!1 &909985416
 GameObject:
   m_ObjectHideFlags: 0
@@ -2570,7 +2572,7 @@ GameObject:
   - component: {fileID: 909985418}
   m_Layer: 0
   m_Name: Eye
-  m_TagString: Collectable
+  m_TagString: Eye
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4127,7 +4129,7 @@ GameObject:
   - component: {fileID: 1882473674}
   m_Layer: 0
   m_Name: Eye
-  m_TagString: Collectable
+  m_TagString: Eye
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

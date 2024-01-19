@@ -6,6 +6,12 @@ public class Collect : MonoBehaviour
 {
 
     private PlayerBody body;
+    private GameManager gameManager;
+
+    private void Awake()
+    {
+        gameManager = GameManager.Instance;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -16,7 +22,8 @@ public class Collect : MonoBehaviour
             
             if (gameObject.tag == "Eye")
             {
-                //body.eyeCount = eyeCount++;
+                gameManager.eyeCount = gameManager.eyeCount + 1;
+                Debug.Log(gameManager.eyeCount);
             }
             if (gameObject.tag == "Bomb")
             {
