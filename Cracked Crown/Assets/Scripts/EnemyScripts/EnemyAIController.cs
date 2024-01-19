@@ -42,8 +42,13 @@ public class EnemyAIController : AdvancedFSM
     //speedChanges
     [SerializeField]
     private float speed = 5f; //speed of the enemy
+    [SerializeField]
     private float HeavyDashSpeed = 2f;
+    [SerializeField]
     private float LightDashSpeed = 1.5f;
+
+    //Medium needed variables
+    public Transform TargetPlayerPos;
 
     //health, finisher, and death states
     public float maxHealth = 100; // its total Health
@@ -129,7 +134,7 @@ public class EnemyAIController : AdvancedFSM
     //intializes the enemy with the player location and sets enemy health to 100 theb calls Construct FSM
     protected override void Initialize()
     {
-        Debug.Log("Made It to Intialize");
+        
 
         Players = GameObject.FindGameObjectsWithTag("Player");//finds and add all players to array
         playerTransform = Players[0].transform;
@@ -141,7 +146,7 @@ public class EnemyAIController : AdvancedFSM
 
     protected override void FSMUpdate()
     {
-        Debug.Log("we FSM updating!");
+        
         if (CurrentState != null)
         {
             CurrentState.Reason(playerTransform, transform);
@@ -257,7 +262,7 @@ public class EnemyAIController : AdvancedFSM
     //finds the closest player and sets the target position
     public void checkShortestDistance()
     {
-        Debug.Log("We now checking players");
+        
         float check;
         
         //simple distance check where it checks the current shortest and compares to the other players, replacing when neccisary
@@ -274,7 +279,7 @@ public class EnemyAIController : AdvancedFSM
                 playerTransform = closest.transform;
 
             }
-            Debug.Log(i + " Player");
+            
         }
 
         setAndMoveToTarget(speed);
@@ -284,7 +289,7 @@ public class EnemyAIController : AdvancedFSM
     //sets enemy target position and moves towards it
     private void setAndMoveToTarget(float Speed)
     {
-        Debug.Log("Hiiiiii");
+        
         movementVector = (closest.transform.position - enemyBody.transform.position).normalized * Speed;
         enemyBody.transform.position += movementVector * Time.deltaTime;//moves to player
         enemyBody.transform.position = new Vector3(enemyBody.position.x, 0f, enemyBody.position.z); //keeps it on ground
@@ -347,15 +352,17 @@ public class EnemyAIController : AdvancedFSM
     IEnumerator HeavyDash()
     {
 
-        yield return new WaitForSeconds(0.5f);
+        TargetPlayerPos = closest.transform;
 
-        Damage.enabled = true;
+        yield return new WaitForSeconds(1.5f);
 
-        setAndMoveToTarget(HeavyDashSpeed);
-
-        Damage.enabled = false;
-
-        yield return null;
+        while (enemyBody != TargetPlayerPos)
+        {
+            movementVector = (TargetPlayerPos.transform.position - enemyBody.transform.position).normalized * HeavyDashSpeed;
+            enemyBody.transform.position += movementVector * Time.deltaTime;//moves to player
+            enemyBody.transform.position = new Vector3(enemyBody.position.x, 0f, enemyBody.position.z); //keeps it on ground
+        }
+        
     }
 
     //dashes to deal damage to close player
