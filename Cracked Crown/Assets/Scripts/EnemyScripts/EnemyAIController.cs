@@ -348,8 +348,10 @@ public class EnemyAIController : AdvancedFSM
     //starts the heavy dash if in range
     public void StartHeavyDash()
     {
+        Debug.Log("Outside the If statement");
         if (isHeavyDashing)
         {
+            Debug.Log("Made it to the if statement");
             isHeavyDashing = false;
             StartCoroutine(HeavyDash());
         }
