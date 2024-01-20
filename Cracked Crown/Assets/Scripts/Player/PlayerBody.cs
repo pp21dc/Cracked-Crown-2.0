@@ -81,7 +81,7 @@ public class PlayerBody : MonoBehaviour
     {
         if (true || !ifHopper)
         {
-            if (canMove && !GameManager.Instance.Pause)
+            if (canMove /*&& !GameManager.Instance.Pause/*/)
             {
                 float zInput = controller.ForwardMagnitude;
                 float xInput = controller.HorizontalMagnitude;
