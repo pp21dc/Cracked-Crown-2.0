@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Runtime.InteropServices;
+using System.Runtime.CompilerServices;
 
 [System.Serializable]
 public abstract class AIProperties // the properties that are most commonly used by all states and are now accesible to those states
@@ -37,7 +38,7 @@ public class EnemyAIController : AdvancedFSM
     [SerializeField]
     private Transform enemyBody; //holds the enemy player position
 
-    
+    public Transform eBody { get { return enemyBody; } }
 
     //speedChanges
     [SerializeField]
@@ -52,6 +53,7 @@ public class EnemyAIController : AdvancedFSM
     public bool isHeavyDashing = true;
     public bool isLightDashing = true;
     public bool isDoneDashing = false;
+    private bool WhileLoopDone = false;
 
     //health, finisher, and death states
     public float maxHealth = 100; // its total Health
@@ -143,6 +145,8 @@ public class EnemyAIController : AdvancedFSM
         playerTransform = Players[0].transform;
         Damage = gameObject.GetComponent<Collider>();
         Damage.enabled = false; // deactivates the damage collider
+        isHeavyDashing = true;
+        isLightDashing = true;
         health = 100;
         ConstructFSM();
     }
@@ -272,7 +276,7 @@ public class EnemyAIController : AdvancedFSM
         for (int i = 0; i < Players.Length; i++)
         {
 
-            check = Vector3.Distance(gameObject.transform.position, Players[i].transform.position);
+            check = Vector3.Distance(enemyBody.transform.position, Players[i].transform.position);
 
             if (check < currShortest)
             {
@@ -348,6 +352,7 @@ public class EnemyAIController : AdvancedFSM
     //starts the heavy dash if in range
     public void StartHeavyDash()
     {
+        
         Debug.Log("Outside the If statement");
         if (isHeavyDashing)
         {
@@ -355,29 +360,32 @@ public class EnemyAIController : AdvancedFSM
             isHeavyDashing = false;
             StartCoroutine(HeavyDash());
         }
+
+        movementVector = (TargetPlayerPos.transform.position - enemyBody.transform.position).normalized * HeavyDashSpeed;
+        enemyBody.transform.position += movementVector * Time.deltaTime;//moves to player
+        enemyBody.transform.position = new Vector3(enemyBody.position.x, 0f, enemyBody.position.z); //keeps it on ground
+
+
+        
+
     }
 
     //moves fastly towars the player direction to try and knock them back
+    
     IEnumerator HeavyDash()
     {
 
         TargetPlayerPos = closest.transform;
 
-        yield return new WaitForSeconds(1.5f);
-
-        while (Vector3.Distance(enemyBody.position,TargetPlayerPos.position) > 0)
-        {
-            Debug.Log("Made it to the while loop");
-            movementVector = (TargetPlayerPos.transform.position - enemyBody.transform.position).normalized * HeavyDashSpeed;
-            enemyBody.transform.position += movementVector * Time.deltaTime;//moves to player
-            enemyBody.transform.position = new Vector3(enemyBody.position.x, 0f, enemyBody.position.z); //keeps it on ground
-        }
-
-        isHeavyDashing = true;
-        isDoneDashing = true;
-        yield return null;
         
+
+        yield return new WaitForSeconds(2.5f);
+
+        isDoneDashing = true;
+
+        yield return null;
     }
+    
 
     //dashes to deal damage to close player
     public void StartLightDash()

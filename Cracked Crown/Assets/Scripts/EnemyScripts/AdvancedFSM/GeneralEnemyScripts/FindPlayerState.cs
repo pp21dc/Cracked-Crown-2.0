@@ -40,12 +40,12 @@ public class FindPlayerState : FSMState
         else if (enemy.CompareTag("Medium") == true)
         {
             Debug.Log("Found the Medium");
-            if (Vector3.Distance(npc.position,player.position) <= 10f)
+            if (Vector3.Distance(enemy.eBody.position,player.position) <= 10f)
             {
                 enemy.PerformTransition(Transition.InFirstRange);
                 return;
             }
-            else if (Vector3.Distance(npc.position, player.position) <= 7.5f)
+            else if (Vector3.Distance(enemy.eBody.position, player.position) <= 7.5f)
             {
                 enemy.PerformTransition(Transition.InSecondRange);
                 return;
