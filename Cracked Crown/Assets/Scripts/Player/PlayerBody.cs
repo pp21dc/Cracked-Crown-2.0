@@ -51,6 +51,7 @@ public class PlayerBody : MonoBehaviour
     public PlayAnim SwordSlash;
 
     public bool canAttack = true;
+    public bool hitEnemy = false;
     private bool dashOnCD = false;
     private bool canTakeDamage = true;
     private float executeHeal = 5f;
@@ -177,12 +178,16 @@ public class PlayerBody : MonoBehaviour
             canMove = false;
             canAttack = false;
             rb.velocity = Vector3.zero;
-            //add force in opp dir from input
             
             animController.Attacking = true;
             GameObject attack = Instantiate(prefabForAttack, primaryAttackSpawnPoint);
             SwordSlash.sword.Play();
-            rb.AddForce((-movementVector) * attackKnockback * 400 * Time.fixedDeltaTime);
+
+            //if (hitEnemy)
+            //{
+                rb.AddForce((-movementVector) * attackKnockback * 400 * Time.fixedDeltaTime);
+                //hitEnemy = false;
+            //}
         }
 
     }
