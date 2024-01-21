@@ -14,5 +14,7 @@ public class PlayerAnimEventHandler : MonoBehaviour
     public void AttackFinish()
     {
         PC.PAC.Attacking = false;
+        PC.PB.canMove = true;
+        PC.PB.canAttack = true;
     }
 }

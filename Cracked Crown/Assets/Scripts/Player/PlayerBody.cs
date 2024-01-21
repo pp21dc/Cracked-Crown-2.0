@@ -19,6 +19,7 @@ public class PlayerBody : MonoBehaviour
     private float finisherRadius = 20f;
     [SerializeField]
     private float health = 100f;
+    private float attackKnockback = 100;
     public float Health { get { return health; } }
     public float damage = 3f;
 
@@ -49,7 +50,7 @@ public class PlayerBody : MonoBehaviour
     public bool canMove = true;
     public PlayAnim SwordSlash;
 
-    private bool canAttack = true;
+    public bool canAttack = true;
     private bool dashOnCD = false;
     private bool canTakeDamage = true;
     private float executeHeal = 5f;
@@ -63,31 +64,53 @@ public class PlayerBody : MonoBehaviour
         Attack();
         Dash();
 
-        if (health <= 0)
+        if (health <= 0 || Input.GetKey(KeyCode.O))
         {
             Debug.Log("You Died");
+            
             canMove = false;
+            canAttack = false;
+            lockDash = true;
+            animController.Moving = false;
+            animController.dashing = false;
+            animController.Attacking = false;
+            animController.Dead = true;
             // have to do ghost stuff
         }
-        Move();
+        //Move();
+    }
+
+    public Transform sprite;
+
+    private void Awake()
+    {
+        
     }
 
     private void FixedUpdate()
     {
-        //Move();
+        Move();
+
+        if (canMove && !dashing && sprite != null)
+        {
+            
+            float scale = Mathf.Abs(sprite.localScale.x);
+            if (controller.HorizontalMagnitude > 0) { sprite.localScale = new Vector3(-scale, sprite.localScale.y, 1); }
+            else if (controller.HorizontalMagnitude < 0) { CharacterFolder.transform.GetChild(0).localScale = new Vector3(scale, sprite.localScale.y, 1); }
+        }
     }
 
+    Vector3 movementVector;
     private void Move()
     {
         if (true || !ifHopper)
         {
+            float zInput = controller.ForwardMagnitude;
+            float xInput = controller.HorizontalMagnitude;
+            movementVector = new Vector3(xInput, 0, zInput);
             if (canMove /*&& !GameManager.Instance.Pause/*/)
             {
-                float zInput = controller.ForwardMagnitude;
-                float xInput = controller.HorizontalMagnitude;
-
-
-                Vector3 movementVector = new Vector3(xInput, 0, zInput);
+                
                 primaryAttackSpawnPoint.localPosition = (movementVector) * 10;
                 primaryAttackSpawnPoint.localRotation = primaryAttackPoint.localRotation;
                 primaryAttackPoint.LookAt(primaryAttackSpawnPoint);
@@ -97,14 +120,16 @@ public class PlayerBody : MonoBehaviour
                 {
                     movementVector.Normalize();
                 }
-                movementVector = (movementVector * movementSpeed/2 );
+                movementVector = (movementVector * movementSpeed);
 
                 //rb.MovePosition(rb.position + (movementVector * Time.fixedDeltaTime));
                 rb.AddForce(movementVector * 650 * Time.fixedDeltaTime);
+                //Debug.Log("canMove");
                 //transform.position += (movementVector/2) * Time.deltaTime;
 
-                if (rb.velocity.magnitude > 30f || movementVector.magnitude > 1)
+                if ((rb.velocity.magnitude > 30f || movementVector.magnitude > 1) & Mathf.Abs(movementVector.magnitude) > 0)
                 {
+                    Debug.Log(movementVector.magnitude);
                     animController.Moving = true;
                 }
                 else
@@ -138,6 +163,7 @@ public class PlayerBody : MonoBehaviour
         forExecutePosition = CharacterType.executePosition;
         damage = CharacterType.attack;
         ifHopper = CharacterType.hop;
+        attackKnockback = CharacterType.attackKnockback;
     }
     float x = 0;
     float attackTimer = 0;
@@ -153,28 +179,7 @@ public class PlayerBody : MonoBehaviour
             animController.Attacking = true;
             GameObject attack = Instantiate(prefabForAttack, primaryAttackSpawnPoint);
             SwordSlash.sword.Play();
-        }
-        //Move Delay
-        if (x > 0.7f)
-        {
-            x = 0;
-            //animController.Attacking = false;
-            canMove = true;
-        }
-        else
-        {
-            x += Time.deltaTime;
-        }
-
-        if (attackTimer > 0.9f)
-        {
-            attackTimer = 0;
-            canAttack = true;
-            animController.Attacking = false;
-        }
-        else
-        {
-            attackTimer += Time.deltaTime;
+            rb.AddForce((-movementVector) * attackKnockback * 400 * Time.fixedDeltaTime);
         }
 
     }
@@ -184,13 +189,21 @@ public class PlayerBody : MonoBehaviour
         StartCoroutine(InExecute(enemy));
     }
     bool lockDash;
+    public bool dashing;
+    Vector3 dashDirection;
     private void Dash()
     {
         if (controller.DashDown & dashOnCD == false && !lockDash)
         {
+
+            
             lockDash = true;
             animController.dashing = true;
             animController.Moving = false;
+
+            float zInput = controller.ForwardMagnitude;
+            float xInput = controller.HorizontalMagnitude;
+            dashDirection = new Vector3(xInput, 0, zInput);
             StartCoroutine(DashCoroutine());
             
             dashOnCD = true;
@@ -203,12 +216,11 @@ public class PlayerBody : MonoBehaviour
         canTakeDamage = false;
         canAttack = false;
         canMove = false;
-
-        float zInput = controller.ForwardMagnitude;
-        float xInput = controller.HorizontalMagnitude;
+        dashing = true;
+        
         float startTime = Time.time; // need to remember this to know how long to dash
 
-        Vector3 dashDirection = new Vector3(xInput, 0, zInput);
+        
         if (dashDirection.magnitude > 0f)
         {
             dashDirection.Normalize();
@@ -220,7 +232,7 @@ public class PlayerBody : MonoBehaviour
 
         while (Time.time < startTime + dashTime)
         {
-            rb.AddForce((dashDirection * dashSpeed * Time.deltaTime)*1400);
+            rb.AddForce((dashDirection * dashSpeed * Time.deltaTime)*1200);
             yield return null;
         }
 
@@ -229,6 +241,8 @@ public class PlayerBody : MonoBehaviour
         canMove = true;
         animController.dashing = false;
         lockDash = false;
+        dashing = false;
+        //Debug.Log("Dash Finish");
     }
 
     private IEnumerator Cooldown()

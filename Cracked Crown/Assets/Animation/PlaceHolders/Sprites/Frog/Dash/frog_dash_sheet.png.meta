@@ -1,0 +1,746 @@
+fileFormatVersion: 2
+guid: fc56ffbcff3e06e4ba1037141037f507
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 96
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: frog_dash_sheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 640
+        width: 775
+        height: 640
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2622957639992e4a845936ef803d0b0
+      internalID: 1130160569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frog_dash_sheet_1
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 640
+        width: 775
+        height: 640
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7002562f7b001b45aafeb36ce0c9e71
+      internalID: -351482871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frog_dash_sheet_2
+      rect:
+        serializedVersion: 2
+        x: 1800
+        y: 640
+        width: 775
+        height: 640
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa8adcaba9a56ba4da2cc91ff31c61b8
+      internalID: 1601541966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frog_dash_sheet_3
+      rect:
+        serializedVersion: 2
+        x: 2700
+        y: 640
+        width: 775
+        height: 640
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae40dd47279ee2040a0dc2e6391feb6e
+      internalID: -1399449693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frog_dash_sheet_4
+      rect:
+        serializedVersion: 2
+        x: 3600
+        y: 640
+        width: 775
+        height: 640
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5acc31193fadc44bb899cee4f4c585d
+      internalID: 1248581925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frog_dash_sheet_5
+      rect:
+        serializedVersion: 2
+        x: 4500
+        y: 640
+        width: 775
+        height: 640
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f3a32e7f234e2f4ea980e9694490c3a
+      internalID: 1142116285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frog_dash_sheet_6
+      rect:
+        serializedVersion: 2
+        x: 5400
+        y: 640
+        width: 775
+        height: 640
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d121ee4a24c54c742b9f96e5474b17bf
+      internalID: -611222243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frog_dash_sheet_7
+      rect:
+        serializedVersion: 2
+        x: 6300
+        y: 640
+        width: 775
+        height: 640
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d3063d807d1b2e469d8e2f6e5a41051
+      internalID: -1712409058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frog_dash_sheet_8
+      rect:
+        serializedVersion: 2
+        x: 7200
+        y: 640
+        width: 775
+        height: 640
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c62a3715d68e3d84c8f99f438d8845d7
+      internalID: 2114854085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frog_dash_sheet_9
+      rect:
+        serializedVersion: 2
+        x: 8100
+        y: 640
+        width: 755
+        height: 640
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5a45733bc07f5249bfa168c6217fa51
+      internalID: -963309583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frog_dash_sheet_10
+      rect:
+        serializedVersion: 2
+        x: 9000
+        y: 640
+        width: 775
+        height: 640
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78c81338deb9d0b449c2a6df506f5d39
+      internalID: -398500441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frog_dash_sheet_11
+      rect:
+        serializedVersion: 2
+        x: 9900
+        y: 640
+        width: 775
+        height: 640
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa59cb4faadb2df4ea6356ad2a858744
+      internalID: 1824819884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frog_dash_sheet_12
+      rect:
+        serializedVersion: 2
+        x: 10800
+        y: 640
+        width: 775
+        height: 640
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a836c907efdf9d946af9699a241add42
+      internalID: -793335776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frog_dash_sheet_13
+      rect:
+        serializedVersion: 2
+        x: 11700
+        y: 640
+        width: 755
+        height: 640
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f922eaffe2cce9479236d690739bbf6
+      internalID: 996026372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frog_dash_sheet_14
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 0
+        width: 775
+        height: 640
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d047892dca7632f469f81f0d5f20bbc9
+      internalID: -1850515042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frog_dash_sheet_15
+      rect:
+        serializedVersion: 2
+        x: 1045
+        y: 0
+        width: 775
+        height: 640
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4ff6c29ef1391c429f6ef2d9503b432
+      internalID: 718077116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frog_dash_sheet_16
+      rect:
+        serializedVersion: 2
+        x: 1950
+        y: 0
+        width: 775
+        height: 640
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61be8b56c5b378945bcef77e9c76bb25
+      internalID: 1057513834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frog_dash_sheet_17
+      rect:
+        serializedVersion: 2
+        x: 2850
+        y: 0
+        width: 775
+        height: 640
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a51da4fd0a9852d4781eac5ca0601cc7
+      internalID: -1776192221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frog_dash_sheet_18
+      rect:
+        serializedVersion: 2
+        x: 3750
+        y: 0
+        width: 775
+        height: 640
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0974b5c96bc20c41a67e6fdb48adee2
+      internalID: 981385864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frog_dash_sheet_19
+      rect:
+        serializedVersion: 2
+        x: 4650
+        y: 0
+        width: 755
+        height: 640
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84bcabcfec04493419930001f1397fa7
+      internalID: -2013048276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frog_dash_sheet_20
+      rect:
+        serializedVersion: 2
+        x: 5550
+        y: 0
+        width: 775
+        height: 640
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55d6316c295ba5a4a948f93551d03e4c
+      internalID: -1109236532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frog_dash_sheet_21
+      rect:
+        serializedVersion: 2
+        x: 8250
+        y: 0
+        width: 755
+        height: 640
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a780bbb4f1da0d43b7f745641664b72
+      internalID: -1284554710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frog_dash_sheet_25
+      rect:
+        serializedVersion: 2
+        x: 6450
+        y: 0
+        width: 775
+        height: 640
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 218f72ffbca0a804091df6cb982d2ba7
+      internalID: -2030237552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frog_dash_sheet_26
+      rect:
+        serializedVersion: 2
+        x: 7250
+        y: 0
+        width: 775
+        height: 640
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89f1244b80eedbf48ad5e3796fb47afa
+      internalID: -166663538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frog_dash_sheet_28
+      rect:
+        serializedVersion: 2
+        x: 9050
+        y: 0
+        width: 775
+        height: 640
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a15ab2ad402779c468d3c66eb25a84d3
+      internalID: 179525331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frog_dash_sheet_29
+      rect:
+        serializedVersion: 2
+        x: 9890
+        y: 0
+        width: 775
+        height: 640
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75cdb9a4e16e3f94994bc94562aa0876
+      internalID: -2136270226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frog_dash_sheet_30
+      rect:
+        serializedVersion: 2
+        x: 10845
+        y: 0
+        width: 775
+        height: 640
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e75f77d5b6f42f04cb88b9fc91a73ae2
+      internalID: 561970184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      frog_dash_sheet_0: 1130160569
+      frog_dash_sheet_1: -351482871
+      frog_dash_sheet_10: -398500441
+      frog_dash_sheet_11: 1824819884
+      frog_dash_sheet_12: -793335776
+      frog_dash_sheet_13: 996026372
+      frog_dash_sheet_14: -1850515042
+      frog_dash_sheet_15: 718077116
+      frog_dash_sheet_16: 1057513834
+      frog_dash_sheet_17: -1776192221
+      frog_dash_sheet_18: 981385864
+      frog_dash_sheet_19: -2013048276
+      frog_dash_sheet_2: 1601541966
+      frog_dash_sheet_20: -1109236532
+      frog_dash_sheet_21: -1284554710
+      frog_dash_sheet_22: -158828865
+      frog_dash_sheet_23: -896449809
+      frog_dash_sheet_24: -916063512
+      frog_dash_sheet_25: -2030237552
+      frog_dash_sheet_26: -166663538
+      frog_dash_sheet_27: -1087661122
+      frog_dash_sheet_28: 179525331
+      frog_dash_sheet_29: -2136270226
+      frog_dash_sheet_3: -1399449693
+      frog_dash_sheet_30: 561970184
+      frog_dash_sheet_31: 349291926
+      frog_dash_sheet_32: 1275539696
+      frog_dash_sheet_33: -1072651922
+      frog_dash_sheet_34: 1761481336
+      frog_dash_sheet_35: 2079242665
+      frog_dash_sheet_36: 933482296
+      frog_dash_sheet_37: 1437613423
+      frog_dash_sheet_38: 1195823244
+      frog_dash_sheet_39: 2074484487
+      frog_dash_sheet_4: 1248581925
+      frog_dash_sheet_40: -741726620
+      frog_dash_sheet_41: -404474222
+      frog_dash_sheet_42: 703618094
+      frog_dash_sheet_43: -1970027628
+      frog_dash_sheet_44: 1490021120
+      frog_dash_sheet_45: 545255232
+      frog_dash_sheet_46: -1822543450
+      frog_dash_sheet_47: -1222313166
+      frog_dash_sheet_48: -1745895174
+      frog_dash_sheet_49: -367201447
+      frog_dash_sheet_5: 1142116285
+      frog_dash_sheet_50: 1654271766
+      frog_dash_sheet_51: -176641923
+      frog_dash_sheet_6: -611222243
+      frog_dash_sheet_7: -1712409058
+      frog_dash_sheet_8: 2114854085
+      frog_dash_sheet_9: -963309583
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

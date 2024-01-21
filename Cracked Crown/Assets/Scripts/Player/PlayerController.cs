@@ -68,11 +68,13 @@ public class PlayerController : MonoBehaviour
         horizontalMagnitude = inputVal.x;
 
         float scale = Mathf.Abs(sprite.localScale.x);
-        if (PB.canMove)
+        /*if (PB.canMove && !PB.dashing)
         {
             if (inputVal.x > 0) { sprite.localScale = new Vector3(-scale, sprite.localScale.y, 1); }
             else if (inputVal.x < 0) { PB.CharacterFolder.transform.GetChild(0).localScale = new Vector3(scale, sprite.localScale.y, 1); }
-        }
+            
+        }*/
+        PB.sprite = sprite;
     }
 
     public void OnPrimaryAttack()
