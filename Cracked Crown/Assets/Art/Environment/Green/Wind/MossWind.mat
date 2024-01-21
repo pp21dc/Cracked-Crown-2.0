@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MiniGrassWind
+  m_Name: MossWind
   m_Shader: {fileID: -6465566751694194690, guid: 3c51fbc5b4f37ce4da8ddedbe56dca96,
     type: 3}
   m_Parent: {fileID: 0}
@@ -68,11 +68,11 @@ Material:
     m_Ints: []
     m_Floats:
     - _EnableExternalAlpha: 0
-    - _Grounded: 1
-    - _WindInt: 2.7
-    - _WindScale: 1.13
-    - _WindSpeed: 0.42
-    - _YMask: 4
+    - _Grounded: 0
+    - _WindInt: 10.8
+    - _WindScale: 4
+    - _WindSpeed: 0.2
+    - _YMask: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
