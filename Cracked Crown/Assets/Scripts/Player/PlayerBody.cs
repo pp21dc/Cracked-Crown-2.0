@@ -84,13 +84,16 @@ public class PlayerBody : MonoBehaviour
 
     private void Awake()
     {
-        
+        if (CharacterType != null)
+        {
+            SetCharacterData();
+        }
     }
 
     private void FixedUpdate()
     {
         Move();
-
+        //rb.AddForce(new Vector3(0, -12000, 0) * Time.fixedDeltaTime);
         if (canMove && !dashing && sprite != null)
         {
             
@@ -129,7 +132,7 @@ public class PlayerBody : MonoBehaviour
 
                 if ((rb.velocity.magnitude > 30f || movementVector.magnitude > 1) & Mathf.Abs(movementVector.magnitude) > 0)
                 {
-                    Debug.Log(movementVector.magnitude);
+                    //Debug.Log(movementVector.magnitude);
                     animController.Moving = true;
                 }
                 else
