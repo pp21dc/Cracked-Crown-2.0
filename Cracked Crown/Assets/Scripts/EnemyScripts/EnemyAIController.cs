@@ -51,9 +51,8 @@ public class EnemyAIController : AdvancedFSM
     //Medium needed variables
     public Transform TargetPlayerPos;
     public bool isHeavyDashing = true;
-    public bool isLightDashing = true;
     public bool isDoneDashing = false;
-    private bool WhileLoopDone = false;
+    
 
     //health, finisher, and death states
     public float maxHealth = 100; // its total Health
@@ -110,10 +109,6 @@ public class EnemyAIController : AdvancedFSM
         {
             state = "HEAVYDASH";
         }
-        else if (CurrentState.ID == FSMStateID.LightDash)
-        {
-            state = "LIGHTDASH";
-        }
         else if (CurrentState.ID == FSMStateID.Gun)
         {
             state = "GUN";
@@ -146,7 +141,6 @@ public class EnemyAIController : AdvancedFSM
         Damage = gameObject.GetComponent<Collider>();
         Damage.enabled = false; // deactivates the damage collider
         isHeavyDashing = true;
-        isLightDashing = true;
         health = 100;
         ConstructFSM();
     }
@@ -172,7 +166,6 @@ public class EnemyAIController : AdvancedFSM
         FindPlayerState findPlayerState = new FindPlayerState(this);
         findPlayerState.AddTransition(Transition.AbovePlayer, FSMStateID.SlamGround);
         findPlayerState.AddTransition(Transition.InFirstRange, FSMStateID.HeavyDash);
-        findPlayerState.AddTransition(Transition.InSecondRange, FSMStateID.LightDash);
         findPlayerState.AddTransition(Transition.InShootingRange, FSMStateID.Gun);
         findPlayerState.AddTransition(Transition.InShockwaveRange, FSMStateID.Shockwave);
         findPlayerState.AddTransition(Transition.LowHealth, FSMStateID.Finished);
@@ -215,11 +208,7 @@ public class EnemyAIController : AdvancedFSM
         heavyDashState.AddTransition(Transition.LowHealth, FSMStateID.Finished);
         heavyDashState.AddTransition(Transition.NoHealth, FSMStateID.Dead);
 
-        //Slam into player dealing damage, Transition if done to find player, low health to finished, no health to dead
-        LightDashState lightDashState = new LightDashState(this);
-        lightDashState.AddTransition(Transition.LookForPlayer, FSMStateID.FindPlayer);
-        lightDashState.AddTransition(Transition.LowHealth, FSMStateID.Finished);
-        lightDashState.AddTransition(Transition.NoHealth, FSMStateID.Dead);
+        
 
         //Heavy enemy states down here
 
@@ -256,7 +245,7 @@ public class EnemyAIController : AdvancedFSM
         AddFSMState(stunnedState);
 
         AddFSMState(heavyDashState);
-        AddFSMState(lightDashState);
+        
 
         AddFSMState(gunState);
         AddFSMState(shockwaveState);
@@ -381,40 +370,15 @@ public class EnemyAIController : AdvancedFSM
 
         yield return new WaitForSeconds(2.5f);
 
+        isHeavyDashing = true;
         isDoneDashing = true;
 
         yield return null;
     }
     
 
-    //dashes to deal damage to close player
-    public void StartLightDash()
-    {
-        if (isLightDashing)
-        {
-            isLightDashing = false;
-            StartCoroutine(LightDash());
-        }
-    }
+    
 
-    //dashes to deal damage to close player
-    IEnumerator LightDash()
-    {
-
-        TargetPlayerPos = closest.transform;
-
-        yield return new WaitForSeconds(1.5f);
-
-        while (enemyBody.transform.position != TargetPlayerPos.position)
-        {
-            movementVector = (TargetPlayerPos.transform.position - enemyBody.transform.position).normalized * LightDashSpeed;
-            enemyBody.transform.position += movementVector * Time.deltaTime;//moves to player
-            enemyBody.transform.position = new Vector3(enemyBody.position.x, 0f, enemyBody.position.z); //keeps it on ground
-        }
-
-        isLightDashing = true;
-        isDoneDashing = true;
-        yield return null;
-    }
+    
 
 }
