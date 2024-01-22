@@ -26,7 +26,7 @@ public enum Transition
 
     //Medium Enemy Tranisitions
     InFirstRange,
-    InSecondRange,
+    
 
     //Heavy Enemy Transitions
     InShootingRange,
@@ -50,7 +50,6 @@ public enum FSMStateID
     Stunned,
 
     //Medium States
-    LightDash,
     HeavyDash,
 
 

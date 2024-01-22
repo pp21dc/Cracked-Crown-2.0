@@ -45,8 +45,7 @@ public class EnemyAIController : AdvancedFSM
     private float speed = 5f; //speed of the enemy
     [SerializeField]
     private float HeavyDashSpeed = 2f;
-    [SerializeField]
-    private float LightDashSpeed = 1.5f;
+    
 
     //Medium needed variables
     public Transform TargetPlayerPos;
