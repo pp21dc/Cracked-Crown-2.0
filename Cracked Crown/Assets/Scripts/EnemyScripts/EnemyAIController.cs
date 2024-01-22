@@ -365,19 +365,21 @@ public class EnemyAIController : AdvancedFSM
 
         TargetPlayerPos = closest.transform;
 
-        
+        Damage.enabled = true;
 
         yield return new WaitForSeconds(2.5f);
 
         isHeavyDashing = true;
         isDoneDashing = true;
+        Damage.enabled = false;
 
         yield return null;
     }
-    
 
     
 
-    
+
+
+
 
 }
