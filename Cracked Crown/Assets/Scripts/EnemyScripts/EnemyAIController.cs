@@ -48,7 +48,7 @@ public class EnemyAIController : AdvancedFSM
     
 
     //Medium needed variables
-    public Transform TargetPlayerPos;
+    public Vector3 TargetPlayerPos;
     public bool isHeavyDashing = true;
     public bool isDoneDashing = false;
     
@@ -355,7 +355,7 @@ public class EnemyAIController : AdvancedFSM
             StartCoroutine(HeavyDash());
         }
 
-        movementVector = (TargetPlayerPos.transform.position - enemyBody.transform.position).normalized * HeavyDashSpeed;
+        movementVector = (TargetPlayerPos - enemyBody.transform.position).normalized * HeavyDashSpeed;
         enemyBody.transform.position += movementVector * Time.deltaTime;//moves to player
         //enemyBody.transform.position = new Vector3(enemyBody.position.x, 0f, enemyBody.position.z); //keeps it on ground
 
@@ -369,7 +369,7 @@ public class EnemyAIController : AdvancedFSM
     IEnumerator HeavyDash()
     {
 
-        TargetPlayerPos = closest.transform;
+        TargetPlayerPos = closest.transform.position;
 
         Damage.enabled = true;
 
