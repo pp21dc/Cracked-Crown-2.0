@@ -105,7 +105,7 @@ public class BossPhases : MonoBehaviour
         }
         if (isGrabbed)
         {
-            GrabbedPlayer.transform.position = clawLeft.transform.position;
+            GrabbedPlayer.transform.position = clawLeft.transform.position - PlayerList[0].transform.TransformDirection(0, 35, 0);
 
             if (grabbedTimer < -2) // drops the player when the timer is up
             {
@@ -131,12 +131,11 @@ public class BossPhases : MonoBehaviour
         if (isGrabbed)  // when the wait function is over, if the player is grabbed, the grabbed timer will start and the player will be lifted into the air
         {
             preGrabPlayerPosition = GrabbedPlayer.transform.position;
-            clawgrab = false;
-
             clawtarget = PlayerList[0].transform.transform.position + PlayerList[0].transform.TransformDirection(0, 80, 0);
             grabbedTimer = 1; // 1 instead of 3 since the grabbedTimer threshold is -2
             
             yield return new WaitForSeconds(3);
+            clawgrab = false;
         }
         clawreturn = true; // sends the claw back to spawn
         clawtarget = LEFTCLAWSPAWN;
@@ -164,7 +163,7 @@ public class BossPhases : MonoBehaviour
         Debug.Log("hit");
         if (other.gameObject.tag == "Player")
         {
-            GrabbedPlayer = other.gameObject.transform.root.gameObject;
+            GrabbedPlayer = other.gameObject;
             isGrabbed = true;
             // player takes damage and movement is frozen
         }
