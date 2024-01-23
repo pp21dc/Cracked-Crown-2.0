@@ -36,7 +36,7 @@ public class FinisherCollider : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
-            enemiesInRange.Add(other.gameObject); // add enemy to nearby list
+            enemiesInRange.Add(other.transform.parent.GetChild(0).gameObject); // add enemy to nearby list
         }
     }
 
@@ -44,7 +44,7 @@ public class FinisherCollider : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
-            enemiesInRange.Remove(other.gameObject);
+            enemiesInRange.Remove(other.transform.parent.GetChild(0).gameObject);
         }
     }
 
