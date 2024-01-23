@@ -18,11 +18,7 @@ public class BossPhases : MonoBehaviour
     [SerializeField]
     private GameObject clawLeft;
     [SerializeField]
-    private Collider clawLeftCollider;
-    [SerializeField]
     private GameObject clawRight;
-    [SerializeField]
-    private Collider clawRightCollider;
 
     [Header("Boss Variables")]
     [SerializeField]
@@ -88,15 +84,15 @@ public class BossPhases : MonoBehaviour
         if (clawfollow)
         {
             clawtarget = PlayerList[0].transform.position + PlayerList[0].transform.TransformDirection(0, 80, 0);
-            clawLeft.transform.position = Vector3.MoveTowards(clawLeft.transform.position, clawtarget, clawspeed);
+            clawLeft.transform.position = Vector3.MoveTowards(clawLeft.transform.position, clawtarget, clawspeed * Time.deltaTime);
         }
         if (clawgrab)
         {
-            clawLeft.transform.position = Vector3.MoveTowards(clawLeft.transform.position, clawtarget, clawspeed*1.5f);
+            clawLeft.transform.position = Vector3.MoveTowards(clawLeft.transform.position, clawtarget, clawspeed*1.5f * Time.deltaTime);
         }
         if (clawreturn)
         {
-            clawLeft.transform.position = Vector3.MoveTowards(clawLeft.transform.position, clawtarget, clawspeed);
+            clawLeft.transform.position = Vector3.MoveTowards(clawLeft.transform.position, clawtarget, clawspeed * Time.deltaTime);
         }
     }
 
