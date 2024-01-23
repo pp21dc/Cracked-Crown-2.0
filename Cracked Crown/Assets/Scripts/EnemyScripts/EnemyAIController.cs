@@ -136,8 +136,12 @@ public class EnemyAIController : AdvancedFSM
         
 
         Players = GameObject.FindGameObjectsWithTag("Player");//finds and add all players to array
-        playerTransform = Players[0].transform;
-        closest = playerTransform.gameObject;
+        if(Players.Length <= 0) { Players = null; }
+        if (Players != null)
+        {
+            playerTransform = Players[0].transform;
+            closest = playerTransform.gameObject;
+        }
         Damage = gameObject.GetComponent<Collider>();
         Damage.enabled = false; // deactivates the damage collider
         isHeavyDashing = true;
