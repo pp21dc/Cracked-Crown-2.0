@@ -26,7 +26,29 @@ public class PrototypePrimaryAttack : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log(other.gameObject.name);
         if (other.tag == "Enemy")
+        {
+            playerBody.hitEnemy = true;
+            enemyController = other.transform.parent.GetChild(0).GetComponent<EnemyAIController>();
+            enemyController.DecHealth(playerBody.damage);
+            Debug.Log("Enemy Health: " + enemyController.Health);
+        }
+        if (other.tag == "Medium")
+        {
+            playerBody.hitEnemy = true;
+            enemyController = other.GetComponent<EnemyAIController>();
+            enemyController.DecHealth(playerBody.damage);
+            Debug.Log("Enemy Health: " + enemyController.Health);
+        }
+        if (other.tag == "Light")
+        {
+            playerBody.hitEnemy = true;
+            enemyController = other.GetComponent<EnemyAIController>();
+            enemyController.DecHealth(playerBody.damage);
+            Debug.Log("Enemy Health: " + enemyController.Health);
+        }
+        if (other.tag == "Heavy")
         {
             playerBody.hitEnemy = true;
             enemyController = other.GetComponent<EnemyAIController>();
