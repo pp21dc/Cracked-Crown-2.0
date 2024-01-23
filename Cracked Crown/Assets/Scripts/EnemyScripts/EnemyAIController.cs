@@ -37,6 +37,8 @@ public class EnemyAIController : AdvancedFSM
     //the enemy body
     [SerializeField]
     private Transform enemyBody; //holds the enemy player position
+    [SerializeField]
+    private GameObject enemy;
 
     public Transform eBody { get { return enemyBody; } }
 
@@ -337,7 +339,7 @@ public class EnemyAIController : AdvancedFSM
         //scale time to animation
         yield return new WaitForSeconds(2.2f);
 
-        Destroy(enemyBody);
+        Destroy(enemy);
 
         yield return null;
     }
