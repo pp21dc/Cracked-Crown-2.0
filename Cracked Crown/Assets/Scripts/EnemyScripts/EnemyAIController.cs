@@ -48,7 +48,7 @@ public class EnemyAIController : AdvancedFSM
     
 
     //Medium needed variables
-    public Transform TargetPlayerPos;
+    public Vector3 TargetPlayerPos;
     public bool isHeavyDashing = true;
     public bool isDoneDashing = false;
     
@@ -262,28 +262,29 @@ public class EnemyAIController : AdvancedFSM
     //finds the closest player and sets the target position
     public void checkShortestDistance()
     {
-        
-        float check;
-        
-        //simple distance check where it checks the current shortest and compares to the other players, replacing when neccisary
-        for (int i = 0; i < Players.Length; i++)
+        if (Players != null)
         {
+            float check;
 
-            check = Vector3.Distance(enemyBody.transform.position, Players[i].transform.position);
-
-            if (check < currShortest)
+            //simple distance check where it checks the current shortest and compares to the other players, replacing when neccisary
+            for (int i = 0; i < Players.Length; i++)
             {
 
-                currShortest = check;
-                closest = Players[i];
-                playerTransform = closest.transform;
+                check = Vector3.Distance(enemyBody.transform.position, Players[i].transform.position);
+
+                if (check < currShortest)
+                {
+
+                    currShortest = check;
+                    closest = Players[i];
+                    playerTransform = closest.transform;
+
+                }
 
             }
-            
+
+            setAndMoveToTarget(speed);
         }
-
-        setAndMoveToTarget(speed);
-
     }
 
     //sets enemy target position and moves towards it
@@ -354,7 +355,7 @@ public class EnemyAIController : AdvancedFSM
             StartCoroutine(HeavyDash());
         }
 
-        movementVector = (TargetPlayerPos.transform.position - enemyBody.transform.position).normalized * HeavyDashSpeed;
+        movementVector = (TargetPlayerPos - enemyBody.transform.position).normalized * HeavyDashSpeed;
         enemyBody.transform.position += movementVector * Time.deltaTime;//moves to player
         //enemyBody.transform.position = new Vector3(enemyBody.position.x, 0f, enemyBody.position.z); //keeps it on ground
 
@@ -368,7 +369,7 @@ public class EnemyAIController : AdvancedFSM
     IEnumerator HeavyDash()
     {
 
-        TargetPlayerPos = closest.transform;
+        TargetPlayerPos = closest.transform.position;
 
         Damage.enabled = true;
 
