@@ -64,8 +64,7 @@ public class PlayerBody : MonoBehaviour
 
     private void Update()
     {
-        Attack();
-        Dash();
+        
         onNoDamage();
 
         if (health <= 0 || Input.GetKey(KeyCode.O))
@@ -82,6 +81,8 @@ public class PlayerBody : MonoBehaviour
             // have to do ghost stuff
         }
         //Move();
+        Attack();
+        Dash();
     }
 
     public Transform sprite;
@@ -93,10 +94,10 @@ public class PlayerBody : MonoBehaviour
             SetCharacterData();
         }
     }
-
+    bool dontForward;
     private void FixedUpdate()
     {
-        Move();
+        
         //rb.AddForce(new Vector3(0, -12000, 0) * Time.fixedDeltaTime);
         if (canMove && !dashing && sprite != null)
         {
@@ -105,9 +106,25 @@ public class PlayerBody : MonoBehaviour
             if (controller.HorizontalMagnitude > 0) { sprite.localScale = new Vector3(-scale, sprite.localScale.y, 1); }
             else if (controller.HorizontalMagnitude < 0) { CharacterFolder.transform.GetChild(0).localScale = new Vector3(scale, sprite.localScale.y, 1); }
         }
+        if (hitEnemy)
+        {
+            Debug.Log(GetMovementVector());
+            rb.AddForce((-GetMovementVector()) * attackKnockback * 2400 * Time.fixedDeltaTime,ForceMode.Impulse);
+            hitEnemy = false;
+            dontForward = true;
+        }
+        Move();
     }
 
-    Vector3 movementVector;
+    public Vector3 GetMovementVector()
+    {
+        float zInput = controller.ForwardMagnitude;
+        float xInput = controller.HorizontalMagnitude;
+        Vector3 mV= new Vector3(xInput, 0, zInput);
+        return mV;
+    }
+
+    public Vector3 movementVector;
     private void Move()
     {
         if (true || !ifHopper)
@@ -186,12 +203,16 @@ public class PlayerBody : MonoBehaviour
             GameObject attack = Instantiate(prefabForAttack, primaryAttackSpawnPoint);
             SwordSlash.sword.Play();
 
-            //if (hitEnemy)
-            //{
-                rb.AddForce((-movementVector) * attackKnockback * 400 * Time.fixedDeltaTime);
-                //hitEnemy = false;
-            //}
+            if (!hitEnemy && !dontForward)
+            {
+                rb.AddForce(GetMovementVector() * attackKnockback * 4800 * Time.fixedDeltaTime, ForceMode.Impulse);
+            }
+            else
+            {
+                dontForward = false;
+            }
         }
+        
 
     }
 
@@ -277,6 +298,7 @@ public class PlayerBody : MonoBehaviour
 
             canTakeDamage = false;
             canMove = false;
+            enemyAIController.canMove = false;
             canMovePlayerForexecute = true;
 
             yield return new WaitForSeconds(0.75f);

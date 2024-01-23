@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1975859642943322912}
   - component: {fileID: 8891774195489085454}
   - component: {fileID: 8069905607562872064}
-  - component: {fileID: 137944687162636077}
+  - component: {fileID: 185881396545716941}
   m_Layer: 0
   m_Name: Shockwave
   m_TagString: Untagged
@@ -107,17 +107,24 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &137944687162636077
-MonoBehaviour:
+--- !u!95 &185881396545716941
+Animator:
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2327198847112182937}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64b1ecc79cd1d754dab0de7be1eeb126, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SHOCKWAVESPEED: 60
-  MAXRANGE: 200
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e5e9e79aa70a82248b649666ffc66976, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

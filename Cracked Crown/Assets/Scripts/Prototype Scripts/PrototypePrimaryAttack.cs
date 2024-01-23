@@ -26,12 +26,16 @@ public class PrototypePrimaryAttack : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Rigidbody rb;
+
         Debug.Log(other.gameObject.name);
         if (other.tag == "Enemy")
         {
             playerBody.hitEnemy = true;
             enemyController = other.transform.parent.GetChild(0).GetComponent<EnemyAIController>();
             enemyController.DecHealth(playerBody.damage);
+            rb = other.GetComponent<Rigidbody>();                                              
+            rb.AddForce(playerBody.GetMovementVector() * 3.5f * 3200 * Time.fixedDeltaTime, ForceMode.Impulse);
             Debug.Log("Enemy Health: " + enemyController.Health);
         }
     }
