@@ -137,6 +137,7 @@ public class EnemyAIController : AdvancedFSM
 
         Players = GameObject.FindGameObjectsWithTag("Player");//finds and add all players to array
         playerTransform = Players[0].transform;
+        closest = playerTransform.gameObject;
         Damage = gameObject.GetComponent<Collider>();
         Damage.enabled = false; // deactivates the damage collider
         isHeavyDashing = true;
@@ -287,7 +288,7 @@ public class EnemyAIController : AdvancedFSM
         
         movementVector = (closest.transform.position - enemyBody.transform.position).normalized * Speed;
         enemyBody.transform.position += movementVector * Time.deltaTime;//moves to player
-        enemyBody.transform.position = new Vector3(enemyBody.position.x, 0f, enemyBody.position.z); //keeps it on ground
+        //enemyBody.transform.position = new Vector3(enemyBody.position.x, 0, enemyBody.position.z); //keeps it on ground
 
     } 
 
@@ -351,7 +352,7 @@ public class EnemyAIController : AdvancedFSM
 
         movementVector = (TargetPlayerPos.transform.position - enemyBody.transform.position).normalized * HeavyDashSpeed;
         enemyBody.transform.position += movementVector * Time.deltaTime;//moves to player
-        enemyBody.transform.position = new Vector3(enemyBody.position.x, 0f, enemyBody.position.z); //keeps it on ground
+        //enemyBody.transform.position = new Vector3(enemyBody.position.x, 0f, enemyBody.position.z); //keeps it on ground
 
 
         
