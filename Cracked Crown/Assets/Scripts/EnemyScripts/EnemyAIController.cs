@@ -361,11 +361,11 @@ public class EnemyAIController : AdvancedFSM
         }
 
         if (canMove)
-        { }
+        { 
         movementVector = (TargetPlayerPos - enemyBody.transform.position).normalized * HeavyDashSpeed;
         enemyBody.transform.position += movementVector * Time.deltaTime;//moves to player
                                                                         //enemyBody.transform.position = new Vector3(enemyBody.position.x, 0f, enemyBody.position.z); //keeps it on ground
-    }
+        }
 
         
 
