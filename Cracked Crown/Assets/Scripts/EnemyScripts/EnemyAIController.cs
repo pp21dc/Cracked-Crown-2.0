@@ -36,11 +36,15 @@ public class EnemyAIController : AdvancedFSM
 
     //the enemy body
     [SerializeField]
-    private Transform enemyBody; //holds the enemy player position
+    private Transform enemyPosition; //holds the enemy player position
     [SerializeField]
     private GameObject enemy;
+    [SerializeField]
+    private Rigidbody enemyBody;
 
-    public Transform eBody { get { return enemyBody; } }
+    public Rigidbody eBody { get { return enemyBody; } }
+
+    public Transform ePosition { get { return enemyPosition; } }
 
     //speedChanges
     [SerializeField]
@@ -49,6 +53,11 @@ public class EnemyAIController : AdvancedFSM
     private float HeavyDashSpeed = 2f;
 
     public bool canMove = true;
+
+    //light enemy
+    [SerializeField]
+    private Transform fireLocation;
+    private GameObject Goop;
     
 
     //Medium needed variables
@@ -274,7 +283,7 @@ public class EnemyAIController : AdvancedFSM
             for (int i = 0; i < Players.Length; i++)
             {
 
-                check = Vector3.Distance(enemyBody.transform.position, Players[i].transform.position);
+                check = Vector3.Distance(enemyPosition.transform.position, Players[i].transform.position);
 
                 if (check < currShortest)
                 {
@@ -294,13 +303,36 @@ public class EnemyAIController : AdvancedFSM
     //sets enemy target position and moves towards it
     private void setAndMoveToTarget(float Speed)
     {
-        if (canMove)
+        
+            movementVector = (closest.transform.position - enemyPosition.transform.position).normalized * Speed;
+            enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
+            //enemyBody.transform.position = new Vector3(enemyBody.position.x, 0, enemyBody.position.z); //keeps it on ground
+        
+            if(enemy.CompareTag("Light"))
+            {
+                StartShootGoop(enemyPosition,fireLocation); 
+            }
+
+    }
+
+    private void StartShootGoop(Transform body, Transform fireLocation)
+    {
+        if(Goop)
         {
-            movementVector = (closest.transform.position - enemyBody.transform.position).normalized * Speed;
-            enemyBody.transform.position += movementVector * Time.deltaTime;//moves to player
-                                                                            //enemyBody.transform.position = new Vector3(enemyBody.position.x, 0, enemyBody.position.z); //keeps it on ground
+            Vector3 direction = fireLocation.position - body.position;
+            direction.x = 0;
+            direction.z = 0;
+            direction.Normalize();
+
+            GameObject GoopGO = GameObject.Instantiate(Goop, fireLocation.position, Quaternion.identity);
+            Goop goop = GoopGO.GetComponent<Goop>();
+            GoopGO.SetActive(true);
+            goop.Fire(direction);
         }
-    } 
+    }
+
+    
+
 
     //starts the finished coroutine
     public void StartFinish()
@@ -360,12 +392,11 @@ public class EnemyAIController : AdvancedFSM
             StartCoroutine(HeavyDash());
         }
 
-        if (canMove)
-        { 
-        movementVector = (TargetPlayerPos - enemyBody.transform.position).normalized * HeavyDashSpeed;
-        enemyBody.transform.position += movementVector * Time.deltaTime;//moves to player
-                                                                        //enemyBody.transform.position = new Vector3(enemyBody.position.x, 0f, enemyBody.position.z); //keeps it on ground
-        }
+        
+        movementVector = (TargetPlayerPos - enemyPosition.transform.position).normalized * HeavyDashSpeed;
+        enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
+        //enemyBody.transform.position = new Vector3(enemyBody.position.x, 0f, enemyBody.position.z); //keeps it on ground
+        
 
         
 
