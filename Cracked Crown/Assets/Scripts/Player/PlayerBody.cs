@@ -108,7 +108,7 @@ public class PlayerBody : MonoBehaviour
         if (hitEnemy)
         {
             Debug.Log(GetMovementVector());
-            rb.AddForce((-GetMovementVector()) * attackKnockback * 1600 * Time.fixedDeltaTime,ForceMode.Impulse);
+            rb.AddForce((-GetMovementVector()) * attackKnockback * 2400 * Time.fixedDeltaTime,ForceMode.Impulse);
             hitEnemy = false;
             dontForward = true;
         }
@@ -205,7 +205,7 @@ public class PlayerBody : MonoBehaviour
 
             if (!hitEnemy && !dontForward)
             {
-                rb.AddForce(GetMovementVector() * attackKnockback * 3200 * Time.fixedDeltaTime, ForceMode.Impulse);
+                rb.AddForce(GetMovementVector() * attackKnockback * 4800 * Time.fixedDeltaTime, ForceMode.Impulse);
             }
             else
             {
