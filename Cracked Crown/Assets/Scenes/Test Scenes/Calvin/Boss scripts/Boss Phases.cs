@@ -26,11 +26,15 @@ public class BossPhases : MonoBehaviour
     [SerializeField] // count used to allow the boss to know when to initiate attacks
     private float attacktimer;
 
+    private Vector3 preGrabPlayerPosition;
     private Vector3 clawtarget;
     bool attackLoop = true;
     private bool clawfollow = false;
     private bool clawgrab = false;
     private bool clawreturn = false;
+
+    private bool isGrabbed = false;
+    private float grabbedTimer;
 
     // gets references for players
     private GameObject[] PlayerList = new GameObject[4];
@@ -44,8 +48,7 @@ public class BossPhases : MonoBehaviour
         GameObject[] TempList = GameObject.FindGameObjectsWithTag("BossFollowPoint");
         for (int i = 0; i < TempList.Length; i++)
         {
-            PlayerList[i] = TempList[i];
-            Debug.Log(i + " " + PlayerList[i]);
+            PlayerList[i] = TempList[i]; // creates a list of all players in the scene
         }
         LEFTCLAWSPAWN = clawLeft.transform.position;
     }
@@ -60,11 +63,10 @@ public class BossPhases : MonoBehaviour
                 StartCoroutine("PincerAttack");
                 attacktimer = 30;
             }
-            if (attacktimer > 22)
+            if (attacktimer > 18)
             {
                 pincerAttack();
             }
-            
             attacktimer -= Time.deltaTime;
         }
     }
@@ -72,51 +74,80 @@ public class BossPhases : MonoBehaviour
     IEnumerator AttackCycle() // the loop that calls boss attacks based on attacktimer
     {
         StartCoroutine("PincerAttack");
-        yield return new WaitForSeconds(8);
-        StartCoroutine("ClawAttack");
+        yield return new WaitForSeconds(11);
+        StartCoroutine("ClawSweep");
         yield return new WaitForSeconds(10);
         StartCoroutine("GooBlast");
         yield return new WaitForSeconds(10);
     }
 
-    private void pincerAttack() // handles actions relying on the pincer IEnumerator
+    private void pincerAttack() // handles actions relying on the pincer IEnumerator's timings
     {
         if (clawfollow)
         {
-            clawtarget = PlayerList[0].transform.position + PlayerList[0].transform.TransformDirection(0, 80, 0);
+            clawtarget = PlayerList[0].transform.position + PlayerList[0].transform.TransformDirection(0, 80, 0); // actively changes the claw to hover above the player
             clawLeft.transform.position = Vector3.MoveTowards(clawLeft.transform.position, clawtarget, clawspeed * Time.deltaTime);
         }
         if (clawgrab)
         {
-            clawLeft.transform.position = Vector3.MoveTowards(clawLeft.transform.position, clawtarget, clawspeed*1.5f * Time.deltaTime);
+            clawLeft.transform.position = Vector3.MoveTowards(clawLeft.transform.position, clawtarget, clawspeed* 2f * Time.deltaTime);
         }
         if (clawreturn)
         {
             clawLeft.transform.position = Vector3.MoveTowards(clawLeft.transform.position, clawtarget, clawspeed * Time.deltaTime);
+            if (preGrabPlayerPosition != Vector3.zero)
+            {
+                if (!isGrabbed)
+                {
+                    GrabbedPlayer.transform.position = Vector3.MoveTowards(GrabbedPlayer.transform.position, preGrabPlayerPosition, 40 * Time.deltaTime);
+                }
+            }
+        }
+        if (isGrabbed)
+        {
+            GrabbedPlayer.transform.position = clawLeft.transform.position;
+
+            if (grabbedTimer < -2) // drops the player when the timer is up
+            {
+                Debug.Log("Done");
+                isGrabbed = false;
+            }
+            grabbedTimer -= Time.deltaTime;
         }
     }
 
-    IEnumerator PincerAttack() // handles timing for the pincer function
+    IEnumerator PincerAttack() // handles timings for the pincer function phases
     {
-        clawfollow = true;
+        clawfollow = true; // allows claw to follow player
+
         yield return new WaitForSeconds(4);
 
         clawfollow = false;
+        clawtarget = PlayerList[0].transform.position + PlayerList[0].transform.TransformDirection(0, 35, 0); // sets the claw's target to the player
+        clawgrab = true; // allows claw to fall to player position
 
-        clawtarget = PlayerList[0].transform.position + PlayerList[0].transform.TransformDirection(0, 35, 0);
-         
-        clawgrab = true;
+        yield return new WaitForSeconds(1);
+        
+        if (isGrabbed)  // when the wait function is over, if the player is grabbed, the grabbed timer will start and the player will be lifted into the air
+        {
+            preGrabPlayerPosition = GrabbedPlayer.transform.position;
+            clawgrab = false;
 
-        // damage is dealt
-        yield return new WaitForSeconds(2);
-        clawgrab = false;
-        clawreturn = true;
+            clawtarget = PlayerList[0].transform.transform.position + PlayerList[0].transform.TransformDirection(0, 80, 0);
+            grabbedTimer = 1; // 1 instead of 3 since the grabbedTimer threshold is -2
+            
+            yield return new WaitForSeconds(3);
+        }
+        clawreturn = true; // sends the claw back to spawn
         clawtarget = LEFTCLAWSPAWN;
+
+        yield return new WaitForSeconds(3);
     }
 
     IEnumerator ClawSweep()
     {
         // animation is called
+        gameObject.transform.position = new Vector3(0, 0, 0);
         // damage is dealt
         yield return new WaitForSeconds(3);
     }
@@ -133,8 +164,8 @@ public class BossPhases : MonoBehaviour
         Debug.Log("hit");
         if (other.gameObject.tag == "Player")
         {
-            GrabbedPlayer = other.gameObject;
-            GrabbedPlayer.transform.position = clawLeft.transform.position;
+            GrabbedPlayer = other.gameObject.transform.root.gameObject;
+            isGrabbed = true;
             // player takes damage and movement is frozen
         }
     }
