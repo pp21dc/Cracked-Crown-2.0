@@ -203,8 +203,10 @@ public class PlayerBody : MonoBehaviour
     {
         if (controller.DashDown & dashOnCD == false && !lockDash)
         {
+            float scale = Mathf.Abs(sprite.localScale.x);
+            if (controller.HorizontalMagnitude > 0) { sprite.localScale = new Vector3(-scale, sprite.localScale.y, 1); }
+            else if (controller.HorizontalMagnitude < 0) { CharacterFolder.transform.GetChild(0).localScale = new Vector3(scale, sprite.localScale.y, 1); }
 
-            
             lockDash = true;
             animController.dashing = true;
             animController.Moving = false;
