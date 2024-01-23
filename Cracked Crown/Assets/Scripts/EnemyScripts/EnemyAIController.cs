@@ -337,7 +337,7 @@ public class EnemyAIController : AdvancedFSM
         //scale time to animation
         yield return new WaitForSeconds(2.2f);
 
-        Destroy(gameObject);
+        Destroy(enemyBody);
 
         yield return null;
     }
