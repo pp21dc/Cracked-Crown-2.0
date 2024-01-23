@@ -47,6 +47,8 @@ public class EnemyAIController : AdvancedFSM
     private float speed = 5f; //speed of the enemy
     [SerializeField]
     private float HeavyDashSpeed = 2f;
+
+    public bool canMove = true;
     
 
     //Medium needed variables
@@ -292,11 +294,12 @@ public class EnemyAIController : AdvancedFSM
     //sets enemy target position and moves towards it
     private void setAndMoveToTarget(float Speed)
     {
-        
-        movementVector = (closest.transform.position - enemyBody.transform.position).normalized * Speed;
-        enemyBody.transform.position += movementVector * Time.deltaTime;//moves to player
-        //enemyBody.transform.position = new Vector3(enemyBody.position.x, 0, enemyBody.position.z); //keeps it on ground
-
+        if (canMove)
+        {
+            movementVector = (closest.transform.position - enemyBody.transform.position).normalized * Speed;
+            enemyBody.transform.position += movementVector * Time.deltaTime;//moves to player
+                                                                            //enemyBody.transform.position = new Vector3(enemyBody.position.x, 0, enemyBody.position.z); //keeps it on ground
+        }
     } 
 
     //starts the finished coroutine
@@ -344,11 +347,11 @@ public class EnemyAIController : AdvancedFSM
         yield return null;
     }
 
-    
+
     //starts the heavy dash if in range
     public void StartHeavyDash()
     {
-        
+
         Debug.Log("Outside the If statement");
         if (isHeavyDashing)
         {
@@ -357,10 +360,12 @@ public class EnemyAIController : AdvancedFSM
             StartCoroutine(HeavyDash());
         }
 
+        if (canMove)
+        { }
         movementVector = (TargetPlayerPos - enemyBody.transform.position).normalized * HeavyDashSpeed;
         enemyBody.transform.position += movementVector * Time.deltaTime;//moves to player
-        //enemyBody.transform.position = new Vector3(enemyBody.position.x, 0f, enemyBody.position.z); //keeps it on ground
-
+                                                                        //enemyBody.transform.position = new Vector3(enemyBody.position.x, 0f, enemyBody.position.z); //keeps it on ground
+    }
 
         
 
