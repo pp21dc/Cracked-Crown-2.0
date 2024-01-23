@@ -27,6 +27,9 @@ public class PlayerController : MonoBehaviour
     private bool pauseDown = false;
     public bool PauseDown { get { return pauseDown; } }
 
+    private bool noDamageDown = false;
+    public bool NoDamageDown { get { return noDamageDown; } }
+
 
     private bool navRight = false;
     public bool NavRight { get { return navRight; } set { navRight = value; } }
@@ -58,6 +61,7 @@ public class PlayerController : MonoBehaviour
         executeDown = false;
         dashDown = false;
         pauseDown = false;
+        noDamageDown = false;
     }
 
     public void OnMove(InputValue inputValue)
@@ -103,6 +107,11 @@ public class PlayerController : MonoBehaviour
         Vector2 inputVal = inputValue.Get<Vector2>();
         if (inputVal.x > 0) { navRight = true; }
         else if (inputVal.x < 0) { navLeft = true; }
+    }
+
+    public void OnNoDamageMode()
+    {
+        noDamageDown = true;
     }
 
 }

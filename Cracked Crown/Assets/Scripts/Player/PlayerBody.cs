@@ -45,6 +45,8 @@ public class PlayerBody : MonoBehaviour
     private GameObject finisherColliderGO;
     [SerializeField]
     private Vector3 forExecutePosition = new Vector3(15, 0, 0);
+    [SerializeField]
+    private EnemyAIController enemyAIController;
 
     public GameObject CharacterFolder;
     public bool canMove = true;
@@ -55,7 +57,7 @@ public class PlayerBody : MonoBehaviour
     private bool dashOnCD = false;
     private bool canTakeDamage = true;
     private float executeHeal = 5f;
-    private float executeMoveSpeed = 75f;
+    private float executeMoveSpeed = 150f;
     private GameObject executeTarget;
     private bool canMovePlayerForexecute = false;
     private bool ifHopper = false;
@@ -64,6 +66,7 @@ public class PlayerBody : MonoBehaviour
     {
         Attack();
         Dash();
+        onNoDamage();
 
         if (health <= 0 || Input.GetKey(KeyCode.O))
         {
@@ -270,19 +273,27 @@ public class PlayerBody : MonoBehaviour
 
             controller.sprite = CharacterFolder.transform.GetChild(0);
             float scale = Mathf.Abs(controller.sprite.localScale.x);
-            controller.sprite.localScale = new Vector3(scale, controller.sprite.localScale.y, 1); // to swap so its always facing enemy
+            controller.sprite.localScale = new Vector3(-scale, controller.sprite.localScale.y, 1); // to swap so its always facing enemy
 
             canTakeDamage = false;
             canMove = false;
             canMovePlayerForexecute = true;
 
             yield return new WaitForSeconds(0.75f);
-            Destroy(toExecute);
+            Destroy(toExecute.transform.parent.gameObject);
 
             executeCollideScript.enemiesInRange.Remove(toExecute); // remove enemy from list
             health = health + executeHeal;
             canMove = true;
             canTakeDamage = true;
+        }
+    }
+
+    private void onNoDamage()
+    {
+        if (controller.NoDamageDown)
+        {
+            enemyAIController.canMove = !enemyAIController.canMove;
         }
     }
 

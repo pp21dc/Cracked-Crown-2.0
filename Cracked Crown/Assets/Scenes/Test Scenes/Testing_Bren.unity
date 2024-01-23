@@ -1980,6 +1980,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &545003145 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3777765676232313991, guid: 1460deebf475f8042bfb7c0e3844fa96,
+    type: 3}
+  m_PrefabInstance: {fileID: 1706425711}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dea8fb58408e9104f96a6b5bab6b6f79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &621133553
 GameObject:
   m_ObjectHideFlags: 0
@@ -5145,6 +5157,26 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2620462327617662294, guid: 1460deebf475f8042bfb7c0e3844fa96,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 10.472778
+      objectReference: {fileID: 0}
+    - target: {fileID: 2620462327617662294, guid: 1460deebf475f8042bfb7c0e3844fa96,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 14.06395
+      objectReference: {fileID: 0}
+    - target: {fileID: 2620462327617662294, guid: 1460deebf475f8042bfb7c0e3844fa96,
+        type: 3}
+      propertyPath: m_Center.x
+      value: 0.4053421
+      objectReference: {fileID: 0}
+    - target: {fileID: 2620462327617662294, guid: 1460deebf475f8042bfb7c0e3844fa96,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 4.190178
+      objectReference: {fileID: 0}
     - target: {fileID: 3193789946226294552, guid: 1460deebf475f8042bfb7c0e3844fa96,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5423,6 +5455,7 @@ MonoBehaviour:
   primaryAttackSpawnPoint: {fileID: 1668959127}
   finisherColliderGO: {fileID: 446306928}
   forExecutePosition: {x: 15, y: 0, z: 0}
+  enemyAIController: {fileID: 545003145}
   CharacterFolder: {fileID: 670057962}
   canMove: 1
   SwordSlash: {fileID: 621133554}
