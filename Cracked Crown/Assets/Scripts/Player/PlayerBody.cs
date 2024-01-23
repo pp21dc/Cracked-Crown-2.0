@@ -82,6 +82,7 @@ public class PlayerBody : MonoBehaviour
         }
         //Move();
         Attack();
+        Dash();
     }
 
     public Transform sprite;
@@ -113,10 +114,9 @@ public class PlayerBody : MonoBehaviour
             dontForward = true;
         }
         Move();
-        Dash();
     }
 
-    Vector3 GetMovementVector()
+    public Vector3 GetMovementVector()
     {
         float zInput = controller.ForwardMagnitude;
         float xInput = controller.HorizontalMagnitude;
@@ -124,7 +124,7 @@ public class PlayerBody : MonoBehaviour
         return mV;
     }
 
-    Vector3 movementVector;
+    public Vector3 movementVector;
     private void Move()
     {
         if (true || !ifHopper)
