@@ -419,6 +419,8 @@ MonoBehaviour:
   dashTime: 1
   finisherRadius: 20
   health: 10
+  deathBody: {fileID: 7516477959771602021, guid: 7bd694241a9873c42aec3265fdff34a7,
+    type: 3}
   damage: 3
   CharacterType: {fileID: 0}
   controller: {fileID: 1075067857252033172}
@@ -432,11 +434,16 @@ MonoBehaviour:
   primaryAttackSpawnPoint: {fileID: 4808969439308641443}
   finisherColliderGO: {fileID: 3892952694850963964}
   forExecutePosition: {x: 15, y: 0, z: 0}
+  enemyAIController: {fileID: 0}
   CharacterFolder: {fileID: 4064884496430378951}
   canMove: 1
   SwordSlash: {fileID: 5989917852546650526}
   canAttack: 1
+  hitEnemy: 0
+  canUseItem: 1
+  canExecute: 1
   sprite: {fileID: 0}
+  movementVector: {x: 0, y: 0, z: 0}
   dashing: 0
 --- !u!114 &8089469534137136360
 MonoBehaviour:
