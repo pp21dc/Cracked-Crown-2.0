@@ -18,8 +18,11 @@ public abstract class AIProperties // the properties that are most commonly used
 public class EnemyAIController : AdvancedFSM
 {
 
-    
 
+    [SerializeField]
+    private EnemyAnimationController EAC;
+    [SerializeField]
+    GameManager GM;
     [SerializeField]
     private bool debugDraw;//draws the debug text
     [SerializeField]
@@ -74,9 +77,13 @@ public class EnemyAIController : AdvancedFSM
     [SerializeField]
     private Collider Damage;
 
-    
 
-    
+    private void Awake()
+    {
+        
+    }
+
+
     public float Health
     {
         get { return health; }
@@ -303,15 +310,16 @@ public class EnemyAIController : AdvancedFSM
     //sets enemy target position and moves towards it
     private void setAndMoveToTarget(float Speed)
     {
+        EAC.Moving = true;
+            
+        movementVector = (closest.transform.position - enemyPosition.transform.position).normalized * Speed;
+        enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
+        //enemyBody.transform.position = new Vector3(enemyBody.position.x, 0, enemyBody.position.z); //keeps it on ground
         
-            movementVector = (closest.transform.position - enemyPosition.transform.position).normalized * Speed;
-            enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
-            //enemyBody.transform.position = new Vector3(enemyBody.position.x, 0, enemyBody.position.z); //keeps it on ground
-        
-            if(enemy.CompareTag("Light"))
-            {
-                StartShootGoop(enemyPosition,fireLocation); 
-            }
+        if(enemy.CompareTag("Light"))
+        {
+            StartShootGoop(enemyPosition,fireLocation); 
+        }
 
     }
 
@@ -354,12 +362,12 @@ public class EnemyAIController : AdvancedFSM
     {
 
         //stunned animation here
-
+        EAC.Stunned = true;
         
 
         yield return new WaitForSeconds(3f);
 
-        
+        EAC.Stunned = false;
     
     }
     
@@ -368,12 +376,13 @@ public class EnemyAIController : AdvancedFSM
     IEnumerator Death()
     {
 
-        
+
         //animation here
-        
+        EAC.Dead = true;
         //scale time to animation
         yield return new WaitForSeconds(2.2f);
 
+        
         Destroy(enemy);
 
         yield return null;
@@ -387,6 +396,7 @@ public class EnemyAIController : AdvancedFSM
         Debug.Log("Outside the If statement");
         if (isHeavyDashing)
         {
+            
             Debug.Log("Made it to the if statement");
             isHeavyDashing = false;
             StartCoroutine(HeavyDash());
@@ -406,7 +416,7 @@ public class EnemyAIController : AdvancedFSM
     
     IEnumerator HeavyDash()
     {
-
+        EAC.Dashing = true;
         TargetPlayerPos = closest.transform.position;
 
         Damage.enabled = true;
@@ -416,6 +426,7 @@ public class EnemyAIController : AdvancedFSM
         isHeavyDashing = true;
         isDoneDashing = true;
         Damage.enabled = false;
+        EAC.Dashing = false;
 
         yield return null;
     }
