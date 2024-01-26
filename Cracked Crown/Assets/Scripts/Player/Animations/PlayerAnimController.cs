@@ -52,9 +52,9 @@ public class PlayerAnimController : MonoBehaviour
             Animator.SetBool("Moving", moving);
             Animator.SetBool("Dashing", dashing);
             Animator.SetBool("Attacking", attacking);
-            if (dead)
+            if (true )
             {
-                Animator.SetTrigger("Dead");
+                Animator.SetBool("Dead", dead);
             }
         }
         else if (CharacterFolder.transform.GetChild(0).GetChild(0).TryGetComponent<Animator>(out Animator anim))

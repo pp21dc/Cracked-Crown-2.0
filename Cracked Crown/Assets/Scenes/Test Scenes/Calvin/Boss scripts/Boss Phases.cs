@@ -146,8 +146,9 @@ public class BossPhases : MonoBehaviour
     IEnumerator ClawSweep()
     {
         // animation is called
-        gameObject.transform.position = new Vector3(0, 0, 0);
         // damage is dealt
+        yield return new WaitForSeconds(1.2f);
+
         yield return new WaitForSeconds(3);
     }
 

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -19,6 +20,9 @@ public class PlayerBody : MonoBehaviour
     private float finisherRadius = 20f;
     [SerializeField]
     private float health = 100f;
+    [SerializeField]
+    private GameObject deathBody; 
+
     private float attackKnockback = 100;
     public float Health { get { return health; } }
     public float damage = 3f;
@@ -52,8 +56,19 @@ public class PlayerBody : MonoBehaviour
     public bool canMove = true;
     public PlayAnim SwordSlash;
 
+    [HideInInspector]
     public bool canAttack = true;
+    [HideInInspector]
     public bool hitEnemy = false;
+    [HideInInspector]
+    public bool canUseItem = true;
+    [HideInInspector]
+    public bool canExecute = true;
+    [HideInInspector]
+    public float ghostCoins = 0;
+    [HideInInspector]
+    public bool alreadyDead = false;
+
     private bool dashOnCD = false;
     private bool canTakeDamage = true;
     private float executeHeal = 5f;
@@ -61,24 +76,42 @@ public class PlayerBody : MonoBehaviour
     private GameObject executeTarget;
     private bool canMovePlayerForexecute = false;
     private bool ifHopper = false;
+    private Vector3 respawnPoint;
+    private GameObject corpse;
+    private float maxHealth;
 
     private void Update()
     {
         
         onNoDamage();
 
-        if (health <= 0 || Input.GetKey(KeyCode.O))
+        if ((health <= 0 || Input.GetKey(KeyCode.O)) && alreadyDead == false)
         {
             Debug.Log("You Died");
-            
-            canMove = false;
-            canAttack = false;
-            lockDash = true;
+
+            GhostMode();
             animController.Moving = false;
             animController.dashing = false;
             animController.Attacking = false;
             animController.Dead = true;
-            // have to do ghost stuff
+            alreadyDead = true;
+        }
+        if (ghostCoins >= 5)
+        {
+            // move player back to corpse
+            transform.position = respawnPoint;
+
+            // change back to normal
+            animController.Moving = true;
+            animController.Dead = false;
+            alreadyDead = false;
+            ghostCoins = 0;
+            health = maxHealth;
+
+            resetPlayer();
+
+            // delete corpse
+            Destroy(corpse);
         }
         //Move();
         Attack();
@@ -93,6 +126,7 @@ public class PlayerBody : MonoBehaviour
         {
             SetCharacterData();
         }
+        maxHealth = health;
     }
     bool dontForward;
     private void FixedUpdate()
@@ -220,6 +254,7 @@ public class PlayerBody : MonoBehaviour
     {
         StartCoroutine(InExecute(enemy));
     }
+
     bool lockDash;
     public bool dashing;
     Vector3 dashDirection;
@@ -326,5 +361,35 @@ public class PlayerBody : MonoBehaviour
             health = health - 1;
             Debug.Log(health);
         }
+    }
+
+    private void GhostMode()
+    {
+        // instantiate dead sprite at player position
+        respawnPoint = transform.position;
+        corpse = Instantiate(deathBody, transform.position, Quaternion.identity);
+
+        // turn player sprite to ghost sprite
+
+
+        // turn off attacking, dash, and item use,
+        resetPlayer();
+
+    }
+
+    private void resetPlayer()
+    {
+        canAttack = !canAttack;
+        canTakeDamage = !canTakeDamage;
+        canExecute = !canExecute;
+        canUseItem = !canUseItem;
+        lockDash = !lockDash;
+
+        Debug.Log("canMove = " + canMove);
+        Debug.Log("canAttack = " + canAttack);
+        Debug.Log("canTakeDamage = " + canTakeDamage);
+        Debug.Log("canExecute = " + canExecute);
+        Debug.Log("canUseItem = " + canUseItem);
+        Debug.Log("LockDash = " + lockDash);
     }
 }

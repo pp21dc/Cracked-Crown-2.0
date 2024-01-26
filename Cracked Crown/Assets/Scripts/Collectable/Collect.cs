@@ -11,7 +11,7 @@ public class Collect : MonoBehaviour
 
     private void Awake()
     {
-        gameManager = GameManager.Instance;
+        //gameManager = GameManager.Instance;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -23,9 +23,18 @@ public class Collect : MonoBehaviour
             
             if (gameObject.tag == "Eye")
             {
-                gameManager.eyeCount = gameManager.eyeCount + 1;
-                Debug.Log(gameManager.eyeCount);
-                gameObject.SetActive(false);
+                if(body.alreadyDead)
+                {
+                    body.ghostCoins = body.ghostCoins + 1;
+                    Debug.Log(body.ghostCoins);
+                    gameObject.SetActive(false);
+                }
+                else
+                {
+                    gameManager.eyeCount = gameManager.eyeCount + 1;
+                    Debug.Log(gameManager.eyeCount);
+                    gameObject.SetActive(false);
+                }
             }
             if (gameObject.tag == "Bomb")
             {
