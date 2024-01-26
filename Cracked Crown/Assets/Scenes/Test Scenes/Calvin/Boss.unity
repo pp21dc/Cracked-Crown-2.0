@@ -787,6 +787,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1330580714}
   - component: {fileID: 1330580715}
+  - component: {fileID: 1330580716}
   m_Layer: 0
   m_Name: clawLeft
   m_TagString: Untagged
@@ -831,6 +832,26 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.227124, y: 2.4, z: 3.4}
   m_Center: {x: 0.35414582, y: -1.9100001, z: -1.1900002}
+--- !u!114 &1330580716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1330580713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eeb592247c4e4cc4080f0b2dd33f7a74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackList:
+  - Pincer Attack
+  - Claw Slam
+  - Goo Blast
+  Claw: {fileID: 1330580713}
+  bossAnim: {fileID: 1329262146}
+  clawspeed: 40
+  attacktimer: 31
 --- !u!1 &1619680566
 GameObject:
   m_ObjectHideFlags: 0
@@ -840,7 +861,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1619680568}
-  - component: {fileID: 1619680567}
   - component: {fileID: 1619680569}
   m_Layer: 0
   m_Name: CrabBoss
@@ -849,25 +869,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1619680567
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1619680566}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eeb592247c4e4cc4080f0b2dd33f7a74, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackList:
-  - 
-  BossObject: {fileID: 1619680566}
-  clawLeft: {fileID: 1330580713}
-  clawRight: {fileID: 413793729}
-  clawspeed: 36
-  attacktimer: 0
 --- !u!4 &1619680568
 Transform:
   m_ObjectHideFlags: 0

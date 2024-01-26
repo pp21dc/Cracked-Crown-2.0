@@ -6,7 +6,7 @@ using System.Collections.Specialized;
 public class BossPhases : MonoBehaviour
 {
     private static float MAXBOSSHEALTH;
-    private static Vector3 LEFTCLAWSPAWN;
+    private static Vector3 CLAWSPAWN;
 
     [SerializeField] // list for the possible boss attacks
     string[] attackList = new string[3] {"Pincer Attack", "Claw Slam", "Goo Blast"};
@@ -14,11 +14,10 @@ public class BossPhases : MonoBehaviour
 
     [Header("Boss Parts")]
     [SerializeField]
-    private GameObject BossObject;
+    private GameObject Claw;
+
     [SerializeField]
-    private GameObject clawLeft;
-    [SerializeField]
-    private GameObject clawRight;
+    private Animator bossAnim;
 
     [Header("Boss Variables")]
     [SerializeField]
@@ -50,7 +49,7 @@ public class BossPhases : MonoBehaviour
         {
             PlayerList[i] = TempList[i]; // creates a list of all players in the scene
         }
-        LEFTCLAWSPAWN = clawLeft.transform.position;
+        CLAWSPAWN = Claw.transform.position;
     }
 
     void Update()
@@ -75,7 +74,7 @@ public class BossPhases : MonoBehaviour
     {
         StartCoroutine("PincerAttack");
         yield return new WaitForSeconds(11);
-        StartCoroutine("ClawSweep");
+        StartCoroutine("ClawSmash");
         yield return new WaitForSeconds(10);
         StartCoroutine("GooBlast");
         yield return new WaitForSeconds(10);
@@ -86,15 +85,15 @@ public class BossPhases : MonoBehaviour
         if (clawfollow)
         {
             clawtarget = PlayerList[0].transform.position + PlayerList[0].transform.TransformDirection(0, 80, 0); // actively changes the claw to hover above the player
-            clawLeft.transform.position = Vector3.MoveTowards(clawLeft.transform.position, clawtarget, clawspeed * Time.deltaTime);
+            Claw.transform.position = Vector3.MoveTowards(Claw.transform.position, clawtarget, clawspeed * Time.deltaTime);
         }
         if (clawgrab)
         {
-            clawLeft.transform.position = Vector3.MoveTowards(clawLeft.transform.position, clawtarget, clawspeed* 2f * Time.deltaTime);
+            Claw.transform.position = Vector3.MoveTowards(Claw.transform.position, clawtarget, clawspeed* 2f * Time.deltaTime);
         }
         if (clawreturn)
         {
-            clawLeft.transform.position = Vector3.MoveTowards(clawLeft.transform.position, clawtarget, clawspeed * Time.deltaTime);
+            Claw.transform.position = Vector3.MoveTowards(Claw.transform.position, clawtarget, clawspeed * Time.deltaTime);
             if (preGrabPlayerPosition != Vector3.zero)
             {
                 if (!isGrabbed)
@@ -105,7 +104,7 @@ public class BossPhases : MonoBehaviour
         }
         if (isGrabbed)
         {
-            GrabbedPlayer.transform.position = clawLeft.transform.position - PlayerList[0].transform.TransformDirection(0, 35, 0);
+            GrabbedPlayer.transform.position = Claw.transform.position - PlayerList[0].transform.TransformDirection(0, 35, 0);
 
             if (grabbedTimer < -2) // drops the player when the timer is up
             {
@@ -138,13 +137,15 @@ public class BossPhases : MonoBehaviour
             clawgrab = false;
         }
         clawreturn = true; // sends the claw back to spawn
-        clawtarget = LEFTCLAWSPAWN;
+        clawtarget = CLAWSPAWN;
 
         yield return new WaitForSeconds(3);
     }
 
-    IEnumerator ClawSweep()
+    IEnumerator ClawSmash()
     {
+        
+        yield return new WaitForSeconds(3);
         // animation is called
         // damage is dealt
         yield return new WaitForSeconds(1.2f);
