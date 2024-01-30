@@ -289,7 +289,10 @@ public class EnemyAIController : AdvancedFSM
             //simple distance check where it checks the current shortest and compares to the other players, replacing when neccisary
             for (int i = 0; i < Players.Length; i++)
             {
-                if (Players[i].GetComponent<PlayerBody>().alreadyDead == false)
+
+                PlayerBody currentBody = Players[i].GetComponent<PlayerBody>();
+
+                if (currentBody.alreadyDead == false)
                 {
                     check = Vector3.Distance(enemyPosition.transform.position, Players[i].transform.position);
 
