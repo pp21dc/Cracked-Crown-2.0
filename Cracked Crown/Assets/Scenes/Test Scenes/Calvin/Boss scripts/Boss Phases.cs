@@ -1,12 +1,11 @@
 using UnityEngine;
-using System;
 using System.Collections;
-using System.Collections.Specialized;
 
 public class BossPhases : MonoBehaviour
 {
     private static float MAXBOSSHEALTH;
-    private static Vector3 CLAWSPAWN;
+    [SerializeField]
+    private Vector3 CLAWSPAWN;
 
     [SerializeField] // list for the possible boss attacks
     string[] attackList = new string[3] {"Pincer Attack", "Claw Slam", "Goo Blast"};
@@ -19,6 +18,10 @@ public class BossPhases : MonoBehaviour
     [SerializeField]
     private Animator bossAnim;
 
+
+    [SerializeField]
+    private BossPhases otherClaw;
+
     [Header("Boss Variables")]
     [SerializeField]
     private float clawspeed;
@@ -27,13 +30,18 @@ public class BossPhases : MonoBehaviour
 
     private Vector3 preGrabPlayerPosition;
     private Vector3 clawtarget;
+
+    float dist;
     bool attackLoop = true;
     private bool clawfollow = false;
     private bool clawgrab = false;
     private bool clawreturn = false;
+    private GameObject followedPlayer;
 
     private bool isGrabbed = false;
     private float grabbedTimer;
+    [SerializeField]
+    private string[] attackIDList = new string[30];
 
     // gets references for players
     private GameObject[] PlayerList = new GameObject[4];
@@ -48,8 +56,15 @@ public class BossPhases : MonoBehaviour
         for (int i = 0; i < TempList.Length; i++)
         {
             PlayerList[i] = TempList[i]; // creates a list of all players in the scene
+            Debug.Log(PlayerList[i]);
         }
         CLAWSPAWN = Claw.transform.position;
+        createIDList();
+    }
+
+    public GameObject getfollowedplayer()
+    {
+        return followedPlayer;
     }
 
     void Update()
@@ -57,27 +72,48 @@ public class BossPhases : MonoBehaviour
         if (attackLoop)
         {
             // attacks called in a continuous loop
-            if (attacktimer <= 0)
+            if (attacktimer = 0)
             {
-                StartCoroutine("PincerAttack");
-                attacktimer = 30;
-            }
-            if (attacktimer > 18)
-            {
-                pincerAttack();
+                readNextID(1);
             }
             attacktimer -= Time.deltaTime;
         }
     }
 
-    IEnumerator AttackCycle() // the loop that calls boss attacks based on attacktimer
+    private void createIDList() // randomizes the attacks
     {
-        StartCoroutine("PincerAttack");
-        yield return new WaitForSeconds(11);
-        StartCoroutine("ClawSmash");
-        yield return new WaitForSeconds(10);
-        StartCoroutine("GooBlast");
-        yield return new WaitForSeconds(10);
+        int tempVar;
+        int prevVar = -1;
+        for (int i = 0; i < 30; i++)
+        {
+            tempVar = Random.Range(0, 4);
+            if (i != 0)
+            {
+                if (tempVar == prevVar)
+                {
+                    tempVar = Random.Range(0, 4);
+                    prevVar = tempVar;
+                }
+            }
+            switch (tempVar) // populates the ID list
+            {
+                case 0:
+                    attackIDList[i] = "pincerAttack";
+                    break;
+                case 1:
+                    attackIDList[i] = "clawSlam";
+                    break;
+                case 2:
+                    attackIDList[i] = "gooBlast";
+                    break;
+            }
+
+        }
+    }
+
+    private string readNextID(int ID)
+    {
+        return attackIDList[ID];
     }
 
     private void pincerAttack() // handles actions relying on the pincer IEnumerator's timings
@@ -98,7 +134,13 @@ public class BossPhases : MonoBehaviour
             {
                 if (!isGrabbed)
                 {
-                    GrabbedPlayer.transform.position = Vector3.MoveTowards(GrabbedPlayer.transform.position, preGrabPlayerPosition, 40 * Time.deltaTime);
+
+                    Debug.Log(dist);
+                    if (dist > 1)
+                    {
+                        dist = Vector3.Distance(GrabbedPlayer.transform.position, preGrabPlayerPosition);
+                        GrabbedPlayer.transform.position = Vector3.MoveTowards(GrabbedPlayer.transform.position, preGrabPlayerPosition, 80 * Time.deltaTime);
+                    }
                 }
             }
         }
@@ -118,6 +160,14 @@ public class BossPhases : MonoBehaviour
     IEnumerator PincerAttack() // handles timings for the pincer function phases
     {
         clawfollow = true; // allows claw to follow player
+        Debug.Log("Follow");
+        for (int i = 0; i < PlayerList.Length; i++)
+        {
+            if (otherClaw.followedPlayer != PlayerList[i])
+            {
+                followedPlayer = PlayerList[i];
+            }
+        }
 
         yield return new WaitForSeconds(4);
 
@@ -135,6 +185,8 @@ public class BossPhases : MonoBehaviour
             
             yield return new WaitForSeconds(3);
             clawgrab = false;
+
+            dist = Vector3.Distance(GrabbedPlayer.transform.position, preGrabPlayerPosition);
         }
         clawreturn = true; // sends the claw back to spawn
         clawtarget = CLAWSPAWN;

@@ -191,11 +191,13 @@ public class EnemyAIController : AdvancedFSM
         findPlayerState.AddTransition(Transition.InShockwaveRange, FSMStateID.Shockwave);
         findPlayerState.AddTransition(Transition.LowHealth, FSMStateID.Finished);
         findPlayerState.AddTransition(Transition.NoHealth, FSMStateID.Dead);
+        findPlayerState.AddTransition(Transition.PlayerDead, FSMStateID.FindPlayer);
 
         //if at low health it allows the enemy to be finished, tranistions if no health and not finished.
         FinishedState finishedState = new FinishedState(this);
         finishedState.AddTransition(Transition.NoHealth, FSMStateID.Dead);
         finishedState.AddTransition(Transition.HealthBack, FSMStateID.FindPlayer);
+        
         
 
         //ded
@@ -214,6 +216,7 @@ public class EnemyAIController : AdvancedFSM
         //carries the player, transitions if it drops player to find
         CarryState carryState = new CarryState(this);
         carryState.AddTransition(Transition.LookForPlayer, FSMStateID.FindPlayer);
+        
 
         //if it fails to slam its stunned, transitions if stun finishes to find, low health to finsished, no health to dead.
         StunnedState stunnedState = new StunnedState(this);
@@ -286,18 +289,24 @@ public class EnemyAIController : AdvancedFSM
             //simple distance check where it checks the current shortest and compares to the other players, replacing when neccisary
             for (int i = 0; i < Players.Length; i++)
             {
-                //if (Playe)
-                check = Vector3.Distance(enemyPosition.transform.position, Players[i].transform.position);
 
-                if (check < currShortest)
+                PlayerBody currentBody = Players[i].GetComponent<PlayerBody>();
+
+                if (currentBody.alreadyDead == false)
                 {
+                    check = Vector3.Distance(enemyPosition.transform.position, Players[i].transform.position);
 
-                    currShortest = check;
-                    closest = Players[i];
-                    playerTransform = closest.transform;
+
+                    if (check < currShortest)
+                    {
+
+                        currShortest = check;
+                        closest = Players[i];
+                        playerTransform = closest.transform;
+
+                    }
 
                 }
-
             }
 
             setAndMoveToTarget(speed);
@@ -307,13 +316,29 @@ public class EnemyAIController : AdvancedFSM
     //sets enemy target position and moves towards it
     private void setAndMoveToTarget(float Speed)
     {
-        EAC.Moving = true;
-            
+        if (Speed > 0.5f)
+        {
+            EAC.Moving = true;
+        }
+        else
+        {
+            EAC.Moving = false;
+        }
+        //Debug.Log(speed);
+
         movementVector = (closest.transform.position - enemyPosition.transform.position).normalized * Speed;
         enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
         //enemyBody.transform.position = new Vector3(enemyBody.position.x, 0, enemyBody.position.z); //keeps it on ground
-        
-        if(enemy.CompareTag("Light"))
+        if (closest.transform.position.x > enemyPosition.transform.position.x)
+        {
+            EAC.SR.flipX = false;
+        }
+        else
+        {
+            EAC.SR.flipX = true;
+        }
+
+        if (enemy.CompareTag("Light"))
         {
             StartShootGoop(enemyPosition,fireLocation); 
         }
@@ -390,18 +415,36 @@ public class EnemyAIController : AdvancedFSM
     public void StartHeavyDash()
     {
 
-        Debug.Log("Outside the If statement");
+        //Debug.Log("Outside the If statement");
         if (isHeavyDashing)
         {
-            
-            Debug.Log("Made it to the if statement");
+
+            //Debug.Log("Made it to the if statement");
             isHeavyDashing = false;
             StartCoroutine(HeavyDash());
         }
+        else
+        {
+            if (Vector3.Distance(enemyPosition.transform.position, TargetPlayerPos) > 0.5f)
+            {
+                movementVector = (TargetPlayerPos - enemyPosition.transform.position).normalized * HeavyDashSpeed;
+                enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
+            }
+            else
+            {
+                EAC.Moving = false;
+                EAC.Dashing = false;
+            }
+            if (TargetPlayerPos.x > enemyPosition.transform.position.x)
+            {
+                EAC.SR.flipX = false;
+            }
+            else
+            {
+                EAC.SR.flipX = true;
+            }
 
-        
-        movementVector = (TargetPlayerPos - enemyPosition.transform.position).normalized * HeavyDashSpeed;
-        enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
+        }
         //enemyBody.transform.position = new Vector3(enemyBody.position.x, 0f, enemyBody.position.z); //keeps it on ground
         
 
@@ -415,7 +458,7 @@ public class EnemyAIController : AdvancedFSM
     {
         EAC.Dashing = true;
         TargetPlayerPos = closest.transform.position;
-
+        
         Damage.enabled = true;
 
         yield return new WaitForSeconds(2.5f);
@@ -428,8 +471,30 @@ public class EnemyAIController : AdvancedFSM
         yield return null;
     }
 
-
-
+    //bool damaging;
+    float timer;
+    public float timeToDamage = 2f;
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            if (timer > timeToDamage)
+            {
+                timer = 0;
+                //damaging = true;
+                PlayerBody pb = other.gameObject.GetComponent<PlayerBody>();
+                pb.DecHealth(1);
+                EAC.Attacking = true;
+                   
+            }
+            else
+            {
+                timer += Time.deltaTime;
+                //EAC.Attacking = false;
+            }
+            
+        }
+    }
 
 
 
