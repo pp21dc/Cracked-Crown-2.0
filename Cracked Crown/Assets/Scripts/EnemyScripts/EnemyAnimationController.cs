@@ -6,6 +6,8 @@ public class EnemyAnimationController : MonoBehaviour
 {
     [SerializeField]
     private Animator animator;
+    [SerializeField]
+    public SpriteRenderer SR;
 
     public bool Dead;
     public bool Moving;
