@@ -118,7 +118,7 @@ public class PlayerController : MonoBehaviour
         noDamageDown = true;
     }
 
-    public void onInteract()
+    public void OnInteract()
     {
         interactDown = true;
     }
