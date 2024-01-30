@@ -108,6 +108,7 @@ public class PlayerBody : MonoBehaviour
             ghostCoins = 0;
             health = maxHealth;
 
+            canTakeDamage = true;
             resetPlayer();
 
             // delete corpse
@@ -368,6 +369,7 @@ public class PlayerBody : MonoBehaviour
         // instantiate dead sprite at player position
         respawnPoint = transform.position;
         corpse = Instantiate(deathBody, transform.position, Quaternion.identity);
+        canTakeDamage = false;
 
         // turn player sprite to ghost sprite
 
