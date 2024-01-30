@@ -30,6 +30,9 @@ public class PlayerController : MonoBehaviour
     private bool noDamageDown = false;
     public bool NoDamageDown { get { return noDamageDown; } }
 
+    private bool interactDown = false;
+    public bool InteractDown { get { return interactDown; } }
+
 
     private bool navRight = false;
     public bool NavRight { get { return navRight; } set { navRight = value; } }
@@ -62,6 +65,7 @@ public class PlayerController : MonoBehaviour
         dashDown = false;
         pauseDown = false;
         noDamageDown = false;
+        interactDown = false;
     }
 
     public void OnMove(InputValue inputValue)
@@ -112,6 +116,11 @@ public class PlayerController : MonoBehaviour
     public void OnNoDamageMode()
     {
         noDamageDown = true;
+    }
+
+    public void OnInteract()
+    {
+        interactDown = true;
     }
 
 }

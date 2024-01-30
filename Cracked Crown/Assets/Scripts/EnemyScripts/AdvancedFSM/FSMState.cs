@@ -32,7 +32,7 @@ public abstract class FSMState
         // Check if anyone of the args is invallid
         if (transition == Transition.None || id == FSMStateID.None)
         {
-            Debug.LogWarning("FSMState : Null transition not allowed");
+            //Debug.LogWarning("FSMState : Null transition not allowed");
             return;
         }
 
@@ -40,12 +40,12 @@ public abstract class FSMState
         //Check if the current transition was already inside the map
         if (map.ContainsKey(transition))
         {
-            Debug.LogWarning("FSMState ERROR: transition is already inside the map");
+            //Debug.LogWarning("FSMState ERROR: transition is already inside the map");
             return;
         }
 
         map.Add(transition, id);
-        Debug.Log("Added : " + transition + " with ID : " + id);
+        //Debug.Log("Added : " + transition + " with ID : " + id);
     }
 
     /// <summary>
@@ -57,7 +57,7 @@ public abstract class FSMState
         // Check for NullTransition
         if (trans == Transition.None)
         {
-            Debug.LogError("FSMState ERROR: NullTransition is not allowed");
+            //Debug.LogError("FSMState ERROR: NullTransition is not allowed");
             return;
         }
 

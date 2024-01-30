@@ -142,6 +142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 5050968648220853272}
+  SR: {fileID: 0}
   Dead: 0
   Moving: 0
   Attacking: 0
@@ -295,7 +296,8 @@ MonoBehaviour:
   isHeavyDashing: 0
   isDoneDashing: 0
   maxHealth: 100
-  Damage: {fileID: 0}
+  Damage: {fileID: 2620462327617662294}
+  timeToDamage: 2
 --- !u!65 &2243525588475844062
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -315,7 +317,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 3.5, z: 1}
+  m_Size: {x: 5.43, y: 9.66, z: 5.56}
   m_Center: {x: 0, y: 2, z: 0}
 --- !u!1 &5068627527567498472
 GameObject:

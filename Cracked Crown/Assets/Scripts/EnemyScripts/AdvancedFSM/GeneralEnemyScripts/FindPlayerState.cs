@@ -18,9 +18,12 @@ public class FindPlayerState : FSMState
     //creates transition reasoning for if the enemy has no health, die, if the enemy has low health, flee, and if the enemy is in range of the player, attack
     public override void Reason(Transform player, Transform npc)
     {
-        Debug.Log("Made it to the Find player Reasoning");
-
-        if (enemy.Health <= 20 && enemy.Health >= 1) 
+        //Debug.Log("Made it to the Find player Reasoning");
+        if(player.gameObject.GetComponent<PlayerBody>().alreadyDead == true)
+        {
+            enemy.PerformTransition(Transition.PlayerDead);
+        }
+        else if (enemy.Health <= 20 && enemy.Health >= 1) 
         {
             enemy.PerformTransition(Transition.LowHealth);
         }
@@ -39,7 +42,7 @@ public class FindPlayerState : FSMState
         }
         else if (enemy.CompareTag("Medium") == true)
         {
-            Debug.Log("Found the Medium");
+            //Debug.Log("Found the Medium");
             if (Vector3.Distance(enemy.ePosition.position,player.position) <= 75f)
             {
                 enemy.PerformTransition(Transition.InFirstRange);
@@ -66,7 +69,7 @@ public class FindPlayerState : FSMState
     //no need for anything in act as you are jsut standing there until a player attacks you or you see them
     public override void Act(Transform player, Transform npc)
     {
-        Debug.Log("Made it to the Find player Act");
+        //Debug.Log("Made it to the Find player Act");
         enemy.checkShortestDistance();
     }
 }

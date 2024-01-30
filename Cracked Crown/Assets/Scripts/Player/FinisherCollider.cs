@@ -22,7 +22,7 @@ public class FinisherCollider : MonoBehaviour
             {
                 if (((enemy.gameObject.GetComponent<EnemyAIController>().Health) / (enemy.gameObject.GetComponent<EnemyAIController>().maxHealth)) <= 0.5) // if health is less then 50% can execute
                 {
-                    Debug.Log("Can Execute");
+                    //Debug.Log("Can Execute");
                     if (controller.ExecuteDown)
                     {
                         PB.Execute(enemiesInRange[0].gameObject);

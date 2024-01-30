@@ -30,7 +30,7 @@ public class MoveTowardsClosestPlayer : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "Player" || other.tag == "Ghost")
         {
             playerInRange = true;
             playerTarget = other.transform;
@@ -39,7 +39,7 @@ public class MoveTowardsClosestPlayer : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "Player" || other.tag == "Ghost")
         {
             playerInRange = false;
             playerTarget = null;
