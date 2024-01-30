@@ -18,6 +18,7 @@ public enum Transition
     LowHealth,
     NoHealth,
     HealthBack,
+    PlayerDead,
 
     //Light enemy transitions
     AbovePlayer,
