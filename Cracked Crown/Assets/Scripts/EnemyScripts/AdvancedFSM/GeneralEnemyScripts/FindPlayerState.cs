@@ -19,8 +19,11 @@ public class FindPlayerState : FSMState
     public override void Reason(Transform player, Transform npc)
     {
         Debug.Log("Made it to the Find player Reasoning");
-
-        if (enemy.Health <= 20 && enemy.Health >= 1) 
+        if(player.gameObject.GetComponent<PlayerBody>().alreadyDead == true)
+        {
+            enemy.PerformTransition(Transition.PlayerDead);
+        }
+        else if (enemy.Health <= 20 && enemy.Health >= 1) 
         {
             enemy.PerformTransition(Transition.LowHealth);
         }

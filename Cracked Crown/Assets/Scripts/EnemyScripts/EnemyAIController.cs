@@ -191,11 +191,13 @@ public class EnemyAIController : AdvancedFSM
         findPlayerState.AddTransition(Transition.InShockwaveRange, FSMStateID.Shockwave);
         findPlayerState.AddTransition(Transition.LowHealth, FSMStateID.Finished);
         findPlayerState.AddTransition(Transition.NoHealth, FSMStateID.Dead);
+        findPlayerState.AddTransition(Transition.PlayerDead, FSMStateID.FindPlayer);
 
         //if at low health it allows the enemy to be finished, tranistions if no health and not finished.
         FinishedState finishedState = new FinishedState(this);
         finishedState.AddTransition(Transition.NoHealth, FSMStateID.Dead);
         finishedState.AddTransition(Transition.HealthBack, FSMStateID.FindPlayer);
+        
         
 
         //ded
@@ -214,6 +216,7 @@ public class EnemyAIController : AdvancedFSM
         //carries the player, transitions if it drops player to find
         CarryState carryState = new CarryState(this);
         carryState.AddTransition(Transition.LookForPlayer, FSMStateID.FindPlayer);
+        
 
         //if it fails to slam its stunned, transitions if stun finishes to find, low health to finsished, no health to dead.
         StunnedState stunnedState = new StunnedState(this);
@@ -286,18 +289,21 @@ public class EnemyAIController : AdvancedFSM
             //simple distance check where it checks the current shortest and compares to the other players, replacing when neccisary
             for (int i = 0; i < Players.Length; i++)
             {
-                //if (Playe)
-                check = Vector3.Distance(enemyPosition.transform.position, Players[i].transform.position);
-
-                if (check < currShortest)
+                if (Players[i].GetComponent<PlayerBody>().alreadyDead == false)
                 {
+                    check = Vector3.Distance(enemyPosition.transform.position, Players[i].transform.position);
 
-                    currShortest = check;
-                    closest = Players[i];
-                    playerTransform = closest.transform;
+
+                    if (check < currShortest)
+                    {
+
+                        currShortest = check;
+                        closest = Players[i];
+                        playerTransform = closest.transform;
+
+                    }
 
                 }
-
             }
 
             setAndMoveToTarget(speed);
