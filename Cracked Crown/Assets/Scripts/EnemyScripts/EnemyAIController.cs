@@ -78,10 +78,7 @@ public class EnemyAIController : AdvancedFSM
     private Collider Damage;
 
 
-    private void Awake()
-    {
-        
-    }
+    
 
 
     public float Health
@@ -289,7 +286,7 @@ public class EnemyAIController : AdvancedFSM
             //simple distance check where it checks the current shortest and compares to the other players, replacing when neccisary
             for (int i = 0; i < Players.Length; i++)
             {
-
+                //if (Playe)
                 check = Vector3.Distance(enemyPosition.transform.position, Players[i].transform.position);
 
                 if (check < currShortest)
