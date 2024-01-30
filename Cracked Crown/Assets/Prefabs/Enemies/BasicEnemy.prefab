@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4bfceec7b35af04996297bb3a44b5dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
+  animator: {fileID: 5050968648220853272}
   Dead: 0
   Moving: 0
   Attacking: 0
@@ -274,7 +274,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dea8fb58408e9104f96a6b5bab6b6f79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EAC: {fileID: 0}
+  EAC: {fileID: 1264440914891293786}
+  GM: {fileID: 0}
   debugDraw: 1
   StateText: {fileID: 0}
   HealthText: {fileID: 0}
@@ -283,9 +284,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  enemyPosition: {fileID: 0}
+  enemyPosition: {fileID: 1177276868569814050}
   enemy: {fileID: 1091935484162795870}
-  enemyBody: {fileID: 1177276868569814050}
+  enemyBody: {fileID: 5493214263850978981}
   speed: 12
   HeavyDashSpeed: 50
   canMove: 1
