@@ -184,7 +184,9 @@ public class PlayerBody : MonoBehaviour
                 if (movementVector.magnitude > 1)
                 {
                     movementVector.Normalize();
+                    
                 }
+                movementVector.z = movementVector.z * 1.5f;
                 movementVector = (movementVector * movementSpeed);
 
                 //rb.MovePosition(rb.position + (movementVector * Time.fixedDeltaTime));
