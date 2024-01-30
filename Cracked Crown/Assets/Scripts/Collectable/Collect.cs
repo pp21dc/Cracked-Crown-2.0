@@ -53,19 +53,25 @@ public class Collect : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (gameObject.tag == "Bomb")
+        if (other.tag == "Player" || other.tag == "Ghost")
         {
-            Debug.Log("Collided with bomb");
+            body = other.GetComponent<PlayerBody>();
+            controller = other.transform.parent.GetChild(0).GetComponent<PlayerController>();
 
-            if (controller.InteractDown)
+            if (gameObject.tag == "Bomb")
             {
-                Debug.Log("pressed interact");
+                Debug.Log("Collided with bomb");
 
-                if (gameManager.eyeCount >= 5 && body.hasPotion == false && body.hasBomb == false)
+                if (controller.InteractDown)
                 {
-                    gameManager.eyeCount -= 5;
-                    body.hasBomb = true;
-                    gameObject.SetActive(false);
+                    Debug.Log("pressed interact");
+
+                    if (gameManager.eyeCount >= 5 && body.hasPotion == false && body.hasBomb == false)
+                    {
+                        gameManager.eyeCount -= 5;
+                        body.hasBomb = true;
+                        gameObject.SetActive(false);
+                    }
                 }
             }
         }
