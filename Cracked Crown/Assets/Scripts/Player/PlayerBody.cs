@@ -68,6 +68,10 @@ public class PlayerBody : MonoBehaviour
     public float ghostCoins = 0;
     [HideInInspector]
     public bool alreadyDead = false;
+    [HideInInspector]
+    public bool hasBomb = false;
+    [HideInInspector]
+    public bool hasPotion = false;
 
     private bool dashOnCD = false;
     private bool canTakeDamage = true;
@@ -98,6 +102,8 @@ public class PlayerBody : MonoBehaviour
         }
         if (ghostCoins >= 5)
         {
+            gameObject.tag = "Player";
+
             // move player back to corpse
             transform.position = respawnPoint;
 
@@ -373,6 +379,7 @@ public class PlayerBody : MonoBehaviour
 
         // turn player sprite to ghost sprite
 
+        gameObject.tag = "Ghost";
 
         // turn off attacking, dash, and item use,
         resetPlayer();

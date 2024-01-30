@@ -11,12 +11,12 @@ public class Collect : MonoBehaviour
 
     private void Awake()
     {
-        //gameManager = GameManager.Instance;
+        gameManager = GameManager.Instance;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "Player" || other.tag == "Ghost")
         {
             body = other.GetComponent<PlayerBody>();
             controller = other.GetComponent<PlayerController>();
@@ -38,12 +38,19 @@ public class Collect : MonoBehaviour
             }
             if (gameObject.tag == "Bomb")
             {
-                //if (controller.interactDown && gameManager.eyeCount >= 5 && hasPotion = false && hasBomb = false)
-                //{
-                //    gameManager.eyeCount -= 5;
-                //    body.hasBomb = true;
-                //    gameObject.SetActive(false);
-                //}
+                Debug.Log("Collided with bomb");
+
+                if (controller.InteractDown)
+                {
+                    Debug.Log("pressed interact");
+
+                    if (gameManager.eyeCount >= 5 && body.hasPotion == false && body.hasBomb == false)
+                    {
+                        gameManager.eyeCount -= 5;
+                        body.hasBomb = true;
+                        gameObject.SetActive(false);
+                    }
+                }
             }
             if (gameObject.tag == "Potion")
             {
