@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Runtime.InteropServices;
 using System.Runtime.CompilerServices;
+using UnityEngine.Rendering;
 
 [System.Serializable]
 public abstract class AIProperties // the properties that are most commonly used by all states and are now accesible to those states
@@ -67,6 +68,9 @@ public class EnemyAIController : AdvancedFSM
     public Vector3 TargetPlayerPos;
     public bool isHeavyDashing = true;
     public bool isDoneDashing = false;
+
+    //Light needed vriables
+    private float intialY;
     
 
     //health, finisher, and death states
@@ -163,6 +167,12 @@ public class EnemyAIController : AdvancedFSM
         Damage.enabled = false; // deactivates the damage collider
         isHeavyDashing = true;
         health = 100;
+
+        if(gameObject.CompareTag("Light"))
+        {
+            intialY = enemyBody.transform.position.y;
+        }
+
         ConstructFSM();
     }
 
@@ -328,6 +338,10 @@ public class EnemyAIController : AdvancedFSM
 
         movementVector = (closest.transform.position - enemyPosition.transform.position).normalized * Speed;
         enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
+        if(gameObject.CompareTag("Light"))
+        {
+            enemyPosition.transform.position = new Vector3(transform.position.x, intialY, transform.position.z);
+        }
         //enemyBody.transform.position = new Vector3(enemyBody.position.x, 0, enemyBody.position.z); //keeps it on ground
         if (closest.transform.position.x > enemyPosition.transform.position.x)
         {

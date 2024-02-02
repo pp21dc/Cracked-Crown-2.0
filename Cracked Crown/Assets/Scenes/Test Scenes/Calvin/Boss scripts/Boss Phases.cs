@@ -72,7 +72,7 @@ public class BossPhases : MonoBehaviour
         if (attackLoop)
         {
             // attacks called in a continuous loop
-            if (attacktimer = 0)
+            if (1==1)//attacktimer = 0)  Caused an error in unity!!!!!
             {
                 readNextID(1);
             }
