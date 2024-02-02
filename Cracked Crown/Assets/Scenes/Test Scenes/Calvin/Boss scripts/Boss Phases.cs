@@ -4,6 +4,7 @@ using System.Collections;
 public class BossPhases : MonoBehaviour
 {
     private static float MAXBOSSHEALTH;
+
     [SerializeField]
     private Vector3 CLAWSPAWN;
 
@@ -22,6 +23,10 @@ public class BossPhases : MonoBehaviour
     [SerializeField]
     private BossPhases otherClaw;
 
+    [Header("Watching things")]
+    [SerializeField]
+    private Vector3 clawtarget;
+
     [Header("Boss Variables")]
     [SerializeField]
     private float clawspeed;
@@ -29,9 +34,10 @@ public class BossPhases : MonoBehaviour
     private float attacktimer;
 
     private Vector3 preGrabPlayerPosition;
-    private Vector3 clawtarget;
 
-    float dist;
+
+    private float dist;
+    private int currattackid;
     bool attackLoop = true;
     private bool clawfollow = false;
     private bool clawgrab = false;
@@ -52,6 +58,8 @@ public class BossPhases : MonoBehaviour
     
     private void Awake()
     {
+        currattackid = 0;
+
         GameObject[] TempList = GameObject.FindGameObjectsWithTag("BossFollowPoint");
         for (int i = 0; i < TempList.Length; i++)
         {
@@ -72,9 +80,22 @@ public class BossPhases : MonoBehaviour
         if (attackLoop)
         {
             // attacks called in a continuous loop
-            if (1==1)//attacktimer = 0)  Caused an error in unity!!!!!
+            if (attacktimer <= 0)
             {
-                readNextID(1);
+                startNextAttack();
+            }
+            switch (attackIDList[currattackid]) // populates the ID list
+            {
+                case "PincerAttack":
+                    Debug.Log("PincerAttack");
+                    pincerAttack();
+                    break;
+                case "ClawSmash":
+                    Debug.Log("ClawSmash");
+                    break;
+                case "GooBlast":
+                    Debug.Log("GooBlast");
+                    break;
             }
             attacktimer -= Time.deltaTime;
         }
@@ -98,26 +119,44 @@ public class BossPhases : MonoBehaviour
             switch (tempVar) // populates the ID list
             {
                 case 0:
-                    attackIDList[i] = "pincerAttack";
+                    attackIDList[i] = "PincerAttack";
                     break;
                 case 1:
-                    attackIDList[i] = "clawSlam";
+                    attackIDList[i] = "ClawSmash";
                     break;
                 case 2:
-                    attackIDList[i] = "gooBlast";
+                    attackIDList[i] = "GooBlast";
                     break;
             }
-
         }
     }
 
-    private string readNextID(int ID)
+    private void startNextAttack()
     {
-        return attackIDList[ID];
+        StartCoroutine("PincerAttack"); // starts the next boss attack
+        attacktimer = 10;
+
+        switch (attackIDList[currattackid]) // sets attack timer based on the next boss attack
+        {
+            case "Pincer Attack":
+                attacktimer = 11;
+                Debug.Log("Wokrimg");
+                break;
+            case "ClawSmash":
+                attacktimer = 10;
+                Debug.Log("Wokrimg");
+                break;
+            case "GooBlast":
+                attacktimer = 10;
+                Debug.Log("Wokrimg");
+                break;
+        }
+        currattackid++;
     }
 
     private void pincerAttack() // handles actions relying on the pincer IEnumerator's timings
     {
+        Debug.Log("gay");
         if (clawfollow)
         {
             clawtarget = PlayerList[0].transform.position + PlayerList[0].transform.TransformDirection(0, 80, 0); // actively changes the claw to hover above the player
@@ -150,7 +189,6 @@ public class BossPhases : MonoBehaviour
 
             if (grabbedTimer < -2) // drops the player when the timer is up
             {
-                Debug.Log("Done");
                 isGrabbed = false;
             }
             grabbedTimer -= Time.deltaTime;
