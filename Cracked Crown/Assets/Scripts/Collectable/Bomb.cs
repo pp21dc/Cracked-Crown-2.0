@@ -41,7 +41,7 @@ public class Bomb : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        for (int i = 0; i <= enemiesInRange.Length; i++)
+        for (int i = 0; i < enemiesInRange.Length; i++)
         {
             if (gameObject.tag == "Radius")
             {
@@ -52,7 +52,7 @@ public class Bomb : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        for (int i = 0; i <= enemiesInRange.Length; i++)
+        for (int i = 0; i < enemiesInRange.Length; i++)
         {
             if (gameObject.tag == "Radius")
             {
