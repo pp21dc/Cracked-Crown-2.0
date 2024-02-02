@@ -320,7 +320,17 @@ public class EnemyAIController : AdvancedFSM
                 }
             }
             if (!knockback)
-                setAndMoveToTarget(speed);
+            {
+                if(gameObject.CompareTag("Light"))
+                {
+                    setAndMoveToTargetLight(speed);
+                }
+                else
+                {
+                    setAndMoveToTarget(speed);
+                }
+            }
+                
         }
     }
 
@@ -339,10 +349,6 @@ public class EnemyAIController : AdvancedFSM
 
         movementVector = (closest.transform.position - enemyPosition.transform.position).normalized * Speed;
         enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
-        if(gameObject.CompareTag("Light"))
-        {
-            enemyPosition.transform.position = new Vector3(transform.position.x, intialY, transform.position.z);
-        }
         //enemyBody.transform.position = new Vector3(enemyBody.position.x, 0, enemyBody.position.z); //keeps it on ground
         if (closest.transform.position.x > enemyPosition.transform.position.x)
         {
@@ -353,10 +359,36 @@ public class EnemyAIController : AdvancedFSM
             EAC.SR.flipX = true;
         }
 
-        if (enemy.CompareTag("Light"))
+       
+
+    }
+
+    private void setAndMoveToTargetLight(float Speed)
+    {
+        Debug.Log("in this one");
+        if (Speed > 0.5f)
         {
-            StartShootGoop(enemyPosition,fireLocation); 
+            EAC.Moving = true;
         }
+        else
+        {
+            EAC.Moving = false;
+        }
+        //Debug.Log(speed);
+        Vector3 currPlayerPos = new Vector3(closest.transform.position.x, closest.transform.position.y + 30, closest.transform.position.z);
+        movementVector = (currPlayerPos - enemyPosition.transform.position).normalized * Speed;
+        enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
+        if (closest.transform.position.x > enemyPosition.transform.position.x)
+        {
+            EAC.SR.flipX = false;
+        }
+        else
+        {
+            EAC.SR.flipX = true;
+        }
+
+            StartShootGoop(enemyPosition, fireLocation);
+        
 
     }
 
