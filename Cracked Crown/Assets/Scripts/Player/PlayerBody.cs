@@ -457,7 +457,7 @@ public class PlayerBody : MonoBehaviour
         {
             if (hasBomb)
             {
-
+                // set is thrown to true from bomb
             }
             if (hasPotion)
             {
