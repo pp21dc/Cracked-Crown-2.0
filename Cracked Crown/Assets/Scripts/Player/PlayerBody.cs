@@ -72,6 +72,12 @@ public class PlayerBody : MonoBehaviour
     public bool hasBomb = false;
     [HideInInspector]
     public bool hasPotion = false;
+    [HideInInspector]
+    public bool canCollectBomb = false;
+    [HideInInspector]
+    public bool canCollectPotion = false;
+    [HideInInspector]
+    public Collect collectable;
 
     private bool dashOnCD = false;
     private bool canTakeDamage = true;
@@ -83,10 +89,11 @@ public class PlayerBody : MonoBehaviour
     private Vector3 respawnPoint;
     private GameObject corpse;
     private float maxHealth;
+    private GameManager gameManager;
 
     private void Update()
     {
-        
+        collect();
         onNoDamage();
 
         if ((health <= 0 || Input.GetKey(KeyCode.O)) && alreadyDead == false)
@@ -123,12 +130,16 @@ public class PlayerBody : MonoBehaviour
         //Move();
         Attack();
         Dash();
+        UseItem();
     }
 
     public Transform sprite;
 
     private void Awake()
     {
+
+        gameManager = GameManager.Instance;
+
         if (CharacterType != null)
         {
             SetCharacterData();
@@ -402,5 +413,57 @@ public class PlayerBody : MonoBehaviour
         Debug.Log("canExecute = " + canExecute);
         Debug.Log("canUseItem = " + canUseItem);
         Debug.Log("LockDash = " + lockDash);
+    }
+
+    private void collect()
+    {
+        if (canCollectBomb)
+        {
+            if (controller.InteractDown)
+            {
+                Debug.Log("pressed interact");
+
+                if (gameManager.eyeCount >= 5 && hasPotion == false && hasBomb == false)
+                {
+                    gameManager.eyeCount -= 5;
+                    hasBomb = true;
+                    collectable.gameObject.SetActive(false);
+
+                    Debug.Log("Player has a bomb: " + hasBomb);
+                }
+            }
+        }
+        if (canCollectPotion)
+        {
+            if (controller.InteractDown)
+            {
+                Debug.Log("pressed interact");
+
+                if (gameManager.eyeCount >= 5 && hasPotion == false && hasBomb == false)
+                {
+                    gameManager.eyeCount -= 5;
+                    hasPotion = true;
+                    collectable.gameObject.SetActive(false);
+
+                    Debug.Log("Player has a bomb: " + hasPotion);
+                }
+            }
+        }
+    }
+
+    private void UseItem()
+    {
+        if (controller.ItemDown)
+        {
+            if (hasBomb)
+            {
+
+            }
+            if (hasPotion)
+            {
+                float healAmount = maxHealth * 0.33f;
+                AddHealth(healAmount);
+            }
+        }
     }
 }

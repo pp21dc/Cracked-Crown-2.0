@@ -6,7 +6,7 @@ public class Collect : MonoBehaviour
 {
 
     private PlayerBody body;
-    private PlayerController controller;
+    //private PlayerController controller;
     private GameManager gameManager;
 
     private void Awake()
@@ -19,7 +19,7 @@ public class Collect : MonoBehaviour
         if (other.tag == "Player" || other.tag == "Ghost")
         {
             body = other.GetComponent<PlayerBody>();
-            controller = other.transform.parent.GetChild(0).GetComponent<PlayerController>();
+            //controller = other.transform.parent.GetChild(0).GetComponent<PlayerController>();
 
             if (gameObject.tag == "Eye")
             {
@@ -36,43 +36,50 @@ public class Collect : MonoBehaviour
                     gameObject.SetActive(false);
                 }
             }
-            
-            if (gameObject.tag == "Potion")
+
+            if (other.tag == "Player")
             {
-                //if (controller.interactDown && gameManager.eyeCount >= 5 && hasPotion = false && hasBomb = false)
-                //{
-                //    gameManager.eyeCount -= 5;
-                //    body.hasPotion = true;
-                //    gameObject.SetActive(false);
-                //}
+                body = other.GetComponent<PlayerBody>();
+
+                if (gameObject.tag == "Bomb")
+                {
+                    body.collectable = this;
+                    body.canCollectBomb = true;
+                }
             }
 
+            if (other.tag == "Player")
+            {
+                body = other.GetComponent<PlayerBody>();
+
+                if (gameObject.tag == "Potion")
+                {
+                    body.collectable = this;
+                    body.canCollectPotion = true;
+                }
+            }
 
         }
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Player" || other.tag == "Ghost")
+        if (other.tag == "Player")
         {
             body = other.GetComponent<PlayerBody>();
-            controller = other.transform.parent.GetChild(0).GetComponent<PlayerController>();
 
             if (gameObject.tag == "Bomb")
             {
-                Debug.Log("Collided with bomb");
+                body.canCollectBomb = false;
+            }
+        }
+        if (other.tag == "Player")
+        {
+            body = other.GetComponent<PlayerBody>();
 
-                if (controller.InteractDown)
-                {
-                    Debug.Log("pressed interact");
-
-                    if (gameManager.eyeCount >= 5 && body.hasPotion == false && body.hasBomb == false)
-                    {
-                        gameManager.eyeCount -= 5;
-                        body.hasBomb = true;
-                        gameObject.SetActive(false);
-                    }
-                }
+            if (gameObject.tag == "Potion")
+            {
+                body.canCollectPotion = false;
             }
         }
     }
