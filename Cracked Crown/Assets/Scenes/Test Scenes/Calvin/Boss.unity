@@ -394,6 +394,7 @@ MonoBehaviour:
   Claw: {fileID: 413793729}
   bossAnim: {fileID: 339883316}
   otherClaw: {fileID: 1330580716}
+  clawtarget: {x: 0, y: 0, z: 0}
   clawspeed: 80
   attacktimer: 0
   attackIDList:
@@ -893,7 +894,8 @@ MonoBehaviour:
   Claw: {fileID: 1330580713}
   bossAnim: {fileID: 1329262146}
   otherClaw: {fileID: 413793732}
-  clawspeed: 80
+  clawtarget: {x: 0, y: 0, z: 0}
+  clawspeed: 1
   attacktimer: 0
   attackIDList:
   - 
