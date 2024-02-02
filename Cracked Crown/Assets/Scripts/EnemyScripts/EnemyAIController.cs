@@ -75,6 +75,7 @@ public class EnemyAIController : AdvancedFSM
 
     //health, finisher, and death states
     public float maxHealth = 100; // its total Health
+    [SerializeField]
     private float health = 100;//health of the enemy
     
 
@@ -84,7 +85,7 @@ public class EnemyAIController : AdvancedFSM
 
     
 
-
+    
     public float Health
     {
         get { return health; }
@@ -375,13 +376,17 @@ public class EnemyAIController : AdvancedFSM
         }
     }
 
-    
 
 
+    bool inFinish;
     //starts the finished coroutine
     public void StartFinish()
     {
-        StartCoroutine(Finished());
+        if (!inFinish)
+        {
+            inFinish = true;
+            StartCoroutine(Finished());
+        }
     }
 
 
@@ -401,10 +406,15 @@ public class EnemyAIController : AdvancedFSM
         EAC.Stunned = true;
         
 
-        yield return new WaitForSeconds(3f);
+        while (health < 76)
+        {
+            health += Time.deltaTime * 10;
+            Debug.Log("HEALTH");
+            yield return null;
+        }
 
         EAC.Stunned = false;
-    
+        inFinish = false;
     }
     
 
@@ -486,17 +496,18 @@ public class EnemyAIController : AdvancedFSM
     }
 
     float knockbackTimer;
-    float knockbackTime = 0.005f;
+    float knockbackTime = 0.10f;
     bool knockback;
     IEnumerator KnockBack(Vector3 playerPos)
     {
         Debug.Log("KNOCKBACK");
         knockback = true;
-        Vector3 dir = (enemyPosition.position - playerPos).normalized * 1000;
+        Vector3 dir = -(playerPos-enemyPosition.position).normalized * 500;
         while(knockbackTimer < knockbackTime)
         {
             knockbackTimer += Time.deltaTime;
-            enemyPosition.transform.position += dir * Time.deltaTime;
+            if(knockbackTimer <= 0.05f)
+                enemyPosition.transform.position += dir * Time.deltaTime;
             yield return null;
         }
         knockback = false;
@@ -522,7 +533,7 @@ public class EnemyAIController : AdvancedFSM
             else
             {
                 timer += Time.deltaTime;
-                //EAC.Attacking = false;
+                EAC.Attacking = false;
             }
             
         }
