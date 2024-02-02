@@ -318,8 +318,8 @@ public class EnemyAIController : AdvancedFSM
 
                 }
             }
-
-            setAndMoveToTarget(speed);
+            if (!knockback)
+                setAndMoveToTarget(speed);
         }
     }
 
@@ -439,7 +439,7 @@ public class EnemyAIController : AdvancedFSM
         }
         else
         {
-            if (Vector3.Distance(enemyPosition.transform.position, TargetPlayerPos) > 0.5f)
+            if (Vector3.Distance(enemyPosition.transform.position, TargetPlayerPos) > 0.5f && !knockback)
             {
                 movementVector = (TargetPlayerPos - enemyPosition.transform.position).normalized * HeavyDashSpeed;
                 enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
@@ -485,6 +485,24 @@ public class EnemyAIController : AdvancedFSM
         yield return null;
     }
 
+    float knockbackTimer;
+    float knockbackTime = 0.005f;
+    bool knockback;
+    IEnumerator KnockBack(Vector3 playerPos)
+    {
+        Debug.Log("KNOCKBACK");
+        knockback = true;
+        Vector3 dir = (enemyPosition.position - playerPos).normalized * 1000;
+        while(knockbackTimer < knockbackTime)
+        {
+            knockbackTimer += Time.deltaTime;
+            enemyPosition.transform.position += dir * Time.deltaTime;
+            yield return null;
+        }
+        knockback = false;
+        knockbackTimer = 0;
+    }
+
     //bool damaging;
     float timer;
     public float timeToDamage = 2f;
@@ -507,6 +525,10 @@ public class EnemyAIController : AdvancedFSM
                 //EAC.Attacking = false;
             }
             
+        }
+        if (other.tag == "PlayerAttack" && !knockback)
+        {
+            StartCoroutine(KnockBack(other.transform.position));
         }
     }
 
