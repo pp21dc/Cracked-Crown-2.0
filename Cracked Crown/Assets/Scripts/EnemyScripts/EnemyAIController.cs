@@ -61,6 +61,7 @@ public class EnemyAIController : AdvancedFSM
     //light enemy
     [SerializeField]
     private Transform fireLocation;
+    [SerializeField]
     private GameObject Goop;
     
 
@@ -71,6 +72,8 @@ public class EnemyAIController : AdvancedFSM
 
     //Light needed vriables
     private float intialY;
+    private bool canGoop;
+    private bool startGoop;
     
 
     //health, finisher, and death states
@@ -173,6 +176,9 @@ public class EnemyAIController : AdvancedFSM
         {
             intialY = enemyBody.transform.position.y;
         }
+
+        startGoop = true;
+        canGoop = true;
 
         ConstructFSM();
     }
@@ -387,9 +393,26 @@ public class EnemyAIController : AdvancedFSM
             EAC.SR.flipX = true;
         }
 
-            StartShootGoop(enemyPosition, fireLocation);
+        if (startGoop)
+        {
+            startGoop = false;
+            StartCoroutine(GoopRoutine());
+        }
+        
         
 
+    }
+
+    IEnumerator GoopRoutine()
+    {
+
+        while(canGoop)
+        {
+            StartShootGoop(enemyPosition, fireLocation);
+            yield return new WaitForSeconds(0.45f);
+        }
+
+        yield return null;
     }
 
     private void StartShootGoop(Transform body, Transform fireLocation)
@@ -465,6 +488,8 @@ public class EnemyAIController : AdvancedFSM
 
         yield return null;
     }
+
+
 
 
     //starts the heavy dash if in range

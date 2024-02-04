@@ -191,6 +191,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3777765676232313991, guid: 1460deebf475f8042bfb7c0e3844fa96,
+        type: 3}
+      propertyPath: Goop
+      value: 
+      objectReference: {fileID: 4075157275065173004, guid: f23908775015a444facd72db284a85e7,
+        type: 3}
+    - target: {fileID: 3777765676232313991, guid: 1460deebf475f8042bfb7c0e3844fa96,
+        type: 3}
+      propertyPath: fireLocation
+      value: 
+      objectReference: {fileID: 561087096}
     - target: {fileID: 5068627527567498472, guid: 1460deebf475f8042bfb7c0e3844fa96,
         type: 3}
       propertyPath: m_Name
@@ -218,7 +229,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 1177276868569814050, guid: 1460deebf475f8042bfb7c0e3844fa96,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 561087096}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1460deebf475f8042bfb7c0e3844fa96, type: 3}
 --- !u!1 &144069877
@@ -358,6 +373,12 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!4 &256510614 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1177276868569814050, guid: 1460deebf475f8042bfb7c0e3844fa96,
+    type: 3}
+  m_PrefabInstance: {fileID: 48217547}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &277573915
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -516,6 +537,37 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f443ae70529b14f42951265ea553e920, type: 3}
+--- !u!1 &561087095
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 561087096}
+  m_Layer: 0
+  m_Name: FireLocation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &561087096
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 561087095}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -3.8999996, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 256510614}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1190075603
 GameObject:
   m_ObjectHideFlags: 0

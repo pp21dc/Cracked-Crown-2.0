@@ -9,6 +9,10 @@ public class Goop : MonoBehaviour
 
     private Vector3 Direction;
 
+    [SerializeField]
+    private Collider Disapear;
+
+
     private void Update()
     {
         transform.Translate(Direction * speed * Time.deltaTime);
@@ -32,4 +36,15 @@ public class Goop : MonoBehaviour
 
         yield return null;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            PlayerBody player = other.GetComponent<PlayerBody>();
+            player.DecHealth(3f);
+            gameObject.SetActive(false);
+        }
+    }
+
 }
