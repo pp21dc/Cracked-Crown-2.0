@@ -336,7 +336,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &413793730
 Transform:
   m_ObjectHideFlags: 0
@@ -428,6 +428,12 @@ MonoBehaviour:
   - 
   - 
   - 
+  PlayerList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  GrabbedPlayer: {fileID: 0}
 --- !u!1 &697586495
 GameObject:
   m_ObjectHideFlags: 0
@@ -713,6 +719,64 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1196877305
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1196877307}
+  - component: {fileID: 1196877306}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1196877306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1196877305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0566c6dc80700c4587d054f1e1c8ccc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Players: []
+  PMs: []
+  Characters: []
+  levelNames: []
+  MainMenuName: 
+  CutSceneName: 
+  BossLevelName: 
+  PlayerUI: {fileID: 0}
+  GameOverScreen: {fileID: 0}
+  WinScreen: {fileID: 0}
+  MainMenu: {fileID: 0}
+  CampaignStart: 0
+  Pause: 0
+  eyeCount: 0
+--- !u!4 &1196877307
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1196877305}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7.9458947, y: 34.15227, z: 21.203636}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1329262143
 GameObject:
   m_ObjectHideFlags: 0
@@ -888,14 +952,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CLAWSPAWN: {x: 0, y: 0, z: 0}
   attackList:
-  - Pincer Attack
-  - Claw Slam
-  - Goo Blast
+  - PincerAttack
+  - ClawSmash
+  - GooBlast
   Claw: {fileID: 1330580713}
   bossAnim: {fileID: 1329262146}
   otherClaw: {fileID: 413793732}
   clawtarget: {x: 0, y: 0, z: 0}
-  clawspeed: 1
+  clawspeed: 80
   attacktimer: 0
   attackIDList:
   - 
@@ -928,6 +992,12 @@ MonoBehaviour:
   - 
   - 
   - 
+  PlayerList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  GrabbedPlayer: {fileID: 0}
 --- !u!1 &1619680566
 GameObject:
   m_ObjectHideFlags: 0
@@ -1341,6 +1411,7 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1196877307}
   - {fileID: 1811161626}
   - {fileID: 918457842}
   - {fileID: 1619680568}

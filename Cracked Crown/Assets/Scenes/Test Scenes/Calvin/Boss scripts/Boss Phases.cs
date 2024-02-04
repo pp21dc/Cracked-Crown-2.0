@@ -9,7 +9,7 @@ public class BossPhases : MonoBehaviour
     private Vector3 CLAWSPAWN;
 
     [SerializeField] // list for the possible boss attacks
-    string[] attackList = new string[3] {"Pincer Attack", "Claw Slam", "Goo Blast"};
+    string[] attackList = new string[3];
     
 
     [Header("Boss Parts")]
@@ -50,7 +50,10 @@ public class BossPhases : MonoBehaviour
     private string[] attackIDList = new string[30];
 
     // gets references for players
+    [Header("Player List")]
+    [SerializeField]
     private GameObject[] PlayerList = new GameObject[4];
+    [SerializeField]
     private GameObject GrabbedPlayer;
 
     private float bossHealth;
@@ -84,10 +87,10 @@ public class BossPhases : MonoBehaviour
             {
                 startNextAttack();
             }
+            attackIDList[currattackid] = "PincerAttack";
             switch (attackIDList[currattackid]) // populates the ID list
             {
                 case "PincerAttack":
-                    Debug.Log("PincerAttack");
                     pincerAttack();
                     break;
                 case "ClawSmash":
@@ -119,13 +122,13 @@ public class BossPhases : MonoBehaviour
             switch (tempVar) // populates the ID list
             {
                 case 0:
-                    attackIDList[i] = "PincerAttack";
+                    attackIDList[i] = attackList[0];
                     break;
                 case 1:
-                    attackIDList[i] = "ClawSmash";
+                    attackIDList[i] = attackList[1];
                     break;
                 case 2:
-                    attackIDList[i] = "GooBlast";
+                    attackIDList[i] = attackList[2];
                     break;
             }
         }
@@ -136,6 +139,7 @@ public class BossPhases : MonoBehaviour
         StartCoroutine("PincerAttack"); // starts the next boss attack
         attacktimer = 10;
 
+        /*
         switch (attackIDList[currattackid]) // sets attack timer based on the next boss attack
         {
             case "Pincer Attack":
@@ -151,12 +155,11 @@ public class BossPhases : MonoBehaviour
                 Debug.Log("Wokrimg");
                 break;
         }
-        currattackid++;
+        currattackid++; */
     }
 
     private void pincerAttack() // handles actions relying on the pincer IEnumerator's timings
     {
-        Debug.Log("gay");
         if (clawfollow)
         {
             clawtarget = PlayerList[0].transform.position + PlayerList[0].transform.TransformDirection(0, 80, 0); // actively changes the claw to hover above the player
@@ -173,10 +176,9 @@ public class BossPhases : MonoBehaviour
             {
                 if (!isGrabbed)
                 {
-
-                    Debug.Log(dist);
                     if (dist > 1)
                     {
+                        Debug.Log(dist);
                         dist = Vector3.Distance(GrabbedPlayer.transform.position, preGrabPlayerPosition);
                         GrabbedPlayer.transform.position = Vector3.MoveTowards(GrabbedPlayer.transform.position, preGrabPlayerPosition, 80 * Time.deltaTime);
                     }
@@ -189,6 +191,7 @@ public class BossPhases : MonoBehaviour
 
             if (grabbedTimer < -2) // drops the player when the timer is up
             {
+                Debug.Log(grabbedTimer);
                 isGrabbed = false;
             }
             grabbedTimer -= Time.deltaTime;
@@ -198,7 +201,6 @@ public class BossPhases : MonoBehaviour
     IEnumerator PincerAttack() // handles timings for the pincer function phases
     {
         clawfollow = true; // allows claw to follow player
-        Debug.Log("Follow");
         for (int i = 0; i < PlayerList.Length; i++)
         {
             if (otherClaw.followedPlayer != PlayerList[i])
@@ -208,7 +210,6 @@ public class BossPhases : MonoBehaviour
         }
 
         yield return new WaitForSeconds(4);
-
         clawfollow = false;
         clawtarget = PlayerList[0].transform.position + PlayerList[0].transform.TransformDirection(0, 35, 0); // sets the claw's target to the player
         clawgrab = true; // allows claw to fall to player position
@@ -230,6 +231,8 @@ public class BossPhases : MonoBehaviour
         clawtarget = CLAWSPAWN;
 
         yield return new WaitForSeconds(3);
+        clawreturn = false; // resets final bool and timer for the grab;
+        grabbedTimer = 1;
     }
 
     IEnumerator ClawSmash()
