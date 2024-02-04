@@ -1,0 +1,1183 @@
+fileFormatVersion: 2
+guid: d9ec1eb5e4f1ff248a1384ce286e0b01
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: GreenMed_Frog_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2265
+        width: 856
+        height: 453
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d74c60640443bdb4fa934258db6f4c69
+      internalID: 1931224927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenMed_Frog_1
+      rect:
+        serializedVersion: 2
+        x: 856
+        y: 2265
+        width: 856
+        height: 453
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcddc883951dfbc43a539b26f2f75238
+      internalID: -132058670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenMed_Frog_2
+      rect:
+        serializedVersion: 2
+        x: 1712
+        y: 2265
+        width: 856
+        height: 453
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff4ef1e724625e64ab1676563e02e8e7
+      internalID: 767732728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenMed_Frog_3
+      rect:
+        serializedVersion: 2
+        x: 2568
+        y: 2265
+        width: 856
+        height: 453
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dcbf50ae87973234da34a2a1c8c184d2
+      internalID: -1756021956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenMed_Frog_4
+      rect:
+        serializedVersion: 2
+        x: 3424
+        y: 2265
+        width: 856
+        height: 453
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1ee91f4d57494843af1a89243a0684d
+      internalID: -1954335663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenMed_Frog_5
+      rect:
+        serializedVersion: 2
+        x: 4280
+        y: 2265
+        width: 856
+        height: 453
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d61e0a2ede62e61468435f8335bb13d0
+      internalID: 500762553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenMed_Frog_6
+      rect:
+        serializedVersion: 2
+        x: 5136
+        y: 2265
+        width: 856
+        height: 453
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dad2f1968a924814c905257e54816a62
+      internalID: -342368392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenMed_Frog_7
+      rect:
+        serializedVersion: 2
+        x: 5992
+        y: 2265
+        width: 856
+        height: 453
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8aa036a0feb150c47bc9049328894739
+      internalID: -1457103330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenMed_Frog_8
+      rect:
+        serializedVersion: 2
+        x: 6848
+        y: 2265
+        width: 856
+        height: 453
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c261ef90469af749926dd978342d69e
+      internalID: -397936062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenMed_Frog_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1812
+        width: 856
+        height: 453
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e81f50f30448926439c7699907c5e105
+      internalID: -1883849607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenMed_Frog_10
+      rect:
+        serializedVersion: 2
+        x: 856
+        y: 1812
+        width: 856
+        height: 453
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25c92979f143f7a41a911b360ad27c8f
+      internalID: -1529592080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenMed_Frog_11
+      rect:
+        serializedVersion: 2
+        x: 1712
+        y: 1812
+        width: 856
+        height: 453
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9965aacc874e8c41aa69e6707350c09
+      internalID: 1635242443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenMed_Frog_12
+      rect:
+        serializedVersion: 2
+        x: 2568
+        y: 1812
+        width: 856
+        height: 453
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e25f0bd16a116404692024e025483f8d
+      internalID: -506686404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenMed_Frog_13
+      rect:
+        serializedVersion: 2
+        x: 3424
+        y: 1812
+        width: 856
+        height: 453
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eecfa96a3a36dd545a2d51061414a101
+      internalID: 11598405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenMed_Frog_14
+      rect:
+        serializedVersion: 2
+        x: 4280
+        y: 1812
+        width: 856
+        height: 453
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f67732a5b8099654d91c8eb21ae32d42
+      internalID: -368936912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenMed_Frog_15
+      rect:
+        serializedVersion: 2
+        x: 5136
+        y: 1812
+        width: 856
+        height: 453
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 298a5f7bb9d504249a25016128f18d7c
+      internalID: 1900975750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenMed_Frog_16
+      rect:
+        serializedVersion: 2
+        x: 5992
+        y: 1812
+        width: 856
+        height: 453
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a0f51cbde1849447bd01b51f932bd21
+      internalID: -102625644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenMed_Frog_17
+      rect:
+        serializedVersion: 2
+        x: 6848
+        y: 1812
+        width: 856
+        height: 453
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98c8d256db0de374ea6cb1198c840f9b
+      internalID: -1758800122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenMed_Frog_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1359
+        width: 856
+        height: 453
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0fd8e2e0a17d31646a355125e95578d5
+      internalID: -1541600982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenMed_Frog_19
+      rect:
+        serializedVersion: 2
+        x: 856
+        y: 1359
+        width: 856
+        height: 453
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4577f5f56f5603e4b81f88a6df861def
+      internalID: -1926596112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenMed_Frog_20
+      rect:
+        serializedVersion: 2
+        x: 1712
+        y: 1359
+        width: 856
+        height: 453
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 313af863c72737a4a854ca23583c8b9f
+      internalID: 126579652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenMed_Frog_21
+      rect:
+        serializedVersion: 2
+        x: 2568
+        y: 1359
+        width: 856
+        height: 453
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64d77c51f9e7ccd44b208c8708ce1839
+      internalID: 1319118037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenMed_Frog_22
+      rect:
+        serializedVersion: 2
+        x: 3424
+        y: 1359
+        width: 856
+        height: 453
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d535a3c353c692744a71edb6e43f252b
+      internalID: -174274666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenMed_Frog_23
+      rect:
+        serializedVersion: 2
+        x: 4280
+        y: 1359
+        width: 856
+        height: 453
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c267c5d0fa375f44a1bc17a70666e38
+      internalID: -260874921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenMed_Frog_24
+      rect:
+        serializedVersion: 2
+        x: 5136
+        y: 1359
+        width: 856
+        height: 453
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a736a063b30c7e46986383c8367068f
+      internalID: -1637941474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenMed_Frog_25
+      rect:
+        serializedVersion: 2
+        x: 5992
+        y: 1359
+        width: 856
+        height: 453
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ffc40b88b9eb3f4ebace01798e43268
+      internalID: 93540848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenMed_Frog_26
+      rect:
+        serializedVersion: 2
+        x: 6848
+        y: 1359
+        width: 856
+        height: 453
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ba1d81ac7747b84fa3bd321b91fb32e
+      internalID: -144932319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenMed_Frog_27
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 906
+        width: 856
+        height: 453
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 789a3cdfda37d964cbe1af005307d315
+      internalID: -1620636433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenMed_Frog_28
+      rect:
+        serializedVersion: 2
+        x: 856
+        y: 906
+        width: 856
+        height: 453
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d756dced3b72eb64480fe2cb2fd0a6b8
+      internalID: -639354788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenMed_Frog_29
+      rect:
+        serializedVersion: 2
+        x: 1712
+        y: 906
+        width: 856
+        height: 453
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5c875da7f6f7ce4caf1e04b5682bb7b
+      internalID: 974964472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenMed_Frog_30
+      rect:
+        serializedVersion: 2
+        x: 2568
+        y: 906
+        width: 856
+        height: 453
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9cf90dac67b0d441b5120ac36f5462d
+      internalID: 444522169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenMed_Frog_31
+      rect:
+        serializedVersion: 2
+        x: 3424
+        y: 906
+        width: 856
+        height: 453
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe9c09c4c80fe0d4797d4771ab3dc070
+      internalID: 181081182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenMed_Frog_32
+      rect:
+        serializedVersion: 2
+        x: 4280
+        y: 906
+        width: 856
+        height: 453
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c61d7c7215d511429d68b80dbaf1971
+      internalID: -497631384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenMed_Frog_33
+      rect:
+        serializedVersion: 2
+        x: 5136
+        y: 906
+        width: 856
+        height: 453
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33c06cb82c651ad40ba98694bd809cf1
+      internalID: 275482934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenMed_Frog_34
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 453
+        width: 856
+        height: 453
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57e1c095cc4712d459aeb9e4b3314736
+      internalID: -1459544025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenMed_Frog_35
+      rect:
+        serializedVersion: 2
+        x: 856
+        y: 453
+        width: 856
+        height: 453
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b1d66512591a2b4ba5efcfcd36216f5
+      internalID: 370733224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenMed_Frog_36
+      rect:
+        serializedVersion: 2
+        x: 1712
+        y: 453
+        width: 856
+        height: 453
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ffe422c83a5fb84287fe1925d4c42ef
+      internalID: -2036363651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenMed_Frog_37
+      rect:
+        serializedVersion: 2
+        x: 2568
+        y: 453
+        width: 856
+        height: 453
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eafa61d6985612a4eb63bd6ae19f09e7
+      internalID: 1371578519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenMed_Frog_38
+      rect:
+        serializedVersion: 2
+        x: 3424
+        y: 453
+        width: 856
+        height: 453
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b31fdf8ce8cfc9943b7fb3ce7e43f42d
+      internalID: 1626984273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenMed_Frog_39
+      rect:
+        serializedVersion: 2
+        x: 4280
+        y: 453
+        width: 856
+        height: 453
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c792b26e1479aff4893ee82a8c4aba86
+      internalID: -1517838411
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenMed_Frog_40
+      rect:
+        serializedVersion: 2
+        x: 5136
+        y: 453
+        width: 856
+        height: 453
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5a5f0c59f2251c478193b0f33dc02ec
+      internalID: -1728865413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenMed_Frog_41
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 856
+        height: 453
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bdb0723b1908ebe469dc6bbe1ec7191a
+      internalID: 1230829377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenMed_Frog_42
+      rect:
+        serializedVersion: 2
+        x: 856
+        y: 0
+        width: 856
+        height: 453
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28afbe0e66b7f014bb4296961c9b3999
+      internalID: 1474054986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenMed_Frog_43
+      rect:
+        serializedVersion: 2
+        x: 1712
+        y: 0
+        width: 856
+        height: 453
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 979fc287c52c19d499a1d90780fd8cd8
+      internalID: 741920388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenMed_Frog_44
+      rect:
+        serializedVersion: 2
+        x: 2568
+        y: 0
+        width: 856
+        height: 453
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47a6937075b5fb246b07e7938ddf11b6
+      internalID: -1315041291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenMed_Frog_45
+      rect:
+        serializedVersion: 2
+        x: 3424
+        y: 0
+        width: 856
+        height: 453
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 007053fc39eb5d2439620bb75a6c9cf4
+      internalID: -1888808015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenMed_Frog_46
+      rect:
+        serializedVersion: 2
+        x: 4280
+        y: 0
+        width: 856
+        height: 453
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d3c642a4d84a45429ae5a909bbbd012
+      internalID: 922766103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GreenMed_Frog_47
+      rect:
+        serializedVersion: 2
+        x: 5136
+        y: 0
+        width: 856
+        height: 453
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b72c9a4f0b698d41b192a1ee52cf14a
+      internalID: 612325250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 2d1647fc7523b4e408f0649bd9f912ad
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      GreenMed_Frog_0: 1931224927
+      GreenMed_Frog_1: -132058670
+      GreenMed_Frog_10: -1529592080
+      GreenMed_Frog_11: 1635242443
+      GreenMed_Frog_12: -506686404
+      GreenMed_Frog_13: 11598405
+      GreenMed_Frog_14: -368936912
+      GreenMed_Frog_15: 1900975750
+      GreenMed_Frog_16: -102625644
+      GreenMed_Frog_17: -1758800122
+      GreenMed_Frog_18: -1541600982
+      GreenMed_Frog_19: -1926596112
+      GreenMed_Frog_2: 767732728
+      GreenMed_Frog_20: 126579652
+      GreenMed_Frog_21: 1319118037
+      GreenMed_Frog_22: -174274666
+      GreenMed_Frog_23: -260874921
+      GreenMed_Frog_24: -1637941474
+      GreenMed_Frog_25: 93540848
+      GreenMed_Frog_26: -144932319
+      GreenMed_Frog_27: -1620636433
+      GreenMed_Frog_28: -639354788
+      GreenMed_Frog_29: 974964472
+      GreenMed_Frog_3: -1756021956
+      GreenMed_Frog_30: 444522169
+      GreenMed_Frog_31: 181081182
+      GreenMed_Frog_32: -497631384
+      GreenMed_Frog_33: 275482934
+      GreenMed_Frog_34: -1459544025
+      GreenMed_Frog_35: 370733224
+      GreenMed_Frog_36: -2036363651
+      GreenMed_Frog_37: 1371578519
+      GreenMed_Frog_38: 1626984273
+      GreenMed_Frog_39: -1517838411
+      GreenMed_Frog_4: -1954335663
+      GreenMed_Frog_40: -1728865413
+      GreenMed_Frog_41: 1230829377
+      GreenMed_Frog_42: 1474054986
+      GreenMed_Frog_43: 741920388
+      GreenMed_Frog_44: -1315041291
+      GreenMed_Frog_45: -1888808015
+      GreenMed_Frog_46: 922766103
+      GreenMed_Frog_47: 612325250
+      GreenMed_Frog_5: 500762553
+      GreenMed_Frog_6: -342368392
+      GreenMed_Frog_7: -1457103330
+      GreenMed_Frog_8: -397936062
+      GreenMed_Frog_9: -1883849607
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
