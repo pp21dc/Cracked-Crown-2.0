@@ -6,7 +6,7 @@ public class Bomb : MonoBehaviour
 {
     public Vector3 direction;
 
-    private float damage = 25f;
+    private float damage = 100f;
     private int count = 0;
     private float speed = 25;
 
@@ -25,7 +25,7 @@ public class Bomb : MonoBehaviour
 
         // play wub wub animation looking like its gonna explode
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(5f);
 
         // play explosion effect
 
@@ -50,8 +50,9 @@ public class Bomb : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Enemy")
+        if (other.tag == "Medium" || other.tag == "Heavy" || other.tag == "Light")
         {
+            Debug.Log("enemy in radius");
             enemiesInRange[count] = other.GetComponent<EnemyAIController>();
             count++;
         }
@@ -59,8 +60,9 @@ public class Bomb : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Enemy")
+        if (other.tag == "Medium" || other.tag == "Heavy" || other.tag == "Light")
         {
+            Debug.Log("enemy out of range");
             count--;
             enemiesInRange[count] = null; // dont know how to know which one is leaving and how to delete that one from list
         }
