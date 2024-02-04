@@ -22,26 +22,18 @@ public class StunnedState : FSMState
 
 
 
-        /*
         if (enemy.Health <= 0)
         {
             enemy.PerformTransition(Transition.NoHealth);
             return;
         }
-        else if (IsInCurrentRange(npc, player.position, 15f))
-        {
-
-            enemy.PerformTransition(Transition.seePlayer);
-            return;
-
-        }
         else if (enemy.Health <= 10)
         {
 
-            enemy.PerformTransition(Transition.lowHealth);
+            enemy.PerformTransition(Transition.LowHealth);
             return;
         
-        }*/
+        }
         
     }
 

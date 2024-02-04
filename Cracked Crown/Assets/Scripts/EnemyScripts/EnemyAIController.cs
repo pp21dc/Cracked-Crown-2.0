@@ -74,7 +74,21 @@ public class EnemyAIController : AdvancedFSM
     private float intialY;
     private bool canGoop;
     private bool startGoop;
-    
+
+    private bool seesPLayer;
+    public bool startSlam;
+
+    public bool canSlam;
+
+    [SerializeField]
+    private SlamAttack slamAttack;
+
+    [SerializeField]
+    private float slamSpeed = 15f;
+
+    [SerializeField]
+    private Transform SlamLocation;
+
 
     //health, finisher, and death states
     public float maxHealth = 100; // its total Health
@@ -179,6 +193,13 @@ public class EnemyAIController : AdvancedFSM
 
         startGoop = true;
         canGoop = true;
+
+        seesPLayer = false;
+        startSlam = false;
+
+        canSlam = true;
+
+        slamSpeed = 15f;
 
         ConstructFSM();
     }
@@ -399,8 +420,23 @@ public class EnemyAIController : AdvancedFSM
             StartCoroutine(GoopRoutine());
         }
         
+        if(checkBelow())
+        {
+            startSlam = true;
+        }
+
+    }
+
+    private bool checkBelow()
+    {
+        if(seesPLayer)
+        {
+            return true;
+        }
+
         
 
+        return false;
     }
 
     IEnumerator GoopRoutine()
@@ -489,7 +525,45 @@ public class EnemyAIController : AdvancedFSM
         yield return null;
     }
 
+    public void StartSlam()
+    {
+        if(canSlam)
+        {
+            canSlam = false;
+            StartCoroutine(SlamAttack());
+        }
+        else
+        {
+            movementVector = (SlamLocation.position - enemyPosition.transform.position).normalized * slamSpeed;
+            enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
+        }
+    }
 
+    IEnumerator SlamAttack()
+    {
+        yield return new WaitForSeconds(3f);
+
+        if(slamAttack.hasHit == true)
+        {
+            //succeed and move to carry state
+        }
+        else
+        {
+            //fail and move to stunned state
+        }
+
+        yield return null;
+    }
+
+    public void StartStunned()
+    {
+        //call a coroutine to wait for 3 seconds, fly back up to 30 above and go to findplayer
+    }
+
+    public void StartCarry()
+    {
+        //call player carry method, move the light enemy to a random point, if timer runs out, drop player go to find player
+    }
 
 
     //starts the heavy dash if in range
@@ -600,7 +674,13 @@ public class EnemyAIController : AdvancedFSM
         }
     }
 
-
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Player"))
+        {
+            seesPLayer = true;
+        }
+    }
 
 
 }
