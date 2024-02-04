@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -51,6 +52,8 @@ public class PlayerBody : MonoBehaviour
     private Vector3 forExecutePosition = new Vector3(15, 0, 0);
     [SerializeField]
     private EnemyAIController enemyAIController;
+    [SerializeField]
+    private GameObject throwableBombPrefab;
 
     public GameObject CharacterFolder;
     public bool canMove = true;
@@ -421,8 +424,6 @@ public class PlayerBody : MonoBehaviour
         {
             if (controller.InteractDown)
             {
-                Debug.Log("pressed interact");
-
                 if (gameManager.eyeCount >= 5 && hasPotion == false && hasBomb == false)
                 {
                     gameManager.eyeCount -= 5;
@@ -437,8 +438,6 @@ public class PlayerBody : MonoBehaviour
         {
             if (controller.InteractDown)
             {
-                Debug.Log("pressed interact");
-
                 if (gameManager.eyeCount >= 5 && hasPotion == false && hasBomb == false)
                 {
                     gameManager.eyeCount -= 5;
@@ -453,16 +452,24 @@ public class PlayerBody : MonoBehaviour
 
     private void UseItem()
     {
+
         if (controller.ItemDown)
         {
             if (hasBomb)
             {
-                // set isThrow to true
+                Vector3 fortniteFellaBalls = transform.position + movementVector;
+                GameObject bomb = Instantiate(throwableBombPrefab, fortniteFellaBalls, Quaternion.identity);
+                Bomb reference = bomb.GetComponent<Bomb>();
+                reference.setDirection(movementVector);
+
+                hasBomb = false;
             }
             if (hasPotion)
             {
                 float healAmount = maxHealth * 0.33f;
                 AddHealth(healAmount);
+                Debug.Log("Player health is: " + health);
+                hasPotion = false;
             }
         }
     }

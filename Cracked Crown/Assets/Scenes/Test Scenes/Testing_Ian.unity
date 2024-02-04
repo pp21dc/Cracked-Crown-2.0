@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -11744,6 +11744,8 @@ MonoBehaviour:
   finisherColliderGO: {fileID: 300227909}
   forExecutePosition: {x: 15, y: 0, z: 0}
   enemyAIController: {fileID: 1580867126}
+  throwableBombPrefab: {fileID: 5158602912670518605, guid: 4d7b09c3101d4ef4fb92a55bbbab91d5,
+    type: 3}
   CharacterFolder: {fileID: 1926349733}
   canMove: 1
   SwordSlash: {fileID: 125767920}

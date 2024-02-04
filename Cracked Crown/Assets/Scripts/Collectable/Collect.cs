@@ -6,7 +6,6 @@ public class Collect : MonoBehaviour
 {
 
     private PlayerBody body;
-    //private PlayerController controller;
     private GameManager gameManager;
 
     private void Awake()
@@ -19,7 +18,6 @@ public class Collect : MonoBehaviour
         if (other.tag == "Player" || other.tag == "Ghost")
         {
             body = other.GetComponent<PlayerBody>();
-            //controller = other.transform.parent.GetChild(0).GetComponent<PlayerController>();
 
             if (gameObject.tag == "Eye")
             {

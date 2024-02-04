@@ -4,60 +4,65 @@ using UnityEngine;
 
 public class Bomb : MonoBehaviour
 {
-
-    [HideInInspector]
-    public bool isThrown = false;
+    public Vector3 direction;
 
     private float damage = 25f;
+    private int count = 0;
+    private float speed = 25;
 
     private EnemyAIController[] enemiesInRange;
+    private PlayerBody body;
 
     // Update is called once per frame
     void Update()
     {
-        if (isThrown)
-        {
-            gameObject.SetActive(true);
-
-            Vector3 movementVector = new Vector3(3,0,0);
-
-            transform.position += movementVector * Time.deltaTime;
-            StartCoroutine(Explode());
-        }
+        transform.position += direction * speed * Time.deltaTime;
+        StartCoroutine(Explode());
     }
 
     private IEnumerator Explode()
     {
 
-        yield return new WaitForSeconds(2f);
+        // play wub wub animation looking like its gonna explode
+
+        yield return new WaitForSeconds(1f);
+
         // play explosion effect
-        gameObject.SetActive(false);
-        for (int i = 0; i <= enemiesInRange.Length; )
+
+        if (enemiesInRange != null)
         {
-            enemiesInRange[i].DecHealth(damage);
+            foreach (EnemyAIController enemy in enemiesInRange)
+            {
+                enemiesInRange[count].DecHealth(damage);
+                count--;
+            }
         }
 
+        Debug.Log("bomb went boom");
+        gameObject.SetActive(false);
+
+    }
+
+    public void setDirection(Vector3 dir)
+    {
+        direction = dir;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        for (int i = 0; i < enemiesInRange.Length; i++)
+        if (other.tag == "Enemy")
         {
-            if (gameObject.tag == "Radius")
-            {
-                enemiesInRange[i] = other.GetComponent<EnemyAIController>();
-            }
+            enemiesInRange[count] = other.GetComponent<EnemyAIController>();
+            count++;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        for (int i = 0; i < enemiesInRange.Length; i++)
+        if (other.tag == "Enemy")
         {
-            if (gameObject.tag == "Radius")
-            {
-                enemiesInRange[i] = null;
-            }
+            count--;
+            enemiesInRange[count] = null; // dont know how to know which one is leaving and how to delete that one from list
         }
     }
 }
