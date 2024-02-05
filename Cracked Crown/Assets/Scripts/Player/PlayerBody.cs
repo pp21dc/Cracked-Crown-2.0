@@ -479,6 +479,9 @@ public class PlayerBody : MonoBehaviour
 
     public bool StartSpam()
     {
+        canMove = false;
+        canAttack = false;
+
         StartCoroutine(spamX());
 
         if(canRelease == true)
@@ -506,6 +509,8 @@ public class PlayerBody : MonoBehaviour
         }
 
         canRelease = true;
+        canMove = true;
+        canAttack = true;
 
         yield return null;
     }

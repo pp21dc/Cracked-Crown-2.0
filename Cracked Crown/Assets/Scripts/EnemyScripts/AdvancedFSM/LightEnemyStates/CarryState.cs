@@ -21,33 +21,17 @@ public class CarryState : FSMState
     {
 
 
-
-        /*
-        if (enemy.Health <= 0)
+        if (enemy.doneCarry == true) 
         {
-            enemy.PerformTransition(Transition.NoHealth);
-            return;
+            enemy.PerformTransition(Transition.LookForPlayer);
         }
-        else if (IsInCurrentRange(npc, player.position, 15f))
-        {
-
-            enemy.PerformTransition(Transition.seePlayer);
-            return;
-
-        }
-        else if (enemy.Health <= 10)
-        {
-
-            enemy.PerformTransition(Transition.lowHealth);
-            return;
-
-        }
-        */
+ 
+        
     }
 
     //no need for anything in act as you are jsut standing there until a player attacks you or you see them
     public override void Act(Transform player, Transform npc)
     {
-
+        enemy.StartCarry();
     }
 }

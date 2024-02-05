@@ -34,12 +34,17 @@ public class StunnedState : FSMState
             return;
         
         }
+        else if(enemy.doneStun == true)
+        {
+            enemy.PerformTransition(Transition.LookForPlayer);
+        }
+        
         
     }
 
     //no need for anything in act as you are jsut standing there until a player attacks you or you see them
     public override void Act(Transform player, Transform npc)
     {
-
+        enemy.StartStunned();
     }
 }

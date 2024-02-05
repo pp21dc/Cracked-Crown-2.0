@@ -4,6 +4,7 @@ using System.Collections;
 using System.Runtime.InteropServices;
 using System.Runtime.CompilerServices;
 using UnityEngine.Rendering;
+using Unity.VisualScripting;
 
 [System.Serializable]
 public abstract class AIProperties // the properties that are most commonly used by all states and are now accesible to those states
@@ -91,6 +92,9 @@ public class EnemyAIController : AdvancedFSM
 
     [SerializeField]
     private Transform SlamLocation;
+
+    public bool doneCarry;
+    public bool doneStun;
 
 
     //health, finisher, and death states
@@ -206,6 +210,9 @@ public class EnemyAIController : AdvancedFSM
 
         moveToStunned = false;
         moveToCarry = false;
+
+        doneCarry = false;
+        doneStun = false;
 
         ConstructFSM();
     }
@@ -544,6 +551,9 @@ public class EnemyAIController : AdvancedFSM
             enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
         }
     }
+
+    
+    
 
     IEnumerator SlamAttack()
     {
