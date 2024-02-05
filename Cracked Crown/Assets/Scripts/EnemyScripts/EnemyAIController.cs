@@ -80,6 +80,9 @@ public class EnemyAIController : AdvancedFSM
 
     public bool canSlam;
 
+    public bool moveToStunned;
+    public bool moveToCarry;
+
     [SerializeField]
     private SlamAttack slamAttack;
 
@@ -200,6 +203,9 @@ public class EnemyAIController : AdvancedFSM
         canSlam = true;
 
         slamSpeed = 15f;
+
+        moveToStunned = false;
+        moveToCarry = false;
 
         ConstructFSM();
     }
@@ -545,11 +551,11 @@ public class EnemyAIController : AdvancedFSM
 
         if(slamAttack.hasHit == true)
         {
-            //succeed and move to carry state
+            moveToCarry = true;
         }
         else
         {
-            //fail and move to stunned state
+            moveToStunned = true;
         }
 
         yield return null;
