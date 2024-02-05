@@ -94,6 +94,9 @@ public class PlayerBody : MonoBehaviour
     private float maxHealth;
     private GameManager gameManager;
 
+    //hey Ian dont know where you will want this bool
+    private bool canRelease = false;
+
     private void Update()
     {
         collect();
@@ -472,5 +475,38 @@ public class PlayerBody : MonoBehaviour
                 hasPotion = false;
             }
         }
+    }
+
+    public bool StartSpam()
+    {
+        StartCoroutine(spamX());
+
+        if(canRelease == true)
+        {
+            canRelease = false;
+            return true;
+        }
+        else 
+        {
+            return false;
+        }
+
+    }
+
+    IEnumerator spamX()
+    {
+        int timesHit = 0;
+
+        while(timesHit < 8)
+        {
+            if(controller.InteractDown)
+            {
+                timesHit++;
+            }
+        }
+
+        canRelease = true;
+
+        yield return null;
     }
 }
