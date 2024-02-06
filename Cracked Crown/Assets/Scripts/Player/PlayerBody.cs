@@ -170,7 +170,7 @@ public class PlayerBody : MonoBehaviour
     bool dontForward;
     private void FixedUpdate()
     {
-        Debug.Log(rb.velocity);
+        //Debug.Log(rb.velocity);
         //rb.AddForce(new Vector3(0, -12000, 0) * Time.fixedDeltaTime);
         if (canMove && !dashing && sprite != null)
         {
@@ -245,6 +245,7 @@ public class PlayerBody : MonoBehaviour
             }
             
         }
+        //Debug.Log(executeTarget.IsUnityNull());
         if (canMovePlayerForexecute && executeTarget != null)
         {
             if (Vector3.Distance(transform.position, executeTarget.transform.position + forExecutePosition) < 1 && !lockExecAnim)
@@ -252,8 +253,13 @@ public class PlayerBody : MonoBehaviour
                 animController.Finishing = true;
                 lockExecAnim = true;
             }
-            Debug.Log(Vector3.Distance(transform.position, executeTarget.transform.position + forExecutePosition));
+            //Debug.Log(Vector3.Distance(transform.position, executeTarget.transform.position + forExecutePosition));
             transform.position = Vector3.MoveTowards(gameObject.transform.position, executeTarget.transform.position + forExecutePosition, executeMoveSpeed * Time.deltaTime);
+        }
+        if (dashing)
+        {
+            Debug.Log("DASHING");
+            rb.velocity = ((dashDirection * dashSpeed * forceMod * 0.02f));
         }
     }
     public bool lockExecAnim;
@@ -362,12 +368,7 @@ public class PlayerBody : MonoBehaviour
             dashDirection = new Vector3(1, 0, 0);
         }
 
-        while (Time.time < startTime + dashTime)
-        {
-            Debug.Log("DASHING");
-            rb.velocity = ((dashDirection * dashSpeed * forceMod * 2) * Time.deltaTime);
-            yield return new WaitForEndOfFrame();
-        }
+        yield return new WaitForSeconds(dashTime);
 
         canAttack = true;
         canTakeDamage = true;
@@ -402,10 +403,10 @@ public class PlayerBody : MonoBehaviour
             canMovePlayerForexecute = true;
             //Debug.Log("EXEC");
             
-            toExecute.transform.parent.gameObject.SetActive(false);
             
-            yield return new WaitForSeconds(1);
-
+            
+            yield return new WaitForSeconds(0);
+            toExecute.transform.parent.gameObject.SetActive(false);
         }
     }
 
@@ -527,11 +528,13 @@ public class PlayerBody : MonoBehaviour
     private void UseItem()
     {
 
+        Vector3 stinky = new Vector3 (0, 3, 0); // so it spawns above the ground
+
         if (controller.ItemDown)
         {
             if (hasBomb)
             {
-                Vector3 fortniteFellaBalls = transform.position + movementVector;
+                Vector3 fortniteFellaBalls = transform.position + movementVector + stinky;
                 GameObject bomb = Instantiate(throwableBombPrefab, fortniteFellaBalls, Quaternion.identity);
                 Bomb reference = bomb.GetComponent<Bomb>();
                 reference.setDirection(movementVector);
