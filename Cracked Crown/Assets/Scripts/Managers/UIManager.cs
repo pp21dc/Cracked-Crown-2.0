@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -40,6 +41,18 @@ public class UIManager : MonoBehaviour
 
     [Header("Character Select")]
     [SerializeField] private GameObject CharacterSelectUI;
+
+    [Header("Dialogue Bar")]
+    [SerializeField] private TMP_Text DialogueBar;
+    [SerializeField] private Image CharacterIcon;
+    [SerializeField] private Sprite[] CharacterIcons;
+    public enum characterIcons {Frog, Bunny, Duck, HoneyBadger };
+
+    private void Start()
+    {
+        displayDialogue("penis penis penis penis penis penis pensi penis", characterIcons.Bunny);
+
+    }
     private void Update()
     {
         if (player1.PauseDown || player2.PauseDown || player3.PauseDown || player4.PauseDown)
@@ -120,5 +133,13 @@ public class UIManager : MonoBehaviour
     public void setMusicVol()
     {
         Mixer.SetFloat("MusicVol", MusicSlider.value);
+    }
+
+    public void displayDialogue(string dialogue, characterIcons character)
+    {
+        DialogueBar.SetText(dialogue);
+        CharacterIcon.sprite = CharacterIcons[((int)character)];
+        CharacterIcon.SetNativeSize();
+        CharacterIcon.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
     }
 }
