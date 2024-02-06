@@ -85,7 +85,7 @@ public class PlayerBody : MonoBehaviour
     public Collect collectable;
 
     private bool dashOnCD = false;
-    private bool canTakeDamage = true;
+    public bool canTakeDamage = true;
     private float executeHeal = 5f;
     private float executeMoveSpeed = 150f;
     private GameObject executeTarget;
@@ -224,10 +224,7 @@ public class PlayerBody : MonoBehaviour
                 movementVector.z = movementVector.z * 1.5f;
                 movementVector = (movementVector * movementSpeed);
 
-                //rb.MovePosition(rb.position + (movementVector * Time.fixedDeltaTime));
                 rb.velocity = (movementVector * forceMod * Time.fixedDeltaTime);
-                //Debug.Log("canMove");
-                //transform.position += (movementVector/2) * Time.deltaTime;
 
                 if ((rb.velocity.magnitude > 30f || movementVector.magnitude > 1) & Mathf.Abs(movementVector.magnitude) > 0 && !alreadyDead)
                 {
@@ -239,10 +236,12 @@ public class PlayerBody : MonoBehaviour
                     animController.Moving = false;
                 }
             }
-            if (canMovePlayerForexecute && executeTarget != null)
-            {
-                transform.position = Vector3.MoveTowards(gameObject.transform.position, executeTarget.transform.position + forExecutePosition, executeMoveSpeed * Time.deltaTime);
-            }
+            
+        }
+        if (canMovePlayerForexecute && executeTarget != null)
+        {
+            //Debug.Log("FUCCCCC");
+            transform.position = Vector3.MoveTowards(gameObject.transform.position, executeTarget.transform.position + forExecutePosition, executeMoveSpeed * Time.deltaTime);
         }
     }
 
@@ -285,7 +284,7 @@ public class PlayerBody : MonoBehaviour
 
             if (!hitEnemy && !dontForward)
             {
-                rb.velocity = (GetMovementVector() * attackKnockback * (forceMod/2) * Time.deltaTime);
+                rb.velocity = (GetMovementVector() * attackKnockback * (forceMod/2.5f) * Time.deltaTime);
 
             }
             else
@@ -372,25 +371,28 @@ public class PlayerBody : MonoBehaviour
     {
         if (toExecute != null)
         {
+            enemyAIController = toExecute.transform.parent.GetChild(0).GetComponent<EnemyAIController>();
             executeTarget = toExecute;
             float xInput = controller.HorizontalMagnitude;
 
             controller.sprite = CharacterFolder.transform.GetChild(0);
             float scale = Mathf.Abs(controller.sprite.localScale.x);
-            controller.sprite.localScale = new Vector3(-scale, controller.sprite.localScale.y, 1); // to swap so its always facing enemy
+            controller.sprite.localScale = new Vector3(scale, controller.sprite.localScale.y, 1); // to swap so its always facing enemy
 
             canTakeDamage = false;
             canMove = false;
             enemyAIController.canMove = false;
             canMovePlayerForexecute = true;
+            //Debug.Log("EXEC");
+            yield return new WaitForSeconds(1);
+            //Debug.Log("DESTROY");
+            toExecute.transform.parent.gameObject.SetActive(false);
 
-            yield return new WaitForSeconds(0.75f);
-            Destroy(toExecute.transform.parent.gameObject);
-
-            executeCollideScript.enemiesInRange.Remove(toExecute); // remove enemy from list
+            //executeCollideScript.enemiesInRange.Remove(toExecute); // remove enemy from list
             health = health + executeHeal;
             canMove = true;
             canTakeDamage = true;
+            canMovePlayerForexecute = false;
         }
     }
 

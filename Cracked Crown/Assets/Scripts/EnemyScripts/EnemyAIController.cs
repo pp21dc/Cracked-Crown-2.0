@@ -523,7 +523,7 @@ public class EnemyAIController : AdvancedFSM
         while (health < 76)
         {
             health += Time.deltaTime * 10;
-            Debug.Log("HEALTH");
+            //Debug.Log("HEALTH");
             yield return null;
         }
 
@@ -683,8 +683,11 @@ public class EnemyAIController : AdvancedFSM
                 timer = 0;
                 //damaging = true;
                 PlayerBody pb = other.gameObject.GetComponent<PlayerBody>();
-                pb.DecHealth(1);
-                EAC.Attacking = true;
+                if (!pb.canTakeDamage)
+                {
+                    pb.DecHealth(1);
+                    EAC.Attacking = true;
+                }
                    
             }
             else

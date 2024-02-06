@@ -13,7 +13,7 @@ public class PlayerAnimEventHandler : MonoBehaviour
 
     public void AttackFinish()
     {
-        //Debug.Log("FINISH");
+        Debug.Log("FINISH-ATTACK");
         PC.PAC.Attacking = false;
         PC.PB.canMove = true;
         PC.PB.canAttack = true;
