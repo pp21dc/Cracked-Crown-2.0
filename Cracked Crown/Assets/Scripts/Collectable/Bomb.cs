@@ -13,7 +13,7 @@ public class Bomb : MonoBehaviour
     private Vector3 height;
     private int counter = 0;
 
-    private EnemyAIController[] enemiesInRange;
+    private List<EnemyAIController> enemiesInRange;
     private PlayerBody body;
     private Rigidbody rb;
 
@@ -21,6 +21,7 @@ public class Bomb : MonoBehaviour
     {
         height = new Vector3(0,1,0);
         rb = GetComponent<Rigidbody>();
+        enemiesInRange = new List<EnemyAIController>();
     }
 
     int thing = 1;
@@ -48,7 +49,7 @@ public class Bomb : MonoBehaviour
 
         // play wub wub animation looking like its gonna explode
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
 
         // play explosion effect
 
@@ -56,8 +57,7 @@ public class Bomb : MonoBehaviour
         {
             foreach (EnemyAIController enemy in enemiesInRange)
             {
-                enemiesInRange[count].DecHealth(damage);
-                count--;
+                enemy.DecHealth(damage);
             }
         }
 
@@ -74,11 +74,13 @@ public class Bomb : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Medium" || other.tag == "Heavy" || other.tag == "Light")
+        if (other.tag == "Enemy")
         {
-            Debug.Log("enemy in radius");
-            enemiesInRange[count] = other.GetComponent<EnemyAIController>();
-            count++;
+            //Debug.Log("enemy in radius");
+            //Debug.Log(other.gameObject.transform.parent.GetChild(0).GetComponent<EnemyAIController>());
+            enemiesInRange.Add(other.transform.parent.GetChild(0).gameObject.GetComponent<EnemyAIController>());
+            //Debug.Log("enemy in list is: " + enemiesInRange[count]);
+            //count++;
         }
     }
 
@@ -86,9 +88,9 @@ public class Bomb : MonoBehaviour
     {
         if (other.tag == "Medium" || other.tag == "Heavy" || other.tag == "Light")
         {
-            Debug.Log("enemy out of range");
-            count--;
-            enemiesInRange[count] = null; // dont know how to know which one is leaving and how to delete that one from list
+            //Debug.Log("enemy out of range");
+            //count--;
+            enemiesInRange.Remove(other.transform.parent.GetChild(0).gameObject.GetComponent<EnemyAIController>()); // dont know how to know which one is leaving and how to delete that one from list
         }
     }
 
