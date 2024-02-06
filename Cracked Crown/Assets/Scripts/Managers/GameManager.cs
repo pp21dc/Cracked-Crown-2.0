@@ -84,7 +84,7 @@ public class GameManager : MonoBehaviour
         //Screen.SetResolution(1920, 1080, true, 120);
         Debug.Log(Screen.currentResolution);
     }
-
+    public GameObject enem;
     private void FixedUpdate()
     {
         if (Input.GetKeyUp(KeyCode.KeypadEnter))
@@ -96,6 +96,7 @@ public class GameManager : MonoBehaviour
             Debug.Log(currentLevel);
             NextLevel();
         }
+        
         
     }
 

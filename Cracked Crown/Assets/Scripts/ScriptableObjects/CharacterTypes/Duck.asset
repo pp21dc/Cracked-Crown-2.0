@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 619a2391952fe4c43bf35415cad72a46, type: 3}
   m_Name: Duck
   m_EditorClassIdentifier: 
-  moveSpeed: 180
-  dashSpeed: 90
+  moveSpeed: 8
+  dashSpeed: 14
   dashTime: 0.8
   attack: 4
   attackSpeed: 0
   attackKnockback: 3.5
   finisherRadius: 20
   executePosition: {x: 15, y: 0, z: 0}
+  corpse: {fileID: 0}
   hop: 0

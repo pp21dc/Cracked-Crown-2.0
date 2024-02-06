@@ -13,5 +13,6 @@ public class CharacterType : ScriptableObject
     public float attackKnockback;
     public float finisherRadius;
     public Vector3 executePosition;
+    public GameObject corpse;
     public bool hop;
 }

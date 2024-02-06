@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3.5, y: 3.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1177276868569814050}
@@ -54,8 +54,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.25, y: 3.75, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 2.25, y: 3.75, z: 5.7055097}
+  m_Center: {x: 0, y: 0, z: -0.02882401}
 --- !u!212 &99065361593015975
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -201,8 +201,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 4, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 10.472778, y: 18.485518, z: 4.4846153}
+  m_Center: {x: 0.40534216, y: 1.979397, z: -0.6038061}
 --- !u!54 &5493214263850978981
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -285,7 +285,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  enemyPosition: {fileID: 1177276868569814050}
+  enemyPosition: {fileID: 3193789946226294552}
   enemy: {fileID: 1091935484162795870}
   enemyBody: {fileID: 5493214263850978981}
   speed: 12
@@ -296,9 +296,19 @@ MonoBehaviour:
   TargetPlayerPos: {x: 0, y: 0, z: 0}
   isHeavyDashing: 0
   isDoneDashing: 0
+  startSlam: 0
+  canSlam: 0
+  moveToStunned: 0
+  moveToCarry: 0
+  slamAttack: {fileID: 0}
+  slamSpeed: 15
+  SlamLocation: {fileID: 0}
+  doneCarry: 0
+  doneStun: 0
   maxHealth: 100
   health: 100
   Damage: {fileID: 2620462327617662294}
+  act: 0
   timeToDamage: 2
 --- !u!65 &2243525588475844062
 BoxCollider:
@@ -319,7 +329,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 5.43, y: 9.66, z: 5.56}
+  m_Size: {x: 16.07, y: 9.66, z: 15.81}
   m_Center: {x: 0, y: 2, z: 0}
 --- !u!1 &5068627527567498472
 GameObject:
@@ -347,8 +357,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6949310528298810098}
   - {fileID: 1177276868569814050}

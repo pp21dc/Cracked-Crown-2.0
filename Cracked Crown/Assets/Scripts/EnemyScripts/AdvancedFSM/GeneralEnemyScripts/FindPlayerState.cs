@@ -37,7 +37,7 @@ public class FindPlayerState : FSMState
                 return;
             }
         }
-        else if (enemy.CompareTag("Medium") == true)
+        else if (enemy.CompareTag("Medium") == true && player != null)
         {
             //Debug.Log("Found the Medium");
             if (Vector3.Distance(enemy.ePosition.position,player.position) <= 75f)
@@ -47,7 +47,7 @@ public class FindPlayerState : FSMState
             }
             
         }
-        else if (enemy.CompareTag("Heavy"))
+        else if (enemy.CompareTag("Heavy") && player != null)
         {
             if (IsInCurrentRange(npc, player.position, 15f))
             {

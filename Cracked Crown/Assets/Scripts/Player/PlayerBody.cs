@@ -7,9 +7,11 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 using static UnityEngine.EventSystems.EventTrigger;
-
+using UnityEngine.SceneManagement;
 public class PlayerBody : MonoBehaviour
 {
+    [Header("SET BEFORE USE")]
+    public bool IS_IN_TEST_SCENE = true;
     [Header("Controlled By Scriptable Object CharacterType")]
     [SerializeField]
     private float movementSpeed = 5f;
@@ -105,33 +107,42 @@ public class PlayerBody : MonoBehaviour
         if ((health <= 0 || Input.GetKey(KeyCode.O)) && alreadyDead == false)
         {
             Debug.Log("You Died");
-
-            GhostMode();
+            rb.velocity = Vector3.zero;
+            //GhostMode();
             animController.Moving = false;
             animController.dashing = false;
             animController.Attacking = false;
             animController.Dead = true;
             alreadyDead = true;
+            canMove = false;
+            canAttack = false;
+            lockDash = true;
         }
         if (ghostCoins >= 5)
         {
+            
             gameObject.tag = "Player";
 
             // move player back to corpse
             transform.position = respawnPoint;
 
             // change back to normal
-            animController.Moving = true;
+            //animController.Moving = true;
             animController.Dead = false;
             alreadyDead = false;
             ghostCoins = 0;
             health = maxHealth;
+            canAttack = true;
+            canMove = true;
+            lockDash = false;
 
             canTakeDamage = true;
-            resetPlayer();
+
 
             // delete corpse
+            //Debug.Log("DESTROY CORPSES");
             Destroy(corpse);
+            
         }
         //Move();
         Attack();
@@ -143,9 +154,11 @@ public class PlayerBody : MonoBehaviour
 
     private void Awake()
     {
-
-        gameManager = GameManager.Instance;
-
+        if (!IS_IN_TEST_SCENE)
+        {
+            gameManager = GameManager.Instance;
+            persistScene = SceneManager.GetSceneByBuildIndex(0);
+        }
         if (CharacterType != null)
         {
             SetCharacterData();
@@ -166,8 +179,8 @@ public class PlayerBody : MonoBehaviour
         }
         if (hitEnemy)
         {
-            Debug.Log(GetMovementVector());
-            rb.AddForce((-GetMovementVector()) * attackKnockback * 2400 * Time.fixedDeltaTime,ForceMode.Impulse);
+            //Debug.Log(GetMovementVector());
+            rb.velocity = ((-GetMovementVector()) * attackKnockback * forceMod/2 * Time.fixedDeltaTime);
             hitEnemy = false;
             dontForward = true;
         }
@@ -183,9 +196,10 @@ public class PlayerBody : MonoBehaviour
     }
 
     public Vector3 movementVector;
+    public float forceMod = 1000;
     private void Move()
     {
-        if (true || !ifHopper)
+        if (canMove)
         {
             float zInput = controller.ForwardMagnitude;
             float xInput = controller.HorizontalMagnitude;
@@ -203,17 +217,21 @@ public class PlayerBody : MonoBehaviour
                     movementVector.Normalize();
                     
                 }
+                else if (movementVector.magnitude == 0)
+                {
+                    rb.velocity = Vector3.zero;
+                }
                 movementVector.z = movementVector.z * 1.5f;
                 movementVector = (movementVector * movementSpeed);
 
                 //rb.MovePosition(rb.position + (movementVector * Time.fixedDeltaTime));
-                rb.AddForce(movementVector * 650 * Time.fixedDeltaTime);
+                rb.velocity = (movementVector * forceMod * Time.fixedDeltaTime);
                 //Debug.Log("canMove");
                 //transform.position += (movementVector/2) * Time.deltaTime;
 
-                if ((rb.velocity.magnitude > 30f || movementVector.magnitude > 1) & Mathf.Abs(movementVector.magnitude) > 0)
+                if ((rb.velocity.magnitude > 30f || movementVector.magnitude > 1) & Mathf.Abs(movementVector.magnitude) > 0 && !alreadyDead)
                 {
-                    //Debug.Log(movementVector.magnitude);
+                    //Debug.Log(alreadyDead);
                     animController.Moving = true;
                 }
                 else
@@ -248,6 +266,7 @@ public class PlayerBody : MonoBehaviour
         damage = CharacterType.attack;
         ifHopper = CharacterType.hop;
         attackKnockback = CharacterType.attackKnockback;
+        deathBody = CharacterType.corpse;
     }
     float x = 0;
     float attackTimer = 0;
@@ -265,7 +284,7 @@ public class PlayerBody : MonoBehaviour
 
             if (!hitEnemy && !dontForward)
             {
-                rb.AddForce(GetMovementVector() * attackKnockback * 4800 * Time.fixedDeltaTime, ForceMode.Impulse);
+                rb.AddForce(GetMovementVector() * attackKnockback * 4800 * Time.fixedDeltaTime);
             }
             else
             {
@@ -327,7 +346,7 @@ public class PlayerBody : MonoBehaviour
 
         while (Time.time < startTime + dashTime)
         {
-            rb.AddForce((dashDirection * dashSpeed * Time.deltaTime)*1200);
+            rb.velocity = ((dashDirection * dashSpeed * Time.deltaTime)* forceMod * 2 );
             yield return null;
         }
 
@@ -385,33 +404,44 @@ public class PlayerBody : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
         {
             health = health - 1;
-            Debug.Log(health);
+            //Debug.Log(health);
+        }
+    }
+    public int RESETINGGHOST; //gets the state of the players death cycle
+    [SerializeField]
+    private Scene persistScene;
+    public void GhostMode()
+    {
+        if (RESETINGGHOST == 2)
+        {
+            //Debug.Log("GHOSTMODE");
+            RESETINGGHOST += 1;
+            // instantiate dead sprite at player position
+            respawnPoint = transform.position;
+
+            GameObject c = Instantiate(deathBody, transform.position, Quaternion.identity);
+            SceneManager.MoveGameObjectToScene(c, persistScene);
+            corpse = c;
+            canTakeDamage = false;
+            canMove = true;
+
+            // turn player sprite to ghost sprite
+
+            gameObject.tag = "Ghost";
+
+            // turn off attacking, dash, and item use,
+            //resetPlayer();
         }
     }
 
-    private void GhostMode()
-    {
-        // instantiate dead sprite at player position
-        respawnPoint = transform.position;
-        corpse = Instantiate(deathBody, transform.position, Quaternion.identity);
-        canTakeDamage = false;
-
-        // turn player sprite to ghost sprite
-
-        gameObject.tag = "Ghost";
-
-        // turn off attacking, dash, and item use,
-        resetPlayer();
-
-    }
-
-    private void resetPlayer()
+    public void resetPlayer()
     {
         canAttack = !canAttack;
         canTakeDamage = !canTakeDamage;
         canExecute = !canExecute;
         canUseItem = !canUseItem;
         lockDash = !lockDash;
+        RESETINGGHOST = 0;
 
         Debug.Log("canMove = " + canMove);
         Debug.Log("canAttack = " + canAttack);

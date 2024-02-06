@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 619a2391952fe4c43bf35415cad72a46, type: 3}
   m_Name: Bunny
   m_EditorClassIdentifier: 
-  moveSpeed: 212
-  dashSpeed: 128
+  moveSpeed: 8
+  dashSpeed: 14
   dashTime: 0.5
   attack: 33
   attackSpeed: 100
   attackKnockback: 3.5
   finisherRadius: 20
   executePosition: {x: 10, y: 0, z: 0}
+  corpse: {fileID: 7516477959771602021, guid: 83a6d0d043c9ada438d8eab8b7d1a741, type: 3}
   hop: 1
