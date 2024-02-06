@@ -137,7 +137,7 @@ public class PlayerBody : MonoBehaviour
             lockDash = false;
 
             canTakeDamage = true;
-
+            RevivePlayer();
 
             // delete corpse
             //Debug.Log("DESTROY CORPSES");
@@ -180,7 +180,7 @@ public class PlayerBody : MonoBehaviour
         if (hitEnemy)
         {
             //Debug.Log(GetMovementVector());
-            rb.velocity = ((-GetMovementVector()) * attackKnockback * forceMod/2 * Time.fixedDeltaTime);
+            rb.velocity = ((-GetMovementVector()) * attackKnockback * forceMod/4 * Time.fixedDeltaTime);
             hitEnemy = false;
             dontForward = true;
         }
@@ -270,25 +270,28 @@ public class PlayerBody : MonoBehaviour
     }
     float x = 0;
     float attackTimer = 0;
+    float attackTime = 0.1f;
     private void Attack()
     {
         if (controller.PrimaryAttackDown & canAttack)
         {
             canMove = false;
             canAttack = false;
-            rb.velocity = Vector3.zero;
             
+
             animController.Attacking = true;
             GameObject attack = Instantiate(prefabForAttack, primaryAttackSpawnPoint);
             SwordSlash.sword.Play();
 
             if (!hitEnemy && !dontForward)
             {
-                rb.AddForce(GetMovementVector() * attackKnockback * 4800 * Time.fixedDeltaTime);
+                rb.velocity = (GetMovementVector() * attackKnockback * (forceMod/2) * Time.deltaTime);
+
             }
             else
             {
                 dontForward = false;
+                
             }
         }
         
@@ -430,8 +433,31 @@ public class PlayerBody : MonoBehaviour
             gameObject.tag = "Ghost";
 
             // turn off attacking, dash, and item use,
-            //resetPlayer();
+            GhostPlayer();
         }
+    }
+
+    public void GhostPlayer()
+    {
+        canAttack = false;
+        canTakeDamage = false;
+        canExecute = false;
+        canUseItem = false;
+        lockDash = true;
+        canMove = true;
+        //RESETINGGHOST = 0;
+    }
+
+    public void RevivePlayer()
+    {
+        Debug.Log("REVIVE");
+        canAttack = true;
+        canTakeDamage = true;
+        canExecute = true;
+        canUseItem = true;
+        lockDash = false;
+        canMove = true;
+        RESETINGGHOST = 0;
     }
 
     public void resetPlayer()

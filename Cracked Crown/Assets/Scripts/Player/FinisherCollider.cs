@@ -25,7 +25,7 @@ public class FinisherCollider : MonoBehaviour
                     //Debug.Log("Can Execute");
                     if (controller.ExecuteDown)
                     {
-                        PB.Execute(enemiesInRange[0].gameObject);
+                        PB.Execute(enemiesInRange[0].transform.parent.GetChild(1).gameObject);
                     }
                 }
             }

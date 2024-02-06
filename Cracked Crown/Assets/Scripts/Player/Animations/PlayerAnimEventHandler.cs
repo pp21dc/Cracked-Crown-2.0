@@ -27,10 +27,10 @@ public class PlayerAnimEventHandler : MonoBehaviour
             //PC.PB.RESETINGGHOST += 1;
             PC.PB.GhostMode();
         }
-        else if (PC.PB.RESETINGGHOST == 5)
-            PC.PB.resetPlayer();
+        else if (PC.PB.RESETINGGHOST >= 4)
+            PC.PB.RevivePlayer();
 
-        Debug.Log(PC.PB.RESETINGGHOST);
+        Debug.Log("RHOST: " + PC.PB.RESETINGGHOST);
 
     }
 }

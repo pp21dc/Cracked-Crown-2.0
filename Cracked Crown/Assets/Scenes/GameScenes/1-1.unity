@@ -6423,7 +6423,7 @@ Transform:
   m_GameObject: {fileID: 400287069}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.43157196, y: 102.0494, z: -137.5}
+  m_LocalPosition: {x: -0.43157196, y: 102.0494, z: -127.1}
   m_LocalScale: {x: 1.09, y: 1.09, z: 1.09}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6544,18 +6544,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 431006132}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &533453600 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4738903054315218116, guid: dfa6bd44af148bd439608d5f243f8402,
-    type: 3}
-  m_PrefabInstance: {fileID: 4249731953391475753}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c674bdc1f830aa498b9d427031ea658, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &545008702
 GameObject:
   m_ObjectHideFlags: 0
@@ -6981,22 +6969,22 @@ PrefabInstance:
         type: 3}
       propertyPath: Player1
       value: 
-      objectReference: {fileID: 533453600}
+      objectReference: {fileID: 0}
     - target: {fileID: 7373955601623232891, guid: 503531e7b374a6747862ebfc1b4feef4,
         type: 3}
       propertyPath: Player2
       value: 
-      objectReference: {fileID: 533453600}
+      objectReference: {fileID: 0}
     - target: {fileID: 7373955601623232891, guid: 503531e7b374a6747862ebfc1b4feef4,
         type: 3}
       propertyPath: Player3
       value: 
-      objectReference: {fileID: 533453600}
+      objectReference: {fileID: 0}
     - target: {fileID: 7373955601623232891, guid: 503531e7b374a6747862ebfc1b4feef4,
         type: 3}
       propertyPath: Player4
       value: 
-      objectReference: {fileID: 533453600}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -17624,6 +17612,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 322968954875837568, guid: dfa6bd44af148bd439608d5f243f8402,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2250958057340368719, guid: dfa6bd44af148bd439608d5f243f8402,
         type: 3}
       propertyPath: enemyAIController
@@ -17692,6 +17685,11 @@ PrefabInstance:
     - target: {fileID: 8285975825874820798, guid: dfa6bd44af148bd439608d5f243f8402,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8551303128544101305, guid: dfa6bd44af148bd439608d5f243f8402,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
