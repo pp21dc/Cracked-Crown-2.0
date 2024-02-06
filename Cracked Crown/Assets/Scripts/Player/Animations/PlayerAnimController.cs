@@ -60,7 +60,7 @@ public class PlayerAnimController : MonoBehaviour
             Animator.SetBool("Dashing", dashing);
             Animator.SetBool("Attacking", attacking);
             Animator.SetBool("Finish", finishing);
-            if (finishing) { finishing = false; }
+            //if (finishing) { finishing = false; }
             if (true )
             {
                 Animator.SetBool("Dead", dead);

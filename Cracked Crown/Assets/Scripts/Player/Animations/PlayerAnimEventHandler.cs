@@ -33,6 +33,11 @@ public class PlayerAnimEventHandler : MonoBehaviour
         PC.PB.lockExecAnim = false;
     }
 
+    public void FinishEnter()
+    {
+        PC.PAC.Finishing = false;
+    }
+
     public void DeathFinish()
     {
         PC.PB.RESETINGGHOST += 1;
