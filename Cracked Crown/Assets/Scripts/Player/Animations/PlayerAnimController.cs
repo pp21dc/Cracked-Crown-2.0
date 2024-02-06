@@ -37,6 +37,13 @@ public class PlayerAnimController : MonoBehaviour
         set { attacking = value; }
     }
 
+    private bool finishing;
+    public bool Finishing
+    {
+        get { return finishing; }
+        set { finishing = value; }
+    }
+
     PlayerContainer PC;
 
     private void Awake()
@@ -52,6 +59,8 @@ public class PlayerAnimController : MonoBehaviour
             Animator.SetBool("Moving", moving);
             Animator.SetBool("Dashing", dashing);
             Animator.SetBool("Attacking", attacking);
+            Animator.SetBool("Finish", finishing);
+            if (finishing) { finishing = false; }
             if (true )
             {
                 Animator.SetBool("Dead", dead);

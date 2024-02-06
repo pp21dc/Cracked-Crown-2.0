@@ -576,9 +576,13 @@ MonoBehaviour:
   canCollectBomb: 0
   canCollectPotion: 0
   collectable: {fileID: 0}
+  canTakeDamage: 1
+  executeHeal: 5
+  canMovePlayerForexecute: 0
   sprite: {fileID: 0}
   movementVector: {x: 0, y: 0, z: 0}
   forceMod: 500
+  lockExecAnim: 0
   dashing: 0
   RESETINGGHOST: 0
   persistScene:

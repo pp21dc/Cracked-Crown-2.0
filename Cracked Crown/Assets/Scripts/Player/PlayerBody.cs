@@ -86,10 +86,10 @@ public class PlayerBody : MonoBehaviour
 
     private bool dashOnCD = false;
     public bool canTakeDamage = true;
-    private float executeHeal = 5f;
+    public float executeHeal = 5f;
     private float executeMoveSpeed = 150f;
     private GameObject executeTarget;
-    private bool canMovePlayerForexecute = false;
+    public bool canMovePlayerForexecute = false;
     private bool ifHopper = false;
     private Vector3 respawnPoint;
     private GameObject corpse;
@@ -137,7 +137,7 @@ public class PlayerBody : MonoBehaviour
             lockDash = false;
 
             canTakeDamage = true;
-            RevivePlayer();
+            //RevivePlayer();
 
             // delete corpse
             //Debug.Log("DESTROY CORPSES");
@@ -148,6 +148,8 @@ public class PlayerBody : MonoBehaviour
         Attack();
         Dash();
         UseItem();
+        rb.velocity = new Vector3(rb.velocity.x, (-9.81f)*(rb.mass), rb.velocity.z);
+
     }
 
     public Transform sprite;
@@ -168,7 +170,7 @@ public class PlayerBody : MonoBehaviour
     bool dontForward;
     private void FixedUpdate()
     {
-        
+        Debug.Log(rb.velocity);
         //rb.AddForce(new Vector3(0, -12000, 0) * Time.fixedDeltaTime);
         if (canMove && !dashing && sprite != null)
         {
@@ -180,7 +182,9 @@ public class PlayerBody : MonoBehaviour
         if (hitEnemy)
         {
             //Debug.Log(GetMovementVector());
+            float y = rb.velocity.y;
             rb.velocity = ((-GetMovementVector()) * attackKnockback * forceMod/4 * Time.fixedDeltaTime);
+            rb.velocity = new Vector3(rb.velocity.x, y, rb.velocity.z);
             hitEnemy = false;
             dontForward = true;
         }
@@ -219,12 +223,15 @@ public class PlayerBody : MonoBehaviour
                 }
                 else if (movementVector.magnitude == 0)
                 {
-                    rb.velocity = Vector3.zero;
+                    rb.velocity = new Vector3(0, rb.velocity.y, 0);
                 }
                 movementVector.z = movementVector.z * 1.5f;
                 movementVector = (movementVector * movementSpeed);
 
+                float y = rb.velocity.y;
                 rb.velocity = (movementVector * forceMod * Time.fixedDeltaTime);
+                rb.velocity = new Vector3(rb.velocity.x, y, rb.velocity.z);
+                
 
                 if ((rb.velocity.magnitude > 30f || movementVector.magnitude > 1) & Mathf.Abs(movementVector.magnitude) > 0 && !alreadyDead)
                 {
@@ -240,10 +247,16 @@ public class PlayerBody : MonoBehaviour
         }
         if (canMovePlayerForexecute && executeTarget != null)
         {
-            //Debug.Log("FUCCCCC");
+            if (Vector3.Distance(transform.position, executeTarget.transform.position + forExecutePosition) < 1 && !lockExecAnim)
+            {
+                animController.Finishing = true;
+                lockExecAnim = true;
+            }
+            Debug.Log(Vector3.Distance(transform.position, executeTarget.transform.position + forExecutePosition));
             transform.position = Vector3.MoveTowards(gameObject.transform.position, executeTarget.transform.position + forExecutePosition, executeMoveSpeed * Time.deltaTime);
         }
     }
+    public bool lockExecAnim;
 
     public void DecHealth(float amount) 
     { 
@@ -284,7 +297,10 @@ public class PlayerBody : MonoBehaviour
 
             if (!hitEnemy && !dontForward)
             {
-                rb.velocity = (GetMovementVector() * attackKnockback * (forceMod/2.5f) * Time.deltaTime);
+                float y = rb.velocity.y;
+                rb.velocity = (GetMovementVector() * attackKnockback * (forceMod / 2.5f) * Time.deltaTime);
+                rb.velocity = new Vector3(rb.velocity.x, y, rb.velocity.z);
+                
 
             }
             else
@@ -348,8 +364,9 @@ public class PlayerBody : MonoBehaviour
 
         while (Time.time < startTime + dashTime)
         {
-            rb.velocity = ((dashDirection * dashSpeed * Time.deltaTime)* forceMod * 2 );
-            yield return null;
+            Debug.Log("DASHING");
+            rb.velocity = ((dashDirection * dashSpeed * forceMod * 2) * Time.deltaTime);
+            yield return new WaitForEndOfFrame();
         }
 
         canAttack = true;
@@ -384,15 +401,11 @@ public class PlayerBody : MonoBehaviour
             enemyAIController.canMove = false;
             canMovePlayerForexecute = true;
             //Debug.Log("EXEC");
-            yield return new WaitForSeconds(1);
-            //Debug.Log("DESTROY");
+            
             toExecute.transform.parent.gameObject.SetActive(false);
+            
+            yield return new WaitForSeconds(1);
 
-            //executeCollideScript.enemiesInRange.Remove(toExecute); // remove enemy from list
-            health = health + executeHeal;
-            canMove = true;
-            canTakeDamage = true;
-            canMovePlayerForexecute = false;
         }
     }
 

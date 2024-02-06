@@ -13,7 +13,7 @@ public class FinisherCollider : MonoBehaviour
     private PlayerBody PB;
     [SerializeField]
     private PlayerController controller;
-
+    GameObject e;
     private void Update()
     {
         if (enemiesInRange != null)
@@ -29,9 +29,17 @@ public class FinisherCollider : MonoBehaviour
                         {
 
                             PB.Execute(enemiesInRange[0].transform.parent.GetChild(1).gameObject);
+                            e = enemy;
+                            return;
                         }
                     }
                 }
+                
+            }
+            if (e != null)
+            {
+                enemiesInRange.Remove(e);
+                e = null;
             }
         }
     }
