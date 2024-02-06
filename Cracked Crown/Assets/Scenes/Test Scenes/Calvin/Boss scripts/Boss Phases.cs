@@ -32,6 +32,7 @@ public class BossPhases : MonoBehaviour
     [SerializeField] // count used to allow the boss to know when to initiate attacks
     private float attacktimer;
 
+
     private Vector3 preGrabPlayerPosition;
     private Vector3 clawtarget;
     private float dist;
@@ -43,7 +44,8 @@ public class BossPhases : MonoBehaviour
     private bool clawgrab = false;
     private bool clawreturn = false;
 
-    private GameObject followedPlayer;
+    private GameObject FollowedPlayer;
+    private PlayerBody GrabbedPlayerBody;
 
     private bool isGrabbed = false;
     private float grabbedTimer;
@@ -178,7 +180,6 @@ public class BossPhases : MonoBehaviour
         if (isGrabbed)
         {
             GrabbedPlayer.transform.position = Claw.transform.position - PlayerList[0].transform.TransformDirection(0, 35, 0);
-
             if (grabbedTimer < -2) // drops the player when the timer is up
             {
                 Debug.Log(grabbedTimer);
@@ -193,9 +194,9 @@ public class BossPhases : MonoBehaviour
         clawfollow = true; // allows claw to follow player
         for (int i = 0; i < PlayerList.Length; i++)
         {
-            if (otherClaw.followedPlayer != PlayerList[i])
+            if (otherClaw.FollowedPlayer != PlayerList[i])
             {
-                followedPlayer = PlayerList[i];
+                FollowedPlayer = PlayerList[i];
             }
         }
 
@@ -254,6 +255,7 @@ public class BossPhases : MonoBehaviour
         {
             if (clawgrab)
             {
+                GrabbedPlayerBody = other.GetComponent<PlayerBody>();
                 GrabbedPlayer = other.gameObject;
                 isGrabbed = true;
             }

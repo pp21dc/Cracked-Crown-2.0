@@ -196,6 +196,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6850385032260623843, guid: 4c4f37bf10df3e44d864255882aaa6e8,
+        type: 3}
+      propertyPath: m_TagString
+      value: BossFollowPoint
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -671,55 +676,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1104423468
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1104423470}
-  - component: {fileID: 1104423469}
-  m_Layer: 0
-  m_Name: BossShockwaves
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1104423469
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1104423468}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3984d3179a77504aa36dca343a525e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  poolableObject: {fileID: 2327198847112182937, guid: dd5fd66a319bf2c4c9cbd27282d8c774,
-    type: 3}
-  poolSize: 2
-  willGrow: 1
-  pooledObjects: []
---- !u!4 &1104423470
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1104423468}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1196877305
 GameObject:
   m_ObjectHideFlags: 0
@@ -763,6 +719,7 @@ MonoBehaviour:
   CampaignStart: 0
   Pause: 0
   eyeCount: 0
+  enem: {fileID: 0}
 --- !u!4 &1196877307
 Transform:
   m_ObjectHideFlags: 0
@@ -1420,5 +1377,4 @@ SceneRoots:
   - {fileID: 1619680568}
   - {fileID: 2039387416}
   - {fileID: 1810947503}
-  - {fileID: 1104423470}
   - {fileID: 94575611}
