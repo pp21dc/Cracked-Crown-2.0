@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8891774195489085454}
   - component: {fileID: 8069905607562872064}
   - component: {fileID: 185881396545716941}
+  - component: {fileID: 35980171830467210}
   m_Layer: 0
   m_Name: Shockwave
   m_TagString: Untagged
@@ -29,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 2327198847112182937}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -109.6, y: 3, z: -43.4}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 50, y: 3, z: 50}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -117,7 +118,7 @@ Animator:
   m_GameObject: {fileID: 2327198847112182937}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e5e9e79aa70a82248b649666ffc66976, type: 2}
+  m_Controller: {fileID: 9100000, guid: d18a4987bdb5c3943a94ab76ea424b81, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -128,3 +129,15 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &35980171830467210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2327198847112182937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abcb410c076e6da4fb1ef42c3a1c8107, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
