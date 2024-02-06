@@ -8,16 +8,39 @@ public class Bomb : MonoBehaviour
 
     private float damage = 100f;
     private int count = 0;
-    private float speed = 25;
+    private float speed = 5;
+    private bool playOnce = true;
+    private Vector3 height;
+    private int counter = 0;
 
     private EnemyAIController[] enemiesInRange;
     private PlayerBody body;
+    private Rigidbody rb;
 
+    private void Awake()
+    {
+        height = new Vector3(0,1,0);
+        rb = GetComponent<Rigidbody>();
+    }
+
+    int thing = 1;
     // Update is called once per frame
     void Update()
     {
-        transform.position += direction * speed * Time.deltaTime;
-        StartCoroutine(Explode());
+        if (counter == 1)
+        {
+            speed = 0;
+            thing = 0;
+        }
+
+        transform.position += (direction + height) * speed * Time.deltaTime;
+        if (playOnce)
+        {
+            StartCoroutine(Explode());
+            playOnce = false;
+        }
+
+        transform.position += new Vector3(0,-4,0) * thing * Time.deltaTime;
     }
 
     private IEnumerator Explode()
@@ -25,7 +48,7 @@ public class Bomb : MonoBehaviour
 
         // play wub wub animation looking like its gonna explode
 
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(3f);
 
         // play explosion effect
 
@@ -46,6 +69,7 @@ public class Bomb : MonoBehaviour
     public void setDirection(Vector3 dir)
     {
         direction = dir;
+        Debug.Log("The direction of bomb is: " + direction);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -65,6 +89,14 @@ public class Bomb : MonoBehaviour
             Debug.Log("enemy out of range");
             count--;
             enemiesInRange[count] = null; // dont know how to know which one is leaving and how to delete that one from list
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Ground")
+        {
+            counter++;
         }
     }
 }

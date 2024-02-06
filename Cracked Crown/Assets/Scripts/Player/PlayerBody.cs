@@ -528,11 +528,13 @@ public class PlayerBody : MonoBehaviour
     private void UseItem()
     {
 
+        Vector3 stinky = new Vector3 (0, 3, 0); // so it spawns above the ground
+
         if (controller.ItemDown)
         {
             if (hasBomb)
             {
-                Vector3 fortniteFellaBalls = transform.position + movementVector;
+                Vector3 fortniteFellaBalls = transform.position + movementVector + stinky;
                 GameObject bomb = Instantiate(throwableBombPrefab, fortniteFellaBalls, Quaternion.identity);
                 Bomb reference = bomb.GetComponent<Bomb>();
                 reference.setDirection(movementVector);
