@@ -30,7 +30,7 @@ public class FindPlayerState : FSMState
         }
         else if (enemy.CompareTag("Light"))
         {
-            if (enemy.startSlam)
+            if (enemy.startSlam == true)
             {
                 enemy.PerformTransition(Transition.AbovePlayer);
                 

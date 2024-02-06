@@ -76,7 +76,9 @@ public class EnemyAIController : AdvancedFSM
     private bool canGoop;
     private bool startGoop;
 
-    private bool seesPLayer;
+    [SerializeField]
+    private CheckPlayerBelow belowChecker;
+
     public bool startSlam;
 
     public bool canSlam;
@@ -201,12 +203,12 @@ public class EnemyAIController : AdvancedFSM
         startGoop = true;
         canGoop = true;
 
-        seesPLayer = false;
+        
         startSlam = false;
 
         canSlam = true;
 
-        slamSpeed = 15f;
+        slamSpeed = 65f;
 
         moveToStunned = false;
         moveToCarry = false;
@@ -443,24 +445,14 @@ public class EnemyAIController : AdvancedFSM
             StartCoroutine(GoopRoutine());
         }
         
-        if(checkBelow())
+        if(belowChecker.IsPlayerBelow())
         {
             startSlam = true;
         }
 
     }
 
-    private bool checkBelow()
-    {
-        if(seesPLayer)
-        {
-            return true;
-        }
-
-        
-
-        return false;
-    }
+    
 
     IEnumerator GoopRoutine()
     {
@@ -703,13 +695,7 @@ public class EnemyAIController : AdvancedFSM
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.CompareTag("Player"))
-        {
-            seesPLayer = true;
-        }
-    }
+    
 
 
 }
