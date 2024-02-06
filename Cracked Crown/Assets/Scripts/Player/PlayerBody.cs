@@ -221,17 +221,19 @@ public class PlayerBody : MonoBehaviour
                     movementVector.Normalize();
                     
                 }
-                else if (movementVector.magnitude == 0)
+                else if (movementVector.magnitude == 0 && !lockHitForward)
                 {
                     rb.velocity = new Vector3(0, rb.velocity.y, 0);
                 }
                 movementVector.z = movementVector.z * 1.5f;
                 movementVector = (movementVector * movementSpeed);
 
-                float y = rb.velocity.y;
-                rb.velocity = (movementVector * forceMod * Time.fixedDeltaTime);
-                rb.velocity = new Vector3(rb.velocity.x, y, rb.velocity.z);
-                
+                if (!lockHitForward)
+                {
+                    float y = rb.velocity.y;
+                    rb.velocity = (movementVector * forceMod * Time.fixedDeltaTime);
+                    rb.velocity = new Vector3(rb.velocity.x, y, rb.velocity.z);
+                }
 
                 if ((rb.velocity.magnitude > 30f || movementVector.magnitude > 1) & Mathf.Abs(movementVector.magnitude) > 0 && !alreadyDead)
                 {
@@ -258,8 +260,22 @@ public class PlayerBody : MonoBehaviour
         }
         if (dashing)
         {
-            Debug.Log("DASHING");
-            rb.velocity = ((dashDirection * dashSpeed * forceMod * 0.02f));
+            //Debug.Log("DASHING");
+            rb.velocity = (new Vector3(0, rb.velocity.y) + ((dashDirection * dashSpeed * forceMod * 0.02f)) * Time.fixedDeltaTime);
+        }
+        if (!hitEnemy && (lockHitForward))
+        {
+
+            //Debug.Log("FORWARD");
+            float y = rb.velocity.y;
+            rb.velocity = (GetMovementVector() * attackKnockback * (forceMod) * 4) * Time.deltaTime;
+            rb.velocity = new Vector3(rb.velocity.x, y, rb.velocity.z);
+        }
+        else if (hitEnemy && lockHitBackward)
+        {
+            float y = rb.velocity.y;
+            rb.velocity = (-GetMovementVector() * attackKnockback * (forceMod) * 4) * Time.deltaTime;
+            rb.velocity = new Vector3(rb.velocity.x, y, rb.velocity.z);
         }
     }
     public bool lockExecAnim;
@@ -289,6 +305,8 @@ public class PlayerBody : MonoBehaviour
     float x = 0;
     float attackTimer = 0;
     float attackTime = 0.1f;
+    bool lockHitForward;
+    bool lockHitBackward;
     private void Attack()
     {
         if (controller.PrimaryAttackDown & canAttack)
@@ -301,22 +319,36 @@ public class PlayerBody : MonoBehaviour
             GameObject attack = Instantiate(prefabForAttack, primaryAttackSpawnPoint);
             SwordSlash.sword.Play();
 
-            if (!hitEnemy && !dontForward)
+            
+            if (!hitEnemy && !lockHitForward)
             {
-                float y = rb.velocity.y;
-                rb.velocity = (GetMovementVector() * attackKnockback * (forceMod / 2.5f) * Time.deltaTime);
-                rb.velocity = new Vector3(rb.velocity.x, y, rb.velocity.z);
-                
-
+                StartCoroutine(forwardHit());
             }
-            else
+            else if (hitEnemy && !lockHitBackward)
             {
-                dontForward = false;
-                
+                StartCoroutine (backwardHit());
             }
         }
         
 
+    }
+
+    private IEnumerator forwardHit()
+    {
+        lockHitForward = true;
+        //dontForward = false;
+        yield return new WaitForSeconds(0.025f);
+        //dontForward = true;
+        lockHitForward = false;
+    }
+
+    private IEnumerator backwardHit()
+    {
+        lockHitBackward = true;
+        dontForward = false;
+        yield return new WaitForSeconds(0.025f);
+        dontForward = true;
+        lockHitBackward = false;
     }
 
     public void Execute(GameObject enemy)
