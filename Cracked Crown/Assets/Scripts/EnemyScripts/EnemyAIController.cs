@@ -447,6 +447,7 @@ public class EnemyAIController : AdvancedFSM
         
         if(belowChecker.IsPlayerBelow())
         {
+            canGoop = false;
             startSlam = true;
         }
 
@@ -559,17 +560,21 @@ public class EnemyAIController : AdvancedFSM
 
     IEnumerator SlamAttack()
     {
-        yield return new WaitForSeconds(3f);
 
-        if(slamAttack.hasHit == true)
-        {
-            moveToCarry = true;
-        }
-        else
-        {
-            moveToStunned = true;
-        }
-
+        yield return new WaitForSeconds(.4f);
+        
+        
+            if (slamAttack.hasHit == true)
+            {
+                moveToCarry = true;
+                
+            }
+            else if (slamAttack.HitGround == true)
+            {
+                moveToStunned = true;
+                
+            }
+        
         yield return null;
     }
 
