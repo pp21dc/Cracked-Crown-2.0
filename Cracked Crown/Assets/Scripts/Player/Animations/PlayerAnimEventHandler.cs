@@ -13,8 +13,26 @@ public class PlayerAnimEventHandler : MonoBehaviour
 
     public void AttackFinish()
     {
+        //Debug.Log("FINISH");
         PC.PAC.Attacking = false;
         PC.PB.canMove = true;
         PC.PB.canAttack = true;
+    }
+
+    public void DeathFinish()
+    {
+        //PC.PB.canMove = true;
+        //PC.PB.canAttack = true;
+        PC.PB.RESETINGGHOST += 1;
+        if (PC.PB.RESETINGGHOST == 2)
+        {
+            //PC.PB.RESETINGGHOST += 1;
+            PC.PB.GhostMode();
+        }
+        else if (PC.PB.RESETINGGHOST == 4)
+            PC.PB.resetPlayer();
+
+        Debug.Log(PC.PB.RESETINGGHOST);
+
     }
 }

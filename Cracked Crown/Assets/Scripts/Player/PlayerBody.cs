@@ -7,7 +7,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 using static UnityEngine.EventSystems.EventTrigger;
-
+using UnityEngine.SceneManagement;
 public class PlayerBody : MonoBehaviour
 {
     [Header("Controlled By Scriptable Object CharacterType")]
@@ -106,32 +106,37 @@ public class PlayerBody : MonoBehaviour
         {
             Debug.Log("You Died");
 
-            GhostMode();
+            //GhostMode();
             animController.Moving = false;
             animController.dashing = false;
             animController.Attacking = false;
             animController.Dead = true;
             alreadyDead = true;
+            //canMove = false;
+            //canAttack = false;
         }
         if (ghostCoins >= 5)
         {
+            
             gameObject.tag = "Player";
 
             // move player back to corpse
             transform.position = respawnPoint;
 
             // change back to normal
-            animController.Moving = true;
+            //animController.Moving = true;
             animController.Dead = false;
             alreadyDead = false;
             ghostCoins = 0;
             health = maxHealth;
 
             canTakeDamage = true;
-            resetPlayer();
+
 
             // delete corpse
+            //Debug.Log("DESTROY CORPSES");
             Destroy(corpse);
+            
         }
         //Move();
         Attack();
@@ -145,7 +150,7 @@ public class PlayerBody : MonoBehaviour
     {
 
         gameManager = GameManager.Instance;
-
+        persistScene = SceneManager.GetSceneByBuildIndex(0);
         if (CharacterType != null)
         {
             SetCharacterData();
@@ -166,7 +171,7 @@ public class PlayerBody : MonoBehaviour
         }
         if (hitEnemy)
         {
-            Debug.Log(GetMovementVector());
+            //Debug.Log(GetMovementVector());
             rb.AddForce((-GetMovementVector()) * attackKnockback * 2400 * Time.fixedDeltaTime,ForceMode.Impulse);
             hitEnemy = false;
             dontForward = true;
@@ -248,6 +253,7 @@ public class PlayerBody : MonoBehaviour
         damage = CharacterType.attack;
         ifHopper = CharacterType.hop;
         attackKnockback = CharacterType.attackKnockback;
+        deathBody = CharacterType.corpse;
     }
     float x = 0;
     float attackTimer = 0;
@@ -385,33 +391,43 @@ public class PlayerBody : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
         {
             health = health - 1;
-            Debug.Log(health);
+            //Debug.Log(health);
+        }
+    }
+    public int RESETINGGHOST; //gets the state of the players death cycle
+    [SerializeField]
+    private Scene persistScene;
+    public void GhostMode()
+    {
+        if (RESETINGGHOST == 2)
+        {
+            Debug.Log("GHOSTMODE");
+            RESETINGGHOST += 1;
+            // instantiate dead sprite at player position
+            respawnPoint = transform.position;
+
+            GameObject c = Instantiate(deathBody, transform.position, Quaternion.identity);
+            SceneManager.MoveGameObjectToScene(c, persistScene);
+            corpse = c;
+            canTakeDamage = false;
+
+            // turn player sprite to ghost sprite
+
+            gameObject.tag = "Ghost";
+
+            // turn off attacking, dash, and item use,
+            //resetPlayer();
         }
     }
 
-    private void GhostMode()
-    {
-        // instantiate dead sprite at player position
-        respawnPoint = transform.position;
-        corpse = Instantiate(deathBody, transform.position, Quaternion.identity);
-        canTakeDamage = false;
-
-        // turn player sprite to ghost sprite
-
-        gameObject.tag = "Ghost";
-
-        // turn off attacking, dash, and item use,
-        resetPlayer();
-
-    }
-
-    private void resetPlayer()
+    public void resetPlayer()
     {
         canAttack = !canAttack;
         canTakeDamage = !canTakeDamage;
         canExecute = !canExecute;
         canUseItem = !canUseItem;
         lockDash = !lockDash;
+        RESETINGGHOST = 0;
 
         Debug.Log("canMove = " + canMove);
         Debug.Log("canAttack = " + canAttack);

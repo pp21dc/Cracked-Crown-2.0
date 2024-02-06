@@ -216,16 +216,26 @@ public class EnemyAIController : AdvancedFSM
 
         ConstructFSM();
     }
-
+    public bool act = false;
     protected override void FSMUpdate()
     {
         
-        if (CurrentState != null)
+        if (CurrentState != null && act)
         {
             CurrentState.Reason(playerTransform, transform);
             CurrentState.Act(playerTransform, transform);
         }
-        
+        if (Input.GetKeyUp(KeyCode.T))
+        {
+            act = !act;
+            Players = GameObject.FindGameObjectsWithTag("Player");//finds and add all players to array
+            if (Players.Length <= 0) { Players = null; }
+            if (Players != null)
+            {
+                playerTransform = Players[0].transform;
+                closest = playerTransform.gameObject;
+            }
+        }
 
         
     }
