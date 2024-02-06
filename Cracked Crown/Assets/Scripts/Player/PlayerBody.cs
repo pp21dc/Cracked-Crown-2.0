@@ -248,12 +248,12 @@ public class PlayerBody : MonoBehaviour
         //Debug.Log(executeTarget.IsUnityNull());
         if (canMovePlayerForexecute && executeTarget != null)
         {
-            if (Vector3.Distance(transform.position, executeTarget.transform.position + forExecutePosition) < 1 && !lockExecAnim)
+            if (Vector3.Distance(transform.position, executeTarget.transform.position + forExecutePosition) < 2.2f && !lockExecAnim)
             {
                 animController.Finishing = true;
                 lockExecAnim = true;
             }
-            //Debug.Log(Vector3.Distance(transform.position, executeTarget.transform.position + forExecutePosition));
+            
             transform.position = Vector3.MoveTowards(gameObject.transform.position, executeTarget.transform.position + forExecutePosition, executeMoveSpeed * Time.deltaTime);
         }
         if (dashing)
