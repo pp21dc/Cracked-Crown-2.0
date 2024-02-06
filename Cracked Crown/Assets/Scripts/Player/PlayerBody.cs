@@ -107,14 +107,14 @@ public class PlayerBody : MonoBehaviour
         if ((health <= 0 || Input.GetKey(KeyCode.O)) && alreadyDead == false)
         {
             Debug.Log("You Died");
-
+            rb.velocity = Vector3.zero;
             //GhostMode();
             animController.Moving = false;
             animController.dashing = false;
             animController.Attacking = false;
             animController.Dead = true;
             alreadyDead = true;
-            //canMove = false;
+            canMove = false;
             canAttack = false;
             lockDash = true;
         }
@@ -180,7 +180,7 @@ public class PlayerBody : MonoBehaviour
         if (hitEnemy)
         {
             //Debug.Log(GetMovementVector());
-            rb.AddForce((-GetMovementVector()) * attackKnockback * 2400 * Time.fixedDeltaTime,ForceMode.Impulse);
+            rb.velocity = ((-GetMovementVector()) * attackKnockback * forceMod/2 * Time.fixedDeltaTime);
             hitEnemy = false;
             dontForward = true;
         }
@@ -199,7 +199,7 @@ public class PlayerBody : MonoBehaviour
     public float forceMod = 1000;
     private void Move()
     {
-        if (true || !ifHopper)
+        if (canMove)
         {
             float zInput = controller.ForwardMagnitude;
             float xInput = controller.HorizontalMagnitude;
@@ -229,9 +229,9 @@ public class PlayerBody : MonoBehaviour
                 //Debug.Log("canMove");
                 //transform.position += (movementVector/2) * Time.deltaTime;
 
-                if ((rb.velocity.magnitude > 30f || movementVector.magnitude > 1) & Mathf.Abs(movementVector.magnitude) > 0)
+                if ((rb.velocity.magnitude > 30f || movementVector.magnitude > 1) & Mathf.Abs(movementVector.magnitude) > 0 && !alreadyDead)
                 {
-                    //Debug.Log(movementVector.magnitude);
+                    //Debug.Log(alreadyDead);
                     animController.Moving = true;
                 }
                 else
@@ -346,7 +346,7 @@ public class PlayerBody : MonoBehaviour
 
         while (Time.time < startTime + dashTime)
         {
-            rb.AddForce((dashDirection * dashSpeed * Time.deltaTime)* forceMod);
+            rb.velocity = ((dashDirection * dashSpeed * Time.deltaTime)* forceMod * 2 );
             yield return null;
         }
 
@@ -414,7 +414,7 @@ public class PlayerBody : MonoBehaviour
     {
         if (RESETINGGHOST == 2)
         {
-            Debug.Log("GHOSTMODE");
+            //Debug.Log("GHOSTMODE");
             RESETINGGHOST += 1;
             // instantiate dead sprite at player position
             respawnPoint = transform.position;
@@ -423,6 +423,7 @@ public class PlayerBody : MonoBehaviour
             SceneManager.MoveGameObjectToScene(c, persistScene);
             corpse = c;
             canTakeDamage = false;
+            canMove = true;
 
             // turn player sprite to ghost sprite
 
