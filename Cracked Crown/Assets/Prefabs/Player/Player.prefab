@@ -560,7 +560,8 @@ MonoBehaviour:
   finisherColliderGO: {fileID: 9142403004721322815}
   forExecutePosition: {x: 15, y: 0, z: 0}
   enemyAIController: {fileID: 0}
-  throwableBombPrefab: {fileID: 0}
+  throwableBombPrefab: {fileID: 5158602912670518605, guid: 4d7b09c3101d4ef4fb92a55bbbab91d5,
+    type: 3}
   CharacterFolder: {fileID: 4150222539546649084}
   canMove: 1
   SwordSlash: {fileID: 6848299162110737261}
@@ -753,6 +754,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Bunny
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633882350821034748, guid: f7d79151a7f0bd344843f470d4ca4d9c,
+        type: 3}
+      propertyPath: m_TagString
+      value: BossFollowPoint
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
