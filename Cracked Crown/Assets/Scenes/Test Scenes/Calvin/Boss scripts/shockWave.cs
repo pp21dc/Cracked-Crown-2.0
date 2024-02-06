@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class shockWave : MonoBehaviour
 {
-    // Start is called before the first frame update
     void Awake()
     {
-
+        StartCoroutine("Death");
     }
 
-    // Update is called once per frame
-    void Update()
+
+    IEnumerator Death ()
     {
-        
+        Debug.Log("Workfnhfguid");
+        yield return new WaitForSeconds(1.25f);
+        Destroy(gameObject);
     }
 }
