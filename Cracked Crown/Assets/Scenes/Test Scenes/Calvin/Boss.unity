@@ -336,7 +336,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &413793730
 Transform:
   m_ObjectHideFlags: 0
@@ -394,7 +394,8 @@ MonoBehaviour:
   Claw: {fileID: 413793729}
   bossAnim: {fileID: 339883316}
   otherClaw: {fileID: 1330580716}
-  clawtarget: {x: 0, y: 0, z: 0}
+  ClawSprite: {fileID: 0}
+  ShockWave: {fileID: 0}
   clawspeed: 80
   attacktimer: 0
   attackIDList:
@@ -958,7 +959,9 @@ MonoBehaviour:
   Claw: {fileID: 1330580713}
   bossAnim: {fileID: 1329262146}
   otherClaw: {fileID: 413793732}
-  clawtarget: {x: 0, y: 0, z: 0}
+  ClawSprite: {fileID: 1329262143}
+  ShockWave: {fileID: 2327198847112182937, guid: dd5fd66a319bf2c4c9cbd27282d8c774,
+    type: 3}
   clawspeed: 80
   attacktimer: 0
   attackIDList:

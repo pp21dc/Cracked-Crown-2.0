@@ -14,6 +14,8 @@ public class EnemyAnimationController : MonoBehaviour
     public bool Attacking;
     public bool Stunned;
 
+    float timer;
+
     [Header("Medium Enemy")]
     public bool Dashing;
 
@@ -24,8 +26,24 @@ public class EnemyAnimationController : MonoBehaviour
         animator.SetBool("Attacking", Attacking);
         animator.SetBool("Dashing", Dashing);
         animator.SetBool("Stunned", Stunned);
+
+            if (Stunned)
+            {
+                timer += Time.deltaTime;
+
+                if (timer < 1f)
+                {
+                    this.GetComponent<SpriteRenderer>().color = Color.red;
+                }
+                else if (timer < 2)
+                {
+                    this.GetComponent<SpriteRenderer>().color = Color.white;
+                }
+
+                if (timer > 2)
+                {
+                    timer = 0f;
+                }
+            }
+        }
     }
-
-
-
-}

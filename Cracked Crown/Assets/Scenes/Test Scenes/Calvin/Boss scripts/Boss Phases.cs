@@ -15,17 +15,16 @@ public class BossPhases : MonoBehaviour
     [Header("Boss Parts")]
     [SerializeField]
     private GameObject Claw;
-
     [SerializeField]
     private Animator bossAnim;
-
-
     [SerializeField]
     private BossPhases otherClaw;
-
-    [Header("Watching things")]
     [SerializeField]
-    private Vector3 clawtarget;
+    private GameObject ClawSprite;
+
+    [Header("Instantiated Objects")]
+    [SerializeField]
+    GameObject ShockWave;
 
     [Header("Boss Variables")]
     [SerializeField]
@@ -34,14 +33,16 @@ public class BossPhases : MonoBehaviour
     private float attacktimer;
 
     private Vector3 preGrabPlayerPosition;
-
-
+    private Vector3 clawtarget;
     private float dist;
     private int currattackid;
-    bool attackLoop = true;
-    private bool clawfollow = false;
+
+    bool attackLoop = true; // controls the running of the boss's attacks
+
+    private bool clawfollow = false; // pincer attack bools
     private bool clawgrab = false;
     private bool clawreturn = false;
+
     private GameObject followedPlayer;
 
     private bool isGrabbed = false;
@@ -61,7 +62,7 @@ public class BossPhases : MonoBehaviour
     
     private void Awake()
     {
-        currattackid = 0;
+        currattackid = -1; // starts at -1 because it adds once before it is needed, making it 0
 
         GameObject[] TempList = GameObject.FindGameObjectsWithTag("BossFollowPoint");
         for (int i = 0; i < TempList.Length; i++)
@@ -69,13 +70,8 @@ public class BossPhases : MonoBehaviour
             PlayerList[i] = TempList[i]; // creates a list of all players in the scene
             Debug.Log(PlayerList[i]);
         }
-        CLAWSPAWN = Claw.transform.position;
-        createIDList();
-    }
-
-    public GameObject getfollowedplayer()
-    {
-        return followedPlayer;
+        CLAWSPAWN = Claw.transform.position; // gets the original claw point
+        createIDList(); // creates a randomized list of IDs to decide boss attack order
     }
 
     void Update()
@@ -85,19 +81,17 @@ public class BossPhases : MonoBehaviour
             // attacks called in a continuous loop
             if (attacktimer <= 0)
             {
-                startNextAttack();
+                currattackid++; // counts to next id in the list
+                startNextAttack(); // starts the next attack, uses currattackid to do so
             }
-            attackIDList[currattackid] = "PincerAttack";
             switch (attackIDList[currattackid]) // populates the ID list
             {
                 case "PincerAttack":
                     pincerAttack();
                     break;
                 case "ClawSmash":
-                    Debug.Log("ClawSmash");
                     break;
                 case "GooBlast":
-                    Debug.Log("GooBlast");
                     break;
             }
             attacktimer -= Time.deltaTime;
@@ -110,12 +104,12 @@ public class BossPhases : MonoBehaviour
         int prevVar = -1;
         for (int i = 0; i < 30; i++)
         {
-            tempVar = Random.Range(0, 4);
+            tempVar = Random.Range(0, 3);
             if (i != 0)
             {
                 if (tempVar == prevVar)
                 {
-                    tempVar = Random.Range(0, 4);
+                    tempVar = Random.Range(0, 3);
                     prevVar = tempVar;
                 }
             }
@@ -131,31 +125,27 @@ public class BossPhases : MonoBehaviour
                     attackIDList[i] = attackList[2];
                     break;
             }
+            Debug.Log(attackIDList[i]);
         }
     }
 
     private void startNextAttack()
     {
-        StartCoroutine("PincerAttack"); // starts the next boss attack
-        attacktimer = 10;
-
-        /*
         switch (attackIDList[currattackid]) // sets attack timer based on the next boss attack
         {
-            case "Pincer Attack":
-                attacktimer = 11;
-                Debug.Log("Wokrimg");
+            case "PincerAttack":
+                attacktimer = 8;
+                StartCoroutine("PincerAttack");
                 break;
             case "ClawSmash":
-                attacktimer = 10;
-                Debug.Log("Wokrimg");
+                attacktimer = 4.5f;
+                StartCoroutine("ClawSmash");
                 break;
             case "GooBlast":
-                attacktimer = 10;
-                Debug.Log("Wokrimg");
+                StartCoroutine("GooBlast");
+                attacktimer = 1;
                 break;
         }
-        currattackid++; */
     }
 
     private void pincerAttack() // handles actions relying on the pincer IEnumerator's timings
@@ -214,21 +204,24 @@ public class BossPhases : MonoBehaviour
         clawtarget = PlayerList[0].transform.position + PlayerList[0].transform.TransformDirection(0, 35, 0); // sets the claw's target to the player
         clawgrab = true; // allows claw to fall to player position
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1f);
         
         if (isGrabbed)  // when the wait function is over, if the player is grabbed, the grabbed timer will start and the player will be lifted into the air
         {
             preGrabPlayerPosition = GrabbedPlayer.transform.position;
             clawtarget = PlayerList[0].transform.transform.position + PlayerList[0].transform.TransformDirection(0, 80, 0);
+            attacktimer += 3;
             grabbedTimer = 1; // 1 instead of 3 since the grabbedTimer threshold is -2
-            
-            yield return new WaitForSeconds(3);
-            clawgrab = false;
 
-            dist = Vector3.Distance(GrabbedPlayer.transform.position, preGrabPlayerPosition);
+            yield return new WaitForSeconds(3f);
+            dist = Vector3.Distance(GrabbedPlayer.transform.position, preGrabPlayerPosition); // marks the place to return the player
         }
-        clawreturn = true; // sends the claw back to spawn
-        clawtarget = CLAWSPAWN;
+
+
+        clawgrab = false;
+        clawreturn = true; // unlocks the coresponding code to return to spawn
+
+        clawtarget = CLAWSPAWN; // sets the claw's target to it's spawn
 
         yield return new WaitForSeconds(3);
         clawreturn = false; // resets final bool and timer for the grab;
@@ -237,20 +230,21 @@ public class BossPhases : MonoBehaviour
 
     IEnumerator ClawSmash()
     {
-        
-        yield return new WaitForSeconds(3);
-        // animation is called
+        bossAnim.Play("clawSmash");
+        yield return new WaitForSeconds(2.05f);
+        Instantiate(ShockWave, ClawSprite.transform.position - new Vector3 (-12, 13.95f, 16), Quaternion.identity);
+        yield return new WaitForSeconds(1.95f);
+        bossAnim.Play("clawPassive");
         // damage is dealt
-        yield return new WaitForSeconds(1.2f);
 
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(0.5f);
     }
 
     IEnumerator GooBlast()
     {
         // animation is called
         // damage is dealt
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -258,8 +252,11 @@ public class BossPhases : MonoBehaviour
         Debug.Log("hit");
         if (other.gameObject.tag == "Player")
         {
-            GrabbedPlayer = other.gameObject;
-            isGrabbed = true;
+            if (clawgrab)
+            {
+                GrabbedPlayer = other.gameObject;
+                isGrabbed = true;
+            }
             // player takes damage and movement is frozen
         }
     }
