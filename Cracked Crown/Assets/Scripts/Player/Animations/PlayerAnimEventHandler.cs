@@ -21,15 +21,13 @@ public class PlayerAnimEventHandler : MonoBehaviour
 
     public void DeathFinish()
     {
-        //PC.PB.canMove = true;
-        //PC.PB.canAttack = true;
         PC.PB.RESETINGGHOST += 1;
         if (PC.PB.RESETINGGHOST == 2)
         {
             //PC.PB.RESETINGGHOST += 1;
             PC.PB.GhostMode();
         }
-        else if (PC.PB.RESETINGGHOST == 4)
+        else if (PC.PB.RESETINGGHOST == 5)
             PC.PB.resetPlayer();
 
         Debug.Log(PC.PB.RESETINGGHOST);

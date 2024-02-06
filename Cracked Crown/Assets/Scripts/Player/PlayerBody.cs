@@ -10,6 +10,8 @@ using static UnityEngine.EventSystems.EventTrigger;
 using UnityEngine.SceneManagement;
 public class PlayerBody : MonoBehaviour
 {
+    [Header("SET BEFORE USE")]
+    public bool IS_IN_TEST_SCENE = true;
     [Header("Controlled By Scriptable Object CharacterType")]
     [SerializeField]
     private float movementSpeed = 5f;
@@ -113,7 +115,8 @@ public class PlayerBody : MonoBehaviour
             animController.Dead = true;
             alreadyDead = true;
             //canMove = false;
-            //canAttack = false;
+            canAttack = false;
+            lockDash = true;
         }
         if (ghostCoins >= 5)
         {
@@ -129,6 +132,9 @@ public class PlayerBody : MonoBehaviour
             alreadyDead = false;
             ghostCoins = 0;
             health = maxHealth;
+            canAttack = true;
+            canMove = true;
+            lockDash = false;
 
             canTakeDamage = true;
 
@@ -148,9 +154,11 @@ public class PlayerBody : MonoBehaviour
 
     private void Awake()
     {
-
-        gameManager = GameManager.Instance;
-        persistScene = SceneManager.GetSceneByBuildIndex(0);
+        if (!IS_IN_TEST_SCENE)
+        {
+            gameManager = GameManager.Instance;
+            persistScene = SceneManager.GetSceneByBuildIndex(0);
+        }
         if (CharacterType != null)
         {
             SetCharacterData();
@@ -188,6 +196,7 @@ public class PlayerBody : MonoBehaviour
     }
 
     public Vector3 movementVector;
+    public float forceMod = 1000;
     private void Move()
     {
         if (true || !ifHopper)
@@ -208,11 +217,15 @@ public class PlayerBody : MonoBehaviour
                     movementVector.Normalize();
                     
                 }
+                else if (movementVector.magnitude == 0)
+                {
+                    rb.velocity = Vector3.zero;
+                }
                 movementVector.z = movementVector.z * 1.5f;
                 movementVector = (movementVector * movementSpeed);
 
                 //rb.MovePosition(rb.position + (movementVector * Time.fixedDeltaTime));
-                rb.AddForce(movementVector * 650 * Time.fixedDeltaTime);
+                rb.velocity = (movementVector * forceMod * Time.fixedDeltaTime);
                 //Debug.Log("canMove");
                 //transform.position += (movementVector/2) * Time.deltaTime;
 
@@ -271,7 +284,7 @@ public class PlayerBody : MonoBehaviour
 
             if (!hitEnemy && !dontForward)
             {
-                rb.AddForce(GetMovementVector() * attackKnockback * 4800 * Time.fixedDeltaTime, ForceMode.Impulse);
+                rb.AddForce(GetMovementVector() * attackKnockback * 4800 * Time.fixedDeltaTime);
             }
             else
             {
@@ -333,7 +346,7 @@ public class PlayerBody : MonoBehaviour
 
         while (Time.time < startTime + dashTime)
         {
-            rb.AddForce((dashDirection * dashSpeed * Time.deltaTime)*1200);
+            rb.AddForce((dashDirection * dashSpeed * Time.deltaTime)* forceMod);
             yield return null;
         }
 
