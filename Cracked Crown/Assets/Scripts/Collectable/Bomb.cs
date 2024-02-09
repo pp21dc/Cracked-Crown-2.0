@@ -10,7 +10,7 @@ public class Bomb : MonoBehaviour
 
     private float damage = 100f;
     private int count = 0;
-    private float speed = 10;
+    private float speed = 17;
     private bool playOnce = true;
     private int counter = 0;
 
@@ -42,14 +42,14 @@ public class Bomb : MonoBehaviour
         if (playOnce)
         {
             height.x = height.x * controller.HorizontalMagnitude;
-            height.z = direction.z * 10;
+            height.z = direction.z * 45;
 
             rb.AddForce((direction + height) * speed, ForceMode.Impulse);
             Debug.Log("Force: " + (direction + height) * speed);
             StartCoroutine(Explode());
             playOnce = false;
         }
-        rb.velocity += new Vector3(0, -35, 0) * thing * Time.deltaTime;
+        rb.velocity += new Vector3(0, -160, 0) * thing * Time.deltaTime;
     }
 
     private IEnumerator Explode()
