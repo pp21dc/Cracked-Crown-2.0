@@ -35,7 +35,7 @@ public class PrototypePrimaryAttack : MonoBehaviour
             enemyController = other.transform.parent.GetChild(0).GetComponent<EnemyAIController>();
             enemyController.DecHealth(playerBody.damage);
             rb = other.GetComponent<Rigidbody>();                                              
-            rb.velocity = (playerBody.GetMovementVector() * 3.5f * playerBody.forceMod * Time.deltaTime);
+            rb.velocity = (playerBody.GetMovementVector() * 35f * playerBody.forceMod * Time.deltaTime);
             Debug.Log("Enemy Health: " + enemyController.Health);
         }
     }

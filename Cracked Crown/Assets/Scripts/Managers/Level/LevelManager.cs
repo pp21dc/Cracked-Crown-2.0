@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
@@ -54,27 +55,27 @@ public class LevelManager : MonoBehaviour
     [SerializeField]
     private int ENEMIES_SPAWNED;
 
+    [HideInInspector]
+    public Scene persScene;
 
     private void Awake()
     {
         GM = GameManager.Instance;
+        persScene = SceneManager.GetSceneByBuildIndex(0);
     }
     float SpawnTimer = 0;
     bool loc;
     private void Update()
     {
         EnemySpawnSystem();
-        if (!loc)
-        {
-            loc = true;
-            StartCoroutine(HOLDSTILLCUN());
-        }
+        if (Input.GetKey(KeyCode.H))
+            GM.SetPlayerPositions();
     }
 
     private IEnumerator HOLDSTILLCUN()
     {
         GM.SetPlayerPositions();
-        yield return new WaitForSeconds(7);
+        yield return new WaitForSeconds(8);
         GM.SetPlayerPositions();
     }
 
@@ -111,11 +112,12 @@ public class LevelManager : MonoBehaviour
     {
         CURRENT_WAVE = 0;
         ROOM_CLEARED = false;
+        GM.SetPlayerPositions();
         yield return new WaitForSeconds(WAIT_ONENTER);
-        
+        GM.SetPlayerPositions();
         CURRENT_WAVE = 1;
         CURRENT_ROOM += 1;
-        Current_Room = Rooms[CURRENT_ROOM];
+        Current_Room = Rooms[CURRENT_ROOM-1];
         SpawnersActive = true;
     }
 

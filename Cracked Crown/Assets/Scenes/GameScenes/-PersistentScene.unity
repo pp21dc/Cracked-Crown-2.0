@@ -568,7 +568,7 @@ Transform:
   m_GameObject: {fileID: 297865999}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.58, y: 0, z: 8.73}
+  m_LocalPosition: {x: 57.1, y: 0, z: 8.73}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1658,7 +1658,7 @@ Transform:
   m_GameObject: {fileID: 712177836}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.28, y: 0, z: 7.89}
+  m_LocalPosition: {x: -15.1, y: 0, z: 7.89}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1921,8 +1921,8 @@ MonoBehaviour:
   PausePlayers: 0
   WAIT_ONENTER: 3
   WAIT_NEXTROUND: 5
-  WAIT_NEXTSPAWN_UPB: 1
-  WAIT_NEXTSPAWN_LWB: 0.2
+  WAIT_NEXTSPAWN_UPB: 2.5
+  WAIT_NEXTSPAWN_LWB: 1
   CURRENT_WAVE: 0
   CURRENT_ROOM: 0
   ROOM_CLEARED: 0
@@ -1932,8 +1932,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c960c479262c1b14daba2677a96b3d63, type: 2}
   - {fileID: 11400000, guid: cef340f1f5429d447a1236739a296e87, type: 2}
   Current_Room: {fileID: 0}
-  Spawner: {fileID: 0}
+  Spawner: {fileID: 1386950354}
   ENEMIES_SPAWNED: 0
+  persScene:
+    m_Handle: 0
 --- !u!1 &1138719615
 GameObject:
   m_ObjectHideFlags: 0
@@ -1959,7 +1961,7 @@ Transform:
   m_GameObject: {fileID: 1138719615}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 5.05}
+  m_LocalPosition: {x: 20.6, y: 0, z: 5.05}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2762,7 +2764,7 @@ Transform:
   m_GameObject: {fileID: 1901040092}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.26, y: 0, z: 5.05}
+  m_LocalPosition: {x: -46.1, y: 0, z: 5.05}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

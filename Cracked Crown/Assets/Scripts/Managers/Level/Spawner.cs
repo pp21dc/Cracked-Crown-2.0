@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Spawner : MonoBehaviour
 {
@@ -18,7 +19,8 @@ public class Spawner : MonoBehaviour
     public void SpawnEnemy()
     {
         int randPoint = Random.Range(0, spawnPoints.Length);
-        Instantiate(Enemy_prefab, spawnPoints[randPoint].position, Quaternion.identity);
+        GameObject E = Instantiate(Enemy_prefab, spawnPoints[randPoint].position, Quaternion.identity);
+        //SceneManager.MoveGameObjectToScene(E, LM.persScene);
         LM.EnemySpawned();
     }
 
