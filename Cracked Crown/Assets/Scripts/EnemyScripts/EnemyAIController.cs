@@ -98,6 +98,8 @@ public class EnemyAIController : AdvancedFSM
     public bool doneCarry;
     public bool doneStun;
 
+    private bool doneOnGround;
+
 
     //health, finisher, and death states
     public float maxHealth = 100; // its total Health
@@ -215,6 +217,8 @@ public class EnemyAIController : AdvancedFSM
 
         doneCarry = false;
         doneStun = false;
+
+        doneOnGround = false;
 
         ConstructFSM();
     }
@@ -543,12 +547,11 @@ public class EnemyAIController : AdvancedFSM
 
     public void StartSlam()
     {
-        if(canSlam)
-        {
-            canSlam = false;
+
+            
             StartCoroutine(SlamAttack());
-        }
-        else
+        
+        if(slamAttack.hasHit == false && slamAttack.HitGround == false)
         {
             movementVector = (SlamLocation.position - enemyPosition.transform.position).normalized * slamSpeed;
             enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
@@ -560,19 +563,19 @@ public class EnemyAIController : AdvancedFSM
 
     IEnumerator SlamAttack()
     {
-
-        yield return new WaitForSeconds(.4f);
         
         
             if (slamAttack.hasHit == true)
             {
                 moveToCarry = true;
+            Debug.Log("Carry");
                 
             }
             else if (slamAttack.HitGround == true)
             {
                 moveToStunned = true;
-                
+            Debug.Log("Stunned");    
+
             }
         
         yield return null;
@@ -580,17 +583,60 @@ public class EnemyAIController : AdvancedFSM
 
     public void StartStunned()
     {
-        //call a coroutine to wait for 3 seconds, fly back up to 30 above and go to findplayer
+        StartCoroutine(Stunned());
+
+        if (doneOnGround == true)
+        {
+            if (doneStun == false)
+            {
+                movementVector = (SlamLocation.position + enemyPosition.transform.position).normalized * speed;
+                enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
+            }
+        }
+    }
+
+    IEnumerator Stunned()
+    {
+        yield return new WaitForSeconds(3f);
+
+        doneOnGround = true;
+
+        yield return new WaitForSeconds(2f);
+
+        doneStun = true;
+
+        yield return null;
     }
 
     public void StartCarry()
     {
-        //call player carry method, move the light enemy to a random point, if timer runs out, drop player go to find player
+        //call player carry method, move the light enemy to a random point, if timer runs out, drop player go to find player, use rand on an x and z for a random direction
+        StartCoroutine(Carry());
     }
+
+    IEnumerator Carry()
+    {
+        PlayerBody body = slamAttack.hitPlayer;
+
+        body.resetPlayer();
+        //go up to normal height of light enemy
+
+        //get random transform to move towards
+
+        //move for 2-4 seconds unless interupted by player mashing,
+
+        //drop player
+
+        //give back player control
+
+        //move to look for player
+
+        yield return null;
+    }    
 
 
     //starts the heavy dash if in range
-    public void StartHeavyDash()
+    public void StartDash()
     {
 
         //Debug.Log("Outside the If statement");
@@ -599,7 +645,7 @@ public class EnemyAIController : AdvancedFSM
 
             //Debug.Log("Made it to the if statement");
             isHeavyDashing = false;
-            StartCoroutine(HeavyDash());
+            StartCoroutine(Dash());
         }
         else
         {
@@ -632,7 +678,7 @@ public class EnemyAIController : AdvancedFSM
 
     //moves fastly towars the player direction to try and knock them back
     
-    IEnumerator HeavyDash()
+    IEnumerator Dash()
     {
         EAC.Dashing = true;
         TargetPlayerPos = closest.transform.position;
