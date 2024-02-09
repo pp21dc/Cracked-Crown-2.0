@@ -42,8 +42,8 @@ public class Bomb : MonoBehaviour
         if (playOnce)
         {
             height.x = height.x * controller.HorizontalMagnitude;
-            height.y = height.y * controller.ForwardMagnitude;
-            height.z = direction.z;
+            height.z = direction.z * 25;
+
             rb.AddForce((direction + height) * speed, ForceMode.Impulse);
             Debug.Log("Force: " + (direction + height) * speed);
             StartCoroutine(Explode());
