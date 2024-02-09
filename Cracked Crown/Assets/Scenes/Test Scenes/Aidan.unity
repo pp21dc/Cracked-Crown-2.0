@@ -632,7 +632,7 @@ Transform:
   m_GameObject: {fileID: 393887792}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.9, z: 0}
+  m_LocalPosition: {x: 0, y: -6.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -652,6 +652,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyAIController: {fileID: 0}
   hasHit: 0
+  HitGround: 0
 --- !u!65 &393887795
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -671,8 +672,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.8983474, y: 1, z: 1.788713}
-  m_Center: {x: -0.013617516, y: 0, z: 0.09797239}
+  m_Size: {x: 12.8132925, y: 3.114759, z: 4.572648}
+  m_Center: {x: 0.45547247, y: -1.0573792, z: 0.58972806}
 --- !u!1 &561087095
 GameObject:
   m_ObjectHideFlags: 0
@@ -718,7 +719,7 @@ GameObject:
   - component: {fileID: 1190075604}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

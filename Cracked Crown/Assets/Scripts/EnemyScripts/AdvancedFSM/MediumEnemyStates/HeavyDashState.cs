@@ -45,6 +45,6 @@ public class HeavyDashState : FSMState
     {
         //Debug.Log("Heavy");
         
-        enemy.StartHeavyDash();
+        enemy.StartDash();
     }
 }

@@ -8,6 +8,7 @@ public class SlamAttack : MonoBehaviour
     EnemyAIController enemyAIController;
     public bool hasHit;
     public bool HitGround;
+    public PlayerBody hitPlayer;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -16,6 +17,7 @@ public class SlamAttack : MonoBehaviour
             PlayerBody player = other.GetComponent<PlayerBody>();
             player.DecHealth(0.5f);
             hasHit = true;
+            hitPlayer = player;
         }
 
         if(other.CompareTag("Ground"))

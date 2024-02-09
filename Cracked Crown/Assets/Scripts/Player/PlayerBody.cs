@@ -548,6 +548,7 @@ public class PlayerBody : MonoBehaviour
                 if (gameManager.eyeCount >= 5 && hasPotion == false && hasBomb == false)
                 {
                     gameManager.eyeCount -= 5;
+                    hasBomb = false;
                     hasPotion = true;
                     collectable.gameObject.SetActive(false);
 
@@ -560,16 +561,27 @@ public class PlayerBody : MonoBehaviour
     private void UseItem()
     {
 
-        Vector3 stinky = new Vector3 (0, 3, 0); // so it spawns above the ground
+        Vector3 stinky = new Vector3 (7.5f, 3, 0); // so it spawns above the ground and infront
+        Vector3 negativeStinky = new Vector3 (-7.5f, 3, 0);
+        Vector3 fortniteFellaBalls = Vector3.zero; // placeholder
 
         if (controller.ItemDown)
         {
             if (hasBomb)
             {
-                Vector3 fortniteFellaBalls = transform.position + movementVector + stinky;
+                if (controller.HorizontalMagnitude >= 0)
+                {
+                    fortniteFellaBalls = transform.position + movementVector + stinky;
+                }
+                else if (controller.HorizontalMagnitude < 0)
+                {
+                    fortniteFellaBalls = transform.position + movementVector + negativeStinky;
+                }
+
                 GameObject bomb = Instantiate(throwableBombPrefab, fortniteFellaBalls, Quaternion.identity);
                 Bomb reference = bomb.GetComponent<Bomb>();
                 reference.setDirection(movementVector);
+                reference.SetController(controller);
 
                 hasBomb = false;
             }
