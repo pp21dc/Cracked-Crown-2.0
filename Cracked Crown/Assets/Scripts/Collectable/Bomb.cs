@@ -10,12 +10,21 @@ public class Bomb : MonoBehaviour
 
     private float damage = 100f;
     private int count = 0;
-    private float speed = 17;
     private bool playOnce = true;
     private int counter = 0;
 
+    [Header("Do Not Touch")]
     [SerializeField]
     private Vector3 height;
+
+    [Header("Can Touch")]
+    [Header("Hover for more information")]
+    [SerializeField]
+    [Tooltip("make it a bigger negative number to have bomb not go as far")]
+    private float gravity = -160;
+    [SerializeField]
+    [Tooltip("make bigger to increase speed of bomb travel")]
+    private float speed = 17;
 
     private List<EnemyAIController> enemiesInRange;
     private Rigidbody rb;
@@ -49,7 +58,7 @@ public class Bomb : MonoBehaviour
             StartCoroutine(Explode());
             playOnce = false;
         }
-        rb.velocity += new Vector3(0, -160, 0) * thing * Time.deltaTime;
+        rb.velocity += new Vector3(0, gravity, 0) * thing * Time.deltaTime;
     }
 
     private IEnumerator Explode()
