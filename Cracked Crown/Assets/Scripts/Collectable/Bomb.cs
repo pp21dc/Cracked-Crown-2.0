@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
 
 public class Bomb : MonoBehaviour
 {
@@ -8,18 +10,20 @@ public class Bomb : MonoBehaviour
 
     private float damage = 100f;
     private int count = 0;
-    private float speed = 5;
+    private float speed = 12;
     private bool playOnce = true;
-    private Vector3 height;
     private int counter = 0;
 
+    [SerializeField]
+    private Vector3 height;
+
     private List<EnemyAIController> enemiesInRange;
-    private PlayerBody body;
     private Rigidbody rb;
+    private PlayerController controller;
 
     private void Awake()
     {
-        height = new Vector3(0,1,0);
+        Debug.Log("controller is: " + controller);
         rb = GetComponent<Rigidbody>();
         enemiesInRange = new List<EnemyAIController>();
     }
@@ -32,16 +36,20 @@ public class Bomb : MonoBehaviour
         {
             speed = 0;
             thing = 0;
+            rb.velocity = Vector3.zero;
         }
 
-        transform.position += (direction + height) * speed * Time.deltaTime;
         if (playOnce)
         {
+            height.x = height.x * controller.HorizontalMagnitude;
+            height.y = height.y * controller.ForwardMagnitude;
+            height.z = direction.z;
+            rb.AddForce((direction + height) * speed, ForceMode.Impulse);
+            Debug.Log("Force: " + (direction + height) * speed);
             StartCoroutine(Explode());
             playOnce = false;
         }
-
-        transform.position += new Vector3(0,-4,0) * thing * Time.deltaTime;
+        rb.velocity += new Vector3(0, -35, 0) * thing * Time.deltaTime;
     }
 
     private IEnumerator Explode()
@@ -49,7 +57,7 @@ public class Bomb : MonoBehaviour
 
         // play wub wub animation looking like its gonna explode
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3f);
 
         // play explosion effect
 
@@ -61,7 +69,6 @@ public class Bomb : MonoBehaviour
             }
         }
 
-        Debug.Log("bomb went boom");
         gameObject.SetActive(false);
 
     }
@@ -69,18 +76,18 @@ public class Bomb : MonoBehaviour
     public void setDirection(Vector3 dir)
     {
         direction = dir;
-        Debug.Log("The direction of bomb is: " + direction);
+    }
+
+    public void SetController(PlayerController playerControls)
+    {
+        controller = playerControls;
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Enemy")
         {
-            //Debug.Log("enemy in radius");
-            //Debug.Log(other.gameObject.transform.parent.GetChild(0).GetComponent<EnemyAIController>());
             enemiesInRange.Add(other.transform.parent.GetChild(0).gameObject.GetComponent<EnemyAIController>());
-            //Debug.Log("enemy in list is: " + enemiesInRange[count]);
-            //count++;
         }
     }
 
@@ -88,8 +95,6 @@ public class Bomb : MonoBehaviour
     {
         if (other.tag == "Medium" || other.tag == "Heavy" || other.tag == "Light")
         {
-            //Debug.Log("enemy out of range");
-            //count--;
             enemiesInRange.Remove(other.transform.parent.GetChild(0).gameObject.GetComponent<EnemyAIController>()); // dont know how to know which one is leaving and how to delete that one from list
         }
     }
