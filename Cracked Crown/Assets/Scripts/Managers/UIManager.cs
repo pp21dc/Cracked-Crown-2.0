@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.Mathematics;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -23,6 +24,18 @@ public class UIManager : MonoBehaviour
     [Header("In Game UI")]
     [SerializeField] private GameObject InGameUI;
 
+    //Gold Rings For UI
+    [SerializeField] private GameObject player1Ring;
+    [SerializeField] private GameObject player2Ring;
+    [SerializeField] private GameObject player3Ring;
+    [SerializeField] private GameObject player4Ring;
+
+    private float shineTimer = 0f;
+    [SerializeField] private float maxRandShineTimer = 20f;
+    private float player1ShineTimer = 0f;
+    private float player2ShineTimer = 0f;
+    private float player3ShineTimer = 0f;
+    private float player4ShineTimer = 0f;
 
     [Header("Pause Menu")]
     [SerializeField] private GameObject PauseMenu;
@@ -48,11 +61,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Sprite[] CharacterIcons;
     public enum characterIcons {Frog, Bunny, Duck, HoneyBadger };
 
-    private void Start()
-    {
-        displayDialogue("penis penis penis penis penis penis pensi penis", characterIcons.Bunny);
-
-    }
     private void Update()
     {
         if (player1.PauseDown || player2.PauseDown || player3.PauseDown || player4.PauseDown)
@@ -62,8 +70,26 @@ public class UIManager : MonoBehaviour
             {
                 Pause();
             }
-
         }
+
+
+        if(shineTimer > maxRandShineTimer)
+        {
+            shineTimer = 0;
+            player1ShineTimer = UnityEngine.Random.value * maxRandShineTimer;
+            player2ShineTimer = UnityEngine.Random.value * maxRandShineTimer;
+            player3ShineTimer = UnityEngine.Random.value * maxRandShineTimer;
+            player4ShineTimer = UnityEngine.Random.value * maxRandShineTimer;
+        }
+
+        if (player1ShineTimer == shineTimer)
+        {
+            
+        }
+  /*      if (player)
+        shineTimer += Time.deltaTime;*/
+
+       
     }
 
     //Functions For Pause Menu (Copied from PauseMenu Script 1/30/2024)
