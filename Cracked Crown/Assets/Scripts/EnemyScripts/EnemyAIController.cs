@@ -405,9 +405,11 @@ public class EnemyAIController : AdvancedFSM
             EAC.Moving = false;
         }
         //Debug.Log(speed);
-
-        movementVector = (closest.transform.position - enemyPosition.transform.position).normalized * Speed;
-        enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
+        if (!lockKnock)
+        {
+            movementVector = (closest.transform.position - enemyPosition.transform.position).normalized * Speed;
+            enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
+        }
         //enemyBody.transform.position = new Vector3(enemyBody.position.x, 0, enemyBody.position.z); //keeps it on ground
         if (closest.transform.position.x > enemyPosition.transform.position.x)
         {
@@ -471,7 +473,7 @@ public class EnemyAIController : AdvancedFSM
             yield return new WaitForSeconds(0.45f);
         }
 
-        yield return null;
+        //yield return null;
     }
 
     private void StartShootGoop(Transform body, Transform fireLocation)
@@ -543,6 +545,7 @@ public class EnemyAIController : AdvancedFSM
 
         yield return new WaitForSeconds(0.7f);
 
+        LevelManager.Instance.EnemyKilled();
         DropEyes();
 
         yield return new WaitForSeconds(2.2f);
@@ -550,7 +553,7 @@ public class EnemyAIController : AdvancedFSM
         
         Destroy(enemy);
 
-        yield return null;
+        //yield return null;
     }
 
     private void DropEyes()
@@ -575,6 +578,19 @@ public class EnemyAIController : AdvancedFSM
             //instantiate eyes here
         }
     }
+    public bool lockKnock;
+    public IEnumerator KB(Vector3 dir)
+    {
+        lockKnock = true;
+        enemyBody.isKinematic = false;
+        enemyBody.AddForce(dir);
+        yield return new WaitForSeconds(0.5f);
+        enemyBody.velocity = Vector3.zero;
+        enemyBody.isKinematic = true;
+        lockKnock = false;
+    }
+
+
 
     public void StartSlam()
     {
@@ -595,21 +611,21 @@ public class EnemyAIController : AdvancedFSM
     IEnumerator SlamAttack()
     {
         
-        
-            if (slamAttack.hasHit == true)
-            {
-                moveToCarry = true;
-            Debug.Log("Carry");
+        EAC.Attacking = true;
+        if (slamAttack.hasHit == true)
+        {
+            moveToCarry = true;
+        Debug.Log("Carry");
                 
-            }
-            else if (slamAttack.HitGround == true)
-            {
-                moveToStunned = true;
+        }
+        else if (slamAttack.HitGround == true)
+        {
+            moveToStunned = true;
             Debug.Log("Stunned");    
 
-            }
-        
-        yield return null;
+        }
+        //Can this coroutine end??
+        yield return new WaitForSeconds(1);
     }
 
     public void StartStunned()
@@ -636,7 +652,7 @@ public class EnemyAIController : AdvancedFSM
 
         doneStun = true;
 
-        yield return null;
+        //yield return null; //CAN THIS EXIT?
     }
 
     public void StartCarry()
@@ -649,7 +665,7 @@ public class EnemyAIController : AdvancedFSM
     {
         PlayerBody body = slamAttack.hitPlayer;
 
-        body.resetPlayer();
+        //body.resetPlayer(); //dont use this
         //go up to normal height of light enemy
 
         //use stunned going up code but try a while loop that checks if it is at 30 if not keeps going
@@ -725,7 +741,7 @@ public class EnemyAIController : AdvancedFSM
         Damage.enabled = false;
         EAC.Dashing = false;
 
-        yield return null;
+        //yield return null;
     }
 
     float knockbackTimer;
@@ -775,7 +791,8 @@ public class EnemyAIController : AdvancedFSM
         }
         if (other.tag == "PlayerAttack" && !knockback)
         {
-            StartCoroutine(KnockBack(other.transform.position));
+            Debug.Log("FUCK:: ENEMY KNOCKBACK");
+           // StartCoroutine(KnockBack(other.transform.position));
         }
     }
 

@@ -161,6 +161,7 @@ public class GameManager : MonoBehaviour
             IsLevelCleared = false;
             SetPlayerPositions();
             LM.Enter_Level();
+            MainMenu.SetActive(false);
         }
         else if (levelName.Equals(MainMenuName))
         {
@@ -190,7 +191,7 @@ public class GameManager : MonoBehaviour
             
             Players[i].transform.position = spawnPoints[i].position;
             Players[i].PB.transform.localPosition = new Vector3(0,0,0);
-            Debug.Log(Players[i].PB.transform.localPosition);
+            //Debug.Log(Players[i].PB.transform.localPosition);
         }
         if (spawnPoints.Length <= 0)
             Debug.Log("GAMEMANAGER:: NO SPAWN POINTS SET FOR PLAYERS ON LEVEL CHANGE // GameManager/SetPlayerPositions");

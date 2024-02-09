@@ -201,8 +201,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 10.472778, y: 18.485518, z: 4.4846153}
-  m_Center: {x: 0.40534216, y: 1.979397, z: -0.6038061}
+  m_Size: {x: 10.472778, y: 14.085445, z: 4.4846153}
+  m_Center: {x: 0.40534216, y: -0.22064367, z: -0.60380614}
 --- !u!54 &5493214263850978981
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -296,6 +296,7 @@ MonoBehaviour:
   TargetPlayerPos: {x: 0, y: 0, z: 0}
   isHeavyDashing: 0
   isDoneDashing: 0
+  belowChecker: {fileID: 0}
   startSlam: 0
   canSlam: 0
   moveToStunned: 0

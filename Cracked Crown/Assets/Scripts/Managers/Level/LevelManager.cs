@@ -54,6 +54,7 @@ public class LevelManager : MonoBehaviour
     private Spawner Spawner;
     [SerializeField]
     private int ENEMIES_SPAWNED;
+    private int ENEMIES_KILLED;
 
     [HideInInspector]
     public Scene persScene;
@@ -83,14 +84,18 @@ public class LevelManager : MonoBehaviour
     {
         if (ROOM_CLEARED || !SpawnersActive)
             return;
+        Debug.Log(Current_Room.RoomNumber + ": " + CURRENT_WAVE);
         if (ENEMIES_SPAWNED > Current_Room.EnemyCount_PerWave[CURRENT_WAVE-1])
         {
-            StartCoroutine(ON_ROUNDEND());
-            return;
+            if (ENEMIES_KILLED >= ENEMIES_SPAWNED)
+            {
+                StartCoroutine(ON_ROUNDEND());
+                return;
+            }
         }
 
         SpawnTimer += Time.deltaTime;
-        if (SpawnTimer > WAIT_NEXTSPAWN_VALUE)
+        if (SpawnTimer > WAIT_NEXTSPAWN_VALUE && ENEMIES_SPAWNED <= Current_Room.EnemyCount_PerWave[CURRENT_WAVE-1])
         {
             SpawnTimer = 0;
             WAIT_NEXTSPAWN_VALUE = Random.Range(WAIT_NEXTSPAWN_LWB, WAIT_NEXTSPAWN_UPB);
@@ -106,6 +111,11 @@ public class LevelManager : MonoBehaviour
     public void EnemySpawned()
     {
         ENEMIES_SPAWNED += 1;
+    }
+
+    public void EnemyKilled()
+    {
+        ENEMIES_KILLED += 1;
     }
 
     private IEnumerator ON_ENTER()
@@ -128,6 +138,8 @@ public class LevelManager : MonoBehaviour
         {
             yield return new WaitForSeconds(WAIT_NEXTROUND);
             CURRENT_WAVE++;
+            ENEMIES_SPAWNED = 0;
+            ENEMIES_KILLED = 0;
             SpawnersActive = true;
 
         }

@@ -24,8 +24,12 @@ public class PlayerBody : MonoBehaviour
     [SerializeField]
     private float health = 100f;
     [SerializeField]
-    private GameObject deathBody; 
+    private GameObject deathBody;
 
+    [Header("CHARACTER DESIGN")]
+    public float KnockbackTime = 0.025f;
+    public float KnockForwardTime = 0.025f;
+    [SerializeField]
     private float attackKnockback = 100;
     public float Health { get { return health; } }
     public float damage = 3f;
@@ -185,7 +189,7 @@ public class PlayerBody : MonoBehaviour
             float y = rb.velocity.y;
             rb.velocity = ((-GetMovementVector()) * attackKnockback * forceMod/4 * Time.fixedDeltaTime);
             rb.velocity = new Vector3(rb.velocity.x, y, rb.velocity.z);
-            hitEnemy = false;
+            //hitEnemy = false;
             dontForward = true;
         }
         Move();
@@ -261,7 +265,7 @@ public class PlayerBody : MonoBehaviour
         if (dashing)
         {
             //Debug.Log("DASHING");
-            rb.velocity = (new Vector3(0, rb.velocity.y) + ((dashDirection * dashSpeed * forceMod * 0.02f)) * Time.fixedDeltaTime);
+            rb.velocity = (new Vector3(0, rb.velocity.y) + ((dashDirection * dashSpeed * forceMod * 0.9f)) * Time.fixedDeltaTime);
         }
         if (!hitEnemy && (lockHitForward))
         {
@@ -273,6 +277,7 @@ public class PlayerBody : MonoBehaviour
         }
         else if (hitEnemy && lockHitBackward)
         {
+            Debug.Log("BACK");
             float y = rb.velocity.y;
             rb.velocity = (-GetMovementVector() * attackKnockback * (forceMod) * 4) * Time.deltaTime;
             rb.velocity = new Vector3(rb.velocity.x, y, rb.velocity.z);
@@ -316,7 +321,8 @@ public class PlayerBody : MonoBehaviour
             
 
             animController.Attacking = true;
-            GameObject attack = Instantiate(prefabForAttack, primaryAttackSpawnPoint);
+            GameObject attack = Instantiate(prefabForAttack, primaryAttackSpawnPoint.transform.position, primaryAttackPoint.rotation);
+            attack.GetComponent<PrototypePrimaryAttack>().playerBody = this;
             SwordSlash.sword.Play();
 
             
@@ -332,23 +338,24 @@ public class PlayerBody : MonoBehaviour
         
 
     }
-
+    
     private IEnumerator forwardHit()
     {
         lockHitForward = true;
         //dontForward = false;
-        yield return new WaitForSeconds(0.025f);
+        yield return new WaitForSeconds(KnockForwardTime);
         //dontForward = true;
         lockHitForward = false;
     }
-
+    
     private IEnumerator backwardHit()
     {
         lockHitBackward = true;
         dontForward = false;
-        yield return new WaitForSeconds(0.025f);
+        yield return new WaitForSeconds(KnockbackTime);
         dontForward = true;
         lockHitBackward = false;
+        hitEnemy = false;
     }
 
     public void Execute(GameObject enemy)
