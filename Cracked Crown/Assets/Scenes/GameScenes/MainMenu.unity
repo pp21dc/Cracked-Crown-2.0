@@ -5151,6 +5151,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 1513603087950209344, guid: 503531e7b374a6747862ebfc1b4feef4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1669521084979103865, guid: 503531e7b374a6747862ebfc1b4feef4,
         type: 3}
       propertyPath: m_IsActive
@@ -11963,6 +11968,9 @@ MonoBehaviour:
   Mixer: {fileID: 24100000, guid: a8598c5d9d1ee544e832031bcb33e15d, type: 2}
   settingsInitButton: {fileID: 80267654}
   CharacterSelectUI: {fileID: 0}
+  DialogueBar: {fileID: 0}
+  CharacterIcon: {fileID: 0}
+  CharacterIcons: []
 --- !u!1 &405997264
 GameObject:
   m_ObjectHideFlags: 0
@@ -13671,7 +13679,7 @@ PrefabInstance:
     - target: {fileID: 5068627527567498472, guid: 1460deebf475f8042bfb7c0e3844fa96,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8808132125580471044, guid: 1460deebf475f8042bfb7c0e3844fa96,
         type: 3}
@@ -16170,7 +16178,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!65 &1024358494
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16251,7 +16259,7 @@ Transform:
   m_GameObject: {fileID: 1024358493}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.8, y: 17.5, z: 7.9}
+  m_LocalPosition: {x: -0.6, y: 17.5, z: 88.2}
   m_LocalScale: {x: 98.14716, y: 79.560684, z: 35.989014}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -20183,6 +20191,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BasicEnemy (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 5068627527567498472, guid: 1460deebf475f8042bfb7c0e3844fa96,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -20287,7 +20300,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1576408255
 Transform:
   m_ObjectHideFlags: 0

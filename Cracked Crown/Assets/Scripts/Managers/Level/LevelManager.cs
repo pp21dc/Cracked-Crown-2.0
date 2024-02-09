@@ -60,16 +60,29 @@ public class LevelManager : MonoBehaviour
         GM = GameManager.Instance;
     }
     float SpawnTimer = 0;
+    bool loc;
     private void Update()
     {
         EnemySpawnSystem();
+        if (!loc)
+        {
+            loc = true;
+            StartCoroutine(HOLDSTILLCUN());
+        }
+    }
+
+    private IEnumerator HOLDSTILLCUN()
+    {
+        GM.SetPlayerPositions();
+        yield return new WaitForSeconds(7);
+        GM.SetPlayerPositions();
     }
 
     private void EnemySpawnSystem()
     {
         if (ROOM_CLEARED || !SpawnersActive)
             return;
-        if (ENEMIES_SPAWNED > Current_Room.EnemyCount_PerWave[CURRENT_WAVE])
+        if (ENEMIES_SPAWNED > Current_Room.EnemyCount_PerWave[CURRENT_WAVE-1])
         {
             StartCoroutine(ON_ROUNDEND());
             return;
@@ -99,6 +112,7 @@ public class LevelManager : MonoBehaviour
         CURRENT_WAVE = 0;
         ROOM_CLEARED = false;
         yield return new WaitForSeconds(WAIT_ONENTER);
+        
         CURRENT_WAVE = 1;
         CURRENT_ROOM += 1;
         Current_Room = Rooms[CURRENT_ROOM];
