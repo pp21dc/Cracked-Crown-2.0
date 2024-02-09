@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using UnityEngine.Rendering;
 using Unity.VisualScripting;
 
+
 [System.Serializable]
 public abstract class AIProperties // the properties that are most commonly used by all states and are now accesible to those states
 {
@@ -58,6 +59,8 @@ public class EnemyAIController : AdvancedFSM
     private float HeavyDashSpeed = 2f;
 
     public bool canMove = true;
+
+
 
     //light enemy
     [SerializeField]
@@ -537,12 +540,40 @@ public class EnemyAIController : AdvancedFSM
         //animation here
         EAC.Dead = true;
         //scale time to animation
+
+        yield return new WaitForSeconds(0.7f);
+
+        DropEyes();
+
         yield return new WaitForSeconds(2.2f);
 
         
         Destroy(enemy);
 
         yield return null;
+    }
+
+    private void DropEyes()
+    {
+        int dropRate = 0;
+
+        if (gameObject.CompareTag("Light"))
+        {
+            dropRate = Random.Range(1, 3);
+        }
+        else if (gameObject.CompareTag("Medium"))
+        {
+            dropRate = Random.Range(2, 6);
+        }
+        else if (gameObject.CompareTag("Heavy"))
+        {
+            dropRate = Random.Range(4, 9);
+        }
+
+        for (int i = 0; i < dropRate; i++)
+        {
+            //instantiate eyes here
+        }
     }
 
     public void StartSlam()
@@ -620,6 +651,8 @@ public class EnemyAIController : AdvancedFSM
 
         body.resetPlayer();
         //go up to normal height of light enemy
+
+        //use stunned going up code but try a while loop that checks if it is at 30 if not keeps going
 
         //get random transform to move towards
 
