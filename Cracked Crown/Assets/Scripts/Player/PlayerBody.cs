@@ -446,6 +446,7 @@ public class PlayerBody : MonoBehaviour
             
             yield return new WaitForSeconds(0);
             toExecute.transform.parent.gameObject.SetActive(false);
+            LevelManager.Instance.EnemyKilled();
         }
     }
 

@@ -32,7 +32,7 @@ public class PrototypePrimaryAttack : MonoBehaviour
             Rigidbody rb;
             playerBody.hitEnemy = true;
             enemyController = other.transform.parent.GetChild(0).GetComponent<EnemyAIController>();
-            enemyController.DecHealth(playerBody.damage/5);
+            enemyController.DecHealth(playerBody.damage);
             rb = other.GetComponent<Rigidbody>();    
             if (!enemyController.lockKnock)
                 enemyController.StartCoroutine(enemyController.KB(playerBody.GetMovementVector() * 15 * playerBody.forceMod));

@@ -54,6 +54,7 @@ public class LevelManager : MonoBehaviour
     private Spawner Spawner;
     [SerializeField]
     private int ENEMIES_SPAWNED;
+    [SerializeField]
     private int ENEMIES_KILLED;
 
     [HideInInspector]
@@ -134,7 +135,7 @@ public class LevelManager : MonoBehaviour
     private IEnumerator ON_ROUNDEND()
     {
         SpawnersActive = false;
-        if (CURRENT_WAVE <= 3)
+        if (CURRENT_WAVE < 3)
         {
             yield return new WaitForSeconds(WAIT_NEXTROUND);
             CURRENT_WAVE++;

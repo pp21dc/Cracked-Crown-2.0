@@ -545,12 +545,12 @@ public class EnemyAIController : AdvancedFSM
 
         yield return new WaitForSeconds(0.7f);
 
-        LevelManager.Instance.EnemyKilled();
+        
         DropEyes();
 
         yield return new WaitForSeconds(2.2f);
 
-        
+        LevelManager.Instance.EnemyKilled();
         Destroy(enemy);
 
         //yield return null;
