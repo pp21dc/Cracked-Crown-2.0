@@ -103,6 +103,11 @@ public class EnemyAIController : AdvancedFSM
 
     private bool doneOnGround;
 
+    private bool canStun;
+    private bool canCarry;
+    private bool startCarryingUp;
+    private bool startCarrying;
+
 
     //health, finisher, and death states
     public float maxHealth = 100; // its total Health
@@ -223,6 +228,13 @@ public class EnemyAIController : AdvancedFSM
 
         doneOnGround = false;
 
+        canStun = true;
+
+        canCarry = true;
+
+        startCarrying = false;
+        startCarryingUp = false;
+
         ConstructFSM();
     }
     public bool act = false;
@@ -234,17 +246,7 @@ public class EnemyAIController : AdvancedFSM
             CurrentState.Reason(playerTransform, transform);
             CurrentState.Act(playerTransform, transform);
         }
-        /*if (Input.GetKeyUp(KeyCode.T))
-        {
-            act = !act;
-            Players = GameObject.FindGameObjectsWithTag("Player");//finds and add all players to array
-            if (Players.Length <= 0) { Players = null; }
-            if (Players != null)
-            {
-                playerTransform = Players[0].transform;
-                closest = playerTransform.gameObject;
-            }
-        }*/
+        
 
         
     }
@@ -630,7 +632,11 @@ public class EnemyAIController : AdvancedFSM
 
     public void StartStunned()
     {
-        StartCoroutine(Stunned());
+        if (canStun)
+        {
+            canStun = false;
+            StartCoroutine(Stunned());
+        }
 
         if (doneOnGround == true)
         {
@@ -657,28 +663,55 @@ public class EnemyAIController : AdvancedFSM
 
     public void StartCarry()
     {
+
+        PlayerBody body = slamAttack.hitPlayer;
+
+        if (canCarry == true)
+        {
+            canCarry = false;
+            StartCoroutine(Carry());
+        }
+
+        if(startCarryingUp == true)
+        {
+            body.transform.position = enemyPosition.position;
+
+            movementVector = (SlamLocation.position + enemyPosition.transform.position).normalized * speed;
+            enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
+        }
         //call player carry method, move the light enemy to a random point, if timer runs out, drop player go to find player, use rand on an x and z for a random direction
-        StartCoroutine(Carry());
+        
+
+
     }
 
     IEnumerator Carry()
     {
         PlayerBody body = slamAttack.hitPlayer;
 
-        //body.resetPlayer(); //dont use this
+        body.StartSpam();
         //go up to normal height of light enemy
+        
+        startCarryingUp = true;
 
-        //use stunned going up code but try a while loop that checks if it is at 30 if not keeps going
+        while(enemyPosition.position.y <= 30)
+        {
+            yield return new WaitForSeconds(0.01f);
+        }
 
-        //get random transform to move towards
+        startCarryingUp = false;
 
-        //move for 2-4 seconds unless interupted by player mashing,
+        startCarrying = true;
 
-        //drop player
+        yield return new WaitForSeconds(4f);
 
-        //give back player control
+        startCarrying = false;
 
-        //move to look for player
+        playerTransform.position = playerTransform.position;
+
+        body.canRelease = true;
+        
+        doneCarry = true;
 
         yield return null;
     }    

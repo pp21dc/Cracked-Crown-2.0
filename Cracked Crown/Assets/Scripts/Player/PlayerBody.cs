@@ -101,7 +101,7 @@ public class PlayerBody : MonoBehaviour
     private GameManager gameManager;
 
     //hey Ian dont know where you will want this bool
-    private bool canRelease = false;
+    public bool canRelease = false;
 
     private void Update()
     {
