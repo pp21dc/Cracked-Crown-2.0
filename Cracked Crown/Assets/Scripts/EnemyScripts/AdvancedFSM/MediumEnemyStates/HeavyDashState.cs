@@ -32,7 +32,7 @@ public class HeavyDashState : FSMState
         }
         else if(enemy.isDoneDashing)
         {
-            enemy.isDoneDashing = false;
+            enemy.ResetDashVar();
             enemy.PerformTransition(Transition.LookForPlayer);
             return;
         }
