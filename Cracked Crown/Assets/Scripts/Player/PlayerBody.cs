@@ -327,8 +327,8 @@ public class PlayerBody : MonoBehaviour
     bool attacking;
     private void Attack()
     {
-        Debug.Log(attacking);
-        if (controller.PrimaryAttackDown & canAttack & !dashing)
+        //Debug.Log(canMove);
+        if (controller.PrimaryAttackDown && canAttack && canMove && !dashing)
         {
             canMove = false;
             canAttack = false;
@@ -384,6 +384,7 @@ public class PlayerBody : MonoBehaviour
 
     private IEnumerator attackMoveCooldown()
     {
+        //Debug.Log("CANMOVE::" + canMove);
         yield return new WaitForSeconds(moveCooldown);
         canMove = true;
     }
