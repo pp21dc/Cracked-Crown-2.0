@@ -7,6 +7,7 @@ using UnityEngine.Rendering;
 using Unity.VisualScripting;
 
 
+
 [System.Serializable]
 public abstract class AIProperties // the properties that are most commonly used by all states and are now accesible to those states
 {
@@ -685,6 +686,27 @@ public class EnemyAIController : AdvancedFSM
 
         PlayerBody body = slamAttack.hitPlayer;
 
+        int temp = Random.Range(1, 4);
+        int xDir;
+        int zDir;
+
+        if(temp == 1)
+        {
+            xDir = 1; zDir = 1;
+        }
+        else if (temp == 2)
+        {
+            xDir= 1; zDir = -1;
+        }
+        else if (temp == 3)
+        {
+            xDir = -1; zDir= 1;
+        }
+        else
+        {
+            xDir = -1; zDir = -1;
+        }
+
         if (canCarry == true)
         {
             canCarry = false;
@@ -693,9 +715,19 @@ public class EnemyAIController : AdvancedFSM
 
         if(startCarryingUp == true)
         {
-            body.transform.position = enemyPosition.position;
+            
             Debug.Log("Lets go up");
             movementVector = (upPlacement.position - enemyPosition.transform.position).normalized * speed;
+            enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
+
+            
+        }
+
+        if(startCarrying == true)
+        {
+            Vector3 randTrans = new Vector3(xDir * (enemy.transform.position.x + (int)Random.Range(1, 5)), enemy.transform.position.y, zDir * (enemy.transform.position.z + (int)Random.Range(1, 5)));
+
+            movementVector = (randTrans - enemyPosition.transform.position).normalized * speed;
             enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
         }
         //call player carry method, move the light enemy to a random point, if timer runs out, drop player go to find player, use rand on an x and z for a random direction
@@ -706,18 +738,12 @@ public class EnemyAIController : AdvancedFSM
 
     IEnumerator Carry()
     {
-        /*
-        PlayerBody body = slamAttack.hitPlayer;
-
-        body.StartSpam();
-        //go up to normal height of light enemy
-        
+         
         startCarryingUp = true;
 
-        while(enemyPosition.position.y <= 30)
-        {
-            yield return new WaitForSeconds(0.01f);
-        }
+        
+            yield return new WaitForSeconds(3f);
+        
 
         startCarryingUp = false;
 
@@ -727,17 +753,25 @@ public class EnemyAIController : AdvancedFSM
 
         startCarrying = false;
 
-        playerTransform.position = playerTransform.position;
+        
 
-        body.canRelease = true;
+        
         
         doneCarry = true;
 
         yield return null;
-        */
+        
 
-        yield return null;
-    }    
+        
+    }   
+    
+    public void RestCarryVar()
+    {
+        canCarry = true;
+        startCarryingUp = false;
+        startCarrying = false;
+        doneCarry = false;
+    }
 
 
     //starts the heavy dash if in range
