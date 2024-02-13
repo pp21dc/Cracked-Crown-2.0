@@ -544,8 +544,11 @@ MonoBehaviour:
   dashSpeed: 128
   dashTime: 1
   finisherRadius: 20
-  health: 10
+  health: 25
   deathBody: {fileID: 0}
+  KnockbackTime: 0.025
+  KnockForwardTime: 0.025
+  attackKnockback: 100
   damage: 3
   CharacterType: {fileID: 11400000, guid: af4d3361d5305ac4886c180637d80700, type: 2}
   controller: {fileID: 5218490417596488022}
@@ -576,9 +579,13 @@ MonoBehaviour:
   canCollectBomb: 0
   canCollectPotion: 0
   collectable: {fileID: 0}
+  canTakeDamage: 1
+  executeHeal: 5
+  canMovePlayerForexecute: 0
   sprite: {fileID: 0}
   movementVector: {x: 0, y: 0, z: 0}
   forceMod: 500
+  lockExecAnim: 0
   dashing: 0
   RESETINGGHOST: 0
   persistScene:

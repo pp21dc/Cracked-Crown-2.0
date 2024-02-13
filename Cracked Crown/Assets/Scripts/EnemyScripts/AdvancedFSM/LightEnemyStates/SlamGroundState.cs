@@ -37,12 +37,12 @@ public class SlamGroundState : FSMState
         }
         else if (enemy.moveToCarry)
         {
-            enemy.moveToCarry = false;
+            enemy.ResetSlamVar();
             enemy.PerformTransition(Transition.SlamSuceeded);
         }
         else if (enemy.moveToStunned) 
         {
-            enemy.moveToStunned = false;
+            enemy.ResetSlamVar();
             enemy.PerformTransition(Transition.SlamFailed);
         }
         

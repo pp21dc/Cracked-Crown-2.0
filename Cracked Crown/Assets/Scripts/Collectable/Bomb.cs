@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
 
 public class Bomb : MonoBehaviour
 {
@@ -8,16 +10,55 @@ public class Bomb : MonoBehaviour
 
     private float damage = 100f;
     private int count = 0;
-    private float speed = 25;
+    private bool playOnce = true;
+    private int counter = 0;
 
-    private EnemyAIController[] enemiesInRange;
-    private PlayerBody body;
+    [Header("Do Not Touch")]
+    [SerializeField]
+    private Vector3 height;
 
+    [Header("Can Touch")]
+    [Header("Hover for more information")]
+    [SerializeField]
+    [Tooltip("make it a bigger negative number to have bomb not go as far")]
+    private float gravity = -160;
+    [SerializeField]
+    [Tooltip("make bigger to increase speed of bomb travel")]
+    private float speed = 17;
+
+    private List<EnemyAIController> enemiesInRange;
+    private Rigidbody rb;
+    private PlayerController controller;
+
+    private void Awake()
+    {
+        Debug.Log("controller is: " + controller);
+        rb = GetComponent<Rigidbody>();
+        enemiesInRange = new List<EnemyAIController>();
+    }
+
+    int thing = 1;
     // Update is called once per frame
     void Update()
     {
-        transform.position += direction * speed * Time.deltaTime;
-        StartCoroutine(Explode());
+        if (counter == 1)
+        {
+            speed = 0;
+            thing = 0;
+            rb.velocity = Vector3.zero;
+        }
+
+        if (playOnce)
+        {
+            height.x = height.x * controller.HorizontalMagnitude;
+            height.z = direction.z * 45;
+
+            rb.AddForce((direction + height) * speed, ForceMode.Impulse);
+            Debug.Log("Force: " + (direction + height) * speed);
+            StartCoroutine(Explode());
+            playOnce = false;
+        }
+        rb.velocity += new Vector3(0, gravity, 0) * thing * Time.deltaTime;
     }
 
     private IEnumerator Explode()
@@ -25,7 +66,7 @@ public class Bomb : MonoBehaviour
 
         // play wub wub animation looking like its gonna explode
 
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(3f);
 
         // play explosion effect
 
@@ -33,12 +74,10 @@ public class Bomb : MonoBehaviour
         {
             foreach (EnemyAIController enemy in enemiesInRange)
             {
-                enemiesInRange[count].DecHealth(damage);
-                count--;
+                enemy.DecHealth(damage);
             }
         }
 
-        Debug.Log("bomb went boom");
         gameObject.SetActive(false);
 
     }
@@ -48,13 +87,16 @@ public class Bomb : MonoBehaviour
         direction = dir;
     }
 
+    public void SetController(PlayerController playerControls)
+    {
+        controller = playerControls;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Medium" || other.tag == "Heavy" || other.tag == "Light")
+        if (other.tag == "Enemy")
         {
-            Debug.Log("enemy in radius");
-            enemiesInRange[count] = other.GetComponent<EnemyAIController>();
-            count++;
+            enemiesInRange.Add(other.transform.parent.GetChild(0).gameObject.GetComponent<EnemyAIController>());
         }
     }
 
@@ -62,9 +104,15 @@ public class Bomb : MonoBehaviour
     {
         if (other.tag == "Medium" || other.tag == "Heavy" || other.tag == "Light")
         {
-            Debug.Log("enemy out of range");
-            count--;
-            enemiesInRange[count] = null; // dont know how to know which one is leaving and how to delete that one from list
+            enemiesInRange.Remove(other.transform.parent.GetChild(0).gameObject.GetComponent<EnemyAIController>()); // dont know how to know which one is leaving and how to delete that one from list
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Ground")
+        {
+            counter++;
         }
     }
 }

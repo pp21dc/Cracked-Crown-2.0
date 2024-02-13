@@ -5,11 +5,11 @@ using UnityEngine;
 public class PrototypePrimaryAttack : MonoBehaviour
 {
     private EnemyAIController enemyController;
-    private PlayerBody playerBody;
+    public PlayerBody playerBody;
 
     private void Awake()
     {
-        playerBody = gameObject.GetComponentInParent<PlayerBody>();
+        //playerBody = gameObject.GetComponentInParent<PlayerBody>();
     }
 
     void Start()
@@ -26,16 +26,16 @@ public class PrototypePrimaryAttack : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Rigidbody rb;
-
         Debug.Log(other.gameObject.name);
         if (other.tag == "Enemy")
         {
+            Rigidbody rb;
             playerBody.hitEnemy = true;
             enemyController = other.transform.parent.GetChild(0).GetComponent<EnemyAIController>();
             enemyController.DecHealth(playerBody.damage);
-            rb = other.GetComponent<Rigidbody>();                                              
-            rb.velocity = (playerBody.GetMovementVector() * 3.5f * playerBody.forceMod * Time.deltaTime);
+            rb = other.GetComponent<Rigidbody>();    
+            if (!enemyController.lockKnock)
+                enemyController.StartCoroutine(enemyController.KB(playerBody.GetMovementVector() * 15 * playerBody.forceMod));
             Debug.Log("Enemy Health: " + enemyController.Health);
         }
         if (other.tag == "Boss")

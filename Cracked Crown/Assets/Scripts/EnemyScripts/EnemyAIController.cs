@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using UnityEngine.Rendering;
 using Unity.VisualScripting;
 
+
 [System.Serializable]
 public abstract class AIProperties // the properties that are most commonly used by all states and are now accesible to those states
 {
@@ -59,6 +60,8 @@ public class EnemyAIController : AdvancedFSM
 
     public bool canMove = true;
 
+
+
     //light enemy
     [SerializeField]
     private Transform fireLocation;
@@ -76,7 +79,9 @@ public class EnemyAIController : AdvancedFSM
     private bool canGoop;
     private bool startGoop;
 
-    private bool seesPLayer;
+    [SerializeField]
+    private CheckPlayerBelow belowChecker;
+
     public bool startSlam;
 
     public bool canSlam;
@@ -96,6 +101,17 @@ public class EnemyAIController : AdvancedFSM
     public bool doneCarry;
     public bool doneStun;
 
+    private bool doneOnGround;
+
+    private bool canStun;
+    private bool canCarry;
+    private bool startCarryingUp;
+    private bool startCarrying;
+
+    [SerializeField]
+    private Transform upPlacement;
+
+    
 
     //health, finisher, and death states
     public float maxHealth = 100; // its total Health
@@ -201,12 +217,12 @@ public class EnemyAIController : AdvancedFSM
         startGoop = true;
         canGoop = true;
 
-        seesPLayer = false;
+        
         startSlam = false;
 
         canSlam = true;
 
-        slamSpeed = 15f;
+        slamSpeed = 65f;
 
         moveToStunned = false;
         moveToCarry = false;
@@ -214,28 +230,29 @@ public class EnemyAIController : AdvancedFSM
         doneCarry = false;
         doneStun = false;
 
+        doneOnGround = false;
+
+        canStun = true;
+
+        canCarry = true;
+
+        startCarrying = false;
+        startCarryingUp = false;
+
+        
+
         ConstructFSM();
     }
     public bool act = false;
     protected override void FSMUpdate()
     {
-        
+        act = true;
         if (CurrentState != null && act)
         {
             CurrentState.Reason(playerTransform, transform);
             CurrentState.Act(playerTransform, transform);
         }
-        if (Input.GetKeyUp(KeyCode.T))
-        {
-            act = !act;
-            Players = GameObject.FindGameObjectsWithTag("Player");//finds and add all players to array
-            if (Players.Length <= 0) { Players = null; }
-            if (Players != null)
-            {
-                playerTransform = Players[0].transform;
-                closest = playerTransform.gameObject;
-            }
-        }
+        
 
         
     }
@@ -396,9 +413,11 @@ public class EnemyAIController : AdvancedFSM
             EAC.Moving = false;
         }
         //Debug.Log(speed);
-
-        movementVector = (closest.transform.position - enemyPosition.transform.position).normalized * Speed;
-        enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
+        if (!lockKnock)
+        {
+            movementVector = (closest.transform.position - enemyPosition.transform.position).normalized * Speed;
+            enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
+        }
         //enemyBody.transform.position = new Vector3(enemyBody.position.x, 0, enemyBody.position.z); //keeps it on ground
         if (closest.transform.position.x > enemyPosition.transform.position.x)
         {
@@ -443,24 +462,15 @@ public class EnemyAIController : AdvancedFSM
             StartCoroutine(GoopRoutine());
         }
         
-        if(checkBelow())
+        if(belowChecker.IsPlayerBelow())
         {
+            canGoop = false;
             startSlam = true;
         }
 
     }
 
-    private bool checkBelow()
-    {
-        if(seesPLayer)
-        {
-            return true;
-        }
-
-        
-
-        return false;
-    }
+    
 
     IEnumerator GoopRoutine()
     {
@@ -471,7 +481,7 @@ public class EnemyAIController : AdvancedFSM
             yield return new WaitForSeconds(0.45f);
         }
 
-        yield return null;
+        //yield return null;
     }
 
     private void StartShootGoop(Transform body, Transform fireLocation)
@@ -540,22 +550,67 @@ public class EnemyAIController : AdvancedFSM
         //animation here
         EAC.Dead = true;
         //scale time to animation
-        yield return new WaitForSeconds(2.2f);
+
+        yield return new WaitForSeconds(0.7f);
 
         
+        DropEyes();
+
+        yield return new WaitForSeconds(2.2f);
+
+        LevelManager.Instance.EnemyKilled();
         Destroy(enemy);
 
-        yield return null;
+        //yield return null;
     }
+
+    private void DropEyes()
+    {
+        int dropRate = 0;
+
+        if (gameObject.CompareTag("Light"))
+        {
+            dropRate = Random.Range(1, 3);
+        }
+        else if (gameObject.CompareTag("Medium"))
+        {
+            dropRate = Random.Range(2, 6);
+        }
+        else if (gameObject.CompareTag("Heavy"))
+        {
+            dropRate = Random.Range(4, 9);
+        }
+
+        for (int i = 0; i < dropRate; i++)
+        {
+            //instantiate eyes here
+        }
+    }
+    public bool lockKnock;
+    public IEnumerator KB(Vector3 dir)
+    {
+        lockKnock = true;
+        enemyBody.isKinematic = false;
+        enemyBody.AddForce(dir);
+        yield return new WaitForSeconds(0.5f);
+        enemyBody.velocity = Vector3.zero;
+        enemyBody.isKinematic = true;
+        lockKnock = false;
+    }
+
+
 
     public void StartSlam()
     {
-        if(canSlam)
-        {
-            canSlam = false;
-            StartCoroutine(SlamAttack());
-        }
-        else
+        
+            
+        
+        StartCoroutine(SlamAttack());
+
+        
+            
+        
+        if(slamAttack.hasHit == false && slamAttack.HitGround == false)
         {
             movementVector = (SlamLocation.position - enemyPosition.transform.position).normalized * slamSpeed;
             enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
@@ -567,33 +622,126 @@ public class EnemyAIController : AdvancedFSM
 
     IEnumerator SlamAttack()
     {
-        yield return new WaitForSeconds(3f);
-
-        if(slamAttack.hasHit == true)
+        
+        EAC.Attacking = true;
+        if (slamAttack.hasHit == true)
         {
             moveToCarry = true;
+        Debug.Log("Carry");
+                
         }
-        else
+        else if (slamAttack.HitGround == true)
         {
             moveToStunned = true;
-        }
+            Debug.Log("Stunned");    
 
-        yield return null;
+        }
+        //Can this coroutine end??
+        yield return new WaitForSeconds(1);
+    }
+
+    public void ResetSlamVar()
+    {
+        slamAttack.hasHit = false;
+        slamAttack.HitGround = false;
+        moveToCarry = false;
+        moveToStunned = false;
     }
 
     public void StartStunned()
     {
-        //call a coroutine to wait for 3 seconds, fly back up to 30 above and go to findplayer
+        if (canStun)
+        {
+            canStun = false;
+            StartCoroutine(Stunned());
+        }
+
+        if (doneOnGround == true)
+        {
+            if (doneStun == false)
+            {
+                Debug.Log("LetsGoUp");
+                movementVector = (upPlacement.position - enemyPosition.transform.position).normalized * speed;
+                enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
+            }
+        }
+    }
+
+    IEnumerator Stunned()
+    {
+        yield return new WaitForSeconds(3f);
+
+        doneOnGround = true;
+
+        yield return new WaitForSeconds(2f);
+
+        doneStun = true;
+
+        //yield return null; //CAN THIS EXIT?
     }
 
     public void StartCarry()
     {
-        //call player carry method, move the light enemy to a random point, if timer runs out, drop player go to find player
+
+        PlayerBody body = slamAttack.hitPlayer;
+
+        if (canCarry == true)
+        {
+            canCarry = false;
+            StartCoroutine(Carry());
+        }
+
+        if(startCarryingUp == true)
+        {
+            body.transform.position = enemyPosition.position;
+            Debug.Log("Lets go up");
+            movementVector = (upPlacement.position - enemyPosition.transform.position).normalized * speed;
+            enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
+        }
+        //call player carry method, move the light enemy to a random point, if timer runs out, drop player go to find player, use rand on an x and z for a random direction
+        
+
+
     }
+
+    IEnumerator Carry()
+    {
+        /*
+        PlayerBody body = slamAttack.hitPlayer;
+
+        body.StartSpam();
+        //go up to normal height of light enemy
+        
+        startCarryingUp = true;
+
+        while(enemyPosition.position.y <= 30)
+        {
+            yield return new WaitForSeconds(0.01f);
+        }
+
+        startCarryingUp = false;
+
+        startCarrying = true;
+
+        yield return new WaitForSeconds(4f);
+
+        startCarrying = false;
+
+        playerTransform.position = playerTransform.position;
+
+        body.canRelease = true;
+        
+        doneCarry = true;
+
+        yield return null;
+        */
+
+        yield return null;
+    }    
 
 
     //starts the heavy dash if in range
-    public void StartHeavyDash()
+    public void StartDash()
     {
 
         //Debug.Log("Outside the If statement");
@@ -602,7 +750,7 @@ public class EnemyAIController : AdvancedFSM
 
             //Debug.Log("Made it to the if statement");
             isHeavyDashing = false;
-            StartCoroutine(HeavyDash());
+            StartCoroutine(Dash());
         }
         else
         {
@@ -635,7 +783,7 @@ public class EnemyAIController : AdvancedFSM
 
     //moves fastly towars the player direction to try and knock them back
     
-    IEnumerator HeavyDash()
+    IEnumerator Dash()
     {
         EAC.Dashing = true;
         TargetPlayerPos = closest.transform.position;
@@ -644,12 +792,17 @@ public class EnemyAIController : AdvancedFSM
 
         yield return new WaitForSeconds(2.5f);
 
-        isHeavyDashing = true;
-        isDoneDashing = true;
+        ResetDashVar();
         Damage.enabled = false;
         EAC.Dashing = false;
 
-        yield return null;
+        //yield return null;
+    }
+
+    public void ResetDashVar()
+    {
+        isDoneDashing = false;
+        isHeavyDashing = true;
     }
 
     float knockbackTimer;
@@ -699,17 +852,12 @@ public class EnemyAIController : AdvancedFSM
         }
         if (other.tag == "PlayerAttack" && !knockback)
         {
-            StartCoroutine(KnockBack(other.transform.position));
+            Debug.Log("FUCK:: ENEMY KNOCKBACK");
+           // StartCoroutine(KnockBack(other.transform.position));
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.CompareTag("Player"))
-        {
-            seesPLayer = true;
-        }
-    }
+    
 
 
 }

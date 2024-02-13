@@ -24,8 +24,12 @@ public class PlayerBody : MonoBehaviour
     [SerializeField]
     private float health = 100f;
     [SerializeField]
-    private GameObject deathBody; 
+    private GameObject deathBody;
 
+    [Header("CHARACTER DESIGN")]
+    public float KnockbackTime = 0.025f;
+    public float KnockForwardTime = 0.025f;
+    [SerializeField]
     private float attackKnockback = 100;
     public float Health { get { return health; } }
     public float damage = 3f;
@@ -86,10 +90,10 @@ public class PlayerBody : MonoBehaviour
 
     private bool dashOnCD = false;
     public bool canTakeDamage = true;
-    private float executeHeal = 5f;
+    public float executeHeal = 5f;
     private float executeMoveSpeed = 150f;
     private GameObject executeTarget;
-    private bool canMovePlayerForexecute = false;
+    public bool canMovePlayerForexecute = false;
     private bool ifHopper = false;
     private Vector3 respawnPoint;
     private GameObject corpse;
@@ -97,7 +101,7 @@ public class PlayerBody : MonoBehaviour
     private GameManager gameManager;
 
     //hey Ian dont know where you will want this bool
-    private bool canRelease = false;
+    public bool canRelease = false;
 
     private void Update()
     {
@@ -137,7 +141,7 @@ public class PlayerBody : MonoBehaviour
             lockDash = false;
 
             canTakeDamage = true;
-            RevivePlayer();
+            //RevivePlayer();
 
             // delete corpse
             //Debug.Log("DESTROY CORPSES");
@@ -148,6 +152,8 @@ public class PlayerBody : MonoBehaviour
         Attack();
         Dash();
         UseItem();
+        rb.velocity = new Vector3(rb.velocity.x, (-9.81f)*(rb.mass), rb.velocity.z);
+
     }
 
     public Transform sprite;
@@ -168,7 +174,7 @@ public class PlayerBody : MonoBehaviour
     bool dontForward;
     private void FixedUpdate()
     {
-        
+        //Debug.Log(rb.velocity);
         //rb.AddForce(new Vector3(0, -12000, 0) * Time.fixedDeltaTime);
         if (canMove && !dashing && sprite != null)
         {
@@ -180,8 +186,10 @@ public class PlayerBody : MonoBehaviour
         if (hitEnemy)
         {
             //Debug.Log(GetMovementVector());
+            float y = rb.velocity.y;
             rb.velocity = ((-GetMovementVector()) * attackKnockback * forceMod/4 * Time.fixedDeltaTime);
-            hitEnemy = false;
+            rb.velocity = new Vector3(rb.velocity.x, y, rb.velocity.z);
+            //hitEnemy = false;
             dontForward = true;
         }
         Move();
@@ -197,6 +205,7 @@ public class PlayerBody : MonoBehaviour
 
     public Vector3 movementVector;
     public float forceMod = 1000;
+    Vector3 noY = new Vector3(1,0,1);
     private void Move()
     {
         if (canMove)
@@ -217,14 +226,19 @@ public class PlayerBody : MonoBehaviour
                     movementVector.Normalize();
                     
                 }
-                else if (movementVector.magnitude == 0)
+                else if (movementVector.magnitude == 0 && !lockHitForward)
                 {
-                    rb.velocity = Vector3.zero;
+                    rb.velocity = new Vector3(0, rb.velocity.y, 0);
                 }
                 movementVector.z = movementVector.z * 1.5f;
                 movementVector = (movementVector * movementSpeed);
 
-                rb.velocity = (movementVector * forceMod * Time.fixedDeltaTime);
+                if (!lockHitForward)
+                {
+                    float y = rb.velocity.y;
+                    rb.velocity = (movementVector * forceMod * Time.fixedDeltaTime);
+                    rb.velocity = new Vector3(rb.velocity.x, y, rb.velocity.z);
+                }
 
                 if ((rb.velocity.magnitude > 30f || movementVector.magnitude > 1) & Mathf.Abs(movementVector.magnitude) > 0 && !alreadyDead)
                 {
@@ -238,12 +252,42 @@ public class PlayerBody : MonoBehaviour
             }
             
         }
+        //Debug.Log(executeTarget.IsUnityNull());
         if (canMovePlayerForexecute && executeTarget != null)
         {
-            //Debug.Log("FUCCCCC");
-            transform.position = Vector3.MoveTowards(gameObject.transform.position, executeTarget.transform.position + forExecutePosition, executeMoveSpeed * Time.deltaTime);
+            if (Vector3.Distance(transform.position, executeTarget.transform.position + forExecutePosition) < 2.2f && !lockExecAnim)
+            {
+                animController.Finishing = true;
+                lockExecAnim = true;
+            }
+            
+            Vector3 test = Vector3.MoveTowards(gameObject.transform.position, executeTarget.transform.position + forExecutePosition, executeMoveSpeed * Time.deltaTime);
+            transform.position = test;
+
+            StartCoroutine(ExecuteCooldown());
+        }
+        if (dashing)
+        {
+            //Debug.Log("DASHING");
+            rb.velocity = (new Vector3(0, rb.velocity.y) + ((dashDirection * dashSpeed * forceMod * 0.9f)) * Time.fixedDeltaTime);
+        }
+        if (!hitEnemy && (lockHitForward))
+        {
+
+            //Debug.Log("FORWARD");
+            float y = rb.velocity.y;
+            rb.velocity = (GetMovementVector() * attackKnockback * (forceMod) * 4) * Time.deltaTime;
+            rb.velocity = new Vector3(rb.velocity.x, y, rb.velocity.z);
+        }
+        else if (hitEnemy && lockHitBackward)
+        {
+            Debug.Log("BACK");
+            float y = rb.velocity.y;
+            rb.velocity = (-GetMovementVector() * attackKnockback * (forceMod) * 4) * Time.deltaTime;
+            rb.velocity = new Vector3(rb.velocity.x, y, rb.velocity.z);
         }
     }
+    public bool lockExecAnim;
 
     public void DecHealth(float amount) 
     { 
@@ -270,6 +314,8 @@ public class PlayerBody : MonoBehaviour
     float x = 0;
     float attackTimer = 0;
     float attackTime = 0.1f;
+    bool lockHitForward;
+    bool lockHitBackward;
     private void Attack()
     {
         if (controller.PrimaryAttackDown & canAttack)
@@ -279,22 +325,41 @@ public class PlayerBody : MonoBehaviour
             
 
             animController.Attacking = true;
-            GameObject attack = Instantiate(prefabForAttack, primaryAttackSpawnPoint);
+            GameObject attack = Instantiate(prefabForAttack, primaryAttackSpawnPoint.transform.position, primaryAttackPoint.rotation);
+            attack.GetComponent<PrototypePrimaryAttack>().playerBody = this;
             SwordSlash.sword.Play();
 
-            if (!hitEnemy && !dontForward)
+            
+            if (!hitEnemy && !lockHitForward)
             {
-                rb.velocity = (GetMovementVector() * attackKnockback * (forceMod/2.5f) * Time.deltaTime);
-
+                StartCoroutine(forwardHit());
             }
-            else
+            else if (hitEnemy && !lockHitBackward)
             {
-                dontForward = false;
-                
+                StartCoroutine (backwardHit());
             }
         }
         
 
+    }
+    
+    private IEnumerator forwardHit()
+    {
+        lockHitForward = true;
+        //dontForward = false;
+        yield return new WaitForSeconds(KnockForwardTime);
+        //dontForward = true;
+        lockHitForward = false;
+    }
+    
+    private IEnumerator backwardHit()
+    {
+        lockHitBackward = true;
+        dontForward = false;
+        yield return new WaitForSeconds(KnockbackTime);
+        dontForward = true;
+        lockHitBackward = false;
+        hitEnemy = false;
     }
 
     public void Execute(GameObject enemy)
@@ -346,11 +411,7 @@ public class PlayerBody : MonoBehaviour
             dashDirection = new Vector3(1, 0, 0);
         }
 
-        while (Time.time < startTime + dashTime)
-        {
-            rb.velocity = ((dashDirection * dashSpeed * Time.deltaTime)* forceMod * 2 );
-            yield return null;
-        }
+        yield return new WaitForSeconds(dashTime);
 
         canAttack = true;
         canTakeDamage = true;
@@ -369,7 +430,7 @@ public class PlayerBody : MonoBehaviour
 
     private IEnumerator InExecute(GameObject toExecute)
     {
-        if (toExecute != null)
+        if (toExecute != null && canExecute)
         {
             enemyAIController = toExecute.transform.parent.GetChild(0).GetComponent<EnemyAIController>();
             executeTarget = toExecute;
@@ -383,16 +444,15 @@ public class PlayerBody : MonoBehaviour
             canMove = false;
             enemyAIController.canMove = false;
             canMovePlayerForexecute = true;
+            canExecute = false;
             //Debug.Log("EXEC");
-            yield return new WaitForSeconds(1);
-            //Debug.Log("DESTROY");
+            
+            
+            
+            yield return new WaitForSeconds(0);
             toExecute.transform.parent.gameObject.SetActive(false);
-
-            //executeCollideScript.enemiesInRange.Remove(toExecute); // remove enemy from list
-            health = health + executeHeal;
-            canMove = true;
-            canTakeDamage = true;
-            canMovePlayerForexecute = false;
+            if (LevelManager.Instance != null)
+                LevelManager.Instance.EnemyKilled();
         }
     }
 
@@ -502,6 +562,7 @@ public class PlayerBody : MonoBehaviour
                 if (gameManager.eyeCount >= 5 && hasPotion == false && hasBomb == false)
                 {
                     gameManager.eyeCount -= 5;
+                    hasBomb = false;
                     hasPotion = true;
                     collectable.gameObject.SetActive(false);
 
@@ -514,14 +575,27 @@ public class PlayerBody : MonoBehaviour
     private void UseItem()
     {
 
+        Vector3 stinky = new Vector3 (7.5f, 3, 0); // so it spawns above the ground and infront
+        Vector3 negativeStinky = new Vector3 (-7.5f, 3, 0);
+        Vector3 fortniteFellaBalls = Vector3.zero; // placeholder
+
         if (controller.ItemDown)
         {
             if (hasBomb)
             {
-                Vector3 fortniteFellaBalls = transform.position + movementVector;
+                if (controller.HorizontalMagnitude >= 0)
+                {
+                    fortniteFellaBalls = transform.position + movementVector + stinky;
+                }
+                else if (controller.HorizontalMagnitude < 0)
+                {
+                    fortniteFellaBalls = transform.position + movementVector + negativeStinky;
+                }
+
                 GameObject bomb = Instantiate(throwableBombPrefab, fortniteFellaBalls, Quaternion.identity);
                 Bomb reference = bomb.GetComponent<Bomb>();
                 reference.setDirection(movementVector);
+                reference.SetController(controller);
 
                 hasBomb = false;
             }
@@ -571,5 +645,12 @@ public class PlayerBody : MonoBehaviour
         canAttack = true;
 
         yield return null;
+    }
+
+    private IEnumerator ExecuteCooldown()
+    {
+
+        yield return new WaitForSeconds(2.5f);
+        canExecute = true;
     }
 }

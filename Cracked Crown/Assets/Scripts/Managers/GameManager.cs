@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
             return instance;
         }
     }
+    private LevelManager LM;
 
     public PlayerContainer[] Players;
     public PlayerManager[] PMs;
@@ -66,12 +67,16 @@ public class GameManager : MonoBehaviour
 
     public float eyeCount = 0;
 
+    [SerializeField]
+    private Transform[] spawnPoints;
+
     private void Awake()
     {
         if (instance == null)
         {
             instance = this;
         }
+        LM = LevelManager.Instance;
     }
 
     private void Start()
@@ -96,8 +101,9 @@ public class GameManager : MonoBehaviour
             Debug.Log(currentLevel);
             NextLevel();
         }
-        
-        
+        if (Input.GetKeyUp(KeyCode.S))
+            SetPlayerPositions();
+
     }
 
     public PlayerInput GetPlayer(int ID)
@@ -117,7 +123,7 @@ public class GameManager : MonoBehaviour
         isLoading = true;
 
         //loadingScreen.gameObject.SetActive(true);
-        yield return new WaitForSeconds(0.25f);
+        //yield return new WaitForSeconds(0.25f);
 
         if ((!string.IsNullOrEmpty(currentLevelName)))
         {
@@ -152,15 +158,21 @@ public class GameManager : MonoBehaviour
             currentLevelName = levelNames[currentLevel];
 
             currentLevelName = levelName;
+            IsLevelCleared = false;
+            SetPlayerPositions();
+            LM.Enter_Level();
+            MainMenu.SetActive(false);
         }
         else if (levelName.Equals(MainMenuName))
         {
+            LM.ROOM_CLEARED = true;
+            IsLevelCleared = true;
             currentLevelName = MainMenuName;
             MainMenu.SetActive(true);
             currentLevel = -1;
         }
 
-        yield return new WaitForSeconds(0.25f);
+        //yield return new WaitForSeconds(0.25f);
         //AudioManager.Instance.AudioFadeLevelStart();
 
         
@@ -171,8 +183,22 @@ public class GameManager : MonoBehaviour
         //loadingScreen.gameObject.SetActive(false);
 
         //isLoading = false;
-
+        
     }
+
+    public void SetPlayerPositions()
+    {
+        for (int i = 0; i < Players.Length; i++)
+        {
+            
+            Players[i].transform.position = spawnPoints[i].position;
+            Players[i].PB.transform.localPosition = new Vector3(0,0,0);
+            //Debug.Log(Players[i].PB.transform.localPosition);
+        }
+        if (spawnPoints.Length <= 0)
+            Debug.Log("GAMEMANAGER:: NO SPAWN POINTS SET FOR PLAYERS ON LEVEL CHANGE // GameManager/SetPlayerPositions");
+    }
+
     public void ReturnToMainMenu()
     {
         //playerGO.SetActive(false);

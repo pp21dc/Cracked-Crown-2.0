@@ -28,13 +28,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1000115576516872230}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.2588191, y: 0, z: 0, w: 0.9659258}
+  m_LocalPosition: {x: 0, y: 3.41, z: 1.97}
   m_LocalScale: {x: 3.5, y: 3.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1177276868569814050}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 30, y: 0, z: 0}
 --- !u!65 &8292445083396573310
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -201,8 +201,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 10.472778, y: 18.485518, z: 4.4846153}
-  m_Center: {x: 0.40534216, y: 1.979397, z: -0.6038061}
+  m_Size: {x: 10.472778, y: 14.085445, z: 4.4846153}
+  m_Center: {x: 0.40534216, y: -0.22064367, z: -0.60380614}
 --- !u!54 &5493214263850978981
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -286,7 +286,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   enemyPosition: {fileID: 1177276868569814050}
-  enemy: {fileID: 1091935484162795870}
+  enemy: {fileID: 5068627527567498472}
   enemyBody: {fileID: 5493214263850978981}
   speed: 12
   HeavyDashSpeed: 50
@@ -296,6 +296,7 @@ MonoBehaviour:
   TargetPlayerPos: {x: 0, y: 0, z: 0}
   isHeavyDashing: 0
   isDoneDashing: 0
+  belowChecker: {fileID: 0}
   startSlam: 0
   canSlam: 0
   moveToStunned: 0
@@ -309,6 +310,7 @@ MonoBehaviour:
   health: 100
   Damage: {fileID: 2620462327617662294}
   act: 0
+  lockKnock: 0
   timeToDamage: 2
 --- !u!65 &2243525588475844062
 BoxCollider:

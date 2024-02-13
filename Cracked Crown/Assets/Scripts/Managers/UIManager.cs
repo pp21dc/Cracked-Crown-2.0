@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.Mathematics;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -22,6 +24,18 @@ public class UIManager : MonoBehaviour
     [Header("In Game UI")]
     [SerializeField] private GameObject InGameUI;
 
+    //Gold Rings For UI
+    [SerializeField] private GameObject player1Ring;
+    [SerializeField] private GameObject player2Ring;
+    [SerializeField] private GameObject player3Ring;
+    [SerializeField] private GameObject player4Ring;
+
+    private float shineTimer = 0f;
+    [SerializeField] private float maxRandShineTimer = 20f;
+    private float player1ShineTimer = 0f;
+    private float player2ShineTimer = 0f;
+    private float player3ShineTimer = 0f;
+    private float player4ShineTimer = 0f;
 
     [Header("Pause Menu")]
     [SerializeField] private GameObject PauseMenu;
@@ -40,6 +54,13 @@ public class UIManager : MonoBehaviour
 
     [Header("Character Select")]
     [SerializeField] private GameObject CharacterSelectUI;
+
+    [Header("Dialogue Bar")]
+    [SerializeField] private TMP_Text DialogueBar;
+    [SerializeField] private Image CharacterIcon;
+    [SerializeField] private Sprite[] CharacterIcons;
+    public enum characterIcons {Frog, Bunny, Duck, HoneyBadger };
+
     private void Update()
     {
         if (player1.PauseDown || player2.PauseDown || player3.PauseDown || player4.PauseDown)
@@ -49,8 +70,26 @@ public class UIManager : MonoBehaviour
             {
                 Pause();
             }
-
         }
+
+
+        if(shineTimer > maxRandShineTimer)
+        {
+            shineTimer = 0;
+            player1ShineTimer = UnityEngine.Random.value * maxRandShineTimer;
+            player2ShineTimer = UnityEngine.Random.value * maxRandShineTimer;
+            player3ShineTimer = UnityEngine.Random.value * maxRandShineTimer;
+            player4ShineTimer = UnityEngine.Random.value * maxRandShineTimer;
+        }
+
+        if (player1ShineTimer == shineTimer)
+        {
+            
+        }
+  /*      if (player)
+        shineTimer += Time.deltaTime;*/
+
+       
     }
 
     //Functions For Pause Menu (Copied from PauseMenu Script 1/30/2024)
@@ -120,5 +159,13 @@ public class UIManager : MonoBehaviour
     public void setMusicVol()
     {
         Mixer.SetFloat("MusicVol", MusicSlider.value);
+    }
+
+    public void displayDialogue(string dialogue, characterIcons character)
+    {
+        DialogueBar.SetText(dialogue);
+        CharacterIcon.sprite = CharacterIcons[((int)character)];
+        CharacterIcon.SetNativeSize();
+        CharacterIcon.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
     }
 }

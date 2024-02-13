@@ -21,7 +21,7 @@ public class LevelChange : MonoBehaviour
         //If all players in collider, not already transitioning, at least 1 player in the game, and the level is completed
         //Debug.Log(players.Count + " // " + GM.Players.Length + " // " + locked + " // " + GM.IsLevelCleared);
         //DEBUG BYPASS
-        GM.IsLevelCleared = true;
+        //GM.IsLevelCleared = true;
         if (players.Count >= GM.Players.Length && !locked && GM.Players.Length > 0 && GM.IsLevelCleared)
         {
             GM.IsLevelCleared = false;  //Set new level to not cleared
