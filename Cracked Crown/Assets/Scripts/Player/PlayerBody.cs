@@ -418,7 +418,8 @@ public class PlayerBody : MonoBehaviour
                 else if (dashDir.x < 0) { CharacterFolder.transform.GetChild(0).localScale = new Vector3(scale, sprite.localScale.y, 1); }
             }
             lockDash = true;
-            
+            animController.dashing = true;
+            animController.Moving = false;
 
             float zInput = controller.ForwardMagnitude;
             float xInput = controller.HorizontalMagnitude;
@@ -470,8 +471,7 @@ public class PlayerBody : MonoBehaviour
             canAttack = false;
             canMove = false;
             dashing = true;
-            animController.dashing = true;
-            animController.Moving = false;
+            
             yield return new WaitForSeconds(dashTime);
         }
 
