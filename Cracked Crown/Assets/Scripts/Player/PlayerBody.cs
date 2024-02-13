@@ -22,7 +22,7 @@ public class PlayerBody : MonoBehaviour
     [SerializeField]
     private float finisherRadius = 20f;
     [SerializeField]
-    private float health = 100f;
+    private float health = 50f;
     [SerializeField]
     private GameObject deathBody;
 
@@ -99,6 +99,9 @@ public class PlayerBody : MonoBehaviour
     private GameObject corpse;
     private float maxHealth;
     private GameManager gameManager;
+    private float attackSpeed;
+    private float moveCooldown;
+    public bool dashQueue = false;
 
     //hey Ian dont know where you will want this bool
     public bool canRelease = false;
@@ -269,7 +272,10 @@ public class PlayerBody : MonoBehaviour
         if (dashing)
         {
             //Debug.Log("DASHING");
+            float dz = dashDirection.z;
+            dashDirection.z *= 1.1f;
             rb.velocity = (new Vector3(0, rb.velocity.y) + ((dashDirection * dashSpeed * forceMod * 0.9f)) * Time.fixedDeltaTime);
+            dashDirection.z = dz;
         }
         if (!hitEnemy && (lockHitForward))
         {
@@ -307,6 +313,8 @@ public class PlayerBody : MonoBehaviour
         finisherColliderGO.GetComponent<CapsuleCollider>().radius = finisherRadius;
         forExecutePosition = CharacterType.executePosition;
         damage = CharacterType.attack;
+        attackSpeed = CharacterType.attackSpeed;
+        moveCooldown = CharacterType.moveCd;
         ifHopper = CharacterType.hop;
         attackKnockback = CharacterType.attackKnockback;
         deathBody = CharacterType.corpse;
@@ -316,13 +324,15 @@ public class PlayerBody : MonoBehaviour
     float attackTime = 0.1f;
     bool lockHitForward;
     bool lockHitBackward;
+    bool attacking;
     private void Attack()
     {
-        if (controller.PrimaryAttackDown & canAttack)
+        Debug.Log(attacking);
+        if (controller.PrimaryAttackDown & canAttack & !dashing)
         {
             canMove = false;
             canAttack = false;
-            
+            attacking = true;
 
             animController.Attacking = true;
             GameObject attack = Instantiate(prefabForAttack, primaryAttackSpawnPoint.transform.position, primaryAttackPoint.rotation);
@@ -338,6 +348,9 @@ public class PlayerBody : MonoBehaviour
             {
                 StartCoroutine (backwardHit());
             }
+
+            StartCoroutine(attackCooldown());
+            StartCoroutine(attackMoveCooldown());
         }
         
 
@@ -362,6 +375,19 @@ public class PlayerBody : MonoBehaviour
         hitEnemy = false;
     }
 
+    private IEnumerator attackCooldown()
+    {
+        yield return new WaitForSeconds(attackSpeed);
+        canAttack = true;
+        attacking = false;
+    }
+
+    private IEnumerator attackMoveCooldown()
+    {
+        yield return new WaitForSeconds(moveCooldown);
+        canMove = true;
+    }
+
     public void Execute(GameObject enemy)
     {
         StartCoroutine(InExecute(enemy));
@@ -372,24 +398,47 @@ public class PlayerBody : MonoBehaviour
     Vector3 dashDirection;
     private void Dash()
     {
-        if (controller.DashDown & dashOnCD == false && !lockDash)
+        if (((controller.DashDown && dashOnCD == false && !lockDash) || (!controller.DashDown && dashQueue && !dashing && !dashOnCD)) && !attacking)
         {
             float scale = Mathf.Abs(sprite.localScale.x);
-            if (controller.HorizontalMagnitude > 0) { sprite.localScale = new Vector3(-scale, sprite.localScale.y, 1); }
-            else if (controller.HorizontalMagnitude < 0) { CharacterFolder.transform.GetChild(0).localScale = new Vector3(scale, sprite.localScale.y, 1); }
-
+            if (!dashQueue)
+            {
+                if (controller.HorizontalMagnitude > 0) { sprite.localScale = new Vector3(-scale, sprite.localScale.y, 1); }
+                else if (controller.HorizontalMagnitude < 0) { CharacterFolder.transform.GetChild(0).localScale = new Vector3(scale, sprite.localScale.y, 1); }
+            }
+            else
+            {
+                if (dashDir.x > 0) { sprite.localScale = new Vector3(-scale, sprite.localScale.y, 1); }
+                else if (dashDir.x < 0) { CharacterFolder.transform.GetChild(0).localScale = new Vector3(scale, sprite.localScale.y, 1); }
+            }
             lockDash = true;
             animController.dashing = true;
             animController.Moving = false;
 
             float zInput = controller.ForwardMagnitude;
             float xInput = controller.HorizontalMagnitude;
-            dashDirection = new Vector3(xInput, 0, zInput);
+            if (!dashQueue)
+                dashDirection = new Vector3(xInput, 0, zInput);
+            else
+                dashDirection = dashDir;
+
             StartCoroutine(DashCoroutine());
             
             dashOnCD = true;
             StartCoroutine(Cooldown());
         }
+        if (dashing && controller.DashDown && !dashQueue)
+        {
+            dashQueue = true;
+            dashDir = GetMovementVector();
+            StartCoroutine (dashQueueTimer());
+        }
+    }
+    private Vector3 dashDir;
+    private IEnumerator dashQueueTimer()
+    {
+        yield return new WaitForSeconds(0.3f);
+        dashQueue = false;
     }
 
     private IEnumerator DashCoroutine()
@@ -424,7 +473,7 @@ public class PlayerBody : MonoBehaviour
 
     private IEnumerator Cooldown()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.2f);
         dashOnCD = false;
     }
 

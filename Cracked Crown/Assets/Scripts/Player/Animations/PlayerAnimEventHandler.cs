@@ -16,8 +16,13 @@ public class PlayerAnimEventHandler : MonoBehaviour
     {
         //Debug.Log("FINISH-ATTACK");
         PC.PAC.Attacking = false;
-        PC.PB.canMove = true;
-        PC.PB.canAttack = true;
+        //PC.PB.canMove = false;
+        //PC.PB.canAttack = true;
+    }
+
+    public void IdleStart()
+    {
+        //PC.PB.canMove = true;
     }
 
     public void FinishFinish()

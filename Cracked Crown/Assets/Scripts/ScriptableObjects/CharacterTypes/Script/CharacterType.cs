@@ -10,6 +10,7 @@ public class CharacterType : ScriptableObject
     public float dashTime;
     public float attack;
     public float attackSpeed;
+    public float moveCd;
     public float attackKnockback;
     public float finisherRadius;
     public Vector3 executePosition;

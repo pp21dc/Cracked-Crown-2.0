@@ -15,8 +15,9 @@ MonoBehaviour:
   moveSpeed: 8
   dashSpeed: 13
   dashTime: 0.8
-  attack: 33
-  attackSpeed: 0
+  attack: 3
+  attackSpeed: 0.2
+  moveCd: 0.6
   attackKnockback: 3.5
   finisherRadius: 40
   executePosition: {x: 8, y: 0, z: 0}
