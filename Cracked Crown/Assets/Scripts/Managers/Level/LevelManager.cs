@@ -17,7 +17,7 @@ public class LevelManager : MonoBehaviour
             }
             if (!instance)
             {
-                Debug.LogError("ERROR: NO GAME MANAGER PRESENT");
+                Debug.LogError("ERROR: NO LEVEL MANAGER PRESENT");
             }
 
             return instance;
@@ -41,7 +41,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField]
     private int CURRENT_ROOM;
     [SerializeField]
-    private bool ROOM_CLEARED;
+    public bool ROOM_CLEARED;
     [SerializeField]
     private int WAVES = 3;
 
@@ -85,7 +85,7 @@ public class LevelManager : MonoBehaviour
     {
         if (ROOM_CLEARED || !SpawnersActive)
             return;
-        Debug.Log(Current_Room.RoomNumber + ": " + CURRENT_WAVE);
+        //Debug.Log(Current_Room.RoomNumber + ": " + CURRENT_WAVE);
         if (ENEMIES_SPAWNED > Current_Room.EnemyCount_PerWave[CURRENT_WAVE-1])
         {
             if (ENEMIES_KILLED >= ENEMIES_SPAWNED)
@@ -100,11 +100,23 @@ public class LevelManager : MonoBehaviour
         {
             SpawnTimer = 0;
             WAIT_NEXTSPAWN_VALUE = Random.Range(WAIT_NEXTSPAWN_LWB, WAIT_NEXTSPAWN_UPB);
+            Debug.Log(PickEnemy());
             Spawner.SpawnEnemy();
         }
     }
 
-    public void Enter_Level()
+    public int PickEnemy()
+    {
+        if (Random.Range(0, 100) < Current_Room.EnemyCount_Light_PerWave[CURRENT_WAVE - 1])
+            return 0;
+        if (Random.Range(0, 100) < Current_Room.EnemyCount_Medium_PerWave[CURRENT_WAVE - 1])
+            return 1;
+        if (Random.Range(0, 100) < Current_Room.EnemyCount_Heavy_PerWave[CURRENT_WAVE - 1])
+            return 2;
+        return 1;
+    }
+
+        public void Enter_Level()
     {
         StartCoroutine(ON_ENTER());
     }
@@ -149,6 +161,7 @@ public class LevelManager : MonoBehaviour
             ROOM_CLEARED = true;
             GM.IsLevelCleared = true;
         }
+        Debug.Log("ROUND END");
     }
 
 

@@ -165,6 +165,8 @@ public class GameManager : MonoBehaviour
         }
         else if (levelName.Equals(MainMenuName))
         {
+            LM.ROOM_CLEARED = true;
+            IsLevelCleared = true;
             currentLevelName = MainMenuName;
             MainMenu.SetActive(true);
             currentLevel = -1;

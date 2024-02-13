@@ -32,6 +32,7 @@ public class FindPlayerState : FSMState
         {
             if (enemy.startSlam == true)
             {
+                enemy.startSlam = false;
                 enemy.PerformTransition(Transition.AbovePlayer);
                 
                 return;
