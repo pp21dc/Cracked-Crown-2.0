@@ -3,7 +3,6 @@ using System.Collections;
 
 public class BossPhases : MonoBehaviour
 {
-    private static float MAXBOSSHEALTH;
 
     [SerializeField]
     private Vector3 CLAWSPAWN;
@@ -31,6 +30,10 @@ public class BossPhases : MonoBehaviour
     private float clawspeed;
     [SerializeField] // count used to allow the boss to know when to initiate attacks
     private float attacktimer;
+    [SerializeField]
+    private float bosshealth;
+    [SerializeField]
+    private float MAXBOSSHEALTH;
 
 
     private Vector3 preGrabPlayerPosition;
@@ -43,6 +46,8 @@ public class BossPhases : MonoBehaviour
     private bool clawfollow = false; // pincer attack bools
     private bool clawgrab = false;
     private bool clawreturn = false;
+
+    public bool cantakedmg= false;
 
     private GameObject FollowedPlayer;
     private PlayerBody GrabbedPlayerBody;
@@ -59,13 +64,11 @@ public class BossPhases : MonoBehaviour
     [SerializeField]
     private GameObject GrabbedPlayer;
 
-    private float bossHealth;
-
     
     private void Awake()
     {
         currattackid = -1; // starts at -1 because it adds once before it is needed, making it 0
-
+        bosshealth = MAXBOSSHEALTH;
         GameObject[] TempList = GameObject.FindGameObjectsWithTag("BossFollowPoint");
         for (int i = 0; i < TempList.Length; i++)
         {
@@ -98,6 +101,11 @@ public class BossPhases : MonoBehaviour
             }
             attacktimer -= Time.deltaTime;
         }
+    }
+
+    public void decHealth(float amount)
+    {
+        bosshealth -= amount;
     }
 
     private void createIDList() // randomizes the attacks
@@ -205,19 +213,23 @@ public class BossPhases : MonoBehaviour
         clawtarget = PlayerList[0].transform.position + PlayerList[0].transform.TransformDirection(0, 35, 0); // sets the claw's target to the player
         clawgrab = true; // allows claw to fall to player position
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.4f);
         
         if (isGrabbed)  // when the wait function is over, if the player is grabbed, the grabbed timer will start and the player will be lifted into the air
         {
+            yield return new WaitForSeconds(0.6f);
             preGrabPlayerPosition = GrabbedPlayer.transform.position;
             clawtarget = PlayerList[0].transform.transform.position + PlayerList[0].transform.TransformDirection(0, 80, 0);
             attacktimer += 3;
             grabbedTimer = 1; // 1 instead of 3 since the grabbedTimer threshold is -2
 
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(3);
             dist = Vector3.Distance(GrabbedPlayer.transform.position, preGrabPlayerPosition); // marks the place to return the player
         }
-
+        else
+        {
+            yield return new WaitForSeconds(0.6f);
+        }
 
         clawgrab = false;
         clawreturn = true; // unlocks the coresponding code to return to spawn
@@ -233,8 +245,10 @@ public class BossPhases : MonoBehaviour
     {
         bossAnim.Play("clawSmash");
         yield return new WaitForSeconds(2.05f);
+        cantakedmg = true;
         Instantiate(ShockWave, ClawSprite.transform.position - new Vector3 (-12, 13.95f, 16), Quaternion.identity);
         yield return new WaitForSeconds(1.95f);
+        cantakedmg = false;
         bossAnim.Play("clawPassive");
         // damage is dealt
 
@@ -253,13 +267,19 @@ public class BossPhases : MonoBehaviour
         Debug.Log("hit");
         if (other.gameObject.tag == "Player")
         {
-            if (clawgrab)
+            if (cantakedmg)
             {
-                GrabbedPlayerBody = other.GetComponent<PlayerBody>();
-                GrabbedPlayer = other.gameObject;
-                isGrabbed = true;
+
             }
-            // player takes damage and movement is frozen
+            else
+            {
+                if (clawgrab)
+                {
+                    GrabbedPlayerBody = other.GetComponent<PlayerBody>();
+                    GrabbedPlayer = other.gameObject;
+                    isGrabbed = true;
+                }
+            }
         }
     }
 }

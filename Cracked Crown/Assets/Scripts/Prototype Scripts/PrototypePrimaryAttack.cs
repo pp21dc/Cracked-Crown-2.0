@@ -38,5 +38,12 @@ public class PrototypePrimaryAttack : MonoBehaviour
             rb.velocity = (playerBody.GetMovementVector() * 3.5f * playerBody.forceMod * Time.deltaTime);
             Debug.Log("Enemy Health: " + enemyController.Health);
         }
+        if (other.tag == "Boss")
+        {
+            if (other.gameObject.GetComponent<BossPhases>().cantakedmg)
+            {
+                other.gameObject.GetComponent<BossPhases>().decHealth(playerBody.damage);
+            }
+        }
     }
 }
