@@ -296,12 +296,15 @@ public class PlayerBody : MonoBehaviour
     public bool lockExecAnim;
 
     public void DecHealth(float amount) 
-    { 
-        health = Mathf.Max(0, health - amount); //allows us to decrease the health of an enemy
+    {
+        if (canTakeDamage)
+        {
+            health = Mathf.Max(0, health - amount); // allows taking health from the player
+        }
     }
     public void AddHealth(float amount) 
     {
-        health = Mathf.Min(100, health + amount); //allows us to add health to the enemy
+        health = Mathf.Min(100, health + amount); //allows us to add health to the player
     }
 
     public void SetCharacterData()
@@ -328,7 +331,7 @@ public class PlayerBody : MonoBehaviour
     private void Attack()
     {
         //Debug.Log(canMove);
-        if (controller.PrimaryAttackDown && canAttack && canMove && !dashing)
+        if (controller.PrimaryAttackDown && canAttack && !dashing)
         {
             canMove = false;
             canAttack = false;
@@ -377,9 +380,11 @@ public class PlayerBody : MonoBehaviour
 
     private IEnumerator attackCooldown()
     {
-        yield return new WaitForSeconds(attackSpeed);
-        canAttack = true;
+        yield return new WaitForSeconds(attackSpeed * 0.95f);
         attacking = false;
+        yield return new WaitForSeconds(attackSpeed * 0.05f);
+        canAttack = true;
+        //attacking = false;
     }
 
     private IEnumerator attackMoveCooldown()
@@ -413,22 +418,24 @@ public class PlayerBody : MonoBehaviour
                 else if (dashDir.x < 0) { CharacterFolder.transform.GetChild(0).localScale = new Vector3(scale, sprite.localScale.y, 1); }
             }
             lockDash = true;
-            animController.dashing = true;
-            animController.Moving = false;
+            
 
             float zInput = controller.ForwardMagnitude;
             float xInput = controller.HorizontalMagnitude;
+
             if (!dashQueue)
+            {
                 dashDirection = new Vector3(xInput, 0, zInput);
+            }
             else
                 dashDirection = dashDir;
-
+            
             StartCoroutine(DashCoroutine());
             
             dashOnCD = true;
             StartCoroutine(Cooldown());
         }
-        if (dashing && controller.DashDown && !dashQueue)
+        if (controller.DashDown && !dashQueue)
         {
             dashQueue = true;
             dashDir = GetMovementVector();
@@ -442,26 +449,31 @@ public class PlayerBody : MonoBehaviour
         dashQueue = false;
     }
 
+    bool skip;
     private IEnumerator DashCoroutine()
-    {
-        canTakeDamage = false;
-        canAttack = false;
-        canMove = false;
-        dashing = true;
-        
-        float startTime = Time.time; // need to remember this to know how long to dash
+    {  
+        skip = false;
 
-        
         if (dashDirection.magnitude > 0f)
         {
             dashDirection.Normalize();
         }
         else
         {
-            dashDirection = new Vector3(1, 0, 0);
+            dashDirection = new Vector3(0, 0, 0);
+            skip = true;
         }
 
-        yield return new WaitForSeconds(dashTime);
+        if (!skip)
+        {
+            canTakeDamage = false;
+            canAttack = false;
+            canMove = false;
+            dashing = true;
+            animController.dashing = true;
+            animController.Moving = false;
+            yield return new WaitForSeconds(dashTime);
+        }
 
         canAttack = true;
         canTakeDamage = true;
