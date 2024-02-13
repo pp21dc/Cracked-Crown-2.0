@@ -6,6 +6,7 @@ using UnityEngine;
 public class ROOM_DATA : ScriptableObject
 {
     public int RoomNumber;
+    public List<float> SpawnRate;
     public List<int> EnemyCount_PerWave;
     public List<int> EnemyCount_Light_PerWave;
     public List<int> EnemyCount_Medium_PerWave;

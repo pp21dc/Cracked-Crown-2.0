@@ -99,7 +99,7 @@ public class LevelManager : MonoBehaviour
         if (SpawnTimer > WAIT_NEXTSPAWN_VALUE && ENEMIES_SPAWNED <= Current_Room.EnemyCount_PerWave[CURRENT_WAVE-1])
         {
             SpawnTimer = 0;
-            WAIT_NEXTSPAWN_VALUE = Random.Range(WAIT_NEXTSPAWN_LWB, WAIT_NEXTSPAWN_UPB);
+            WAIT_NEXTSPAWN_VALUE = Current_Room.SpawnRate[CURRENT_WAVE - 1] * ((5-GM.Players.Length)/3);
             Debug.Log(PickEnemy());
             Spawner.SpawnEnemy();
         }

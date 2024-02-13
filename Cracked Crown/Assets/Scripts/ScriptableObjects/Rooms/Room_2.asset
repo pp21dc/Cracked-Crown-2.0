@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: Room_2
   m_EditorClassIdentifier: 
   RoomNumber: 2
+  SpawnRate:
+  - 1.25
+  - 1
+  - 0.7
   EnemyCount_PerWave: 06000000090000000b000000
   EnemyCount_Light_PerWave: 32000000320000004b000000
   EnemyCount_Medium_PerWave: 4b0000003c00000032000000
