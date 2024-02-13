@@ -115,9 +115,9 @@ public class EnemyAIController : AdvancedFSM
     
 
     //health, finisher, and death states
-    public float maxHealth = 100; // its total Health
+    public float maxHealth = 40; // its total Health
     [SerializeField]
-    private float health = 100;//health of the enemy
+    private float health = 40;//health of the enemy
     
 
     [SerializeField]
@@ -208,7 +208,7 @@ public class EnemyAIController : AdvancedFSM
         Damage = gameObject.GetComponent<Collider>();
         Damage.enabled = false; // deactivates the damage collider
         isHeavyDashing = true;
-        health = 100;
+        health = 40;
 
         if(gameObject.CompareTag("Light"))
         {
@@ -565,6 +565,9 @@ public class EnemyAIController : AdvancedFSM
         //yield return null;
     }
 
+    [SerializeField]
+    private GameObject eyes;
+
     private void DropEyes()
     {
         int dropRate = 0;
@@ -584,7 +587,7 @@ public class EnemyAIController : AdvancedFSM
 
         for (int i = 0; i < dropRate; i++)
         {
-            //instantiate eyes here
+            Instantiate(eyes, transform.position + new Vector3(Random.Range(-2, 2), transform.position.y, Random.Range(-2, 2)), Quaternion.identity);
         }
     }
     public bool lockKnock;
