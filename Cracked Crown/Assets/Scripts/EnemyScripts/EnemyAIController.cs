@@ -687,8 +687,8 @@ public class EnemyAIController : AdvancedFSM
         PlayerBody body = slamAttack.hitPlayer;
 
         int temp = Random.Range(1, 4);
-        int xDir;
-        int zDir;
+        int xDir = 1;
+        int zDir = 1;
 
         if(temp == 1)
         {
@@ -702,7 +702,7 @@ public class EnemyAIController : AdvancedFSM
         {
             xDir = -1; zDir= 1;
         }
-        else
+        else if(temp == 4)
         {
             xDir = -1; zDir = -1;
         }
@@ -726,7 +726,7 @@ public class EnemyAIController : AdvancedFSM
         if(startCarrying == true)
         {
             Vector3 randTrans = new Vector3(xDir * (enemy.transform.position.x + (int)Random.Range(1, 5)), enemy.transform.position.y, zDir * (enemy.transform.position.z + (int)Random.Range(1, 5)));
-
+            Debug.Log(randTrans);
             movementVector = (randTrans - enemyPosition.transform.position).normalized * speed;
             enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
         }
