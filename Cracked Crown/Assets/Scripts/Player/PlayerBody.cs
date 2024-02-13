@@ -205,6 +205,7 @@ public class PlayerBody : MonoBehaviour
 
     public Vector3 movementVector;
     public float forceMod = 1000;
+    Vector3 noY = new Vector3(1,0,1);
     private void Move()
     {
         if (canMove)
@@ -260,7 +261,10 @@ public class PlayerBody : MonoBehaviour
                 lockExecAnim = true;
             }
             
-            transform.position = Vector3.MoveTowards(gameObject.transform.position, executeTarget.transform.position + forExecutePosition, executeMoveSpeed * Time.deltaTime);
+            Vector3 test = Vector3.MoveTowards(gameObject.transform.position, executeTarget.transform.position + forExecutePosition, executeMoveSpeed * Time.deltaTime);
+            transform.position = test;
+
+            StartCoroutine(ExecuteCooldown());
         }
         if (dashing)
         {
@@ -426,7 +430,7 @@ public class PlayerBody : MonoBehaviour
 
     private IEnumerator InExecute(GameObject toExecute)
     {
-        if (toExecute != null)
+        if (toExecute != null && canExecute)
         {
             enemyAIController = toExecute.transform.parent.GetChild(0).GetComponent<EnemyAIController>();
             executeTarget = toExecute;
@@ -440,13 +444,15 @@ public class PlayerBody : MonoBehaviour
             canMove = false;
             enemyAIController.canMove = false;
             canMovePlayerForexecute = true;
+            canExecute = false;
             //Debug.Log("EXEC");
             
             
             
             yield return new WaitForSeconds(0);
             toExecute.transform.parent.gameObject.SetActive(false);
-            LevelManager.Instance.EnemyKilled();
+            if (LevelManager.Instance != null)
+                LevelManager.Instance.EnemyKilled();
         }
     }
 
@@ -639,5 +645,12 @@ public class PlayerBody : MonoBehaviour
         canAttack = true;
 
         yield return null;
+    }
+
+    private IEnumerator ExecuteCooldown()
+    {
+
+        yield return new WaitForSeconds(2.5f);
+        canExecute = true;
     }
 }
