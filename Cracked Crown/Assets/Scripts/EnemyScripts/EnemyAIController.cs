@@ -112,7 +112,9 @@ public class EnemyAIController : AdvancedFSM
     [SerializeField]
     private Transform upPlacement;
 
-    
+    private bool noTransform;
+    private Vector3 randTrans;
+
 
     //health, finisher, and death states
     public float maxHealth = 40; // its total Health
@@ -240,7 +242,9 @@ public class EnemyAIController : AdvancedFSM
         startCarrying = false;
         startCarryingUp = false;
 
-        
+        noTransform = true;
+
+        randTrans = new Vector3(0,0,0);
 
         ConstructFSM();
     }
@@ -726,9 +730,14 @@ public class EnemyAIController : AdvancedFSM
             
         }
 
-        if(startCarrying == true)
+        if (startCarrying == true)
         {
-            Vector3 randTrans = new Vector3(xDir * (enemy.transform.position.x + (int)Random.Range(1, 5)), enemy.transform.position.y, zDir * (enemy.transform.position.z + (int)Random.Range(1, 5)));
+            if (noTransform)
+            {
+                noTransform = false;
+                randTrans = new Vector3(xDir * (enemy.transform.position.x * (int)Random.Range(1, 5)), enemy.transform.position.y, zDir * (enemy.transform.position.z * (int)Random.Range(1, 5)));
+            }
+
             Debug.Log(randTrans);
             movementVector = (randTrans - enemyPosition.transform.position).normalized * speed;
             enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
@@ -774,6 +783,8 @@ public class EnemyAIController : AdvancedFSM
         startCarryingUp = false;
         startCarrying = false;
         doneCarry = false;
+        noTransform = true;
+        randTrans = new Vector3(0, 0, 0);
     }
 
 
