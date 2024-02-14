@@ -735,7 +735,7 @@ public class EnemyAIController : AdvancedFSM
             if (noTransform)
             {
                 noTransform = false;
-                randTrans = new Vector3(xDir * (enemy.transform.position.x * (int)Random.Range(1, 5)), enemy.transform.position.y, zDir * (enemy.transform.position.z * (int)Random.Range(1, 5)));
+                randTrans = new Vector3(xDir * (enemy.transform.position.x * (int)Random.Range(1, 200)), enemy.transform.position.y, zDir * (enemy.transform.position.z * (int)Random.Range(1, 200)));
             }
 
             Debug.Log(randTrans);
