@@ -211,6 +211,7 @@ public class EnemyAIController : AdvancedFSM
         Damage.enabled = false; // deactivates the damage collider
         isHeavyDashing = true;
         health = 40;
+        maxHealth = 40;
 
         if(gameObject.CompareTag("Light"))
         {
@@ -523,8 +524,12 @@ public class EnemyAIController : AdvancedFSM
     public void StartDeath()
     {
 
-        
-        StartCoroutine(Death());
+        if (!dead)
+        {
+            dead = true;
+            StartCoroutine(Death());
+            
+        }
     }
 
     //stops the enemy starts the animation and heals the enemy overtime until it can move again
@@ -545,7 +550,7 @@ public class EnemyAIController : AdvancedFSM
         EAC.Stunned = false;
         inFinish = false;
     }
-    
+    bool dead;
 
     //destroys the enemy game object
     IEnumerator Death()
@@ -558,7 +563,7 @@ public class EnemyAIController : AdvancedFSM
 
         yield return new WaitForSeconds(0.7f);
 
-        
+        Debug.Log("DEATH");
         DropEyes();
 
         yield return new WaitForSeconds(2.2f);
@@ -591,7 +596,7 @@ public class EnemyAIController : AdvancedFSM
 
         for (int i = 0; i < dropRate; i++)
         {
-            Instantiate(eyes, transform.position + new Vector3(Random.Range(-2, 2), transform.position.y, Random.Range(-2, 2)), Quaternion.identity);
+            Instantiate(eyes, enemyBody.transform.position + new Vector3(Random.Range(-10, 10), transform.position.y, Random.Range(-10, 10)), Quaternion.identity);
         }
     }
     public bool lockKnock;
@@ -600,7 +605,7 @@ public class EnemyAIController : AdvancedFSM
         lockKnock = true;
         enemyBody.isKinematic = false;
         enemyBody.AddForce(dir);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.8f);
         enemyBody.velocity = Vector3.zero;
         enemyBody.isKinematic = true;
         lockKnock = false;
