@@ -788,11 +788,11 @@ public class EnemyAIController : AdvancedFSM
 
         
         
-        doneCarry = true;
+        
 
-        yield return new WaitForSeconds(5f);
-        belowChecker.gameObject.SetActive(true);
-        slamAttack.gameObject.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        
+        doneCarry = true;
         yield return null;
         
 
