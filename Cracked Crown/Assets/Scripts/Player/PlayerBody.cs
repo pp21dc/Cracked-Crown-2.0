@@ -103,6 +103,7 @@ public class PlayerBody : MonoBehaviour
     private float moveCooldown;
     public bool dashQueue = false;
     public bool playerLock = false;
+    private bool enumDone = false;
 
     //hey Ian dont know where you will want this bool
     public bool canRelease = false;
@@ -126,9 +127,17 @@ public class PlayerBody : MonoBehaviour
                 animController.Attacking = false;
                 animController.Dead = true;
                 alreadyDead = true;
+                canMove = false;
+                canAttack = false;
+                lockDash = true;
+                StartCoroutine(deathAnim());
+            }
+            if (alreadyDead && enumDone)
+            {
                 canMove = true;
                 canAttack = false;
                 lockDash = true;
+                canExecute = false;
             }
             if (ghostCoins >= 5)
             {
@@ -162,6 +171,13 @@ public class PlayerBody : MonoBehaviour
             UseItem();
             rb.velocity = new Vector3(rb.velocity.x, (-9.81f) * (rb.mass), rb.velocity.z);
         }
+    }
+
+    private IEnumerator deathAnim()
+    {
+        yield return new WaitForSeconds(2f);
+        canMove = true;
+        enumDone = true;
     }
 
     public Transform sprite;
