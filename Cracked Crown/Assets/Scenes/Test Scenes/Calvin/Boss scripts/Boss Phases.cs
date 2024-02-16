@@ -205,7 +205,6 @@ public class BossPhases : MonoBehaviour
     {
         for (int i = 0; i < PlayerList.Length; i++)
         {
-
             if (otherClaw.FollowedPlayer != PlayerList[i]) // sets the player to be followed to a player not targetted by the other claw
             {
                 FollowedPlayer = PlayerList[i];
@@ -229,7 +228,6 @@ public class BossPhases : MonoBehaviour
         clawgrab = true; // allows claw to fall to player position
 
         yield return new WaitForSeconds(0.4f);
-        Debug.Log(FollowedPlayer);
         if (isGrabbed)  // when the wait function is over, if the player is grabbed, the grabbed timer will start and the player will be lifted into the air
         {
             yield return new WaitForSeconds(0.6f);
@@ -260,7 +258,7 @@ public class BossPhases : MonoBehaviour
 
     IEnumerator ClawSmash()
     {
-        if (Claw.name == "clawLeft")
+        if (Claw.name == "clawLeft") // plays the appropriate smash animation for the claw using the script
         {
             bossAnim.Play("clawSmash");
         }
@@ -269,14 +267,14 @@ public class BossPhases : MonoBehaviour
             bossAnim.Play("clawSmashRight");
         }
         yield return new WaitForSeconds(2.05f);
-        cantakedmg = true;
-        Instantiate(ShockWave, ClawSprite.transform.position - new Vector3 (-12, 13.95f, 16), Quaternion.identity);
+        cantakedmg = true; // lets the boss take damage while the claw is on the ground
+        Instantiate(ShockWave, ClawSprite.transform.position - new Vector3 (-12, 13.95f, 16), Quaternion.identity); // instantiates the shockwave part of attack
         yield return new WaitForSeconds(1.95f);
-        cantakedmg = false;
+        cantakedmg = false; // sets boss damage off when claw leaves the ground
         bossAnim.Play("clawPassive");
         // damage is dealt
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.5f); // plays off last part of the animation
     }
 
     IEnumerator GooBlast()
