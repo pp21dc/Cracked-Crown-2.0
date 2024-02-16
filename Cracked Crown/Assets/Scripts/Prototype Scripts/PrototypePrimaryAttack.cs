@@ -29,8 +29,8 @@ public class PrototypePrimaryAttack : MonoBehaviour
         Debug.Log(other.gameObject.name);
         if (other.tag == "Enemy")
         {
-            Rigidbody rb;
             playerBody.hitEnemy = true;
+            Rigidbody rb;
             enemyController = other.transform.parent.GetChild(0).GetComponent<EnemyAIController>();
             enemyController.DecHealth(playerBody.damage);
             rb = other.GetComponent<Rigidbody>();    
