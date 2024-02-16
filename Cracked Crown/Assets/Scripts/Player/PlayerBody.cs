@@ -104,6 +104,7 @@ public class PlayerBody : MonoBehaviour
     public bool dashQueue = false;
     public bool playerLock = false;
     private bool enumDone = false;
+    private float attackDelayTime;
 
     //hey Ian dont know where you will want this bool
     public bool canRelease = false;
@@ -209,15 +210,15 @@ public class PlayerBody : MonoBehaviour
                 if (controller.HorizontalMagnitude > 0) { sprite.localScale = new Vector3(-scale, sprite.localScale.y, 1); }
                 else if (controller.HorizontalMagnitude < 0) { CharacterFolder.transform.GetChild(0).localScale = new Vector3(scale, sprite.localScale.y, 1); }
             }
-            if (hitEnemy)
-            {
-                //Debug.Log(GetMovementVector());
-                float y = rb.velocity.y;
-                rb.velocity = ((-GetMovementVector()) * attackKnockback * forceMod / 4 * Time.fixedDeltaTime);
-                rb.velocity = new Vector3(rb.velocity.x, y, rb.velocity.z);
-                //hitEnemy = false;
-                dontForward = true;
-            }
+            //if (hitEnemy)
+            //{
+            //    //Debug.Log(GetMovementVector());
+            //    float y = rb.velocity.y;
+            //    rb.velocity = ((-GetMovementVector()) * attackKnockback * forceMod / 4 * Time.fixedDeltaTime);
+            //    rb.velocity = new Vector3(rb.velocity.x, y, rb.velocity.z);
+            //    //hitEnemy = false;
+            //    dontForward = true;
+            //}
             Move();
         }
     }
@@ -345,6 +346,7 @@ public class PlayerBody : MonoBehaviour
         ifHopper = CharacterType.hop;
         attackKnockback = CharacterType.attackKnockback;
         deathBody = CharacterType.corpse;
+        attackDelayTime = CharacterType.attackDelayTime;
     }
     float x = 0;
     float attackTimer = 0;
@@ -362,25 +364,30 @@ public class PlayerBody : MonoBehaviour
             attacking = true;
 
             animController.Attacking = true;
-            GameObject attack = Instantiate(prefabForAttack, primaryAttackSpawnPoint.transform.position, primaryAttackPoint.rotation);
-            attack.GetComponent<PrototypePrimaryAttack>().playerBody = this;
-            SwordSlash.sword.Play();
 
-            
-            if (!hitEnemy && !lockHitForward)
-            {
-                StartCoroutine(forwardHit());
-            }
-            else if (hitEnemy && !lockHitBackward)
-            {
-                StartCoroutine (backwardHit());
-            }
-
+            StartCoroutine(attackDelay());
             StartCoroutine(attackCooldown());
             StartCoroutine(attackMoveCooldown());
         }
         
 
+    }
+
+    private IEnumerator attackDelay()
+    {
+        yield return new WaitForSeconds(attackDelayTime);
+        GameObject attack = Instantiate(prefabForAttack, primaryAttackSpawnPoint.transform.position, primaryAttackPoint.rotation);
+        attack.GetComponent<PrototypePrimaryAttack>().playerBody = this;
+        SwordSlash.sword.Play();
+        if (!hitEnemy && !lockHitForward)
+        {
+            StartCoroutine(forwardHit());
+        }
+        else if (hitEnemy && !lockHitBackward)
+        {
+            StartCoroutine(backwardHit());
+        }
+        animController.Attacking = false;
     }
     
     private IEnumerator forwardHit()
