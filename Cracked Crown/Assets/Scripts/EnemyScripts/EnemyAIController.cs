@@ -761,11 +761,15 @@ public class EnemyAIController : AdvancedFSM
 
     IEnumerator Carry()
     {
+        GameObject hitBody = slamAttack.hitPlayerBody;
 
-        slamAttack.hitPlayerBody.SetActive(false);
+        slamAttack.gameObject.SetActive(false);
+
+        hitBody.SetActive(false);
+        
          
         startCarryingUp = true;
-
+        belowChecker.gameObject.SetActive(false);
         
             yield return new WaitForSeconds(3f);
         
@@ -778,13 +782,17 @@ public class EnemyAIController : AdvancedFSM
 
         startCarrying = false;
 
-        slamAttack.hitPlayerBody.SetActive(true);
+        hitBody.transform.position = new Vector3(enemyPosition.transform.position.x, enemyPosition.transform.position.y - 15, enemyPosition.transform.position.z);
+
+        hitBody.SetActive(true);
 
         
         
         doneCarry = true;
 
-
+        yield return new WaitForSeconds(5f);
+        belowChecker.gameObject.SetActive(true);
+        slamAttack.gameObject.SetActive(true);
         yield return null;
         
 

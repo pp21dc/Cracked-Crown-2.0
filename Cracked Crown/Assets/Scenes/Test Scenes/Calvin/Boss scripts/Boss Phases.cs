@@ -34,7 +34,8 @@ public class BossPhases : MonoBehaviour
     private float bosshealth;
     [SerializeField]
     private float MAXBOSSHEALTH;
-
+    [SerializeField]
+    private float clawdropspeed;
 
     private Vector3 preGrabPlayerPosition;
     private Vector3 clawtarget;
@@ -167,7 +168,7 @@ public class BossPhases : MonoBehaviour
         }
         if (clawgrab)
         {
-            Claw.transform.position = Vector3.MoveTowards(Claw.transform.position, clawtarget, clawspeed* 2f * Time.deltaTime);
+            Claw.transform.position = Vector3.MoveTowards(Claw.transform.position, clawtarget, clawspeed * clawdropspeed * Time.deltaTime);
         }
         if (clawreturn)
         {
@@ -179,8 +180,12 @@ public class BossPhases : MonoBehaviour
                     if (dist > 1)
                     {
                         Debug.Log(dist);
-                        dist = Vector3.Distance(GrabbedPlayer.transform.position, preGrabPlayerPosition);
+                        dist = Vector3.Distance(GrabbedPlayer.transform.position, preGrabPlayerPosition); // drops the player back to pre-grabbed position
                         GrabbedPlayer.transform.position = Vector3.MoveTowards(GrabbedPlayer.transform.position, preGrabPlayerPosition, 80 * Time.deltaTime);
+                    }
+                    else
+                    {
+                        GrabbedPlayerBody.playerLock = false;
                     }
                 }
             }
@@ -190,7 +195,6 @@ public class BossPhases : MonoBehaviour
             GrabbedPlayer.transform.position = Claw.transform.position - FollowedPlayer.transform.TransformDirection(0, 35, 0);
             if (grabbedTimer < -2) // drops the player when the timer is up
             {
-                Debug.Log(grabbedTimer);
                 isGrabbed = false;
             }
             grabbedTimer -= Time.deltaTime;
@@ -225,7 +229,7 @@ public class BossPhases : MonoBehaviour
         clawgrab = true; // allows claw to fall to player position
 
         yield return new WaitForSeconds(0.4f);
-        
+        Debug.Log(FollowedPlayer);
         if (isGrabbed)  // when the wait function is over, if the player is grabbed, the grabbed timer will start and the player will be lifted into the air
         {
             yield return new WaitForSeconds(0.6f);
@@ -249,6 +253,7 @@ public class BossPhases : MonoBehaviour
 
         yield return new WaitForSeconds(3);
         clawreturn = false; // resets final bool and timer for the grab;
+
         grabbedTimer = 1;
         FollowedPlayer = null;
     }
@@ -290,6 +295,7 @@ public class BossPhases : MonoBehaviour
                 GrabbedPlayerBody = other.GetComponent<PlayerBody>();
                 GrabbedPlayer = other.gameObject;
                 isGrabbed = true;
+                GrabbedPlayerBody.playerLock = true;
             }
         }
     }
