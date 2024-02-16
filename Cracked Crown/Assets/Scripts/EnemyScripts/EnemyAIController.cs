@@ -544,7 +544,7 @@ public class EnemyAIController : AdvancedFSM
         EAC.Stunned = true;
         
 
-        while (health < 76)
+        while (health < maxHealth*(0.75))
         {
             health += Time.deltaTime * 10;
             //Debug.Log("HEALTH");
@@ -761,6 +761,8 @@ public class EnemyAIController : AdvancedFSM
 
     IEnumerator Carry()
     {
+
+        slamAttack.hitPlayerBody.SetActive(false);
          
         startCarryingUp = true;
 
@@ -776,11 +778,12 @@ public class EnemyAIController : AdvancedFSM
 
         startCarrying = false;
 
-        
+        slamAttack.hitPlayerBody.SetActive(true);
 
         
         
         doneCarry = true;
+
 
         yield return null;
         
