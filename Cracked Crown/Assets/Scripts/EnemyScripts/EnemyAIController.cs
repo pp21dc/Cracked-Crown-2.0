@@ -546,7 +546,7 @@ public class EnemyAIController : AdvancedFSM
 
         while (health < maxHealth*(0.75))
         {
-            health += Time.deltaTime * 10;
+            health += Time.deltaTime * 2;
             //Debug.Log("HEALTH");
             yield return null;
         }
