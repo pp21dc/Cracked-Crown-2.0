@@ -10,6 +10,9 @@ public class PlayerCarried : MonoBehaviour
     private PlayerBody body;
 
     [SerializeField]
+    private PlayerController controller;
+
+    [SerializeField]
     private GameObject player;
 
     public EnemyAIController enemyAIController;
@@ -57,7 +60,7 @@ public class PlayerCarried : MonoBehaviour
 
         while (timesHit < 8)
         {
-            if (1 == 1)//controller.InteractDown)
+            if (controller.InteractDown)
             {
                 timesHit++;
             }

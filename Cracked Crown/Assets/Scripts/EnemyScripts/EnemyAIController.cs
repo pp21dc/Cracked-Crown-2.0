@@ -113,7 +113,11 @@ public class EnemyAIController : AdvancedFSM
     private Transform upPlacement;
 
     private bool noTransform;
+
+    [SerializeField]
     private Vector3 randTrans;
+
+    private PlayerCarried carriedPlayer;
 
 
     //health, finisher, and death states
@@ -698,6 +702,8 @@ public class EnemyAIController : AdvancedFSM
 
         PlayerBody body = slamAttack.hitPlayer;
 
+        carriedPlayer = slamAttack.hitPlayer.GetComponentInParent<PlayerCarried>();
+
         int temp = Random.Range(1, 4);
         int xDir = 1;
         int zDir = 1;
@@ -740,7 +746,7 @@ public class EnemyAIController : AdvancedFSM
             if (noTransform)
             {
                 noTransform = false;
-                randTrans = new Vector3(xDir * (enemy.transform.position.x * (int)Random.Range(1, 200)), enemy.transform.position.y, zDir * (enemy.transform.position.z * (int)Random.Range(1, 200)));
+                randTrans = new Vector3(xDir * (randTrans.x + (int)Random.Range(1, 200)), randTrans.y, zDir * (randTrans.z + (int)Random.Range(1, 200)));
             }
 
             Debug.Log(randTrans);
@@ -749,7 +755,7 @@ public class EnemyAIController : AdvancedFSM
         }
         //call player carry method, move the light enemy to a random point, if timer runs out, drop player go to find player, use rand on an x and z for a random direction
         
-
+        
 
     }
 
