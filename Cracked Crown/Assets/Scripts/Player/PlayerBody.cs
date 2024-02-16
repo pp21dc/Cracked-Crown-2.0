@@ -383,7 +383,7 @@ public class PlayerBody : MonoBehaviour
         {
             StartCoroutine(forwardHit());
         }
-        else if (hitEnemy && !lockHitBackward)
+        if (hitEnemy && !lockHitBackward)
         {
             StartCoroutine(backwardHit());
         }
