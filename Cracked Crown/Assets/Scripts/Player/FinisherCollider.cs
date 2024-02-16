@@ -22,14 +22,15 @@ public class FinisherCollider : MonoBehaviour
             {
                 if (enemy != null && enemy.transform.parent.gameObject.activeSelf)
                 {
-                    if (((enemy.gameObject.GetComponent<EnemyAIController>().Health) / (enemy.gameObject.GetComponent<EnemyAIController>().maxHealth)) <= 0.5) // if health is less then 50% can execute
+                    if ((((enemy.gameObject.GetComponent<EnemyAIController>().Health) / (enemy.gameObject.GetComponent<EnemyAIController>().maxHealth)) <= 0.5) && PB.canExecute) // if health is less then 50% can execute
                     {
-                        //Debug.Log(enemiesInRange[0].transform.gameObject);
                         PB.Execute(enemy.transform.parent.GetChild(1).gameObject);
                         e = enemy;
                         return;
-                       
+
                     }
+                    else
+                        return;
                 }
                 
             }
