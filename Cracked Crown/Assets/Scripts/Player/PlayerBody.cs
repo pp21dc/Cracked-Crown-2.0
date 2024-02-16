@@ -102,61 +102,66 @@ public class PlayerBody : MonoBehaviour
     private float attackSpeed;
     private float moveCooldown;
     public bool dashQueue = false;
+    public bool playerLock = false;
 
     //hey Ian dont know where you will want this bool
     public bool canRelease = false;
 
     private void Update()
     {
-        collect();
-        onNoDamage();
-
-        if ((health <= 0 || Input.GetKey(KeyCode.O)) && alreadyDead == false)
+        if (!playerLock)
         {
-            Debug.Log("You Died");
-            rb.velocity = Vector3.zero;
-            //GhostMode();
-            animController.Moving = false;
-            animController.dashing = false;
-            animController.Attacking = false;
-            animController.Dead = true;
-            alreadyDead = true;
-            canMove = false;
-            canAttack = false;
-            lockDash = true;
+
+
+            collect();
+            onNoDamage();
+
+            if ((health <= 0 || Input.GetKey(KeyCode.O)) && alreadyDead == false)
+            {
+                Debug.Log("You Died");
+                rb.velocity = Vector3.zero;
+                //GhostMode();
+                animController.Moving = false;
+                animController.dashing = false;
+                animController.Attacking = false;
+                animController.Dead = true;
+                alreadyDead = true;
+                canMove = false;
+                canAttack = false;
+                lockDash = true;
+            }
+            if (ghostCoins >= 5)
+            {
+
+                gameObject.tag = "Player";
+
+                // move player back to corpse
+                transform.position = respawnPoint;
+
+                // change back to normal
+                //animController.Moving = true;
+                animController.Dead = false;
+                alreadyDead = false;
+                ghostCoins = 0;
+                health = maxHealth;
+                canAttack = true;
+                canMove = true;
+                lockDash = false;
+
+                canTakeDamage = true;
+                //RevivePlayer();
+
+                // delete corpse
+                //Debug.Log("DESTROY CORPSES");
+                Destroy(corpse);
+
+            }
+            //Move();
+            Attack();
+            Dash();
+            UseItem();
+            rb.velocity = new Vector3(rb.velocity.x, (-9.81f) * (rb.mass), rb.velocity.z);
         }
-        if (ghostCoins >= 5)
-        {
-            
-            gameObject.tag = "Player";
-
-            // move player back to corpse
-            transform.position = respawnPoint;
-
-            // change back to normal
-            //animController.Moving = true;
-            animController.Dead = false;
-            alreadyDead = false;
-            ghostCoins = 0;
-            health = maxHealth;
-            canAttack = true;
-            canMove = true;
-            lockDash = false;
-
-            canTakeDamage = true;
-            //RevivePlayer();
-
-            // delete corpse
-            //Debug.Log("DESTROY CORPSES");
-            Destroy(corpse);
-            
-        }
-        //Move();
-        Attack();
-        Dash();
-        UseItem();
-        rb.velocity = new Vector3(rb.velocity.x, (-9.81f)*(rb.mass), rb.velocity.z);
-
     }
 
     public Transform sprite;
@@ -177,25 +182,28 @@ public class PlayerBody : MonoBehaviour
     bool dontForward;
     private void FixedUpdate()
     {
-        //Debug.Log(rb.velocity);
-        //rb.AddForce(new Vector3(0, -12000, 0) * Time.fixedDeltaTime);
-        if (canMove && !dashing && sprite != null)
+        if (!playerLock)
         {
-            
-            float scale = Mathf.Abs(sprite.localScale.x);
-            if (controller.HorizontalMagnitude > 0) { sprite.localScale = new Vector3(-scale, sprite.localScale.y, 1); }
-            else if (controller.HorizontalMagnitude < 0) { CharacterFolder.transform.GetChild(0).localScale = new Vector3(scale, sprite.localScale.y, 1); }
+            //Debug.Log(rb.velocity);
+            //rb.AddForce(new Vector3(0, -12000, 0) * Time.fixedDeltaTime);
+            if (canMove && !dashing && sprite != null)
+            {
+
+                float scale = Mathf.Abs(sprite.localScale.x);
+                if (controller.HorizontalMagnitude > 0) { sprite.localScale = new Vector3(-scale, sprite.localScale.y, 1); }
+                else if (controller.HorizontalMagnitude < 0) { CharacterFolder.transform.GetChild(0).localScale = new Vector3(scale, sprite.localScale.y, 1); }
+            }
+            if (hitEnemy)
+            {
+                //Debug.Log(GetMovementVector());
+                float y = rb.velocity.y;
+                rb.velocity = ((-GetMovementVector()) * attackKnockback * forceMod / 4 * Time.fixedDeltaTime);
+                rb.velocity = new Vector3(rb.velocity.x, y, rb.velocity.z);
+                //hitEnemy = false;
+                dontForward = true;
+            }
+            Move();
         }
-        if (hitEnemy)
-        {
-            //Debug.Log(GetMovementVector());
-            float y = rb.velocity.y;
-            rb.velocity = ((-GetMovementVector()) * attackKnockback * forceMod/4 * Time.fixedDeltaTime);
-            rb.velocity = new Vector3(rb.velocity.x, y, rb.velocity.z);
-            //hitEnemy = false;
-            dontForward = true;
-        }
-        Move();
     }
 
     public Vector3 GetMovementVector()
@@ -404,7 +412,7 @@ public class PlayerBody : MonoBehaviour
     Vector3 dashDirection;
     private void Dash()
     {
-        if (((controller.DashDown && dashOnCD == false && !lockDash) || (!controller.DashDown && dashQueue && !dashing && !dashOnCD)) && !attacking)
+        if (((controller.DashDown && dashOnCD == false) || (!controller.DashDown && dashQueue && !dashing && !dashOnCD)) && !attacking && !lockDash)
         {
             float scale = Mathf.Abs(sprite.localScale.x);
             if (!dashQueue)
@@ -505,8 +513,8 @@ public class PlayerBody : MonoBehaviour
             canTakeDamage = false;
             canMove = false;
             enemyAIController.canMove = false;
-            canMovePlayerForexecute = true;
             canExecute = false;
+            canMovePlayerForexecute = true;
             //Debug.Log("EXEC");
             
             
