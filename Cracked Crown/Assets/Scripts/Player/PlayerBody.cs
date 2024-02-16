@@ -126,7 +126,7 @@ public class PlayerBody : MonoBehaviour
                 animController.Attacking = false;
                 animController.Dead = true;
                 alreadyDead = true;
-                canMove = false;
+                canMove = true;
                 canAttack = false;
                 lockDash = true;
             }
