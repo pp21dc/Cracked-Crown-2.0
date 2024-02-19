@@ -7,6 +7,8 @@ public class EnemyAnimationController : MonoBehaviour
     [SerializeField]
     private Animator animator;
     [SerializeField]
+    private RuntimeAnimatorController[] AC;
+    [SerializeField]
     public SpriteRenderer SR;
 
     public bool Dead;
@@ -18,6 +20,14 @@ public class EnemyAnimationController : MonoBehaviour
 
     [Header("Medium Enemy")]
     public bool Dashing;
+
+    /*
+     * INDEX:: 0 = Light, 1 = Med, 2= Heavy
+     */
+    public void SetAnimController(int index) 
+    {
+        animator.runtimeAnimatorController = AC[index];
+    }
 
     private void FixedUpdate()
     {

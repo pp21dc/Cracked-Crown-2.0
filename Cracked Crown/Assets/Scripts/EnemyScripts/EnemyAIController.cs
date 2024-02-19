@@ -202,7 +202,12 @@ public class EnemyAIController : AdvancedFSM
     //intializes the enemy with the player location and sets enemy health to 100 theb calls Construct FSM
     protected override void Initialize()
     {
-        
+        if (CompareTag("Light"))
+            EAC.SetAnimController(0);
+        else if (CompareTag("Medium"))
+            EAC.SetAnimController(1);
+        else if (CompareTag("Heavy"))
+            EAC.SetAnimController(2);
 
         Players = GameObject.FindGameObjectsWithTag("Player");//finds and add all players to array
         if(Players.Length <= 0) { Players = null; }
@@ -220,6 +225,7 @@ public class EnemyAIController : AdvancedFSM
         if(gameObject.CompareTag("Light"))
         {
             intialY = enemyBody.transform.position.y;
+
         }
 
         startGoop = true;
