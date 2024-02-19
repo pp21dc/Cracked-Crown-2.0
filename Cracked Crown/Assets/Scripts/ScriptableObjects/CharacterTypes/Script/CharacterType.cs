@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "CharacterType", menuName = "ScriptableObjects/CharacterTypes", order = 1)]
 public class CharacterType : ScriptableObject
 {
+    public int ID;
     public float moveSpeed;
     public float dashSpeed;
     public float dashTime;

@@ -15,6 +15,10 @@ public class EnemyAnimationController : MonoBehaviour
     public bool Moving;
     public bool Attacking;
     public bool Stunned;
+    public bool Bunny_Grabbed;
+    public bool Frog_Grabbed;
+    public bool Badger_Grabbed;
+    public bool Duck_Grabbed;
 
     float timer;
 
@@ -24,7 +28,7 @@ public class EnemyAnimationController : MonoBehaviour
     /*
      * INDEX:: 0 = Light, 1 = Med, 2= Heavy
      */
-    public void SetAnimController(int index) 
+    public void SetAnimController(int index)
     {
         animator.runtimeAnimatorController = AC[index];
     }
@@ -36,24 +40,32 @@ public class EnemyAnimationController : MonoBehaviour
         animator.SetBool("Attacking", Attacking);
         animator.SetBool("Dashing", Dashing);
         animator.SetBool("Stunned", Stunned);
+        if (transform.parent.parent.CompareTag("Light"))
+        {
+            animator.SetBool("Grab_B", Bunny_Grabbed);
+            animator.SetBool("Grab_D", Duck_Grabbed);
+            animator.SetBool("Grab_F", Frog_Grabbed);
+            animator.SetBool("Grab_Ba", Badger_Grabbed);
+        }
+        
 
-            if (Stunned)
+        if (Stunned)
+        {
+            timer += Time.deltaTime;
+
+            if (timer < 1f)
             {
-                timer += Time.deltaTime;
+                this.GetComponent<SpriteRenderer>().color = Color.red;
+            }
+            else if (timer < 2)
+            {
+                this.GetComponent<SpriteRenderer>().color = Color.white;
+            }
 
-                if (timer < 1f)
-                {
-                    this.GetComponent<SpriteRenderer>().color = Color.red;
-                }
-                else if (timer < 2)
-                {
-                    this.GetComponent<SpriteRenderer>().color = Color.white;
-                }
-
-                if (timer > 2)
-                {
-                    timer = 0f;
-                }
+            if (timer > 2)
+            {
+                timer = 0f;
             }
         }
     }
+}

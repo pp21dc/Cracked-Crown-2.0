@@ -100,8 +100,8 @@ public class LevelManager : MonoBehaviour
         {
             SpawnTimer = 0;
             WAIT_NEXTSPAWN_VALUE = Current_Room.SpawnRate[CURRENT_WAVE - 1] * ((5-GM.Players.Length)/3);
-            Debug.Log(PickEnemy());
-            Spawner.SpawnEnemy();
+            
+            Spawner.SpawnEnemy(PickEnemy());
         }
     }
 
@@ -116,7 +116,7 @@ public class LevelManager : MonoBehaviour
         return 1;
     }
 
-        public void Enter_Level()
+    public void Enter_Level()
     {
         StartCoroutine(ON_ENTER());
     }

@@ -101,7 +101,7 @@ public class GameManager : MonoBehaviour
             Debug.Log(currentLevel);
             NextLevel();
         }
-        if (Input.GetKeyUp(KeyCode.S))
+        if (Input.GetKeyUp(KeyCode.H))
             SetPlayerPositions();
 
     }

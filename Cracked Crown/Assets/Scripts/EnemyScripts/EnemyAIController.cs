@@ -659,8 +659,8 @@ public class EnemyAIController : AdvancedFSM
             Debug.Log("Stunned");    
 
         }
-        //Can this coroutine end??
         yield return new WaitForSeconds(1);
+        EAC.Attacking = false;
     }
 
     public void ResetSlamVar()
@@ -692,12 +692,14 @@ public class EnemyAIController : AdvancedFSM
 
     IEnumerator Stunned()
     {
+        EAC.Stunned = true;
         yield return new WaitForSeconds(3f);
 
         doneOnGround = true;
 
         yield return new WaitForSeconds(2f);
 
+        EAC.Stunned = false;
         doneStun = true;
 
         //yield return null; //CAN THIS EXIT?
@@ -709,6 +711,15 @@ public class EnemyAIController : AdvancedFSM
         PlayerBody body = slamAttack.hitPlayer;
 
         carriedPlayer = slamAttack.hitPlayer.GetComponentInParent<PlayerCarried>();
+
+        if (body.CharacterType.ID == 0)
+            EAC.Badger_Grabbed = true;
+        else if (body.CharacterType.ID == 1)
+            EAC.Bunny_Grabbed = true;
+        else if (body.CharacterType.ID == 2)
+            EAC.Duck_Grabbed = true;
+        else if (body.CharacterType.ID == 3)
+            EAC.Frog_Grabbed = true;
 
         int temp = Random.Range(1, 4);
         int xDir = 1;
@@ -734,7 +745,7 @@ public class EnemyAIController : AdvancedFSM
         if (canCarry == true)
         {
             canCarry = false;
-            StartCoroutine(Carry());
+            StartCoroutine(Carry(body));
         }
 
         if(startCarryingUp == true)
@@ -765,7 +776,7 @@ public class EnemyAIController : AdvancedFSM
 
     }
 
-    IEnumerator Carry()
+    IEnumerator Carry(PlayerBody pb)
     {
         GameObject hitBody = slamAttack.hitPlayerBody;
 
@@ -777,7 +788,7 @@ public class EnemyAIController : AdvancedFSM
         startCarryingUp = true;
         belowChecker.gameObject.SetActive(false);
         
-            yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(3f);
         
 
         startCarryingUp = false;
@@ -792,17 +803,20 @@ public class EnemyAIController : AdvancedFSM
 
         hitBody.SetActive(true);
 
-        
-        
-        
-
         yield return new WaitForSeconds(2f);
         
         doneCarry = true;
-        yield return null;
-        
 
-        
+        if (pb.CharacterType.ID == 0)
+            EAC.Badger_Grabbed = false;
+        else if (pb.CharacterType.ID == 1)
+            EAC.Bunny_Grabbed = false;
+        else if (pb.CharacterType.ID == 2)
+            EAC.Duck_Grabbed = false;
+        else if (pb.CharacterType.ID == 3)
+            EAC.Frog_Grabbed = false;
+
+        yield return null;
     }   
     
     public void RestCarryVar()
@@ -823,7 +837,6 @@ public class EnemyAIController : AdvancedFSM
         //Debug.Log("Outside the If statement");
         if (isHeavyDashing)
         {
-
             //Debug.Log("Made it to the if statement");
             isHeavyDashing = false;
             StartCoroutine(Dash());
