@@ -117,6 +117,7 @@ public class EnemyAIController : AdvancedFSM
     [SerializeField]
     private Vector3 randTrans;
 
+    [SerializeField]
     private PlayerCarried carriedPlayer;
 
 
@@ -708,9 +709,17 @@ public class EnemyAIController : AdvancedFSM
     public void StartCarry()
     {
 
+        
+
         PlayerBody body = slamAttack.hitPlayer;
 
         carriedPlayer = slamAttack.hitPlayer.GetComponentInParent<PlayerCarried>();
+
+        if(carriedPlayer.StartSpam())
+        {
+            doneCarry = true;
+            ResetCarryVar();
+        }
 
         if (body.CharacterType.ID == 0)
             EAC.Badger_Grabbed = true;
@@ -819,7 +828,7 @@ public class EnemyAIController : AdvancedFSM
         yield return null;
     }   
     
-    public void RestCarryVar()
+    public void ResetCarryVar()
     {
         canCarry = true;
         startCarryingUp = false;
