@@ -338,6 +338,12 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!212 &165739797 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 3689757823163642340, guid: f443ae70529b14f42951265ea553e920,
+    type: 3}
+  m_PrefabInstance: {fileID: 277573915}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &277573915
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -352,6 +358,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: e7f8cce932dc34745b685b2ccff928ef,
         type: 2}
+    - target: {fileID: 908568366204445390, guid: f443ae70529b14f42951265ea553e920,
+        type: 3}
+      propertyPath: spriteRenderer
+      value: 
+      objectReference: {fileID: 165739797}
     - target: {fileID: 7826077369860087090, guid: f443ae70529b14f42951265ea553e920,
         type: 3}
       propertyPath: m_LocalPosition.x

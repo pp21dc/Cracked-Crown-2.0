@@ -60,6 +60,8 @@ public class PlayerBody : MonoBehaviour
     private EnemyAIController enemyAIController;
     [SerializeField]
     private GameObject throwableBombPrefab;
+    [SerializeField]
+    private SpriteRenderer spriteRenderer;
 
     public GameObject CharacterFolder;
     public bool canMove = true;
@@ -746,4 +748,13 @@ public class PlayerBody : MonoBehaviour
         yield return new WaitForSeconds(2.5f);
         canExecute = true;
     }
+
+    public void ResetSprite()
+    {
+        if (spriteRenderer.enabled == true)
+            spriteRenderer.enabled = false;
+        else if(spriteRenderer.enabled == false)
+            spriteRenderer.enabled = true;
+    }
+
 }

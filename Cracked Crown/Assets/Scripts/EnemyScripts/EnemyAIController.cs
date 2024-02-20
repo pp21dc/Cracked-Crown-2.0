@@ -117,8 +117,7 @@ public class EnemyAIController : AdvancedFSM
     [SerializeField]
     private Vector3 randTrans;
 
-    [SerializeField]
-    private PlayerCarried carriedPlayer;
+    
 
 
     //health, finisher, and death states
@@ -528,6 +527,16 @@ public class EnemyAIController : AdvancedFSM
             inFinish = true;
             StartCoroutine(Finished());
         }
+
+        if (doneOnGround == true)
+        {
+            if (doneStun == false)
+            {
+                Debug.Log("LetsGoUp");
+                movementVector = (upPlacement.position - enemyPosition.transform.position).normalized * speed;
+                enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
+            }
+        }
     }
 
 
@@ -560,6 +569,17 @@ public class EnemyAIController : AdvancedFSM
 
         EAC.Stunned = false;
         inFinish = false;
+
+        if(gameObject.CompareTag("LightEnemy"))
+        {
+            doneOnGround = true;
+
+            yield return new WaitForSeconds(2f);
+
+            EAC.Stunned = false;
+            doneStun = true;
+        }
+
     }
     bool dead;
 
@@ -713,13 +733,7 @@ public class EnemyAIController : AdvancedFSM
 
         PlayerBody body = slamAttack.hitPlayer;
 
-        carriedPlayer = slamAttack.hitPlayer.GetComponentInParent<PlayerCarried>();
-
-        if(carriedPlayer.StartSpam())
-        {
-            doneCarry = true;
-            ResetCarryVar();
-        }
+        
 
         if (body.CharacterType.ID == 0)
             EAC.Badger_Grabbed = true;
@@ -787,12 +801,8 @@ public class EnemyAIController : AdvancedFSM
 
     IEnumerator Carry(PlayerBody pb)
     {
-        GameObject hitBody = slamAttack.hitPlayerBody;
-
-        slamAttack.gameObject.SetActive(false);
-
-        hitBody.SetActive(false);
-        
+        //call a method on the player that sets the sprite active to false and sets movement to false
+        slamAttack.hitPlayer.ResetSprite();
          
         startCarryingUp = true;
         belowChecker.gameObject.SetActive(false);
@@ -808,9 +818,9 @@ public class EnemyAIController : AdvancedFSM
 
         startCarrying = false;
 
-        hitBody.transform.position = new Vector3(enemyPosition.transform.position.x, enemyPosition.transform.position.y - 15, enemyPosition.transform.position.z);
+        slamAttack.hitPlayerBody.transform.position = new Vector3(enemyPosition.transform.position.x, enemyPosition.transform.position.y - 15, enemyPosition.transform.position.z);
 
-        hitBody.SetActive(true);
+        slamAttack.hitPlayer.ResetSprite();
 
         yield return new WaitForSeconds(2f);
         
