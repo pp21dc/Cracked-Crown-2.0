@@ -570,7 +570,7 @@ public class EnemyAIController : AdvancedFSM
         EAC.Stunned = false;
         inFinish = false;
 
-        if(gameObject.CompareTag("LightEnemy"))
+        if(gameObject.CompareTag("Light"))
         {
             doneOnGround = true;
 
@@ -636,7 +636,7 @@ public class EnemyAIController : AdvancedFSM
         lockKnock = true;
         enemyBody.isKinematic = false;
         enemyBody.AddForce(dir);
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(0.2f);
         enemyBody.velocity = Vector3.zero;
         enemyBody.isKinematic = true;
         lockKnock = false;

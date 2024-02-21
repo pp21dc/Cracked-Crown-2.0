@@ -172,7 +172,10 @@ public class PlayerBody : MonoBehaviour
             Attack();
             Dash();
             UseItem();
-            rb.velocity = new Vector3(rb.velocity.x, (-9.81f) * (rb.mass), rb.velocity.z);
+            if (rb.useGravity)
+                rb.velocity = new Vector3(rb.velocity.x, (-9.81f) * (rb.mass), rb.velocity.z);
+            else
+                rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
         }
     }
 
@@ -378,7 +381,7 @@ public class PlayerBody : MonoBehaviour
     private IEnumerator attackDelay()
     {
         yield return new WaitForSeconds(attackDelayTime);
-        GameObject attack = Instantiate(prefabForAttack, primaryAttackSpawnPoint.transform.position, primaryAttackPoint.rotation);
+        GameObject attack = Instantiate(prefabForAttack, primaryAttackSpawnPoint.transform);
         attack.GetComponent<PrototypePrimaryAttack>().playerBody = this;
         SwordSlash.sword.Play();
         if (!hitEnemy && !lockHitForward)
@@ -578,6 +581,7 @@ public class PlayerBody : MonoBehaviour
             RESETINGGHOST += 1;
             // instantiate dead sprite at player position
             respawnPoint = transform.position;
+            
 
             GameObject c = Instantiate(deathBody, transform.position, Quaternion.identity);
             SceneManager.MoveGameObjectToScene(c, persistScene);
@@ -591,6 +595,7 @@ public class PlayerBody : MonoBehaviour
 
             // turn off attacking, dash, and item use,
             GhostPlayer();
+
         }
     }
 
@@ -602,7 +607,7 @@ public class PlayerBody : MonoBehaviour
         canUseItem = false;
         lockDash = true;
         canMove = true;
-        //RESETINGGHOST = 0;
+        gameObject.layer = 7;
     }
 
     public void RevivePlayer()
@@ -615,6 +620,7 @@ public class PlayerBody : MonoBehaviour
         lockDash = false;
         canMove = true;
         RESETINGGHOST = 0;
+        gameObject.layer = 6;
     }
 
     public void resetPlayer()

@@ -81,6 +81,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        Physics.IgnoreLayerCollision(7, 6);
         if (CampaignStart)
         {
             ReturnToMainMenu();
@@ -190,9 +191,9 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < Players.Length; i++)
         {
+            Players[i].PB.transform.localPosition = new Vector3(0, 0, 0);
+            Players[i].PB.transform.position = spawnPoints[i].position;
             
-            Players[i].transform.position = spawnPoints[i].position;
-            Players[i].PB.transform.localPosition = new Vector3(0,0,0);
             //Debug.Log(Players[i].PB.transform.localPosition);
         }
         if (spawnPoints.Length <= 0)

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 99065361593015975}
   - component: {fileID: 5050968648220853272}
   - component: {fileID: 1264440914891293786}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150,6 +150,10 @@ MonoBehaviour:
   Moving: 0
   Attacking: 0
   Stunned: 0
+  Bunny_Grabbed: 0
+  Frog_Grabbed: 0
+  Badger_Grabbed: 0
+  Duck_Grabbed: 0
   Dashing: 0
 --- !u!1 &1091935484162795870
 GameObject:
@@ -162,7 +166,7 @@ GameObject:
   - component: {fileID: 1177276868569814050}
   - component: {fileID: 2620462327617662294}
   - component: {fileID: 5493214263850978981}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy body
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -248,7 +252,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4597978629314902217}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Up Placement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -385,7 +389,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1775185201461113250}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Slam placement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -418,7 +422,7 @@ GameObject:
   - component: {fileID: 5957641908124615148}
   - component: {fileID: 5983843399351939490}
   - component: {fileID: 990527585632079661}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SlamAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -520,7 +524,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6747117651386644139}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: The random One
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -553,7 +557,7 @@ GameObject:
   - component: {fileID: 1164301874540175725}
   - component: {fileID: 1500753434006985401}
   - component: {fileID: 5937784490392944160}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CheckPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -617,7 +621,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6653644175020378255}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FireLocation
   m_TagString: Untagged
   m_Icon: {fileID: 0}

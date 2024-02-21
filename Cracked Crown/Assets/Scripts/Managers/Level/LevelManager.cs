@@ -74,13 +74,6 @@ public class LevelManager : MonoBehaviour
             GM.SetPlayerPositions();
     }
 
-    private IEnumerator HOLDSTILLCUN()
-    {
-        GM.SetPlayerPositions();
-        yield return new WaitForSeconds(8);
-        GM.SetPlayerPositions();
-    }
-
     private void EnemySpawnSystem()
     {
         if (ROOM_CLEARED || !SpawnersActive)
@@ -137,7 +130,7 @@ public class LevelManager : MonoBehaviour
         ROOM_CLEARED = false;
         GM.SetPlayerPositions();
         yield return new WaitForSeconds(WAIT_ONENTER);
-        GM.SetPlayerPositions();
+        //GM.SetPlayerPositions();
         CURRENT_WAVE = 1;
         CURRENT_ROOM += 1;
         Current_Room = Rooms[CURRENT_ROOM-1];

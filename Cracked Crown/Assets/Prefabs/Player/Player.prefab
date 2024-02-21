@@ -59,7 +59,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 511570266779754974}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CharacterFolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 1993939971420117299}
   - component: {fileID: 136541949546988278}
   - component: {fileID: 4319459481737998479}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SwordSlash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -338,7 +338,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7772530150015170048}
   - component: {fileID: 6848299162110737261}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Primary Attack Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -383,7 +383,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2578827322040086158}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Slash Origin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -415,7 +415,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4418803016960461059}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MovementVector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -451,7 +451,7 @@ GameObject:
   - component: {fileID: 6405515692808277299}
   - component: {fileID: 943302644057217908}
   - component: {fileID: 2412678414072312596}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player Body
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -565,6 +565,7 @@ MonoBehaviour:
   enemyAIController: {fileID: 0}
   throwableBombPrefab: {fileID: 5158602912670518605, guid: 4d7b09c3101d4ef4fb92a55bbbab91d5,
     type: 3}
+  spriteRenderer: {fileID: 0}
   CharacterFolder: {fileID: 4150222539546649084}
   canMove: 1
   SwordSlash: {fileID: 6848299162110737261}
@@ -582,6 +583,9 @@ MonoBehaviour:
   canTakeDamage: 1
   executeHeal: 5
   canMovePlayerForexecute: 0
+  dashQueue: 0
+  playerLock: 0
+  canRelease: 0
   sprite: {fileID: 0}
   movementVector: {x: 0, y: 0, z: 0}
   forceMod: 500
@@ -639,7 +643,7 @@ GameObject:
   - component: {fileID: 681643471750819164}
   - component: {fileID: 4147580470786336603}
   - component: {fileID: 4195550580441275408}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FinisherRadius
   m_TagString: FinisherRadius
   m_Icon: {fileID: 0}
@@ -757,10 +761,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2828593481301157110, guid: f7d79151a7f0bd344843f470d4ca4d9c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4633882350821034748, guid: f7d79151a7f0bd344843f470d4ca4d9c,
         type: 3}
       propertyPath: m_Name
       value: Bunny
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633882350821034748, guid: f7d79151a7f0bd344843f470d4ca4d9c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4633882350821034748, guid: f7d79151a7f0bd344843f470d4ca4d9c,
         type: 3}

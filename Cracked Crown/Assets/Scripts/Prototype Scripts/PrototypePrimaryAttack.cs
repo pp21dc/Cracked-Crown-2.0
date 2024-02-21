@@ -27,7 +27,7 @@ public class PrototypePrimaryAttack : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log(other.gameObject.name);
-        if (other.tag == "Enemy")
+        if (other.tag == "Enemy" || other.tag == "Light" || other.tag == "Medium" || other.tag == "Heavy")
         {
             playerBody.hitEnemy = true;
             Rigidbody rb;
