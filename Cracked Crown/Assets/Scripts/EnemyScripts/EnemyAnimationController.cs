@@ -10,6 +10,8 @@ public class EnemyAnimationController : MonoBehaviour
     private RuntimeAnimatorController[] AC;
     [SerializeField]
     public SpriteRenderer SR;
+    [SerializeField]
+    private EnemyAIController EAIC;
 
     public bool Dead;
     public bool Moving;
@@ -67,5 +69,11 @@ public class EnemyAnimationController : MonoBehaviour
                 timer = 0f;
             }
         }
+    }
+
+
+    public void EndAttack()
+    {
+        EAIC.EAC.Attacking = false;
     }
 }

@@ -24,7 +24,7 @@ public class EnemyAIController : AdvancedFSM
 
 
     [SerializeField]
-    private EnemyAnimationController EAC;
+    public EnemyAnimationController EAC;
     [SerializeField]
     GameManager GM;
     [SerializeField]
@@ -630,13 +630,14 @@ public class EnemyAIController : AdvancedFSM
             Instantiate(eyes, enemyBody.transform.position + new Vector3(Random.Range(-10, 10), transform.position.y, Random.Range(-10, 10)), Quaternion.identity);
         }
     }
+    
     public bool lockKnock;
     public IEnumerator KB(Vector3 dir)
     {
         lockKnock = true;
         enemyBody.isKinematic = false;
-        enemyBody.AddForce(dir);
-        yield return new WaitForSeconds(0.2f);
+        enemyBody.AddForce(dir*0.5f);
+        yield return new WaitForSeconds(1f);
         enemyBody.velocity = Vector3.zero;
         enemyBody.isKinematic = true;
         lockKnock = false;
@@ -646,42 +647,41 @@ public class EnemyAIController : AdvancedFSM
 
     public void StartSlam()
     {
-        
-            
-        
-        StartCoroutine(SlamAttack());
 
-        
-            
-        
+        SlamAttack();
         if(slamAttack.hasHit == false && slamAttack.HitGround == false)
         {
             movementVector = (SlamLocation.position - enemyPosition.transform.position).normalized * slamSpeed;
             enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
+        }
+        else
+        {
+            EAC.Attacking = false;
         }
     }
 
     
     
 
-    IEnumerator SlamAttack()
+    void SlamAttack()
     {
         
         EAC.Attacking = true;
         if (slamAttack.hasHit == true)
         {
+            //EAC.Attacking = false;
             moveToCarry = true;
         Debug.Log("Carry");
                 
         }
         else if (slamAttack.HitGround == true)
         {
+            //EAC.Attacking = false;
             moveToStunned = true;
             Debug.Log("Stunned");    
 
         }
-        yield return new WaitForSeconds(1);
-        EAC.Attacking = false;
+        
     }
 
     public void ResetSlamVar()
@@ -915,7 +915,7 @@ public class EnemyAIController : AdvancedFSM
 
     float knockbackTimer;
     float knockbackTime = 0.10f;
-    bool knockback;
+    public bool knockback;
     IEnumerator KnockBack(Vector3 playerPos)
     {
         Debug.Log("KNOCKBACK");
@@ -932,38 +932,7 @@ public class EnemyAIController : AdvancedFSM
         knockbackTimer = 0;
     }
 
-    //bool damaging;
-    float timer;
-    public float timeToDamage = 2f;
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.tag == "Player")
-        {
-            if (timer > timeToDamage)
-            {
-                timer = 0;
-                //damaging = true;
-                PlayerBody pb = other.gameObject.GetComponent<PlayerBody>();
-                if (!pb.canTakeDamage)
-                {
-                    pb.DecHealth(1);
-                    EAC.Attacking = true;
-                }
-                   
-            }
-            else
-            {
-                timer += Time.deltaTime;
-                EAC.Attacking = false;
-            }
-            
-        }
-        if (other.tag == "PlayerAttack" && !knockback)
-        {
-            Debug.Log("FUCK:: ENEMY KNOCKBACK");
-           // StartCoroutine(KnockBack(other.transform.position));
-        }
-    }
+    
 
     
 
