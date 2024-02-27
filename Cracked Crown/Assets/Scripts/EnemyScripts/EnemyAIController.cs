@@ -735,16 +735,16 @@ public class EnemyAIController : AdvancedFSM
         
             slamAttack.hitPlayer.StartSpam();
         
-        if (slamAttack.hitPlayer.canRelease)
-        {
-
-        }
+        
         
         
 
         PlayerBody body = slamAttack.hitPlayer;
 
-        
+        if (slamAttack.hitPlayer.canRelease)
+        {
+            StartCoroutine(Drop(body));
+        }
 
         if (body.CharacterType.ID == 0)
             EAC.Badger_Grabbed = true;
@@ -828,6 +828,13 @@ public class EnemyAIController : AdvancedFSM
 
         yield return new WaitForSeconds(4f);
 
+        StartCoroutine(Drop(pb));
+
+        yield return null;
+    }  
+    
+    IEnumerator Drop(PlayerBody pb)
+    {
         startCarrying = false;
 
         slamAttack.hitPlayerBody.transform.position = new Vector3(enemyPosition.transform.position.x, enemyPosition.transform.position.y - 15, enemyPosition.transform.position.z);
@@ -835,7 +842,7 @@ public class EnemyAIController : AdvancedFSM
         slamAttack.hitPlayer.ResetSprite();
 
         yield return new WaitForSeconds(2f);
-        
+
         doneCarry = true;
 
         if (pb.CharacterType.ID == 0)
@@ -847,11 +854,6 @@ public class EnemyAIController : AdvancedFSM
         else if (pb.CharacterType.ID == 3)
             EAC.Frog_Grabbed = false;
 
-        yield return null;
-    }  
-    
-    IEnumerator Drop()
-    {
         yield return null;
     }
     
