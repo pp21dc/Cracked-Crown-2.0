@@ -647,6 +647,8 @@ public class EnemyAIController : AdvancedFSM
         yield return new WaitForSeconds(0.3f);
         enemyBody.velocity = Vector3.zero;
         enemyBody.isKinematic = true;
+        //yield return new WaitForSeconds(0.5f);
+        Debug.Log("END :: KB");
         lockKnock = false;
     }
 

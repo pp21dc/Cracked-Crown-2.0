@@ -27,15 +27,18 @@ public class PrototypePrimaryAttack : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log(other.gameObject.name);
-        if (other.tag == "Enemy" || other.tag == "Light" || other.tag == "Medium" || other.tag == "Heavy")
+        if (other.tag == "Light" || other.tag == "Medium" || other.tag == "Heavy")
         {
             playerBody.hitEnemy = true;
             Rigidbody rb;
             enemyController = other.transform.parent.GetChild(0).GetComponent<EnemyAIController>();
             enemyController.DecHealth(playerBody.damage);
-            rb = other.GetComponent<Rigidbody>();    
+            rb = other.GetComponent<Rigidbody>();
             if (!enemyController.lockKnock)
-                enemyController.StartCoroutine(enemyController.KB(playerBody.GetMovementVector() * 15 * playerBody.forceMod));
+            {
+                enemyController.lockKnock = true;
+                enemyController.StartCoroutine(enemyController.KB(playerBody.AttackVector * 15 * playerBody.forceMod));
+            }
             Debug.Log("Enemy Health: " + enemyController.Health);
         }
         if (other.tag == "Boss")

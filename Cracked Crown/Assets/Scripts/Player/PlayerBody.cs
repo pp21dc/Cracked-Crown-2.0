@@ -112,6 +112,7 @@ public class PlayerBody : MonoBehaviour
     private bool enumDone = false;
     private float attackDelayTime;
     private int timesHit = 0;
+    public Vector3 AttackVector;
 
     //hey Ian dont know where you will want this bool
     public bool canRelease = false;
@@ -389,9 +390,11 @@ public class PlayerBody : MonoBehaviour
 
     private IEnumerator attackDelay()
     {
+        AttackVector = GetMovementVector();
         yield return new WaitForSeconds(attackDelayTime);
         GameObject attack = Instantiate(prefabForAttack, primaryAttackSpawnPoint.transform);
         attack.GetComponent<PrototypePrimaryAttack>().playerBody = this;
+        
         SwordSlash.sword.Play();
         if (!hitEnemy && !lockHitForward)
         {
@@ -429,6 +432,7 @@ public class PlayerBody : MonoBehaviour
         attacking = false;
         yield return new WaitForSeconds(attackSpeed * 0.05f);
         canAttack = true;
+        AttackVector = Vector3.zero;
         //attacking = false;
     }
 
