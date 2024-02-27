@@ -677,8 +677,8 @@ public class PlayerBody : MonoBehaviour
     private void UseItem()
     {
 
-        Vector3 stinky = new Vector3 (7.5f, 3, 0); // so it spawns above the ground and infront
-        Vector3 negativeStinky = new Vector3 (-7.5f, 3, 0);
+        Vector3 stinky = new Vector3 (7.5f, 5, 0); // so it spawns above the ground and infront
+        Vector3 negativeStinky = new Vector3 (-7.5f, 5, 0);
         Vector3 fortniteFellaBalls = Vector3.zero; // placeholder
 
         if (controller.ItemDown)

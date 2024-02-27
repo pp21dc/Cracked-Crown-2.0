@@ -43,11 +43,13 @@ public class Bomb : MonoBehaviour
 
     int thing = 1;
     // Update is called once per frame
+    bool flashing;
     void Update()
     {
 
-        if (colourCount <= 30)
+        if (colourCount <= 180 && !flashing)
         {
+            flashing = true;
             StartCoroutine(ColourFlash());
         }
 
@@ -73,11 +75,12 @@ public class Bomb : MonoBehaviour
 
     private IEnumerator ColourFlash()
     {
-        sprite.color = Color.red;
-        yield return new WaitForSeconds(0.5f);
         sprite.color = Color.white;
-
+        yield return new WaitForSeconds(0.2f);
+        sprite.color = Color.red;
+        yield return new WaitForSeconds(0.2f);
         colourCount++;
+        flashing = false;
     }
 
     private IEnumerator Explode()
