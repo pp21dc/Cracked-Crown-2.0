@@ -14,26 +14,34 @@ public class FinisherCollider : MonoBehaviour
     [SerializeField]
     private PlayerController controller;
     GameObject e;
+    float distance;
     private void Update()
     {
+        Debug.Log("CanExecute: " + PB.canExecute + " :: " + controller.ExecuteDown);
         if (enemiesInRange != null && controller.ExecuteDown)
         {
             foreach (GameObject enemy in enemiesInRange)
             {
+                
                 if (enemy != null && enemy.transform.parent.gameObject.activeSelf)
                 {
+
+                    
                     if ((((enemy.gameObject.GetComponent<EnemyAIController>().Health) / (enemy.gameObject.GetComponent<EnemyAIController>().maxHealth)) <= 0.5) && PB.canExecute) // if health is less then 50% can execute
                     {
-                        PB.Execute(enemy.transform.parent.GetChild(1).gameObject);
-                        e = enemy;
-                        return;
-
+                        if (Vector3.Distance(enemy.transform.position, PB.transform.position) > distance)
+                        {
+                            distance = Vector3.Distance(enemy.transform.position, PB.transform.position);
+                            PB.Execute(enemy.transform.parent.GetChild(1).gameObject);
+                            e = enemy;
+                            break;
+                        }
+                        
                     }
-                    else
-                        return;
                 }
                 
             }
+            distance = 0;
             if (e != null)
             {
                 enemiesInRange.Remove(e);
