@@ -26,6 +26,9 @@ public class PlayerBody : MonoBehaviour
     [SerializeField]
     private GameObject deathBody;
 
+    public int lockIN = -1;
+    public int currentIN;
+
     [Header("CHARACTER DESIGN")]
     public float KnockbackTime = 0.025f;
     public float KnockForwardTime = 0.025f;
@@ -41,6 +44,7 @@ public class PlayerBody : MonoBehaviour
     [SerializeField]
     private PlayerController controller;
     public PlayerContainer playerContainer;
+    public PlayerManager PM;
     public FinisherCollider executeCollideScript;
     [SerializeField]
     private PlayerAnimController animController;
@@ -116,7 +120,10 @@ public class PlayerBody : MonoBehaviour
     {
         if (!playerLock)
         {
-
+            if (controller.InteractDown && lockIN == -1 && PM.CheckPlayers(currentIN))
+                lockIN = currentIN;
+            else if (controller.InteractDown && lockIN != -1)
+                lockIN = -1;
 
             collect();
             onNoDamage();
@@ -294,8 +301,9 @@ public class PlayerBody : MonoBehaviour
                 animController.Finishing = true;
                 lockExecAnim = true;
             }
-            
-            Vector3 test = Vector3.MoveTowards(gameObject.transform.position, executeTarget.transform.position + forExecutePosition, executeMoveSpeed * Time.deltaTime);
+            Vector3 epicgamer = executeTarget.transform.position + forExecutePosition;
+            //epicgamer.y = 0;
+            Vector3 test = Vector3.MoveTowards(gameObject.transform.position, epicgamer, executeMoveSpeed * Time.deltaTime);
             transform.position = test;
 
             StartCoroutine(ExecuteCooldown());
@@ -441,7 +449,7 @@ public class PlayerBody : MonoBehaviour
     Vector3 dashDirection;
     private void Dash()
     {
-        if (((controller.DashDown && dashOnCD == false) || (!controller.DashDown && dashQueue && !dashing && !dashOnCD)) && !attacking && !lockDash)
+        if (((controller.DashDown && dashOnCD == false) || (!controller.DashDown && dashQueue && !dashing && !dashOnCD)) && !attacking && !lockDash && sprite != null)
         {
             float scale = Mathf.Abs(sprite.localScale.x);
             if (!dashQueue)
@@ -541,6 +549,7 @@ public class PlayerBody : MonoBehaviour
 
             canTakeDamage = false;
             canMove = false;
+            canAttack = false;
             enemyAIController.canMove = false;
             canExecute = false;
             canMovePlayerForexecute = true;
@@ -557,7 +566,7 @@ public class PlayerBody : MonoBehaviour
 
     private void onNoDamage()
     {
-        if (controller.NoDamageDown)
+        if (controller.NoDamageDown && enemyAIController != null)
         {
             enemyAIController.canMove = !enemyAIController.canMove;
         }
