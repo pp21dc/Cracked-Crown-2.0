@@ -107,6 +107,7 @@ public class PlayerBody : MonoBehaviour
     public bool playerLock = false;
     private bool enumDone = false;
     private float attackDelayTime;
+    private int timesHit = 0;
 
     //hey Ian dont know where you will want this bool
     public bool canRelease = false;
@@ -710,43 +711,31 @@ public class PlayerBody : MonoBehaviour
         }
     }
 
-    public bool StartSpam()
+    public void StartSpam()
     {
         canMove = false;
         canAttack = false;
-
-        StartCoroutine(spamX());
-
-        if(canRelease == true)
+        
+        if (controller.InteractDown)
         {
-            canRelease = false;
-            return true;
-        }
-        else 
-        {
-            return false;
+            timesHit++;
+            Debug.Log(timesHit);
         }
 
+        if (timesHit >= 8)
+        {
+            canRelease = true;
+            canMove = true;
+            canAttack = true;
+            Debug.Log("Free");
+                
+        }
+        
+
+        
     }
 
-    IEnumerator spamX()
-    {
-        int timesHit = 0;
-
-        while(timesHit < 8)
-        {
-            if(controller.InteractDown)
-            {
-                timesHit++;
-            }
-        }
-
-        canRelease = true;
-        canMove = true;
-        canAttack = true;
-
-        yield return null;
-    }
+    
 
     private IEnumerator ExecuteCooldown()
     {

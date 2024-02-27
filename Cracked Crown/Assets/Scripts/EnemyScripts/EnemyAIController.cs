@@ -108,6 +108,8 @@ public class EnemyAIController : AdvancedFSM
     private bool canCarry;
     private bool startCarryingUp;
     private bool startCarrying;
+    private bool canSpam;
+
 
     [SerializeField]
     private Transform upPlacement;
@@ -252,6 +254,7 @@ public class EnemyAIController : AdvancedFSM
 
         startCarrying = false;
         startCarryingUp = false;
+        canSpam = true;
 
         noTransform = true;
 
@@ -730,6 +733,14 @@ public class EnemyAIController : AdvancedFSM
     {
 
         
+            slamAttack.hitPlayer.StartSpam();
+        
+        if (slamAttack.hitPlayer.canRelease)
+        {
+
+        }
+        
+        
 
         PlayerBody body = slamAttack.hitPlayer;
 
@@ -803,6 +814,7 @@ public class EnemyAIController : AdvancedFSM
     {
         //call a method on the player that sets the sprite active to false and sets movement to false
         slamAttack.hitPlayer.ResetSprite();
+        
          
         startCarryingUp = true;
         belowChecker.gameObject.SetActive(false);
@@ -836,7 +848,12 @@ public class EnemyAIController : AdvancedFSM
             EAC.Frog_Grabbed = false;
 
         yield return null;
-    }   
+    }  
+    
+    IEnumerator Drop()
+    {
+        yield return null;
+    }
     
     public void ResetCarryVar()
     {
@@ -845,6 +862,7 @@ public class EnemyAIController : AdvancedFSM
         startCarrying = false;
         doneCarry = false;
         noTransform = true;
+        canSpam = true;
         randTrans = new Vector3(0, 0, 0);
     }
 
