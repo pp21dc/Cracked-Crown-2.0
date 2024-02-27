@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
@@ -25,22 +26,33 @@ public class Bomb : MonoBehaviour
     [SerializeField]
     [Tooltip("make bigger to increase speed of bomb travel")]
     private float speed = 17;
+    private int colourCount = 0;
 
     private List<EnemyAIController> enemiesInRange;
     private Rigidbody rb;
     private PlayerController controller;
+    private SpriteRenderer sprite;
 
     private void Awake()
     {
         Debug.Log("controller is: " + controller);
         rb = GetComponent<Rigidbody>();
         enemiesInRange = new List<EnemyAIController>();
+        sprite = transform.GetChild(0).GetComponent<SpriteRenderer>();
     }
 
     int thing = 1;
     // Update is called once per frame
+    bool flashing;
     void Update()
     {
+
+        if (colourCount <= 180 && !flashing)
+        {
+            flashing = true;
+            StartCoroutine(ColourFlash());
+        }
+
         if (counter == 1)
         {
             speed = 0;
@@ -59,6 +71,16 @@ public class Bomb : MonoBehaviour
             playOnce = false;
         }
         rb.velocity += new Vector3(0, gravity, 0) * thing * Time.deltaTime;
+    }
+
+    private IEnumerator ColourFlash()
+    {
+        sprite.color = Color.white;
+        yield return new WaitForSeconds(0.2f);
+        sprite.color = Color.red;
+        yield return new WaitForSeconds(0.2f);
+        colourCount++;
+        flashing = false;
     }
 
     private IEnumerator Explode()

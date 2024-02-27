@@ -26,6 +26,9 @@ public class PlayerBody : MonoBehaviour
     [SerializeField]
     private GameObject deathBody;
 
+    public int lockIN = -1;
+    public int currentIN;
+
     [Header("CHARACTER DESIGN")]
     public float KnockbackTime = 0.025f;
     public float KnockForwardTime = 0.025f;
@@ -41,6 +44,7 @@ public class PlayerBody : MonoBehaviour
     [SerializeField]
     private PlayerController controller;
     public PlayerContainer playerContainer;
+    public PlayerManager PM;
     public FinisherCollider executeCollideScript;
     [SerializeField]
     private PlayerAnimController animController;
@@ -107,6 +111,7 @@ public class PlayerBody : MonoBehaviour
     public bool playerLock = false;
     private bool enumDone = false;
     private float attackDelayTime;
+    private int timesHit = 0;
 
     //hey Ian dont know where you will want this bool
     public bool canRelease = false;
@@ -115,7 +120,10 @@ public class PlayerBody : MonoBehaviour
     {
         if (!playerLock)
         {
-
+            if (controller.InteractDown && lockIN == -1 && PM.CheckPlayers(currentIN))
+                lockIN = currentIN;
+            else if (controller.InteractDown && lockIN != -1)
+                lockIN = -1;
 
             collect();
             onNoDamage();
@@ -293,8 +301,9 @@ public class PlayerBody : MonoBehaviour
                 animController.Finishing = true;
                 lockExecAnim = true;
             }
-            
-            Vector3 test = Vector3.MoveTowards(gameObject.transform.position, executeTarget.transform.position + forExecutePosition, executeMoveSpeed * Time.deltaTime);
+            Vector3 epicgamer = executeTarget.transform.position + forExecutePosition;
+            //epicgamer.y = 0;
+            Vector3 test = Vector3.MoveTowards(gameObject.transform.position, epicgamer, executeMoveSpeed * Time.deltaTime);
             transform.position = test;
 
             StartCoroutine(ExecuteCooldown());
@@ -440,7 +449,7 @@ public class PlayerBody : MonoBehaviour
     Vector3 dashDirection;
     private void Dash()
     {
-        if (((controller.DashDown && dashOnCD == false) || (!controller.DashDown && dashQueue && !dashing && !dashOnCD)) && !attacking && !lockDash)
+        if (((controller.DashDown && dashOnCD == false) || (!controller.DashDown && dashQueue && !dashing && !dashOnCD)) && !attacking && !lockDash && sprite != null)
         {
             float scale = Mathf.Abs(sprite.localScale.x);
             if (!dashQueue)
@@ -540,6 +549,7 @@ public class PlayerBody : MonoBehaviour
 
             canTakeDamage = false;
             canMove = false;
+            canAttack = false;
             enemyAIController.canMove = false;
             canExecute = false;
             canMovePlayerForexecute = true;
@@ -556,7 +566,7 @@ public class PlayerBody : MonoBehaviour
 
     private void onNoDamage()
     {
-        if (controller.NoDamageDown)
+        if (controller.NoDamageDown && enemyAIController != null)
         {
             enemyAIController.canMove = !enemyAIController.canMove;
         }
@@ -676,8 +686,8 @@ public class PlayerBody : MonoBehaviour
     private void UseItem()
     {
 
-        Vector3 stinky = new Vector3 (7.5f, 3, 0); // so it spawns above the ground and infront
-        Vector3 negativeStinky = new Vector3 (-7.5f, 3, 0);
+        Vector3 stinky = new Vector3 (7.5f, 5, 0); // so it spawns above the ground and infront
+        Vector3 negativeStinky = new Vector3 (-7.5f, 5, 0);
         Vector3 fortniteFellaBalls = Vector3.zero; // placeholder
 
         if (controller.ItemDown)
@@ -710,43 +720,31 @@ public class PlayerBody : MonoBehaviour
         }
     }
 
-    public bool StartSpam()
+    public void StartSpam()
     {
         canMove = false;
         canAttack = false;
-
-        StartCoroutine(spamX());
-
-        if(canRelease == true)
+        
+        if (controller.InteractDown)
         {
-            canRelease = false;
-            return true;
-        }
-        else 
-        {
-            return false;
+            timesHit++;
+            Debug.Log(timesHit);
         }
 
+        if (timesHit >= 8)
+        {
+            canRelease = true;
+            canMove = true;
+            canAttack = true;
+            Debug.Log("Free");
+                
+        }
+        
+
+        
     }
 
-    IEnumerator spamX()
-    {
-        int timesHit = 0;
-
-        while(timesHit < 8)
-        {
-            if(controller.InteractDown)
-            {
-                timesHit++;
-            }
-        }
-
-        canRelease = true;
-        canMove = true;
-        canAttack = true;
-
-        yield return null;
-    }
+    
 
     private IEnumerator ExecuteCooldown()
     {

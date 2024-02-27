@@ -23,6 +23,7 @@ public class CheckPlayerBelow : MonoBehaviour
     {
         if(seesPlayer)
         {
+            seesPlayer = false;
             return true;
         }
         else

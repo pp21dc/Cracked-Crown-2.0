@@ -59,7 +59,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 511570266779754974}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: CharacterFolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 1993939971420117299}
   - component: {fileID: 136541949546988278}
   - component: {fileID: 4319459481737998479}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: SwordSlash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -338,7 +338,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7772530150015170048}
   - component: {fileID: 6848299162110737261}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Primary Attack Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -383,7 +383,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2578827322040086158}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Slash Origin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -415,7 +415,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4418803016960461059}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: MovementVector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -451,7 +451,7 @@ GameObject:
   - component: {fileID: 3787834794954643774}
   - component: {fileID: 6405515692808277299}
   - component: {fileID: 943302644057217908}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Player Body
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -519,14 +519,14 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 6.34
-  m_Height: 12.42
+  m_Height: 12.68
   m_Direction: 1
-  m_Center: {x: 1.66, y: 7.05, z: 0}
+  m_Center: {x: 1.6599998, y: 7.05, z: 0}
 --- !u!136 &3787834794954643774
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -542,14 +542,14 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 7.47
-  m_Height: 29.98
+  m_Height: 31.316772
   m_Direction: 1
-  m_Center: {x: 1.62, y: 6.94, z: 0}
+  m_Center: {x: 1.6199999, y: 6.271614, z: 0}
 --- !u!114 &6405515692808277299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -643,7 +643,7 @@ GameObject:
   - component: {fileID: 681643471750819164}
   - component: {fileID: 4147580470786336603}
   - component: {fileID: 4195550580441275408}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: FinisherRadius
   m_TagString: FinisherRadius
   m_Icon: {fileID: 0}
@@ -764,7 +764,7 @@ PrefabInstance:
     - target: {fileID: 2828593481301157110, guid: f7d79151a7f0bd344843f470d4ca4d9c,
         type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4633882350821034748, guid: f7d79151a7f0bd344843f470d4ca4d9c,
         type: 3}
@@ -774,7 +774,7 @@ PrefabInstance:
     - target: {fileID: 4633882350821034748, guid: f7d79151a7f0bd344843f470d4ca4d9c,
         type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4633882350821034748, guid: f7d79151a7f0bd344843f470d4ca4d9c,
         type: 3}
