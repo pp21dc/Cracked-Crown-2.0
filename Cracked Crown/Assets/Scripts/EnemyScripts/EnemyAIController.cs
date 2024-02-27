@@ -475,12 +475,14 @@ public class EnemyAIController : AdvancedFSM
             EAC.SR.flipX = true;
         }
 
+        //if it can goop, it shoot projectiles
         if (startGoop)
         {
             startGoop = false;
             StartCoroutine(GoopRoutine());
         }
         
+        //if player is below it, start the slam state
         if(belowChecker.IsPlayerBelow())
         {
             canGoop = false;
@@ -490,7 +492,7 @@ public class EnemyAIController : AdvancedFSM
     }
 
     
-
+    //shooting code from franks class
     IEnumerator GoopRoutine()
     {
 
@@ -503,6 +505,7 @@ public class EnemyAIController : AdvancedFSM
         //yield return null;
     }
 
+    //shooting code from franks class
     private void StartShootGoop(Transform body, Transform fireLocation)
     {
         if(Goop)
@@ -611,6 +614,7 @@ public class EnemyAIController : AdvancedFSM
     [SerializeField]
     private GameObject eyes;
 
+   // chooses a random number in a range for the enemy and drops that many eyes
     private void DropEyes()
     {
         int dropRate = 0;
@@ -647,7 +651,7 @@ public class EnemyAIController : AdvancedFSM
     }
 
 
-
+    //starts the slam method
     public void StartSlam()
     {
 
@@ -665,7 +669,7 @@ public class EnemyAIController : AdvancedFSM
 
     
     
-
+    //checks slam code for if it has ti the player or the ground
     void SlamAttack()
     {
         
@@ -687,6 +691,7 @@ public class EnemyAIController : AdvancedFSM
         
     }
 
+    //resets all of the slam variables
     public void ResetSlamVar()
     {
         slamAttack.hasHit = false;
@@ -695,6 +700,7 @@ public class EnemyAIController : AdvancedFSM
         moveToStunned = false;
     }
 
+    //if light enemy is stunned, runs the following code
     public void StartStunned()
     {
         if (canStun)
@@ -714,6 +720,7 @@ public class EnemyAIController : AdvancedFSM
         }
     }
 
+    //keeps enemy on the ground and then moves it up through the method once 3 seconds are up
     IEnumerator Stunned()
     {
         EAC.Stunned = true;
@@ -729,11 +736,13 @@ public class EnemyAIController : AdvancedFSM
         //yield return null; //CAN THIS EXIT?
     }
 
+    //method for carrying the player
     public void StartCarry()
     {
 
+
         
-            slamAttack.hitPlayer.StartSpam();
+     slamAttack.hitPlayer.StartSpam();
         
         
         
@@ -743,6 +752,12 @@ public class EnemyAIController : AdvancedFSM
 
         if (slamAttack.hitPlayer.canRelease)
         {
+            canSpam = false;
+        }
+
+        if (canSpam == false)
+        {
+            canSpam = true;
             StartCoroutine(Drop(body));
         }
 
