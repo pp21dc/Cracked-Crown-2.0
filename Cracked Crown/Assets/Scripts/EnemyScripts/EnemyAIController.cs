@@ -643,8 +643,8 @@ public class EnemyAIController : AdvancedFSM
     {
         lockKnock = true;
         enemyBody.isKinematic = false;
-        enemyBody.AddForce(dir*0.5f);
-        yield return new WaitForSeconds(1f);
+        enemyBody.AddForce(dir*0.45f);
+        yield return new WaitForSeconds(0.3f);
         enemyBody.velocity = Vector3.zero;
         enemyBody.isKinematic = true;
         lockKnock = false;
