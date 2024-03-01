@@ -15,45 +15,48 @@ public class Collect : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Player" || other.tag == "Ghost")
+        if ((other.tag == "Player" || other.tag == "Ghost"))
         {
             body = other.GetComponent<PlayerBody>();
-
-            if (gameObject.tag == "Eye")
+            if (body.canCollect)
             {
-                if(body.alreadyDead)
+
+                if (gameObject.tag == "Eye")
                 {
-                    body.ghostCoins = body.ghostCoins + 1;
-                    Debug.Log(body.ghostCoins);
-                    gameObject.SetActive(false);
+                    if (body.alreadyDead)
+                    {
+                        body.ghostCoins = body.ghostCoins + 1;
+                        Debug.Log(body.ghostCoins);
+                        gameObject.SetActive(false);
+                    }
+                    else
+                    {
+                        gameManager.eyeCount = gameManager.eyeCount + 1;
+                        Debug.Log(gameManager.eyeCount);
+                        gameObject.SetActive(false);
+                    }
                 }
-                else
+
+                if (other.tag == "Player")
                 {
-                    gameManager.eyeCount = gameManager.eyeCount + 1;
-                    Debug.Log(gameManager.eyeCount);
-                    gameObject.SetActive(false);
+                    body = other.GetComponent<PlayerBody>();
+
+                    if (gameObject.tag == "Bomb")
+                    {
+                        body.collectable = this;
+                        body.canCollectBomb = true;
+                    }
                 }
-            }
 
-            if (other.tag == "Player")
-            {
-                body = other.GetComponent<PlayerBody>();
-
-                if (gameObject.tag == "Bomb")
+                if (other.tag == "Player")
                 {
-                    body.collectable = this;
-                    body.canCollectBomb = true;
-                }
-            }
+                    body = other.GetComponent<PlayerBody>();
 
-            if (other.tag == "Player")
-            {
-                body = other.GetComponent<PlayerBody>();
-
-                if (gameObject.tag == "Potion")
-                {
-                    body.collectable = this;
-                    body.canCollectPotion = true;
+                    if (gameObject.tag == "Potion")
+                    {
+                        body.collectable = this;
+                        body.canCollectPotion = true;
+                    }
                 }
             }
 

@@ -45,6 +45,7 @@ public class PlayerAnimEventHandler : MonoBehaviour
 
     public void DeathFinish()
     {
+        PC.PB.canCollect = false;
         PC.PB.RESETINGGHOST += 1;
         if (PC.PB.RESETINGGHOST == 2)
         {

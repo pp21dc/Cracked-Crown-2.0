@@ -93,6 +93,7 @@ public class PlayerBody : MonoBehaviour
     public bool canCollectPotion = false;
     [HideInInspector]
     public Collect collectable;
+    public bool canCollect = true;
 
     private bool dashOnCD = false;
     public bool canTakeDamage = true;
@@ -167,13 +168,14 @@ public class PlayerBody : MonoBehaviour
                 canAttack = true;
                 canMove = true;
                 lockDash = false;
-
+                //canExecute = true; // if this is here you can spam execute while executing
                 canTakeDamage = true;
                 //RevivePlayer();
 
                 // delete corpse
                 //Debug.Log("DESTROY CORPSES");
                 Destroy(corpse);
+                StartCoroutine(executeAfterRevive());
 
             }
             //Move();
@@ -185,6 +187,12 @@ public class PlayerBody : MonoBehaviour
             else
                 rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
         }
+    }
+
+    private IEnumerator executeAfterRevive()
+    {
+        yield return new WaitForSeconds(1f);
+        canExecute = true;
     }
 
     private IEnumerator deathAnim()
@@ -208,6 +216,7 @@ public class PlayerBody : MonoBehaviour
             SetCharacterData();
         }
         maxHealth = health;
+        canCollect = true;
     }
     bool dontForward;
     private void FixedUpdate()
@@ -621,6 +630,7 @@ public class PlayerBody : MonoBehaviour
         lockDash = true;
         canMove = true;
         gameObject.layer = 7;
+        canCollect = true;
     }
 
     public void RevivePlayer()
@@ -634,6 +644,7 @@ public class PlayerBody : MonoBehaviour
         canMove = true;
         RESETINGGHOST = 0;
         gameObject.layer = 6;
+        canCollect = true;
     }
 
     public void resetPlayer()
