@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PrototypePrimaryAttack : MonoBehaviour
 {
+    private BossPhases bossController;
     private EnemyAIController enemyController;
     public PlayerBody playerBody;
 
@@ -43,9 +44,12 @@ public class PrototypePrimaryAttack : MonoBehaviour
         }
         if (other.tag == "Boss")
         {
-            if (other.gameObject.GetComponent<BossPhases>().cantakedmg)
+            playerBody.hitEnemy = true;
+            bossController = other.gameObject.GetComponent<BossPhases>();
+
+            if (bossController.cantakedmg)
             {
-                other.gameObject.GetComponent<BossPhases>().decHealth(playerBody.damage);
+                bossController.decHealth(playerBody.damage);
             }
         }
     }
