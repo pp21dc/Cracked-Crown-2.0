@@ -208,8 +208,6 @@ public class BossPhases : MonoBehaviour
             if (otherClaw.FollowedPlayer != PlayerList[i]) // sets the player to be followed to a player not targetted by the other claw
             {
                 FollowedPlayer = PlayerList[i];
-                Debug.Log("Other Claw: " + otherClaw.FollowedPlayer);
-                Debug.Log("FollowedPlayer: " + FollowedPlayer);
                 break;
             }
         }
@@ -253,6 +251,8 @@ public class BossPhases : MonoBehaviour
         clawreturn = false; // resets final bool and timer for the grab;
 
         grabbedTimer = 1;
+        GrabbedPlayer = null;
+        GrabbedPlayerBody = null;
         FollowedPlayer = null;
     }
 
@@ -281,14 +281,14 @@ public class BossPhases : MonoBehaviour
     {
         // animation is called
         // damage is dealt
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
-            if (clawgrab)
+            if (clawgrab && other.gameObject == FollowedPlayer)
             {
                 GrabbedPlayerBody = other.GetComponent<PlayerBody>();
                 GrabbedPlayer = other.gameObject;
