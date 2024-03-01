@@ -17,7 +17,7 @@ public class FinisherCollider : MonoBehaviour
     float distance;
     private void Update()
     {
-        Debug.Log("CanExecute: " + PB.canExecute + " :: " + controller.ExecuteDown);
+        //Debug.Log("CanExecute: " + PB.canExecute + " :: " + controller.ExecuteDown);
         if (enemiesInRange != null && controller.ExecuteDown)
         {
             foreach (GameObject enemy in enemiesInRange)
