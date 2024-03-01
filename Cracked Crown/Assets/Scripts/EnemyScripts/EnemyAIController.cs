@@ -109,6 +109,8 @@ public class EnemyAIController : AdvancedFSM
     private bool startCarryingUp;
     private bool startCarrying;
     private bool canSpam;
+    public bool canPickup;
+    public bool canWait;
 
 
     [SerializeField]
@@ -255,6 +257,8 @@ public class EnemyAIController : AdvancedFSM
         startCarrying = false;
         startCarryingUp = false;
         canSpam = true;
+        canPickup = true;
+        canWait = true;
 
         noTransform = true;
 
@@ -453,6 +457,17 @@ public class EnemyAIController : AdvancedFSM
 
     private void setAndMoveToTargetLight(float Speed)
     {
+
+        if(canWait)
+        {
+            canWait = false;
+            StartCoroutine(Wait());
+        }
+
+        ResetCarryVar();
+        ResetSlamVar();
+
+
         Debug.Log("in this one");
         if (Speed > 0.5f)
         {
@@ -476,11 +491,11 @@ public class EnemyAIController : AdvancedFSM
         }
 
         //if it can goop, it shoot projectiles
-        if (startGoop)
+       /* if (startGoop)
         {
             startGoop = false;
             StartCoroutine(GoopRoutine());
-        }
+        }*/
         
         //if player is below it, start the slam state
         if(belowChecker.IsPlayerBelow())
@@ -489,6 +504,11 @@ public class EnemyAIController : AdvancedFSM
             startSlam = true;
         }
 
+    }
+
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(2f);
     }
 
     
@@ -672,7 +692,7 @@ public class EnemyAIController : AdvancedFSM
     
     
     //checks slam code for if it has ti the player or the ground
-    void SlamAttack()
+    public void SlamAttack()
     {
         
         EAC.Attacking = true;
@@ -680,6 +700,7 @@ public class EnemyAIController : AdvancedFSM
         {
             //EAC.Attacking = false;
             moveToCarry = true;
+           // ResetSlamVar();
         Debug.Log("Carry");
                 
         }
@@ -687,8 +708,8 @@ public class EnemyAIController : AdvancedFSM
         {
             //EAC.Attacking = false;
             moveToStunned = true;
-            Debug.Log("Stunned");    
-
+            Debug.Log("Stunned");
+           // ResetSlamVar();
         }
         
     }
@@ -734,6 +755,7 @@ public class EnemyAIController : AdvancedFSM
 
         EAC.Stunned = false;
         doneStun = true;
+        canWait = true;
 
         //yield return null; //CAN THIS EXIT?
     }
@@ -742,26 +764,25 @@ public class EnemyAIController : AdvancedFSM
     public void StartCarry()
     {
 
-
-        
-     slamAttack.hitPlayer.StartSpam();
-        
-        
-        
-        
-
         PlayerBody body = slamAttack.hitPlayer;
 
-        if (slamAttack.hitPlayer.canRelease)
-        {
-            canSpam = false;
-        }
+        body.StartSpam();
+        
+        
+        
+        
 
-        if (canSpam == false)
+        
+
+        if (body.canRelease && canSpam == false)
         {
             canSpam = true;
             StartCoroutine(Drop(body));
         }
+
+        
+            
+        
 
         if (body.CharacterType.ID == 0)
             EAC.Badger_Grabbed = true;
@@ -830,7 +851,7 @@ public class EnemyAIController : AdvancedFSM
     IEnumerator Carry(PlayerBody pb)
     {
         //call a method on the player that sets the sprite active to false and sets movement to false
-        slamAttack.hitPlayer.ResetSprite();
+        pb.ResetSprite();
         
          
         startCarryingUp = true;
@@ -854,13 +875,22 @@ public class EnemyAIController : AdvancedFSM
     {
         startCarrying = false;
 
-        slamAttack.hitPlayerBody.transform.position = new Vector3(enemyPosition.transform.position.x, enemyPosition.transform.position.y - 15, enemyPosition.transform.position.z);
+        Vector3 CarriedPlayer = slamAttack.hitPlayerBody.transform.position;
 
-        slamAttack.hitPlayer.ResetSprite();
+        slamAttack.enabled = false;
+
+        CarriedPlayer = new Vector3(enemyPosition.transform.position.x, enemyPosition.transform.position.y - 15, enemyPosition.transform.position.z);
+
+        pb.ResetSprite();
+
+        
 
         yield return new WaitForSeconds(2f);
 
         doneCarry = true;
+        canWait = true;
+
+        ResetCarryVar();
 
         if (pb.CharacterType.ID == 0)
             EAC.Badger_Grabbed = false;
@@ -870,6 +900,8 @@ public class EnemyAIController : AdvancedFSM
             EAC.Duck_Grabbed = false;
         else if (pb.CharacterType.ID == 3)
             EAC.Frog_Grabbed = false;
+
+        slamAttack.enabled |= true;
 
         yield return null;
     }
@@ -881,7 +913,8 @@ public class EnemyAIController : AdvancedFSM
         startCarrying = false;
         doneCarry = false;
         noTransform = true;
-        canSpam = true;
+        canSpam = false;
+        canPickup = true;
         randTrans = new Vector3(0, 0, 0);
     }
 

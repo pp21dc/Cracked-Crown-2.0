@@ -368,6 +368,7 @@ MonoBehaviour:
   SlamLocation: {fileID: 1775185201461113250}
   doneCarry: 1
   doneStun: 0
+  canPickup: 1
   upPlacement: {fileID: 4597978629314902217}
   randTrans: {x: 0, y: 0, z: 0}
   maxHealth: 40
@@ -495,7 +496,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b4e3359cc7b633419a42895a75388c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyAIController: {fileID: 0}
+  enemyAIController: {fileID: 3777765676232313991}
   hasHit: 0
   HitGround: 0
   hitPlayer: {fileID: 0}
