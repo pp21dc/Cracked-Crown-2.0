@@ -131,7 +131,6 @@ public class PlayerBody : MonoBehaviour
 
             if ((health <= 0 || Input.GetKey(KeyCode.O)) && alreadyDead == false)
             {
-                Debug.Log("You Died");
                 rb.velocity = Vector3.zero;
                 //GhostMode();
                 animController.Moving = false;
