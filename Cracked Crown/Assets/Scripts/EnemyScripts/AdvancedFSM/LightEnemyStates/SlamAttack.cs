@@ -21,7 +21,7 @@ public class SlamAttack : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player") && enemyAIController.canPickup)
+        if(other.CompareTag("Player") && enemyAIController.canPickup && enemyAIController.CompareTag("Light"))
         {
             PlayerBody player = other.GetComponent<PlayerBody>();
             Debug.Log("SLAM HIT");

@@ -20,6 +20,7 @@ public class FinisherCollider : MonoBehaviour
         //Debug.Log("CanExecute: " + PB.canExecute + " :: " + controller.ExecuteDown);
         if (enemiesInRange != null && controller.ExecuteDown)
         {
+            distance = -100;
             foreach (GameObject enemy in enemiesInRange)
             {
                 
@@ -27,21 +28,21 @@ public class FinisherCollider : MonoBehaviour
                 {
 
                     
-                    if ((((enemy.gameObject.GetComponent<EnemyAIController>().Health) / (enemy.gameObject.GetComponent<EnemyAIController>().maxHealth)) <= 0.5) && PB.canExecute) // if health is less then 50% can execute
+                    if (enemy.gameObject.GetComponent<EnemyAIController>().inFinish && PB.canExecute) // if health is less then 50% can execute
                     {
                         if (Vector3.Distance(enemy.transform.position, PB.transform.position) > distance)
                         {
                             //PB.canExecute = false;
                             distance = Vector3.Distance(enemy.transform.position, PB.transform.position);
-                            PB.Execute(enemy.transform.parent.GetChild(1).gameObject);
                             e = enemy;
-                            break;
                         }
                         
                     }
                 }
                 
             }
+            if (e != null)
+                PB.Execute(e.transform.parent.GetChild(1).gameObject);
             //PB.canExecute = true;
             distance = 0;
             if (e != null)
@@ -54,7 +55,7 @@ public class FinisherCollider : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Medium")
+        if (other.gameObject.tag == "Medium" || other.gameObject.tag == "Light" || other.gameObject.tag == "Heavy")
         {
             enemiesInRange.Add(other.transform.parent.GetChild(0).gameObject); // add enemy to nearby list
         }

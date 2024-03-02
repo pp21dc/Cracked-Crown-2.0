@@ -544,7 +544,7 @@ public class EnemyAIController : AdvancedFSM
 
 
 
-    bool inFinish;
+    public bool inFinish;
     //starts the finished coroutine
     public void StartFinish()
     {

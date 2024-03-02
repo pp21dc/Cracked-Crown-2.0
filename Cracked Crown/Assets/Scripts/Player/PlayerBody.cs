@@ -313,7 +313,7 @@ public class PlayerBody : MonoBehaviour
             }
             else if (Vector3.Distance(transform.position, executeTarget.transform.position + forExecutePosition) > 5.0f)
             {
-                Debug.Log("MOVE");
+                //Debug.Log("MOVE");
                 Vector3 epicgamer = executeTarget.transform.position + forExecutePosition;
                 rb.velocity = Vector3.zero;
                 Vector3 test = Vector3.MoveTowards(gameObject.transform.position, epicgamer, executeMoveSpeed * Time.deltaTime);

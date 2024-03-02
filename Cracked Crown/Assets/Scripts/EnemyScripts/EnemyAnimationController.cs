@@ -69,6 +69,10 @@ public class EnemyAnimationController : MonoBehaviour
                 timer = 0f;
             }
         }
+        else
+        {
+            this.GetComponent<SpriteRenderer>().color = Color.white;
+        }
     }
 
 
