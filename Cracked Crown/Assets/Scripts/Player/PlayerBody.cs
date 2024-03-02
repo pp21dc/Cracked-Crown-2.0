@@ -225,7 +225,7 @@ public class PlayerBody : MonoBehaviour
         {
             //Debug.Log(rb.velocity);
             //rb.AddForce(new Vector3(0, -12000, 0) * Time.fixedDeltaTime);
-            if (canMove && !dashing && sprite != null)
+            if (canMove && !dashing && sprite != null && !canMovePlayerForexecute)
             {
 
                 float scale = Mathf.Abs(sprite.localScale.x);
@@ -305,17 +305,22 @@ public class PlayerBody : MonoBehaviour
         //Debug.Log(executeTarget.IsUnityNull());
         if (canMovePlayerForexecute && executeTarget != null)
         {
-            if (Vector3.Distance(transform.position, executeTarget.transform.position + forExecutePosition) < 2.2f && !lockExecAnim)
+            if (Vector3.Distance(transform.position, executeTarget.transform.position + forExecutePosition) < 5.0f && !lockExecAnim)
             {
                 animController.Finishing = true;
                 lockExecAnim = true;
+                StartCoroutine(ExecuteCooldown());
             }
-            Vector3 epicgamer = executeTarget.transform.position + forExecutePosition;
-            //epicgamer.y = 0;
-            Vector3 test = Vector3.MoveTowards(gameObject.transform.position, epicgamer, executeMoveSpeed * Time.deltaTime);
-            transform.position = test;
+            else if (Vector3.Distance(transform.position, executeTarget.transform.position + forExecutePosition) > 5.0f)
+            {
+                Debug.Log("MOVE");
+                Vector3 epicgamer = executeTarget.transform.position + forExecutePosition;
+                rb.velocity = Vector3.zero;
+                Vector3 test = Vector3.MoveTowards(gameObject.transform.position, epicgamer, executeMoveSpeed * Time.deltaTime);
+                transform.position = test;
 
-            StartCoroutine(ExecuteCooldown());
+                
+            }
         }
         if (dashing)
         {
