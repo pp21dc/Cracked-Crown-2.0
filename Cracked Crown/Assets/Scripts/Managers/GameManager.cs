@@ -61,6 +61,7 @@ public class GameManager : MonoBehaviour
     public GameObject GameOverScreen;
     public GameObject WinScreen;
     public GameObject MainMenu;
+    public GameObject LoadingScreen;
     public bool CampaignStart = false;
 
     public bool Pause = false;
@@ -87,8 +88,6 @@ public class GameManager : MonoBehaviour
             ReturnToMainMenu();
         }
         Application.targetFrameRate = 120;
-        //Screen.SetResolution(1920, 1080, true, 120);
-        Debug.Log(Screen.currentResolution);
     }
     public GameObject enem;
     private void FixedUpdate()
@@ -160,7 +159,7 @@ public class GameManager : MonoBehaviour
 
             currentLevelName = levelName;
             IsLevelCleared = false;
-            SetPlayerPositions();
+            
             LM.Enter_Level();
             MainMenu.SetActive(false);
         }
@@ -172,14 +171,14 @@ public class GameManager : MonoBehaviour
             MainMenu.SetActive(true);
             currentLevel = -1;
         }
-
+        SetPlayerPositions();
         //yield return new WaitForSeconds(0.25f);
         //AudioManager.Instance.AudioFadeLevelStart();
 
-        
+
 
         //PlayerUI.SetActive(false);
-       // playerGO.SetActive(false);
+        // playerGO.SetActive(false);
         Time.timeScale = 1;
         //loadingScreen.gameObject.SetActive(false);
 
