@@ -676,7 +676,7 @@ public class EnemyAIController : AdvancedFSM
         {
             //EAC.Attacking = false;
             moveToCarry = true;
-            // ResetSlamVar();
+             
             Debug.Log("Carry");
 
         }
@@ -685,7 +685,7 @@ public class EnemyAIController : AdvancedFSM
             //EAC.Attacking = false;
             moveToStunned = true;
             Debug.Log("Stunned");
-            // ResetSlamVar();
+             
         }
         else if (slamAttack.hasHit == false && slamAttack.HitGround == false)
         {
