@@ -14,10 +14,7 @@ public class CheckPlayerBelow : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        seesPlayer = false;
-    }
+    
 
     public bool IsPlayerBelow()
     {
@@ -25,6 +22,7 @@ public class CheckPlayerBelow : MonoBehaviour
         {
             seesPlayer = false;
             return true;
+            
         }
         else
         { return false; }

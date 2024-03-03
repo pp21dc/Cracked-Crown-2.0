@@ -112,6 +112,7 @@ public class EnemyAIController : AdvancedFSM
     public bool canPickup;
     public bool canWait;
 
+   public Vector3 groundTrans;
 
     [SerializeField]
     private Transform upPlacement;
@@ -263,6 +264,10 @@ public class EnemyAIController : AdvancedFSM
         noTransform = true;
 
         randTrans = new Vector3(0,0,0);
+
+        GameObject ground = GameObject.FindGameObjectWithTag("Ground");
+
+        groundTrans = ground.transform.position;
 
         ConstructFSM();
     }
@@ -469,7 +474,7 @@ public class EnemyAIController : AdvancedFSM
             EAC.Moving = false;
         }
         //Debug.Log(speed);
-        Vector3 currPlayerPos = new Vector3(closest.transform.position.x, closest.transform.position.y + 30, closest.transform.position.z);
+        Vector3 currPlayerPos = new Vector3(closest.transform.position.x, groundTrans.y + 30, closest.transform.position.z);
         movementVector = (currPlayerPos - enemyPosition.transform.position).normalized * Speed;
         enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
         if (closest.transform.position.x > enemyPosition.transform.position.x)
@@ -491,6 +496,7 @@ public class EnemyAIController : AdvancedFSM
         //if player is below it, start the slam state
         if(belowChecker.IsPlayerBelow())
         {
+            belowChecker.enabled = false; //will set back to true during fail or suceed states
             canGoop = false;
             startSlam = true;
         }
@@ -665,8 +671,23 @@ public class EnemyAIController : AdvancedFSM
     public void StartSlam()
     {
 
-        SlamAttack();
-        if(slamAttack.hasHit == false && slamAttack.HitGround == false)
+        EAC.Attacking = true;
+        if (slamAttack.hasHit == true)
+        {
+            //EAC.Attacking = false;
+            moveToCarry = true;
+            // ResetSlamVar();
+            Debug.Log("Carry");
+
+        }
+        else if (slamAttack.HitGround == true)
+        {
+            //EAC.Attacking = false;
+            moveToStunned = true;
+            Debug.Log("Stunned");
+            // ResetSlamVar();
+        }
+        else if (slamAttack.hasHit == false && slamAttack.HitGround == false)
         {
             movementVector = (SlamLocation.position - enemyPosition.transform.position).normalized * slamSpeed;
             enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
@@ -680,28 +701,7 @@ public class EnemyAIController : AdvancedFSM
     
     
     //checks slam code for if it has ti the player or the ground
-    public void SlamAttack()
-    {
-        
-        EAC.Attacking = true;
-        if (slamAttack.hasHit == true)
-        {
-            //EAC.Attacking = false;
-            moveToCarry = true;
-           // ResetSlamVar();
-        Debug.Log("Carry");
-                
-        }
-        else if (slamAttack.HitGround == true)
-        {
-            //EAC.Attacking = false;
-            moveToStunned = true;
-            Debug.Log("Stunned");
-           // ResetSlamVar();
-        }
-        
-    }
-
+  
     //resets all of the slam variables
     public void ResetSlamVar()
     {
@@ -742,8 +742,9 @@ public class EnemyAIController : AdvancedFSM
         yield return new WaitForSeconds(2f);
 
         EAC.Stunned = false;
+        belowChecker.enabled = true;
         doneStun = true;
-        canWait = true;
+        
 
         //yield return null; //CAN THIS EXIT?
     }
@@ -843,7 +844,7 @@ public class EnemyAIController : AdvancedFSM
         
          
         startCarryingUp = true;
-        belowChecker.gameObject.SetActive(false);
+        
         
         yield return new WaitForSeconds(3f);
         
@@ -874,6 +875,8 @@ public class EnemyAIController : AdvancedFSM
         
 
         yield return new WaitForSeconds(2f);
+
+        belowChecker.enabled = true;
 
         doneCarry = true;
         canWait = true;
