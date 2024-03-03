@@ -116,7 +116,7 @@ public class Bomb : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Enemy")
+        if (other.tag == "Light" || other.tag == "Medium" || other.tag == "Heavy")
         {
             enemiesInRange.Add(other.transform.parent.GetChild(0).gameObject.GetComponent<EnemyAIController>());
         }
