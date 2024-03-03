@@ -122,7 +122,7 @@ public class GameManager : MonoBehaviour
     {
         isLoading = true;
 
-        //loadingScreen.gameObject.SetActive(true);
+        LoadingScreen.gameObject.SetActive(true);
         //yield return new WaitForSeconds(0.25f);
 
         if ((!string.IsNullOrEmpty(currentLevelName)))
@@ -144,7 +144,7 @@ public class GameManager : MonoBehaviour
         //AudioManager.Instance.AudioFadeLevelStart();
         while (!asyncLoad.isDone)
         {
-            //loadingScreen.UpdateSlider(loadingScreen.loadingSlider.value + asyncLoad.progress / 2);
+            SetPlayerPositions();
             yield return null;
         }
 
@@ -171,7 +171,6 @@ public class GameManager : MonoBehaviour
             MainMenu.SetActive(true);
             currentLevel = -1;
         }
-        SetPlayerPositions();
         //yield return new WaitForSeconds(0.25f);
         //AudioManager.Instance.AudioFadeLevelStart();
 
@@ -180,7 +179,7 @@ public class GameManager : MonoBehaviour
         //PlayerUI.SetActive(false);
         // playerGO.SetActive(false);
         Time.timeScale = 1;
-        //loadingScreen.gameObject.SetActive(false);
+        LoadingScreen.gameObject.SetActive(false);
 
         //isLoading = false;
         
@@ -193,7 +192,7 @@ public class GameManager : MonoBehaviour
             Players[i].PB.transform.localPosition = new Vector3(0, 0, 0);
             Players[i].PB.transform.position = spawnPoints[i].position;
             
-            //Debug.Log(Players[i].PB.transform.localPosition);
+            Debug.Log(Players[i].PB.transform.position);
         }
         if (spawnPoints.Length <= 0)
             Debug.Log("GAMEMANAGER:: NO SPAWN POINTS SET FOR PLAYERS ON LEVEL CHANGE // GameManager/SetPlayerPositions");
