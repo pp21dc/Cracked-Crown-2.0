@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 2
   moveSpeed: 8
-  dashSpeed: 14
-  dashTime: 0.85
-  attack: 12
-  attackSpeed: 0
-  moveCd: 0
-  attackDelayTime: 0
-  attackKnockback: 3.5
+  dashSpeed: 20
+  dashTime: 0.45
+  attack: 7
+  attackSpeed: 0.4
+  moveCd: 0.4
+  attackDelayTime: 0.2
+  attackKnockback: 2
   finisherRadius: 40
   executePosition: {x: 8, y: 0, z: 0}
   corpse: {fileID: 0}
