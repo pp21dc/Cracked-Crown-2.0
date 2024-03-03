@@ -112,7 +112,7 @@ public class PlayerBody : MonoBehaviour
     public bool playerLock = false;
     private bool enumDone = false;
     private float attackDelayTime;
-    private int timesHit = 0;
+    public int timesHit = 0;
     public Vector3 AttackVector;
 
     //hey Ian dont know where you will want this bool
@@ -778,6 +778,14 @@ public class PlayerBody : MonoBehaviour
             spriteRenderer.enabled = false;
         else if(spriteRenderer.enabled == false)
             spriteRenderer.enabled = true;
+
+        canMove = true;
+        canAttack = true;
+    }
+
+    public void MoveToEnemy(GameObject enemyBody)
+    {
+        gameObject.transform.position = new Vector3(enemyBody.transform.position.x, enemyBody.transform.position.y - 8, enemyBody.transform.position.z);
     }
 
 }

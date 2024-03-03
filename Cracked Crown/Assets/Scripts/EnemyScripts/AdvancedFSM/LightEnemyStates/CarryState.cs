@@ -1,4 +1,4 @@
-using System.Collections;
+ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
@@ -7,6 +7,7 @@ public class CarryState : FSMState
 {
 
     private EnemyAIController enemy;//grabs the enemy controller
+
 
     public CarryState(EnemyAIController controller)
     {

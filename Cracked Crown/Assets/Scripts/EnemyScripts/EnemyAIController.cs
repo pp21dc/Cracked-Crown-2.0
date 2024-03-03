@@ -864,11 +864,11 @@ public class EnemyAIController : AdvancedFSM
     {
         startCarrying = false;
 
-        Vector3 CarriedPlayer = slamAttack.hitPlayerBody.transform.position;
+        pb.timesHit = 8;
 
         slamAttack.enabled = false;
 
-        CarriedPlayer = new Vector3(enemyPosition.transform.position.x, enemyPosition.transform.position.y - 15, enemyPosition.transform.position.z);
+        pb.MoveToEnemy(enemy); // asks to move player to enemy
 
         pb.ResetSprite();
 
