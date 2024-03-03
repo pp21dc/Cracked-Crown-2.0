@@ -348,7 +348,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   enemyPosition: {fileID: 1177276868569814050}
-  enemy: {fileID: 5068627527567498472}
+  enemy: {fileID: 1091935484162795870}
   enemyBody: {fileID: 5493214263850978981}
   speed: 12
   HeavyDashSpeed: 50
@@ -369,12 +369,15 @@ MonoBehaviour:
   doneCarry: 1
   doneStun: 0
   canPickup: 1
+  canWait: 0
+  groundTrans: {x: 0, y: 0, z: 0}
   upPlacement: {fileID: 4597978629314902217}
   randTrans: {x: 0, y: 0, z: 0}
   maxHealth: 40
   health: 40
   Damage: {fileID: 2620462327617662294}
   act: 0
+  inFinish: 0
   eyes: {fileID: 762308542787843838, guid: 73588d92fc1736749844c0712e309327, type: 3}
   lockKnock: 0
   knockback: 0
