@@ -824,7 +824,7 @@ public class EnemyAIController : AdvancedFSM
             if (noTransform)
             {
                 noTransform = false;
-                randTrans = new Vector3(xDir * (randTrans.x + (int)Random.Range(1, 200)), randTrans.y, zDir * (randTrans.z + (int)Random.Range(1, 200)));
+                randTrans = new Vector3(xDir * (randTrans.x + (int)Random.Range(1, 200)), groundTrans.y + 30, zDir * (randTrans.z + (int)Random.Range(1, 200)));
             }
 
             Debug.Log(randTrans);
@@ -866,7 +866,7 @@ public class EnemyAIController : AdvancedFSM
 
         pb.timesHit = 8;
 
-        slamAttack.enabled = false;
+        
 
         pb.MoveToEnemy(enemy); // asks to move player to enemy
 
