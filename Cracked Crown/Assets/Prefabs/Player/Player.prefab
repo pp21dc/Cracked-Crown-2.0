@@ -569,6 +569,8 @@ MonoBehaviour:
   finisherRadius: 20
   health: 25
   deathBody: {fileID: 0}
+  lockIN: -1
+  currentIN: 0
   KnockbackTime: 0.025
   KnockForwardTime: 0.025
   attackKnockback: 100
@@ -576,6 +578,7 @@ MonoBehaviour:
   CharacterType: {fileID: 11400000, guid: af4d3361d5305ac4886c180637d80700, type: 2}
   controller: {fileID: 5218490417596488022}
   playerContainer: {fileID: 6280447889518472920}
+  PM: {fileID: 0}
   executeCollideScript: {fileID: 4195550580441275408}
   animController: {fileID: 943302644057217908}
   rb: {fileID: 6988645337432390208}
@@ -588,7 +591,7 @@ MonoBehaviour:
   enemyAIController: {fileID: 0}
   throwableBombPrefab: {fileID: 5158602912670518605, guid: 4d7b09c3101d4ef4fb92a55bbbab91d5,
     type: 3}
-  spriteRenderer: {fileID: 0}
+  spriteRenderer: {fileID: 4835814214731740107}
   CharacterFolder: {fileID: 4150222539546649084}
   canMove: 1
   SwordSlash: {fileID: 6848299162110737261}
@@ -603,11 +606,14 @@ MonoBehaviour:
   canCollectBomb: 0
   canCollectPotion: 0
   collectable: {fileID: 0}
+  canCollect: 1
   canTakeDamage: 1
   executeHeal: 5
   canMovePlayerForexecute: 0
   dashQueue: 0
   playerLock: 0
+  timesHit: 0
+  AttackVector: {x: 0, y: 0, z: 0}
   canRelease: 0
   sprite: {fileID: 0}
   movementVector: {x: 0, y: 0, z: 0}
@@ -789,6 +795,12 @@ PrefabInstance:
 --- !u!4 &2017016708980356562 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 333914622876902093, guid: f7d79151a7f0bd344843f470d4ca4d9c,
+    type: 3}
+  m_PrefabInstance: {fileID: 2260718596964472607}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &4835814214731740107 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 6648418051566953684, guid: f7d79151a7f0bd344843f470d4ca4d9c,
     type: 3}
   m_PrefabInstance: {fileID: 2260718596964472607}
   m_PrefabAsset: {fileID: 0}

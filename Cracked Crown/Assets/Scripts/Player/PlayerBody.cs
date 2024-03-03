@@ -348,8 +348,16 @@ public class PlayerBody : MonoBehaviour
     }
     public bool lockExecAnim;
 
+    private IEnumerator DamageColourFlash()
+    {
+        spriteRenderer.color = Color.red;
+        yield return new WaitForSeconds(0.25f);
+        spriteRenderer.color = Color.white;
+    }
+
     public void DecHealth(float amount) 
     {
+        StartCoroutine(DamageColourFlash());
         if (canTakeDamage)
         {
             health = Mathf.Max(0, health - amount); // allows taking health from the player
