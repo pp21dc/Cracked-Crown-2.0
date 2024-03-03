@@ -458,16 +458,7 @@ public class EnemyAIController : AdvancedFSM
     private void setAndMoveToTargetLight(float Speed)
     {
 
-        if(canWait)
-        {
-            canWait = false;
-            StartCoroutine(Wait());
-        }
-
-        ResetCarryVar();
-        ResetSlamVar();
-
-
+ 
         Debug.Log("in this one");
         if (Speed > 0.5f)
         {
@@ -506,10 +497,7 @@ public class EnemyAIController : AdvancedFSM
 
     }
 
-    IEnumerator Wait()
-    {
-        yield return new WaitForSeconds(2f);
-    }
+    
 
     
     //shooting code from franks class
