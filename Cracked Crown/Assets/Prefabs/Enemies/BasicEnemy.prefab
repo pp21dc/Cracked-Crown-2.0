@@ -163,7 +163,7 @@ Transform:
   m_GameObject: {fileID: 1091935484162795870}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -244,9 +244,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 5.45
-  m_Height: 18.410751
+  m_Height: 12.021239
   m_Direction: 1
-  m_Center: {x: 0, y: 4.674626, z: 0}
+  m_Center: {x: 0, y: 3.5758383, z: 0}
 --- !u!114 &8318300240067077576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -286,7 +286,7 @@ Transform:
   m_GameObject: {fileID: 1861108863918195726}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 29.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -305,7 +305,7 @@ GameObject:
   - component: {fileID: 2243525588475844062}
   m_Layer: 0
   m_Name: Enemy controller
-  m_TagString: Medium
+  m_TagString: Light
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -350,6 +350,7 @@ MonoBehaviour:
   enemyPosition: {fileID: 1177276868569814050}
   enemy: {fileID: 1091935484162795870}
   enemyBody: {fileID: 5493214263850978981}
+  checkPlayerBelow: {fileID: 5937784490392944160}
   speed: 12
   HeavyDashSpeed: 50
   canMove: 1
@@ -398,7 +399,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 16.07, y: 9.66, z: 15.81}
   m_Center: {x: 0, y: 2, z: 0}
@@ -427,7 +428,7 @@ Transform:
   m_GameObject: {fileID: 3955312627729270781}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -29.5, z: 0}
+  m_LocalPosition: {x: 0, y: -30, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -515,7 +516,7 @@ GameObject:
   - component: {fileID: 3193789946226294552}
   m_Layer: 0
   m_Name: BasicEnemy
-  m_TagString: Medium
+  m_TagString: Light
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

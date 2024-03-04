@@ -48,7 +48,8 @@ public class EnemyAIController : AdvancedFSM
     private GameObject enemy;
     [SerializeField]
     private Rigidbody enemyBody;
-
+    [SerializeField]
+    public CheckPlayerBelow checkPlayerBelow;
     public Rigidbody eBody { get { return enemyBody; } }
 
     public Transform ePosition { get { return enemyPosition; } }
@@ -553,7 +554,8 @@ public class EnemyAIController : AdvancedFSM
             if (doneStun == false)
             {
                 Debug.Log("LetsGoUp");
-                movementVector = (upPlacement.position - enemyPosition.transform.position).normalized * speed;
+                Vector3 upVector = new Vector3(enemyPosition.position.x, 30f, enemyPosition.position.z);
+                movementVector = (upVector - enemyPosition.transform.position).normalized * speed;
                 enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
             }
         }
@@ -680,7 +682,7 @@ public class EnemyAIController : AdvancedFSM
             Debug.Log("Carry");
 
         }
-        else if (slamAttack.HitGround == true)
+        else if (slamAttack.HitGround == true && !slamAttack.hasHit)
         {
             //EAC.Attacking = false;
             moveToStunned = true;
@@ -725,7 +727,8 @@ public class EnemyAIController : AdvancedFSM
             if (doneStun == false)
             {
                 Debug.Log("LetsGoUp");
-                movementVector = (upPlacement.position - enemyPosition.transform.position).normalized * speed;
+                Vector3 upVector = new Vector3(enemyPosition.position.x, 30f, enemyPosition.position.z);
+                movementVector = (upVector - enemyPosition.transform.position).normalized * speed;
                 enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
             }
         }
@@ -756,32 +759,34 @@ public class EnemyAIController : AdvancedFSM
         PlayerBody body = slamAttack.hitPlayer;
 
         body.StartSpam();
-        
-        
-        
-        
 
-        
 
         if (body.canRelease && canSpam == false)
         {
+            doneCarry = true;
             canSpam = true;
             StartCoroutine(Drop(body));
+            if (body.CharacterType.ID == 0)
+                EAC.Badger_Grabbed = false;
+            else if (body.CharacterType.ID == 1)
+                EAC.Bunny_Grabbed = false;
+            else if (body.CharacterType.ID == 2)
+                EAC.Duck_Grabbed = false;
+            else if (body.CharacterType.ID == 3)
+                EAC.Frog_Grabbed = false;
         }
+        else 
+        {
 
-        
-            
-        
-
-        if (body.CharacterType.ID == 0)
-            EAC.Badger_Grabbed = true;
-        else if (body.CharacterType.ID == 1)
-            EAC.Bunny_Grabbed = true;
-        else if (body.CharacterType.ID == 2)
-            EAC.Duck_Grabbed = true;
-        else if (body.CharacterType.ID == 3)
-            EAC.Frog_Grabbed = true;
-
+            if (body.CharacterType.ID == 0)
+                EAC.Badger_Grabbed = true;
+            else if (body.CharacterType.ID == 1)
+                EAC.Bunny_Grabbed = true;
+            else if (body.CharacterType.ID == 2)
+                EAC.Duck_Grabbed = true;
+            else if (body.CharacterType.ID == 3)
+                EAC.Frog_Grabbed = true;
+        }
         int temp = Random.Range(1, 4);
         int xDir = 1;
         int zDir = 1;
@@ -813,7 +818,8 @@ public class EnemyAIController : AdvancedFSM
         {
             
             Debug.Log("Lets go up");
-            movementVector = (upPlacement.position - enemyPosition.transform.position).normalized * speed;
+            Vector3 upVector = new Vector3(enemyPosition.position.x, 30f, enemyPosition.position.z);
+            movementVector = (upVector - enemyPosition.transform.position).normalized * speed;
             enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
 
             
@@ -827,7 +833,7 @@ public class EnemyAIController : AdvancedFSM
                 randTrans = new Vector3(xDir * (randTrans.x + (int)Random.Range(1, 200)), groundTrans.y + 30, zDir * (randTrans.z + (int)Random.Range(1, 200)));
             }
 
-            Debug.Log(randTrans);
+            //Debug.Log(randTrans);
             movementVector = (randTrans - enemyPosition.transform.position).normalized * speed;
             enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
         }
@@ -863,13 +869,12 @@ public class EnemyAIController : AdvancedFSM
     IEnumerator Drop(PlayerBody pb)
     {
         startCarrying = false;
-
+        canPickup = false;
         pb.timesHit = 8;
 
-        
-
+          
         pb.MoveToEnemy(enemy); // asks to move player to enemy
-
+        StartCoroutine(PickUpAgainCoolDown());
         pb.ResetSprite();
 
         
@@ -892,9 +897,15 @@ public class EnemyAIController : AdvancedFSM
         else if (pb.CharacterType.ID == 3)
             EAC.Frog_Grabbed = false;
 
-        slamAttack.enabled |= true;
+        slamAttack.enabled = true;
 
         yield return null;
+    }
+
+    IEnumerator PickUpAgainCoolDown()
+    {
+        yield return new WaitForSeconds(5);
+        canPickup = true;
     }
     
     public void ResetCarryVar()
@@ -905,7 +916,7 @@ public class EnemyAIController : AdvancedFSM
         doneCarry = false;
         noTransform = true;
         canSpam = false;
-        canPickup = true;
+        //canPickup = true;
         randTrans = new Vector3(0, 0, 0);
     }
 

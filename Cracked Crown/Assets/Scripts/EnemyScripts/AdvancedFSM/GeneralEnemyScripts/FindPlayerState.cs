@@ -30,8 +30,9 @@ public class FindPlayerState : FSMState
         }
         else if (enemy.CompareTag("Light"))
         {
-            if (enemy.startSlam == true)
+            if (enemy.startSlam == true && enemy.canPickup && enemy.checkPlayerBelow.IsPlayerBelow())
             {
+                //Debug.Log("CANPICKUP: " + enemy.canPickup);
                 enemy.startSlam = false;
                 enemy.PerformTransition(Transition.AbovePlayer);
                 

@@ -14,17 +14,27 @@ public class CheckPlayerBelow : MonoBehaviour
         }
     }
 
-    
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            seesPlayer = false;
+        }
+    }
+
+
 
     public bool IsPlayerBelow()
     {
         if(seesPlayer)
         {
-            seesPlayer = false;
+            //seesPlayer = false;
             return true;
             
         }
         else
-        { return false; }
+        { 
+            return false;
+        }
     }
 }
