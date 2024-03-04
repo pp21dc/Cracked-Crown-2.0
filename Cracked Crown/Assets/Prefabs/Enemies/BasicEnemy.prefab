@@ -195,8 +195,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 10.472778, y: 9.262281, z: 2.0748022}
-  m_Center: {x: 0.40534216, y: 2.1909459, z: -0.07916982}
+  m_Size: {x: 10.472778, y: 9.262281, z: 4.710378}
+  m_Center: {x: 0.40534216, y: 2.1909459, z: 1.0093555}
 --- !u!54 &5493214263850978981
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -243,7 +243,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 5.45
+  m_Radius: 8.41
   m_Height: 12.021239
   m_Direction: 1
   m_Center: {x: 0, y: 3.5758383, z: 0}
@@ -260,7 +260,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EAIC: {fileID: 3777765676232313991}
-  timeToDamage: 2
+  timeToDamage: 8
 --- !u!1 &1861108863918195726
 GameObject:
   m_ObjectHideFlags: 0
@@ -379,6 +379,7 @@ MonoBehaviour:
   health: 40
   Damage: {fileID: 2620462327617662294}
   act: 0
+  starting: 0
   inFinish: 0
   eyes: {fileID: 762308542787843838, guid: 73588d92fc1736749844c0712e309327, type: 3}
   lockKnock: 0

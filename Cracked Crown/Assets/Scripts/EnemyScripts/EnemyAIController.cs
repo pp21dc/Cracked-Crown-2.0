@@ -267,23 +267,34 @@ public class EnemyAIController : AdvancedFSM
         randTrans = new Vector3(0,0,0);
 
         GameObject ground = GameObject.FindGameObjectWithTag("Ground");
-
+        GM = GameManager.Instance;
         groundTrans = ground.transform.position;
 
         ConstructFSM();
     }
     public bool act = false;
+    public bool starting;
     protected override void FSMUpdate()
     {
-        act = true;
         if (CurrentState != null && act)
         {
             CurrentState.Reason(playerTransform, transform);
             CurrentState.Act(playerTransform, transform);
         }
-        
+    }
 
-        
+    public void StartUp()
+    {
+        if (CompareTag("Light"))
+            EAC.SetAnimController(0);
+        else if (CompareTag("Medium"))
+            EAC.SetAnimController(1);
+        else if (CompareTag("Heavy"))
+            EAC.SetAnimController(2);
+        if (gameObject.CompareTag("Light"))
+        {
+            intialY = enemyBody.transform.position.y;
+        }
     }
 
     //lets us add states and transitions in which we can use to move to other states when needed.
@@ -386,28 +397,33 @@ public class EnemyAIController : AdvancedFSM
         
     }
 
+    
+
     //finds the closest player and sets the target position
     public void checkShortestDistance()
     {
         if (Players != null)
         {
             float check;
-
+            float closestInt;
+            closest = null;
+            playerTransform = null;
             //simple distance check where it checks the current shortest and compares to the other players, replacing when neccisary
             for (int i = 0; i < Players.Length; i++)
             {
 
-                PlayerBody currentBody = Players[i].GetComponent<PlayerBody>();
+                PlayerBody currentBody = GM.Players[i].PB;
 
-                if (currentBody.alreadyDead == false)
+                if (!currentBody.alreadyDead && !currentBody.Grabbed)
                 {
                     check = Vector3.Distance(enemyPosition.transform.position, Players[i].transform.position);
 
 
-                    if (check < currShortest)
+                    if (check < currShortest && !currentBody.alreadyDead && !currentBody.Grabbed)
                     {
 
                         currShortest = check;
+                        closestInt = i;
                         closest = Players[i];
                         playerTransform = closest.transform;
 
@@ -441,20 +457,22 @@ public class EnemyAIController : AdvancedFSM
         {
             EAC.Moving = false;
         }
-        //Debug.Log(speed);
-        if (!lockKnock)
+        if (closest != null)
         {
-            movementVector = (closest.transform.position - enemyPosition.transform.position).normalized * Speed;
-            enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
-        }
-        //enemyBody.transform.position = new Vector3(enemyBody.position.x, 0, enemyBody.position.z); //keeps it on ground
-        if (closest.transform.position.x > enemyPosition.transform.position.x)
-        {
-            EAC.SR.flipX = false;
-        }
-        else
-        {
-            EAC.SR.flipX = true;
+            if (!lockKnock)
+            {
+                movementVector = (closest.transform.position - enemyPosition.transform.position).normalized * Speed;
+                enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
+            }
+            //enemyBody.transform.position = new Vector3(enemyBody.position.x, 0, enemyBody.position.z); //keeps it on ground
+            if (closest.transform.position.x > enemyPosition.transform.position.x)
+            {
+                EAC.SR.flipX = false;
+            }
+            else
+            {
+                EAC.SR.flipX = true;
+            }
         }
 
        
@@ -465,7 +483,7 @@ public class EnemyAIController : AdvancedFSM
     {
 
  
-        Debug.Log("in this one");
+        //Debug.Log("in this one");
         if (Speed > 0.5f)
         {
             EAC.Moving = true;
@@ -475,16 +493,19 @@ public class EnemyAIController : AdvancedFSM
             EAC.Moving = false;
         }
         //Debug.Log(speed);
-        Vector3 currPlayerPos = new Vector3(closest.transform.position.x, groundTrans.y + 30, closest.transform.position.z);
-        movementVector = (currPlayerPos - enemyPosition.transform.position).normalized * Speed;
-        enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
-        if (closest.transform.position.x > enemyPosition.transform.position.x)
+        if (closest != null)
         {
-            EAC.SR.flipX = false;
-        }
-        else
-        {
-            EAC.SR.flipX = true;
+            Vector3 currPlayerPos = new Vector3(closest.transform.position.x, groundTrans.y + 30, closest.transform.position.z);
+            movementVector = (currPlayerPos - enemyPosition.transform.position).normalized * Speed;
+            enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
+            if (closest.transform.position.x > enemyPosition.transform.position.x)
+            {
+                EAC.SR.flipX = false;
+            }
+            else
+            {
+                EAC.SR.flipX = true;
+            }
         }
 
         //if it can goop, it shoot projectiles
@@ -622,7 +643,7 @@ public class EnemyAIController : AdvancedFSM
         yield return new WaitForSeconds(2.2f);
 
         LevelManager.Instance.EnemyKilled();
-        Destroy(enemy);
+        Destroy(transform.parent.gameObject);
 
         //yield return null;
     }
@@ -654,17 +675,19 @@ public class EnemyAIController : AdvancedFSM
         }
     }
     
-    public bool lockKnock;
+    public bool lockKnock = false;
     public IEnumerator KB(Vector3 dir)
     {
         lockKnock = true;
-        enemyBody.isKinematic = false;
-        enemyBody.AddForce(dir*0.45f);
-        yield return new WaitForSeconds(0.3f);
-        enemyBody.velocity = Vector3.zero;
-        enemyBody.isKinematic = true;
-        //yield return new WaitForSeconds(0.5f);
-        Debug.Log("END :: KB");
+        if (enemyBody != null)
+        {
+            enemyBody.isKinematic = false;
+            enemyBody.AddForce(dir * 0.45f);
+            yield return new WaitForSeconds(0.3f);
+
+            enemyBody.velocity = Vector3.zero;
+            enemyBody.isKinematic = true;
+        }
         lockKnock = false;
     }
 
@@ -905,6 +928,7 @@ public class EnemyAIController : AdvancedFSM
         canStun = true;
         belowChecker.enabled = false;
         slamAttack.enabled = false;
+        pb.Grabbed = false;
 
         ResetCarryVar();
 

@@ -35,7 +35,7 @@ public class Bomb : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log("controller is: " + controller);
+        //Debug.Log("controller is: " + controller);
         rb = GetComponent<Rigidbody>();
         enemiesInRange = new List<EnemyAIController>();
         sprite = transform.GetChild(0).GetComponent<SpriteRenderer>();
@@ -66,7 +66,7 @@ public class Bomb : MonoBehaviour
             height.z = direction.z * 45;
 
             rb.AddForce((direction + height) * speed, ForceMode.Impulse);
-            Debug.Log("Force: " + (direction + height) * speed);
+            //Debug.Log("Force: " + (direction + height) * speed);
             StartCoroutine(Explode());
             playOnce = false;
         }

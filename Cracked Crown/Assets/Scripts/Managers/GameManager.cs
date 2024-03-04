@@ -192,7 +192,7 @@ public class GameManager : MonoBehaviour
             Players[i].PB.transform.localPosition = new Vector3(0, 0, 0);
             Players[i].PB.transform.position = spawnPoints[i].position;
             
-            Debug.Log(Players[i].PB.transform.position);
+            //Debug.Log(Players[i].PB.transform.position);
         }
         if (spawnPoints.Length <= 0)
             Debug.Log("GAMEMANAGER:: NO SPAWN POINTS SET FOR PLAYERS ON LEVEL CHANGE // GameManager/SetPlayerPositions");

@@ -20,7 +20,7 @@ public class EnemyBody : MonoBehaviour
                 timer = 0;
                 //damaging = true;
                 PlayerBody pb = other.gameObject.GetComponent<PlayerBody>();
-                if (pb.canTakeDamage && pb.alreadyDead)
+                if (pb.canTakeDamage && !pb.alreadyDead)
                 {
                     pb.DecHealth(1);
                     EAIC.EAC.Attacking = true;

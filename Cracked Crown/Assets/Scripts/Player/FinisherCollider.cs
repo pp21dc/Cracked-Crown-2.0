@@ -41,7 +41,7 @@ public class FinisherCollider : MonoBehaviour
                 }
                 
             }
-            if (e != null)
+            if (e.transform.parent.GetChild(1) != null)
                 PB.Execute(e.transform.parent.GetChild(1).gameObject);
             //PB.canExecute = true;
             distance = 0;

@@ -29,13 +29,16 @@ public class Spawner : MonoBehaviour
         else if (enemyType == 1)
         {
             E.tag = "Medium";
-            E.transform.GetChild(1).tag = "Medium";
+            E.transform.GetChild(0).tag = "Medium";
         }
         else if (enemyType == 2)
         {
             E.tag = "Heavy";
-            E.transform.GetChild(2).tag = "Heavy";
+            E.transform.GetChild(0).tag = "Heavy";
         }
+        E.GetComponentInChildren<EnemyAIController>().StartUp();
+        E.GetComponentInChildren<EnemyAIController>().act = true;
+        
     }
 
 }

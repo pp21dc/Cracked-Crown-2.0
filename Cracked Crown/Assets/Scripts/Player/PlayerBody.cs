@@ -114,6 +114,7 @@ public class PlayerBody : MonoBehaviour
     private float attackDelayTime;
     public int timesHit = 0;
     public Vector3 AttackVector;
+    public bool Grabbed = false;
 
     //hey Ian dont know where you will want this bool
     public bool canRelease = false;

@@ -66,6 +66,7 @@ public class LevelManager : MonoBehaviour
         persScene = SceneManager.GetSceneByBuildIndex(0);
     }
     float SpawnTimer = 0;
+    float currentSpawnTotal = 0;
     bool loc;
     private void Update()
     {
@@ -92,7 +93,7 @@ public class LevelManager : MonoBehaviour
         if (SpawnTimer > WAIT_NEXTSPAWN_VALUE && ENEMIES_SPAWNED <= Current_Room.EnemyCount_PerWave[CURRENT_WAVE-1])
         {
             SpawnTimer = 0;
-            WAIT_NEXTSPAWN_VALUE = Current_Room.SpawnRate[CURRENT_WAVE - 1] * ((5-GM.Players.Length)/3);
+            WAIT_NEXTSPAWN_VALUE = Current_Room.SpawnRate[CURRENT_WAVE - 1] * Random.Range(0.75f, 1.12f);
             
             Spawner.SpawnEnemy(PickEnemy());
         }
@@ -134,6 +135,7 @@ public class LevelManager : MonoBehaviour
         CURRENT_WAVE = 1;
         CURRENT_ROOM += 1;
         Current_Room = Rooms[CURRENT_ROOM-1];
+        currentSpawnTotal = Current_Room.EnemyCount_PerWave[CURRENT_ROOM - 1] * (3+GM.Players.Length/4);
         SpawnersActive = true;
     }
 
