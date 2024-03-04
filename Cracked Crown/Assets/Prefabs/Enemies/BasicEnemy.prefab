@@ -368,7 +368,8 @@ MonoBehaviour:
   slamSpeed: 65
   SlamLocation: {fileID: 1775185201461113250}
   doneCarry: 1
-  doneStun: 0
+  doneStun: 1
+  canStun: 1
   canPickup: 1
   canWait: 0
   groundTrans: {x: 0, y: 0, z: 0}
@@ -621,7 +622,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.398456, y: 36.72602, z: 3.0500817}
+  m_Size: {x: 6.28, y: 36.72602, z: 6.31}
   m_Center: {x: -0.062452316, y: -17.86301, z: 0.15590626}
 --- !u!114 &5937784490392944160
 MonoBehaviour:
@@ -635,6 +636,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eff8635c38fe0e44dbcf694ca31429fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  seesPlayer: 0
 --- !u!1 &7955105460465307673
 GameObject:
   m_ObjectHideFlags: 0
