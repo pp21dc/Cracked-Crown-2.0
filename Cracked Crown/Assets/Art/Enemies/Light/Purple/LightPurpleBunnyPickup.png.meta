@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 93a0a9cf15943cf46822b87b33358592
+guid: 11722097c037e4147a74c4593c29290f
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -108,11 +108,53 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: PurpleLightBunnyPickup_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 640
+        height: 642
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c57251fcbff12749a1c0579b7aaa8a6
+      internalID: -1018520654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PurpleLightBunnyPickup_1
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 640
+        height: 642
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0faad6da1e698348b4d0a7af1955d83
+      internalID: -915230239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 822fc8643d6934d458908c636bc3f153
+    spriteID: cd42418f03d42ba4d841b560982e97bf
     internalID: 0
     vertices: []
     indices: 
@@ -120,33 +162,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      GreenLightFrogHold_0: 236327053
-      GreenLightFrogHold_1: -1618010214
-      GreenLightFrogHold_10: 1849712123
-      GreenLightFrogHold_11: -1043142360
-      GreenLightFrogHold_12: -292807057
-      GreenLightFrogHold_13: -1049579810
-      GreenLightFrogHold_14: -638073087
-      GreenLightFrogHold_15: 1535234784
-      GreenLightFrogHold_16: -301369718
-      GreenLightFrogHold_17: -1698154366
-      GreenLightFrogHold_18: 1424928530
-      GreenLightFrogHold_19: 1375636662
-      GreenLightFrogHold_2: -1205052890
-      GreenLightFrogHold_20: 362245276
-      GreenLightFrogHold_21: -397698087
-      GreenLightFrogHold_22: -159664900
-      GreenLightFrogHold_23: -325528680
-      GreenLightFrogHold_24: 517247940
-      GreenLightFrogHold_25: 1957277406
-      GreenLightFrogHold_26: -820008322
-      GreenLightFrogHold_3: 1889158743
-      GreenLightFrogHold_4: 1930106845
-      GreenLightFrogHold_5: 604441593
-      GreenLightFrogHold_6: 1511941445
-      GreenLightFrogHold_7: -1294978725
-      GreenLightFrogHold_8: -1086950476
-      GreenLightFrogHold_9: -1510486880
+      PurpleLightBunnyPickup_0: -1018520654
+      PurpleLightBunnyPickup_1: -915230239
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
