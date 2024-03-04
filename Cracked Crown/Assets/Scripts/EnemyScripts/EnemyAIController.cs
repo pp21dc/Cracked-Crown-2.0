@@ -105,7 +105,7 @@ public class EnemyAIController : AdvancedFSM
 
     private bool doneOnGround;
 
-    private bool canStun;
+    public bool canStun;
     private bool canCarry;
     private bool startCarryingUp;
     private bool startCarrying;
@@ -691,7 +691,8 @@ public class EnemyAIController : AdvancedFSM
         }
         else if (slamAttack.hasHit == false && slamAttack.HitGround == false)
         {
-            movementVector = (SlamLocation.position - enemyPosition.transform.position).normalized * slamSpeed;
+            Vector3 hit = new Vector3(enemyPosition.position.x, 0, enemyPosition.position.z);
+            movementVector = (hit - enemyPosition.transform.position).normalized * slamSpeed;
             enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
         }
         else
@@ -719,18 +720,18 @@ public class EnemyAIController : AdvancedFSM
         if (canStun)
         {
             canStun = false;
+            doneOnGround = false;
             StartCoroutine(Stunned());
         }
 
-        if (doneOnGround == true)
+        if (doneOnGround)
         {
-            if (doneStun == false)
-            {
-                Debug.Log("LetsGoUp");
-                Vector3 upVector = new Vector3(enemyPosition.position.x, 30f, enemyPosition.position.z);
-                movementVector = (upVector - enemyPosition.transform.position).normalized * speed;
-                enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
-            }
+            Debug.Log("LetsGoUp");
+            EAC.Moving = true;
+            EAC.Stunned = false;
+            Vector3 upVector = new Vector3(enemyPosition.position.x, 30f, enemyPosition.position.z);
+            movementVector = (upVector - enemyPosition.transform.position).normalized * speed;
+            enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
         }
     }
 
@@ -738,18 +739,35 @@ public class EnemyAIController : AdvancedFSM
     IEnumerator Stunned()
     {
         EAC.Stunned = true;
+        doneStun = false;
         yield return new WaitForSeconds(3f);
 
         doneOnGround = true;
+        
 
         yield return new WaitForSeconds(2f);
 
+        doneStun = true;
         EAC.Stunned = false;
         belowChecker.enabled = true;
         doneStun = true;
+        canPickup = true;
         
 
+
         //yield return null; //CAN THIS EXIT?
+    }
+
+    void SetGrabAnim(PlayerBody body, bool active)
+    {
+        if (body.CharacterType.ID == 0)
+            EAC.Badger_Grabbed = active;
+        else if (body.CharacterType.ID == 1)
+            EAC.Bunny_Grabbed = active;
+        else if (body.CharacterType.ID == 2)
+            EAC.Duck_Grabbed = active;
+        else if (body.CharacterType.ID == 3)
+            EAC.Frog_Grabbed = active;
     }
 
     //method for carrying the player
@@ -759,33 +777,25 @@ public class EnemyAIController : AdvancedFSM
         PlayerBody body = slamAttack.hitPlayer;
 
         body.StartSpam();
+        if (body.timesHit >= 8)
+        {
+            canSpam = false;
+        }
 
 
         if (body.canRelease && canSpam == false)
         {
             doneCarry = true;
             canSpam = true;
+            body.canRelease = false;
             StartCoroutine(Drop(body));
-            if (body.CharacterType.ID == 0)
-                EAC.Badger_Grabbed = false;
-            else if (body.CharacterType.ID == 1)
-                EAC.Bunny_Grabbed = false;
-            else if (body.CharacterType.ID == 2)
-                EAC.Duck_Grabbed = false;
-            else if (body.CharacterType.ID == 3)
-                EAC.Frog_Grabbed = false;
+
+            SetGrabAnim(body, false);
         }
         else 
         {
 
-            if (body.CharacterType.ID == 0)
-                EAC.Badger_Grabbed = true;
-            else if (body.CharacterType.ID == 1)
-                EAC.Bunny_Grabbed = true;
-            else if (body.CharacterType.ID == 2)
-                EAC.Duck_Grabbed = true;
-            else if (body.CharacterType.ID == 3)
-                EAC.Frog_Grabbed = true;
+            SetGrabAnim(body, true);
         }
         int temp = Random.Range(1, 4);
         int xDir = 1;
@@ -816,7 +826,8 @@ public class EnemyAIController : AdvancedFSM
 
         if(startCarryingUp == true)
         {
-            
+
+            SetGrabAnim(body, true);
             Debug.Log("Lets go up");
             Vector3 upVector = new Vector3(enemyPosition.position.x, 30f, enemyPosition.position.z);
             movementVector = (upVector - enemyPosition.transform.position).normalized * speed;
@@ -846,7 +857,7 @@ public class EnemyAIController : AdvancedFSM
     IEnumerator Carry(PlayerBody pb)
     {
         //call a method on the player that sets the sprite active to false and sets movement to false
-        pb.ResetSprite();
+        pb.ResetSprite("FROM CARRY CORUT");
         
          
         startCarryingUp = true;
@@ -861,7 +872,11 @@ public class EnemyAIController : AdvancedFSM
 
         yield return new WaitForSeconds(4f);
 
-        StartCoroutine(Drop(pb));
+        if (slamAttack.hitPlayer != null)
+        {
+            Debug.Log("TIMED DROP");
+            StartCoroutine(Drop(pb));
+        }
 
         yield return null;
     }  
@@ -869,53 +884,58 @@ public class EnemyAIController : AdvancedFSM
     IEnumerator Drop(PlayerBody pb)
     {
         startCarrying = false;
+        startCarryingUp = false;
         canPickup = false;
-        pb.timesHit = 8;
+        canCarry = false;
+        doneCarry = true;
+        startSlam = false;
+        pb.timesHit = 0;
 
-          
-        pb.MoveToEnemy(enemy); // asks to move player to enemy
+        Debug.Log("DROP");
+        pb.MoveToEnemy(enemyPosition.gameObject); // asks to move player to enemy
         StartCoroutine(PickUpAgainCoolDown());
-        pb.ResetSprite();
+        if(!pb.spriteRenderer.enabled)
+            pb.ResetSprite(": FROM DROP CORUT");
 
-        
-
-        yield return new WaitForSeconds(2f);
-
-        belowChecker.enabled = true;
+        SetGrabAnim(pb, false);
 
         doneCarry = true;
         canWait = true;
+        doneStun = false;
+        canStun = true;
+        belowChecker.enabled = false;
+        slamAttack.enabled = false;
 
         ResetCarryVar();
 
-        if (pb.CharacterType.ID == 0)
-            EAC.Badger_Grabbed = false;
-        else if (pb.CharacterType.ID == 1)
-            EAC.Bunny_Grabbed = false;
-        else if (pb.CharacterType.ID == 2)
-            EAC.Duck_Grabbed = false;
-        else if (pb.CharacterType.ID == 3)
-            EAC.Frog_Grabbed = false;
-
-        slamAttack.enabled = true;
+        doneCarry = true;
+        slamAttack.hitPlayer = null; // could cause erropr
+        
 
         yield return null;
     }
 
     IEnumerator PickUpAgainCoolDown()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(2.5f);
+        Debug.Log("PICKUP AGAIN COOLDOWN: COMPLETE");
+        belowChecker.enabled = true;
+        slamAttack.enabled = true;
         canPickup = true;
+        canCarry = true;
+        startSlam = false;
+        doneCarry = false;
     }
     
     public void ResetCarryVar()
     {
-        canCarry = true;
+        //canCarry = true;
         startCarryingUp = false;
         startCarrying = false;
-        doneCarry = false;
+        //doneCarry = false;
         noTransform = true;
         canSpam = false;
+        doneStun = false;
         //canPickup = true;
         randTrans = new Vector3(0, 0, 0);
     }

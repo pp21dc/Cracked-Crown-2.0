@@ -24,12 +24,15 @@ public class SlamAttack : MonoBehaviour
         if(other.CompareTag("Player") && enemyAIController.canPickup && enemyAIController.CompareTag("Light"))
         {
             PlayerBody player = other.GetComponent<PlayerBody>();
-            Debug.Log("SLAM HIT");
-            player.DecHealth(0.5f);
-            hasHit = true;
-            hitPlayer = player;
-            hitPlayerBody = other.gameObject;
-            enemyAIController.canPickup = false;
+            if (!player.alreadyDead && !HitGround)
+            {
+                Debug.Log("SLAM HIT");
+                player.DecHealth(0.5f);
+                hasHit = true;
+                hitPlayer = player;
+                hitPlayerBody = other.gameObject;
+                enemyAIController.canPickup = false;
+            }
         }
 
         if(other.CompareTag("Ground"))
@@ -38,5 +41,17 @@ public class SlamAttack : MonoBehaviour
         }
 
         
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            hasHit = false;
+        }
+        if (other.CompareTag("Ground"))
+        {
+            HitGround = false;
+        }
     }
 }

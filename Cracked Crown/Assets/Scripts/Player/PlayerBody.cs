@@ -65,7 +65,7 @@ public class PlayerBody : MonoBehaviour
     [SerializeField]
     private GameObject throwableBombPrefab;
     [SerializeField]
-    private SpriteRenderer spriteRenderer;
+    public SpriteRenderer spriteRenderer;
 
     public GameObject CharacterFolder;
     public bool canMove = true;
@@ -122,11 +122,13 @@ public class PlayerBody : MonoBehaviour
     {
         if (!playerLock)
         {
-            if (controller.InteractDown && lockIN == -1 && PM.CheckPlayers(currentIN))
-                lockIN = currentIN;
-            else if (controller.InteractDown && lockIN != -1)
-                lockIN = -1;
-
+            if (PM != null)
+            {
+                if (controller.InteractDown && lockIN == -1 && PM.CheckPlayers(currentIN))
+                    lockIN = currentIN;
+                else if (controller.InteractDown && lockIN != -1)
+                    lockIN = -1;
+            }
             collect();
             onNoDamage();
 
@@ -763,6 +765,7 @@ public class PlayerBody : MonoBehaviour
             canRelease = true;
             canMove = true;
             canAttack = true;
+            
             Debug.Log("Free");
                 
         }
@@ -780,8 +783,9 @@ public class PlayerBody : MonoBehaviour
         canExecute = true;
     }
 
-    public void ResetSprite()
+    public void ResetSprite(string msg)
     {
+        Debug.Log("RESET SPRITE " + msg);
         if (spriteRenderer.enabled == true)
             spriteRenderer.enabled = false;
         else if(spriteRenderer.enabled == false)
@@ -793,7 +797,7 @@ public class PlayerBody : MonoBehaviour
 
     public void MoveToEnemy(GameObject enemyBody)
     {
-        gameObject.transform.position = new Vector3(enemyBody.transform.position.x, enemyBody.transform.position.y - 8, enemyBody.transform.position.z);
+        gameObject.transform.position = new Vector3(enemyBody.transform.position.x, enemyBody.transform.position.y - 7, enemyBody.transform.position.z);
     }
 
 }

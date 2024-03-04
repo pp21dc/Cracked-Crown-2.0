@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CheckPlayerBelow : MonoBehaviour
 {
-    private bool seesPlayer = false;
+    public bool seesPlayer = false;
 
     private void OnTriggerEnter(Collider other)
     {

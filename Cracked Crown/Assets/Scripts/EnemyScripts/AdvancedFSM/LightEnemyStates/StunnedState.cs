@@ -36,6 +36,8 @@ public class StunnedState : FSMState
         }
         else if(enemy.doneStun == true)
         {
+            enemy.canStun = true;
+            enemy.doneStun = false;
             enemy.PerformTransition(Transition.LookForPlayer);
         }
         
