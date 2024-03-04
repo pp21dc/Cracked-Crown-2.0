@@ -71,7 +71,7 @@ public class EnemyAnimationController : MonoBehaviour
         }
         else
         {
-            this.GetComponent<SpriteRenderer>().color = Color.white;
+            //this.GetComponent<SpriteRenderer>().color = Color.white;
         }
     }
 
