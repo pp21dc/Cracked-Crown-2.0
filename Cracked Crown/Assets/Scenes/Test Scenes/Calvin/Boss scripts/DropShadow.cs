@@ -29,9 +29,10 @@ public class DropShadow : MonoBehaviour
         {
             if (script.clawreturn)
             {
-                gameObject.transform.position = Vector3.MoveTowards(transform.position, new Vector3(folX - 2, folY, folZ), 0.5f);
+                gameObject.transform.position = Vector3.MoveTowards(transform.position, new Vector3(folX - 2, folY - 10, folZ), 0.5f);
             }
             else if (script.attacktimer >= 7.8f){
+                cush = clawObject.transform.localPosition.y * 2;
                 gameObject.transform.position = Vector3.MoveTowards(transform.position, new Vector3(folX - 2, folY - 14 - cush, folZ), 0.3f);
             }
             else
@@ -40,9 +41,24 @@ public class DropShadow : MonoBehaviour
                 gameObject.transform.position = new Vector3(folX - 2, folY - 14 - cush, folZ);
             }
         }
+        else if (script.testAttack == "smash")
+        {
+            if (script.attacktimer > 4)
+            {
+                gameObject.transform.position = Vector3.MoveTowards(transform.position, new Vector3(folX - 2, folY, folZ), 0.1f);
+            }
+            else if (script.attacktimer < 1.16f)
+            {
+                gameObject.transform.position = Vector3.MoveTowards(transform.position, new Vector3(folX - 2, folY - 10, folZ), 0.3f);
+            }
+            else
+            {
+                gameObject.transform.position = new Vector3(folX - 2, folY, folZ);
+            }
+        }
         else
         {
-            gameObject.transform.position = new Vector3(folX - 2, folY, folZ);
+            gameObject.transform.position = new Vector3(folX - 2, folY - 10, folZ);
         }
     }
 }
