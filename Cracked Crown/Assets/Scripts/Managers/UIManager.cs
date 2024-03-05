@@ -134,18 +134,23 @@ public class UIManager : MonoBehaviour
                 if (GM.PMs[i].PB.CharacterType.ID == 0)
                 {
                     iconObjects[i].GetComponent<Image>().sprite = CharacterIcons[0];
+                    iconObjects[i].GetComponent<Image>().SetNativeSize();
+
                 }
                 else if (GM.PMs[i].PB.CharacterType.ID == 1)
                 {
                     iconObjects[i].GetComponent<Image>().sprite = CharacterIcons[1];
+                    iconObjects[i].GetComponent<Image>().SetNativeSize();
                 }
                 else if (GM.PMs[i].PB.CharacterType.ID == 2)
                 {
                     iconObjects[i].GetComponent<Image>().sprite = CharacterIcons[2];
+                    iconObjects[i].GetComponent<Image>().SetNativeSize();
                 }
                 else if (GM.PMs[i].PB.CharacterType.ID == 3)
                 {
                     iconObjects[i].GetComponent<Image>().sprite = CharacterIcons[3];
+                    iconObjects[i].GetComponent<Image>().SetNativeSize();
                 }
             }
 
