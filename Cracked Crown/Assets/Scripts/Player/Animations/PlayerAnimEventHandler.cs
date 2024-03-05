@@ -29,6 +29,8 @@ public class PlayerAnimEventHandler : MonoBehaviour
     {
         PC.PAC.Attacking = false;
         PC.PAC.Finishing = false;
+        PC.PAC.Finishing_Light = false;
+        PC.PAC.Finishing_Heavy = false;
         PC.PB.canMove = true;
         PC.PB.canAttack = true;
         PC.PB.AddHealth(PC.PB.executeHeal);
@@ -41,6 +43,8 @@ public class PlayerAnimEventHandler : MonoBehaviour
     public void FinishEnter()
     {
         PC.PAC.Finishing = false;
+        PC.PAC.Finishing_Light = false;
+        PC.PAC.Finishing_Heavy = false;
     }
 
     public void DeathFinish()
