@@ -29,11 +29,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] PlayerBody player3Body;
     [SerializeField] PlayerBody player4Body;
 
-    private float player1LastFrameHealth;
-    private float player2LastFrameHealth;
-    private float player3LastFrameHealth;
-    private float player4LastFrameHealth;
-
     [Header("Main Menu")]
     [SerializeField] private GameObject MainMenu;
 
@@ -253,55 +248,7 @@ public class UIManager : MonoBehaviour
         playerHealthBars[2] = player3HealthBarObj.GetComponent<Image>().material;
         playerHealthBars[3] = player4HealthBarObj.GetComponent<Image>().material;
         Debug.Log("got mats");
-    }
-
-    private void CheckPlayerHealths()
-    {
-        if (CheckPlayer1Health()) { };
-        if (CheckPlayer2Health()) { };
-        if (CheckPlayer3Health()) { };
-        if (CheckPlayer4Health()) { };
-    }
-
-    private bool CheckPlayer1Health()
-    {
-        if(player1LastFrameHealth != player1Body.Health)
-        {
-            return true;
-        }
-
-        return false;
-    }
-
-    private bool CheckPlayer2Health()
-    {
-        if (player2LastFrameHealth != player2Body.Health)
-        {
-            return true;
-        }
-
-        return false;
-    }
-
-    private bool CheckPlayer3Health() 
-    {
-        if (player3LastFrameHealth != player3Body.Health)
-        {
-            return true;
-        }
-
-        return false;
-    }
-
-    private bool CheckPlayer4Health()
-    {
-        if (player4LastFrameHealth != player4Body.Health)
-        {
-            return true;
-        }
-
-        return false;
-    }
+    }  
 
    /* IEnumerator ModifyHealthBar(Material healthBar, float prevHealth, float currentHealth)
     {
