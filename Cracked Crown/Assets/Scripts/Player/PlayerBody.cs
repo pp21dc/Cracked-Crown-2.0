@@ -245,6 +245,7 @@ public class PlayerBody : MonoBehaviour
         {
             SetCharacterData();
         }
+        health = 50;
         maxHealth = health;
         canCollect = true;
     }
