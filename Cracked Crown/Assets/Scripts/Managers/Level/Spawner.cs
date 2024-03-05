@@ -25,6 +25,7 @@ public class Spawner : MonoBehaviour
         {
             E.tag = "Light";
             E.transform.GetChild(0).tag = "Light";
+            E.transform.GetChild(1).position = new Vector3(E.transform.position.x, 30, E.transform.position.z);
         }
         else if (enemyType == 1)
         {

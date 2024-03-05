@@ -67,10 +67,14 @@ public class LevelManager : MonoBehaviour
     }
     float SpawnTimer = 0;
     float currentSpawnTotal = 0;
-    bool loc;
+    public bool loc = false;
+
     private void Update()
     {
-        EnemySpawnSystem();
+        if (Input.GetKeyUp(KeyCode.J))
+            loc = !loc;
+        if (!loc)
+            EnemySpawnSystem();
         if (Input.GetKey(KeyCode.H))
             GM.SetPlayerPositions();
     }
@@ -112,6 +116,7 @@ public class LevelManager : MonoBehaviour
 
     public void Enter_Level()
     {
+        CURRENT_WAVE = 1;
         StartCoroutine(ON_ENTER());
     }
 
@@ -127,7 +132,7 @@ public class LevelManager : MonoBehaviour
 
     private IEnumerator ON_ENTER()
     {
-        CURRENT_WAVE = 0;
+        CURRENT_WAVE = 1;
         ROOM_CLEARED = false;
         GM.SetPlayerPositions();
         yield return new WaitForSeconds(WAIT_ONENTER);

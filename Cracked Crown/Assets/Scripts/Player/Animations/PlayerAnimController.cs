@@ -44,6 +44,20 @@ public class PlayerAnimController : MonoBehaviour
         set { finishing = value; }
     }
 
+    private bool finishing_light;
+    public bool Finishing_Light
+    {
+        get { return finishing_light; }
+        set { finishing_light = value; }
+    }
+
+    private bool finishing_heavy;
+    public bool Finishing_Heavy
+    {
+        get { return finishing_heavy; }
+        set { finishing_heavy = value; }
+    }
+
     PlayerContainer PC;
 
     private void Awake()
@@ -60,6 +74,8 @@ public class PlayerAnimController : MonoBehaviour
             Animator.SetBool("Dashing", dashing);
             Animator.SetBool("Attacking", attacking);
             Animator.SetBool("Finish", finishing);
+            Animator.SetBool("FinishLight", finishing_light);
+            Animator.SetBool("FinishHeavy", finishing_heavy);
             //if (finishing) { finishing = false; }
             if (true )
             {

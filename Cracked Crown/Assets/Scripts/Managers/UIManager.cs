@@ -12,6 +12,9 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    [Header("Game Manager")]
+    [SerializeField] GameManager GM;
+
     [Header("Player Info")]
     [SerializeField] PlayerController player1Controller;
     [SerializeField] PlayerController player2Controller;
@@ -52,10 +55,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject player3HealthBarObj;
     [SerializeField] private GameObject player4HealthBarObj;
 
-    private Material player1HealthBar;
-    private Material player2HealthBar;
-    private Material player3HealthBar;
-    private Material player4HealthBar;
+    private Material[] playerHealthBars = new Material[4];
 
     [SerializeField] float animSpeed = 0.5f;
     [Header("Pause Menu")]
@@ -84,32 +84,41 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        RecordPlayerHealths();
-        animSpeed = 1.0f / animSpeed;
+        GM = GameManager.Instance;
+        //RecordPlayerHealths();
+        //animSpeed = 1.0f / animSpeed;
 
+        GetHealthBarMats();
 
     }
     private void Update()
     {
-        CheckPlayerHealths();
-
-        if (player1Controller.PauseDown || player2Controller.PauseDown || player3Controller.PauseDown || player4Controller.PauseDown)
+        //CheckPlayerHealths();
+        for(int i = 0; i < GM.Players.Length; i++)
         {
-            Debug.Log("if 1");
+            playerHealthBars[i].SetFloat("_Position", 1 - GM.PMs[i].PB.Health / 25);
+        }
+        
+
+
+        if (GM.PMs[0].PC.PauseDown || GM.PMs[1].PC.PauseDown || GM.PMs[2].PC.PauseDown || GM.PMs[3].PC.PauseDown)
+        {
             if (PauseMenu.activeSelf == false)
             {
                 Pause();
             }
         }
 
+        
 
-        RecordPlayerHealths();
+        //RecordPlayerHealths();
     }
 
     //Functions For Pause Menu (Copied from PauseMenu Script 1/30/2024)
     private void Pause()
     {
         PauseMenu.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(pauseMenuInitButton);
         Time.timeScale = 0f;
 
         gamePaused = true;
@@ -185,10 +194,12 @@ public class UIManager : MonoBehaviour
 
     private void GetHealthBarMats()
     {
-        player1HealthBar = player1HealthBarObj.GetComponent<Material>();
-        player2HealthBar = player2HealthBarObj.GetComponent<Material>();
-        player3HealthBar = player3HealthBarObj.GetComponent<Material>();
-        player4HealthBar = player4HealthBarObj.GetComponent<Material>();
+        Debug.Log("getting Mats");
+        playerHealthBars[0] = player1HealthBarObj.GetComponent<Image>().material;
+        playerHealthBars[1] = player2HealthBarObj.GetComponent<Image>().material;
+        playerHealthBars[2] = player3HealthBarObj.GetComponent<Image>().material;
+        playerHealthBars[3] = player4HealthBarObj.GetComponent<Image>().material;
+        Debug.Log("got mats");
     }
 
     private void CheckPlayerHealths()
@@ -246,9 +257,9 @@ public class UIManager : MonoBehaviour
     }*/
     private void RecordPlayerHealths()
     {
-        player1LastFrameHealth = player1Body.Health;
+        /*player1LastFrameHealth = player1Body.Health;
         player2LastFrameHealth = player2Body.Health;
         player3LastFrameHealth = player3Body.Health;
-        player4LastFrameHealth = player4Body.Health;
+        player4LastFrameHealth = player4Body.Health;*/
     }
 }

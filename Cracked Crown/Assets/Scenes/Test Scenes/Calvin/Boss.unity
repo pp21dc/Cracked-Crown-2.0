@@ -1616,7 +1616,7 @@ Transform:
   m_GameObject: {fileID: 211518535}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.2, y: 42.5, z: -130.1}
+  m_LocalPosition: {x: 0.2, y: 36.9, z: -128}
   m_LocalScale: {x: 0.12, y: 0.12, z: 0.12}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -3997,7 +3997,7 @@ PrefabInstance:
     - target: {fileID: 1226095654965410917, guid: 26cfbd80ecd59b24a94a8b581b0d571e,
         type: 3}
       propertyPath: m_SortingOrder
-      value: 20
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2170579410985680576, guid: 26cfbd80ecd59b24a94a8b581b0d571e,
         type: 3}
@@ -4061,6 +4061,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2334059883444836896, guid: 26cfbd80ecd59b24a94a8b581b0d571e,
         type: 3}
+      propertyPath: clawdropspeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2334059883444836896, guid: 26cfbd80ecd59b24a94a8b581b0d571e,
+        type: 3}
       propertyPath: attackIDList.Array.size
       value: 100
       objectReference: {fileID: 0}
@@ -4068,6 +4073,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CrabBoss
+      objectReference: {fileID: 0}
+    - target: {fileID: 2879021548207388403, guid: 26cfbd80ecd59b24a94a8b581b0d571e,
+        type: 3}
+      propertyPath: clawdropspeed
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2879021548207388403, guid: 26cfbd80ecd59b24a94a8b581b0d571e,
         type: 3}
@@ -4102,7 +4112,7 @@ PrefabInstance:
     - target: {fileID: 7157597877549709028, guid: 26cfbd80ecd59b24a94a8b581b0d571e,
         type: 3}
       propertyPath: m_SortingOrder
-      value: 20
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8456997817302650563, guid: 26cfbd80ecd59b24a94a8b581b0d571e,
         type: 3}
@@ -10578,6 +10588,7 @@ MonoBehaviour:
   GameOverScreen: {fileID: 0}
   WinScreen: {fileID: 0}
   MainMenu: {fileID: 0}
+  LoadingScreen: {fileID: 0}
   CampaignStart: 0
   Pause: 0
   eyeCount: 0

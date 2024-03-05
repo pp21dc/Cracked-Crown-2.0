@@ -20,6 +20,7 @@ public class OpeningVideoController : MonoBehaviour
         for(int i = 0; i < players.Length; i++)
         {
             players[i].Prepare();
+            
         }
 
     }
@@ -27,7 +28,7 @@ public class OpeningVideoController : MonoBehaviour
     void Update()
     {
         //Looks to see if a key has been pressed to skip to next video
-        if (Input.anyKeyDown)
+        if (Input.anyKeyDown && j+1 < players.Length)
         {
             players[j].enabled = false;
             j++;
@@ -52,7 +53,7 @@ public class OpeningVideoController : MonoBehaviour
         if(j == 2 && players[2].isPaused)
         {
             players[2].enabled = false;
-
+            GameManager.Instance.waitforvideo = false;
 
         }
     }

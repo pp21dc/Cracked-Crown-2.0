@@ -41,8 +41,12 @@ public class FinisherCollider : MonoBehaviour
                 }
                 
             }
-            if (e.transform.parent.GetChild(1) != null)
+            if (e != null && e.transform.parent.GetChild(1) != null)
                 PB.Execute(e.transform.parent.GetChild(1).gameObject);
+            else if (e == null)
+            {
+                enemiesInRange.Remove(e);
+            }
             //PB.canExecute = true;
             distance = 0;
             if (e != null)
@@ -55,7 +59,7 @@ public class FinisherCollider : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Medium" || other.gameObject.tag == "Light" || other.gameObject.tag == "Heavy")
+        if (other.gameObject.tag == "Enemy")
         {
             enemiesInRange.Add(other.transform.parent.GetChild(0).gameObject); // add enemy to nearby list
         }
@@ -63,7 +67,7 @@ public class FinisherCollider : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Medium")
+        if (other.gameObject.tag == "Enemy")
         {
             enemiesInRange.Remove(other.transform.parent.GetChild(0).gameObject);
         }

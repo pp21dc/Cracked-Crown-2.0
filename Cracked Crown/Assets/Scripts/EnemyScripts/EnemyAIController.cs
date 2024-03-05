@@ -113,6 +113,8 @@ public class EnemyAIController : AdvancedFSM
     public bool canPickup;
     public bool canWait;
 
+    public GameObject dropShadow;
+
    public Vector3 groundTrans;
 
     [SerializeField]
@@ -276,8 +278,23 @@ public class EnemyAIController : AdvancedFSM
     public bool starting;
     protected override void FSMUpdate()
     {
+
+        act = !LevelManager.Instance.loc;
         if (CurrentState != null && act)
         {
+            
+            Vector3 dropShadowPos = new Vector3(enemyPosition.position.x, -3.5f, enemyPosition.position.z);
+            dropShadow.transform.position = dropShadowPos;
+
+            if (CompareTag("Light"))
+            {
+                dropShadow.transform.localScale = new Vector3(7, 1.5f, 0.5f);
+            }
+            else
+            {
+                dropShadow.transform.localScale = new Vector3(13, 3, 0.5f);
+            }
+
             CurrentState.Reason(playerTransform, transform);
             CurrentState.Act(playerTransform, transform);
         }
@@ -405,9 +422,8 @@ public class EnemyAIController : AdvancedFSM
         if (Players != null)
         {
             float check;
-            float closestInt;
-            closest = null;
-            playerTransform = null;
+            currShortest = 10000;
+            float closestInt = 0;
             //simple distance check where it checks the current shortest and compares to the other players, replacing when neccisary
             for (int i = 0; i < Players.Length; i++)
             {
@@ -416,14 +432,14 @@ public class EnemyAIController : AdvancedFSM
 
                 if (!currentBody.alreadyDead && !currentBody.Grabbed)
                 {
-                    check = Vector3.Distance(enemyPosition.transform.position, Players[i].transform.position);
+                    check = Vector3.Distance(enemyPosition.transform.position, currentBody.transform.position);
+                    Debug.Log(currentBody.alreadyDead + "//" + currentBody.Grabbed);
 
-
-                    if (check < currShortest && !currentBody.alreadyDead && !currentBody.Grabbed)
+                    if (check < currShortest)
                     {
 
                         currShortest = check;
-                        closestInt = i;
+                        closestInt += 1; 
                         closest = Players[i];
                         playerTransform = closest.transform;
 
@@ -431,7 +447,7 @@ public class EnemyAIController : AdvancedFSM
 
                 }
             }
-            if (!knockback)
+            if (!knockback && closestInt > 0)//is there a player and we aren't being knocked back
             {
                 if(gameObject.CompareTag("Light"))
                 {
@@ -732,7 +748,7 @@ public class EnemyAIController : AdvancedFSM
     public void ResetSlamVar()
     {
         slamAttack.hasHit = false;
-        slamAttack.HitGround = false;
+        //slamAttack.HitGround = false;
         moveToCarry = false;
         moveToStunned = false;
     }
@@ -749,6 +765,7 @@ public class EnemyAIController : AdvancedFSM
 
         if (doneOnGround)
         {
+            slamAttack.HitGround = false;  
             Debug.Log("LetsGoUp");
             EAC.Moving = true;
             EAC.Stunned = false;

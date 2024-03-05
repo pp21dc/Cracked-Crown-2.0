@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     }
     private LevelManager LM;
 
+    public GameObject PIM;
     public PlayerContainer[] Players;
     public PlayerManager[] PMs;
     public GameObject[] Characters;
@@ -49,7 +50,7 @@ public class GameManager : MonoBehaviour
         set { currentLevel = value; }
     }
     [Header("SceneInfo")]
-    private string currentLevelName;
+    public string currentLevelName;
     public string MainMenuName;
     public string CutSceneName;
     public string BossLevelName;
@@ -65,7 +66,7 @@ public class GameManager : MonoBehaviour
     public bool CampaignStart = false;
 
     public bool Pause = false;
-
+    public bool waitforvideo = true;
     public float eyeCount = 0;
 
     [SerializeField]
@@ -87,23 +88,40 @@ public class GameManager : MonoBehaviour
         {
             ReturnToMainMenu();
         }
+        
         Application.targetFrameRate = 120;
     }
     public GameObject enem;
+    bool locker;
+    bool locker_Boss;
     private void FixedUpdate()
     {
         if (Input.GetKeyUp(KeyCode.KeypadEnter))
         {
             StartNewGame();
         }
-        if (Input.GetKeyUp(KeyCode.N))
-        {
-            Debug.Log(currentLevel);
-            NextLevel();
-        }
         if (Input.GetKeyUp(KeyCode.H))
             SetPlayerPositions();
+        if (!locker && Input.GetKey(KeyCode.M))
+        {
+            locker = true;
+            ReturnToMainMenu();
+        }
+        if (!locker_Boss && Input.GetKey(KeyCode.B))
+        {
+            locker_Boss = true;
+            LoadAScene("BossLevel");
+        }
 
+        if (!waitforvideo && currentLevelName == MainMenuName)
+        {
+            MainMenu.SetActive(true);
+            PIM.SetActive(true);
+        }
+        else
+        {
+            MainMenu.SetActive(false);
+        }
     }
 
     public PlayerInput GetPlayer(int ID)
@@ -122,7 +140,8 @@ public class GameManager : MonoBehaviour
     {
         isLoading = true;
 
-        LoadingScreen.gameObject.SetActive(true);
+        if (!levelName.Equals(MainMenuName))
+            LoadingScreen.gameObject.SetActive(true);
         //yield return new WaitForSeconds(0.25f);
 
         if ((!string.IsNullOrEmpty(currentLevelName)))
@@ -151,7 +170,7 @@ public class GameManager : MonoBehaviour
 
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(levelName));
 
-        if (!levelName.Equals(MainMenuName) && currentLevel < levelName.Length)
+        if (!levelName.Equals(MainMenuName) && !levelName.Equals(BossLevelName) && currentLevel < levelName.Length)
         {
             //AudioManager.LoadLevelComplete();
             //Debug.Log(currentLevel);
@@ -165,10 +184,18 @@ public class GameManager : MonoBehaviour
         }
         else if (levelName.Equals(MainMenuName))
         {
+            waitforvideo = true;
             LM.ROOM_CLEARED = true;
             IsLevelCleared = true;
             currentLevelName = MainMenuName;
-            MainMenu.SetActive(true);
+            //MainMenu.SetActive(true);
+            currentLevel = -1;
+        }
+        else if (levelName.Equals(BossLevelName))
+        {
+            LM.ROOM_CLEARED = true;
+            IsLevelCleared = true;
+            currentLevelName = BossLevelName;
             currentLevel = -1;
         }
         //yield return new WaitForSeconds(0.25f);
@@ -180,9 +207,10 @@ public class GameManager : MonoBehaviour
         // playerGO.SetActive(false);
         Time.timeScale = 1;
         LoadingScreen.gameObject.SetActive(false);
-
+        locker = false;
+        locker_Boss = false;
         //isLoading = false;
-        
+
     }
 
     public void SetPlayerPositions()

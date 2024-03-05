@@ -115,12 +115,37 @@ public class PlayerBody : MonoBehaviour
     public int timesHit = 0;
     public Vector3 AttackVector;
     public bool Grabbed = false;
-
+    public GameObject dropShadow;
     //hey Ian dont know where you will want this bool
     public bool canRelease = false;
 
     private void Update()
     {
+        if (Input.GetKey(KeyCode.K))
+            ghostCoins += 5;
+
+        Vector3 dropShadowPos;
+        if (CharacterType != null)
+        {
+            if (CharacterType.ID != 2)
+                dropShadowPos = new Vector3(transform.position.x, -2f, transform.position.z);
+            else
+            {
+                dropShadowPos = new Vector3(transform.position.x, -4f, transform.position.z);
+            }
+
+            dropShadow.transform.position = dropShadowPos;
+        }
+        if (canMovePlayerForexecute)
+        {
+            dropShadow.SetActive(false);
+            enemyAIController.dropShadow.SetActive(false);
+        }
+        else
+        {
+            dropShadow.SetActive(true);
+        }
+
         if (!playerLock)
         {
             if (PM != null)
@@ -185,13 +210,15 @@ public class PlayerBody : MonoBehaviour
             Attack();
             Dash();
             UseItem();
-            if (rb.useGravity)
-                rb.velocity = new Vector3(rb.velocity.x, (-9.81f) * (rb.mass), rb.velocity.z);
-            else
-                rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+
+            if (transform.position.y < 2)
+                vely = 0;
+            vely += -9.81f;
+
+            rb.velocity = new Vector3(rb.velocity.x, vely, rb.velocity.z);
         }
     }
-
+    float vely = 0;
     private IEnumerator executeAfterRevive()
     {
         yield return new WaitForSeconds(1f);
@@ -245,6 +272,10 @@ public class PlayerBody : MonoBehaviour
             //    dontForward = true;
             //}
             Move();
+        }
+        else
+        {
+            animController.Moving = false;
         }
     }
 
@@ -310,7 +341,19 @@ public class PlayerBody : MonoBehaviour
         {
             if (Vector3.Distance(transform.position, executeTarget.transform.position + forExecutePosition) < 5.0f && !lockExecAnim)
             {
-                animController.Finishing = true;
+                if (enemyAIController.tag.Equals("Medium"))
+                {
+                    animController.Finishing = true;
+                }
+                else if (enemyAIController.tag.Equals("Light"))
+                {
+                    animController.Finishing_Light = true;
+                }
+                else if (enemyAIController.tag.Equals("Heavy"))
+                {
+                    animController.Finishing_Heavy = true;
+                }
+                
                 lockExecAnim = true;
                 StartCoroutine(ExecuteCooldown());
             }
@@ -353,6 +396,10 @@ public class PlayerBody : MonoBehaviour
 
     private IEnumerator DamageColourFlash()
     {
+        if (spriteRenderer == null)
+        {
+            spriteRenderer = transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<SpriteRenderer>();
+        }
         spriteRenderer.color = Color.red;
         yield return new WaitForSeconds(0.25f);
         spriteRenderer.color = Color.white;
@@ -795,10 +842,15 @@ public class PlayerBody : MonoBehaviour
         canMove = true;
         canAttack = true;
     }
-
+    float i = 0;
     public void MoveToEnemy(GameObject enemyBody)
     {
-        gameObject.transform.position = new Vector3(enemyBody.transform.position.x, enemyBody.transform.position.y - 7, enemyBody.transform.position.z);
+        while (i < 5)
+        {
+            i += Time.deltaTime;
+            gameObject.transform.position = new Vector3(enemyBody.transform.position.x, enemyBody.transform.position.y - 5, enemyBody.transform.position.z);
+        }
+        i = 0;
     }
 
 }
