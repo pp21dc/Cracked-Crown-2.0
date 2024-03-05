@@ -93,22 +93,24 @@ public class UIManager : MonoBehaviour
     }
     private void Update()
     {
-        //CheckPlayerHealths();
-        for(int i = 0; i < GM.Players.Length; i++)
+        if (GM.PMs == null)
         {
-            playerHealthBars[i].SetFloat("_Position", 1 - GM.PMs[i].PB.Health / 25);
-        }
-        
-
-
-        if (GM.PMs[0].PC.PauseDown || GM.PMs[1].PC.PauseDown || GM.PMs[2].PC.PauseDown || GM.PMs[3].PC.PauseDown)
-        {
-            if (PauseMenu.activeSelf == false)
+            //CheckPlayerHealths();
+            for (int i = 0; i < GM.Players.Length; i++)
             {
-                Pause();
+                playerHealthBars[i].SetFloat("_Position", 1 - GM.PMs[i].PB.Health / 50);
+            }
+
+
+        
+            if (GM.PMs[0].PC.PauseDown || GM.PMs[1].PC.PauseDown || GM.PMs[2].PC.PauseDown || GM.PMs[3].PC.PauseDown)
+            {
+                if (PauseMenu.activeSelf == false)
+                {
+                    Pause();
+                }
             }
         }
-
         
 
         //RecordPlayerHealths();
