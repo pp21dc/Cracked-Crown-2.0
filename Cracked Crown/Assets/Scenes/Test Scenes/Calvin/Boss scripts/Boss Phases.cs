@@ -283,7 +283,7 @@ public class BossPhases : MonoBehaviour
         {
             yield return new WaitForSeconds(0.2f);
             preGrabPlayerPosition = GrabbedPlayer.transform.position;
-            clawtarget = FollowedPlayer.transform.transform.position + FollowedPlayer.transform.TransformDirection(0, 80, 0);
+            clawtarget = FollowedPlayer.transform.transform.position + FollowedPlayer.transform.TransformDirection(0, 80, 5);
             attacktimer += 3;
             grabbedTimer = 1; // 1 instead of 3 since the grabbedTimer threshold is -2
 
@@ -322,7 +322,14 @@ public class BossPhases : MonoBehaviour
         }
         yield return new WaitForSeconds(2.05f);
         cantakedmg = true; // lets the boss take damage while the claw is on the ground
-        Instantiate(ShockWave, ClawSprite.transform.position - new Vector3 (-12, 25f, 16), Quaternion.Euler(80, 0, 0)); // instantiates the shockwave part of attack
+        if (gameObject.name == "clawRight")
+        {
+            Instantiate(ShockWave, ClawSprite.transform.position - new Vector3(8, 25f, 16), Quaternion.Euler(80, 0, 0)); // instantiates the shockwave part of attack
+        }
+        else
+        {
+            Instantiate(ShockWave, ClawSprite.transform.position - new Vector3(-8, 25f, 16), Quaternion.Euler(80, 0, 0)); // instantiates the shockwave part of attack
+        }
         yield return new WaitForSeconds(1.95f);
         cantakedmg = false; // sets boss damage off when claw leaves the ground
         ClawSprite.transform.localPosition = new Vector3(0, 0, 0);
