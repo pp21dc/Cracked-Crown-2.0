@@ -62,6 +62,7 @@ public class GameManager : MonoBehaviour
     public GameObject GameOverScreen;
     public GameObject WinScreen;
     public GameObject MainMenu;
+    public GameObject UI;
     public GameObject LoadingScreen;
     public bool CampaignStart = false;
 
@@ -120,8 +121,16 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            
             MainMenu.SetActive(false);
         }
+        if (currentLevelName == MainMenuName)
+            UI.SetActive(false);
+        else if (!string.IsNullOrEmpty(currentLevelName))
+        {
+            UI.SetActive(true);
+        }
+        
     }
 
     public PlayerInput GetPlayer(int ID)
@@ -237,6 +246,7 @@ public class GameManager : MonoBehaviour
     public void NextLevel()
     {
         currentLevel++;
+        UI.SetActive(true);
         if (currentLevel < levelNames.Length)
         {
             

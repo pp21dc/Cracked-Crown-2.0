@@ -21,7 +21,12 @@ public abstract class AIProperties // the properties that are most commonly used
 
 public class EnemyAIController : AdvancedFSM
 {
-
+    [SerializeField]
+    public GameObject stunObj;
+    [SerializeField]
+    Material baseMat;
+    [SerializeField]
+    Material whiteMat;
 
     [SerializeField]
     public EnemyAnimationController EAC;
@@ -145,7 +150,7 @@ public class EnemyAIController : AdvancedFSM
     {
         get { return health; }
     }
-    public void DecHealth(float amount) { health = Mathf.Max(0, health - amount); }//allows us to decrease the health of an enemy
+    public void DecHealth(float amount) { health = Mathf.Max(0, health - amount); StartCoroutine(FlashRed(EAC.SR)); }//allows us to decrease the health of an enemy
     public void AddHealth(float amount) { health = Mathf.Min(100, health + amount); }//allows us to add health to the enemy
 
     
@@ -283,7 +288,7 @@ public class EnemyAIController : AdvancedFSM
         if (CurrentState != null && act)
         {
             
-            Vector3 dropShadowPos = new Vector3(enemyPosition.position.x, -3.5f, enemyPosition.position.z);
+            Vector3 dropShadowPos = new Vector3(enemyPosition.position.x, -2.5f, enemyPosition.position.z);
             dropShadow.transform.position = dropShadowPos;
 
             if (CompareTag("Light"))
@@ -1065,9 +1070,17 @@ public class EnemyAIController : AdvancedFSM
         knockbackTimer = 0;
     }
 
-    
+    public IEnumerator FlashRed(SpriteRenderer s)
+    {
+        s.material = whiteMat;
 
-    
+        yield return new WaitForSeconds(0.15f);
+
+        s.material = baseMat;
+
+    }
+
+
 
 
 }

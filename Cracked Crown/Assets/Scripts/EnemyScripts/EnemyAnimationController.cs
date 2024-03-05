@@ -53,25 +53,11 @@ public class EnemyAnimationController : MonoBehaviour
 
         if (Stunned)
         {
-            timer += Time.deltaTime;
-
-            if (timer < 1f)
-            {
-                this.GetComponent<SpriteRenderer>().color = Color.red;
-            }
-            else if (timer < 2)
-            {
-                this.GetComponent<SpriteRenderer>().color = Color.white;
-            }
-
-            if (timer > 2)
-            {
-                timer = 0f;
-            }
+            EAIC.stunObj.SetActive(true);
         }
         else
         {
-            //this.GetComponent<SpriteRenderer>().color = Color.white;
+            EAIC.stunObj.SetActive(false);
         }
     }
 
