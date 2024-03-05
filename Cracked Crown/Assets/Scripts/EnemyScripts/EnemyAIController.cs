@@ -145,7 +145,7 @@ public class EnemyAIController : AdvancedFSM
     {
         get { return health; }
     }
-    public void DecHealth(float amount) { health = Mathf.Max(0, health - amount); }//allows us to decrease the health of an enemy
+    public void DecHealth(float amount) { health = Mathf.Max(0, health - amount); StartCoroutine(FlashRed(EAC.SR)); }//allows us to decrease the health of an enemy
     public void AddHealth(float amount) { health = Mathf.Min(100, health + amount); }//allows us to add health to the enemy
 
     
@@ -1065,9 +1065,17 @@ public class EnemyAIController : AdvancedFSM
         knockbackTimer = 0;
     }
 
-    
+    public IEnumerator FlashRed(SpriteRenderer s)
+    {
+        s.color = Color.red;
 
-    
+        yield return new WaitForSeconds(0.15f);
+
+        s.color = Color.white;
+
+    }
+
+
 
 
 }

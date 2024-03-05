@@ -51,7 +51,7 @@ public class EnemyAnimationController : MonoBehaviour
         }
         
 
-        if (Stunned)
+        /*if (Stunned)
         {
             timer += Time.deltaTime;
 
@@ -68,11 +68,11 @@ public class EnemyAnimationController : MonoBehaviour
             {
                 timer = 0f;
             }
-        }
-        else
+        }*/
+        /*else
         {
             //this.GetComponent<SpriteRenderer>().color = Color.white;
-        }
+        }*/
     }
 
 
