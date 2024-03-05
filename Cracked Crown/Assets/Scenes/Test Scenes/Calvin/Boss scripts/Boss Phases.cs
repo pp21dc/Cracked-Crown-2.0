@@ -29,7 +29,7 @@ public class BossPhases : MonoBehaviour
     [SerializeField]
     private float clawspeed;
     [SerializeField] // count used to allow the boss to know when to initiate attacks
-    private float attacktimer;
+    public float attacktimer;
     [SerializeField]
     private float bosshealth;
     [SerializeField]
@@ -41,14 +41,14 @@ public class BossPhases : MonoBehaviour
     private Vector3 clawtarget;
     private float dist;
     private int currattackid;
-    private string testAttack;
+    public string testAttack;
 
     bool attackLoop = true; // controls the running of the boss's attacks
     static int LISTLENGTH = 100;
 
     private bool clawfollow = false; // pincer attack bools
     private bool clawgrab = false;
-    private bool clawreturn = false;
+    public bool clawreturn = false;
 
     public bool cantakedmg= false;
 
@@ -124,12 +124,14 @@ public class BossPhases : MonoBehaviour
                 attacktimer = 8;
                 StartCoroutine("PincerAttack");
                 testAttack = "pincer";
+                Debug.Log(attacktimer);
             }
             if (Input.GetKeyDown("8"))
             {
                 attacktimer = 4.5f;
                 StartCoroutine("ClawSmash");
                 testAttack = "smash";
+                Debug.Log(attacktimer);
             }
         }
         if (gameObject.name == "clawRight")
@@ -217,7 +219,7 @@ public class BossPhases : MonoBehaviour
         }
         if (clawgrab)
         {
-            Claw.transform.position = Vector3.MoveTowards(Claw.transform.position, clawtarget, clawspeed * clawdropspeed * Time.deltaTime);
+            Claw.transform.position = Vector3.MoveTowards(Claw.transform.position, clawtarget - new Vector3(0, 10, 0), clawspeed * clawdropspeed * Time.deltaTime);
         }
         if (clawreturn)
         {
@@ -276,10 +278,10 @@ public class BossPhases : MonoBehaviour
         clawtarget = FollowedPlayer.transform.position + FollowedPlayer.transform.TransformDirection(0, 35, 0); // sets the claw's target to the player
         clawgrab = true; // allows claw to fall to player position
 
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(0.8f);
         if (isGrabbed)  // when the wait function is over, if the player is grabbed, the grabbed timer will start and the player will be lifted into the air
         {
-            yield return new WaitForSeconds(0.6f);
+            yield return new WaitForSeconds(0.2f);
             preGrabPlayerPosition = GrabbedPlayer.transform.position;
             clawtarget = FollowedPlayer.transform.transform.position + FollowedPlayer.transform.TransformDirection(0, 80, 0);
             attacktimer += 3;
@@ -290,7 +292,7 @@ public class BossPhases : MonoBehaviour
         }
         else
         {
-            yield return new WaitForSeconds(0.6f);
+            yield return new WaitForSeconds(0.2f);
         }
 
         clawgrab = false;
