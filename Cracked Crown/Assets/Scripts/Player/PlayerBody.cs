@@ -293,6 +293,7 @@ public class PlayerBody : MonoBehaviour
     public Vector3 movementVector;
     public float forceMod = 1000;
     Vector3 noY = new Vector3(1,0,1);
+    private bool executeLock = false;
     private void Move()
     {
         if (canMove)
@@ -366,9 +367,28 @@ public class PlayerBody : MonoBehaviour
                 Vector3 epicgamer = executeTarget.transform.position + forExecutePosition;
                 rb.velocity = Vector3.zero;
                 Vector3 test = Vector3.MoveTowards(gameObject.transform.position, epicgamer, executeMoveSpeed * Time.deltaTime);
+                test.y = 0;
                 transform.position = test;
 
-                
+                if (enemyAIController != null)
+                {
+                    if (enemyAIController.tag.Equals("Medium"))
+                    {
+                        animController.Finishing = true;
+                    }
+                    else if (enemyAIController.tag.Equals("Light"))
+                    {
+                        animController.Finishing_Light = true;
+                    }
+                    else if (enemyAIController.tag.Equals("Heavy"))
+                    {
+                        animController.Finishing_Heavy = true;
+                    }
+                }
+                if (executeLock == false)
+                {
+                StartCoroutine(TurnOffExecuteMovement());
+                }
             }
         }
         if (dashing)
@@ -395,6 +415,23 @@ public class PlayerBody : MonoBehaviour
             rb.velocity = new Vector3(rb.velocity.x, y, rb.velocity.z);
         }
     }
+
+    private IEnumerator TurnOffExecuteMovement()
+    {
+
+        yield return new WaitForSeconds(1.25f);
+
+        canMovePlayerForexecute = false;
+        canExecute = true;
+        canMove = true;
+        canTakeDamage = true;
+        lockDash = false;
+        canAttack = true;
+        executeLock = false;
+        //playerLock = false;
+        
+    }
+
     public bool lockExecAnim;
 
     private IEnumerator DamageColourFlash()
@@ -632,6 +669,8 @@ public class PlayerBody : MonoBehaviour
                 canAttack = false;
                 enemyAIController.canMove = false;
                 canExecute = false;
+                executeLock = true;
+                //playerLock = true;
                 canMovePlayerForexecute = true;
                 //Debug.Log("EXEC");
 
@@ -656,6 +695,7 @@ public class PlayerBody : MonoBehaviour
                 canMove = false;
                 canAttack = false;
                 canExecute = false;
+                //playerLock = true;
                 canMovePlayerForexecute = true;
                 //Debug.Log("EXEC");
 
@@ -675,8 +715,6 @@ public class PlayerBody : MonoBehaviour
                 yield return new WaitForSeconds(1.0f);
                 transform.parent.GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(true);
                 toExecute.transform.parent.gameObject.SetActive(false);
-                if (LevelManager.Instance != null)
-                    LevelManager.Instance.EnemyKilled();
             }
         }
     }
@@ -871,6 +909,8 @@ public class PlayerBody : MonoBehaviour
 
         yield return new WaitForSeconds(2.5f);
         canExecute = true;
+        canMovePlayerForexecute = false;
+        //playerLock = false;
     }
 
     public void ResetSprite(string msg)

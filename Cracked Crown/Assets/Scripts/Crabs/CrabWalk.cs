@@ -8,6 +8,7 @@ public class CrabWalk : MonoBehaviour
     private float speed = 15.0f;
     public float health = 1.0f;
     public Animator animator;
+    private bool hasDied = false;
 
     [SerializeField]
     private Transform finalPos;
@@ -17,20 +18,34 @@ public class CrabWalk : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Vector3.Distance(transform.position, finalPos.position) > 5.0f)
+        if (hasDied)
         {
-            transform.position = transform.position  + (movementVector * speed * Time.deltaTime);
+            animator.SetBool("PermaDead", true);
         }
-        else
+        if (!hasDied)
         {
-            animator.SetTrigger("AtPosition");
-        }
+            if (Vector3.Distance(transform.position, finalPos.position) > 5.0f)
+            {
+                transform.position = transform.position + (movementVector * speed * Time.deltaTime);
+            }
+            else
+            {
+                animator.SetTrigger("AtPosition");
+            }
 
-        if(health <= 0)
-        {
-            // play death animation
-            animator.SetTrigger("Death");
-            speed = 0;
+            if (health <= 0)
+            {
+                // play death animation
+                animator.SetTrigger("Death");
+                speed = 0;
+                StartCoroutine(deathTime());
+            }
         }
+    }
+
+    private IEnumerator deathTime()
+    {
+        yield return new WaitForSeconds(0.05f);
+        hasDied = true;
     }
 }
