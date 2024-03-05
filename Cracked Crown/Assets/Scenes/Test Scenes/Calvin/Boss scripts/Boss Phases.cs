@@ -41,6 +41,7 @@ public class BossPhases : MonoBehaviour
     private Vector3 clawtarget;
     private float dist;
     private int currattackid;
+    private string testAttack;
 
     bool attackLoop = true; // controls the running of the boss's attacks
     static int LISTLENGTH = 100;
@@ -82,25 +83,69 @@ public class BossPhases : MonoBehaviour
 
     void Update()
     {
-        if (attackLoop)
+        if (attacktimer <= 0)
         {
-            // attacks called in a continuous loop
-            if (attacktimer <= 0)
+            testAttack = "empty";
+            TestLoop();
+        }
+        if (testAttack == "pincer")
+        {
+            pincerAttack();
+        }
+        attacktimer -= Time.deltaTime;
+        /*if (attackLoop)
+       {
+           // attacks called in a continuous loop
+           if (attacktimer <= 0)
+           {
+               currattackid++; // counts to next id in the list
+               startNextAttack(); // starts the next attack, uses currattackid to do so
+           }
+           switch (attackIDList[currattackid]) // populates the ID list
+           {
+               case "PincerAttack":
+                   pincerAttack();
+                   break;
+               case "ClawSmash":
+                   break;
+               case "GooBlast":
+                   break;
+           }
+           attacktimer -= Time.deltaTime;
+       }*/
+    }
+
+    private void TestLoop()
+    {
+        if (gameObject.name == "clawLeft")
+        {
+            if (Input.GetKeyDown("7"))
             {
-                currattackid++; // counts to next id in the list
-                startNextAttack(); // starts the next attack, uses currattackid to do so
+                attacktimer = 8;
+                StartCoroutine("PincerAttack");
+                testAttack = "pincer";
             }
-            switch (attackIDList[currattackid]) // populates the ID list
+            if (Input.GetKeyDown("8"))
             {
-                case "PincerAttack":
-                    pincerAttack();
-                    break;
-                case "ClawSmash":
-                    break;
-                case "GooBlast":
-                    break;
+                attacktimer = 4.5f;
+                StartCoroutine("ClawSmash");
+                testAttack = "smash";
             }
-            attacktimer -= Time.deltaTime;
+        }
+        if (gameObject.name == "clawRight")
+        {
+            if (Input.GetKeyDown("9"))
+            {
+                attacktimer = 8;
+                StartCoroutine("PincerAttack");
+                testAttack = "pincer";
+            }
+            if (Input.GetKeyDown("0"))
+            {
+                attacktimer = 4.5f;
+                StartCoroutine("ClawSmash");
+                testAttack = "smash";
+            }
         }
     }
 
@@ -275,13 +320,14 @@ public class BossPhases : MonoBehaviour
         }
         yield return new WaitForSeconds(2.05f);
         cantakedmg = true; // lets the boss take damage while the claw is on the ground
-        Instantiate(ShockWave, ClawSprite.transform.position - new Vector3 (-12, 13.95f, 16), Quaternion.identity); // instantiates the shockwave part of attack
+        Instantiate(ShockWave, ClawSprite.transform.position - new Vector3 (-12, 25f, 16), Quaternion.Euler(80, 0, 0)); // instantiates the shockwave part of attack
         yield return new WaitForSeconds(1.95f);
         cantakedmg = false; // sets boss damage off when claw leaves the ground
+        ClawSprite.transform.localPosition = new Vector3(0, 0, 0);
         bossAnim.Play("clawPassive");
         // damage is dealt
 
-        yield return new WaitForSeconds(0.5f); // plays off last part of the animation
+        yield return new WaitForSeconds(0.4f); // plays off last part of the animation
     }
 
     IEnumerator GooBlast()

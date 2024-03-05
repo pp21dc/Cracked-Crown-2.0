@@ -12,7 +12,6 @@ public class shockWave : MonoBehaviour
 
     IEnumerator Death ()
     {
-        Debug.Log("Workfnhfguid");
         yield return new WaitForSeconds(1.25f);
         Destroy(gameObject);
     }
