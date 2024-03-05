@@ -138,7 +138,7 @@ public class PlayerBody : MonoBehaviour
 
             dropShadow.transform.position = dropShadowPos;
         }
-        if (canMovePlayerForexecute)
+        if (canMovePlayerForexecute && enemyAIController != null)
         {
             dropShadow.SetActive(false);
             enemyAIController.dropShadow.SetActive(false);
@@ -342,7 +342,7 @@ public class PlayerBody : MonoBehaviour
         //Debug.Log(executeTarget.IsUnityNull());
         if (canMovePlayerForexecute && executeTarget != null)
         {
-            if (Vector3.Distance(transform.position, executeTarget.transform.position + forExecutePosition) < 5.0f && !lockExecAnim)
+            if (Vector3.Distance(transform.position, executeTarget.transform.position + forExecutePosition) < 5.0f && !lockExecAnim && enemyAIController != null)
             {
                 if (enemyAIController.tag.Equals("Medium"))
                 {
