@@ -13,7 +13,6 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-
     [SerializeField] Sprite bomb;
     [SerializeField] Sprite potion;
     [Header("Game Manager")]
@@ -87,6 +86,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TMP_Text DialogueBar;
     [SerializeField] private Image CharacterIcon;
     [SerializeField] private Sprite[] CharacterIcons;
+    [SerializeField] private GameObject[] iconObjects;
     public enum characterIcons {Frog, Bunny, Duck, HoneyBadger };
 
     private void Start()
@@ -129,6 +129,25 @@ public class UIManager : MonoBehaviour
                 }
             }
 
+            for (int i = 0; i < GM.Players.Length; i++)
+            {
+                if (GM.PMs[i].PB.CharacterType.ID == 0)
+                {
+                    iconObjects[i].GetComponent<Image>().sprite = CharacterIcons[0];
+                }
+                else if (GM.PMs[i].PB.CharacterType.ID == 1)
+                {
+                    iconObjects[i].GetComponent<Image>().sprite = CharacterIcons[1];
+                }
+                else if (GM.PMs[i].PB.CharacterType.ID == 2)
+                {
+                    iconObjects[i].GetComponent<Image>().sprite = CharacterIcons[2];
+                }
+                else if (GM.PMs[i].PB.CharacterType.ID == 3)
+                {
+                    iconObjects[i].GetComponent<Image>().sprite = CharacterIcons[3];
+                }
+            }
 
             if (GM.PMs[0].PC.PauseDown || GM.PMs[1].PC.PauseDown || GM.PMs[2].PC.PauseDown || GM.PMs[3].PC.PauseDown)
             {
