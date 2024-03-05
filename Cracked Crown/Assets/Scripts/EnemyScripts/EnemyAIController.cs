@@ -283,7 +283,7 @@ public class EnemyAIController : AdvancedFSM
         if (CurrentState != null && act)
         {
             
-            Vector3 dropShadowPos = new Vector3(enemyPosition.position.x, -3.5f, enemyPosition.position.z);
+            Vector3 dropShadowPos = new Vector3(enemyPosition.position.x, -2.5f, enemyPosition.position.z);
             dropShadow.transform.position = dropShadowPos;
 
             if (CompareTag("Light"))
