@@ -113,6 +113,8 @@ public class EnemyAIController : AdvancedFSM
     public bool canPickup;
     public bool canWait;
 
+    public GameObject dropShadow;
+
    public Vector3 groundTrans;
 
     [SerializeField]
@@ -280,6 +282,19 @@ public class EnemyAIController : AdvancedFSM
         act = !LevelManager.Instance.loc;
         if (CurrentState != null && act)
         {
+            
+            Vector3 dropShadowPos = new Vector3(enemyPosition.position.x, -3.5f, enemyPosition.position.z);
+            dropShadow.transform.position = dropShadowPos;
+
+            if (CompareTag("Light"))
+            {
+                dropShadow.transform.localScale = new Vector3(7, 1.5f, 0.5f);
+            }
+            else
+            {
+                dropShadow.transform.localScale = new Vector3(13, 3, 0.5f);
+            }
+
             CurrentState.Reason(playerTransform, transform);
             CurrentState.Act(playerTransform, transform);
         }

@@ -115,7 +115,7 @@ public class PlayerBody : MonoBehaviour
     public int timesHit = 0;
     public Vector3 AttackVector;
     public bool Grabbed = false;
-
+    public GameObject dropShadow;
     //hey Ian dont know where you will want this bool
     public bool canRelease = false;
 
@@ -123,6 +123,28 @@ public class PlayerBody : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.K))
             ghostCoins += 5;
+
+        Vector3 dropShadowPos;
+        if (CharacterType != null)
+        {
+            if (CharacterType.ID != 2)
+                dropShadowPos = new Vector3(transform.position.x, -2f, transform.position.z);
+            else
+            {
+                dropShadowPos = new Vector3(transform.position.x, -4f, transform.position.z);
+            }
+
+            dropShadow.transform.position = dropShadowPos;
+        }
+        if (canMovePlayerForexecute)
+        {
+            dropShadow.SetActive(false);
+            enemyAIController.dropShadow.SetActive(false);
+        }
+        else
+        {
+            dropShadow.SetActive(true);
+        }
 
         if (!playerLock)
         {
@@ -251,6 +273,10 @@ public class PlayerBody : MonoBehaviour
             //}
             Move();
         }
+        else
+        {
+            animController.Moving = false;
+        }
     }
 
     public Vector3 GetMovementVector()
@@ -315,7 +341,19 @@ public class PlayerBody : MonoBehaviour
         {
             if (Vector3.Distance(transform.position, executeTarget.transform.position + forExecutePosition) < 5.0f && !lockExecAnim)
             {
-                animController.Finishing = true;
+                if (enemyAIController.tag.Equals("Medium"))
+                {
+                    animController.Finishing = true;
+                }
+                else if (enemyAIController.tag.Equals("Light"))
+                {
+                    animController.Finishing_Light = true;
+                }
+                else if (enemyAIController.tag.Equals("Heavy"))
+                {
+                    animController.Finishing_Heavy = true;
+                }
+                
                 lockExecAnim = true;
                 StartCoroutine(ExecuteCooldown());
             }

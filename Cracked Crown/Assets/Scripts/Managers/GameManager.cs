@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     }
     private LevelManager LM;
 
+    public GameObject PIM;
     public PlayerContainer[] Players;
     public PlayerManager[] PMs;
     public GameObject[] Characters;
@@ -49,7 +50,7 @@ public class GameManager : MonoBehaviour
         set { currentLevel = value; }
     }
     [Header("SceneInfo")]
-    private string currentLevelName;
+    public string currentLevelName;
     public string MainMenuName;
     public string CutSceneName;
     public string BossLevelName;
@@ -65,7 +66,7 @@ public class GameManager : MonoBehaviour
     public bool CampaignStart = false;
 
     public bool Pause = false;
-
+    public bool waitforvideo = true;
     public float eyeCount = 0;
 
     [SerializeField]
@@ -87,6 +88,7 @@ public class GameManager : MonoBehaviour
         {
             ReturnToMainMenu();
         }
+        
         Application.targetFrameRate = 120;
     }
     public GameObject enem;
@@ -110,6 +112,16 @@ public class GameManager : MonoBehaviour
             locker_Boss = true;
             LoadAScene("BossLevel");
         }
+
+        if (!waitforvideo && currentLevelName == MainMenuName)
+        {
+            MainMenu.SetActive(true);
+            PIM.SetActive(true);
+        }
+        else
+        {
+            MainMenu.SetActive(false);
+        }
     }
 
     public PlayerInput GetPlayer(int ID)
@@ -128,7 +140,8 @@ public class GameManager : MonoBehaviour
     {
         isLoading = true;
 
-        LoadingScreen.gameObject.SetActive(true);
+        if (!levelName.Equals(MainMenuName))
+            LoadingScreen.gameObject.SetActive(true);
         //yield return new WaitForSeconds(0.25f);
 
         if ((!string.IsNullOrEmpty(currentLevelName)))
@@ -171,10 +184,11 @@ public class GameManager : MonoBehaviour
         }
         else if (levelName.Equals(MainMenuName))
         {
+            waitforvideo = true;
             LM.ROOM_CLEARED = true;
             IsLevelCleared = true;
             currentLevelName = MainMenuName;
-            MainMenu.SetActive(true);
+            //MainMenu.SetActive(true);
             currentLevel = -1;
         }
         else if (levelName.Equals(BossLevelName))
