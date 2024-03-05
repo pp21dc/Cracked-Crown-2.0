@@ -91,6 +91,7 @@ public class GameManager : MonoBehaviour
     }
     public GameObject enem;
     bool locker;
+    bool locker_Boss;
     private void FixedUpdate()
     {
         if (Input.GetKeyUp(KeyCode.KeypadEnter))
@@ -103,6 +104,11 @@ public class GameManager : MonoBehaviour
         {
             locker = true;
             ReturnToMainMenu();
+        }
+        if (!locker_Boss && Input.GetKey(KeyCode.B))
+        {
+            locker_Boss = true;
+            LoadAScene("BossLevel");
         }
     }
 
@@ -151,7 +157,7 @@ public class GameManager : MonoBehaviour
 
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(levelName));
 
-        if (!levelName.Equals(MainMenuName) && currentLevel < levelName.Length)
+        if (!levelName.Equals(MainMenuName) && !levelName.Equals(BossLevelName) && currentLevel < levelName.Length)
         {
             //AudioManager.LoadLevelComplete();
             //Debug.Log(currentLevel);
@@ -171,6 +177,13 @@ public class GameManager : MonoBehaviour
             MainMenu.SetActive(true);
             currentLevel = -1;
         }
+        else if (levelName.Equals(BossLevelName))
+        {
+            LM.ROOM_CLEARED = true;
+            IsLevelCleared = true;
+            currentLevelName = BossLevelName;
+            currentLevel = -1;
+        }
         //yield return new WaitForSeconds(0.25f);
         //AudioManager.Instance.AudioFadeLevelStart();
 
@@ -181,8 +194,9 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         LoadingScreen.gameObject.SetActive(false);
         locker = false;
+        locker_Boss = false;
         //isLoading = false;
-        
+
     }
 
     public void SetPlayerPositions()
