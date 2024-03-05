@@ -66,6 +66,8 @@ public class PlayerBody : MonoBehaviour
     private GameObject throwableBombPrefab;
     [SerializeField]
     public SpriteRenderer spriteRenderer;
+    [SerializeField]
+    private CrabWalk crabController;
 
     public GameObject CharacterFolder;
     public bool canMove = true;
@@ -615,28 +617,67 @@ public class PlayerBody : MonoBehaviour
     {
         if (toExecute != null && canExecute)
         {
-            enemyAIController = toExecute.transform.parent.GetChild(0).GetComponent<EnemyAIController>();
-            executeTarget = toExecute;
-            float xInput = controller.HorizontalMagnitude;
+            if (toExecute.transform.parent.GetChild(0).GetComponent<EnemyAIController>() != null)
+            {
+                enemyAIController = toExecute.transform.parent.GetChild(0).GetComponent<EnemyAIController>();
+                executeTarget = toExecute;
+                float xInput = controller.HorizontalMagnitude;
 
-            controller.sprite = CharacterFolder.transform.GetChild(0);
-            float scale = Mathf.Abs(controller.sprite.localScale.x);
-            controller.sprite.localScale = new Vector3(scale, controller.sprite.localScale.y, 1); // to swap so its always facing enemy
+                controller.sprite = CharacterFolder.transform.GetChild(0);
+                float scale = Mathf.Abs(controller.sprite.localScale.x);
+                controller.sprite.localScale = new Vector3(scale, controller.sprite.localScale.y, 1); // to swap so its always facing enemy
 
-            canTakeDamage = false;
-            canMove = false;
-            canAttack = false;
-            enemyAIController.canMove = false;
-            canExecute = false;
-            canMovePlayerForexecute = true;
-            //Debug.Log("EXEC");
-            
-            
-            
-            yield return new WaitForSeconds(0);
-            toExecute.transform.parent.gameObject.SetActive(false);
-            if (LevelManager.Instance != null)
-                LevelManager.Instance.EnemyKilled();
+                canTakeDamage = false;
+                canMove = false;
+                canAttack = false;
+                enemyAIController.canMove = false;
+                canExecute = false;
+                canMovePlayerForexecute = true;
+                //Debug.Log("EXEC");
+
+
+
+                yield return new WaitForSeconds(0);
+                toExecute.transform.parent.gameObject.SetActive(false);
+                if (LevelManager.Instance != null)
+                    LevelManager.Instance.EnemyKilled();
+            }
+            else
+            {
+                crabController = toExecute.transform.parent.GetChild(0).GetComponent<CrabWalk>();
+                executeTarget = toExecute;
+                float xInput = controller.HorizontalMagnitude;
+
+                controller.sprite = CharacterFolder.transform.GetChild(0);
+                float scale = Mathf.Abs(controller.sprite.localScale.x);
+                controller.sprite.localScale = new Vector3(scale, controller.sprite.localScale.y, 1); // to swap so its always facing enemy
+
+                canTakeDamage = false;
+                canMove = false;
+                canAttack = false;
+                canExecute = false;
+                canMovePlayerForexecute = true;
+                //Debug.Log("EXEC");
+
+                // turn player sprite off for a second while animation
+                transform.parent.GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(false);
+
+                // turn trigger for execute animation on
+                if (CharacterType.ID == 1)
+                {
+                    crabController.animator.SetTrigger("BunnyExecute");
+                }
+                if (CharacterType.ID == 3)
+                {
+                    crabController.animator.SetTrigger("FrogExecute");
+                }
+
+                yield return new WaitForSeconds(1.0f);
+                transform.parent.GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(true);
+                toExecute.transform.parent.gameObject.SetActive(false);
+                if (LevelManager.Instance != null)
+                    LevelManager.Instance.EnemyKilled();
+            }
         }
     }
 

@@ -8,6 +8,8 @@ public class PrototypePrimaryAttack : MonoBehaviour
     private EnemyAIController enemyController;
     public PlayerBody playerBody;
 
+    private CrabWalk miniCrab;
+
     private void Awake()
     {
         //playerBody = gameObject.GetComponentInParent<PlayerBody>();
@@ -50,6 +52,11 @@ public class PrototypePrimaryAttack : MonoBehaviour
             {
                 bossController.decHealth(playerBody.damage);
             }
+        }
+        if (other.tag == "Mini Crab")
+        {
+            miniCrab = other.GetComponent<CrabWalk>();
+            miniCrab.health = 0;
         }
     }
 }

@@ -69,10 +69,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 16384
     resizeAlgorithm: 0
-    textureFormat: 4
-    textureCompression: 1
+    textureFormat: -1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -106,20 +106,939 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: bunnyFinishCrab_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2127
+        width: 1536
+        height: 709
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b990a007f29e22b47897cb09570d5460
+      internalID: -944630466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bunnyFinishCrab_1
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 2127
+        width: 1536
+        height: 709
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6b6b6c17f45bab44a2a608858db6fca
+      internalID: 1829327973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bunnyFinishCrab_2
+      rect:
+        serializedVersion: 2
+        x: 3072
+        y: 2127
+        width: 1536
+        height: 709
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4441d44e99043649aea871e0afdec93
+      internalID: 1428830618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bunnyFinishCrab_3
+      rect:
+        serializedVersion: 2
+        x: 4608
+        y: 2127
+        width: 1536
+        height: 709
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e84b8e10f2ec491489f7ace660abd6fa
+      internalID: -1697108673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bunnyFinishCrab_4
+      rect:
+        serializedVersion: 2
+        x: 6144
+        y: 2127
+        width: 1536
+        height: 709
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e6f853c4bf01834fa475048c3c4b897
+      internalID: 1655931859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bunnyFinishCrab_5
+      rect:
+        serializedVersion: 2
+        x: 7680
+        y: 2127
+        width: 1536
+        height: 709
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca3a1112feb8c1547812512ec41fc2d0
+      internalID: -155283396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bunnyFinishCrab_6
+      rect:
+        serializedVersion: 2
+        x: 9216
+        y: 2127
+        width: 1536
+        height: 709
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17e5b038a62f59c48a4db26067b32955
+      internalID: -58023023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bunnyFinishCrab_7
+      rect:
+        serializedVersion: 2
+        x: 10752
+        y: 2127
+        width: 1536
+        height: 709
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39418e1b5bab9524c92b34cb870c10bf
+      internalID: -1313457034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bunnyFinishCrab_8
+      rect:
+        serializedVersion: 2
+        x: 12288
+        y: 2127
+        width: 1536
+        height: 709
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e7f4a1a59470344ab0aa8a042eaec24
+      internalID: 721916760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bunnyFinishCrab_9
+      rect:
+        serializedVersion: 2
+        x: 13824
+        y: 2127
+        width: 1536
+        height: 709
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64bad3e292321af4f9c0789d40f56247
+      internalID: -1996904944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bunnyFinishCrab_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1418
+        width: 1536
+        height: 709
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24f85968e452e0f4bb2c5c90d971fa23
+      internalID: 117562030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bunnyFinishCrab_11
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 1418
+        width: 1536
+        height: 709
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2543b0584d8b66247a1474cf92b6f9de
+      internalID: 1149309668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bunnyFinishCrab_12
+      rect:
+        serializedVersion: 2
+        x: 3072
+        y: 1418
+        width: 1536
+        height: 709
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1438038e63b15e64ca78104a4c2f7c67
+      internalID: 71106355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bunnyFinishCrab_13
+      rect:
+        serializedVersion: 2
+        x: 4608
+        y: 1418
+        width: 1536
+        height: 709
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 605895bd47581de4aaf8beebec922e7a
+      internalID: 953521846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bunnyFinishCrab_14
+      rect:
+        serializedVersion: 2
+        x: 6144
+        y: 1418
+        width: 1536
+        height: 709
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76f13e6d47702e94ba62393ecff9ac12
+      internalID: -1784391820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bunnyFinishCrab_15
+      rect:
+        serializedVersion: 2
+        x: 7680
+        y: 1418
+        width: 1536
+        height: 709
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3e67b86ed461d74cbbe6442e5fea854
+      internalID: -360760155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bunnyFinishCrab_16
+      rect:
+        serializedVersion: 2
+        x: 9216
+        y: 1418
+        width: 1536
+        height: 709
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab4a675e970a664459dc3ea497890f1d
+      internalID: 1164623531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bunnyFinishCrab_17
+      rect:
+        serializedVersion: 2
+        x: 10752
+        y: 1418
+        width: 1536
+        height: 709
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f33876dbc951faa44b2b401c63cf0606
+      internalID: -676453923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bunnyFinishCrab_18
+      rect:
+        serializedVersion: 2
+        x: 12288
+        y: 1418
+        width: 1536
+        height: 709
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 757fd1a2b7d1bfe45ab5c44df725b416
+      internalID: 631163278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bunnyFinishCrab_19
+      rect:
+        serializedVersion: 2
+        x: 13824
+        y: 1418
+        width: 1536
+        height: 709
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c60573ea96e3d44db944a396bc79891
+      internalID: -1995648557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bunnyFinishCrab_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 709
+        width: 1536
+        height: 709
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c111de8abc150e84895a9d640011d6fe
+      internalID: -2142289273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bunnyFinishCrab_21
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 709
+        width: 1536
+        height: 709
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1049c3b17959fcd469d1d1a362f7db72
+      internalID: 353775570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bunnyFinishCrab_22
+      rect:
+        serializedVersion: 2
+        x: 3072
+        y: 709
+        width: 1536
+        height: 709
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f40a35a0a1df3940aef7b5d7a4ad865
+      internalID: -1511341816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bunnyFinishCrab_23
+      rect:
+        serializedVersion: 2
+        x: 4608
+        y: 709
+        width: 1536
+        height: 709
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3bf2875b260f74e428e492da5b7199f6
+      internalID: 1798302946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bunnyFinishCrab_24
+      rect:
+        serializedVersion: 2
+        x: 6144
+        y: 709
+        width: 1536
+        height: 709
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 761fab84724390347a261e745fbeb6ce
+      internalID: 256407738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bunnyFinishCrab_25
+      rect:
+        serializedVersion: 2
+        x: 7680
+        y: 709
+        width: 1536
+        height: 709
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5897da870e4e2f045b78c6a7b061daa2
+      internalID: -1419511245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bunnyFinishCrab_26
+      rect:
+        serializedVersion: 2
+        x: 9216
+        y: 709
+        width: 1536
+        height: 709
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9af1aeeb1271074d866ade1c4b46d43
+      internalID: 1282525826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bunnyFinishCrab_27
+      rect:
+        serializedVersion: 2
+        x: 10752
+        y: 709
+        width: 1536
+        height: 709
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 772465edbd122394290bb08c00f7e008
+      internalID: 450523034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bunnyFinishCrab_28
+      rect:
+        serializedVersion: 2
+        x: 12288
+        y: 709
+        width: 1536
+        height: 709
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75d2bb8b9b999bd42b075ff765666548
+      internalID: -1348873490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bunnyFinishCrab_29
+      rect:
+        serializedVersion: 2
+        x: 13824
+        y: 709
+        width: 1536
+        height: 709
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59a2e7fcaea4a3f43bd7aabd1ec24a54
+      internalID: -1838933251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bunnyFinishCrab_30
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1536
+        height: 709
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a734c06ac194f284487d49dfc726b537
+      internalID: 2035630806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bunnyFinishCrab_31
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 0
+        width: 1536
+        height: 709
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06f4798818d90bd45a99e99c884e1a82
+      internalID: -658167904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bunnyFinishCrab_32
+      rect:
+        serializedVersion: 2
+        x: 3072
+        y: 0
+        width: 1536
+        height: 709
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e815186762621e8408c9d37f3fc0324f
+      internalID: -192640029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bunnyFinishCrab_33
+      rect:
+        serializedVersion: 2
+        x: 4608
+        y: 0
+        width: 1536
+        height: 709
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 351e3316e2add8c4cbacd4f2e4b4ca53
+      internalID: 65144683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bunnyFinishCrab_34
+      rect:
+        serializedVersion: 2
+        x: 6144
+        y: 0
+        width: 1536
+        height: 709
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81dabd7f5fa34ef44bcc88075b9301a9
+      internalID: -1044529012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bunnyFinishCrab_35
+      rect:
+        serializedVersion: 2
+        x: 7680
+        y: 0
+        width: 1536
+        height: 709
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c188c57caa93f754c9f650e9c11b7e08
+      internalID: 127034742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bunnyFinishCrab_36
+      rect:
+        serializedVersion: 2
+        x: 9216
+        y: 0
+        width: 1536
+        height: 709
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af4745b0e5c23ba42b4bb63644d388c3
+      internalID: -147792462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bunnyFinishCrab_37
+      rect:
+        serializedVersion: 2
+        x: 10752
+        y: 0
+        width: 1536
+        height: 709
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dcf423fca0aa4e2479ee4e355533177d
+      internalID: -986568699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bunnyFinishCrab_38
+      rect:
+        serializedVersion: 2
+        x: 12288
+        y: 0
+        width: 1536
+        height: 709
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d932dc5390285c148b946aac7c6e8d17
+      internalID: -329118033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bunnyFinishCrab_39
+      rect:
+        serializedVersion: 2
+        x: 13824
+        y: 0
+        width: 1536
+        height: 709
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32197e9bfb087154b9d8cf33d38ad5fc
+      internalID: -239722854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 94c097b41849b8343bd5c9086216373c
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      bunnyFinishCrab_0: -944630466
+      bunnyFinishCrab_1: 1829327973
+      bunnyFinishCrab_10: 117562030
+      bunnyFinishCrab_11: 1149309668
+      bunnyFinishCrab_12: 71106355
+      bunnyFinishCrab_13: 953521846
+      bunnyFinishCrab_14: -1784391820
+      bunnyFinishCrab_15: -360760155
+      bunnyFinishCrab_16: 1164623531
+      bunnyFinishCrab_17: -676453923
+      bunnyFinishCrab_18: 631163278
+      bunnyFinishCrab_19: -1995648557
+      bunnyFinishCrab_2: 1428830618
+      bunnyFinishCrab_20: -2142289273
+      bunnyFinishCrab_21: 353775570
+      bunnyFinishCrab_22: -1511341816
+      bunnyFinishCrab_23: 1798302946
+      bunnyFinishCrab_24: 256407738
+      bunnyFinishCrab_25: -1419511245
+      bunnyFinishCrab_26: 1282525826
+      bunnyFinishCrab_27: 450523034
+      bunnyFinishCrab_28: -1348873490
+      bunnyFinishCrab_29: -1838933251
+      bunnyFinishCrab_3: -1697108673
+      bunnyFinishCrab_30: 2035630806
+      bunnyFinishCrab_31: -658167904
+      bunnyFinishCrab_32: -192640029
+      bunnyFinishCrab_33: 65144683
+      bunnyFinishCrab_34: -1044529012
+      bunnyFinishCrab_35: 127034742
+      bunnyFinishCrab_36: -147792462
+      bunnyFinishCrab_37: -986568699
+      bunnyFinishCrab_38: -329118033
+      bunnyFinishCrab_39: -239722854
+      bunnyFinishCrab_4: 1655931859
+      bunnyFinishCrab_5: -155283396
+      bunnyFinishCrab_6: -58023023
+      bunnyFinishCrab_7: -1313457034
+      bunnyFinishCrab_8: 721916760
+      bunnyFinishCrab_9: -1996904944
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

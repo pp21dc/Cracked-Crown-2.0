@@ -69,10 +69,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 16384
     resizeAlgorithm: 0
-    textureFormat: 4
-    textureCompression: 1
+    textureFormat: -1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -106,20 +106,719 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: frogFinishCrab_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1010
+        width: 869
+        height: 505
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d779e6c425534a4ca5fec3b2a769beb
+      internalID: -352894655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frogFinishCrab_1
+      rect:
+        serializedVersion: 2
+        x: 869
+        y: 1010
+        width: 869
+        height: 505
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9070bf59480041f4fb512e131c4ba81c
+      internalID: 586512219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frogFinishCrab_2
+      rect:
+        serializedVersion: 2
+        x: 1738
+        y: 1010
+        width: 869
+        height: 505
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba55379a026a59a4a88f202caa0542f3
+      internalID: 1194444319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frogFinishCrab_3
+      rect:
+        serializedVersion: 2
+        x: 2607
+        y: 1010
+        width: 869
+        height: 505
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04fd2ad4fa01e9b49a9c2b07bf65d0eb
+      internalID: 447705721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frogFinishCrab_4
+      rect:
+        serializedVersion: 2
+        x: 3476
+        y: 1010
+        width: 869
+        height: 505
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50ba2f7a1c4b2944fb2b1a7f4d2ba983
+      internalID: -1534033177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frogFinishCrab_5
+      rect:
+        serializedVersion: 2
+        x: 4345
+        y: 1010
+        width: 869
+        height: 505
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b0796388e29a954cafe17db2915cc37
+      internalID: 1306940438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frogFinishCrab_6
+      rect:
+        serializedVersion: 2
+        x: 5214
+        y: 1010
+        width: 869
+        height: 505
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3ba87647075cd543a797b5db8d6ccfc
+      internalID: -1359280707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frogFinishCrab_7
+      rect:
+        serializedVersion: 2
+        x: 6083
+        y: 1010
+        width: 869
+        height: 505
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c46a6a05f4019294489dcdee36b46ebe
+      internalID: 819950132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frogFinishCrab_8
+      rect:
+        serializedVersion: 2
+        x: 6952
+        y: 1010
+        width: 869
+        height: 505
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8fe5cf9639c71949b2c56f1b00958ed
+      internalID: 1838721443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frogFinishCrab_9
+      rect:
+        serializedVersion: 2
+        x: 7821
+        y: 1010
+        width: 869
+        height: 505
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb82ba7609c55234aaad98bb88f6f919
+      internalID: 1429656972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frogFinishCrab_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 505
+        width: 869
+        height: 505
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b996fb2df3c03d4fa0138fd02203e91
+      internalID: 1015260023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frogFinishCrab_11
+      rect:
+        serializedVersion: 2
+        x: 869
+        y: 505
+        width: 869
+        height: 505
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b69971e6f9a6bc543a62533ad13674ab
+      internalID: -450408598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frogFinishCrab_12
+      rect:
+        serializedVersion: 2
+        x: 1738
+        y: 505
+        width: 869
+        height: 505
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27115f56731a11d4bbc2bb974c7e8488
+      internalID: -905952834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frogFinishCrab_13
+      rect:
+        serializedVersion: 2
+        x: 2607
+        y: 505
+        width: 869
+        height: 505
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90b21c7e901790c438beaebd114654d7
+      internalID: 307055250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frogFinishCrab_14
+      rect:
+        serializedVersion: 2
+        x: 3476
+        y: 505
+        width: 869
+        height: 505
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1b266b200d0c1344bb92aa59c0f2bd2
+      internalID: -163674161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frogFinishCrab_15
+      rect:
+        serializedVersion: 2
+        x: 4345
+        y: 505
+        width: 869
+        height: 505
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5bc1d1e114dfec74aa6f6a7e148ca949
+      internalID: 32463251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frogFinishCrab_16
+      rect:
+        serializedVersion: 2
+        x: 5214
+        y: 505
+        width: 869
+        height: 505
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1161fea342b48e43a20095437a9179f
+      internalID: -214069264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frogFinishCrab_17
+      rect:
+        serializedVersion: 2
+        x: 6083
+        y: 505
+        width: 869
+        height: 505
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84cf03bf4462c7d479aecd8bbd30bcc5
+      internalID: -2054307276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frogFinishCrab_18
+      rect:
+        serializedVersion: 2
+        x: 6952
+        y: 505
+        width: 869
+        height: 505
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d08d617de87fa3f44a20bc846fc7eafa
+      internalID: 913573541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frogFinishCrab_19
+      rect:
+        serializedVersion: 2
+        x: 7821
+        y: 505
+        width: 869
+        height: 505
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cbd64e7f3fa7a6c4a971c208cc32226e
+      internalID: -1373442023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frogFinishCrab_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 869
+        height: 505
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5128581041b93934b90b0794798b04f9
+      internalID: -560129659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frogFinishCrab_21
+      rect:
+        serializedVersion: 2
+        x: 869
+        y: 0
+        width: 869
+        height: 505
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb26c0080a3834c45aac59c812fdb1ff
+      internalID: 334410340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frogFinishCrab_22
+      rect:
+        serializedVersion: 2
+        x: 1738
+        y: 0
+        width: 869
+        height: 505
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c9c1f0805b32de409901dc5443f222e
+      internalID: 830480666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frogFinishCrab_23
+      rect:
+        serializedVersion: 2
+        x: 2607
+        y: 0
+        width: 869
+        height: 505
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c65a5ecccd3a20e408fc94f88f2cefb3
+      internalID: 234324696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frogFinishCrab_24
+      rect:
+        serializedVersion: 2
+        x: 3476
+        y: 0
+        width: 869
+        height: 505
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7270ff2a242371844935e9cec3717e4f
+      internalID: -195346303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frogFinishCrab_25
+      rect:
+        serializedVersion: 2
+        x: 4345
+        y: 0
+        width: 869
+        height: 505
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84dc459b78f11004eaca8dc0959c34c9
+      internalID: -672550096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frogFinishCrab_26
+      rect:
+        serializedVersion: 2
+        x: 5214
+        y: 0
+        width: 869
+        height: 505
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cc8c877d8c4f834ea4189674f5307a1
+      internalID: -1427646716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frogFinishCrab_27
+      rect:
+        serializedVersion: 2
+        x: 6083
+        y: 0
+        width: 869
+        height: 505
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93fff0495709d144aa664b0475f0c0ae
+      internalID: 1260541285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frogFinishCrab_28
+      rect:
+        serializedVersion: 2
+        x: 6952
+        y: 0
+        width: 869
+        height: 505
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0e3c4d8447cd6a40b6633b38d8c76d5
+      internalID: 1296759357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: frogFinishCrab_29
+      rect:
+        serializedVersion: 2
+        x: 7821
+        y: 0
+        width: 869
+        height: 505
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 300a9b367f01d5e40b2ee63c467fda56
+      internalID: -137550524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: f32c71abad5afb64195f18e1d78ccaee
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      frogFinishCrab_0: -352894655
+      frogFinishCrab_1: 586512219
+      frogFinishCrab_10: 1015260023
+      frogFinishCrab_11: -450408598
+      frogFinishCrab_12: -905952834
+      frogFinishCrab_13: 307055250
+      frogFinishCrab_14: -163674161
+      frogFinishCrab_15: 32463251
+      frogFinishCrab_16: -214069264
+      frogFinishCrab_17: -2054307276
+      frogFinishCrab_18: 913573541
+      frogFinishCrab_19: -1373442023
+      frogFinishCrab_2: 1194444319
+      frogFinishCrab_20: -560129659
+      frogFinishCrab_21: 334410340
+      frogFinishCrab_22: 830480666
+      frogFinishCrab_23: 234324696
+      frogFinishCrab_24: -195346303
+      frogFinishCrab_25: -672550096
+      frogFinishCrab_26: -1427646716
+      frogFinishCrab_27: 1260541285
+      frogFinishCrab_28: 1296759357
+      frogFinishCrab_29: -137550524
+      frogFinishCrab_3: 447705721
+      frogFinishCrab_4: -1534033177
+      frogFinishCrab_5: 1306940438
+      frogFinishCrab_6: -1359280707
+      frogFinishCrab_7: 819950132
+      frogFinishCrab_8: 1838721443
+      frogFinishCrab_9: 1429656972
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

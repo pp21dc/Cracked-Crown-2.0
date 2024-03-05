@@ -27,8 +27,7 @@ public class FinisherCollider : MonoBehaviour
                 if (enemy != null && enemy.transform.parent.gameObject.activeSelf)
                 {
 
-                    
-                    if (enemy.gameObject.GetComponent<EnemyAIController>().inFinish && PB.canExecute) // if health is less then 50% can execute
+                    if ((enemy.gameObject.GetComponent<EnemyAIController>() != null && enemy.gameObject.GetComponent<EnemyAIController>().inFinish && PB.canExecute)) // if health is less then 50% can execute
                     {
                         if (Vector3.Distance(enemy.transform.position, PB.transform.position) > distance)
                         {
@@ -37,6 +36,15 @@ public class FinisherCollider : MonoBehaviour
                             e = enemy;
                         }
                         
+                    }
+                    else if (enemy.gameObject.GetComponent<CrabWalk>() != null && PB.canExecute)
+                    {
+                        if (Vector3.Distance(enemy.transform.position, PB.transform.position) > distance)
+                        {
+                            //PB.canExecute = false;
+                            distance = Vector3.Distance(enemy.transform.position, PB.transform.position);
+                            e = enemy;
+                        }
                     }
                 }
                 
@@ -59,7 +67,7 @@ public class FinisherCollider : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Enemy")
+        if (other.gameObject.tag == "Enemy" || other.gameObject.tag == "Mini Crab")
         {
             enemiesInRange.Add(other.transform.parent.GetChild(0).gameObject); // add enemy to nearby list
         }
@@ -67,7 +75,7 @@ public class FinisherCollider : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Enemy")
+        if (other.gameObject.tag == "Enemy" || other.gameObject.tag == "Mini Crab")
         {
             enemiesInRange.Remove(other.transform.parent.GetChild(0).gameObject);
         }
