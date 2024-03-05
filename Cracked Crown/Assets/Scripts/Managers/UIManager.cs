@@ -149,7 +149,7 @@ public class UIManager : MonoBehaviour
                 }
             }
 
-            if (GM.PMs[0].PC.PauseDown || GM.PMs[1].PC.PauseDown || GM.PMs[2].PC.PauseDown || GM.PMs[3].PC.PauseDown)
+            if (GM.PMs[0].PC.PauseDown)
             {
                 if (PauseMenu.activeSelf == false)
                 {
