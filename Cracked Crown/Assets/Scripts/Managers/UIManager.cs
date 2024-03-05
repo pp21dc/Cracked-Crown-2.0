@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.Mathematics;
 using UnityEditor;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.EventSystems;
@@ -12,6 +13,9 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+
+    [SerializeField] Sprite bomb;
+    [SerializeField] Sprite potion;
     [Header("Game Manager")]
     [SerializeField] GameManager GM;
 
@@ -48,6 +52,9 @@ public class UIManager : MonoBehaviour
     private float player2ShineTimer = 0f;
     private float player3ShineTimer = 0f;
     private float player4ShineTimer = 0f;
+
+    [Header("Item Ring Images")]
+    [SerializeField] private Image[] playerItems = new Image[4];
 
     [Header("Health Bars")]
     [SerializeField] private GameObject player1HealthBarObj;
@@ -93,7 +100,8 @@ public class UIManager : MonoBehaviour
     }
     private void Update()
     {
-        if (GM.PMs == null)
+
+        if (GM.PMs != null)
         {
             //CheckPlayerHealths();
             for (int i = 0; i < GM.Players.Length; i++)
@@ -102,7 +110,26 @@ public class UIManager : MonoBehaviour
             }
 
 
-        
+            for (int i = 0; i < GM.Players.Length; i++)
+            {
+                if (GM.PMs[i].PB.hasBomb)
+                {
+                    playerItems[i].color = new Color(1, 1, 1, 1);
+                    playerItems[i].sprite = bomb;
+                }
+                else if (GM.PMs[i].PB.hasPotion)
+                {
+                    playerItems[i].color = new Color(1, 1, 1, 1);
+                    playerItems[i].sprite = potion;
+                }
+                else if (!GM.PMs[i].PB.hasPotion && !GM.PMs[i].PB.hasBomb)
+                {
+                    playerItems[i].sprite = null;
+                    playerItems[i].color = new Color(1, 1, 1, 0);
+                }
+            }
+
+
             if (GM.PMs[0].PC.PauseDown || GM.PMs[1].PC.PauseDown || GM.PMs[2].PC.PauseDown || GM.PMs[3].PC.PauseDown)
             {
                 if (PauseMenu.activeSelf == false)
@@ -111,8 +138,8 @@ public class UIManager : MonoBehaviour
                 }
             }
         }
-        
 
+        
         //RecordPlayerHealths();
     }
 
