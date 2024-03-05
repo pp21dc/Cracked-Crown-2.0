@@ -21,7 +21,12 @@ public abstract class AIProperties // the properties that are most commonly used
 
 public class EnemyAIController : AdvancedFSM
 {
-
+    [SerializeField]
+    public GameObject stunObj;
+    [SerializeField]
+    Material baseMat;
+    [SerializeField]
+    Material whiteMat;
 
     [SerializeField]
     public EnemyAnimationController EAC;
@@ -1067,11 +1072,11 @@ public class EnemyAIController : AdvancedFSM
 
     public IEnumerator FlashRed(SpriteRenderer s)
     {
-        s.color = Color.red;
+        s.material = whiteMat;
 
         yield return new WaitForSeconds(0.15f);
 
-        s.color = Color.white;
+        s.material = baseMat;
 
     }
 
