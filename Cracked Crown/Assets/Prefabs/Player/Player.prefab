@@ -447,10 +447,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4632887959623735939}
   - component: {fileID: 6988645337432390208}
-  - component: {fileID: 2412678414072312596}
-  - component: {fileID: 3787834794954643774}
   - component: {fileID: 6405515692808277299}
   - component: {fileID: 943302644057217908}
+  - component: {fileID: 6742442680181730434}
+  - component: {fileID: 3281590580112722476}
   m_Layer: 0
   m_Name: Player Body
   m_TagString: Player
@@ -485,9 +485,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8845344526142950172}
   serializedVersion: 4
-  m_Mass: 2
+  m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -499,57 +499,11 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 1
---- !u!136 &2412678414072312596
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8845344526142950172}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 6.34
-  m_Height: 12.68
-  m_Direction: 1
-  m_Center: {x: 1.6599998, y: 7.05, z: 0}
---- !u!136 &3787834794954643774
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8845344526142950172}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 7.47
-  m_Height: 31.316772
-  m_Direction: 1
-  m_Center: {x: 1.6199999, y: 6.271614, z: 0}
 --- !u!114 &6405515692808277299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -614,6 +568,7 @@ MonoBehaviour:
   playerLock: 0
   timesHit: 0
   AttackVector: {x: 0, y: 0, z: 0}
+  Grabbed: 0
   canRelease: 0
   sprite: {fileID: 0}
   movementVector: {x: 0, y: 0, z: 0}
@@ -638,6 +593,48 @@ MonoBehaviour:
   Animator: {fileID: 0}
   CharacterFolder: {fileID: 4150222539546649084}
   dashing: 0
+--- !u!65 &6742442680181730434
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8845344526142950172}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 6.21, y: 5.2, z: 4.09}
+  m_Center: {x: 0, y: 3.12, z: -2.34}
+--- !u!65 &3281590580112722476
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8845344526142950172}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 6.21, y: 5.2, z: 4.09}
+  m_Center: {x: 0, y: 3.12, z: -2.34}
 --- !u!1 &9142403004721322815
 GameObject:
   m_ObjectHideFlags: 0

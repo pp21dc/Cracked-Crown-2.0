@@ -11,6 +11,11 @@ public class SlamAttack : MonoBehaviour
     public PlayerBody hitPlayer;
     public GameObject hitPlayerBody;
 
+    private void Start()
+    {
+        Physics.IgnoreLayerCollision(0, 8);
+    }
+
     public void OnEnable()
     {
         hasHit = false;

@@ -121,6 +121,9 @@ public class PlayerBody : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKey(KeyCode.K))
+            ghostCoins += 5;
+
         if (!playerLock)
         {
             if (PM != null)
@@ -185,13 +188,15 @@ public class PlayerBody : MonoBehaviour
             Attack();
             Dash();
             UseItem();
-            if (rb.useGravity)
-                rb.velocity = new Vector3(rb.velocity.x, (-9.81f) * (rb.mass), rb.velocity.z);
-            else
-                rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+
+            if (transform.position.y < 2)
+                vely = 0;
+            vely += -9.81f;
+
+            rb.velocity = new Vector3(rb.velocity.x, vely, rb.velocity.z);
         }
     }
-
+    float vely = 0;
     private IEnumerator executeAfterRevive()
     {
         yield return new WaitForSeconds(1f);
@@ -353,6 +358,10 @@ public class PlayerBody : MonoBehaviour
 
     private IEnumerator DamageColourFlash()
     {
+        if (spriteRenderer == null)
+        {
+            spriteRenderer = transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<SpriteRenderer>();
+        }
         spriteRenderer.color = Color.red;
         yield return new WaitForSeconds(0.25f);
         spriteRenderer.color = Color.white;
@@ -795,10 +804,15 @@ public class PlayerBody : MonoBehaviour
         canMove = true;
         canAttack = true;
     }
-
+    float i = 0;
     public void MoveToEnemy(GameObject enemyBody)
     {
-        gameObject.transform.position = new Vector3(enemyBody.transform.position.x, enemyBody.transform.position.y - 7, enemyBody.transform.position.z);
+        while (i < 5)
+        {
+            i += Time.deltaTime;
+            gameObject.transform.position = new Vector3(enemyBody.transform.position.x, enemyBody.transform.position.y - 5, enemyBody.transform.position.z);
+        }
+        i = 0;
     }
 
 }

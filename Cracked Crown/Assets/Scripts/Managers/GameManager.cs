@@ -90,20 +90,20 @@ public class GameManager : MonoBehaviour
         Application.targetFrameRate = 120;
     }
     public GameObject enem;
+    bool locker;
     private void FixedUpdate()
     {
         if (Input.GetKeyUp(KeyCode.KeypadEnter))
         {
             StartNewGame();
         }
-        if (Input.GetKeyUp(KeyCode.N))
-        {
-            Debug.Log(currentLevel);
-            NextLevel();
-        }
         if (Input.GetKeyUp(KeyCode.H))
             SetPlayerPositions();
-
+        if (!locker && Input.GetKey(KeyCode.M))
+        {
+            locker = true;
+            ReturnToMainMenu();
+        }
     }
 
     public PlayerInput GetPlayer(int ID)
@@ -180,7 +180,7 @@ public class GameManager : MonoBehaviour
         // playerGO.SetActive(false);
         Time.timeScale = 1;
         LoadingScreen.gameObject.SetActive(false);
-
+        locker = false;
         //isLoading = false;
         
     }
