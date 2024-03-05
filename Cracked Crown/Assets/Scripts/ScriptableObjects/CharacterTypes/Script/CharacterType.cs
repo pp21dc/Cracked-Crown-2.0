@@ -18,4 +18,6 @@ public class CharacterType : ScriptableObject
     public Vector3 executePosition;
     public GameObject corpse;
     public bool hop;
+
+    public AudioClip[] soundeffects;
 }
