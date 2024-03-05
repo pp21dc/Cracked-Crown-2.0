@@ -10577,10 +10577,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0566c6dc80700c4587d054f1e1c8ccc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PIM: {fileID: 0}
   Players: []
   PMs: []
   Characters: []
   levelNames: []
+  currentLevelName: 
   MainMenuName: 
   CutSceneName: 
   BossLevelName: 
@@ -10591,6 +10593,7 @@ MonoBehaviour:
   LoadingScreen: {fileID: 0}
   CampaignStart: 0
   Pause: 0
+  waitforvideo: 1
   eyeCount: 0
   spawnPoints: []
   enem: {fileID: 0}
