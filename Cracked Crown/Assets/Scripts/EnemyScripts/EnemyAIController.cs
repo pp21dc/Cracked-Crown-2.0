@@ -130,8 +130,15 @@ public class EnemyAIController : AdvancedFSM
     [SerializeField]
     private Vector3 randTrans;
 
-    
-
+    public int maxAmmo = 10;
+    public int heavyBullets = 10;
+    public bool doneReloading;
+    public bool doneShockwave;
+    public bool startShooting;
+    public bool startShock;
+    public bool startReload;
+    public bool canShoot;
+    public GameObject tooth;
 
     //health, finisher, and death states
     public float maxHealth = 40; // its total Health
@@ -202,10 +209,7 @@ public class EnemyAIController : AdvancedFSM
         {
             state = "RELOAD";
         }
-        else if (CurrentState.ID == FSMStateID.Hole)
-        {
-            state = "HOLE";
-        }
+        
         
 
 
@@ -277,6 +281,17 @@ public class EnemyAIController : AdvancedFSM
         GM = GameManager.Instance;
         groundTrans = ground.transform.position;
 
+        doneReloading = false;
+        doneShockwave = false;
+        startReload = true;
+        startShock = true;
+        startShooting = true;
+        canShoot = true;
+        maxAmmo = 10;
+        heavyBullets = 10;
+
+
+
         ConstructFSM();
     }
     public bool act = false;
@@ -342,7 +357,7 @@ public class EnemyAIController : AdvancedFSM
 
         //ded
         DeadState deadState = new DeadState(this);
-        deadState.AddTransition(Transition.WasNotExecuted, FSMStateID.Hole);
+        
 
         //light enemy states down here
 
@@ -381,6 +396,7 @@ public class EnemyAIController : AdvancedFSM
         gunState.AddTransition(Transition.NoBullets, FSMStateID.Reload);
         gunState.AddTransition(Transition.LowHealth, FSMStateID.Finished);
         gunState.AddTransition(Transition.NoHealth, FSMStateID.Dead);
+        
 
         //sends out a mini shockwave to knock players away from it, Tranisition if done to find player, low health if finish, no health to dead
         ShockwaveState shockwaveState = new ShockwaveState(this);
@@ -393,9 +409,10 @@ public class EnemyAIController : AdvancedFSM
         reloadState.AddTransition(Transition.LookForPlayer, FSMStateID.FindPlayer);
         reloadState.AddTransition(Transition.LowHealth, FSMStateID.Finished);
         reloadState.AddTransition(Transition.NoHealth, FSMStateID.Dead);
+        reloadState.AddTransition(Transition.InShockwaveRange, FSMStateID.Shockwave);
 
         //hole
-        HoleState holeState = new HoleState(this);
+        
 
 
         //Add all states to the state list
@@ -414,7 +431,7 @@ public class EnemyAIController : AdvancedFSM
         AddFSMState(gunState);
         AddFSMState(shockwaveState);
         AddFSMState(reloadState);
-        AddFSMState(holeState);
+        
         
         
     }
@@ -1068,6 +1085,87 @@ public class EnemyAIController : AdvancedFSM
         }
         knockback = false;
         knockbackTimer = 0;
+    }
+
+    public void StartShooting()
+    {
+        if(startShooting)
+        {
+            startShooting = false;
+            StartCoroutine(ShootRoutine());
+        }
+    }
+
+    IEnumerator ShootRoutine()
+    {
+        while (canShoot)
+        {
+            StartShootTeeth(enemyPosition, fireLocation);
+            maxAmmo--;
+            yield return new WaitForSeconds(0.45f);
+        }
+    }
+
+    private void StartShootTeeth(Transform body, Transform fireLocation)
+    {
+        if (tooth)
+        {
+            Vector3 direction = fireLocation.position - body.position;
+            direction.y = 0;
+            
+            direction.Normalize();
+
+            GameObject ToothGO = GameObject.Instantiate(tooth, fireLocation.position, Quaternion.identity);
+            Tooth Tooth = ToothGO.GetComponent<Tooth>();
+            ToothGO.SetActive(true);
+            Tooth.Fire(direction);
+        }
+    }
+
+    public void ResetShotVar()
+    {
+        startShooting = true;
+    }
+
+    public void StartShockwave()
+    {
+
+    }
+
+    public void ResetShockVar()
+    {
+        startShock = true;
+        doneShockwave = false;
+    }
+
+    public void StartReload()
+    {
+
+        if(startReload)
+        {
+            startReload = false;
+            StartCoroutine(Reload());
+        }
+
+        
+    }
+
+    IEnumerator Reload()
+    {
+
+        yield return new WaitForSeconds(3f);
+
+        heavyBullets = 10;
+        doneReloading = true;
+
+        yield return null;
+    }   
+    
+    public void ResetReloadVar()
+    {
+        startReload = true;
+        doneReloading = false;
+        canShoot = true;
     }
 
     public IEnumerator FlashRed(SpriteRenderer s)

@@ -19,11 +19,38 @@ public class ReloadState : FSMState
     //creates transition reasoning for if the enemy has no health, die, if the enemy has low health, flee, and if the enemy is in range of the player, attack
     public override void Reason(Transform player, Transform npc)
     {
-
+        if (enemy.Health <= 20 && enemy.Health >= 1)
+        {
+            enemy.PerformTransition(Transition.LowHealth);
+            return;
+        }
         if (enemy.Health <= 0)
         {
             enemy.PerformTransition(Transition.NoHealth);
+            return;
         }
+        else if(enemy.doneReloading == true)
+        {
+
+            enemy.ResetReloadVar();
+
+            if (IsInCurrentRange(npc, player.position, 15f))
+            {
+                enemy.PerformTransition(Transition.InShootingRange);
+                return;
+            }
+            else if (IsInCurrentRange(npc, player.position, 4.5f))
+            {
+                enemy.PerformTransition(Transition.InShockwaveRange);
+                return;
+            }
+            else
+            {
+                enemy.PerformTransition(Transition.LookForPlayer);
+                return;
+            }
+        }
+
 
 
     }

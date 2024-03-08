@@ -33,7 +33,7 @@ public enum Transition
     InShootingRange,
     InShockwaveRange,
     NoBullets,
-    WasNotExecuted
+    
     
 }
 
@@ -57,8 +57,8 @@ public enum FSMStateID
     //Heavy States
     Gun,
     Shockwave,
-    Reload,
-    Hole
+    Reload
+    
     
 }
 
