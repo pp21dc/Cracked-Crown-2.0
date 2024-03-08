@@ -369,6 +369,8 @@ public class PlayerBody : MonoBehaviour
                 Vector3 test = Vector3.MoveTowards(gameObject.transform.position, epicgamer, executeMoveSpeed * Time.deltaTime);
                 test.y = 0;
                 transform.position = test;
+                lockDash = true;
+                canMove = false;
 
                 if (enemyAIController != null)
                 {
@@ -425,11 +427,13 @@ public class PlayerBody : MonoBehaviour
         canExecute = true;
         canMove = true;
         canTakeDamage = true;
-        lockDash = false;
         canAttack = true;
         executeLock = false;
         //playerLock = false;
-        
+
+        yield return new WaitForSeconds(1.3f);
+
+        lockDash = false;
     }
 
     public bool lockExecAnim;
@@ -527,7 +531,7 @@ public class PlayerBody : MonoBehaviour
         lockHitForward = false;
     }
     
-    private IEnumerator backwardHit()
+    public IEnumerator backwardHit()
     {
         lockHitBackward = true;
         dontForward = false;
@@ -670,6 +674,7 @@ public class PlayerBody : MonoBehaviour
                 enemyAIController.canMove = false;
                 canExecute = false;
                 executeLock = true;
+                lockDash = true;
                 //playerLock = true;
                 canMovePlayerForexecute = true;
                 //Debug.Log("EXEC");
@@ -699,6 +704,7 @@ public class PlayerBody : MonoBehaviour
                     canExecute = false;
                     //playerLock = true;
                     canMovePlayerForexecute = true;
+                    lockDash = true;
                     //Debug.Log("EXEC");
 
                     // turn player sprite off for a second while animation because animation is on crab
@@ -909,6 +915,8 @@ public class PlayerBody : MonoBehaviour
 
     private IEnumerator ExecuteCooldown()
     {
+        yield return new WaitForSeconds(1.25f);
+        lockDash = false;
 
         yield return new WaitForSeconds(2.5f);
         canExecute = true;

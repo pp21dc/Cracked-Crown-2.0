@@ -58,5 +58,11 @@ public class PrototypePrimaryAttack : MonoBehaviour
             miniCrab = other.GetComponent<CrabWalk>();
             miniCrab.health = 0;
         }
+        //if (other.tag == "Player")
+        //{
+        //    PlayerBody otherPlayer = other.gameObject.GetComponent<PlayerBody>();
+        //    otherPlayer.DecHealth();
+        //    StartCoroutine(playerBody.backwardHit());
+        //}
     }
 }
