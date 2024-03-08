@@ -36,7 +36,7 @@ public class CrabWalk : MonoBehaviour
             if (health <= 0)
             {
                 // play death animation
-                animator.SetTrigger("Death");
+                animator.SetBool("Death", true);
                 speed = 0;
                 StartCoroutine(deathTime());
             }

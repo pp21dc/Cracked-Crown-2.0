@@ -705,11 +705,11 @@ public class PlayerBody : MonoBehaviour
                 // turn trigger for execute animation on
                 if (CharacterType.ID == 1)
                 {
-                    crabController.animator.SetTrigger("BunnyExecute");
+                    crabController.animator.SetBool("BunnyExecute", true);
                 }
                 if (CharacterType.ID == 3)
                 {
-                    crabController.animator.SetTrigger("FrogExecute");
+                    crabController.animator.SetBool("FrogExecute", true);
                 }
 
                 yield return new WaitForSeconds(1.0f);
