@@ -699,7 +699,7 @@ public class PlayerBody : MonoBehaviour
                 canMovePlayerForexecute = true;
                 //Debug.Log("EXEC");
 
-                // turn player sprite off for a second while animation
+                // turn player sprite off for a second while animation because animation is on crab
                 transform.parent.GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(false);
 
                 // turn trigger for execute animation on

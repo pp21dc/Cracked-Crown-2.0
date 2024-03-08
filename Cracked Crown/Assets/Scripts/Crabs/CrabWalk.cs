@@ -30,7 +30,7 @@ public class CrabWalk : MonoBehaviour
             }
             else
             {
-                animator.SetTrigger("AtPosition");
+                animator.SetBool("AtPosition", true);
             }
 
             if (health <= 0)

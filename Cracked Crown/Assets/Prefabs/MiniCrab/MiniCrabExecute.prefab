@@ -90,13 +90,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5075398684801446266}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.3420201, y: 0, z: 0, w: 0.9396927}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 6.174837, y: 6.174837, z: 6.174837}
+  m_LocalScale: {x: 3.5, y: 3.5, z: 3.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7885973986123222847}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 40, y: 0, z: 0}
 --- !u!212 &5303777006713748926
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -184,7 +184,7 @@ GameObject:
   - component: {fileID: 399726684718868117}
   m_Layer: 0
   m_Name: Body
-  m_TagString: Mini Crab
+  m_TagString: MiniCrabExecutable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
