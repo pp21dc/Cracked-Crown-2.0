@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerAnimEventHandler : MonoBehaviour
 {
     public PlayerContainer PC;
-
+    public PlayerAudioManager PAM;
     private void Awake()
     {
         PC = transform.parent.parent.parent.parent.GetComponent<PlayerContainer>();
@@ -61,5 +61,9 @@ public class PlayerAnimEventHandler : MonoBehaviour
 
     }
 
-    //public void 
+    public void SFX(int type)
+    {
+        PlayerAudioManager.AudioType audioType = PAM.audioTypes[type];
+        PAM.PlayAudio(audioType);
+    }
 }

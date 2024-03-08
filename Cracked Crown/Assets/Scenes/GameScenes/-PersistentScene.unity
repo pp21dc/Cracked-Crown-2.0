@@ -2169,6 +2169,7 @@ GameObject:
   - component: {fileID: 1105187858}
   - component: {fileID: 1105187860}
   - component: {fileID: 1105187859}
+  - component: {fileID: 1105187861}
   m_Layer: 0
   m_Name: alaracam
   m_TagString: Untagged
@@ -2286,6 +2287,14 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!81 &1105187861
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1105187857}
+  m_Enabled: 1
 --- !u!1 &1138719615
 GameObject:
   m_ObjectHideFlags: 0

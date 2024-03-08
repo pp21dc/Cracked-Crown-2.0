@@ -6,10 +6,25 @@ public class PlayerAudioManager : MonoBehaviour
 {
     [SerializeField]
     private AudioSource AS;
-
+    [SerializeField]
+    PlayerAnimEventHandler PAEH;
+    [SerializeField]
+    PlayerContainer PC;
     [SerializeField]
     [Tooltip("This list can be exchanged depending on character type | Refer to 'enum' in script for order of audio placement in list")]
     private AudioClip[] Player_AudioClips;
+
+    private void Start()
+    {
+        PC = PAEH.PC;
+    }
+
+    private void Update()
+    {
+        PC = PAEH.PC;
+        if (PC != null )
+            Player_AudioClips = PC.PB.CharacterType.soundeffects;
+    }
 
     public enum AudioType
     {
@@ -21,6 +36,8 @@ public class PlayerAudioManager : MonoBehaviour
         Move,
         Dash
     }
+
+    public AudioType[] audioTypes;
 
     public void NewClip(AudioClip newClipToPlay)
     {
