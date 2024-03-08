@@ -8,7 +8,7 @@ public class CrabWalk : MonoBehaviour
     private float speed = 15.0f;
     public float health = 1.0f;
     public Animator animator;
-    private bool hasDied = false;
+    public bool hasDied = false;
 
     [SerializeField]
     private Transform finalPos;
@@ -30,13 +30,13 @@ public class CrabWalk : MonoBehaviour
             }
             else
             {
-                animator.SetTrigger("AtPosition");
+                animator.SetBool("AtPosition", true);
             }
 
             if (health <= 0)
             {
                 // play death animation
-                animator.SetTrigger("Death");
+                animator.SetBool("Death", true);
                 speed = 0;
                 StartCoroutine(deathTime());
             }

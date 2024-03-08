@@ -50,7 +50,7 @@ public class OpeningVideoController : MonoBehaviour
         }
 
         //Closes the video player setup once the 3rd video is done
-        if(j == 2 && players[2].isPaused)
+        if((j == 2 && players[2].isPaused) || (j == 2 && Input.anyKeyDown))
         {
             players[2].enabled = false;
             GameManager.Instance.waitforvideo = false;

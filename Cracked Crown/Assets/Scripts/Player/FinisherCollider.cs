@@ -67,7 +67,7 @@ public class FinisherCollider : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Enemy" || other.gameObject.tag == "Mini Crab")
+        if (other.gameObject.tag == "Enemy" || other.gameObject.tag == "MiniCrabExecutable")
         {
             enemiesInRange.Add(other.transform.parent.GetChild(0).gameObject); // add enemy to nearby list
         }
@@ -75,7 +75,7 @@ public class FinisherCollider : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Enemy" || other.gameObject.tag == "Mini Crab")
+        if (other.gameObject.tag == "Enemy" || other.gameObject.tag == "MiniCrabExecutable")
         {
             enemiesInRange.Remove(other.transform.parent.GetChild(0).gameObject);
         }

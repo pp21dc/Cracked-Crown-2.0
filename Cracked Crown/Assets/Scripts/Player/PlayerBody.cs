@@ -691,30 +691,33 @@ public class PlayerBody : MonoBehaviour
                 float scale = Mathf.Abs(controller.sprite.localScale.x);
                 controller.sprite.localScale = new Vector3(scale, controller.sprite.localScale.y, 1); // to swap so its always facing enemy
 
-                canTakeDamage = false;
-                canMove = false;
-                canAttack = false;
-                canExecute = false;
-                //playerLock = true;
-                canMovePlayerForexecute = true;
-                //Debug.Log("EXEC");
-
-                // turn player sprite off for a second while animation
-                transform.parent.GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(false);
-
-                // turn trigger for execute animation on
-                if (CharacterType.ID == 1)
+                if (crabController.hasDied == false)
                 {
-                    crabController.animator.SetTrigger("BunnyExecute");
-                }
-                if (CharacterType.ID == 3)
-                {
-                    crabController.animator.SetTrigger("FrogExecute");
-                }
+                    canTakeDamage = false;
+                    canMove = false;
+                    canAttack = false;
+                    canExecute = false;
+                    //playerLock = true;
+                    canMovePlayerForexecute = true;
+                    //Debug.Log("EXEC");
 
-                yield return new WaitForSeconds(1.0f);
-                transform.parent.GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(true);
-                toExecute.transform.parent.gameObject.SetActive(false);
+                    // turn player sprite off for a second while animation because animation is on crab
+                    transform.parent.GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(false);
+
+                    // turn trigger for execute animation on
+                    if (CharacterType.ID == 1)
+                    {
+                        crabController.animator.SetBool("BunnyExecute", true);
+                    }
+                    if (CharacterType.ID == 3)
+                    {
+                        crabController.animator.SetBool("FrogExecute", true);
+                    }
+
+                    yield return new WaitForSeconds(1.0f);
+                    transform.parent.GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(true);
+                    toExecute.transform.parent.gameObject.SetActive(false);
+                }
             }
         }
     }

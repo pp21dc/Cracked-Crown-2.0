@@ -53,7 +53,7 @@ public class PrototypePrimaryAttack : MonoBehaviour
                 bossController.decHealth(playerBody.damage);
             }
         }
-        if (other.tag == "Mini Crab")
+        if (other.tag == "Mini Crab" || other.tag == "MiniCrabExecutable")
         {
             miniCrab = other.GetComponent<CrabWalk>();
             miniCrab.health = 0;
