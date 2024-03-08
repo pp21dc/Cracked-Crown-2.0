@@ -918,7 +918,7 @@ public class PlayerBody : MonoBehaviour
         yield return new WaitForSeconds(1.25f);
         lockDash = false;
 
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(1.5f);
         canExecute = true;
         canMovePlayerForexecute = false;
         //playerLock = false;
