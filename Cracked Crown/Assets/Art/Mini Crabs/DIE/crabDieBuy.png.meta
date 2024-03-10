@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 3a35edd5ae9771c4eb7ea130f6fa3f39
+guid: cbbc20122d00e354da4eb2bd0c0f1a6a
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: 4
     textureCompression: 1
@@ -106,50 +106,11 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: 4
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: iPhone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: 4
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: 4
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: crabWalkFinish_0
+      name: crabDieBuy_0
       rect:
         serializedVersion: 2
         x: 0
@@ -163,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5bf1b9acc3e976c4fb057274f67bf8a5
-      internalID: -394955151
+      spriteID: 3428b07e156111a49a0b8709ddeab067
+      internalID: 592573942
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: crabWalkFinish_1
+      name: crabDieBuy_1
       rect:
         serializedVersion: 2
         x: 630
@@ -184,14 +145,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 58fa9fe9627e03e4c953281b8558f74c
-      internalID: -1420992221
+      spriteID: b78f3b99ff5c4a047aaf0482d462c403
+      internalID: -1826250634
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: crabWalkFinish_2
+      name: crabDieBuy_2
       rect:
         serializedVersion: 2
         x: 1260
@@ -205,8 +166,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5c87c1e39f4c85f42b569b3f784b7434
-      internalID: 1657987365
+      spriteID: 25ff12e2293c67d4c8979797b59f1b5c
+      internalID: 767375007
       vertices: []
       indices: 
       edges: []
@@ -214,7 +175,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: e58ace3e9cea1a844ae67162f94838c4
+    spriteID: 5b8f7e460d263db49a08c6c89303205b
     internalID: 0
     vertices: []
     indices: 
@@ -222,9 +183,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      crabWalkFinish_0: -394955151
-      crabWalkFinish_1: -1420992221
-      crabWalkFinish_2: 1657987365
+      crabDieBuy_0: 592573942
+      crabDieBuy_1: -1826250634
+      crabDieBuy_2: 767375007
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
