@@ -32,7 +32,7 @@ public class FindPlayerState : FSMState
         {
             if (enemy.startSlam == true && enemy.canPickup && enemy.checkPlayerBelow.IsPlayerBelow())
             {
-                //Debug.Log("CANPICKUP: " + enemy.canPickup);
+                Debug.Log("EEEEEEEEEEEE");
                 enemy.startSlam = false;
                 enemy.PerformTransition(Transition.AbovePlayer);
                 

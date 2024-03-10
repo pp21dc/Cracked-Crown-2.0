@@ -456,7 +456,7 @@ public class EnemyAIController : AdvancedFSM
                 if (!currentBody.alreadyDead && !currentBody.Grabbed)
                 {
                     check = Vector3.Distance(enemyPosition.transform.position, currentBody.transform.position);
-                    Debug.Log(currentBody.alreadyDead + "//" + currentBody.Grabbed);
+                    //Debug.Log(currentBody.alreadyDead + "//" + currentBody.Grabbed);
 
                     if (check < currShortest)
                     {
@@ -815,12 +815,12 @@ public class EnemyAIController : AdvancedFSM
         yield return new WaitForSeconds(3f);
 
         doneOnGround = true;
-        
+        EAC.Stunned = false;
 
         yield return new WaitForSeconds(2f);
 
         doneStun = true;
-        EAC.Stunned = false;
+        
         belowChecker.enabled = true;
         doneStun = true;
         canPickup = true;
@@ -995,7 +995,7 @@ public class EnemyAIController : AdvancedFSM
 
     IEnumerator PickUpAgainCoolDown()
     {
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(5f);
         Debug.Log("PICKUP AGAIN COOLDOWN: COMPLETE");
         belowChecker.enabled = true;
         slamAttack.enabled = true;

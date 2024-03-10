@@ -29,7 +29,7 @@ public class SlamAttack : MonoBehaviour
         if(other.CompareTag("Player") && enemyAIController.canPickup && enemyAIController.CompareTag("Light"))
         {
             PlayerBody player = other.GetComponent<PlayerBody>();
-            if (!player.alreadyDead && !HitGround && !player.Grabbed)
+            if (!player.alreadyDead && !HitGround && !player.Grabbed && enemyAIController.canPickup)
             {
                 Debug.Log("SLAM HIT");
                 player.Grabbed = true;
