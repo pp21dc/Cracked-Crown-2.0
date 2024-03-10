@@ -150,7 +150,7 @@ Animator:
   m_GameObject: {fileID: 1000115576516872230}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 57d8cd59e8bb6ea43ab3b97034cf53ef, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -487,6 +487,15 @@ MonoBehaviour:
   groundTrans: {x: 0, y: 0, z: 0}
   upPlacement: {fileID: 4597978629314902217}
   randTrans: {x: 0, y: 0, z: 0}
+  maxAmmo: 10
+  heavyBullets: 10
+  doneReloading: 0
+  doneShockwave: 0
+  startShooting: 0
+  startShock: 0
+  startReload: 0
+  canShoot: 0
+  tooth: {fileID: 0}
   maxHealth: 40
   health: 40
   Damage: {fileID: 2620462327617662294}
