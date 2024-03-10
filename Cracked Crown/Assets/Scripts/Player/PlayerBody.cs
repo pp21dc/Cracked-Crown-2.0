@@ -200,6 +200,7 @@ public class PlayerBody : MonoBehaviour
                 lockDash = false;
                 //canExecute = true; // if this is here you can spam execute while executing
                 canTakeDamage = true;
+                Grabbed = false;
                 //RevivePlayer();
 
                 // delete corpse

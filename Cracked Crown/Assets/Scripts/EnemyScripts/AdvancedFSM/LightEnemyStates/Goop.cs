@@ -42,7 +42,7 @@ public class Goop : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             PlayerBody player = other.GetComponent<PlayerBody>();
-            player.DecHealth(3f);
+            //player.DecHealth(3f);
             gameObject.SetActive(false);
         }
     }

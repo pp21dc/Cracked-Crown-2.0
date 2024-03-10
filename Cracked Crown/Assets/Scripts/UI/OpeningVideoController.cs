@@ -28,13 +28,19 @@ public class OpeningVideoController : MonoBehaviour
     void Update()
     {
         //Looks to see if a key has been pressed to skip to next video
-        if (Input.anyKeyDown && j+1 < players.Length)
+        if (Input.anyKeyDown && j < players.Length)
         {
             players[j].enabled = false;
             j++;
-            players[j].Play();
+            if (j < players.Length)
+                players[j].Play();
+            else
+            {
+                players[2].enabled = false;
+                GameManager.Instance.waitforvideo = false;
+            }
         }
-        else 
+        else if (Input.anyKeyDown && j >= players.Length) 
         {
             players[2].enabled = false;
             GameManager.Instance.waitforvideo = false;

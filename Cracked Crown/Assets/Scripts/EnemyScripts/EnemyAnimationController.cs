@@ -21,7 +21,7 @@ public class EnemyAnimationController : MonoBehaviour
     public bool Frog_Grabbed;
     public bool Badger_Grabbed;
     public bool Duck_Grabbed;
-
+    public bool Grabbing;
     float timer;
 
     [Header("Medium Enemy")]
@@ -35,7 +35,7 @@ public class EnemyAnimationController : MonoBehaviour
         animator.runtimeAnimatorController = AC[index];
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         animator.SetBool("Dead", Dead);
         animator.SetBool("Moving", Moving);
@@ -48,6 +48,7 @@ public class EnemyAnimationController : MonoBehaviour
             animator.SetBool("Grab_D", Duck_Grabbed);
             animator.SetBool("Grab_F", Frog_Grabbed);
             animator.SetBool("Grab_Ba", Badger_Grabbed);
+            animator.SetBool("Grabbing", Grabbing);
         }
         
 
@@ -66,4 +67,15 @@ public class EnemyAnimationController : MonoBehaviour
     {
         EAIC.EAC.Attacking = false;
     }
+
+    public void StartGrab()
+    {
+        Grabbing = true;
+    }
+
+    public void EndGrab()
+    {
+        Grabbing = false;
+    }
+
 }
