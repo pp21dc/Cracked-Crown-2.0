@@ -8,7 +8,7 @@ public class LevelChange : MonoBehaviour
     List<GameObject> players;   //Stores the players in the level change collider
     GameManager GM;             //GameManager
     bool locked;                //Locks level transition to avoid multiple level skips
-
+    public SpriteRenderer Eye;
     private void Awake()
     {
         //Declaring vars
@@ -28,6 +28,22 @@ public class LevelChange : MonoBehaviour
             locked = true;              //Lock out level change while changing
             GM.NextLevel();             //Call game manager to change the level
         }
+        else if (GM.IsLevelCleared && !openDoor)
+        {
+            openDoor = true;
+            StartCoroutine(ShutEye());
+        }
+    }
+
+    bool openDoor;
+    IEnumerator ShutEye()
+    {
+        while (Eye.color.a > 0.01)
+        {
+            Eye.color = new Color(Eye.color.r, Eye.color.g, Eye.color.b, Eye.color.a-0.1f);
+            yield return new WaitForEndOfFrame();
+        }
+        
     }
 
     private void OnTriggerEnter(Collider other)

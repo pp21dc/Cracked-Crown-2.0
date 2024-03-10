@@ -758,8 +758,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 3.2770996, y: -84.6425, z: 0}
-    m_Extent: {x: 123.1631, y: 149.2565, z: 0}
+    m_Center: {x: 3.2835999, y: -84.6403, z: 0}
+    m_Extent: {x: 123.1634, y: 149.25839, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -6195,8 +6195,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.22725296, y: -30.994751, z: 0}
-    m_Extent: {x: 120.91235, y: 186.66016, z: 0}
+    m_Center: {x: -0.2277031, y: -30.995697, z: 0}
+    m_Extent: {x: 120.897, y: 186.6693, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -7279,6 +7279,7 @@ GameObject:
   m_Component:
   - component: {fileID: 635326560}
   - component: {fileID: 635326561}
+  - component: {fileID: 635326562}
   m_Layer: 0
   m_Name: Rocks_0
   m_TagString: Untagged
@@ -7295,7 +7296,7 @@ Transform:
   m_GameObject: {fileID: 635326559}
   serializedVersion: 2
   m_LocalRotation: {x: 0.17364816, y: -0, z: -0, w: 0.9848078}
-  m_LocalPosition: {x: -43.699997, y: 31.3, z: 11.400002}
+  m_LocalPosition: {x: -43.699997, y: 6.5, z: 89.8}
   m_LocalScale: {x: 0.13438, y: 0.13438003, z: 0.13438003}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7341,7 +7342,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 6
   m_Sprite: {fileID: -1535179155, guid: 507b33442f38d1b40ba9ea2e52e9c90a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -7353,6 +7354,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &635326562
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 635326559}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 119, y: 52, z: 6.97}
+  m_Center: {x: 0, y: -0.000015258789, z: 0.000030517578}
 --- !u!1 &657406413
 GameObject:
   m_ObjectHideFlags: 0
@@ -13149,8 +13171,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 11.415352, y: -44.282753, z: 0}
-    m_Extent: {x: 115.02855, y: 189.62384, z: 0}
+    m_Center: {x: 11.4198, y: -44.281845, z: 0}
+    m_Extent: {x: 115.0347, y: 189.63095, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -18382,8 +18404,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 14.3965, y: -57.02795, z: 0}
-    m_Extent: {x: 121.3584, y: 165.20395, z: 0}
+    m_Center: {x: 14.403301, y: -57.02555, z: 0}
+    m_Extent: {x: 121.3548, y: 165.21255, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -18547,6 +18569,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88320a8a0e5f07f4b8e7bc95c0bbee8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bomb: {fileID: 0}
+  potion: {fileID: 0}
   GM: {fileID: 0}
   player1Controller: {fileID: 0}
   player2Controller: {fileID: 0}
@@ -18563,6 +18587,11 @@ MonoBehaviour:
   player3Ring: {fileID: 0}
   player4Ring: {fileID: 0}
   maxRandShineTimer: 20
+  playerItems:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   player1HealthBarObj: {fileID: 0}
   player2HealthBarObj: {fileID: 0}
   player3HealthBarObj: {fileID: 0}
@@ -18581,6 +18610,7 @@ MonoBehaviour:
   DialogueBar: {fileID: 0}
   CharacterIcon: {fileID: 0}
   CharacterIcons: []
+  iconObjects: []
 --- !u!1 &984992749
 GameObject:
   m_ObjectHideFlags: 0
@@ -18731,8 +18761,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 24.598003, y: -66.7315, z: 0}
-    m_Extent: {x: 118.9189, y: 126.8205, z: 0}
+    m_Center: {x: 24.594948, y: -66.73505, z: 0}
+    m_Extent: {x: 118.91485, y: 126.82135, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -23932,6 +23962,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1088575694}
   - component: {fileID: 1088575695}
+  - component: {fileID: 1088575696}
   m_Layer: 0
   m_Name: Rocks_1
   m_TagString: Untagged
@@ -23948,7 +23979,7 @@ Transform:
   m_GameObject: {fileID: 1088575693}
   serializedVersion: 2
   m_LocalRotation: {x: 0.17364816, y: -0, z: -0, w: 0.9848078}
-  m_LocalPosition: {x: 79.5, y: 41.7, z: 15.100002}
+  m_LocalPosition: {x: 79.5, y: 11.62, z: 105.7}
   m_LocalScale: {x: 0.13438, y: 0.13438003, z: 0.13438003}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -23994,7 +24025,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 6
   m_Sprite: {fileID: 1871319893, guid: 507b33442f38d1b40ba9ea2e52e9c90a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -24006,6 +24037,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &1088575696
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1088575693}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 154, y: 126, z: 4.85}
+  m_Center: {x: -0.000030517578, y: -0.000015258789, z: 0}
 --- !u!1 &1097229543
 GameObject:
   m_ObjectHideFlags: 0
@@ -29617,6 +29669,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1278723662}
   - component: {fileID: 1278723663}
+  - component: {fileID: 1278723664}
   m_Layer: 0
   m_Name: Rocks_2
   m_TagString: Untagged
@@ -29633,7 +29686,7 @@ Transform:
   m_GameObject: {fileID: 1278723661}
   serializedVersion: 2
   m_LocalRotation: {x: 0.17364816, y: -0, z: -0, w: 0.9848078}
-  m_LocalPosition: {x: -18.599998, y: 7.2, z: 2.5999985}
+  m_LocalPosition: {x: -18.599998, y: 15, z: 0}
   m_LocalScale: {x: 0.13438, y: 0.13438003, z: 0.13438003}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -29679,7 +29732,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 6
   m_Sprite: {fileID: -258927202, guid: 507b33442f38d1b40ba9ea2e52e9c90a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -29691,6 +29744,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &1278723664
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1278723661}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 229, y: 154, z: 10.56}
+  m_Center: {x: 0, y: -0.0000076293945, z: 0}
 --- !u!1 &1278856403
 GameObject:
   m_ObjectHideFlags: 0
@@ -29784,6 +29858,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1288079893}
   - component: {fileID: 1288079894}
+  - component: {fileID: 1288079895}
   m_Layer: 0
   m_Name: Rocks_0 (1)
   m_TagString: Untagged
@@ -29800,7 +29875,7 @@ Transform:
   m_GameObject: {fileID: 1288079892}
   serializedVersion: 2
   m_LocalRotation: {x: 0.17364816, y: -0, z: -0, w: 0.9848078}
-  m_LocalPosition: {x: 64, y: 32.6, z: 11.900002}
+  m_LocalPosition: {x: 64, y: 6.45, z: 88.4}
   m_LocalScale: {x: 0.096371956, y: 0.09637198, z: 0.09637198}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -29846,7 +29921,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 6
   m_Sprite: {fileID: -1535179155, guid: 507b33442f38d1b40ba9ea2e52e9c90a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
@@ -29858,6 +29933,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &1288079895
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1288079892}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 119, y: 51.999996, z: 11.36}
+  m_Center: {x: 0, y: -0.000015258789, z: 0.000045776367}
 --- !u!1 &1331609556
 GameObject:
   m_ObjectHideFlags: 0
@@ -29890,6 +29986,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cad14c3a768207141a5e97fe84c5b0fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Eye: {fileID: 900882958}
 --- !u!65 &1331609558
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -45490,8 +45587,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 14.399101, y: -57.03525, z: 0}
-    m_Extent: {x: 121.360405, y: 165.21185, z: 0}
+    m_Center: {x: 14.405746, y: -57.03825, z: 0}
+    m_Extent: {x: 121.35625, y: 165.21065, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -51269,8 +51366,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 14.4007, y: -57.026955, z: 0}
-    m_Extent: {x: 121.3625, y: 165.20926, z: 0}
+    m_Center: {x: 14.403648, y: -57.029495, z: 0}
+    m_Extent: {x: 121.356346, y: 165.2186, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0

@@ -54,6 +54,7 @@ public class GameManager : MonoBehaviour
     public string MainMenuName;
     public string CutSceneName;
     public string BossLevelName;
+    public string ShopName;
 
     [Header("UI")]
     public GameObject PlayerUI;
@@ -64,6 +65,7 @@ public class GameManager : MonoBehaviour
     public GameObject MainMenu;
     public GameObject UI;
     public GameObject LoadingScreen;
+   
     public bool CampaignStart = false;
 
     public bool Pause = false;
@@ -179,7 +181,7 @@ public class GameManager : MonoBehaviour
 
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(levelName));
 
-        if (!levelName.Equals(MainMenuName) && !levelName.Equals(BossLevelName) && currentLevel < levelName.Length)
+        if (!levelName.Equals(MainMenuName) && !levelName.Equals(BossLevelName) && currentLevel < levelName.Length && !levelName.Equals(ShopName))
         {
             //AudioManager.LoadLevelComplete();
             //Debug.Log(currentLevel);

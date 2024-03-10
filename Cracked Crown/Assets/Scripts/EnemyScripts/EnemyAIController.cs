@@ -298,7 +298,7 @@ public class EnemyAIController : AdvancedFSM
     public bool starting;
     protected override void FSMUpdate()
     {
-
+        GetStateString();
         act = !LevelManager.Instance.loc;
         if (CurrentState != null && act)
         {
@@ -1063,17 +1063,20 @@ public class EnemyAIController : AdvancedFSM
     
     IEnumerator Dash()
     {
-        EAC.Dashing = true;
-        TargetPlayerPos = closest.transform.position;
-        
-        Damage.enabled = true;
+        if (closest != null)
+        {
+            EAC.Dashing = true;
 
-        yield return new WaitForSeconds(2.5f);
+            TargetPlayerPos = closest.transform.position;
 
-        ResetDashVar();
-        Damage.enabled = false;
-        EAC.Dashing = false;
+            Damage.enabled = true;
 
+            yield return new WaitForSeconds(2.5f);
+
+            ResetDashVar();
+            Damage.enabled = false;
+            EAC.Dashing = false;
+        }
         //yield return null;
     }
 

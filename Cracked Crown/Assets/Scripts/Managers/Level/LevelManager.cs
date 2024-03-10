@@ -103,6 +103,8 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    
+
     public int PickEnemy()
     {
         if (Random.Range(0, 100) < Current_Room.EnemyCount_Light_PerWave[CURRENT_WAVE - 1])
