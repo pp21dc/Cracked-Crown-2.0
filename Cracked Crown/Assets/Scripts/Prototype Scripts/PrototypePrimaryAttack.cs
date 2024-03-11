@@ -31,15 +31,19 @@ public class PrototypePrimaryAttack : MonoBehaviour
     {
         if (other.tag == "Enemy")
         {
-            playerBody.hitEnemy = true;
-            Rigidbody rb;
             enemyController = other.transform.parent.GetChild(0).GetComponent<EnemyAIController>();
-            enemyController.DecHealth(playerBody.damage);
-            rb = other.GetComponent<Rigidbody>();
-            if (!enemyController.lockKnock)
+            if (!enemyController.EAC.Dead)
             {
-                enemyController.lockKnock = true;
-                enemyController.StartCoroutine(enemyController.KB(playerBody.AttackVector * 15 * playerBody.forceMod));
+                playerBody.hitEnemy = true;
+                Rigidbody rb;
+
+                enemyController.DecHealth(playerBody.damage);
+                rb = other.GetComponent<Rigidbody>();
+                if (!enemyController.lockKnock)
+                {
+                    enemyController.lockKnock = true;
+                    enemyController.StartCoroutine(enemyController.KB(playerBody.AttackVector * 15 * playerBody.forceMod));
+                }
             }
             Debug.Log("Enemy Health: " + enemyController.Health);
         }

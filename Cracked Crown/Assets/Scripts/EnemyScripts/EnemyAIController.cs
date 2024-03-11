@@ -300,11 +300,18 @@ public class EnemyAIController : AdvancedFSM
     {
         GetStateString();
         act = !LevelManager.Instance.loc;
+        if (tag == "Medium")
+        {
+            dropShadow.transform.localPosition = new Vector3(dropShadow.transform.localPosition.x, -0.25f, 0.52f);
+        }
+        else if (tag == "Light")
+        {
+            dropShadow.transform.position = new Vector3(dropShadow.transform.position.x, -0.5f, EAC.transform.position.z - 1.1f);
+        }
         if (CurrentState != null && act)
         {
             
-            Vector3 dropShadowPos = new Vector3(EAC.transform.position.x, -0.15f, EAC.transform.position.z - 2.45f);
-            dropShadow.transform.position = dropShadowPos;
+            
 
             if (CompareTag("Light"))
             {
@@ -617,6 +624,7 @@ public class EnemyAIController : AdvancedFSM
 
         if (doneOnGround == true)
         {
+            EAC.Moving = true;//NEW
             if (doneStun == false)
             {
                 Debug.Log("LetsGoUp");
@@ -681,12 +689,15 @@ public class EnemyAIController : AdvancedFSM
         EAC.Dead = true;
         //scale time to animation
 
-        yield return new WaitForSeconds(0.7f);
+        yield return new WaitForSeconds(0.01f);
 
         Debug.Log("DEATH");
         DropEyes();
 
-        yield return new WaitForSeconds(2.2f);
+        if (tag == "Medium")
+            yield return new WaitForSeconds(0.5f);
+        else if (tag == "Light")
+            yield return new WaitForSeconds(0.3f);
 
         LevelManager.Instance.EnemyKilled();
         Destroy(transform.parent.gameObject);
