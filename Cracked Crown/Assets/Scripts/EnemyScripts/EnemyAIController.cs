@@ -477,6 +477,11 @@ public class EnemyAIController : AdvancedFSM
 
                 }
             }
+            if (closest == null && !GM.Players[0].PB.alreadyDead)
+            {
+                closest = Players[0];
+                playerTransform = Players[0].transform;
+            }
             if (true)//is there a player and we aren't being knocked back
             {
                 if(gameObject.CompareTag("Light"))

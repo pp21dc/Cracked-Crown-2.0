@@ -64,6 +64,7 @@ public class PlayerBody : MonoBehaviour
     private Vector3 forExecutePosition = new Vector3(15, 0, 0);
     [SerializeField]
     private EnemyAIController enemyAIController;
+    public EnemyAIController eac_cur;
     [SerializeField]
     private GameObject throwableBombPrefab;
     [SerializeField]
@@ -99,7 +100,7 @@ public class PlayerBody : MonoBehaviour
 
     private bool dashOnCD = false;
     public bool canTakeDamage = true;
-    public float executeHeal = 5f;
+    public float executeHeal = 22.5f;
     private float executeMoveSpeed = 150f;
     private GameObject executeTarget;
     public bool canMovePlayerForexecute = false;
@@ -197,7 +198,7 @@ public class PlayerBody : MonoBehaviour
                 animController.Dead = false;
                 alreadyDead = false;
                 ghostCoins = 0;
-                health = maxHealth;
+                health = maxHealth*0.8f;
                 canAttack = true;
                 canMove = true;
                 lockDash = false;
@@ -524,7 +525,8 @@ public class PlayerBody : MonoBehaviour
         }
         if (hitEnemy && !lockHitBackward)
         {
-            PAM.PlayAudio(PlayerAudioManager.AudioType.EnemyHit);
+            if (!eac_cur.EAC.Dead)
+                PAM.PlayAudio(PlayerAudioManager.AudioType.EnemyHit);
             StartCoroutine(backwardHit());
         }
         animController.Attacking = false;
@@ -691,6 +693,12 @@ public class PlayerBody : MonoBehaviour
 
                 yield return new WaitForSeconds(0);
                 toExecute.transform.parent.gameObject.SetActive(false);
+                if (enemyAIController.tag == "Light")
+                    gameManager.eyeCount += 2;
+                else if (enemyAIController.tag == "Medium")
+                    gameManager.eyeCount += 5;
+                else if (enemyAIController.tag == "Heavy")
+                    gameManager.eyeCount += 8;
                 if (LevelManager.Instance != null)
                     LevelManager.Instance.EnemyKilled();
             }
@@ -918,7 +926,9 @@ public class PlayerBody : MonoBehaviour
             canRelease = true;
             canMove = true;
             canAttack = true;
-            
+            lockDash = false;
+            canExecute = true;
+            Grabbed = false;
             Debug.Log("Free");
                 
         }

@@ -7,7 +7,7 @@ using System.IO;
 using System;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
-
+using TMPro;
 public class GameManager : MonoBehaviour
 {
     private static GameManager instance;
@@ -71,6 +71,7 @@ public class GameManager : MonoBehaviour
     public bool Pause = false;
     public bool waitforvideo = true;
     public float eyeCount = 0;
+    public TextMeshProUGUI eyeText;
 
     [SerializeField]
     private Transform[] spawnPoints;
@@ -99,6 +100,7 @@ public class GameManager : MonoBehaviour
     bool locker_Boss;
     private void FixedUpdate()
     {
+        eyeText.text = eyeCount.ToString();
         if (Input.GetKeyUp(KeyCode.KeypadEnter))
         {
             StartNewGame();

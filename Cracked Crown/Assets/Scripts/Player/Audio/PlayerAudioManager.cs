@@ -7,6 +7,10 @@ public class PlayerAudioManager : MonoBehaviour
     [SerializeField]
     private AudioSource AS;
     [SerializeField]
+    private AudioSource AS2;
+    [SerializeField]
+    private AudioSource AS3;
+    [SerializeField]
     PlayerAnimEventHandler PAEH;
     [SerializeField]
     PlayerContainer PC;
@@ -45,10 +49,27 @@ public class PlayerAudioManager : MonoBehaviour
 
     public void NewClip(AudioClip newClipToPlay)
     {
-        AS.Stop();
-        AS.pitch = Random.Range(0.98f, 1.02f);
-        AS.clip = newClipToPlay;
-        AS.Play();
+        if (!AS.isPlaying)
+        {
+            AS.Stop();
+            AS.pitch = Random.Range(0.98f, 1.02f);
+            AS.clip = newClipToPlay;
+            AS.Play();
+        }
+        else if (!AS2.isPlaying)
+        {
+            AS2.Stop();
+            AS2.pitch = Random.Range(0.98f, 1.02f);
+            AS2.clip = newClipToPlay;
+            AS2.Play();
+        }
+        else if (!AS3.isPlaying)
+        {
+            AS3.Stop();
+            AS3.pitch = Random.Range(0.98f, 1.02f);
+            AS3.clip = newClipToPlay;
+            AS3.Play();
+        }
     }
 
     public void PlayAudio(AudioType type)

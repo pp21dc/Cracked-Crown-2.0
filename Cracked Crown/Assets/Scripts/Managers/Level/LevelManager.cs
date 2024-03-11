@@ -137,6 +137,8 @@ public class LevelManager : MonoBehaviour
         CURRENT_WAVE = 1;
         ROOM_CLEARED = !hostile;
         GM.SetPlayerPositions();
+        yield return new WaitForSeconds(1);
+        GM.SetPlayerPositions();
         yield return new WaitForSeconds(WAIT_ONENTER);
         //GM.SetPlayerPositions();
         

@@ -35,6 +35,7 @@ public class PrototypePrimaryAttack : MonoBehaviour
             if (!enemyController.EAC.Dead)
             {
                 playerBody.hitEnemy = true;
+                playerBody.eac_cur = enemyController;
                 Rigidbody rb;
 
                 enemyController.DecHealth(playerBody.damage);
