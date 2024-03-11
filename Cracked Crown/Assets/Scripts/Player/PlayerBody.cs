@@ -44,6 +44,8 @@ public class PlayerBody : MonoBehaviour
     [SerializeField]
     private PlayerController controller;
     public PlayerContainer playerContainer;
+    [SerializeField]
+    public PlayerAudioManager PAM;
     public PlayerManager PM;
     public FinisherCollider executeCollideScript;
     [SerializeField]
@@ -457,12 +459,14 @@ public class PlayerBody : MonoBehaviour
         StartCoroutine(DamageColourFlash());
         if (canTakeDamage)
         {
+            PAM.PlayAudio(PlayerAudioManager.AudioType.PlayerHit);
             health = Mathf.Max(0, health - amount); // allows taking health from the player
         }
     }
     public void AddHealth(float amount) 
     {
-        health = Mathf.Min(100, health + amount); //allows us to add health to the player
+        health = Mathf.Min(maxHealth, health + amount); //allows us to add health to the player
+        
     }
 
     public void SetCharacterData()
@@ -520,6 +524,7 @@ public class PlayerBody : MonoBehaviour
         }
         if (hitEnemy && !lockHitBackward)
         {
+            PAM.PlayAudio(PlayerAudioManager.AudioType.EnemyHit);
             StartCoroutine(backwardHit());
         }
         animController.Attacking = false;

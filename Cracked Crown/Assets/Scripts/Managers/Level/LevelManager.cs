@@ -139,12 +139,15 @@ public class LevelManager : MonoBehaviour
         GM.SetPlayerPositions();
         yield return new WaitForSeconds(WAIT_ONENTER);
         //GM.SetPlayerPositions();
-        CURRENT_WAVE = 1;
-        CURRENT_ROOM += 1;
-        Current_Room = Rooms[CURRENT_ROOM-1];
-        currentSpawnTotal = Current_Room.EnemyCount_PerWave[CURRENT_ROOM - 1] * (3+GM.Players.Length/4);
+        
         if (hostile)
+        {
+            CURRENT_WAVE = 1;
+            CURRENT_ROOM += 1;
+            Current_Room = Rooms[CURRENT_ROOM - 1];
+            currentSpawnTotal = Current_Room.EnemyCount_PerWave[CURRENT_ROOM - 1] * (3 + GM.Players.Length / 4);
             SpawnersActive = true;
+        }
     }
 
     private IEnumerator ON_ROUNDEND()

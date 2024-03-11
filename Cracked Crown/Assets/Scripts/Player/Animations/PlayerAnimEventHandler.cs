@@ -63,6 +63,7 @@ public class PlayerAnimEventHandler : MonoBehaviour
 
     public void SFX(int type)
     {
+        Debug.Log(type);
         PlayerAudioManager.AudioType audioType = PAM.audioTypes[type];
         PAM.PlayAudio(audioType);
     }

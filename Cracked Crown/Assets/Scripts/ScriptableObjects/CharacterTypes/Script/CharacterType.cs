@@ -20,4 +20,11 @@ public class CharacterType : ScriptableObject
     public bool hop;
 
     public AudioClip[] soundeffects;
+    public string SFX_0;
+    public string SFX_1;
+    public string SFX_2;
+    public string SFX_3;
+    public string SFX_4;
+    public string SFX_5;
+    public string SFX_6;
 }

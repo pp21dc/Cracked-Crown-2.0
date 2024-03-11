@@ -22,6 +22,7 @@ public class PlayerAudioManager : MonoBehaviour
     private void Update()
     {
         PC = PAEH.PC;
+        PC.PB.PAM = this;
         if (PC != null )
             Player_AudioClips = PC.PB.CharacterType.soundeffects;
     }
@@ -31,7 +32,10 @@ public class PlayerAudioManager : MonoBehaviour
         EmptySwing,
         EnemyHit, 
         PlayerHit,
-        Swing,
+        Swing1,
+        Swing2,
+        Swing3,
+        Swing4,
         Death,
         Move,
         Dash
@@ -42,13 +46,19 @@ public class PlayerAudioManager : MonoBehaviour
     public void NewClip(AudioClip newClipToPlay)
     {
         AS.Stop();
+        AS.pitch = Random.Range(0.98f, 1.02f);
         AS.clip = newClipToPlay;
         AS.Play();
     }
 
     public void PlayAudio(AudioType type)
     {
-        NewClip(Player_AudioClips[(int)type]);
+        if (Player_AudioClips[(int)type] == null)
+            return;
+        if (type == AudioType.Swing1)
+            NewClip(Player_AudioClips[Random.Range(3, 7)]);
+        else
+            NewClip(Player_AudioClips[(int)type]);
     }
 
 
