@@ -73,13 +73,11 @@ public class PlayerBody : MonoBehaviour
     public bool canMove = true;
     public PlayAnim SwordSlash;
 
-    [HideInInspector]
     public bool canAttack = true;
     [HideInInspector]
     public bool hitEnemy = false;
     [HideInInspector]
     public bool canUseItem = true;
-    [HideInInspector]
     public bool canExecute = true;
     [HideInInspector]
     public float ghostCoins = 0;
@@ -160,6 +158,8 @@ public class PlayerBody : MonoBehaviour
             collect();
             onNoDamage();
 
+
+
             if ((health <= 0 || Input.GetKey(KeyCode.O)) && alreadyDead == false)
             {
                 rb.velocity = Vector3.zero;
@@ -176,6 +176,7 @@ public class PlayerBody : MonoBehaviour
             }
             if (alreadyDead && enumDone)
             {
+                //enumDone = false;
                 canMove = true;
                 canAttack = false;
                 lockDash = true;
@@ -224,12 +225,13 @@ public class PlayerBody : MonoBehaviour
     float vely = 0;
     private IEnumerator executeAfterRevive()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.2f);
         canExecute = true;
     }
 
     private IEnumerator deathAnim()
     {
+        enumDone = false;
         yield return new WaitForSeconds(2f);
         canMove = true;
         enumDone = true;
@@ -722,6 +724,14 @@ public class PlayerBody : MonoBehaviour
                     }
 
                     yield return new WaitForSeconds(1.0f);
+                   
+                    canTakeDamage = true;
+                    canMove = true;
+                    canAttack = true;
+                    canExecute = true;
+                    //playerLock = true;
+                    canMovePlayerForexecute = false;
+                    lockDash = false;
                     transform.parent.GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(true);
                     toExecute.transform.parent.gameObject.SetActive(false);
                 }

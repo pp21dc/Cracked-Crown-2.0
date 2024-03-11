@@ -38,11 +38,12 @@ public class LevelChange : MonoBehaviour
     bool openDoor;
     IEnumerator ShutEye()
     {
-        while (Eye.color.a > 0.01)
+        while (Eye.color.a > 0.1f)
         {
-            Eye.color = new Color(Eye.color.r, Eye.color.g, Eye.color.b, Eye.color.a-0.1f);
+            Eye.color = new Color(Eye.color.r, Eye.color.g, Eye.color.b, Eye.color.a-0.1f * Time.deltaTime);
             yield return new WaitForEndOfFrame();
-        }
+        };
+        Eye.gameObject.SetActive(false);
         
     }
 

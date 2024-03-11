@@ -477,7 +477,7 @@ public class EnemyAIController : AdvancedFSM
 
                 }
             }
-            if (!knockback)//is there a player and we aren't being knocked back
+            if (true)//is there a player and we aren't being knocked back
             {
                 if(gameObject.CompareTag("Light"))
                 {
@@ -872,7 +872,7 @@ public class EnemyAIController : AdvancedFSM
             canSpam = true;
             body.canRelease = false;
             StartCoroutine(Drop(body));
-
+            body.Grabbed = false;
             SetGrabAnim(body, false);
             EAC.Grabbing = false;
             EAC.Attacking = false;
@@ -964,6 +964,7 @@ public class EnemyAIController : AdvancedFSM
             StartCoroutine(Drop(pb));
             EAC.Attacking = false;
             EAC.Grabbing = false;
+            pb.Grabbed = false;
         }
 
         yield return null;

@@ -50,7 +50,15 @@ public class FinisherCollider : MonoBehaviour
                 
             }
             if (e != null && e.transform.parent.GetChild(1) != null)
-                PB.Execute(e.transform.parent.GetChild(1).gameObject);
+            {
+                 if (e.gameObject.tag != "MiniCrabExecutable" && !e.gameObject.GetComponent<EnemyAIController>().EAC.Dead)
+                    PB.Execute(e.transform.parent.GetChild(1).gameObject);
+                else if (e.gameObject.tag == "MiniCrabExecutable")
+                {
+                    PB.Execute(e.transform.parent.GetChild(1).gameObject);
+                }
+            }
+                
             else if (e == null)
             {
                 enemiesInRange.Remove(e);

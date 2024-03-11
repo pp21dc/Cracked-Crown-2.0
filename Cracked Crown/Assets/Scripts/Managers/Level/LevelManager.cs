@@ -135,7 +135,7 @@ public class LevelManager : MonoBehaviour
     private IEnumerator ON_ENTER(bool hostile)
     {
         CURRENT_WAVE = 1;
-        ROOM_CLEARED = false;
+        ROOM_CLEARED = !hostile;
         GM.SetPlayerPositions();
         yield return new WaitForSeconds(WAIT_ONENTER);
         //GM.SetPlayerPositions();
@@ -143,7 +143,8 @@ public class LevelManager : MonoBehaviour
         CURRENT_ROOM += 1;
         Current_Room = Rooms[CURRENT_ROOM-1];
         currentSpawnTotal = Current_Room.EnemyCount_PerWave[CURRENT_ROOM - 1] * (3+GM.Players.Length/4);
-        SpawnersActive = true;
+        if (hostile)
+            SpawnersActive = true;
     }
 
     private IEnumerator ON_ROUNDEND()

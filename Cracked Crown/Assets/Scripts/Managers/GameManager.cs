@@ -207,7 +207,7 @@ public class GameManager : MonoBehaviour
             LM.ROOM_CLEARED = true;
             IsLevelCleared = true;
             currentLevelName = ShopName;
-
+            LM.Enter_Level(false);
         }
         else if (levelName.Equals(BossLevelName))
         {
