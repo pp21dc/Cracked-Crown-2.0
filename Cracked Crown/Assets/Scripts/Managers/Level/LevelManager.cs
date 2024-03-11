@@ -116,10 +116,10 @@ public class LevelManager : MonoBehaviour
         return 1;
     }
 
-    public void Enter_Level()
+    public void Enter_Level(bool hostile)
     {
         CURRENT_WAVE = 1;
-        StartCoroutine(ON_ENTER());
+        StartCoroutine(ON_ENTER(hostile));
     }
 
     public void EnemySpawned()
@@ -132,7 +132,7 @@ public class LevelManager : MonoBehaviour
         ENEMIES_KILLED += 1;
     }
 
-    private IEnumerator ON_ENTER()
+    private IEnumerator ON_ENTER(bool hostile)
     {
         CURRENT_WAVE = 1;
         ROOM_CLEARED = false;

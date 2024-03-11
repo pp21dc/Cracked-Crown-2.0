@@ -184,13 +184,13 @@ public class GameManager : MonoBehaviour
         if (!levelName.Equals(MainMenuName) && !levelName.Equals(BossLevelName) && currentLevel < levelName.Length && !levelName.Equals(ShopName))
         {
             //AudioManager.LoadLevelComplete();
-            //Debug.Log(currentLevel);
+            Debug.Log("NEXT LEVEL");
             currentLevelName = levelNames[currentLevel];
 
             currentLevelName = levelName;
             IsLevelCleared = false;
             
-            LM.Enter_Level();
+            LM.Enter_Level(true);
             MainMenu.SetActive(false);
         }
         else if (levelName.Equals(MainMenuName))
@@ -202,12 +202,19 @@ public class GameManager : MonoBehaviour
             //MainMenu.SetActive(true);
             currentLevel = -1;
         }
+        else if (levelName.Equals(ShopName))
+        {
+            LM.ROOM_CLEARED = true;
+            IsLevelCleared = true;
+            currentLevelName = ShopName;
+
+        }
         else if (levelName.Equals(BossLevelName))
         {
             LM.ROOM_CLEARED = true;
             IsLevelCleared = true;
             currentLevelName = BossLevelName;
-            currentLevel = -1;
+            currentLevel = 5;
         }
         //yield return new WaitForSeconds(0.25f);
         //AudioManager.Instance.AudioFadeLevelStart();

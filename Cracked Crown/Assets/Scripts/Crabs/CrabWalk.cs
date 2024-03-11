@@ -15,12 +15,16 @@ public class CrabWalk : MonoBehaviour
     [SerializeField]
     private Vector3 movementVector;
 
+    [SerializeField]
+    GameObject bigShadow;
+
     // Update is called once per frame
     void Update()
     {
         if (hasDied)
         {
             animator.SetBool("PermaDead", true);
+            bigShadow.SetActive(false);
         }
         if (!hasDied)
         {
