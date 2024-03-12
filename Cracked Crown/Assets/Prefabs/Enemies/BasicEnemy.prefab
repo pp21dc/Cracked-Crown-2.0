@@ -499,10 +499,12 @@ MonoBehaviour:
   startShock: 0
   startReload: 0
   canShoot: 0
-  tooth: {fileID: 0}
+  noShockCooldown: 0
+  tooth: {fileID: 8429174454184771025, guid: d7911ca32ae24474097867f6369e7e61, type: 3}
   shockwaveCol: {fileID: 0}
   targetShockwaveScale: {x: 0, y: 0, z: 0}
   shockwaveScaleInitial: {x: 0, y: 0, z: 0}
+  ToothShotLocation: {fileID: 0}
   maxHealth: 40
   health: 40
   Damage: {fileID: 2620462327617662294}

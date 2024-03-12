@@ -20,11 +20,7 @@ public class DeadState : FSMState
     public override void Reason(Transform player, Transform npc)
     {
 
-        if (enemy.CompareTag("Heavy"))
-        {
-            //enemy.PerformTransition(Transition.WasNotExecuted);
-            return;
-        }
+        
 
     }
 
