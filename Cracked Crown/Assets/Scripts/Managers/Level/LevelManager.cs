@@ -39,7 +39,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField]
     private int CURRENT_WAVE;
     [SerializeField]
-    private int CURRENT_ROOM;
+    public int CURRENT_ROOM;
     [SerializeField]
     public bool ROOM_CLEARED;
     [SerializeField]

@@ -7,7 +7,9 @@ public class EnemyAnimationController : MonoBehaviour
     [SerializeField]
     private Animator animator;
     [SerializeField]
-    private RuntimeAnimatorController[] AC;
+    private RuntimeAnimatorController[] Light_AC;
+    [SerializeField]
+    private RuntimeAnimatorController[] Medium_AC;
     [SerializeField]
     public SpriteRenderer SR;
     [SerializeField]
@@ -30,9 +32,12 @@ public class EnemyAnimationController : MonoBehaviour
     /*
      * INDEX:: 0 = Light, 1 = Med, 2= Heavy
      */
-    public void SetAnimController(int index)
+    public void SetAnimController(int index, int type)
     {
-        animator.runtimeAnimatorController = AC[index];
+        if (type == 0)
+            animator.runtimeAnimatorController = Light_AC[index-1];
+        else if (type == 1)
+            animator.runtimeAnimatorController = Medium_AC[index-1];
     }
 
     private void Update()

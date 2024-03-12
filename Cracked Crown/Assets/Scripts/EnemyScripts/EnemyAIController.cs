@@ -224,11 +224,11 @@ public class EnemyAIController : AdvancedFSM
     protected override void Initialize()
     {
         if (CompareTag("Light"))
-            EAC.SetAnimController(0);
+            EAC.SetAnimController(LevelManager.Instance.CURRENT_ROOM, 0);
         else if (CompareTag("Medium"))
-            EAC.SetAnimController(1);
+            EAC.SetAnimController(LevelManager.Instance.CURRENT_ROOM, 1);
         else if (CompareTag("Heavy"))
-            EAC.SetAnimController(2);
+            EAC.SetAnimController(LevelManager.Instance.CURRENT_ROOM, 2);
 
         Players = GameObject.FindGameObjectsWithTag("Player");//finds and add all players to array
         if(Players.Length <= 0) { Players = null; }
@@ -293,8 +293,11 @@ public class EnemyAIController : AdvancedFSM
         canShoot = true;
         maxAmmo = 10;
         heavyBullets = 10;
-        targetShockwaveScale = new Vector3(15, shockwaveCol.transform.localScale.y, 15);
-        shockwaveScaleInitial = shockwaveCol.transform.localScale;
+        if (shockwaveCol != null)
+        {
+            targetShockwaveScale = new Vector3(15, shockwaveCol.transform.localScale.y, 15);
+            shockwaveScaleInitial = shockwaveCol.transform.localScale;
+        }
 
 
 
@@ -336,11 +339,11 @@ public class EnemyAIController : AdvancedFSM
     public void StartUp()
     {
         if (CompareTag("Light"))
-            EAC.SetAnimController(0);
+            EAC.SetAnimController(LevelManager.Instance.CURRENT_ROOM, 0);
         else if (CompareTag("Medium"))
-            EAC.SetAnimController(1);
+            EAC.SetAnimController(LevelManager.Instance.CURRENT_ROOM, 1);
         else if (CompareTag("Heavy"))
-            EAC.SetAnimController(2);
+            EAC.SetAnimController(LevelManager.Instance.CURRENT_ROOM, 2);
         if (gameObject.CompareTag("Light"))
         {
             intialY = enemyBody.transform.position.y;
