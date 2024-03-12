@@ -138,10 +138,12 @@ public class EnemyAIController : AdvancedFSM
     public bool startShock;
     public bool startReload;
     public bool canShoot;
+    public bool noShockCooldown;
     public GameObject tooth;
     public GameObject shockwaveCol;
     public Vector3 targetShockwaveScale;
     public Vector3 shockwaveScaleInitial;
+    public GameObject ToothShotLocation;
     
 
     //health, finisher, and death states
@@ -223,13 +225,15 @@ public class EnemyAIController : AdvancedFSM
     //intializes the enemy with the player location and sets enemy health to 100 theb calls Construct FSM
     protected override void Initialize()
     {
-        if (CompareTag("Light"))
-            EAC.SetAnimController(LevelManager.Instance.CURRENT_ROOM, 0);
-        else if (CompareTag("Medium"))
-            EAC.SetAnimController(LevelManager.Instance.CURRENT_ROOM, 1);
-        else if (CompareTag("Heavy"))
-            EAC.SetAnimController(LevelManager.Instance.CURRENT_ROOM, 2);
-
+        if (LevelManager.Instance != null)
+        {
+            if (CompareTag("Light"))
+                EAC.SetAnimController(LevelManager.Instance.CURRENT_ROOM, 0);
+            else if (CompareTag("Medium"))
+                EAC.SetAnimController(LevelManager.Instance.CURRENT_ROOM, 1);
+            else if (CompareTag("Heavy"))
+                EAC.SetAnimController(LevelManager.Instance.CURRENT_ROOM, 2);
+        }
         Players = GameObject.FindGameObjectsWithTag("Player");//finds and add all players to array
         if(Players.Length <= 0) { Players = null; }
         if (Players != null)
@@ -298,6 +302,7 @@ public class EnemyAIController : AdvancedFSM
             targetShockwaveScale = new Vector3(15, shockwaveCol.transform.localScale.y, 15);
             shockwaveScaleInitial = shockwaveCol.transform.localScale;
         }
+        noShockCooldown = true;
 
 
 
@@ -308,7 +313,10 @@ public class EnemyAIController : AdvancedFSM
     protected override void FSMUpdate()
     {
         GetStateString();
-        act = !LevelManager.Instance.loc;
+        if (LevelManager.Instance != null)
+        {
+            act = !LevelManager.Instance.loc;
+        }
         if (tag == "Medium")
         {
             dropShadow.transform.localPosition = new Vector3(dropShadow.transform.localPosition.x, -0.25f, 0.52f);
@@ -338,12 +346,16 @@ public class EnemyAIController : AdvancedFSM
 
     public void StartUp()
     {
-        if (CompareTag("Light"))
-            EAC.SetAnimController(LevelManager.Instance.CURRENT_ROOM, 0);
-        else if (CompareTag("Medium"))
-            EAC.SetAnimController(LevelManager.Instance.CURRENT_ROOM, 1);
-        else if (CompareTag("Heavy"))
-            EAC.SetAnimController(LevelManager.Instance.CURRENT_ROOM, 2);
+        if (LevelManager.Instance != null)
+        {
+            if (CompareTag("Light"))
+                EAC.SetAnimController(LevelManager.Instance.CURRENT_ROOM, 0);
+            else if (CompareTag("Medium"))
+                EAC.SetAnimController(LevelManager.Instance.CURRENT_ROOM, 1);
+            else if (CompareTag("Heavy"))
+                EAC.SetAnimController(LevelManager.Instance.CURRENT_ROOM, 2);
+        }
+
         if (gameObject.CompareTag("Light"))
         {
             intialY = enemyBody.transform.position.y;
@@ -1135,16 +1147,28 @@ public class EnemyAIController : AdvancedFSM
     {
         if(startShooting)
         {
+
+            if(TargetPlayerPos.x > enemyPosition.position.x) 
+            {
+                ToothShotLocation.transform.position = new Vector3(5, 5, 0);
+            }
+            else
+            {
+                ToothShotLocation.transform.position = new Vector3(-5, 5, 0);
+            }
+
             startShooting = false;
             StartCoroutine(ShootRoutine());
         }
+
+        
     }
 
     IEnumerator ShootRoutine()
     {
         while (canShoot)
         {
-            StartShootTeeth(enemyPosition, fireLocation);
+            StartShootTeeth(enemyPosition, ToothShotLocation.transform);
             maxAmmo--;
             yield return new WaitForSeconds(0.45f);
         }
@@ -1175,6 +1199,7 @@ public class EnemyAIController : AdvancedFSM
     {
         if(startShock)
         {
+            noShockCooldown = false;
             startShock = false;
             StartCoroutine(Shockwave());
         }
@@ -1190,10 +1215,20 @@ public class EnemyAIController : AdvancedFSM
                 yield return new WaitForSeconds(0.1f);
             }
 
-
+            shockwaveCol.transform.localScale = shockwaveScaleInitial;
         }
 
+        StartCoroutine(shockwaveCooldown());
+        doneShockwave = true;
+
         yield return null;
+    }
+
+    IEnumerator shockwaveCooldown()
+    {
+        yield return new WaitForSeconds(3f);
+
+        noShockCooldown = true;
     }
 
     public void ResetShockVar()
