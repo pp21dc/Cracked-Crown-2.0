@@ -7,7 +7,6 @@ public class PrototypePrimaryAttack : MonoBehaviour
     private BossPhases bossController;
     private EnemyAIController enemyController;
     public PlayerBody playerBody;
-
     private CrabWalk miniCrab;
 
     private void Awake()
@@ -46,28 +45,27 @@ public class PrototypePrimaryAttack : MonoBehaviour
                     enemyController.StartCoroutine(enemyController.KB(playerBody.AttackVector * 15 * playerBody.forceMod));
                 }
             }
-            Debug.Log("Enemy Health: " + enemyController.Health);
         }
-        if (other.tag == "Boss")
+        if (other.tag == "BossHit")
         {
-            playerBody.hitEnemy = true;
-            bossController = other.gameObject.GetComponent<BossPhases>();
+            bossController = other.transform.parent.parent.GetComponent<BossPhases>();
 
-            if (bossController.cantakedmg)
-            {
-                bossController.decHealth(playerBody.damage);
-            }
+            bossController.decHealth(playerBody.damage);
         }
         if (other.tag == "Mini Crab" || other.tag == "MiniCrabExecutable")
         {
             miniCrab = other.GetComponent<CrabWalk>();
             miniCrab.health = 0;
         }
-        //if (other.tag == "Player")
-        //{
-        //    PlayerBody otherPlayer = other.gameObject.GetComponent<PlayerBody>();
-        //    otherPlayer.DecHealth();
-        //    StartCoroutine(playerBody.backwardHit());
-        //}
+        if (other.tag == "Player")
+        {
+            PlayerBody otherPlayer = other.gameObject.GetComponent<PlayerBody>();
+
+            if (playerBody.playerID != otherPlayer.playerID)
+            {
+                otherPlayer.DecHealth(1.0f);
+                StartCoroutine(otherPlayer.gotHitKnockback());
+            }
+        }
     }
 }

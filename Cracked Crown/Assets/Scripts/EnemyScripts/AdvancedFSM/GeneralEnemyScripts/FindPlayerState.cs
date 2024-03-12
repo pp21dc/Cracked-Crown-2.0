@@ -56,7 +56,7 @@ public class FindPlayerState : FSMState
                 enemy.PerformTransition(Transition.InShootingRange);
                 return;
             }
-            else if (IsInCurrentRange(npc, player.position, 4.5f))
+            else if (IsInCurrentRange(npc, player.position, 4.5f) && enemy.noShockCooldown == true)
             {
                 enemy.PerformTransition(Transition.InShockwaveRange);
                 return;
