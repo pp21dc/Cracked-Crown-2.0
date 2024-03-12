@@ -106,16 +106,55 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: lightSlamPurple_0
+      name: SlamPurpleLight_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 576
+        width: 640
         height: 642
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -124,19 +163,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: afbd671e81010584fb5a2431554d8fa2
-      internalID: 149095596
+      spriteID: 8ed3e7c79cc76dc468ff4ef94bd34b14
+      internalID: 105653947
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: lightSlamPurple_1
+      name: SlamPurpleLight_1
       rect:
         serializedVersion: 2
-        x: 576
+        x: 640
         y: 0
-        width: 576
+        width: 640
         height: 642
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -145,19 +184,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 97c9775bd82801d479a7714976edb08c
-      internalID: -1119958540
+      spriteID: 861207cb3acec8e43ae3a44a5316d812
+      internalID: 890246505
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: lightSlamPurple_2
+      name: SlamPurpleLight_2
       rect:
         serializedVersion: 2
-        x: 1152
+        x: 1280
         y: 0
-        width: 576
+        width: 640
         height: 642
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -166,19 +205,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a8c9dbe24c1c11942bc531d312d941c3
-      internalID: 1112566957
+      spriteID: fcdd852563a74b841a0ff295ea80ed84
+      internalID: 1242141182
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: lightSlamPurple_3
+      name: SlamPurpleLight_3
       rect:
         serializedVersion: 2
-        x: 1728
+        x: 1920
         y: 0
-        width: 576
+        width: 640
         height: 642
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -187,19 +226,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0ea7deb74ae59ba4b94baee9496b8705
-      internalID: 1799545015
+      spriteID: cb0cde1a3dd7a3747a6fdb19af943bfb
+      internalID: 1940640926
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: lightSlamPurple_4
+      name: SlamPurpleLight_4
       rect:
         serializedVersion: 2
-        x: 2304
+        x: 2560
         y: 0
-        width: 576
+        width: 640
         height: 642
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -208,19 +247,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 430031bf8d2781f44b0cd6fda0a20802
-      internalID: 1070782610
+      spriteID: bde5c0fd1e142e747ae7f906b2820076
+      internalID: -1711995802
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: lightSlamPurple_5
+      name: SlamPurpleLight_5
       rect:
         serializedVersion: 2
-        x: 2880
+        x: 3200
         y: 0
-        width: 576
+        width: 640
         height: 642
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -229,19 +268,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0428f4d77f55ccc42b5b580de488e5bd
-      internalID: 947671531
+      spriteID: 22f526db23a55be4595941c88bf922aa
+      internalID: -594749343
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: lightSlamPurple_6
+      name: SlamPurpleLight_6
       rect:
         serializedVersion: 2
-        x: 3456
+        x: 3840
         y: 0
-        width: 576
+        width: 640
         height: 642
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -250,19 +289,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 31b364be94693c246ab78da35b17d6b5
-      internalID: -1389462987
+      spriteID: 1bfc8fdd73f00d54d84401ac69ff994c
+      internalID: -1918827243
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: lightSlamPurple_7
+      name: SlamPurpleLight_7
       rect:
         serializedVersion: 2
-        x: 4032
+        x: 4480
         y: 0
-        width: 576
+        width: 640
         height: 642
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -271,50 +310,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9c425a2a432e0bb49866904ef1905e88
-      internalID: -899317077
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: lightSlamPurple_8
-      rect:
-        serializedVersion: 2
-        x: 4608
-        y: 0
-        width: 576
-        height: 642
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 835d500028bdcbf4aa4117b3d0b56029
-      internalID: -202971435
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: lightSlamPurple_9
-      rect:
-        serializedVersion: 2
-        x: 5184
-        y: 0
-        width: 576
-        height: 642
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9cfecd1e1b023ab4599644686ca97060
-      internalID: 2048101483
+      spriteID: 861bee466c01b6441adc0fb1603bdb73
+      internalID: -777417171
       vertices: []
       indices: 
       edges: []
@@ -330,16 +327,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      lightSlamPurple_0: 149095596
-      lightSlamPurple_1: -1119958540
-      lightSlamPurple_2: 1112566957
-      lightSlamPurple_3: 1799545015
-      lightSlamPurple_4: 1070782610
-      lightSlamPurple_5: 947671531
-      lightSlamPurple_6: -1389462987
-      lightSlamPurple_7: -899317077
-      lightSlamPurple_8: -202971435
-      lightSlamPurple_9: 2048101483
+      SlamPurpleLight_0: 105653947
+      SlamPurpleLight_1: 890246505
+      SlamPurpleLight_2: 1242141182
+      SlamPurpleLight_3: 1940640926
+      SlamPurpleLight_4: -1711995802
+      SlamPurpleLight_5: -594749343
+      SlamPurpleLight_6: -1918827243
+      SlamPurpleLight_7: -777417171
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
