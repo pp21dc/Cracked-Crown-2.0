@@ -658,8 +658,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.009319, y: 2.3495998, z: 3.7995179}
-  m_Center: {x: -0.032401044, y: -0.6747991, z: -0.33320913}
+  m_Size: {x: 3.009319, y: 2.7324958, z: 4.121768}
+  m_Center: {x: -0.032401044, y: -0.86624676, z: -0.4943335}
 --- !u!1 &112394262
 GameObject:
   m_ObjectHideFlags: 0
@@ -10916,7 +10916,7 @@ GameObject:
   - component: {fileID: 1326490666}
   m_Layer: 0
   m_Name: HitCollider
-  m_TagString: Untagged
+  m_TagString: BossHit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10955,8 +10955,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.009319, y: 2.3495998, z: 3.7995179}
-  m_Center: {x: -0.032401044, y: -0.6747991, z: -0.33320913}
+  m_Size: {x: 3.009319, y: 2.7313952, z: 4.1148357}
+  m_Center: {x: -0.032401044, y: -0.8656968, z: -0.4908669}
 --- !u!1 &1332750988
 GameObject:
   m_ObjectHideFlags: 0
@@ -12233,7 +12233,7 @@ PrefabInstance:
       addedObject: {fileID: 1326490665}
     - targetCorrespondingSourceObject: {fileID: 8456997817302650563, guid: 26cfbd80ecd59b24a94a8b581b0d571e,
         type: 3}
-      insertIndex: 0
+      insertIndex: -1
       addedObject: {fileID: 103216391}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26cfbd80ecd59b24a94a8b581b0d571e, type: 3}
@@ -14384,6 +14384,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cad14c3a768207141a5e97fe84c5b0fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Eye: {fileID: 0}
 --- !u!65 &2041472360
 BoxCollider:
   m_ObjectHideFlags: 0

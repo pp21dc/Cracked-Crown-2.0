@@ -48,10 +48,12 @@ public class PrototypePrimaryAttack : MonoBehaviour
             }
             Debug.Log("Enemy Health: " + enemyController.Health);
         }
-        if (other.tag == "Boss")
+        if (other.tag == "BossHit")
         {
+            bossController = other.transform.parent.parent.GetComponent<BossPhases>();
+            Debug.Log(bossController);
+
             playerBody.hitEnemy = true;
-            bossController = other.gameObject.GetComponent<BossPhases>();
 
             if (bossController.cantakedmg)
             {
