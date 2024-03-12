@@ -98,6 +98,8 @@ public class PlayerBody : MonoBehaviour
     public Collect collectable;
     public bool canCollect = true;
 
+    private float takenDamageKnockback = 1000;
+    private bool gotHit = false;
     private bool dashOnCD = false;
     public bool canTakeDamage = true;
     public float executeHeal = 22.5f;
@@ -121,6 +123,8 @@ public class PlayerBody : MonoBehaviour
     public GameObject dropShadow;
     //hey Ian dont know where you will want this bool
     public bool canRelease = false;
+    public int playerID;
+
 
     private void Update()
     {
@@ -256,6 +260,8 @@ public class PlayerBody : MonoBehaviour
         health = 50;
         maxHealth = health;
         canCollect = true;
+
+        playerID = gameObject.GetInstanceID();
     }
     bool dontForward;
     private void FixedUpdate()
@@ -327,12 +333,13 @@ public class PlayerBody : MonoBehaviour
                 movementVector.z = movementVector.z * 1.5f;
                 movementVector = (movementVector * movementSpeed);
 
-                if (!lockHitForward)
+                if (!lockHitForward || !gotHit)
                 {
                     float y = rb.velocity.y;
                     rb.velocity = (movementVector * forceMod * Time.fixedDeltaTime);
                     rb.velocity = new Vector3(rb.velocity.x, y, rb.velocity.z);
                 }
+
 
                 if ((rb.velocity.magnitude > 30f || movementVector.magnitude > 1) & Mathf.Abs(movementVector.magnitude) > 0 && !alreadyDead)
                 {
@@ -410,7 +417,7 @@ public class PlayerBody : MonoBehaviour
             rb.velocity = (new Vector3(0, rb.velocity.y) + ((dashDirection * dashSpeed * forceMod * 0.9f)) * Time.fixedDeltaTime);
             dashDirection.z = dz;
         }
-        if (!hitEnemy && (lockHitForward))
+        if (!hitEnemy && (lockHitForward || gotHit))
         {
 
             //Debug.Log("FORWARD");
@@ -423,6 +430,12 @@ public class PlayerBody : MonoBehaviour
             Debug.Log("BACK");
             float y = rb.velocity.y;
             rb.velocity = (-GetMovementVector() * attackKnockback * (forceMod) * 4) * Time.deltaTime;
+            rb.velocity = new Vector3(rb.velocity.x, y, rb.velocity.z);
+        }
+        else if (canTakeDamage && gotHit)
+        {
+            float y = rb.velocity.y;
+            rb.velocity = (-GetMovementVector() * attackKnockback * (takenDamageKnockback) * 4) * Time.deltaTime;
             rb.velocity = new Vector3(rb.velocity.x, y, rb.velocity.z);
         }
     }
@@ -552,6 +565,15 @@ public class PlayerBody : MonoBehaviour
         dontForward = true;
         lockHitBackward = false;
         hitEnemy = false;
+    }
+
+    public IEnumerator gotHitKnockback()
+    {
+        gotHit = true;
+        dontForward = false;
+        yield return new WaitForSeconds(KnockbackTime);
+        dontForward = true;
+        gotHit = false;
     }
 
     private IEnumerator attackCooldown()
