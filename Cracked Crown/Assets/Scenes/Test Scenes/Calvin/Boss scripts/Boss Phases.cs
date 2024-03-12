@@ -83,7 +83,7 @@ public class BossPhases : MonoBehaviour
 
     void Update()
     {
-        if (attacktimer <= 0)
+        /*if (attacktimer <= 0)
         {
             testAttack = "empty";
             TestLoop();
@@ -92,8 +92,9 @@ public class BossPhases : MonoBehaviour
         {
             pincerAttack();
         }
-        attacktimer -= Time.deltaTime;
-        /*if (attackLoop)
+        attacktimer -= Time.deltaTime;*/
+
+        if (attackLoop)
        {
            // attacks called in a continuous loop
            if (attacktimer <= 0)
@@ -112,9 +113,13 @@ public class BossPhases : MonoBehaviour
                    break;
            }
            attacktimer -= Time.deltaTime;
-       }*/
+       }
     }
 
+    public string displayAttack()
+    {
+        return attackIDList[currattackid];
+    }
     private void TestLoop()
     {
         if (gameObject.name == "clawLeft")
@@ -292,7 +297,9 @@ public class BossPhases : MonoBehaviour
         }
         else
         {
-            yield return new WaitForSeconds(0.2f);
+            clawgrab = false;
+            attacktimer += 1;
+            yield return new WaitForSeconds(1.2f);
         }
 
         clawgrab = false;

@@ -25,7 +25,7 @@ public class DropShadow : MonoBehaviour
     {
         folX = followedObject.transform.position.x;
         folZ = followedObject.transform.position.z;
-        if (script.testAttack == "pincer")
+        if (script.displayAttack() == "PincerAttack")
         {
             if (script.clawreturn)
             {
@@ -41,7 +41,7 @@ public class DropShadow : MonoBehaviour
                 gameObject.transform.position = new Vector3(folX - 2, folY - 14 - cush, folZ);
             }
         }
-        else if (script.testAttack == "smash")
+        else if (script.displayAttack() == "ClawSmash")
         {
             if (script.attacktimer > 4)
             {
