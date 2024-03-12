@@ -862,9 +862,9 @@ public class PlayerBody : MonoBehaviour
         {
             if (controller.InteractDown)
             {
-                if (gameManager.eyeCount >= 5 && hasPotion == false && hasBomb == false)
+                if (gameManager.eyeCount >= 30 && hasPotion == false && hasBomb == false)
                 {
-                    gameManager.eyeCount -= 5;
+                    gameManager.eyeCount -= 30;
                     hasBomb = true;
                     collectable.gameObject.SetActive(false);
 
@@ -876,9 +876,9 @@ public class PlayerBody : MonoBehaviour
         {
             if (controller.InteractDown)
             {
-                if (gameManager.eyeCount >= 5 && hasPotion == false && hasBomb == false)
+                if (gameManager.eyeCount >= 30 && hasPotion == false && hasBomb == false)
                 {
-                    gameManager.eyeCount -= 5;
+                    gameManager.eyeCount -= 30;
                     hasBomb = false;
                     hasPotion = true;
                     collectable.gameObject.SetActive(false);
