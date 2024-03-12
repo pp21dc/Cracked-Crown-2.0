@@ -139,6 +139,10 @@ public class EnemyAIController : AdvancedFSM
     public bool startReload;
     public bool canShoot;
     public GameObject tooth;
+    public GameObject shockwaveCol;
+    public Vector3 targetShockwaveScale;
+    public Vector3 shockwaveScaleInitial;
+    
 
     //health, finisher, and death states
     public float maxHealth = 40; // its total Health
@@ -289,6 +293,8 @@ public class EnemyAIController : AdvancedFSM
         canShoot = true;
         maxAmmo = 10;
         heavyBullets = 10;
+        targetShockwaveScale = new Vector3(15, shockwaveCol.transform.localScale.y, 15);
+        shockwaveScaleInitial = shockwaveCol.transform.localScale;
 
 
 
@@ -1164,7 +1170,27 @@ public class EnemyAIController : AdvancedFSM
 
     public void StartShockwave()
     {
+        if(startShock)
+        {
+            startShock = false;
+            StartCoroutine(Shockwave());
+        }
+    }
 
+    IEnumerator Shockwave()
+    {
+        for (int i = 0; i < 10; i++) 
+        {
+            while(shockwaveCol.transform.localScale.x < targetShockwaveScale.x)
+            {
+                shockwaveCol.transform.localScale = new Vector3(shockwaveCol.transform.localScale.x + 1, shockwaveCol.transform.localScale.y, shockwaveCol.transform.localScale.z + 1);
+                yield return new WaitForSeconds(0.1f);
+            }
+
+
+        }
+
+        yield return null;
     }
 
     public void ResetShockVar()
