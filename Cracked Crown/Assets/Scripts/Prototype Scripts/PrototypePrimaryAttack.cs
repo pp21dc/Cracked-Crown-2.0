@@ -53,12 +53,7 @@ public class PrototypePrimaryAttack : MonoBehaviour
             bossController = other.transform.parent.parent.GetComponent<BossPhases>();
             Debug.Log(bossController);
 
-            playerBody.hitEnemy = true;
-
-            if (bossController.cantakedmg)
-            {
-                bossController.decHealth(playerBody.damage);
-            }
+            bossController.decHealth(playerBody.damage);
         }
         if (other.tag == "Mini Crab" || other.tag == "MiniCrabExecutable")
         {
