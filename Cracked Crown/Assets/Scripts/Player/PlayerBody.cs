@@ -365,7 +365,10 @@ public class PlayerBody : MonoBehaviour
                 }
                 
                 lockExecAnim = true;
-                StartCoroutine(ExecuteCooldown());
+                if (executeLock == false)
+                {
+                    StartCoroutine(TurnOffExecuteMovement());
+                }
             }
             else if (Vector3.Distance(transform.position, executeTarget.transform.position + forExecutePosition) > 5.0f)
             {
@@ -701,6 +704,19 @@ public class PlayerBody : MonoBehaviour
                     gameManager.eyeCount += 8;
                 if (LevelManager.Instance != null)
                     LevelManager.Instance.EnemyKilled();
+
+
+                // just added to see
+                yield return new WaitForSeconds(1.0f);
+
+                canTakeDamage = true;
+                canMove = true;
+                canAttack = true;
+                canExecute = true;
+                //playerLock = true;
+                canMovePlayerForexecute = false;
+                lockDash = false;
+
             }
             else
             {
@@ -846,9 +862,9 @@ public class PlayerBody : MonoBehaviour
         {
             if (controller.InteractDown)
             {
-                if (gameManager.eyeCount >= 5 && hasPotion == false && hasBomb == false)
+                if (gameManager.eyeCount >= 30 && hasPotion == false && hasBomb == false)
                 {
-                    gameManager.eyeCount -= 5;
+                    gameManager.eyeCount -= 30;
                     hasBomb = true;
                     collectable.gameObject.SetActive(false);
 
@@ -860,9 +876,9 @@ public class PlayerBody : MonoBehaviour
         {
             if (controller.InteractDown)
             {
-                if (gameManager.eyeCount >= 5 && hasPotion == false && hasBomb == false)
+                if (gameManager.eyeCount >= 30 && hasPotion == false && hasBomb == false)
                 {
-                    gameManager.eyeCount -= 5;
+                    gameManager.eyeCount -= 30;
                     hasBomb = false;
                     hasPotion = true;
                     collectable.gameObject.SetActive(false);
@@ -941,13 +957,19 @@ public class PlayerBody : MonoBehaviour
 
     private IEnumerator ExecuteCooldown()
     {
+
         yield return new WaitForSeconds(1.25f);
         lockDash = false;
-
-        yield return new WaitForSeconds(1.5f);
+        canMove = true;
+        canAttack = true;
         canExecute = true;
         canMovePlayerForexecute = false;
-        //playerLock = false;
+        lockExecAnim = false;
+
+        //yield return new WaitForSeconds(1.3f);
+        //canExecute = true;
+        //canMovePlayerForexecute = false;
+        //lockExecAnim = false;
     }
 
     public void ResetSprite(string msg)

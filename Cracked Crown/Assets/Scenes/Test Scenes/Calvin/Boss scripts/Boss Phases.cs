@@ -40,7 +40,7 @@ public class BossPhases : MonoBehaviour
     private Vector3 preGrabPlayerPosition;
     private Vector3 clawtarget;
     private float dist;
-    private int currattackid;
+    public int currattackid;
     public string testAttack;
 
     bool attackLoop = true; // controls the running of the boss's attacks
@@ -58,7 +58,7 @@ public class BossPhases : MonoBehaviour
     private bool isGrabbed = false;
     private float grabbedTimer;
     [SerializeField]
-    private string[] attackIDList = new string[LISTLENGTH];
+    public string[] attackIDList = new string[LISTLENGTH];
 
     // gets references for players
     [Header("Player List")]
@@ -70,7 +70,7 @@ public class BossPhases : MonoBehaviour
     
     private void Awake()
     {
-        currattackid = -1; // starts at -1 because it adds once before it is needed, making it 0
+        currattackid = 0; // starts at -1 because it adds once before it is needed, making it 0
         bosshealth = MAXBOSSHEALTH;
         GameObject[] TempList = GameObject.FindGameObjectsWithTag("BossFollowPoint");
         for (int i = 0; i < TempList.Length; i++)
@@ -83,7 +83,7 @@ public class BossPhases : MonoBehaviour
 
     void Update()
     {
-        if (attacktimer <= 0)
+        /*if (attacktimer <= 0)
         {
             testAttack = "empty";
             TestLoop();
@@ -92,8 +92,9 @@ public class BossPhases : MonoBehaviour
         {
             pincerAttack();
         }
-        attacktimer -= Time.deltaTime;
-        /*if (attackLoop)
+        attacktimer -= Time.deltaTime;*/
+
+        if (attackLoop)
        {
            // attacks called in a continuous loop
            if (attacktimer <= 0)
@@ -101,7 +102,7 @@ public class BossPhases : MonoBehaviour
                currattackid++; // counts to next id in the list
                startNextAttack(); // starts the next attack, uses currattackid to do so
            }
-           switch (attackIDList[currattackid]) // populates the ID list
+           switch (attackIDList[currattackid]) // checks id list
            {
                case "PincerAttack":
                    pincerAttack();
@@ -112,9 +113,13 @@ public class BossPhases : MonoBehaviour
                    break;
            }
            attacktimer -= Time.deltaTime;
-       }*/
+       }
     }
 
+    public string displayAttack()
+    {
+        return attackIDList[currattackid];
+    }
     private void TestLoop()
     {
         if (gameObject.name == "clawLeft")
@@ -292,7 +297,9 @@ public class BossPhases : MonoBehaviour
         }
         else
         {
-            yield return new WaitForSeconds(0.2f);
+            clawgrab = false;
+            attacktimer += 1;
+            yield return new WaitForSeconds(1.2f);
         }
 
         clawgrab = false;
