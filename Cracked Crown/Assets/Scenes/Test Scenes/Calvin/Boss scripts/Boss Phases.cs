@@ -37,11 +37,19 @@ public class BossPhases : MonoBehaviour
     [SerializeField]
     private float clawdropspeed;
 
+    [SerializeField]
+    Material baseMat;
+    [SerializeField]
+    Material whiteMat;
+    [SerializeField]
+    Sprite[] spriteList;
+
     private Vector3 preGrabPlayerPosition;
     private Vector3 clawtarget;
     private float dist;
     public int currattackid;
     public string testAttack;
+    private int currSpriteID = 0;
 
     bool attackLoop = true; // controls the running of the boss's attacks
     static int LISTLENGTH = 100;
@@ -49,8 +57,6 @@ public class BossPhases : MonoBehaviour
     private bool clawfollow = false; // pincer attack bools
     private bool clawgrab = false;
     public bool clawreturn = false;
-
-    public bool cantakedmg= false;
 
     public GameObject FollowedPlayer;
     private PlayerBody GrabbedPlayerBody;
@@ -83,6 +89,16 @@ public class BossPhases : MonoBehaviour
 
     void Update()
     {
+        if (bosshealth <= 0)
+        {
+            if (GrabbedPlayerBody != null)
+            {
+                GrabbedPlayerBody.playerLock = false;
+                StopAllCoroutines();
+            }
+            gameObject.GetComponent<BossPhases>().enabled = false;
+            return;
+        }
         /*if (attacktimer <= 0)
         {
             testAttack = "empty";
@@ -160,6 +176,38 @@ public class BossPhases : MonoBehaviour
     {
         bosshealth -= amount;
         Debug.Log(bosshealth);
+        StartCoroutine(FlashWhite(ClawSprite.GetComponent<SpriteRenderer>()));
+        if (bosshealth > 60)
+        {
+            currSpriteID = 0;
+        }
+        else if (bosshealth > 45)
+        {
+            currSpriteID = 1;
+        }
+        else if (bosshealth > 30)
+        {
+            currSpriteID = 2;
+        }
+        else if (bosshealth > 15)
+        {
+            currSpriteID = 3;
+        }
+        else
+        {
+            currSpriteID = 4;
+        }
+        ClawSprite.GetComponent<SpriteRenderer>().sprite = spriteList[currSpriteID];
+    }
+
+    public IEnumerator FlashWhite(SpriteRenderer s)
+    {
+        s.material = whiteMat;
+
+        yield return new WaitForSeconds(0.15f);
+
+        s.material = baseMat;
+
     }
 
     private void createIDList() // randomizes the attacks
@@ -328,7 +376,6 @@ public class BossPhases : MonoBehaviour
             bossAnim.Play("clawSmashRight");
         }
         yield return new WaitForSeconds(2.05f);
-        cantakedmg = true; // lets the boss take damage while the claw is on the ground
         if (gameObject.name == "clawRight")
         {
             Instantiate(ShockWave, ClawSprite.transform.position - new Vector3(8, 25f, 16), Quaternion.Euler(80, 0, 0)); // instantiates the shockwave part of attack
@@ -338,7 +385,6 @@ public class BossPhases : MonoBehaviour
             Instantiate(ShockWave, ClawSprite.transform.position - new Vector3(-8, 25f, 16), Quaternion.Euler(80, 0, 0)); // instantiates the shockwave part of attack
         }
         yield return new WaitForSeconds(1.95f);
-        cantakedmg = false; // sets boss damage off when claw leaves the ground
         ClawSprite.transform.localPosition = new Vector3(0, 0, 0);
         bossAnim.Play("clawPassive");
         // damage is dealt
