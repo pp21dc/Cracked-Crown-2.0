@@ -18,7 +18,7 @@ public class CharacterType : ScriptableObject
     public Vector3 executePosition;
     public GameObject corpse;
     public bool hop;
-
+    public RuntimeAnimatorController controller;
     public AudioClip[] soundeffects;
     public string SFX_0;
     public string SFX_1;

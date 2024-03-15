@@ -177,8 +177,9 @@ public class PlayerAnimController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Animator != null)
+        if (Animator != null && PC.PB.CharacterType != null)
         {
+            Animator.runtimeAnimatorController = PC.PB.CharacterType.controller;
             Animator.SetBool("Moving", moving);
             Animator.SetBool("Dashing", dashing);
             Animator.SetBool("Attacking", attacking);
@@ -201,6 +202,7 @@ public class PlayerAnimController : MonoBehaviour
         {
             Animator = anim;
         }
+        
         //PC = transform.parent.parent.parent.parent.GetComponent<PlayerContainer>();
 
     }
