@@ -38,6 +38,18 @@ public class EnemyAnimationController : MonoBehaviour
             animator.runtimeAnimatorController = Light_AC[index-1];
         else if (type == 1)
             animator.runtimeAnimatorController = Medium_AC[index-1];
+        if (index-1 == 0)
+        {
+            EAIC.colour = "Green";
+        }
+        else if (index-1 == 1)
+        {
+            EAIC.colour = "Purple";
+        }
+        else if (index-1 == 2)
+        {
+            EAIC.colour = "Red";
+        }
     }
 
     private void Update()

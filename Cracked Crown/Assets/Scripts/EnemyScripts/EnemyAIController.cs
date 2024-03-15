@@ -38,7 +38,7 @@ public class EnemyAIController : AdvancedFSM
     private Text StateText;//shows the state the enmy is currently on
     [SerializeField]
     private Text HealthText;//shows enemy current health
-
+    public string colour;
     //for finding the players
     [SerializeField]
     private GameObject[] Players = new GameObject[4]; //holds all players
@@ -244,8 +244,21 @@ public class EnemyAIController : AdvancedFSM
         Damage = gameObject.GetComponent<Collider>();
         Damage.enabled = false; // deactivates the damage collider
         isHeavyDashing = true;
-        health = 40;
-        maxHealth = 40;
+        if (CompareTag("Medium"))
+        {
+            health = 40;
+            maxHealth = 40;
+        }
+        else if (CompareTag("Light"))
+        {
+            health = 25;
+            maxHealth = 25;
+        }
+        else if (CompareTag("Heavy"))
+        {
+            health = 60;
+            maxHealth = 60;
+        }
 
         if(gameObject.CompareTag("Light"))
         {
@@ -341,7 +354,17 @@ public class EnemyAIController : AdvancedFSM
 
             CurrentState.Reason(playerTransform, transform);
             CurrentState.Act(playerTransform, transform);
+            if (!canPickup)
+            {
+                StartCoroutine(ResetCanPickUp());
+            }
         }
+    }
+
+    IEnumerator ResetCanPickUp()
+    {
+        yield return new WaitForSeconds(8);
+        canPickup = true;
     }
 
     public void StartUp()
@@ -469,14 +492,14 @@ public class EnemyAIController : AdvancedFSM
     //finds the closest player and sets the target position
     public void checkShortestDistance()
     {
-        if (Players != null)
+        if (GM.Players != null)
         {
             float check;
             currShortest = 10000;
             float closestInt = 0;
             closest = null;
             //simple distance check where it checks the current shortest and compares to the other players, replacing when neccisary
-            for (int i = 0; i < Players.Length; i++)
+            for (int i = 0; i < GM.Players.Length; i++)
             {
 
                 PlayerBody currentBody = GM.Players[i].PB;
@@ -498,6 +521,10 @@ public class EnemyAIController : AdvancedFSM
 
                 }
             }
+            if (closestInt == 0)
+            {
+                closest = null;
+            }
             if (closest == null && !GM.Players[0].PB.alreadyDead)
             {
                 closest = Players[0];
@@ -515,6 +542,10 @@ public class EnemyAIController : AdvancedFSM
                 }
             }
                 
+        }
+        else
+        {
+            Debug.Log("CANT FIND PLAYERS");
         }
     }
 
@@ -851,6 +882,7 @@ public class EnemyAIController : AdvancedFSM
         doneStun = false;
         yield return new WaitForSeconds(3f);
 
+        EAC.Moving = true;
         doneOnGround = true;
         EAC.Stunned = false;
 
@@ -1047,7 +1079,7 @@ public class EnemyAIController : AdvancedFSM
 
     IEnumerator PickUpAgainCoolDown()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(1.5f);
         Debug.Log("PICKUP AGAIN COOLDOWN: COMPLETE");
         belowChecker.enabled = true;
         slamAttack.enabled = true;

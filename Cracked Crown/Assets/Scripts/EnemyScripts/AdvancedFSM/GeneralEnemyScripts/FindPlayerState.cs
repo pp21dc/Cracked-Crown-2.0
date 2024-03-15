@@ -20,11 +20,11 @@ public class FindPlayerState : FSMState
     {
         //Debug.Log("Made it to the Find player Reasoning");
 
-        if (enemy.Health <= 20 && enemy.Health >= 1) 
+        if (enemy.Health <= enemy.maxHealth * 0.74f && enemy.Health >= 1) 
         {
             enemy.PerformTransition(Transition.LowHealth);
         }
-        else if (enemy.Health <= 0)
+        else if (enemy.Health < 1)
         {
             enemy.PerformTransition(Transition.NoHealth);
         }
@@ -32,7 +32,7 @@ public class FindPlayerState : FSMState
         {
             if (enemy.startSlam == true && enemy.canPickup && enemy.checkPlayerBelow.IsPlayerBelow())
             {
-                Debug.Log("EEEEEEEEEEEE");
+                //Debug.Log("EEEEEEEEEEEE");
                 enemy.startSlam = false;
                 enemy.PerformTransition(Transition.AbovePlayer);
                 
