@@ -186,7 +186,6 @@ public class BossPhases : MonoBehaviour
     public void decHealth(float amount)
     {
         bosshealth -= amount;
-        Debug.Log(bosshealth);
         StartCoroutine(FlashWhite(ClawSprite.GetComponent<SpriteRenderer>()));
         if (bosshealth > 60)
         {
@@ -282,24 +281,23 @@ public class BossPhases : MonoBehaviour
         int selection = 0;
         for (int i = 0; i < PlayerList.Length; i++)
         {
-            if (otherClaw.FollowedPlayer != PlayerList[i]) // sets the player to be followed to a player not targetted by the other claw
-            {
-                playerdist[i] = Vector3.Distance(gameObject.transform.position, PlayerList[i].transform.position); // working currently on this 
-            }
+            playerdist[i] = Vector3.Distance(gameObject.transform.position, PlayerList[i].transform.position);
         }
         for (int i = 0; i < PlayerList.Length; i++)
         {
-            if (i - 1 < 0)
+            if (otherClaw.FollowedPlayer != PlayerList[i]) // sets the player to be followed to a player not targetted by the other claw
             {
-                if (playerdist[selection] > playerdist[i])
+                if ((i - 1) >= 0)
+                {
+                    if (playerdist[selection] > playerdist[i])
+                    {
+                        selection = i;
+                    }
+                }
+                else
                 {
                     selection = i;
-                    Debug.Log(playerdist);
                 }
-            }
-            else
-            {
-                selection = i;
             }
         }
         FollowedPlayer = PlayerList[selection];
@@ -406,6 +404,7 @@ public class BossPhases : MonoBehaviour
     IEnumerator ClawSmash()
     {
         isClawSmash = true;
+        ClawSprite.transform.localPosition = Vector3.zero;
         if (Claw.name == "clawLeft") // plays the appropriate smash animation for the claw using the script
         {
             bossAnim.Play("clawSmash");
@@ -453,5 +452,18 @@ public class BossPhases : MonoBehaviour
                 grabbedTimer = 1;
             }
         }
+    }
+
+    IEnumerator bossEntry()
+    {
+        if (gameObject.name == "clawLeft")
+        {
+            bossAnim.Play("enterLeft");
+        }
+        else
+        {
+            bossAnim.Play("enter");
+        }
+        yield return new WaitForSeconds(2);
     }
 }
