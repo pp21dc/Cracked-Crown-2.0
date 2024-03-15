@@ -4445,9 +4445,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1215850992}
   - component: {fileID: 1215850993}
+  - component: {fileID: 1215850994}
   m_Layer: 0
   m_Name: Res_stone__finalV2_(Glow)
-  m_TagString: Untagged
+  m_TagString: Revive
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4519,6 +4520,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &1215850994
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1215850991}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 342.05313, y: 378.00003, z: 300.35968}
+  m_Center: {x: 3.0089936, y: -0.000044261833, z: 25.85269}
 --- !u!1 &1313221997
 GameObject:
   m_ObjectHideFlags: 0

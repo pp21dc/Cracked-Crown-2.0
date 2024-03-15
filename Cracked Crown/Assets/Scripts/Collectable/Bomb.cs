@@ -132,7 +132,7 @@ public class Bomb : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Ground")
+        if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Player" || collision.gameObject.tag == "Medium" || collision.gameObject.tag == "Heavy" || collision.gameObject.tag == "Light")
         {
             counter++;
         }

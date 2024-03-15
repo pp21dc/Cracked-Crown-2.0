@@ -837,6 +837,27 @@ public class PlayerBody : MonoBehaviour
             health = health - 1;
             //Debug.Log(health);
         }
+        if (collision.gameObject.tag == "Revive" && gameObject.tag == "Ghost")
+        {
+            Debug.Log("Collided With Revive Stone as Ghost");
+
+            gameObject.tag = "Player";
+
+            transform.position = respawnPoint;
+
+            animController.Dead = false;
+            alreadyDead = false;
+            ghostCoins = 0;
+            health = maxHealth * 0.8f;
+            canAttack = true;
+            canMove = true;
+            lockDash = false;
+            canTakeDamage = true;
+            Grabbed = false;
+
+            Destroy(corpse);
+            StartCoroutine(executeAfterRevive());
+        }
     }
     public int RESETINGGHOST; //gets the state of the players death cycle
     [SerializeField]
@@ -1002,12 +1023,7 @@ public class PlayerBody : MonoBehaviour
             Debug.Log("Free");
                 
         }
-        
-
-        
     }
-
-    
 
     private IEnumerator ExecuteCooldown()
     {
