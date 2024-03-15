@@ -306,12 +306,12 @@ public class BossPhases : MonoBehaviour
 
     IEnumerator PincerAttack() // handles timings for the pincer function phases
     {
+        float[] playerdist = new float[PlayerList.Length];
         for (int i = 0; i < PlayerList.Length; i++)
         {
             if (otherClaw.FollowedPlayer != PlayerList[i]) // sets the player to be followed to a player not targetted by the other claw
             {
-                FollowedPlayer = PlayerList[i];
-                break;
+                playerdist[i] = Vector3.Distance(gameObject.transform.position, PlayerList[i].transform.position); // working currently on this 
             }
         }
         Debug.Log("Followed Player: " + FollowedPlayer);
