@@ -21,8 +21,10 @@ public class Spawner : MonoBehaviour
         int randPoint = Random.Range(0, spawnPoints.Length);
         GameObject E = Instantiate(Enemy_prefab, spawnPoints[randPoint].position, Quaternion.identity);
         LM.EnemySpawned();
+        
         if (enemyType == 0)
         {
+            
             E.tag = "Light";
             E.transform.GetChild(0).tag = "Light";
             E.transform.GetChild(1).position = new Vector3(E.transform.position.x, 30, E.transform.position.z);
@@ -37,8 +39,10 @@ public class Spawner : MonoBehaviour
             E.tag = "Heavy";
             E.transform.GetChild(0).tag = "Heavy";
         }
-        E.GetComponentInChildren<EnemyAIController>().StartUp();
-        E.GetComponentInChildren<EnemyAIController>().act = true;
+        EnemyAIController e = E.GetComponentInChildren<EnemyAIController>();
+        e.GetComponentInChildren<EnemyAIController>().StartUp();
+        e.GetComponentInChildren<EnemyAIController>().act = true;
+        
         
     }
 
