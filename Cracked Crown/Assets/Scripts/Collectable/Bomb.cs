@@ -32,6 +32,7 @@ public class Bomb : MonoBehaviour
     private Rigidbody rb;
     private PlayerController controller;
     private SpriteRenderer sprite;
+    private Animator animator;
 
     private void Awake()
     {
@@ -39,6 +40,7 @@ public class Bomb : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         enemiesInRange = new List<EnemyAIController>();
         sprite = transform.GetChild(0).GetComponent<SpriteRenderer>();
+        animator = transform.GetChild(1).GetComponent<Animator>();
     }
 
     int thing = 1;
@@ -86,11 +88,10 @@ public class Bomb : MonoBehaviour
     private IEnumerator Explode()
     {
 
-        // play wub wub animation looking like its gonna explode
-
         yield return new WaitForSeconds(3f);
 
         // play explosion effect
+        animator.SetBool("Blow", true);
 
         if (enemiesInRange != null)
         {
@@ -100,6 +101,7 @@ public class Bomb : MonoBehaviour
             }
         }
 
+        yield return new WaitForSeconds(0.5f);
         gameObject.SetActive(false);
 
     }
