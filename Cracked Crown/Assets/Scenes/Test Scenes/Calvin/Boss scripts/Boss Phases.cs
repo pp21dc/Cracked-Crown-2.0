@@ -50,7 +50,9 @@ public class BossPhases : MonoBehaviour
     public int currattackid;
     public string testAttack;
     private int currSpriteID = 0;
+    private bool delayed = false;
 
+    public bool isClawSmash = false;
     bool attackLoop = true; // controls the running of the boss's attacks
     static int LISTLENGTH = 100;
 
@@ -69,7 +71,7 @@ public class BossPhases : MonoBehaviour
     // gets references for players
     [Header("Player List")]
     [SerializeField]
-    private GameObject[] PlayerList = new GameObject[4];
+    private GameObject[] PlayerList;
     [SerializeField]
     private GameObject GrabbedPlayer;
 
@@ -79,6 +81,7 @@ public class BossPhases : MonoBehaviour
         currattackid = 0; // starts at -1 because it adds once before it is needed, making it 0
         bosshealth = MAXBOSSHEALTH;
         GameObject[] TempList = GameObject.FindGameObjectsWithTag("BossFollowPoint");
+        PlayerList = new GameObject[TempList.Length];
         for (int i = 0; i < TempList.Length; i++)
         {
             PlayerList[i] = TempList[i]; // creates a list of all players in the scene
@@ -89,6 +92,14 @@ public class BossPhases : MonoBehaviour
 
     void Update()
     {
+        if (gameObject.name == "clawRight")
+        {
+            if (!delayed)
+            {
+                StartCoroutine(delay(2));
+                return;
+            }
+        }
         if (bosshealth <= 0)
         {
             if (GrabbedPlayerBody != null)
@@ -200,6 +211,12 @@ public class BossPhases : MonoBehaviour
         ClawSprite.GetComponent<SpriteRenderer>().sprite = spriteList[currSpriteID];
     }
 
+    public IEnumerator delay(int time)
+    {
+        yield return new WaitForSeconds(time);
+        delayed = true;
+    }
+
     public IEnumerator FlashWhite(SpriteRenderer s)
     {
         s.material = whiteMat;
@@ -259,6 +276,35 @@ public class BossPhases : MonoBehaviour
         }
     }
 
+    private void chooseFollow()
+    {
+        float[] playerdist = new float[PlayerList.Length];
+        int selection = 0;
+        for (int i = 0; i < PlayerList.Length; i++)
+        {
+            if (otherClaw.FollowedPlayer != PlayerList[i]) // sets the player to be followed to a player not targetted by the other claw
+            {
+                playerdist[i] = Vector3.Distance(gameObject.transform.position, PlayerList[i].transform.position); // working currently on this 
+            }
+        }
+        for (int i = 0; i < PlayerList.Length; i++)
+        {
+            if (i - 1 < 0)
+            {
+                if (playerdist[selection] > playerdist[i])
+                {
+                    selection = i;
+                    Debug.Log(playerdist);
+                }
+            }
+            else
+            {
+                selection = i;
+            }
+        }
+        FollowedPlayer = PlayerList[selection];
+    }
+
     private void pincerAttack() // handles actions relying on the pincer IEnumerator's timings
     {
         if (FollowedPlayer == null)
@@ -306,15 +352,7 @@ public class BossPhases : MonoBehaviour
 
     IEnumerator PincerAttack() // handles timings for the pincer function phases
     {
-        float[] playerdist = new float[PlayerList.Length];
-        for (int i = 0; i < PlayerList.Length; i++)
-        {
-            if (otherClaw.FollowedPlayer != PlayerList[i]) // sets the player to be followed to a player not targetted by the other claw
-            {
-                playerdist[i] = Vector3.Distance(gameObject.transform.position, PlayerList[i].transform.position); // working currently on this 
-            }
-        }
-        Debug.Log("Followed Player: " + FollowedPlayer);
+        chooseFollow();
         clawfollow = true; // allows claw to follow player
 
         yield return new WaitForSeconds(4);
@@ -367,6 +405,7 @@ public class BossPhases : MonoBehaviour
 
     IEnumerator ClawSmash()
     {
+        isClawSmash = true;
         if (Claw.name == "clawLeft") // plays the appropriate smash animation for the claw using the script
         {
             bossAnim.Play("clawSmash");
@@ -376,6 +415,7 @@ public class BossPhases : MonoBehaviour
             bossAnim.Play("clawSmashRight");
         }
         yield return new WaitForSeconds(2.05f);
+        isClawSmash = false;
         if (gameObject.name == "clawRight")
         {
             Instantiate(ShockWave, ClawSprite.transform.position - new Vector3(8, 25f, 16), Quaternion.Euler(80, 0, 0)); // instantiates the shockwave part of attack

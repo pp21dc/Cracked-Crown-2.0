@@ -623,6 +623,7 @@ GameObject:
   m_Component:
   - component: {fileID: 103216391}
   - component: {fileID: 103216392}
+  - component: {fileID: 103216393}
   m_Layer: 0
   m_Name: HitColliderRight
   m_TagString: BossHit
@@ -666,6 +667,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.009319, y: 2.7324958, z: 4.121768}
   m_Center: {x: -0.032401044, y: -0.86624676, z: -0.4943335}
+--- !u!114 &103216393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 103216390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4f71bf513a1a52418cdef5b40c1102f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  claw: {fileID: 2117170962}
+  damage: 8
 --- !u!1 &112394262
 GameObject:
   m_ObjectHideFlags: 0
@@ -10936,6 +10951,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1326490665}
   - component: {fileID: 1326490666}
+  - component: {fileID: 1326490667}
   m_Layer: 0
   m_Name: HitColliderLeft
   m_TagString: BossHit
@@ -10979,6 +10995,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.009319, y: 2.7313952, z: 4.1148357}
   m_Center: {x: -0.032401044, y: -0.8656968, z: -0.4908669}
+--- !u!114 &1326490667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1326490664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4f71bf513a1a52418cdef5b40c1102f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  claw: {fileID: 1940918870}
+  damage: 8
 --- !u!1 &1332750988
 GameObject:
   m_ObjectHideFlags: 0
