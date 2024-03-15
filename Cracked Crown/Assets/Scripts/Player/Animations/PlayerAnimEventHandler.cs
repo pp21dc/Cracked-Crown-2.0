@@ -55,6 +55,7 @@ public class PlayerAnimEventHandler : MonoBehaviour
         {
             //PC.PB.RESETINGGHOST += 1;
             PC.PB.GhostMode();
+            PC.PB.canCollect = true;
         }
         else if (PC.PB.RESETINGGHOST >= 5)
             PC.PB.RevivePlayer();
