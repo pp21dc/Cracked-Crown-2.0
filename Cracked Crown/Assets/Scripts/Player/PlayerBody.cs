@@ -412,6 +412,11 @@ public class PlayerBody : MonoBehaviour
                 //    }
                 //}
 
+                if (enemyAIController.tag.Equals("Light"))
+                {
+                    animController.Finishing_Light = true;
+                }
+
                 if (executeLock == false)
                 {
                     StartCoroutine(TurnOffExecuteMovement());
