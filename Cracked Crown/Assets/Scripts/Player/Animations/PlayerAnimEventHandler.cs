@@ -28,9 +28,7 @@ public class PlayerAnimEventHandler : MonoBehaviour
     public void FinishFinish()
     {
         PC.PAC.Attacking = false;
-        PC.PAC.Finishing = false;
-        PC.PAC.Finishing_Light = false;
-        PC.PAC.Finishing_Heavy = false;
+        PC.PAC.SetFinishers(false);
         PC.PB.canMove = true;
         PC.PB.canAttack = true;
         PC.PB.AddHealth(PC.PB.executeHeal);
@@ -42,7 +40,7 @@ public class PlayerAnimEventHandler : MonoBehaviour
 
     public void FinishEnter()
     {
-        PC.PAC.Finishing = false;
+        PC.PAC.SetFinishers(false);
         PC.PAC.Finishing_Light = false;
         PC.PAC.Finishing_Heavy = false;
     }
@@ -55,6 +53,7 @@ public class PlayerAnimEventHandler : MonoBehaviour
         {
             //PC.PB.RESETINGGHOST += 1;
             PC.PB.GhostMode();
+            PC.PB.canCollect = true;
         }
         else if (PC.PB.RESETINGGHOST >= 5)
             PC.PB.RevivePlayer();
@@ -63,7 +62,6 @@ public class PlayerAnimEventHandler : MonoBehaviour
 
     public void SFX(int type)
     {
-        Debug.Log(type);
         PlayerAudioManager.AudioType audioType = PAM.audioTypes[type];
         PAM.PlayAudio(audioType);
     }

@@ -24,7 +24,7 @@ public class SlamAttack : MonoBehaviour
         HitGround = false;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if(other.CompareTag("Player") && enemyAIController.canPickup && enemyAIController.CompareTag("Light"))
         {
@@ -33,6 +33,7 @@ public class SlamAttack : MonoBehaviour
             {
                 Debug.Log("SLAM HIT");
                 player.Grabbed = true;
+                enemyAIController.StartCoroutine(enemyAIController.ResetPlayerGrab(player));
                 player.DecHealth(0.5f);
                 hasHit = true;
                 hitPlayer = player;

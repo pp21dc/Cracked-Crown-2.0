@@ -6,7 +6,7 @@ public class CheckPlayerBelow : MonoBehaviour
 {
     public bool seesPlayer = false;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player"))
         {

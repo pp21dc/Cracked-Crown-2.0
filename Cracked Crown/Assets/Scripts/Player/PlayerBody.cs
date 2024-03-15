@@ -126,6 +126,9 @@ public class PlayerBody : MonoBehaviour
     public bool canRelease = false;
     public int playerID;
 
+    private bool hasReachedExecutePoint = false;
+    private bool neverReachedExecutePoint = false;
+
 
     private void Update()
     {
@@ -359,28 +362,19 @@ public class PlayerBody : MonoBehaviour
         //Debug.Log(executeTarget.IsUnityNull());
         if (canMovePlayerForexecute && executeTarget != null)
         {
-            if (Vector3.Distance(transform.position, executeTarget.transform.position + forExecutePosition) < 5.0f && !lockExecAnim && enemyAIController != null)
+            if (Vector3.Distance(transform.position, executeTarget.transform.position + forExecutePosition) < 2.5f && !lockExecAnim && enemyAIController != null)
             {
-                if (enemyAIController.tag.Equals("Medium"))
-                {
-                    animController.Finishing = true;
-                }
-                else if (enemyAIController.tag.Equals("Light"))
-                {
-                    animController.Finishing_Light = true;
-                }
-                else if (enemyAIController.tag.Equals("Heavy"))
-                {
-                    animController.Finishing_Heavy = true;
-                }
-                
+                hasReachedExecutePoint = true;
+
+                animController.Finisher(enemyAIController.tag, enemyAIController.colour, true);
+
                 lockExecAnim = true;
                 if (executeLock == false)
                 {
                     StartCoroutine(TurnOffExecuteMovement());
                 }
             }
-            else if (Vector3.Distance(transform.position, executeTarget.transform.position + forExecutePosition) > 5.0f)
+            else if (Vector3.Distance(transform.position, executeTarget.transform.position + forExecutePosition) > 1.0f)
             {
                 //Debug.Log("MOVE");
                 Vector3 epicgamer = executeTarget.transform.position + forExecutePosition;
@@ -391,24 +385,34 @@ public class PlayerBody : MonoBehaviour
                 lockDash = true;
                 canMove = false;
 
+                //if (neverReachedExecutePoint)
+                //{
+                //    if (enemyAIController.tag.Equals("Medium"))
+                //    {
+                //        animController.Finishing = true;
+                //    }
+                //    else if (enemyAIController.tag.Equals("Light"))
+                //    {
+                //        animController.Finishing_Light = true;
+                //    }
+                //    else if (enemyAIController.tag.Equals("Heavy"))
+                //    {
+                //        animController.Finishing_Heavy = true;
+                //    }
+                //}
+
                 if (enemyAIController != null)
                 {
-                    if (enemyAIController.tag.Equals("Medium"))
-                    {
-                        animController.Finishing = true;
-                    }
-                    else if (enemyAIController.tag.Equals("Light"))
+                    if (enemyAIController.tag.Equals("Light"))
                     {
                         animController.Finishing_Light = true;
                     }
-                    else if (enemyAIController.tag.Equals("Heavy"))
-                    {
-                        animController.Finishing_Heavy = true;
-                    }
                 }
+
                 if (executeLock == false)
                 {
-                StartCoroutine(TurnOffExecuteMovement());
+                    StartCoroutine(TurnOffExecuteMovement());
+                    //StartCoroutine(playExecuteAnimAnyways());
                 }
             }
         }
@@ -451,10 +455,20 @@ public class PlayerBody : MonoBehaviour
         gotHit = false;
     }
 
+    private IEnumerator playExecuteAnimAnyways()
+    {
+        yield return new WaitForSeconds(1.2f);
+
+        if (hasReachedExecutePoint == false)
+        {
+            neverReachedExecutePoint = true;
+        }
+    }
+
     private IEnumerator TurnOffExecuteMovement()
     {
 
-        yield return new WaitForSeconds(1.25f);
+        yield return new WaitForSeconds(1.1f);
 
         canMovePlayerForexecute = false;
         canExecute = true;
@@ -464,9 +478,12 @@ public class PlayerBody : MonoBehaviour
         executeLock = false;
         //playerLock = false;
 
+        animController.Finisher(enemyAIController.tag, enemyAIController.colour, true);
+
         yield return new WaitForSeconds(1.3f);
 
         lockDash = false;
+
     }
 
     public bool lockExecAnim;
