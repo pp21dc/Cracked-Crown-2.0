@@ -561,7 +561,7 @@ public class EnemyAIController : AdvancedFSM
     private void setAndMoveToTargetLight(float Speed)
     {
 
-        //Debug.Log(speed);
+        Debug.Log(closest);
         if (closest != null)
         {
             EAC.Moving = true;
@@ -869,6 +869,7 @@ public class EnemyAIController : AdvancedFSM
 
     void SetGrabAnim(PlayerBody body, bool active)
     {
+        Debug.Log("ANIM: " + active);
         if (body.CharacterType.ID == 0)
             EAC.Badger_Grabbed = active;
         else if (body.CharacterType.ID == 1)
@@ -877,6 +878,16 @@ public class EnemyAIController : AdvancedFSM
             EAC.Duck_Grabbed = active;
         else if (body.CharacterType.ID == 3)
             EAC.Frog_Grabbed = active;
+        EAC.Moving = false;
+        EAC.Attacking = false;
+        body.Grabbed = active;
+        StartCoroutine(ResetPlayerGrab(body));
+    }
+
+    public IEnumerator ResetPlayerGrab(PlayerBody pb)
+    {
+        yield return new WaitForSeconds(5);
+        pb.Grabbed = false;
     }
 
     //method for carrying the player
@@ -970,14 +981,17 @@ public class EnemyAIController : AdvancedFSM
     {
         //call a method on the player that sets the sprite active to false and sets movement to false
         pb.ResetSprite("FROM CARRY CORUT");
-        
+        SetGrabAnim(pb, true);
          
         startCarryingUp = true;
-        
-        
-        yield return new WaitForSeconds(3f);
-        
+        EAC.Attacking = false;
+        EAC.Grabbing = false;
+        yield return new WaitForSeconds(0.5f);
+        EAC.Grabbing = true;
 
+        yield return new WaitForSeconds(2.5f);
+
+        
         startCarryingUp = false;
 
         startCarrying = true;

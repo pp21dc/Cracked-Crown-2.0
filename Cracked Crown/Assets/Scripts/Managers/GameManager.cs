@@ -186,7 +186,7 @@ public class GameManager : MonoBehaviour
         if (!levelName.Equals(MainMenuName) && !levelName.Equals(BossLevelName) && currentLevel < levelName.Length && !levelName.Equals(ShopName))
         {
             //AudioManager.LoadLevelComplete();
-            Debug.Log("NEXT LEVEL");
+            //Debug.Log("NEXT LEVEL");
             currentLevelName = levelNames[currentLevel];
 
             currentLevelName = levelName;
