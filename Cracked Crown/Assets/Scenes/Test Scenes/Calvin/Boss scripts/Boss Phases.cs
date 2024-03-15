@@ -406,6 +406,7 @@ public class BossPhases : MonoBehaviour
             if (clawgrab && other.gameObject.transform.GetChild(0).GetChild(0).gameObject == FollowedPlayer)
             {
                 GrabbedPlayerBody = other.GetComponent<PlayerBody>();
+                GrabbedPlayerBody.DecHealth(8);
                 GrabbedPlayer = other.gameObject;
                 isGrabbed = true;
                 GrabbedPlayerBody.playerLock = true;
