@@ -401,9 +401,12 @@ public class PlayerBody : MonoBehaviour
                 //    }
                 //}
 
-                if (enemyAIController.tag.Equals("Light"))
+                if (enemyAIController != null)
                 {
-                    animController.Finishing_Light = true;
+                    if (enemyAIController.tag.Equals("Light"))
+                    {
+                        animController.Finishing_Light = true;
+                    }
                 }
 
                 if (executeLock == false)
