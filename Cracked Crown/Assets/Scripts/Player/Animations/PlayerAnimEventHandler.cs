@@ -41,8 +41,6 @@ public class PlayerAnimEventHandler : MonoBehaviour
     public void FinishEnter()
     {
         PC.PAC.SetFinishers(false);
-        PC.PAC.Finishing_Light = false;
-        PC.PAC.Finishing_Heavy = false;
     }
 
     public void DeathFinish()
