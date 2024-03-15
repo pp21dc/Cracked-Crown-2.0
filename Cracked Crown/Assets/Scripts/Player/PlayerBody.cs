@@ -366,18 +366,7 @@ public class PlayerBody : MonoBehaviour
             {
                 hasReachedExecutePoint = true;
 
-                if (enemyAIController.tag.Equals("Medium"))
-                {
-                    animController.Finishing = true;
-                }
-                else if (enemyAIController.tag.Equals("Light"))
-                {
-                    animController.Finishing_Light = true;
-                }
-                else if (enemyAIController.tag.Equals("Heavy"))
-                {
-                    animController.Finishing_Heavy = true;
-                }
+                animController.Finisher(enemyAIController.tag, enemyAIController.colour, true);
 
                 lockExecAnim = true;
                 if (executeLock == false)
@@ -486,18 +475,7 @@ public class PlayerBody : MonoBehaviour
         executeLock = false;
         //playerLock = false;
 
-        if (enemyAIController.tag.Equals("Medium"))
-        {
-            animController.Finishing = true;
-        }
-        else if (enemyAIController.tag.Equals("Light"))
-        {
-            animController.Finishing_Light = true;
-        }
-        else if (enemyAIController.tag.Equals("Heavy"))
-        {
-            animController.Finishing_Heavy = true;
-        }
+        animController.Finisher(enemyAIController.tag, enemyAIController.colour, true);
 
         yield return new WaitForSeconds(1.3f);
 
