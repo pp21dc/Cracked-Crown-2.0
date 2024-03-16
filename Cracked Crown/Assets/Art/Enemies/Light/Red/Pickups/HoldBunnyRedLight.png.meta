@@ -6,7 +6,7 @@ TextureImporter:
   serializedVersion: 12
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -34,16 +34,16 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
-    wrapU: 0
-    wrapV: 0
+    wrapU: 1
+    wrapV: 1
     wrapW: 0
-  nPOTScale: 1
+  nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 0
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -52,9 +52,9 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
-  alphaIsTransparency: 0
+  alphaIsTransparency: 1
   spriteTessellationDetail: -1
-  textureType: 0
+  textureType: 8
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
@@ -69,22 +69,9 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -95,32 +82,6 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: iPhone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -147,18 +108,612 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: HoldBunnyRedLight_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1598
+        width: 799
+        height: 799
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d20360fbf64610a448bf993ecfb4d4d4
+      internalID: 748077086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldBunnyRedLight_1
+      rect:
+        serializedVersion: 2
+        x: 799
+        y: 1598
+        width: 799
+        height: 799
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 876a41bc98e5b8c43aa190f00ce7ad1c
+      internalID: 752863654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldBunnyRedLight_2
+      rect:
+        serializedVersion: 2
+        x: 1598
+        y: 1598
+        width: 799
+        height: 799
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20640db4797d1b54e8f4b32e5e13521b
+      internalID: 1172342430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldBunnyRedLight_3
+      rect:
+        serializedVersion: 2
+        x: 2397
+        y: 1598
+        width: 799
+        height: 799
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e59e5354b4a8c3148bb6054c0ffccb4d
+      internalID: -2091877203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldBunnyRedLight_4
+      rect:
+        serializedVersion: 2
+        x: 3196
+        y: 1598
+        width: 799
+        height: 799
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 913b988207db7eb4da094a4cd09a98e7
+      internalID: 1260436065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldBunnyRedLight_5
+      rect:
+        serializedVersion: 2
+        x: 3995
+        y: 1598
+        width: 799
+        height: 799
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35e83ce07e8384340a735a09c90a11f2
+      internalID: 869593452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldBunnyRedLight_6
+      rect:
+        serializedVersion: 2
+        x: 4794
+        y: 1598
+        width: 799
+        height: 799
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23f2c2904c034bc42a3de15c3cf1d1ee
+      internalID: -401756537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldBunnyRedLight_7
+      rect:
+        serializedVersion: 2
+        x: 5593
+        y: 1598
+        width: 799
+        height: 799
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2068b98ef412d734ba30f62265cddbc6
+      internalID: -466063004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldBunnyRedLight_8
+      rect:
+        serializedVersion: 2
+        x: 6392
+        y: 1598
+        width: 799
+        height: 799
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10d0c3508b7ae25418447b0eec7a61e2
+      internalID: -1598888898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldBunnyRedLight_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 799
+        width: 799
+        height: 799
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f935d776aeba8c44e892f107158df0b5
+      internalID: -1439745282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldBunnyRedLight_10
+      rect:
+        serializedVersion: 2
+        x: 799
+        y: 799
+        width: 799
+        height: 799
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa6fedf681be3db499939ecabd5d26da
+      internalID: 1030814388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldBunnyRedLight_11
+      rect:
+        serializedVersion: 2
+        x: 1598
+        y: 799
+        width: 799
+        height: 799
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b591a176f95f8c4689f887f674d5f3f
+      internalID: 759709030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldBunnyRedLight_12
+      rect:
+        serializedVersion: 2
+        x: 2397
+        y: 799
+        width: 799
+        height: 799
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5d973a362ce40341829ae3a59f8c74d
+      internalID: -421480014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldBunnyRedLight_13
+      rect:
+        serializedVersion: 2
+        x: 3196
+        y: 799
+        width: 799
+        height: 799
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 120d884b0ba9eab46b270e688dc0ecf4
+      internalID: -1663873061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldBunnyRedLight_14
+      rect:
+        serializedVersion: 2
+        x: 3995
+        y: 799
+        width: 799
+        height: 799
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4fcc416e974c2334dab955c2f3246e10
+      internalID: -953194117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldBunnyRedLight_15
+      rect:
+        serializedVersion: 2
+        x: 4794
+        y: 799
+        width: 799
+        height: 799
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d756608f574f774792b7fd0ffc0ecb0
+      internalID: 1481159981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldBunnyRedLight_16
+      rect:
+        serializedVersion: 2
+        x: 5593
+        y: 799
+        width: 799
+        height: 799
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f551a6fda3c03e6499e6e26dfaa5eff3
+      internalID: -2141310093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldBunnyRedLight_17
+      rect:
+        serializedVersion: 2
+        x: 6392
+        y: 799
+        width: 799
+        height: 799
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64c74ad949a745c48a46295432845b8c
+      internalID: 1034418577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldBunnyRedLight_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 799
+        height: 799
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af88c4a06eeb2f74181e2208b2714289
+      internalID: -1170690902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldBunnyRedLight_19
+      rect:
+        serializedVersion: 2
+        x: 799
+        y: 0
+        width: 799
+        height: 799
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 686b0fc509ff8fb42a13ae7a0cc8a9d8
+      internalID: 627438036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldBunnyRedLight_20
+      rect:
+        serializedVersion: 2
+        x: 1598
+        y: 0
+        width: 799
+        height: 799
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09a5e9ea73dc2954f8749a3aaa5d1164
+      internalID: 423696654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldBunnyRedLight_21
+      rect:
+        serializedVersion: 2
+        x: 2397
+        y: 0
+        width: 799
+        height: 799
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af5592b79ccd46b41bf1a58f04b78c32
+      internalID: 1231913462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldBunnyRedLight_22
+      rect:
+        serializedVersion: 2
+        x: 3196
+        y: 0
+        width: 799
+        height: 799
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25e05bde8cec00a4ba201f07b6815053
+      internalID: -1585262730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldBunnyRedLight_23
+      rect:
+        serializedVersion: 2
+        x: 3995
+        y: 0
+        width: 799
+        height: 799
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2fc704469a19026499e42d13b7224968
+      internalID: -2001220739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldBunnyRedLight_24
+      rect:
+        serializedVersion: 2
+        x: 4794
+        y: 0
+        width: 799
+        height: 799
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f37b172be8b1274ea802fe56e64b12b
+      internalID: 642302747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldBunnyRedLight_25
+      rect:
+        serializedVersion: 2
+        x: 5593
+        y: 0
+        width: 799
+        height: 799
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f1287d7d4d480543a752426aa1fa981
+      internalID: 849138269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldBunnyRedLight_26
+      rect:
+        serializedVersion: 2
+        x: 6392
+        y: 0
+        width: 799
+        height: 799
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27736be68decf2b49afe12392b3d020b
+      internalID: -112132779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 1014cc0464e3ef942ba30938f873c286
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      HoldBunnyRedLight_0: 748077086
+      HoldBunnyRedLight_1: 752863654
+      HoldBunnyRedLight_10: 1030814388
+      HoldBunnyRedLight_11: 759709030
+      HoldBunnyRedLight_12: -421480014
+      HoldBunnyRedLight_13: -1663873061
+      HoldBunnyRedLight_14: -953194117
+      HoldBunnyRedLight_15: 1481159981
+      HoldBunnyRedLight_16: -2141310093
+      HoldBunnyRedLight_17: 1034418577
+      HoldBunnyRedLight_18: -1170690902
+      HoldBunnyRedLight_19: 627438036
+      HoldBunnyRedLight_2: 1172342430
+      HoldBunnyRedLight_20: 423696654
+      HoldBunnyRedLight_21: 1231913462
+      HoldBunnyRedLight_22: -1585262730
+      HoldBunnyRedLight_23: -2001220739
+      HoldBunnyRedLight_24: 642302747
+      HoldBunnyRedLight_25: 849138269
+      HoldBunnyRedLight_26: -112132779
+      HoldBunnyRedLight_3: -2091877203
+      HoldBunnyRedLight_4: 1260436065
+      HoldBunnyRedLight_5: 869593452
+      HoldBunnyRedLight_6: -401756537
+      HoldBunnyRedLight_7: -466063004
+      HoldBunnyRedLight_8: -1598888898
+      HoldBunnyRedLight_9: -1439745282
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

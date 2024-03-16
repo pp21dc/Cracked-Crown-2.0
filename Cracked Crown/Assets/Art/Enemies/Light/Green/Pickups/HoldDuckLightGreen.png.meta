@@ -6,7 +6,7 @@ TextureImporter:
   serializedVersion: 12
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -34,16 +34,16 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
-    wrapU: 0
-    wrapV: 0
+    wrapU: 1
+    wrapV: 1
     wrapW: 0
-  nPOTScale: 1
+  nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 0
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -52,9 +52,9 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
-  alphaIsTransparency: 0
+  alphaIsTransparency: 1
   spriteTessellationDetail: -1
-  textureType: 0
+  textureType: 8
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
@@ -69,22 +69,9 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -95,32 +82,6 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: iPhone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -147,18 +108,612 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: HoldDuckLightGreen_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1430
+        width: 673
+        height: 715
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60798c71b70c0fc45a60387301962980
+      internalID: -619791212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldDuckLightGreen_1
+      rect:
+        serializedVersion: 2
+        x: 673
+        y: 1430
+        width: 673
+        height: 715
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c6651d382b262e42b56036920a56eca
+      internalID: -2084659207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldDuckLightGreen_2
+      rect:
+        serializedVersion: 2
+        x: 1346
+        y: 1430
+        width: 673
+        height: 715
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d04148b8d74f8a1439ab798ab6c8e719
+      internalID: 48090368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldDuckLightGreen_3
+      rect:
+        serializedVersion: 2
+        x: 2019
+        y: 1430
+        width: 673
+        height: 715
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 135961f89fb7b764bb5e1c6782381942
+      internalID: -1884065045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldDuckLightGreen_4
+      rect:
+        serializedVersion: 2
+        x: 2692
+        y: 1430
+        width: 673
+        height: 715
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9b285968b10c4c4087a89b239663760
+      internalID: 1950249319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldDuckLightGreen_5
+      rect:
+        serializedVersion: 2
+        x: 3365
+        y: 1430
+        width: 673
+        height: 715
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24d1e253b07d12948b1f976f3bf706ae
+      internalID: 497664722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldDuckLightGreen_6
+      rect:
+        serializedVersion: 2
+        x: 4038
+        y: 1430
+        width: 673
+        height: 715
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c735d927e3e18e84ca623212af670dbc
+      internalID: -2130504748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldDuckLightGreen_7
+      rect:
+        serializedVersion: 2
+        x: 4711
+        y: 1430
+        width: 673
+        height: 715
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 830725639843049438ad0e7668a62439
+      internalID: -1572434688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldDuckLightGreen_8
+      rect:
+        serializedVersion: 2
+        x: 5384
+        y: 1430
+        width: 673
+        height: 715
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14fcd065942a55a4aba3e8e7d290d0fc
+      internalID: 1152035227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldDuckLightGreen_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 715
+        width: 673
+        height: 715
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04a5d28fcbf90ab459347891b9cf3b29
+      internalID: 2089567646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldDuckLightGreen_10
+      rect:
+        serializedVersion: 2
+        x: 673
+        y: 715
+        width: 673
+        height: 715
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 681f80904255ed84abc0b08a8ce202ba
+      internalID: -791502416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldDuckLightGreen_11
+      rect:
+        serializedVersion: 2
+        x: 1346
+        y: 715
+        width: 673
+        height: 715
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 290e23e305b0b924ca37780a77b0377a
+      internalID: 2013454769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldDuckLightGreen_12
+      rect:
+        serializedVersion: 2
+        x: 2019
+        y: 715
+        width: 673
+        height: 715
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38ae2e548e6a3b743b4d66ff216bb0fa
+      internalID: 987788002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldDuckLightGreen_13
+      rect:
+        serializedVersion: 2
+        x: 2692
+        y: 715
+        width: 673
+        height: 715
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b8423722b51f8f4a906532451baadb2
+      internalID: -1599066714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldDuckLightGreen_14
+      rect:
+        serializedVersion: 2
+        x: 3365
+        y: 715
+        width: 673
+        height: 715
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bfea03a2e1b219a47aa40f48d6b2da9b
+      internalID: 565231727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldDuckLightGreen_15
+      rect:
+        serializedVersion: 2
+        x: 4038
+        y: 715
+        width: 673
+        height: 715
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66fa46818a8f3a744957d2d4c3818c3c
+      internalID: -349142866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldDuckLightGreen_16
+      rect:
+        serializedVersion: 2
+        x: 4711
+        y: 715
+        width: 673
+        height: 715
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35cff0acf978f8141909f8d45410f9cb
+      internalID: -669751552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldDuckLightGreen_17
+      rect:
+        serializedVersion: 2
+        x: 5384
+        y: 715
+        width: 673
+        height: 715
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e43dd8a66bb74443ac170f7a49320dd
+      internalID: -1036530235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldDuckLightGreen_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 673
+        height: 715
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38d02106fc4f9694db3e587876016e44
+      internalID: 419723542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldDuckLightGreen_19
+      rect:
+        serializedVersion: 2
+        x: 673
+        y: 0
+        width: 673
+        height: 715
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69acdfe6e29eff3479e59122434f97f5
+      internalID: 1295237263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldDuckLightGreen_20
+      rect:
+        serializedVersion: 2
+        x: 1346
+        y: 0
+        width: 673
+        height: 715
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2cf80ec8ffb798a47bdb716ac70194c3
+      internalID: 1052072866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldDuckLightGreen_21
+      rect:
+        serializedVersion: 2
+        x: 2019
+        y: 0
+        width: 673
+        height: 715
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec47262a223158041942d2877013517f
+      internalID: 1779374422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldDuckLightGreen_22
+      rect:
+        serializedVersion: 2
+        x: 2692
+        y: 0
+        width: 673
+        height: 715
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4e1fbfbc796e2b4b9f8aa1e7fd7d074
+      internalID: -2012101771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldDuckLightGreen_23
+      rect:
+        serializedVersion: 2
+        x: 3365
+        y: 0
+        width: 673
+        height: 715
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59e1642163dc002438124286a1f1704b
+      internalID: 418596482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldDuckLightGreen_24
+      rect:
+        serializedVersion: 2
+        x: 4038
+        y: 0
+        width: 673
+        height: 715
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca1a052be04c48446b1cf2ceac585e56
+      internalID: -218939322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldDuckLightGreen_25
+      rect:
+        serializedVersion: 2
+        x: 4711
+        y: 0
+        width: 673
+        height: 715
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 020b5547d4e2ffb488f0080341038563
+      internalID: 1616521881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldDuckLightGreen_26
+      rect:
+        serializedVersion: 2
+        x: 5384
+        y: 0
+        width: 673
+        height: 715
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7bf15c9c34bec344b7a6b2ea376c24f
+      internalID: 32628779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 42ef62c88b5cbdb49905e622a455b576
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      HoldDuckLightGreen_0: -619791212
+      HoldDuckLightGreen_1: -2084659207
+      HoldDuckLightGreen_10: -791502416
+      HoldDuckLightGreen_11: 2013454769
+      HoldDuckLightGreen_12: 987788002
+      HoldDuckLightGreen_13: -1599066714
+      HoldDuckLightGreen_14: 565231727
+      HoldDuckLightGreen_15: -349142866
+      HoldDuckLightGreen_16: -669751552
+      HoldDuckLightGreen_17: -1036530235
+      HoldDuckLightGreen_18: 419723542
+      HoldDuckLightGreen_19: 1295237263
+      HoldDuckLightGreen_2: 48090368
+      HoldDuckLightGreen_20: 1052072866
+      HoldDuckLightGreen_21: 1779374422
+      HoldDuckLightGreen_22: -2012101771
+      HoldDuckLightGreen_23: 418596482
+      HoldDuckLightGreen_24: -218939322
+      HoldDuckLightGreen_25: 1616521881
+      HoldDuckLightGreen_26: 32628779
+      HoldDuckLightGreen_3: -1884065045
+      HoldDuckLightGreen_4: 1950249319
+      HoldDuckLightGreen_5: 497664722
+      HoldDuckLightGreen_6: -2130504748
+      HoldDuckLightGreen_7: -1572434688
+      HoldDuckLightGreen_8: 1152035227
+      HoldDuckLightGreen_9: 2089567646
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -6,7 +6,7 @@ TextureImporter:
   serializedVersion: 12
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -34,16 +34,16 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
-    wrapU: 0
-    wrapV: 0
+    wrapU: 1
+    wrapV: 1
     wrapW: 0
-  nPOTScale: 1
+  nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 0
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -52,9 +52,9 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
-  alphaIsTransparency: 0
+  alphaIsTransparency: 1
   spriteTessellationDetail: -1
-  textureType: 0
+  textureType: 8
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
@@ -69,22 +69,9 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -95,32 +82,6 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: iPhone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -147,18 +108,612 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: HoldDuckPurpleLight_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1374
+        width: 657
+        height: 687
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b038ae091154d740925c15b64485154
+      internalID: -1809442326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldDuckPurpleLight_1
+      rect:
+        serializedVersion: 2
+        x: 657
+        y: 1374
+        width: 657
+        height: 687
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82dba27dc3ef50547949d6a9edcb8833
+      internalID: -182996791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldDuckPurpleLight_2
+      rect:
+        serializedVersion: 2
+        x: 1314
+        y: 1374
+        width: 657
+        height: 687
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8fb1f220a8ac7bb4a94abaf37af3085e
+      internalID: 1024371223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldDuckPurpleLight_3
+      rect:
+        serializedVersion: 2
+        x: 1971
+        y: 1374
+        width: 657
+        height: 687
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14db7ae746526924f9279a4a26db7c1d
+      internalID: -1452355744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldDuckPurpleLight_4
+      rect:
+        serializedVersion: 2
+        x: 2628
+        y: 1374
+        width: 657
+        height: 687
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 427a8e77f33b9d94bb712269fb3d07e8
+      internalID: -1745351301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldDuckPurpleLight_5
+      rect:
+        serializedVersion: 2
+        x: 3285
+        y: 1374
+        width: 657
+        height: 687
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec102a741a199414ba8009d888d00aae
+      internalID: -169389496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldDuckPurpleLight_6
+      rect:
+        serializedVersion: 2
+        x: 3942
+        y: 1374
+        width: 657
+        height: 687
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b91fe40e73d5a042af5f6883808a27f
+      internalID: -644306957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldDuckPurpleLight_7
+      rect:
+        serializedVersion: 2
+        x: 4599
+        y: 1374
+        width: 657
+        height: 687
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8d7275d85f647448a39152a66af0355
+      internalID: 274743041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldDuckPurpleLight_8
+      rect:
+        serializedVersion: 2
+        x: 5256
+        y: 1374
+        width: 657
+        height: 687
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d792c4fd0b277534c8b3390cd60c6c79
+      internalID: 1253913448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldDuckPurpleLight_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 687
+        width: 657
+        height: 687
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4578c356e543f543bda04bbdf9466af
+      internalID: -388084154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldDuckPurpleLight_10
+      rect:
+        serializedVersion: 2
+        x: 657
+        y: 687
+        width: 657
+        height: 687
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 393d5e7fdd29eb1439c4ed1030fbd4be
+      internalID: -676328322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldDuckPurpleLight_11
+      rect:
+        serializedVersion: 2
+        x: 1314
+        y: 687
+        width: 657
+        height: 687
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 139a03d88661e0843aa4a1b10c57a4ea
+      internalID: 707461834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldDuckPurpleLight_12
+      rect:
+        serializedVersion: 2
+        x: 1971
+        y: 687
+        width: 657
+        height: 687
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9303056826e4e9a419faa68bc904fe8d
+      internalID: 908246366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldDuckPurpleLight_13
+      rect:
+        serializedVersion: 2
+        x: 2628
+        y: 687
+        width: 657
+        height: 687
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26bead30d68f90345a75d25d1530772a
+      internalID: 180630631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldDuckPurpleLight_14
+      rect:
+        serializedVersion: 2
+        x: 3285
+        y: 687
+        width: 657
+        height: 687
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ee01c67d5f15e440a4bd071a5570ecc
+      internalID: -49431861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldDuckPurpleLight_15
+      rect:
+        serializedVersion: 2
+        x: 3942
+        y: 687
+        width: 657
+        height: 687
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 773e42aa4d7867e43b966535b5377c66
+      internalID: 1559758395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldDuckPurpleLight_16
+      rect:
+        serializedVersion: 2
+        x: 4599
+        y: 687
+        width: 657
+        height: 687
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 655221e3f9c285047987892dea394729
+      internalID: 939159740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldDuckPurpleLight_17
+      rect:
+        serializedVersion: 2
+        x: 5256
+        y: 687
+        width: 657
+        height: 687
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63db99c529defa045a20563da4057bec
+      internalID: -1593117681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldDuckPurpleLight_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 657
+        height: 687
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7af866c547d86974a9181293e602112f
+      internalID: 1369218667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldDuckPurpleLight_19
+      rect:
+        serializedVersion: 2
+        x: 657
+        y: 0
+        width: 657
+        height: 687
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87e2defec8905684a9ba4fd3c0891a32
+      internalID: -1886051446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldDuckPurpleLight_20
+      rect:
+        serializedVersion: 2
+        x: 1314
+        y: 0
+        width: 657
+        height: 687
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb2700193ac50a64288bf55a8240d1b1
+      internalID: 831136463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldDuckPurpleLight_21
+      rect:
+        serializedVersion: 2
+        x: 1971
+        y: 0
+        width: 657
+        height: 687
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 501cf248c51c4d243bffc2b8dafcd1b9
+      internalID: -2055620625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldDuckPurpleLight_22
+      rect:
+        serializedVersion: 2
+        x: 2628
+        y: 0
+        width: 657
+        height: 687
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e65aca7462bc0b439cd22c88d95c2d6
+      internalID: -2110222305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldDuckPurpleLight_23
+      rect:
+        serializedVersion: 2
+        x: 3285
+        y: 0
+        width: 657
+        height: 687
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91f94cf3cd57cfb4e98febfc894d55a9
+      internalID: -335254649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldDuckPurpleLight_24
+      rect:
+        serializedVersion: 2
+        x: 3942
+        y: 0
+        width: 657
+        height: 687
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40a46aca64f09ce409b385e3b249d519
+      internalID: -381308999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldDuckPurpleLight_25
+      rect:
+        serializedVersion: 2
+        x: 4599
+        y: 0
+        width: 657
+        height: 687
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf6e71bb0ac2ab047971fcc36f290c2c
+      internalID: -598341991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HoldDuckPurpleLight_26
+      rect:
+        serializedVersion: 2
+        x: 5256
+        y: 0
+        width: 657
+        height: 687
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe0ba9dc30740094492fd5752784618f
+      internalID: 1108807254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5449d5285f228f54cbdac0938ac62e2b
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      HoldDuckPurpleLight_0: -1809442326
+      HoldDuckPurpleLight_1: -182996791
+      HoldDuckPurpleLight_10: -676328322
+      HoldDuckPurpleLight_11: 707461834
+      HoldDuckPurpleLight_12: 908246366
+      HoldDuckPurpleLight_13: 180630631
+      HoldDuckPurpleLight_14: -49431861
+      HoldDuckPurpleLight_15: 1559758395
+      HoldDuckPurpleLight_16: 939159740
+      HoldDuckPurpleLight_17: -1593117681
+      HoldDuckPurpleLight_18: 1369218667
+      HoldDuckPurpleLight_19: -1886051446
+      HoldDuckPurpleLight_2: 1024371223
+      HoldDuckPurpleLight_20: 831136463
+      HoldDuckPurpleLight_21: -2055620625
+      HoldDuckPurpleLight_22: -2110222305
+      HoldDuckPurpleLight_23: -335254649
+      HoldDuckPurpleLight_24: -381308999
+      HoldDuckPurpleLight_25: -598341991
+      HoldDuckPurpleLight_26: 1108807254
+      HoldDuckPurpleLight_3: -1452355744
+      HoldDuckPurpleLight_4: -1745351301
+      HoldDuckPurpleLight_5: -169389496
+      HoldDuckPurpleLight_6: -644306957
+      HoldDuckPurpleLight_7: 274743041
+      HoldDuckPurpleLight_8: 1253913448
+      HoldDuckPurpleLight_9: -388084154
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
