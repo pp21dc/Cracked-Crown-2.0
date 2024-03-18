@@ -476,8 +476,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1785375243
+  m_SortingLayer: 2
   m_SortingOrder: 3
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b,
     type: 3}
@@ -877,6 +877,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: BossFollowPoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 6648418051566953684, guid: f7d79151a7f0bd344843f470d4ca4d9c,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6648418051566953684, guid: f7d79151a7f0bd344843f470d4ca4d9c,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1785375243
       objectReference: {fileID: 0}
     - target: {fileID: 6648418051566953684, guid: f7d79151a7f0bd344843f470d4ca4d9c,
         type: 3}
