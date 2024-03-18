@@ -21,7 +21,8 @@ public class GameManager : MonoBehaviour
             }
             if (!instance)
             {
-                Debug.LogError("ERROR: NO GAME MANAGER PRESENT");
+                return null;
+                //Debug.LogError("ERROR: NO GAME MANAGER PRESENT");
             }
 
             return instance;
@@ -73,6 +74,8 @@ public class GameManager : MonoBehaviour
     public float eyeCount = 0;
     public TextMeshProUGUI eyeText;
 
+    public bool TEST_SCENE = false;
+
     [SerializeField]
     private Transform[] spawnPoints;
 
@@ -100,41 +103,44 @@ public class GameManager : MonoBehaviour
     bool locker_Boss;
     private void FixedUpdate()
     {
-        eyeText.text = eyeCount.ToString();
-        if (Input.GetKeyUp(KeyCode.KeypadEnter))
+        if (!TEST_SCENE)
         {
-            StartNewGame();
-        }
-        if (Input.GetKeyUp(KeyCode.H))
-            SetPlayerPositions();
-        if (!locker && Input.GetKey(KeyCode.M))
-        {
-            locker = true;
-            ReturnToMainMenu();
-        }
-        if (!locker_Boss && Input.GetKey(KeyCode.B))
-        {
-            locker_Boss = true;
-            LoadAScene("BossLevel");
-        }
+            if (eyeText != null)
+                eyeText.text = eyeCount.ToString();
+            if (Input.GetKeyUp(KeyCode.KeypadEnter))
+            {
+                StartNewGame();
+            }
+            if (Input.GetKeyUp(KeyCode.H))
+                SetPlayerPositions();
+            if (!locker && Input.GetKey(KeyCode.M))
+            {
+                locker = true;
+                ReturnToMainMenu();
+            }
+            if (!locker_Boss && Input.GetKey(KeyCode.B))
+            {
+                locker_Boss = true;
+                LoadAScene("BossLevel");
+            }
 
-        if (!waitforvideo && currentLevelName == MainMenuName)
-        {
-            MainMenu.SetActive(true);
-            PIM.SetActive(true);
+            if (!waitforvideo && currentLevelName == MainMenuName)
+            {
+                MainMenu.SetActive(true);
+                PIM.SetActive(true);
+            }
+            else if (MainMenu != null)
+            {
+
+                MainMenu.SetActive(false);
+            }
+            if (currentLevelName == MainMenuName)
+                UI.SetActive(false);
+            else if (!string.IsNullOrEmpty(currentLevelName))
+            {
+                UI.SetActive(true);
+            }
         }
-        else
-        {
-            
-            MainMenu.SetActive(false);
-        }
-        if (currentLevelName == MainMenuName)
-            UI.SetActive(false);
-        else if (!string.IsNullOrEmpty(currentLevelName))
-        {
-            UI.SetActive(true);
-        }
-        
     }
 
     public PlayerInput GetPlayer(int ID)

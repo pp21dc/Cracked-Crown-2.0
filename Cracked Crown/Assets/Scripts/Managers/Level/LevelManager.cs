@@ -17,7 +17,8 @@ public class LevelManager : MonoBehaviour
             }
             if (!instance)
             {
-                Debug.LogError("ERROR: NO LEVEL MANAGER PRESENT");
+                return null;
+                //Debug.LogError("ERROR: NO LEVEL MANAGER PRESENT");
             }
 
             return instance;

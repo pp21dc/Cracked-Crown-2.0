@@ -24,6 +24,7 @@ public class EnemyAnimationController : MonoBehaviour
     public bool Badger_Grabbed;
     public bool Duck_Grabbed;
     public bool Grabbing;
+    public bool HitReact;
     float timer;
 
     [Header("Medium Enemy")]
@@ -59,6 +60,12 @@ public class EnemyAnimationController : MonoBehaviour
         animator.SetBool("Attacking", Attacking);
         animator.SetBool("Dashing", Dashing);
         animator.SetBool("Stunned", Stunned);
+        if (HitReact)
+        {
+            HitReact = false;
+            animator.SetTrigger("HitReact");
+        }
+
         if (transform.parent.parent.CompareTag("Light"))
         {
             animator.SetBool("Grab_B", Bunny_Grabbed);
@@ -67,6 +74,7 @@ public class EnemyAnimationController : MonoBehaviour
             animator.SetBool("Grab_Ba", Badger_Grabbed);
             animator.SetBool("Grabbing", Grabbing);
         }
+        
         
 
         if (Stunned)

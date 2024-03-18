@@ -330,6 +330,10 @@ public class EnemyAIController : AdvancedFSM
         {
             act = !LevelManager.Instance.loc;
         }
+        else
+        {
+            act = true;
+        }
         if (tag == "Medium")
         {
             dropShadow.transform.localPosition = new Vector3(dropShadow.transform.localPosition.x, -0.25f, 0.52f);
@@ -560,6 +564,7 @@ public class EnemyAIController : AdvancedFSM
         {
             EAC.Moving = false;
         }
+        Debug.Log(closest == null);
         if (closest != null)
         {
             if (!lockKnock)

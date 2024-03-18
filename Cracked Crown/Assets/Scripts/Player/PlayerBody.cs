@@ -750,15 +750,17 @@ public class PlayerBody : MonoBehaviour
 
                 yield return new WaitForSeconds(0);
                 toExecute.transform.parent.gameObject.SetActive(false);
-                if (enemyAIController.tag == "Light")
-                    gameManager.eyeCount += 2;
-                else if (enemyAIController.tag == "Medium")
-                    gameManager.eyeCount += 5;
-                else if (enemyAIController.tag == "Heavy")
-                    gameManager.eyeCount += 8;
-                if (LevelManager.Instance != null)
-                    LevelManager.Instance.EnemyKilled();
-
+                if (gameManager != null)
+                {
+                    if (enemyAIController.tag == "Light")
+                        gameManager.eyeCount += 2;
+                    else if (enemyAIController.tag == "Medium")
+                        gameManager.eyeCount += 5;
+                    else if (enemyAIController.tag == "Heavy")
+                        gameManager.eyeCount += 8;
+                    if (LevelManager.Instance != null)
+                        LevelManager.Instance.EnemyKilled();
+                }
 
                 // just added to see
                 yield return new WaitForSeconds(1.0f);

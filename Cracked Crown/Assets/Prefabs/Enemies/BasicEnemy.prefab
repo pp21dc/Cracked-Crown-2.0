@@ -150,7 +150,7 @@ Animator:
   m_GameObject: {fileID: 1000115576516872230}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 12b629e9437c1be43bead6d348c9cd12, type: 2}
+  m_Controller: {fileID: 9100000, guid: 9d9d0beaa53173c47bfab38292be84de, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -191,6 +191,7 @@ MonoBehaviour:
   Badger_Grabbed: 0
   Duck_Grabbed: 0
   Grabbing: 0
+  HitReact: 0
   Dashing: 0
 --- !u!212 &5066516171063127712
 SpriteRenderer:
@@ -457,6 +458,7 @@ MonoBehaviour:
   debugDraw: 1
   StateText: {fileID: 0}
   HealthText: {fileID: 0}
+  colour: 
   Players:
   - {fileID: 0}
   - {fileID: 0}
