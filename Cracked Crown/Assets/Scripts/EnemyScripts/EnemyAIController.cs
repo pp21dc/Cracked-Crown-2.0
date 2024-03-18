@@ -1320,12 +1320,12 @@ public class EnemyAIController : AdvancedFSM
 
     public IEnumerator FlashRed(SpriteRenderer s)
     {
-        s.material = whiteMat;
+
+        //s.color = s.color * 1000;
 
         yield return new WaitForSeconds(0.15f);
 
-        s.material = baseMat;
-
+        //s.color = Color.white;
     }
 
 
