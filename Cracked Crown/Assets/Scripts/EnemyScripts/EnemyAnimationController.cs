@@ -63,6 +63,14 @@ public class EnemyAnimationController : MonoBehaviour
         if (HitReact)
         {
             HitReact = false;
+            if (EAIC.hitBy.position.x + 1 > EAIC.enemyPosition.transform.position.x)
+            {
+                SR.flipX = false;
+            }
+            else
+            {
+                SR.flipX = true;
+            }
             animator.SetTrigger("HitReact");
         }
 

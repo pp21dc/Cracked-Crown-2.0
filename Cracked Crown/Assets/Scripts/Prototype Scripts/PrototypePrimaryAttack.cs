@@ -39,10 +39,11 @@ public class PrototypePrimaryAttack : MonoBehaviour
 
                 enemyController.DecHealth(playerBody.damage);
                 rb = other.GetComponent<Rigidbody>();
-                enemyController.EAC.HitReact = true;
+                if (!enemyController.EAC.HitReact)
+                    enemyController.EAC.HitReact = true;
                 if (!enemyController.lockKnock)
                 {
-                    
+                    enemyController.hitBy = playerBody.transform;
                     enemyController.lockKnock = true;
                     enemyController.StartCoroutine(enemyController.KB(playerBody.AttackVector * 15 * playerBody.forceMod));
                 }

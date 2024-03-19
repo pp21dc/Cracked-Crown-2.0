@@ -42,13 +42,14 @@ public class EnemyAIController : AdvancedFSM
     //for finding the players
     [SerializeField]
     private GameObject[] Players = new GameObject[4]; //holds all players
-    private GameObject closest;//holds the closest player
+    public GameObject closest;//holds the closest player
     private float currShortest = 100000f; //current shortest distance
     private Vector3 movementVector = Vector3.zero; // the vector that the enemy is moving towards
 
     //the enemy body
     [SerializeField]
-    private Transform enemyPosition; //holds the enemy player position
+    public Transform enemyPosition; //holds the enemy player position
+    public Transform hitBy;
     [SerializeField]
     private GameObject enemy;
     [SerializeField]
