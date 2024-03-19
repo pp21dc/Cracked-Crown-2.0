@@ -207,7 +207,7 @@ public class BossPhases : MonoBehaviour
         {
             currSpriteID = 4;
         }
-        ClawSprite.GetComponent<SpriteRenderer>().sprite = spriteList[currSpriteID];
+        // ClawSprite.GetComponent<SpriteRenderer>().sprite = spriteList[currSpriteID];
     }
 
     public IEnumerator delay(int time)
