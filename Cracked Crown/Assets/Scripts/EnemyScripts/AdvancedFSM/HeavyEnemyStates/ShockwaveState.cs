@@ -51,6 +51,6 @@ public class ShockwaveState : FSMState
     //no need for anything in act as you are jsut standing there until a player attacks you or you see them
     public override void Act(Transform player, Transform npc)
     {
-        enemy.StartFinish();
+        enemy.StartShockwave();
     }
 }

@@ -9,10 +9,13 @@ public class Bomb : MonoBehaviour
 {
     public Vector3 direction;
 
-    private float damage = 100f;
+    private float damage = 1000f;
     private int count = 0;
     private bool playOnce = true;
     private int counter = 0;
+    private bool enteredTrigger = false;
+    private bool exitedTrigger = false;
+    EnemyAIController currentEnemy;
 
     [Header("Do Not Touch")]
     [SerializeField]
@@ -28,6 +31,7 @@ public class Bomb : MonoBehaviour
     private float speed = 17;
     private int colourCount = 0;
 
+    [SerializeField]
     private List<EnemyAIController> enemiesInRange;
     private Rigidbody rb;
     private PlayerController controller;
@@ -73,6 +77,23 @@ public class Bomb : MonoBehaviour
             playOnce = false;
         }
         rb.velocity += new Vector3(0, gravity, 0) * thing * Time.deltaTime;
+
+        if (enteredTrigger)
+        {
+            if (!enemiesInRange.Contains(currentEnemy))
+            {
+                enemiesInRange.Add(currentEnemy);
+            }
+            enteredTrigger = false;
+        }
+        if (exitedTrigger)
+        {
+            if (enemiesInRange.Contains(currentEnemy))
+            {
+                enemiesInRange.Remove(currentEnemy);
+            }
+            exitedTrigger = false;
+        }
     }
 
     private IEnumerator ColourFlash()
@@ -88,7 +109,10 @@ public class Bomb : MonoBehaviour
     private IEnumerator Explode()
     {
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
+
+        // hide the bomb mesh
+        transform.GetChild(0).gameObject.SetActive(false);
 
         // play explosion effect
         animator.SetBool("Blow", true);
@@ -116,11 +140,21 @@ public class Bomb : MonoBehaviour
         controller = playerControls;
     }
 
-    private void OnTriggerEnter(Collider other)
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.tag == "Light" || other.tag == "Medium" || other.tag == "Heavy")
+    //    {
+    //        currentEnemy = other.transform.parent.GetChild(0).gameObject.GetComponent<EnemyAIController>();
+    //        enteredTrigger = true;
+    //    }
+    //}
+
+    private void OnTriggerStay(Collider other)
     {
         if (other.tag == "Light" || other.tag == "Medium" || other.tag == "Heavy")
         {
-            enemiesInRange.Add(other.transform.parent.GetChild(0).gameObject.GetComponent<EnemyAIController>());
+            currentEnemy = other.transform.parent.GetChild(0).gameObject.GetComponent<EnemyAIController>();
+            enteredTrigger = true;
         }
     }
 
@@ -128,7 +162,8 @@ public class Bomb : MonoBehaviour
     {
         if (other.tag == "Medium" || other.tag == "Heavy" || other.tag == "Light")
         {
-            enemiesInRange.Remove(other.transform.parent.GetChild(0).gameObject.GetComponent<EnemyAIController>()); // dont know how to know which one is leaving and how to delete that one from list
+            currentEnemy = other.transform.parent.GetChild(0).gameObject.GetComponent<EnemyAIController>();
+            exitedTrigger = true;
         }
     }
 

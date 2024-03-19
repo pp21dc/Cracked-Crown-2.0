@@ -21,6 +21,10 @@ public abstract class AIProperties // the properties that are most commonly used
 
 public class EnemyAIController : AdvancedFSM
 {
+
+    public float EnemyID;
+
+
     [SerializeField]
     public GameObject stunObj;
     [SerializeField]
@@ -226,6 +230,9 @@ public class EnemyAIController : AdvancedFSM
     //intializes the enemy with the player location and sets enemy health to 100 theb calls Construct FSM
     protected override void Initialize()
     {
+
+        EnemyID = gameObject.GetInstanceID();
+
         if (LevelManager.Instance != null)
         {
             if (CompareTag("Light"))
@@ -297,6 +304,8 @@ public class EnemyAIController : AdvancedFSM
 
         noTransform = true;
 
+        shockwaveCol.SetActive(false);
+
         randTrans = new Vector3(0,0,0);
 
         GameObject ground = GameObject.FindGameObjectWithTag("Ground");
@@ -313,7 +322,7 @@ public class EnemyAIController : AdvancedFSM
         heavyBullets = 10;
         if (shockwaveCol != null)
         {
-            targetShockwaveScale = new Vector3(15, shockwaveCol.transform.localScale.y, 15);
+            targetShockwaveScale = new Vector3(35, shockwaveCol.transform.localScale.y, 35);
             shockwaveScaleInitial = shockwaveCol.transform.localScale;
         }
         noShockCooldown = true;
@@ -450,6 +459,7 @@ public class EnemyAIController : AdvancedFSM
         //Shoots at the player from a distance, Transition to reload if out of bullets, low health to finish, no health to dead
         GunState gunState = new GunState(this);
         gunState.AddTransition(Transition.NoBullets, FSMStateID.Reload);
+        gunState.AddTransition(Transition.InShockwaveRange, FSMStateID.Shockwave);
         gunState.AddTransition(Transition.LowHealth, FSMStateID.Finished);
         gunState.AddTransition(Transition.NoHealth, FSMStateID.Dead);
         
@@ -459,6 +469,7 @@ public class EnemyAIController : AdvancedFSM
         shockwaveState.AddTransition(Transition.LookForPlayer, FSMStateID.FindPlayer);
         shockwaveState.AddTransition(Transition.LowHealth, FSMStateID.Finished);
         shockwaveState.AddTransition(Transition.NoHealth, FSMStateID.Dead);
+        shockwaveState.AddTransition(Transition.InShootingRange, FSMStateID.Gun);
 
         //Reloads if out of teeth, Tranisition if done to find player, low health if finished, no health to dead
         ReloadState reloadState = new ReloadState(this);
@@ -466,8 +477,9 @@ public class EnemyAIController : AdvancedFSM
         reloadState.AddTransition(Transition.LowHealth, FSMStateID.Finished);
         reloadState.AddTransition(Transition.NoHealth, FSMStateID.Dead);
         reloadState.AddTransition(Transition.InShockwaveRange, FSMStateID.Shockwave);
+        reloadState.AddTransition(Transition.InShootingRange, FSMStateID.Gun);
 
-        //hole
+        
         
 
 
@@ -1200,13 +1212,13 @@ public class EnemyAIController : AdvancedFSM
         if(startShooting)
         {
 
-            if(TargetPlayerPos.x > enemyPosition.position.x) 
+            if(closest.transform.position.x + 1 > enemyPosition.transform.position.x) 
             {
-                ToothShotLocation.transform.position = new Vector3(5, 5, 0);
+                ToothShotLocation.transform.position = new Vector3(7.5f, 5.5f, 0);
             }
             else
             {
-                ToothShotLocation.transform.position = new Vector3(-5, 5, 0);
+                ToothShotLocation.transform.position = new Vector3(-7.5f, 5.5f, 0);
             }
 
             startShooting = false;
@@ -1221,9 +1233,11 @@ public class EnemyAIController : AdvancedFSM
         while (canShoot)
         {
             StartShootTeeth(enemyPosition, ToothShotLocation.transform);
-            maxAmmo--;
+            heavyBullets--;
             yield return new WaitForSeconds(0.45f);
         }
+
+        yield return null;
     }
 
     private void StartShootTeeth(Transform body, Transform fireLocation)
@@ -1235,7 +1249,7 @@ public class EnemyAIController : AdvancedFSM
             
             direction.Normalize();
 
-            GameObject ToothGO = GameObject.Instantiate(tooth, fireLocation.position, Quaternion.identity);
+            GameObject ToothGO = GameObject.Instantiate(tooth, enemyPosition.position, Quaternion.identity);
             Tooth Tooth = ToothGO.GetComponent<Tooth>();
             ToothGO.SetActive(true);
             Tooth.Fire(direction);
@@ -1251,34 +1265,40 @@ public class EnemyAIController : AdvancedFSM
     {
         if(startShock)
         {
+            shockwaveCol.SetActive(true);
             noShockCooldown = false;
             startShock = false;
+            canShoot = false;
             StartCoroutine(Shockwave());
         }
     }
 
     IEnumerator Shockwave()
     {
-        for (int i = 0; i < 10; i++) 
+        for (int i = 0; i < 4; i++) 
         {
             while(shockwaveCol.transform.localScale.x < targetShockwaveScale.x)
             {
-                shockwaveCol.transform.localScale = new Vector3(shockwaveCol.transform.localScale.x + 1, shockwaveCol.transform.localScale.y, shockwaveCol.transform.localScale.z + 1);
-                yield return new WaitForSeconds(0.1f);
+                shockwaveCol.transform.localScale = new Vector3(shockwaveCol.transform.localScale.x + 1, shockwaveCol.transform.localScale.y + 1, shockwaveCol.transform.localScale.z);
+                yield return new WaitForSeconds(0.01f);
             }
 
+            yield return new WaitForSeconds(0.45f);
             shockwaveCol.transform.localScale = shockwaveScaleInitial;
         }
 
         StartCoroutine(shockwaveCooldown());
         doneShockwave = true;
+        AddHealth(15f);
+        canShoot = true;
+        shockwaveCol.SetActive(false);
 
         yield return null;
     }
 
     IEnumerator shockwaveCooldown()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(5f);
 
         noShockCooldown = true;
     }

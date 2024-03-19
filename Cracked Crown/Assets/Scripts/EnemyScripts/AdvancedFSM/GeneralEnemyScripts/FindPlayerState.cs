@@ -51,12 +51,12 @@ public class FindPlayerState : FSMState
         }
         else if (enemy.CompareTag("Heavy") && player != null)
         {
-            if (IsInCurrentRange(npc, player.position, 15f))
+            if (Vector3.Distance(enemy.ePosition.position,player.position) <= 85f)
             {
                 enemy.PerformTransition(Transition.InShootingRange);
                 return;
             }
-            else if (IsInCurrentRange(npc, player.position, 4.5f) && enemy.noShockCooldown == true)
+            else if (enemy.Health <= 50f)
             {
                 enemy.PerformTransition(Transition.InShockwaveRange);
                 return;

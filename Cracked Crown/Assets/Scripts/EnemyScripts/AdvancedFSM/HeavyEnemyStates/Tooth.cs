@@ -5,7 +5,7 @@ using UnityEngine;
 public class Tooth : MonoBehaviour
 {
     [SerializeField]
-    private float speed = 12f;
+    private float speed = 35f;
 
     private Vector3 Direction;
 
@@ -15,7 +15,7 @@ public class Tooth : MonoBehaviour
 
     private void Update()
     {
-        transform.Translate(Direction * speed * Time.deltaTime);
+        transform.Translate(Direction.x + (speed * Time.deltaTime), Direction.y, Direction.z);
     }
 
     private void OnEnable()

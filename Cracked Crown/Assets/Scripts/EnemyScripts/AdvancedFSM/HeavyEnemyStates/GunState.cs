@@ -29,21 +29,18 @@ public class GunState : FSMState
             enemy.PerformTransition(Transition.NoHealth);
             return;
         }
+        else if (enemy.Health <= 50f)
+        {
+            enemy.PerformTransition(Transition.InShockwaveRange);
+            return;
+        }
         else if (enemy.heavyBullets == 0)
         {
 
             enemy.ResetShotVar();
-
-            if (IsInCurrentRange(npc, player.position, 4.5f))
-            {
-                enemy.PerformTransition(Transition.InShockwaveRange);
-                return;
-            }
-            else
-            {
-                enemy.PerformTransition(Transition.LookForPlayer);
-                return;
-            }
+            enemy.canShoot = false;
+            enemy.PerformTransition(Transition.NoBullets);
+            return;
         }
         
 
@@ -53,6 +50,6 @@ public class GunState : FSMState
     //no need for anything in act as you are jsut standing there until a player attacks you or you see them
     public override void Act(Transform player, Transform npc)
     {
-        enemy.StartFinish();
+        enemy.StartShooting();
     }
 }

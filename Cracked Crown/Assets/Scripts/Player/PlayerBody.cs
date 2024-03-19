@@ -103,7 +103,7 @@ public class PlayerBody : MonoBehaviour
     public bool gotHit = false;
     private bool dashOnCD = false;
     public bool canTakeDamage = true;
-    public float executeHeal = 22.5f;
+    public float executeHeal;
     private float executeMoveSpeed = 150f;
     private GameObject executeTarget;
     public bool canMovePlayerForexecute = false;
@@ -132,6 +132,8 @@ public class PlayerBody : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyUp(KeyCode.C))
+            hasBomb = true;
         if (Input.GetKey(KeyCode.K))
             ghostCoins += 5;
 
@@ -238,6 +240,7 @@ public class PlayerBody : MonoBehaviour
     {
         yield return new WaitForSeconds(1.2f);
         canExecute = true;
+        canCollect = true;
     }
 
     private IEnumerator deathAnim()
@@ -263,6 +266,7 @@ public class PlayerBody : MonoBehaviour
         }
         health = 50;
         maxHealth = health;
+        executeHeal = maxHealth * (1.0f / 2.0f);
         canCollect = true;
 
         playerID = gameObject.GetInstanceID();
@@ -385,34 +389,17 @@ public class PlayerBody : MonoBehaviour
                 lockDash = true;
                 canMove = false;
 
-                //if (neverReachedExecutePoint)
-                //{
-                //    if (enemyAIController.tag.Equals("Medium"))
-                //    {
-                //        animController.Finishing = true;
-                //    }
-                //    else if (enemyAIController.tag.Equals("Light"))
-                //    {
-                //        animController.Finishing_Light = true;
-                //    }
-                //    else if (enemyAIController.tag.Equals("Heavy"))
-                //    {
-                //        animController.Finishing_Heavy = true;
-                //    }
-                //}
-
                 if (enemyAIController != null)
                 {
                     if (enemyAIController.tag.Equals("Light"))
                     {
-                        animController.Finishing_Light = true;
+                        animController.Finisher(enemyAIController.tag, enemyAIController.colour, true);
                     }
                 }
 
                 if (executeLock == false)
                 {
                     StartCoroutine(TurnOffExecuteMovement());
-                    //StartCoroutine(playExecuteAnimAnyways());
                 }
             }
         }
@@ -455,16 +442,6 @@ public class PlayerBody : MonoBehaviour
         gotHit = false;
     }
 
-    private IEnumerator playExecuteAnimAnyways()
-    {
-        yield return new WaitForSeconds(1.2f);
-
-        if (hasReachedExecutePoint == false)
-        {
-            neverReachedExecutePoint = true;
-        }
-    }
-
     private IEnumerator TurnOffExecuteMovement()
     {
 
@@ -472,7 +449,6 @@ public class PlayerBody : MonoBehaviour
 
         canMovePlayerForexecute = false;
         canExecute = true;
-        canMove = true;
         canTakeDamage = true;
         canAttack = true;
         executeLock = false;
@@ -483,6 +459,7 @@ public class PlayerBody : MonoBehaviour
         yield return new WaitForSeconds(1.3f);
 
         lockDash = false;
+        canMove = true;
 
     }
 
@@ -511,7 +488,6 @@ public class PlayerBody : MonoBehaviour
     public void AddHealth(float amount) 
     {
         health = Mathf.Min(maxHealth, health + amount); //allows us to add health to the player
-        
     }
 
     public void SetCharacterData()
@@ -995,7 +971,7 @@ public class PlayerBody : MonoBehaviour
             }
             if (hasPotion)
             {
-                float healAmount = maxHealth * 0.33f;
+                float healAmount = maxHealth * 0.75f;
                 AddHealth(healAmount);
                 Debug.Log("Player health is: " + health);
                 hasPotion = false;
