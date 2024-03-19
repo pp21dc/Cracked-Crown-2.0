@@ -988,7 +988,7 @@ public class PlayerBody : MonoBehaviour
             }
             if (hasPotion)
             {
-                float healAmount = maxHealth * 0.33f;
+                float healAmount = maxHealth * 0.75f;
                 AddHealth(healAmount);
                 Debug.Log("Player health is: " + health);
                 hasPotion = false;
