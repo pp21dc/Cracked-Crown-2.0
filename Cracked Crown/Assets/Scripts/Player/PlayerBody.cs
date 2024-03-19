@@ -278,14 +278,33 @@ public class PlayerBody : MonoBehaviour
     {
         if (!playerLock)
         {
+
             //Debug.Log(rb.velocity);
             //rb.AddForce(new Vector3(0, -12000, 0) * Time.fixedDeltaTime);
             if (canMove && !dashing && sprite != null && !canMovePlayerForexecute)
             {
 
                 float scale = Mathf.Abs(sprite.localScale.x);
-                if (controller.HorizontalMagnitude > 0) { sprite.localScale = new Vector3(-scale, sprite.localScale.y, 1); }
-                else if (controller.HorizontalMagnitude < 0) { CharacterFolder.transform.GetChild(0).localScale = new Vector3(scale, sprite.localScale.y, 1); }
+                if (controller.HorizontalMagnitude > 0) 
+                {
+                    sprite.localScale = new Vector3(-scale, sprite.localScale.y, 1);
+
+                    // if not moving, set attack vector to right NOT WORKING
+                    if(movementVector == Vector3.zero)
+                    {
+                        AttackVector = new Vector3(1,0,0);
+                    }
+                }
+                else if (controller.HorizontalMagnitude < 0) 
+                { 
+                    CharacterFolder.transform.GetChild(0).localScale = new Vector3(scale, sprite.localScale.y, 1);
+
+                    // if not moving, set attack vector to left NOT WORKING
+                    if (movementVector == Vector3.zero)
+                    {
+                        AttackVector = new Vector3(-1, 0, 0);
+                    }
+                }
             }
             //if (hitEnemy)
             //{
