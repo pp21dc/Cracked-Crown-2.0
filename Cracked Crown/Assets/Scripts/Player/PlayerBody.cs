@@ -210,7 +210,6 @@ public class PlayerBody : MonoBehaviour
                 ghostCoins = 0;
                 health = maxHealth*0.8f;
                 canAttack = true;
-                canMove = true;
                 lockDash = false;
                 //canExecute = true; // if this is here you can spam execute while executing
                 canTakeDamage = true;
@@ -241,6 +240,9 @@ public class PlayerBody : MonoBehaviour
         yield return new WaitForSeconds(1.2f);
         canExecute = true;
         canCollect = true;
+
+        yield return new WaitForSeconds(2.0f);
+        canMove = true;
     }
 
     private IEnumerator deathAnim()
@@ -456,7 +458,7 @@ public class PlayerBody : MonoBehaviour
 
         animController.Finisher(enemyAIController.tag, enemyAIController.colour, true);
 
-        yield return new WaitForSeconds(1.3f);
+        yield return new WaitForSeconds(1.5f);
 
         lockDash = false;
         canMove = true;
@@ -739,7 +741,7 @@ public class PlayerBody : MonoBehaviour
                 }
 
                 // just added to see
-                yield return new WaitForSeconds(1.0f);
+                yield return new WaitForSeconds(1.4f);
 
                 canTakeDamage = true;
                 canMove = true;
@@ -784,7 +786,7 @@ public class PlayerBody : MonoBehaviour
                         crabController.animator.SetBool("FrogExecute", true);
                     }
 
-                    yield return new WaitForSeconds(1.0f);
+                    yield return new WaitForSeconds(1.1f);
                    
                     canTakeDamage = true;
                     canMove = true;
@@ -848,13 +850,13 @@ public class PlayerBody : MonoBehaviour
             RESETINGGHOST += 1;
             // instantiate dead sprite at player position
             respawnPoint = transform.position;
-            
+
+            canMove = false;
 
             GameObject c = Instantiate(deathBody, transform.position, Quaternion.identity);
             SceneManager.MoveGameObjectToScene(c, persistScene);
             corpse = c;
             canTakeDamage = false;
-            canMove = true;
 
             // turn player sprite to ghost sprite
 
@@ -862,8 +864,13 @@ public class PlayerBody : MonoBehaviour
 
             // turn off attacking, dash, and item use,
             GhostPlayer();
-
         }
+    }
+
+    private IEnumerator resetCanMoveOnRevive()
+    {
+        canMove = false;
+        yield return new WaitForSeconds(1.0f);
     }
 
     public void GhostPlayer()
@@ -873,41 +880,42 @@ public class PlayerBody : MonoBehaviour
         canExecute = false;
         canUseItem = false;
         lockDash = true;
-        canMove = true;
         gameObject.layer = 7;
         canCollect = true;
+        StartCoroutine(resetCanMoveOnRevive());
     }
 
     public void RevivePlayer()
     {
+        canMove = true;
+
         Debug.Log("REVIVE");
         canAttack = true;
         canTakeDamage = true;
         canExecute = true;
         canUseItem = true;
         lockDash = false;
-        canMove = true;
         RESETINGGHOST = 0;
         gameObject.layer = 6;
         canCollect = true;
     }
 
-    public void resetPlayer()
-    {
-        canAttack = !canAttack;
-        canTakeDamage = !canTakeDamage;
-        canExecute = !canExecute;
-        canUseItem = !canUseItem;
-        lockDash = !lockDash;
-        RESETINGGHOST = 0;
+    //public void resetPlayer()
+    //{
+    //    canAttack = !canAttack;
+    //    canTakeDamage = !canTakeDamage;
+    //    canExecute = !canExecute;
+    //    canUseItem = !canUseItem;
+    //    lockDash = !lockDash;
+    //    RESETINGGHOST = 0;
 
-        Debug.Log("canMove = " + canMove);
-        Debug.Log("canAttack = " + canAttack);
-        Debug.Log("canTakeDamage = " + canTakeDamage);
-        Debug.Log("canExecute = " + canExecute);
-        Debug.Log("canUseItem = " + canUseItem);
-        Debug.Log("LockDash = " + lockDash);
-    }
+    //    Debug.Log("canMove = " + canMove);
+    //    Debug.Log("canAttack = " + canAttack);
+    //    Debug.Log("canTakeDamage = " + canTakeDamage);
+    //    Debug.Log("canExecute = " + canExecute);
+    //    Debug.Log("canUseItem = " + canUseItem);
+    //    Debug.Log("LockDash = " + lockDash);
+    //}
 
     private void collect()
     {

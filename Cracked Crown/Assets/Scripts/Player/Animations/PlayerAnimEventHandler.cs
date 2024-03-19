@@ -47,9 +47,11 @@ public class PlayerAnimEventHandler : MonoBehaviour
     {
         PC.PB.canCollect = false;
         PC.PB.RESETINGGHOST += 1;
+        PC.PB.canMove = false;
+
         if (PC.PB.RESETINGGHOST == 2)
         {
-            //PC.PB.RESETINGGHOST += 1;
+            //PC.PB.RESETINGGHOST += 1; 
             PC.PB.GhostMode();
             PC.PB.canCollect = true;
         }
