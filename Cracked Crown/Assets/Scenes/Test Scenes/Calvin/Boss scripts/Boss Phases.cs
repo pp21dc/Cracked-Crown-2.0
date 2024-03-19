@@ -20,6 +20,8 @@ public class BossPhases : MonoBehaviour
     private BossPhases otherClaw;
     [SerializeField]
     private GameObject ClawSprite;
+    [SerializeField]
+    private GameObject DmgOverlay;
 
     [Header("Instantiated Objects")]
     [SerializeField]
@@ -36,7 +38,8 @@ public class BossPhases : MonoBehaviour
     private float MAXBOSSHEALTH;
     [SerializeField]
     private float clawdropspeed;
-
+    
+    [Header("Materials and Sprites")]
     [SerializeField]
     Material baseMat;
     [SerializeField]
@@ -184,28 +187,25 @@ public class BossPhases : MonoBehaviour
     public void decHealth(float amount)
     {
         bosshealth -= amount;
-        StartCoroutine(FlashWhite(ClawSprite.GetComponent<SpriteRenderer>()));
-        if (bosshealth > 60)
+        StartCoroutine(FlashRed(DmgOverlay.GetComponent<SpriteRenderer>()));
+        if (bosshealth / MAXBOSSHEALTH * 100 > 75)
         {
             currSpriteID = 0;
+
         }
-        else if (bosshealth > 45)
+        else if (bosshealth / MAXBOSSHEALTH * 100 > 50)
         {
-            currSpriteID = 1;
+            currSpriteID = 1;   
         }
-        else if (bosshealth > 30)
+        else if (bosshealth / MAXBOSSHEALTH * 100 > 25)
         {
             currSpriteID = 2;
         }
-        else if (bosshealth > 15)
+        else if (bosshealth / MAXBOSSHEALTH * 100 > 0)
         {
             currSpriteID = 3;
         }
-        else
-        {
-            currSpriteID = 4;
-        }
-        // ClawSprite.GetComponent<SpriteRenderer>().sprite = spriteList[currSpriteID];
+        DmgOverlay.GetComponent<SpriteRenderer>().sprite = spriteList[currSpriteID];
     }
 
     public IEnumerator delay(int time)
@@ -214,7 +214,7 @@ public class BossPhases : MonoBehaviour
         delayed = true;
     }
 
-    public IEnumerator FlashWhite(SpriteRenderer s)
+    public IEnumerator FlashRed(SpriteRenderer s)
     {
         s.material = whiteMat;
 
