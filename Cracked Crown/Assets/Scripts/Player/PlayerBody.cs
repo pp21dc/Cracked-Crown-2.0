@@ -389,34 +389,17 @@ public class PlayerBody : MonoBehaviour
                 lockDash = true;
                 canMove = false;
 
-                //if (neverReachedExecutePoint)
-                //{
-                //    if (enemyAIController.tag.Equals("Medium"))
-                //    {
-                //        animController.Finishing = true;
-                //    }
-                //    else if (enemyAIController.tag.Equals("Light"))
-                //    {
-                //        animController.Finishing_Light = true;
-                //    }
-                //    else if (enemyAIController.tag.Equals("Heavy"))
-                //    {
-                //        animController.Finishing_Heavy = true;
-                //    }
-                //}
-
                 if (enemyAIController != null)
                 {
                     if (enemyAIController.tag.Equals("Light"))
                     {
-                        animController.Finishing_Light = true;
+                        animController.Finisher(enemyAIController.tag, enemyAIController.colour, true);
                     }
                 }
 
                 if (executeLock == false)
                 {
                     StartCoroutine(TurnOffExecuteMovement());
-                    //StartCoroutine(playExecuteAnimAnyways());
                 }
             }
         }
@@ -466,7 +449,6 @@ public class PlayerBody : MonoBehaviour
 
         canMovePlayerForexecute = false;
         canExecute = true;
-        canMove = true;
         canTakeDamage = true;
         canAttack = true;
         executeLock = false;
@@ -477,6 +459,7 @@ public class PlayerBody : MonoBehaviour
         yield return new WaitForSeconds(1.3f);
 
         lockDash = false;
+        canMove = true;
 
     }
 
