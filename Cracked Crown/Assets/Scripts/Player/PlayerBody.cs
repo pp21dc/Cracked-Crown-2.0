@@ -132,6 +132,8 @@ public class PlayerBody : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyUp(KeyCode.C))
+            hasBomb = true;
         if (Input.GetKey(KeyCode.K))
             ghostCoins += 5;
 
