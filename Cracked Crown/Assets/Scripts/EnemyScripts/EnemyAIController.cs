@@ -450,6 +450,7 @@ public class EnemyAIController : AdvancedFSM
         //Shoots at the player from a distance, Transition to reload if out of bullets, low health to finish, no health to dead
         GunState gunState = new GunState(this);
         gunState.AddTransition(Transition.NoBullets, FSMStateID.Reload);
+        gunState.AddTransition(Transition.InShockwaveRange, FSMStateID.Shockwave);
         gunState.AddTransition(Transition.LowHealth, FSMStateID.Finished);
         gunState.AddTransition(Transition.NoHealth, FSMStateID.Dead);
         
@@ -459,6 +460,7 @@ public class EnemyAIController : AdvancedFSM
         shockwaveState.AddTransition(Transition.LookForPlayer, FSMStateID.FindPlayer);
         shockwaveState.AddTransition(Transition.LowHealth, FSMStateID.Finished);
         shockwaveState.AddTransition(Transition.NoHealth, FSMStateID.Dead);
+        shockwaveState.AddTransition(Transition.InShootingRange, FSMStateID.Gun);
 
         //Reloads if out of teeth, Tranisition if done to find player, low health if finished, no health to dead
         ReloadState reloadState = new ReloadState(this);
@@ -467,7 +469,7 @@ public class EnemyAIController : AdvancedFSM
         reloadState.AddTransition(Transition.NoHealth, FSMStateID.Dead);
         reloadState.AddTransition(Transition.InShockwaveRange, FSMStateID.Shockwave);
 
-        //hole
+        
         
 
 
@@ -1200,13 +1202,13 @@ public class EnemyAIController : AdvancedFSM
         if(startShooting)
         {
 
-            if(TargetPlayerPos.x > enemyPosition.position.x) 
+            if(closest.transform.position.x + 1 > enemyPosition.transform.position.x) 
             {
-                ToothShotLocation.transform.position = new Vector3(5, 5, 0);
+                ToothShotLocation.transform.position = new Vector3(7.5f, 5.5f, 0);
             }
             else
             {
-                ToothShotLocation.transform.position = new Vector3(-5, 5, 0);
+                ToothShotLocation.transform.position = new Vector3(-7.5f, 5.5f, 0);
             }
 
             startShooting = false;
@@ -1235,7 +1237,7 @@ public class EnemyAIController : AdvancedFSM
             
             direction.Normalize();
 
-            GameObject ToothGO = GameObject.Instantiate(tooth, fireLocation.position, Quaternion.identity);
+            GameObject ToothGO = GameObject.Instantiate(tooth, enemyPosition.position, Quaternion.identity);
             Tooth Tooth = ToothGO.GetComponent<Tooth>();
             ToothGO.SetActive(true);
             Tooth.Fire(direction);
@@ -1263,7 +1265,7 @@ public class EnemyAIController : AdvancedFSM
         {
             while(shockwaveCol.transform.localScale.x < targetShockwaveScale.x)
             {
-                shockwaveCol.transform.localScale = new Vector3(shockwaveCol.transform.localScale.x + 1, shockwaveCol.transform.localScale.y, shockwaveCol.transform.localScale.z + 1);
+                shockwaveCol.transform.localScale = new Vector3(shockwaveCol.transform.localScale.x + 1, shockwaveCol.transform.localScale.y + 1, shockwaveCol.transform.localScale.z);
                 yield return new WaitForSeconds(0.1f);
             }
 

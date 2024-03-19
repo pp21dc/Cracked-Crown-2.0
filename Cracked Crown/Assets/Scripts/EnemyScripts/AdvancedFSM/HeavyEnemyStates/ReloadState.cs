@@ -24,24 +24,24 @@ public class ReloadState : FSMState
             enemy.PerformTransition(Transition.LowHealth);
             return;
         }
-        if (enemy.Health <= 0)
+        else if (enemy.Health <= 50f)
+        {
+            enemy.PerformTransition(Transition.InShockwaveRange);
+            return;
+        }
+        else if (enemy.Health <= 0)
         {
             enemy.PerformTransition(Transition.NoHealth);
             return;
         }
-        else if(enemy.doneReloading == true)
+        else if (enemy.doneReloading == true)
         {
 
             enemy.ResetReloadVar();
 
-            if (IsInCurrentRange(npc, player.position, 15f))
+            if (Vector3.Distance(enemy.ePosition.position, player.position) <= 85f)
             {
                 enemy.PerformTransition(Transition.InShootingRange);
-                return;
-            }
-            else if (IsInCurrentRange(npc, player.position, 4.5f))
-            {
-                enemy.PerformTransition(Transition.InShockwaveRange);
                 return;
             }
             else
@@ -58,6 +58,6 @@ public class ReloadState : FSMState
     //no need for anything in act as you are jsut standing there until a player attacks you or you see them
     public override void Act(Transform player, Transform npc)
     {
-        enemy.StartFinish();
+        enemy.StartReload();
     }
 }
