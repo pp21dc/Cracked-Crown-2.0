@@ -12107,6 +12107,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2334059883444836896, guid: 26cfbd80ecd59b24a94a8b581b0d571e,
         type: 3}
+      propertyPath: attackList.Array.data[2]
+      value: RoarAttack
+      objectReference: {fileID: 0}
+    - target: {fileID: 2334059883444836896, guid: 26cfbd80ecd59b24a94a8b581b0d571e,
+        type: 3}
       propertyPath: spriteList.Array.data[0]
       value: 
       objectReference: {fileID: 21300000, guid: 379589b194610174795533db16aae283,
@@ -12170,6 +12175,11 @@ PrefabInstance:
         type: 3}
       propertyPath: attackIDList.Array.size
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2879021548207388403, guid: 26cfbd80ecd59b24a94a8b581b0d571e,
+        type: 3}
+      propertyPath: attackList.Array.data[2]
+      value: RoarAttack
       objectReference: {fileID: 0}
     - target: {fileID: 2879021548207388403, guid: 26cfbd80ecd59b24a94a8b581b0d571e,
         type: 3}

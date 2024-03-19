@@ -47,14 +47,16 @@ public class BossPhases : MonoBehaviour
     private Vector3 preGrabPlayerPosition;
     private Vector3 clawtarget;
     private float dist;
-    public int currattackid;
     public string testAttack;
     private int currSpriteID = 0;
     private bool delayed = false;
 
+    private int nextattack;
+    private int prevattack;
+    private string CurrentAttack;
+
     public bool isClawSmash = false;
     bool attackLoop = true; // controls the running of the boss's attacks
-    static int LISTLENGTH = 100;
 
     private bool clawfollow = false; // pincer attack bools
     private bool clawgrab = false;
@@ -65,8 +67,6 @@ public class BossPhases : MonoBehaviour
 
     private bool isGrabbed = false;
     private float grabbedTimer;
-    [SerializeField]
-    public string[] attackIDList = new string[LISTLENGTH];
 
     // gets references for players
     [Header("Player List")]
@@ -78,7 +78,6 @@ public class BossPhases : MonoBehaviour
     
     private void Awake()
     {
-        currattackid = 0; // starts at -1 because it adds once before it is needed, making it 0
         bosshealth = MAXBOSSHEALTH;
         GameObject[] TempList = GameObject.FindGameObjectsWithTag("BossFollowPoint");
         PlayerList = new GameObject[TempList.Length];
@@ -87,7 +86,6 @@ public class BossPhases : MonoBehaviour
             PlayerList[i] = TempList[i]; // creates a list of all players in the scene
         }
         CLAWSPAWN = Claw.transform.position; // gets the original claw point
-        createIDList(); // creates a randomized list of IDs to decide boss attack order
     }
 
     void Update()
@@ -126,17 +124,16 @@ public class BossPhases : MonoBehaviour
            // attacks called in a continuous loop
            if (attacktimer <= 0)
            {
-               currattackid++; // counts to next id in the list
-               startNextAttack(); // starts the next attack, uses currattackid to do so
+               startNextAttack(); // calls the creation of next attack and sets up for switch statement
            }
-           switch (attackIDList[currattackid]) // checks id list
+           switch (CurrentAttack) // checks id list
            {
                case "PincerAttack":
                    pincerAttack();
                    break;
                case "ClawSmash":
                    break;
-               case "GooBlast":
+               case "RoarAttack":
                    break;
            }
            attacktimer -= Time.deltaTime;
@@ -145,8 +142,9 @@ public class BossPhases : MonoBehaviour
 
     public string displayAttack()
     {
-        return attackIDList[currattackid];
+        return CurrentAttack;
     }
+
     private void TestLoop()
     {
         if (gameObject.name == "clawLeft")
@@ -226,50 +224,38 @@ public class BossPhases : MonoBehaviour
 
     }
 
-    private void createIDList() // randomizes the attacks
+    private string createNextAttack() // randomizes the attacks
     {
-        int tempVar;
-        int prevVar = -1;
-        for (int i = 0; i < LISTLENGTH; i++)
+        nextattack = Random.Range(0, 3);
+
+        if (nextattack == prevattack)
         {
-            tempVar = Random.Range(0, 3);
-            if (i != 0)
-            {
-                if (tempVar == prevVar)
-                {
-                    tempVar = Random.Range(0, 3);
-                }
-                prevVar = tempVar;
-            }
-            switch (tempVar) // populates the ID list
-            {
-                case 0:
-                    attackIDList[i] = attackList[0];
-                    break;
-                case 1:
-                    attackIDList[i] = attackList[1];
-                    break;
-                case 2:
-                    attackIDList[i] = attackList[2];
-                    break;
-            }
+            nextattack = Random.Range(0, 3);
         }
+
+        prevattack = nextattack;
+        Debug.Log(gameObject + " " + attackList[nextattack]);
+        return attackList[nextattack];
     }
 
     private void startNextAttack()
     {
-        switch (attackIDList[currattackid]) // sets attack timer based on the next boss attack
+        CurrentAttack = createNextAttack();
+        switch (CurrentAttack) // sets attack timer based on the next boss attack
         {
             case "PincerAttack":
                 attacktimer = 8;
+                Debug.Log("1");
                 StartCoroutine("PincerAttack");
                 break;
             case "ClawSmash":
                 attacktimer = 4.5f;
                 StartCoroutine("ClawSmash");
+                Debug.Log("2");
                 break;
-            case "GooBlast":
-                StartCoroutine("GooBlast");
+            case "RoarAttack":
+                StartCoroutine("RoarAttack");
+                Debug.Log("3");
                 attacktimer = 1;
                 break;
         }
@@ -431,7 +417,7 @@ public class BossPhases : MonoBehaviour
         yield return new WaitForSeconds(0.4f); // plays off last part of the animation
     }
 
-    IEnumerator GooBlast()
+    IEnumerator RoarAttack()
     {
         // animation is called
         // damage is dealt
