@@ -239,7 +239,8 @@ public class GameManager : MonoBehaviour
         locker_Boss = false;
         //isLoading = false;
 
-        dialogue.SetDialogue();
+        if (dialogue != null)
+            dialogue.SetDialogue();
 
     }
 
