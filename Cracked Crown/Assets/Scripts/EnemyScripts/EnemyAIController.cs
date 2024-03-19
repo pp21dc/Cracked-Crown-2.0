@@ -21,6 +21,10 @@ public abstract class AIProperties // the properties that are most commonly used
 
 public class EnemyAIController : AdvancedFSM
 {
+
+    public float EnemyID;
+
+
     [SerializeField]
     public GameObject stunObj;
     [SerializeField]
@@ -226,6 +230,9 @@ public class EnemyAIController : AdvancedFSM
     //intializes the enemy with the player location and sets enemy health to 100 theb calls Construct FSM
     protected override void Initialize()
     {
+
+        EnemyID = gameObject.GetInstanceID();
+
         if (LevelManager.Instance != null)
         {
             if (CompareTag("Light"))
@@ -1223,7 +1230,7 @@ public class EnemyAIController : AdvancedFSM
         while (canShoot)
         {
             StartShootTeeth(enemyPosition, ToothShotLocation.transform);
-            maxAmmo--;
+            heavyBullets--;
             yield return new WaitForSeconds(0.45f);
         }
     }
@@ -1274,13 +1281,14 @@ public class EnemyAIController : AdvancedFSM
 
         StartCoroutine(shockwaveCooldown());
         doneShockwave = true;
+        AddHealth(15f);
 
         yield return null;
     }
 
     IEnumerator shockwaveCooldown()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(5f);
 
         noShockCooldown = true;
     }
