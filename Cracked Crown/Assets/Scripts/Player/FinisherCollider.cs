@@ -35,7 +35,6 @@ public class FinisherCollider : MonoBehaviour
                             distance = Vector3.Distance(enemy.transform.position, PB.transform.position);
                             e = enemy;
                         }
-                        
                     }
                     else if (enemy.gameObject.GetComponent<CrabWalk>() != null && PB.canExecute)
                     {
