@@ -103,7 +103,7 @@ public class PlayerBody : MonoBehaviour
     public bool gotHit = false;
     private bool dashOnCD = false;
     public bool canTakeDamage = true;
-    public float executeHeal = 22.5f;
+    public float executeHeal;
     private float executeMoveSpeed = 150f;
     private GameObject executeTarget;
     public bool canMovePlayerForexecute = false;
@@ -238,6 +238,7 @@ public class PlayerBody : MonoBehaviour
     {
         yield return new WaitForSeconds(1.2f);
         canExecute = true;
+        canCollect = true;
     }
 
     private IEnumerator deathAnim()
@@ -263,6 +264,7 @@ public class PlayerBody : MonoBehaviour
         }
         health = 50;
         maxHealth = health;
+        executeHeal = maxHealth * (1.0f / 2.0f);
         canCollect = true;
 
         playerID = gameObject.GetInstanceID();
@@ -455,16 +457,6 @@ public class PlayerBody : MonoBehaviour
         gotHit = false;
     }
 
-    private IEnumerator playExecuteAnimAnyways()
-    {
-        yield return new WaitForSeconds(1.2f);
-
-        if (hasReachedExecutePoint == false)
-        {
-            neverReachedExecutePoint = true;
-        }
-    }
-
     private IEnumerator TurnOffExecuteMovement()
     {
 
@@ -511,7 +503,6 @@ public class PlayerBody : MonoBehaviour
     public void AddHealth(float amount) 
     {
         health = Mathf.Min(maxHealth, health + amount); //allows us to add health to the player
-        
     }
 
     public void SetCharacterData()

@@ -90,6 +90,9 @@ public class Bomb : MonoBehaviour
 
         yield return new WaitForSeconds(3f);
 
+        // hide the bomb mesh
+        transform.GetChild(0).gameObject.SetActive(false);
+
         // play explosion effect
         animator.SetBool("Blow", true);
 
