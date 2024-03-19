@@ -79,6 +79,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Transform[] spawnPoints;
 
+    [SerializeField]
+    private Dialogue dialogue;
     private void Awake()
     {
         if (instance == null)
@@ -236,6 +238,8 @@ public class GameManager : MonoBehaviour
         locker = false;
         locker_Boss = false;
         //isLoading = false;
+
+        dialogue.SetDialogue();
 
     }
 

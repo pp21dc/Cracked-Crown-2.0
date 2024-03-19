@@ -84,9 +84,16 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject[] iconObjects;
     public enum characterIcons {Frog, Bunny, Duck, HoneyBadger };
 
+    public static UIManager Instance;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
     private void Start()
     {
         GM = GameManager.Instance;
+        
         //RecordPlayerHealths();
         //animSpeed = 1.0f / animSpeed;
 
