@@ -304,6 +304,8 @@ public class EnemyAIController : AdvancedFSM
 
         noTransform = true;
 
+        shockwaveCol.SetActive(false);
+
         randTrans = new Vector3(0,0,0);
 
         GameObject ground = GameObject.FindGameObjectWithTag("Ground");
@@ -320,7 +322,7 @@ public class EnemyAIController : AdvancedFSM
         heavyBullets = 10;
         if (shockwaveCol != null)
         {
-            targetShockwaveScale = new Vector3(15, shockwaveCol.transform.localScale.y, 15);
+            targetShockwaveScale = new Vector3(35, shockwaveCol.transform.localScale.y, 35);
             shockwaveScaleInitial = shockwaveCol.transform.localScale;
         }
         noShockCooldown = true;
@@ -475,6 +477,7 @@ public class EnemyAIController : AdvancedFSM
         reloadState.AddTransition(Transition.LowHealth, FSMStateID.Finished);
         reloadState.AddTransition(Transition.NoHealth, FSMStateID.Dead);
         reloadState.AddTransition(Transition.InShockwaveRange, FSMStateID.Shockwave);
+        reloadState.AddTransition(Transition.InShootingRange, FSMStateID.Gun);
 
         
         
@@ -1233,6 +1236,8 @@ public class EnemyAIController : AdvancedFSM
             heavyBullets--;
             yield return new WaitForSeconds(0.45f);
         }
+
+        yield return null;
     }
 
     private void StartShootTeeth(Transform body, Transform fireLocation)
@@ -1260,28 +1265,33 @@ public class EnemyAIController : AdvancedFSM
     {
         if(startShock)
         {
+            shockwaveCol.SetActive(true);
             noShockCooldown = false;
             startShock = false;
+            canShoot = false;
             StartCoroutine(Shockwave());
         }
     }
 
     IEnumerator Shockwave()
     {
-        for (int i = 0; i < 10; i++) 
+        for (int i = 0; i < 4; i++) 
         {
             while(shockwaveCol.transform.localScale.x < targetShockwaveScale.x)
             {
                 shockwaveCol.transform.localScale = new Vector3(shockwaveCol.transform.localScale.x + 1, shockwaveCol.transform.localScale.y + 1, shockwaveCol.transform.localScale.z);
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds(0.01f);
             }
 
+            yield return new WaitForSeconds(0.45f);
             shockwaveCol.transform.localScale = shockwaveScaleInitial;
         }
 
         StartCoroutine(shockwaveCooldown());
         doneShockwave = true;
         AddHealth(15f);
+        canShoot = true;
+        shockwaveCol.SetActive(false);
 
         yield return null;
     }

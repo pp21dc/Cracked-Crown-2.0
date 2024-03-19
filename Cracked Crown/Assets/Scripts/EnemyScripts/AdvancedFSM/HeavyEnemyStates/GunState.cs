@@ -38,7 +38,7 @@ public class GunState : FSMState
         {
 
             enemy.ResetShotVar();
-
+            enemy.canShoot = false;
             enemy.PerformTransition(Transition.NoBullets);
             return;
         }
