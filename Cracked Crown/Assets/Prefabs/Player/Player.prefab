@@ -191,7 +191,7 @@ VFXRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1680347067
-  m_SortingLayer: 4
+  m_SortingLayer: 6
   m_SortingOrder: 6
 --- !u!1 &6021653336733486173
 GameObject:
@@ -863,6 +863,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2828593481301157110, guid: f7d79151a7f0bd344843f470d4ca4d9c,
+        type: 3}
+      propertyPath: m_TagString
+      value: BushCollision
+      objectReference: {fileID: 0}
     - target: {fileID: 4633882350821034748, guid: f7d79151a7f0bd344843f470d4ca4d9c,
         type: 3}
       propertyPath: m_Name
@@ -896,7 +901,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2828593481301157110, guid: f7d79151a7f0bd344843f470d4ca4d9c,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4950368153537627739}
   m_SourcePrefab: {fileID: 100100000, guid: f7d79151a7f0bd344843f470d4ca4d9c, type: 3}
 --- !u!4 &2017016708980356562 stripped
 Transform:
@@ -904,6 +913,33 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2260718596964472607}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4043811760176575465 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2828593481301157110, guid: f7d79151a7f0bd344843f470d4ca4d9c,
+    type: 3}
+  m_PrefabInstance: {fileID: 2260718596964472607}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &4950368153537627739
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4043811760176575465}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 5.0199995, y: 3.08, z: 0.20000018}
+  m_Center: {x: 0, y: -0.56, z: 0.0000019073486}
 --- !u!212 &4835814214731740107 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 6648418051566953684, guid: f7d79151a7f0bd344843f470d4ca4d9c,
