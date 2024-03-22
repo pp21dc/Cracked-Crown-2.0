@@ -137,15 +137,18 @@ public class PlayerBody : MonoBehaviour
         if (Input.GetKey(KeyCode.K))
             ghostCoins += 5;
 
-        if (sprite.localScale.x < 0)
+        if (sprite != null)
         {
-            lookingLeft = false;
-            lookingRight = true;
-        }
-        if (sprite.localScale.x > 0)
-        {
-            lookingRight = false;   
-            lookingLeft = true;
+            if (sprite.localScale.x < 0)
+            {
+                lookingLeft = false;
+                lookingRight = true;
+            }
+            if (sprite.localScale.x > 0)
+            {
+                lookingRight = false;
+                lookingLeft = true;
+            }
         }
 
         Vector3 dropShadowPos;
