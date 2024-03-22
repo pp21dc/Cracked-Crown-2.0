@@ -438,6 +438,60 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1197854239
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1197854241}
+  - component: {fileID: 1197854240}
+  m_Layer: 0
+  m_Name: FlockingManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1197854240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1197854239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e867a88c63f4cf4cbdc52e6be33e7dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fishPrefab: []
+  numFish: 25
+  allFish: []
+  swimLimits: {x: 155, y: 1, z: 155}
+  currentGoalPos: {x: 0, y: 0, z: 0}
+  goalPos: []
+  minSpeed: 6
+  maxSpeed: 15
+  NeighboursDistance: 6.3
+  RotationSpeed: 1.95
+--- !u!4 &1197854241
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1197854239}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 22.9, y: 13.4, z: 17.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1382276991 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6280447889518472920, guid: 4c4f37bf10df3e44d864255882aaa6e8,
@@ -777,6 +831,7 @@ MonoBehaviour:
   eyeText: {fileID: 0}
   TEST_SCENE: 1
   spawnPoints: []
+  dialogue: {fileID: 0}
   enem: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
@@ -789,3 +844,4 @@ SceneRoots:
   - {fileID: 958252759}
   - {fileID: 1736416128}
   - {fileID: 1999159762}
+  - {fileID: 1197854241}
