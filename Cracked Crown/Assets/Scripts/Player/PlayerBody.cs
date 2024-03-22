@@ -702,7 +702,7 @@ public class PlayerBody : MonoBehaviour
 
     private IEnumerator InExecute(GameObject toExecute)
     {
-        if (toExecute != null && canExecute)
+        if (toExecute != null && canExecute && toExecute.transform.position.y <= 8.0f)
         {
             if (toExecute.transform.parent.GetChild(0).GetComponent<EnemyAIController>() != null)
             {
@@ -931,7 +931,7 @@ public class PlayerBody : MonoBehaviour
 
         if (controller.ItemDown)
         {
-            if (hasBomb)
+            if (hasBomb && !Grabbed)
             {
                 if (controller.HorizontalMagnitude >= 0)
                 {
@@ -949,7 +949,7 @@ public class PlayerBody : MonoBehaviour
 
                 hasBomb = false;
             }
-            if (hasPotion)
+            if (hasPotion & !Grabbed)
             {
                 float healAmount = maxHealth * 0.75f;
                 AddHealth(healAmount);
