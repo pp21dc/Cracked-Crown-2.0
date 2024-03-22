@@ -531,7 +531,7 @@ public class EnemyAIController : AdvancedFSM
 
                         currShortest = check;
                         closestInt += 1; 
-                        closest = Players[i];
+                        closest = GM.Players[i].PB.gameObject;
                         playerTransform = closest.transform;
 
                     }
@@ -544,8 +544,8 @@ public class EnemyAIController : AdvancedFSM
             }
             if (closest == null && !GM.Players[0].PB.alreadyDead)
             {
-                closest = Players[0];
-                playerTransform = Players[0].transform;
+                closest = GM.Players[0].PB.gameObject;
+                playerTransform = GM.Players[0].PB.transform;
             }
             if (true)//is there a player and we aren't being knocked back
             {

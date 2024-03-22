@@ -13,6 +13,8 @@ public class EyeMovement : MonoBehaviour
 
     [SerializeField]
     GameObject Mesh;
+    [SerializeField]
+    GameObject DropShadow;
 
     private void Start()
     {
@@ -23,7 +25,9 @@ public class EyeMovement : MonoBehaviour
     private void Update()
     {
         Mesh.transform.LookAt(manager.cam);
-       
+        Vector3 pos = transform.position;
+        pos.y = 0;
+        DropShadow.transform.position = pos;
     }
 
     private void FixedUpdate()
