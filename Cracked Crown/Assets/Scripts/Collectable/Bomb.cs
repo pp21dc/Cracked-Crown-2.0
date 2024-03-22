@@ -111,17 +111,17 @@ public class Bomb : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
-        // hide the bomb mesh
         transform.GetChild(0).gameObject.SetActive(false);
-
-        // play explosion effect
         animator.SetBool("Blow", true);
 
         if (enemiesInRange != null)
         {
             foreach (EnemyAIController enemy in enemiesInRange)
             {
-                enemy.DecHealth(damage);
+                if (Vector3.Distance(transform.position, enemy.transform.position) < 10.0f)
+                {
+                    enemy.DecHealth(damage);
+                }
             }
         }
 
