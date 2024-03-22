@@ -98,7 +98,7 @@ public class EnemyAnimationController : MonoBehaviour
 
     public void EndAttack()
     {
-        EAIC.EAC.Attacking = false;
+        Attacking = false;
     }
 
     public void StartGrab()

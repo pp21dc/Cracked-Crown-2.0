@@ -240,6 +240,7 @@ public class GameManager : MonoBehaviour
         locker = false;
         locker_Boss = false;
         //isLoading = false;
+        SetPlayerPositions();
 
         if (dialogue != null)
             dialogue.SetDialogue();
@@ -271,7 +272,7 @@ public class GameManager : MonoBehaviour
     {
         currentLevel++;
         UI.SetActive(true);
-        if (currentLevel <= levelNames.Length)
+        if (currentLevel < levelNames.Length)
         {
             Debug.Log("LEVEL: " + currentLevel);
             StartCoroutine("LoadLevel", levelNames[currentLevel]);

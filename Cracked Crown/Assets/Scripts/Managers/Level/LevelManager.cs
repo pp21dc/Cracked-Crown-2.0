@@ -35,7 +35,7 @@ public class LevelManager : MonoBehaviour
     public float WAIT_NEXTSPAWN_UPB;
     [Tooltip("Shortest Time For Next Enemy Spawn")]
     public float WAIT_NEXTSPAWN_LWB;
-    private float WAIT_NEXTSPAWN_VALUE = 1;
+    private float WAIT_NEXTSPAWN_VALUE = 0.2f;
 
     [SerializeField]
     private int CURRENT_WAVE;
@@ -85,7 +85,7 @@ public class LevelManager : MonoBehaviour
         if (ROOM_CLEARED || !SpawnersActive)
             return;
         //Debug.Log(Current_Room.RoomNumber + ": " + CURRENT_WAVE);
-        if (ENEMIES_SPAWNED > Current_Room.EnemyCount_PerWave[CURRENT_WAVE-1])
+        if (ENEMIES_SPAWNED >= Current_Room.EnemyCount_PerWave[CURRENT_WAVE-1])
         {
             if (ENEMIES_KILLED >= ENEMIES_SPAWNED)
             {
@@ -95,10 +95,10 @@ public class LevelManager : MonoBehaviour
         }
 
         SpawnTimer += Time.deltaTime;
-        if (SpawnTimer > WAIT_NEXTSPAWN_VALUE && ENEMIES_SPAWNED <= Current_Room.EnemyCount_PerWave[CURRENT_WAVE-1])
+        if (SpawnTimer > WAIT_NEXTSPAWN_VALUE && ENEMIES_SPAWNED < Current_Room.EnemyCount_PerWave[CURRENT_WAVE-1])
         {
             SpawnTimer = 0;
-            WAIT_NEXTSPAWN_VALUE = Current_Room.SpawnRate[CURRENT_WAVE - 1] * Random.Range(0.75f, 1.12f);
+            WAIT_NEXTSPAWN_VALUE = Current_Room.SpawnRate[CURRENT_WAVE - 1] * Random.Range(0.8f, 1f);
             
             Spawner.SpawnEnemy(PickEnemy());
         }
