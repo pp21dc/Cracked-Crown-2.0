@@ -885,7 +885,7 @@ public class PlayerBody : MonoBehaviour
         canUseItem = true;
         lockDash = false;
         RESETINGGHOST = 0;
-        gameObject.layer = 6;
+        gameObject.layer = 3;
         canCollect = true;
     }
 
