@@ -985,6 +985,38 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 130ec406089555b4d82c125d7ec51dc1, type: 3}
+--- !u!1 &187880557
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 187880558}
+  m_Layer: 0
+  m_Name: Tripod
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &187880558
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 187880557}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.122787856, y: 0.6963643, z: 0.122787856, w: -0.6963643}
+  m_LocalPosition: {x: 0, y: -121.4, z: -34.8}
+  m_LocalScale: {x: 25, y: 25, z: 25}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1675605531}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &196178308
 GameObject:
   m_ObjectHideFlags: 0
@@ -12337,6 +12369,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2334059883444836896, guid: 26cfbd80ecd59b24a94a8b581b0d571e,
         type: 3}
+      propertyPath: cameraShake
+      value: 
+      objectReference: {fileID: 1675605534}
+    - target: {fileID: 2334059883444836896, guid: 26cfbd80ecd59b24a94a8b581b0d571e,
+        type: 3}
       propertyPath: clawdropspeed
       value: 1
       objectReference: {fileID: 0}
@@ -12411,6 +12448,11 @@ PrefabInstance:
       propertyPath: DmgOverlay
       value: 
       objectReference: {fileID: 1182688993}
+    - target: {fileID: 2879021548207388403, guid: 26cfbd80ecd59b24a94a8b581b0d571e,
+        type: 3}
+      propertyPath: cameraShake
+      value: 
+      objectReference: {fileID: 1675605534}
     - target: {fileID: 2879021548207388403, guid: 26cfbd80ecd59b24a94a8b581b0d571e,
         type: 3}
       propertyPath: clawdropspeed
@@ -13088,6 +13130,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1675605531}
   - component: {fileID: 1675605532}
+  - component: {fileID: 1675605534}
   m_Layer: 0
   m_Name: artCam
   m_TagString: Untagged
@@ -13103,14 +13146,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1675605530}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.122787856, y: 0.6963643, z: 0.122787856, w: -0.6963643}
-  m_LocalPosition: {x: 0, y: -121.4, z: -34.8}
-  m_LocalScale: {x: 25, y: 25, z: 25}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1697528259}
   - {fileID: 1422396049}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 187880558}
   m_LocalEulerAnglesHint: {x: 0, y: 270, z: -20}
 --- !u!81 &1675605532
 AudioListener:
@@ -13120,6 +13163,18 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1675605530}
   m_Enabled: 1
+--- !u!114 &1675605534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1675605530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f60efa35bcf0f634883dbb62cf2facb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1681009025
 GameObject:
   m_ObjectHideFlags: 0
@@ -20300,7 +20355,7 @@ SceneRoots:
   - {fileID: 1839627338}
   - {fileID: 2041472363}
   - {fileID: 1734308084}
-  - {fileID: 1675605531}
+  - {fileID: 187880558}
   - {fileID: 927377075}
   - {fileID: 920701382}
   - {fileID: 356577767}

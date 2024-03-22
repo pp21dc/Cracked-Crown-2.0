@@ -64,7 +64,10 @@ public class BossPhases : MonoBehaviour
     private bool clawfollow = false; // pincer attack bools
     private bool clawgrab = false;
     public bool clawreturn = false;
+    public bool roarSpawn = false;
 
+    [SerializeField]
+    private CameraShake cameraShake;
     public GameObject FollowedPlayer;
     private PlayerBody GrabbedPlayerBody;
 
@@ -97,9 +100,13 @@ public class BossPhases : MonoBehaviour
         {
             if (!delayed)
             {
-                StartCoroutine(delay(2));
+                StartCoroutine(delay(3));
                 return;
             }
+        }
+        else
+        {
+            StartCoroutine(delay(2));
         }
         if (bosshealth <= 0)
         {
@@ -409,6 +416,7 @@ public class BossPhases : MonoBehaviour
         {
             Instantiate(ShockWave, ClawSprite.transform.position - new Vector3(-8, 25f, 16), Quaternion.Euler(80, 0, 0)); // instantiates the shockwave part of attack
         }
+        cameraShake.StartCoroutine(cameraShake.Shake(0.15f, 0.4f));
         yield return new WaitForSeconds(1.95f);
         ClawSprite.transform.localPosition = new Vector3(0, 0, 0);
         bossAnim.Play("clawPassive");
@@ -420,8 +428,9 @@ public class BossPhases : MonoBehaviour
     IEnumerator RoarAttack()
     {
         // animation is called
-        // damage is dealt
-        yield return new WaitForSeconds(0);
+        yield return new WaitForSeconds(2);
+
+
     }
 
     private void OnTriggerEnter(Collider other)
