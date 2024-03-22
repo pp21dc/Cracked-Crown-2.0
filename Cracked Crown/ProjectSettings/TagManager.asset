@@ -26,6 +26,7 @@ TagManager:
   - MiniCrabExecutable
   - BossHit
   - Revive
+  - BushCollision
   layers:
   - Default
   - TransparentFX
@@ -69,8 +70,14 @@ TagManager:
   - name: Players & Enemies
     uniqueID: 1785375243
     locked: 0
+  - name: Behind Bush
+    uniqueID: 296061455
+    locked: 0
   - name: Bushes
     uniqueID: 2451109015
+    locked: 0
+  - name: Infront of Bush
+    uniqueID: 2185324075
     locked: 0
   - name: Slash Effect
     uniqueID: 2614620229
