@@ -36,6 +36,9 @@ public class GameManager : MonoBehaviour
     public GameObject[] Characters;
 
     [SerializeField]
+    public Transform cam;
+
+    [SerializeField]
     private string[] levelNames;
     private bool isLoading = false;
     private bool LevelCleared = false;
@@ -190,11 +193,10 @@ public class GameManager : MonoBehaviour
 
 
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(levelName));
-
-        if (!levelName.Equals(MainMenuName) && !levelName.Equals(BossLevelName) && currentLevel < levelName.Length && !levelName.Equals(ShopName))
+        if (!levelName.Equals(MainMenuName) && !levelName.Equals(BossLevelName) && currentLevel <= levelNames.Length && !levelName.Equals(ShopName))
         {
             //AudioManager.LoadLevelComplete();
-            //Debug.Log("NEXT LEVEL");
+            Debug.Log("NEXT LEVEL");
             currentLevelName = levelNames[currentLevel];
 
             currentLevelName = levelName;
@@ -269,9 +271,9 @@ public class GameManager : MonoBehaviour
     {
         currentLevel++;
         UI.SetActive(true);
-        if (currentLevel < levelNames.Length)
+        if (currentLevel <= levelNames.Length)
         {
-            
+            Debug.Log("LEVEL: " + currentLevel);
             StartCoroutine("LoadLevel", levelNames[currentLevel]);
         }
         else

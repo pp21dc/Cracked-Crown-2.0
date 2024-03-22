@@ -27,13 +27,12 @@ public class Collect : MonoBehaviour
                     {
                         body.ghostCoins = body.ghostCoins + 1;
                         //Debug.Log(body.ghostCoins);
-                        gameObject.SetActive(false);
+                        Destroy(gameObject.transform.parent.gameObject);
                     }
                     else
                     {
                         gameManager.eyeCount = gameManager.eyeCount + 1;
-                        //Debug.Log(gameManager.eyeCount);
-                        gameObject.SetActive(false);
+                        Destroy(gameObject.transform.parent.gameObject);
                     }
                 }
 

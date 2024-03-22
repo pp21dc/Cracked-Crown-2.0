@@ -120,6 +120,7 @@ public class LevelManager : MonoBehaviour
     public void Enter_Level(bool hostile)
     {
         CURRENT_WAVE = 1;
+        GM.SetPlayerPositions();
         StartCoroutine(ON_ENTER(hostile));
     }
 
@@ -137,9 +138,9 @@ public class LevelManager : MonoBehaviour
     {
         CURRENT_WAVE = 1;
         ROOM_CLEARED = !hostile;
-        GM.SetPlayerPositions();
+        //GM.SetPlayerPositions();
         yield return new WaitForSeconds(1);
-        GM.SetPlayerPositions();
+        //GM.SetPlayerPositions();
         yield return new WaitForSeconds(WAIT_ONENTER);
         //GM.SetPlayerPositions();
         
