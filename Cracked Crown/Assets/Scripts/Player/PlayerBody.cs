@@ -137,6 +137,17 @@ public class PlayerBody : MonoBehaviour
         if (Input.GetKey(KeyCode.K))
             ghostCoins += 5;
 
+        if (sprite.localScale.x < 0)
+        {
+            lookingLeft = false;
+            lookingRight = true;
+        }
+        if (sprite.localScale.x > 0)
+        {
+            lookingRight = false;   
+            lookingLeft = true;
+        }
+
         Vector3 dropShadowPos;
         if (CharacterType != null)
         {
@@ -176,7 +187,6 @@ public class PlayerBody : MonoBehaviour
             if ((health <= 0 || Input.GetKey(KeyCode.O)) && alreadyDead == false)
             {
                 rb.velocity = Vector3.zero;
-                //GhostMode();
                 animController.Moving = false;
                 animController.dashing = false;
                 animController.Attacking = false;
@@ -189,7 +199,6 @@ public class PlayerBody : MonoBehaviour
             }
             if (alreadyDead && enumDone)
             {
-                //enumDone = false;
                 canMove = true;
                 canAttack = false;
                 lockDash = true;
@@ -204,25 +213,20 @@ public class PlayerBody : MonoBehaviour
                 transform.position = respawnPoint;
 
                 // change back to normal
-                //animController.Moving = true;
                 animController.Dead = false;
                 alreadyDead = false;
                 ghostCoins = 0;
                 health = maxHealth*0.8f;
                 canAttack = true;
                 lockDash = false;
-                //canExecute = true; // if this is here you can spam execute while executing
                 canTakeDamage = true;
                 Grabbed = false;
-                //RevivePlayer();
 
                 // delete corpse
-                //Debug.Log("DESTROY CORPSES");
                 Destroy(corpse);
                 StartCoroutine(executeAfterRevive());
 
             }
-            //Move();
             Attack();
             Dash();
             UseItem();
@@ -274,13 +278,12 @@ public class PlayerBody : MonoBehaviour
         playerID = gameObject.GetInstanceID();
     }
     bool dontForward;
+    bool lookingRight = false;
+    bool lookingLeft = false;
     private void FixedUpdate()
     {
         if (!playerLock)
         {
-
-            //Debug.Log(rb.velocity);
-            //rb.AddForce(new Vector3(0, -12000, 0) * Time.fixedDeltaTime);
             if (canMove && !dashing && sprite != null && !canMovePlayerForexecute)
             {
 
@@ -288,33 +291,13 @@ public class PlayerBody : MonoBehaviour
                 if (controller.HorizontalMagnitude > 0) 
                 {
                     sprite.localScale = new Vector3(-scale, sprite.localScale.y, 1);
-
-                    // if not moving, set attack vector to right NOT WORKING
-                    if(movementVector == Vector3.zero)
-                    {
-                        AttackVector = new Vector3(1,0,0);
-                    }
                 }
                 else if (controller.HorizontalMagnitude < 0) 
                 { 
                     CharacterFolder.transform.GetChild(0).localScale = new Vector3(scale, sprite.localScale.y, 1);
-
-                    // if not moving, set attack vector to left NOT WORKING
-                    if (movementVector == Vector3.zero)
-                    {
-                        AttackVector = new Vector3(-1, 0, 0);
-                    }
                 }
             }
-            //if (hitEnemy)
-            //{
-            //    //Debug.Log(GetMovementVector());
-            //    float y = rb.velocity.y;
-            //    rb.velocity = ((-GetMovementVector()) * attackKnockback * forceMod / 4 * Time.fixedDeltaTime);
-            //    rb.velocity = new Vector3(rb.velocity.x, y, rb.velocity.z);
-            //    //hitEnemy = false;
-            //    dontForward = true;
-            //}
+
             Move();
         }
         else
@@ -357,7 +340,6 @@ public class PlayerBody : MonoBehaviour
                 }
                 else if (movementVector.magnitude == 0 && !lockHitForward && !gotHit)
                 {
-                    //Debug.Log("ZERO MV");
                     rb.velocity = new Vector3(0, rb.velocity.y, 0);
                 }
                 movementVector.z = movementVector.z * 1.5f;
@@ -365,7 +347,6 @@ public class PlayerBody : MonoBehaviour
 
                 if (!lockHitForward && !gotHit)
                 {
-                    //Debug.Log("BASEMOVE MV");
                     float y = rb.velocity.y;
                     rb.velocity = (movementVector * forceMod * Time.fixedDeltaTime);
                     rb.velocity = new Vector3(rb.velocity.x, y, rb.velocity.z);
@@ -374,7 +355,6 @@ public class PlayerBody : MonoBehaviour
 
                 if ((rb.velocity.magnitude > 30f || movementVector.magnitude > 1) & Mathf.Abs(movementVector.magnitude) > 0 && !alreadyDead)
                 {
-                    //Debug.Log(alreadyDead);
                     animController.Moving = true;
                 }
                 else
@@ -384,7 +364,6 @@ public class PlayerBody : MonoBehaviour
             }
             
         }
-        //Debug.Log(executeTarget.IsUnityNull());
         if (canMovePlayerForexecute && executeTarget != null)
         {
             if (Vector3.Distance(transform.position, executeTarget.transform.position + forExecutePosition) < 2.5f && !lockExecAnim && enemyAIController != null)
@@ -401,7 +380,6 @@ public class PlayerBody : MonoBehaviour
             }
             else if (Vector3.Distance(transform.position, executeTarget.transform.position + forExecutePosition) > 1.0f)
             {
-                //Debug.Log("MOVE");
                 Vector3 epicgamer = executeTarget.transform.position + forExecutePosition;
                 rb.velocity = Vector3.zero;
                 Vector3 test = Vector3.MoveTowards(gameObject.transform.position, epicgamer, executeMoveSpeed * Time.fixedDeltaTime);
@@ -426,7 +404,6 @@ public class PlayerBody : MonoBehaviour
         }
         if (dashing)
         {
-            //Debug.Log("DASHING");
             float dz = dashDirection.z;
             dashDirection.z *= 1.1f;
             rb.velocity = (new Vector3(0, rb.velocity.y) + ((dashDirection * dashSpeed * forceMod * 0.9f)) * Time.fixedDeltaTime);
@@ -473,7 +450,6 @@ public class PlayerBody : MonoBehaviour
         canTakeDamage = true;
         canAttack = true;
         executeLock = false;
-        //playerLock = false;
 
         animController.Finisher(enemyAIController.tag, enemyAIController.colour, true);
 
@@ -535,7 +511,6 @@ public class PlayerBody : MonoBehaviour
     bool attacking;
     private void Attack()
     {
-        //Debug.Log(canMove);
         if (controller.PrimaryAttackDown && canAttack && !dashing)
         {
             canMove = false;
@@ -555,6 +530,18 @@ public class PlayerBody : MonoBehaviour
     private IEnumerator attackDelay()
     {
         AttackVector = GetMovementVector();
+        if (AttackVector == Vector3.zero)
+        {
+            if (controller.HorizontalMagnitude == 0 && lookingRight)
+            {
+                AttackVector =  new Vector3(1, 0, 0);
+            }
+            if (controller.HorizontalMagnitude == 0 && lookingLeft)
+            {
+                AttackVector = new Vector3(-1, 0, 0);
+            }
+        }
+
         yield return new WaitForSeconds(attackDelayTime);
         GameObject attack = Instantiate(prefabForAttack, primaryAttackSpawnPoint.transform);
         attack.GetComponent<PrototypePrimaryAttack>().playerBody = this;
@@ -576,9 +563,7 @@ public class PlayerBody : MonoBehaviour
     private IEnumerator forwardHit()
     {
         lockHitForward = true;
-        //dontForward = false;
         yield return new WaitForSeconds(KnockForwardTime);
-        //dontForward = true;
         lockHitForward = false;
     }
     Vector3 otherPlayerMV = Vector3.zero;
@@ -612,12 +597,10 @@ public class PlayerBody : MonoBehaviour
         yield return new WaitForSeconds(attackSpeed * 0.05f);
         canAttack = true;
         AttackVector = Vector3.zero;
-        //attacking = false;
     }
 
     private IEnumerator attackMoveCooldown()
     {
-        //Debug.Log("CANMOVE::" + canMove);
         yield return new WaitForSeconds(moveCooldown);
         canMove = true;
     }
@@ -709,7 +692,6 @@ public class PlayerBody : MonoBehaviour
         animController.dashing = false;
         lockDash = false;
         dashing = false;
-        //Debug.Log("Dash Finish");
     }
 
     private IEnumerator Cooldown()
@@ -739,11 +721,7 @@ public class PlayerBody : MonoBehaviour
                 canExecute = false;
                 executeLock = true;
                 lockDash = true;
-                //playerLock = true;
                 canMovePlayerForexecute = true;
-                //Debug.Log("EXEC");
-
-
 
                 yield return new WaitForSeconds(0);
                 toExecute.transform.parent.gameObject.SetActive(false);
@@ -758,15 +736,12 @@ public class PlayerBody : MonoBehaviour
                     if (LevelManager.Instance != null)
                         LevelManager.Instance.EnemyKilled();
                 }
-
-                // just added to see
                 yield return new WaitForSeconds(1.4f);
 
                 canTakeDamage = true;
                 canMove = true;
                 canAttack = true;
                 canExecute = true;
-                //playerLock = true;
                 canMovePlayerForexecute = false;
                 lockDash = false;
 
@@ -787,10 +762,8 @@ public class PlayerBody : MonoBehaviour
                     canMove = false;
                     canAttack = false;
                     canExecute = false;
-                    //playerLock = true;
                     canMovePlayerForexecute = true;
                     lockDash = true;
-                    //Debug.Log("EXEC");
 
                     // turn player sprite off for a second while animation because animation is on crab
                     transform.parent.GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(false);
@@ -811,7 +784,6 @@ public class PlayerBody : MonoBehaviour
                     canMove = true;
                     canAttack = true;
                     canExecute = true;
-                    //playerLock = true;
                     canMovePlayerForexecute = false;
                     lockDash = false;
                     transform.parent.GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(true);
@@ -834,7 +806,6 @@ public class PlayerBody : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
         {
             health = health - 1;
-            //Debug.Log(health);
         }
         if (collision.gameObject.tag == "Revive" && gameObject.tag == "Ghost")
         {
@@ -865,7 +836,6 @@ public class PlayerBody : MonoBehaviour
     {
         if (RESETINGGHOST == 2)
         {
-            //Debug.Log("GHOSTMODE");
             RESETINGGHOST += 1;
             // instantiate dead sprite at player position
             respawnPoint = transform.position;
@@ -918,23 +888,6 @@ public class PlayerBody : MonoBehaviour
         gameObject.layer = 6;
         canCollect = true;
     }
-
-    //public void resetPlayer()
-    //{
-    //    canAttack = !canAttack;
-    //    canTakeDamage = !canTakeDamage;
-    //    canExecute = !canExecute;
-    //    canUseItem = !canUseItem;
-    //    lockDash = !lockDash;
-    //    RESETINGGHOST = 0;
-
-    //    Debug.Log("canMove = " + canMove);
-    //    Debug.Log("canAttack = " + canAttack);
-    //    Debug.Log("canTakeDamage = " + canTakeDamage);
-    //    Debug.Log("canExecute = " + canExecute);
-    //    Debug.Log("canUseItem = " + canUseItem);
-    //    Debug.Log("LockDash = " + lockDash);
-    //}
 
     private void collect()
     {
@@ -1032,7 +985,6 @@ public class PlayerBody : MonoBehaviour
 
     private IEnumerator ExecuteCooldown()
     {
-
         yield return new WaitForSeconds(1.25f);
         lockDash = false;
         canMove = true;
@@ -1040,11 +992,6 @@ public class PlayerBody : MonoBehaviour
         canExecute = true;
         canMovePlayerForexecute = false;
         lockExecAnim = false;
-
-        //yield return new WaitForSeconds(1.3f);
-        //canExecute = true;
-        //canMovePlayerForexecute = false;
-        //lockExecAnim = false;
     }
 
     public void ResetSprite(string msg)
