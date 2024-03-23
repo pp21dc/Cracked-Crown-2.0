@@ -152,7 +152,7 @@ Animator:
   m_GameObject: {fileID: 1000115576516872230}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: cac707ea9cb6e4e4594e3ce15ce6c63e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 0d11766246796c04a81a5a5291b25770, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -263,7 +263,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AS: {fileID: 3955857266462139789}
   Enemy_AudioClips:
-  - {fileID: 0}
+  - {fileID: 8300000, guid: b6e9bb4561242304593d0b847a259eee, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -280,7 +280,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.05
   m_Pitch: 1
   Loop: 0
   Mute: 0
