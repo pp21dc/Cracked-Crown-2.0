@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ShockwaveState : FSMState
@@ -21,8 +22,10 @@ public class ShockwaveState : FSMState
     {
         if (enemy.Health <= 20 && enemy.Health >= 1)
         {
+            
             enemy.PerformTransition(Transition.LowHealth);
             return;
+            
         }
         if (enemy.Health <= 0)
         {
@@ -33,13 +36,15 @@ public class ShockwaveState : FSMState
 
             enemy.ResetShockVar();
 
-            if (Vector3.Distance(enemy.ePosition.position, player.position) <= 55f && !enemy.shootOnCD)
+            if (Vector3.Distance(enemy.ePosition.position, player.position) <= 55f && enemy.shootOnCD == false)
             {
+                
                 enemy.PerformTransition(Transition.InShootingRange);
                 return;
             }
             else
             {
+                
                 enemy.PerformTransition(Transition.LookForPlayer);
                 return;
             }

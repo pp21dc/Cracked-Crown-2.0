@@ -516,6 +516,7 @@ public class EnemyAIController : AdvancedFSM
 
     
 
+
     //finds the closest player and sets the target position
     public void checkShortestDistance()
     {
@@ -1192,10 +1193,11 @@ public class EnemyAIController : AdvancedFSM
 
             yield return new WaitForSeconds(2.5f);
 
-            ResetDashVar();
+            
             Damage.enabled = false;
             EAC.Dashing = false;
-
+            ResetDashVar();
+            isDoneDashing = true;
             dashOnCD = true;
             StartCoroutine(cooldown());
         }
@@ -1204,7 +1206,6 @@ public class EnemyAIController : AdvancedFSM
 
     public void ResetDashVar()
     {
-        isDoneDashing = false;
         isHeavyDashing = true;
     }
 
@@ -1372,7 +1373,9 @@ public class EnemyAIController : AdvancedFSM
 
     // all cooldowns
 
-    private IEnumerator cooldown()
+    
+
+    public IEnumerator cooldown()
     {
 
         

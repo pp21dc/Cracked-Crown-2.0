@@ -42,7 +42,7 @@ public class FindPlayerState : FSMState
         else if (enemy.CompareTag("Medium") == true && player != null)
         {
             //Debug.Log("Found the Medium");
-            if (Vector3.Distance(enemy.ePosition.position,player.position) <= 45f && !enemy.dashOnCD)
+            if (Vector3.Distance(enemy.ePosition.position,player.position) <= 45f && enemy.dashOnCD == false)
             {
                 enemy.PerformTransition(Transition.InFirstRange);
                 return;
@@ -51,12 +51,12 @@ public class FindPlayerState : FSMState
         }
         else if (enemy.CompareTag("Heavy") && player != null)
         {
-            if (Vector3.Distance(enemy.ePosition.position,player.position) <= 55f && !enemy.shootOnCD)
+            if (Vector3.Distance(enemy.ePosition.position,player.position) <= 55f && enemy.shootOnCD == false)
             {
                 enemy.PerformTransition(Transition.InShootingRange);
                 return;
             }
-            else if (enemy.Health <= 50f && !enemy.shockwaveOnCD)
+            else if (enemy.Health <= 50f && enemy.shockwaveOnCD == false)
             {
                 enemy.PerformTransition(Transition.InShockwaveRange);
                 return;

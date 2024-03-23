@@ -21,6 +21,7 @@ public class GunState : FSMState
     {
         if (enemy.Health <= 20 && enemy.Health >= 1)
         {
+            
             enemy.PerformTransition(Transition.LowHealth);
             return;
         }
@@ -29,14 +30,15 @@ public class GunState : FSMState
             enemy.PerformTransition(Transition.NoHealth);
             return;
         }
-        else if (enemy.Health <= 50f && !enemy.shockwaveOnCD)
+        else if (enemy.Health <= 50f && enemy.shockwaveOnCD == false)
         {
+            
             enemy.PerformTransition(Transition.InShockwaveRange);
             return;
         }
         else if (enemy.heavyBullets == 0)
         {
-
+            
             enemy.ResetShotVar();
             enemy.canShoot = false;
             enemy.PerformTransition(Transition.NoBullets);

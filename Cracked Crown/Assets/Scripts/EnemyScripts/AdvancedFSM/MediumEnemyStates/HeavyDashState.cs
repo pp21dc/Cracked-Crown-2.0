@@ -22,6 +22,7 @@ public class HeavyDashState : FSMState
 
         if (enemy.Health <= 20 && enemy.Health >= 1)
         {
+            
             enemy.PerformTransition(Transition.LowHealth);
             return;
         }
@@ -32,7 +33,8 @@ public class HeavyDashState : FSMState
         }
         else if(enemy.isDoneDashing)
         {
-            enemy.ResetDashVar();
+            
+            enemy.isDoneDashing = false;
             enemy.PerformTransition(Transition.LookForPlayer);
             return;
         }

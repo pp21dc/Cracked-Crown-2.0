@@ -543,7 +543,7 @@ GameObject:
   - component: {fileID: 2243525588475844062}
   m_Layer: 0
   m_Name: Enemy controller
-  m_TagString: Heavy
+  m_TagString: Medium
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -636,6 +636,9 @@ MonoBehaviour:
   shockwaveScaleInitial: {x: 0, y: 0, z: 0}
   ToothShotLocation: {fileID: 5226805560839978540}
   Hole: {fileID: 7357353520499070755, guid: 183a158d0807545429f8d63a0e0e7c76, type: 3}
+  dashOnCD: 0
+  shockwaveOnCD: 0
+  shootOnCD: 0
   maxHealth: 40
   health: 40
   Damage: {fileID: 2620462327617662294}
@@ -1145,7 +1148,7 @@ GameObject:
   - component: {fileID: 3193789946226294552}
   m_Layer: 0
   m_Name: BasicEnemy
-  m_TagString: Heavy
+  m_TagString: Medium
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
