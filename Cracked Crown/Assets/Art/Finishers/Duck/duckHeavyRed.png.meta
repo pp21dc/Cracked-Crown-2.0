@@ -1,0 +1,897 @@
+fileFormatVersion: 2
+guid: 38ec169ff150f754e8c7a769f6928d9e
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: duckHeavyRed_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1986
+        width: 1093
+        height: 662
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3dda64aa8b63544fa9c43bec77cabd3
+      internalID: 462606603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckHeavyRed_1
+      rect:
+        serializedVersion: 2
+        x: 1093
+        y: 1986
+        width: 1093
+        height: 662
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08d77a0f655c4f04fb1fec9e19201a38
+      internalID: -953757444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckHeavyRed_2
+      rect:
+        serializedVersion: 2
+        x: 2186
+        y: 1986
+        width: 1093
+        height: 662
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66486ce80080a6a478b812ed18772064
+      internalID: -1307108964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckHeavyRed_3
+      rect:
+        serializedVersion: 2
+        x: 3279
+        y: 1986
+        width: 1093
+        height: 662
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60d7948b3610f31479a03828ad23722a
+      internalID: 304885020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckHeavyRed_4
+      rect:
+        serializedVersion: 2
+        x: 4372
+        y: 1986
+        width: 1093
+        height: 662
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f7e1e349740b0644bfe36e360b258f0
+      internalID: -596325892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckHeavyRed_5
+      rect:
+        serializedVersion: 2
+        x: 5465
+        y: 1986
+        width: 1093
+        height: 662
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8fee8b87586aeb1418872efd9bb6a540
+      internalID: -1713101407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckHeavyRed_6
+      rect:
+        serializedVersion: 2
+        x: 6558
+        y: 1986
+        width: 1093
+        height: 662
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c720e95167a3ba740aaa36132397f3bd
+      internalID: 1319407384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckHeavyRed_7
+      rect:
+        serializedVersion: 2
+        x: 7651
+        y: 1986
+        width: 1093
+        height: 662
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf98da1c0397e9848be3fdd950e8c1a8
+      internalID: -1416033478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckHeavyRed_8
+      rect:
+        serializedVersion: 2
+        x: 8744
+        y: 1986
+        width: 1093
+        height: 662
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0fab7cfb7766e0458e836ee4fe21306
+      internalID: 246903447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckHeavyRed_9
+      rect:
+        serializedVersion: 2
+        x: 9837
+        y: 1986
+        width: 1093
+        height: 662
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6645c4446fe214f499d03b6f7d058861
+      internalID: -477969990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckHeavyRed_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1324
+        width: 1093
+        height: 662
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48ec3e140006da0449b8635e024f31b6
+      internalID: -1398122800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckHeavyRed_11
+      rect:
+        serializedVersion: 2
+        x: 1093
+        y: 1324
+        width: 1093
+        height: 662
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6b33826a20d38f44a8bd67153bb5198
+      internalID: -6302403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckHeavyRed_12
+      rect:
+        serializedVersion: 2
+        x: 2186
+        y: 1324
+        width: 1093
+        height: 662
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ee88b7f9d9c4424b8d2d1121720c01f
+      internalID: -970181626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckHeavyRed_13
+      rect:
+        serializedVersion: 2
+        x: 3279
+        y: 1324
+        width: 1093
+        height: 662
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f06c75e09ac0418459c81c8a2539cb12
+      internalID: -941187879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckHeavyRed_14
+      rect:
+        serializedVersion: 2
+        x: 4372
+        y: 1324
+        width: 1093
+        height: 662
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5bc45d35ccd6ac4478ddeea407a3d82a
+      internalID: -1913386314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckHeavyRed_15
+      rect:
+        serializedVersion: 2
+        x: 5465
+        y: 1324
+        width: 1093
+        height: 662
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37593e2c79f81c841a2019ef3d946301
+      internalID: -739493698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckHeavyRed_16
+      rect:
+        serializedVersion: 2
+        x: 6558
+        y: 1324
+        width: 1093
+        height: 662
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: deec735469ed5be4ca65bb7103ac7d10
+      internalID: -459110653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckHeavyRed_17
+      rect:
+        serializedVersion: 2
+        x: 7651
+        y: 1324
+        width: 1093
+        height: 662
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38de88b85b16f5c47bfcc35a4cd14a66
+      internalID: 182755197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckHeavyRed_18
+      rect:
+        serializedVersion: 2
+        x: 8744
+        y: 1324
+        width: 1093
+        height: 662
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ed31892a79fdd146805cab8ca3fa079
+      internalID: -981365150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckHeavyRed_19
+      rect:
+        serializedVersion: 2
+        x: 9837
+        y: 1324
+        width: 1093
+        height: 662
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd925480d9865074a964e0928aad37ca
+      internalID: 1084595496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckHeavyRed_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 662
+        width: 1093
+        height: 662
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ecb0253fb36a3784d89ca90c810c9580
+      internalID: -169730164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckHeavyRed_21
+      rect:
+        serializedVersion: 2
+        x: 1093
+        y: 662
+        width: 1093
+        height: 662
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb7d165248049804abecea637e8689f6
+      internalID: -1685740762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckHeavyRed_22
+      rect:
+        serializedVersion: 2
+        x: 2186
+        y: 662
+        width: 1093
+        height: 662
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 404089fd14e38d343b2ae09de6c1d998
+      internalID: 972711860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckHeavyRed_23
+      rect:
+        serializedVersion: 2
+        x: 3279
+        y: 662
+        width: 1093
+        height: 662
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 387cd56d07bf29349a5e2946b89745e3
+      internalID: 2124792273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckHeavyRed_24
+      rect:
+        serializedVersion: 2
+        x: 4372
+        y: 662
+        width: 1093
+        height: 662
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82b61a5015f4e824899fe955c1a40562
+      internalID: -258636187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckHeavyRed_25
+      rect:
+        serializedVersion: 2
+        x: 5465
+        y: 662
+        width: 1093
+        height: 662
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 313a7f5bd898d304d9a2eaea751a5843
+      internalID: -2029119564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckHeavyRed_26
+      rect:
+        serializedVersion: 2
+        x: 6558
+        y: 662
+        width: 1093
+        height: 662
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1115e04b9f80494e96d4670f7730b9a
+      internalID: -1346665109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckHeavyRed_27
+      rect:
+        serializedVersion: 2
+        x: 7651
+        y: 662
+        width: 1093
+        height: 662
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 176be8b39c7f2874498dc0527ac2c206
+      internalID: -2032184169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckHeavyRed_28
+      rect:
+        serializedVersion: 2
+        x: 8744
+        y: 662
+        width: 1093
+        height: 662
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74b1a3b6a0a58ea438d0a3a655572338
+      internalID: -161286893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckHeavyRed_29
+      rect:
+        serializedVersion: 2
+        x: 9837
+        y: 662
+        width: 1093
+        height: 662
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05176d816f727e946bad7e0fad631aef
+      internalID: 1910842338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckHeavyRed_30
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1093
+        height: 662
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3455ba339b469a64f8be37dd9ddfc816
+      internalID: 322613996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckHeavyRed_31
+      rect:
+        serializedVersion: 2
+        x: 1093
+        y: 0
+        width: 1093
+        height: 662
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea5e67453ac6e014a9c0fc00fd955aba
+      internalID: -1343796560
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckHeavyRed_32
+      rect:
+        serializedVersion: 2
+        x: 2186
+        y: 0
+        width: 1093
+        height: 662
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18710bc91311a9443961ff1ba181af09
+      internalID: 1821957001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckHeavyRed_33
+      rect:
+        serializedVersion: 2
+        x: 3279
+        y: 0
+        width: 1093
+        height: 662
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 144302c42545c2e44b708eb6fbe4aba9
+      internalID: 1352291268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckHeavyRed_34
+      rect:
+        serializedVersion: 2
+        x: 4372
+        y: 0
+        width: 1093
+        height: 662
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7973da258bd3fc644bb4cfa628c596ad
+      internalID: 813972325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 62491dfa9d513e94084490dc1b636735
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      duckHeavyRed_0: 462606603
+      duckHeavyRed_1: -953757444
+      duckHeavyRed_10: -1398122800
+      duckHeavyRed_11: -6302403
+      duckHeavyRed_12: -970181626
+      duckHeavyRed_13: -941187879
+      duckHeavyRed_14: -1913386314
+      duckHeavyRed_15: -739493698
+      duckHeavyRed_16: -459110653
+      duckHeavyRed_17: 182755197
+      duckHeavyRed_18: -981365150
+      duckHeavyRed_19: 1084595496
+      duckHeavyRed_2: -1307108964
+      duckHeavyRed_20: -169730164
+      duckHeavyRed_21: -1685740762
+      duckHeavyRed_22: 972711860
+      duckHeavyRed_23: 2124792273
+      duckHeavyRed_24: -258636187
+      duckHeavyRed_25: -2029119564
+      duckHeavyRed_26: -1346665109
+      duckHeavyRed_27: -2032184169
+      duckHeavyRed_28: -161286893
+      duckHeavyRed_29: 1910842338
+      duckHeavyRed_3: 304885020
+      duckHeavyRed_30: 322613996
+      duckHeavyRed_31: -1343796560
+      duckHeavyRed_32: 1821957001
+      duckHeavyRed_33: 1352291268
+      duckHeavyRed_34: 813972325
+      duckHeavyRed_4: -596325892
+      duckHeavyRed_5: -1713101407
+      duckHeavyRed_6: 1319407384
+      duckHeavyRed_7: -1416033478
+      duckHeavyRed_8: 246903447
+      duckHeavyRed_9: -477969990
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

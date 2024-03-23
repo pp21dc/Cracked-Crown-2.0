@@ -1,0 +1,897 @@
+fileFormatVersion: 2
+guid: f8ca4100e16a4c345a998dc808835106
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: duckMedPurple_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1920
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6683831619fd63e4ebec5b4f4bf038d8
+      internalID: -73548259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedPurple_1
+      rect:
+        serializedVersion: 2
+        x: 1076
+        y: 1920
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e2487da1826c4f4aa930598855de3ea
+      internalID: -2050056058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedPurple_2
+      rect:
+        serializedVersion: 2
+        x: 2152
+        y: 1920
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f58ca71989b55f478d2a6a81f7b782c
+      internalID: -1831319748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedPurple_3
+      rect:
+        serializedVersion: 2
+        x: 3228
+        y: 1920
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb826096b0b8ee94988b1f727b1ad2eb
+      internalID: -1111120086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedPurple_4
+      rect:
+        serializedVersion: 2
+        x: 4304
+        y: 1920
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5538beb9a49b684b9c6969d6e561514
+      internalID: -1384486393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedPurple_5
+      rect:
+        serializedVersion: 2
+        x: 5380
+        y: 1920
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5cb9c58bf14cc54e84db81f97ceda8f
+      internalID: -195248853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedPurple_6
+      rect:
+        serializedVersion: 2
+        x: 6456
+        y: 1920
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c1b9336e8827074d9e2bc8a1ed3560b
+      internalID: 1188020324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedPurple_7
+      rect:
+        serializedVersion: 2
+        x: 7532
+        y: 1920
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aed2763e917f0fb46a9d79aaba6225c9
+      internalID: 682044398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedPurple_8
+      rect:
+        serializedVersion: 2
+        x: 8608
+        y: 1920
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 818afdd39acb212428a1b69846ef946b
+      internalID: 1275195447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedPurple_9
+      rect:
+        serializedVersion: 2
+        x: 9684
+        y: 1920
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9a2676ada8a2e144a58c9a5788b49e8
+      internalID: -994406297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedPurple_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1280
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa9263dd52c738e4a92ffd2da99128bb
+      internalID: 963749022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedPurple_11
+      rect:
+        serializedVersion: 2
+        x: 1076
+        y: 1280
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49b50bbb34533f240b9536db4213cfc4
+      internalID: -2142323829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedPurple_12
+      rect:
+        serializedVersion: 2
+        x: 2152
+        y: 1280
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b763e2b12fb96ed4fb83677d3a823ceb
+      internalID: 1891132797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedPurple_13
+      rect:
+        serializedVersion: 2
+        x: 3228
+        y: 1280
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 051673ff47101654c9ea4840442a5efc
+      internalID: 1130305964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedPurple_14
+      rect:
+        serializedVersion: 2
+        x: 4304
+        y: 1280
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb43a61774305884e8b6da7900f99ad5
+      internalID: 803624071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedPurple_15
+      rect:
+        serializedVersion: 2
+        x: 5380
+        y: 1280
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c65569db66f97043a0484a529222c8f
+      internalID: -957217394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedPurple_16
+      rect:
+        serializedVersion: 2
+        x: 6456
+        y: 1280
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4d89fb013351214aa3a5ff12fc007dc
+      internalID: 1971765202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedPurple_17
+      rect:
+        serializedVersion: 2
+        x: 7532
+        y: 1280
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77074e5c6b39dba4086752fb70ec44ba
+      internalID: 1969314754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedPurple_18
+      rect:
+        serializedVersion: 2
+        x: 8608
+        y: 1280
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50566a9ae393f9e408f2a7560550eca1
+      internalID: 1395299975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedPurple_19
+      rect:
+        serializedVersion: 2
+        x: 9684
+        y: 1280
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 661a799d661379d4795afa074461a681
+      internalID: 1109689335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedPurple_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 640
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5325da8e49668ab46a4b4e78146697e4
+      internalID: -1651119782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedPurple_21
+      rect:
+        serializedVersion: 2
+        x: 1076
+        y: 640
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47f1d24b4c06eee49912b4decfbbaec1
+      internalID: 764102041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedPurple_22
+      rect:
+        serializedVersion: 2
+        x: 2152
+        y: 640
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bddfedd43eccb1947933c0548642ca02
+      internalID: -585470217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedPurple_23
+      rect:
+        serializedVersion: 2
+        x: 3228
+        y: 640
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e69b10621ffbbb844989a5bef28c74f3
+      internalID: 1692515276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedPurple_24
+      rect:
+        serializedVersion: 2
+        x: 4304
+        y: 640
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3bbbfb0d9210b7444914123adb1f7660
+      internalID: -752141769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedPurple_25
+      rect:
+        serializedVersion: 2
+        x: 5380
+        y: 640
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66de0b7393ebd9345a2444d9dd25f156
+      internalID: 138700139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedPurple_26
+      rect:
+        serializedVersion: 2
+        x: 6456
+        y: 640
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 951ed8f422830d54ab91e3a9b239b74b
+      internalID: 1732971110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedPurple_27
+      rect:
+        serializedVersion: 2
+        x: 7532
+        y: 640
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ca563360cdd69f4e87cc4d41303ff14
+      internalID: -228114263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedPurple_28
+      rect:
+        serializedVersion: 2
+        x: 8608
+        y: 640
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d1927306d9eeb940b840ea78fff6292
+      internalID: 1428837376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedPurple_29
+      rect:
+        serializedVersion: 2
+        x: 9684
+        y: 640
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87a59913bf63f274b9b88c5e6d35c86f
+      internalID: -1825577670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedPurple_30
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9206d9feed39a2a45b34d14e2fedaf01
+      internalID: -1279105984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedPurple_31
+      rect:
+        serializedVersion: 2
+        x: 1076
+        y: 0
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50f24b6d4d2f748499142a3f434e98e6
+      internalID: 1370305884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedPurple_32
+      rect:
+        serializedVersion: 2
+        x: 2152
+        y: 0
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f8a6ea1acfe46842a06e58066817946
+      internalID: -1507006343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedPurple_33
+      rect:
+        serializedVersion: 2
+        x: 3228
+        y: 0
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9611b328257f07940a9695337b8026a6
+      internalID: 60726664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedPurple_34
+      rect:
+        serializedVersion: 2
+        x: 4304
+        y: 0
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15b84e505265bc34083ae6ccb50e42b0
+      internalID: 1196165795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: bdd86a002f7fe9141b936831182d0cb5
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      duckMedPurple_0: -73548259
+      duckMedPurple_1: -2050056058
+      duckMedPurple_10: 963749022
+      duckMedPurple_11: -2142323829
+      duckMedPurple_12: 1891132797
+      duckMedPurple_13: 1130305964
+      duckMedPurple_14: 803624071
+      duckMedPurple_15: -957217394
+      duckMedPurple_16: 1971765202
+      duckMedPurple_17: 1969314754
+      duckMedPurple_18: 1395299975
+      duckMedPurple_19: 1109689335
+      duckMedPurple_2: -1831319748
+      duckMedPurple_20: -1651119782
+      duckMedPurple_21: 764102041
+      duckMedPurple_22: -585470217
+      duckMedPurple_23: 1692515276
+      duckMedPurple_24: -752141769
+      duckMedPurple_25: 138700139
+      duckMedPurple_26: 1732971110
+      duckMedPurple_27: -228114263
+      duckMedPurple_28: 1428837376
+      duckMedPurple_29: -1825577670
+      duckMedPurple_3: -1111120086
+      duckMedPurple_30: -1279105984
+      duckMedPurple_31: 1370305884
+      duckMedPurple_32: -1507006343
+      duckMedPurple_33: 60726664
+      duckMedPurple_34: 1196165795
+      duckMedPurple_4: -1384486393
+      duckMedPurple_5: -195248853
+      duckMedPurple_6: 1188020324
+      duckMedPurple_7: 682044398
+      duckMedPurple_8: 1275195447
+      duckMedPurple_9: -994406297
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

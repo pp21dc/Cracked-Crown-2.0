@@ -1,0 +1,897 @@
+fileFormatVersion: 2
+guid: 9b7acabb3b02fba469efb135aef69be3
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: duckMedGreen_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1920
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30ccafc4f74db684baa70b7391464fe4
+      internalID: -2020242258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedGreen_1
+      rect:
+        serializedVersion: 2
+        x: 1076
+        y: 1920
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10f425df95cd4a74f858bcf35024676f
+      internalID: -726452406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedGreen_2
+      rect:
+        serializedVersion: 2
+        x: 2152
+        y: 1920
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad649054969d41f4f8a0174990134741
+      internalID: -698749319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedGreen_3
+      rect:
+        serializedVersion: 2
+        x: 3228
+        y: 1920
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f37bd9f494923804f9300e0f7f6476b8
+      internalID: 627975742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedGreen_4
+      rect:
+        serializedVersion: 2
+        x: 4304
+        y: 1920
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8fdba81a1f9aa3e479be07ae84c31416
+      internalID: -238897390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedGreen_5
+      rect:
+        serializedVersion: 2
+        x: 5380
+        y: 1920
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1d7335efa4f1da4daab60baccd66815
+      internalID: -930635634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedGreen_6
+      rect:
+        serializedVersion: 2
+        x: 6456
+        y: 1920
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a2603228a1626f41b90e1efddca3c4f
+      internalID: 2120929109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedGreen_7
+      rect:
+        serializedVersion: 2
+        x: 7532
+        y: 1920
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f803366d6318b74ebfdb539d61004f5
+      internalID: 52664637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedGreen_8
+      rect:
+        serializedVersion: 2
+        x: 8608
+        y: 1920
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52cdc58aea4881146abda89a360615bb
+      internalID: 12619906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedGreen_9
+      rect:
+        serializedVersion: 2
+        x: 9684
+        y: 1920
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd376142b1c2d0645b8c13d7b2be974d
+      internalID: -1039023962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedGreen_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1280
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ecc16d2902656f24dabadf2cba987272
+      internalID: 2079088764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedGreen_11
+      rect:
+        serializedVersion: 2
+        x: 1076
+        y: 1280
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d913b0cd1b7d31b41ac6003cf9a6049f
+      internalID: -1019680790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedGreen_12
+      rect:
+        serializedVersion: 2
+        x: 2152
+        y: 1280
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b570fdd43fd9d5a408144a0602091c7e
+      internalID: 603013996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedGreen_13
+      rect:
+        serializedVersion: 2
+        x: 3228
+        y: 1280
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f9075eab3458f94781b22cd7a6f6c89
+      internalID: -1311954731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedGreen_14
+      rect:
+        serializedVersion: 2
+        x: 4304
+        y: 1280
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd5771a5e0b4f3e4bba3117077145070
+      internalID: -605651462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedGreen_15
+      rect:
+        serializedVersion: 2
+        x: 5380
+        y: 1280
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 467b441e6531098499d7b03e73abf35e
+      internalID: -1299092912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedGreen_16
+      rect:
+        serializedVersion: 2
+        x: 6456
+        y: 1280
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d3fd818c74d1874d980c7e25d966418
+      internalID: -1821303957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedGreen_17
+      rect:
+        serializedVersion: 2
+        x: 7532
+        y: 1280
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63aee10421243e643a30d0ce28427187
+      internalID: 1068100241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedGreen_18
+      rect:
+        serializedVersion: 2
+        x: 8608
+        y: 1280
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0d9704726ca33b4484bf8a0285eeaef
+      internalID: -180083434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedGreen_19
+      rect:
+        serializedVersion: 2
+        x: 9684
+        y: 1280
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 236f4875a56801d4ebb873c0361d2f86
+      internalID: 694761013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedGreen_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 640
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5ca4d5206964cc498b13ec62e5761e5
+      internalID: 1753393625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedGreen_21
+      rect:
+        serializedVersion: 2
+        x: 1076
+        y: 640
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 892ce5ba1d6b8474aa611134220a56d9
+      internalID: 234276817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedGreen_22
+      rect:
+        serializedVersion: 2
+        x: 2152
+        y: 640
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d815a111b8967534b8ac18c2a1b442b7
+      internalID: -1624133401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedGreen_23
+      rect:
+        serializedVersion: 2
+        x: 3228
+        y: 640
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8db3351dd70fc4740bbeb7c9d39782ce
+      internalID: 11004032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedGreen_24
+      rect:
+        serializedVersion: 2
+        x: 4304
+        y: 640
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14c0131e6131a2c4283366757d004cd8
+      internalID: 692343086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedGreen_25
+      rect:
+        serializedVersion: 2
+        x: 5380
+        y: 640
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a73844749aee394da4421673a57f124
+      internalID: -1781600885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedGreen_26
+      rect:
+        serializedVersion: 2
+        x: 6456
+        y: 640
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42492678f9747eb48a2738945107dc47
+      internalID: 246906926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedGreen_27
+      rect:
+        serializedVersion: 2
+        x: 7532
+        y: 640
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad7617e2bc09bbb449db18c25d8ca1eb
+      internalID: -324192632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedGreen_28
+      rect:
+        serializedVersion: 2
+        x: 8608
+        y: 640
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06bb97f2077b5fa498f3aef5e3da940a
+      internalID: 732676539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedGreen_29
+      rect:
+        serializedVersion: 2
+        x: 9684
+        y: 640
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58c5397863b839f42a6cea11fa5e190d
+      internalID: -1095027910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedGreen_30
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e30acfdaf7c9224f851d633826dbb71
+      internalID: 832052843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedGreen_31
+      rect:
+        serializedVersion: 2
+        x: 1076
+        y: 0
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae416f887342aa648a118cbd280a5c5c
+      internalID: -327427161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedGreen_32
+      rect:
+        serializedVersion: 2
+        x: 2152
+        y: 0
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db30463779131124797e9c2004911220
+      internalID: -918570259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedGreen_33
+      rect:
+        serializedVersion: 2
+        x: 3228
+        y: 0
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35c8c97ad18638345b48794ac22ca6bd
+      internalID: -1928199033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedGreen_34
+      rect:
+        serializedVersion: 2
+        x: 4304
+        y: 0
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a69c931c8faeb448ab8a9a051eb6b5a
+      internalID: 1304235281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5f676de9292bb3a43b57dfd4d1e79189
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      duckMedGreen_0: -2020242258
+      duckMedGreen_1: -726452406
+      duckMedGreen_10: 2079088764
+      duckMedGreen_11: -1019680790
+      duckMedGreen_12: 603013996
+      duckMedGreen_13: -1311954731
+      duckMedGreen_14: -605651462
+      duckMedGreen_15: -1299092912
+      duckMedGreen_16: -1821303957
+      duckMedGreen_17: 1068100241
+      duckMedGreen_18: -180083434
+      duckMedGreen_19: 694761013
+      duckMedGreen_2: -698749319
+      duckMedGreen_20: 1753393625
+      duckMedGreen_21: 234276817
+      duckMedGreen_22: -1624133401
+      duckMedGreen_23: 11004032
+      duckMedGreen_24: 692343086
+      duckMedGreen_25: -1781600885
+      duckMedGreen_26: 246906926
+      duckMedGreen_27: -324192632
+      duckMedGreen_28: 732676539
+      duckMedGreen_29: -1095027910
+      duckMedGreen_3: 627975742
+      duckMedGreen_30: 832052843
+      duckMedGreen_31: -327427161
+      duckMedGreen_32: -918570259
+      duckMedGreen_33: -1928199033
+      duckMedGreen_34: 1304235281
+      duckMedGreen_4: -238897390
+      duckMedGreen_5: -930635634
+      duckMedGreen_6: 2120929109
+      duckMedGreen_7: 52664637
+      duckMedGreen_8: 12619906
+      duckMedGreen_9: -1039023962
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

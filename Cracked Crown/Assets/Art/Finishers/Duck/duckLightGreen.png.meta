@@ -1,0 +1,787 @@
+fileFormatVersion: 2
+guid: 4e888d83c06d2bc45bc361eb93c5df68
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: duckLightGreen_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1408
+        width: 1096
+        height: 704
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18c2eedf5fc12074ab0d5a8d830fd0b9
+      internalID: -790983550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckLightGreen_1
+      rect:
+        serializedVersion: 2
+        x: 1096
+        y: 1408
+        width: 1096
+        height: 704
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 121340b970abe824ebfec8265263b14b
+      internalID: 1813027785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckLightGreen_2
+      rect:
+        serializedVersion: 2
+        x: 2192
+        y: 1408
+        width: 1096
+        height: 704
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b548d3844b3cf04eb929d6b383195db
+      internalID: -279956183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckLightGreen_3
+      rect:
+        serializedVersion: 2
+        x: 3288
+        y: 1408
+        width: 1096
+        height: 704
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a478a205fe8335e4d986f474e6827a3c
+      internalID: 1433296938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckLightGreen_4
+      rect:
+        serializedVersion: 2
+        x: 4384
+        y: 1408
+        width: 1096
+        height: 704
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0ad103e12f523f41ba5446ab4ae0412
+      internalID: 1479366094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckLightGreen_5
+      rect:
+        serializedVersion: 2
+        x: 5480
+        y: 1408
+        width: 1096
+        height: 704
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f64af5b464ace741ab10c8abfcb2c9b
+      internalID: -431069343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckLightGreen_6
+      rect:
+        serializedVersion: 2
+        x: 6576
+        y: 1408
+        width: 1096
+        height: 704
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d6d1988ae33dd04386fbba4a29df6ab
+      internalID: 549942794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckLightGreen_7
+      rect:
+        serializedVersion: 2
+        x: 7672
+        y: 1408
+        width: 1096
+        height: 704
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86f8ee4456634c94198e4c503abfe7fc
+      internalID: 637409499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckLightGreen_8
+      rect:
+        serializedVersion: 2
+        x: 8768
+        y: 1408
+        width: 1096
+        height: 704
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb741766d80b07f46897c483b114557e
+      internalID: -316971065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckLightGreen_9
+      rect:
+        serializedVersion: 2
+        x: 9864
+        y: 1408
+        width: 1096
+        height: 704
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b7f2328fa2d77842917102810ac9421
+      internalID: -868944367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckLightGreen_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 704
+        width: 1096
+        height: 704
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28a2e02f28a131d4c909ba1eda57e570
+      internalID: -1330266631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckLightGreen_11
+      rect:
+        serializedVersion: 2
+        x: 1096
+        y: 704
+        width: 1096
+        height: 704
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8990e12ec9903f444930c28ff8bf2afe
+      internalID: 1105518031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckLightGreen_12
+      rect:
+        serializedVersion: 2
+        x: 2192
+        y: 704
+        width: 1096
+        height: 704
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7de16ad654f00fc4c979b56ff1235d86
+      internalID: 402063197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckLightGreen_13
+      rect:
+        serializedVersion: 2
+        x: 3288
+        y: 704
+        width: 1096
+        height: 704
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63432d8dbb07d9a4eb90059c35cec175
+      internalID: -1731305568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckLightGreen_14
+      rect:
+        serializedVersion: 2
+        x: 4384
+        y: 704
+        width: 1096
+        height: 704
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c64503562ec70f44daa7c93ecfe2ea1b
+      internalID: 276805075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckLightGreen_15
+      rect:
+        serializedVersion: 2
+        x: 5480
+        y: 704
+        width: 1096
+        height: 704
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4ece0388e10dc84abfa379ec6ef7988
+      internalID: 1908358496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckLightGreen_16
+      rect:
+        serializedVersion: 2
+        x: 6576
+        y: 704
+        width: 1096
+        height: 704
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ab753627a8a4ac46be4e52f6931a30d
+      internalID: -582235878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckLightGreen_17
+      rect:
+        serializedVersion: 2
+        x: 7672
+        y: 704
+        width: 1096
+        height: 704
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efe97fe19e6009b4c87c15577bdb1bdb
+      internalID: -1285280332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckLightGreen_18
+      rect:
+        serializedVersion: 2
+        x: 8768
+        y: 704
+        width: 1096
+        height: 704
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d831c480869a1aa46bea977662044e7c
+      internalID: 1355533849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckLightGreen_19
+      rect:
+        serializedVersion: 2
+        x: 9864
+        y: 704
+        width: 1096
+        height: 704
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2972bed0acb226d4aa0b4ddbf8b2e2d2
+      internalID: -289648755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckLightGreen_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1096
+        height: 704
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a15f6a6aa028030439eb6ca2d2759146
+      internalID: -513399230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckLightGreen_21
+      rect:
+        serializedVersion: 2
+        x: 1096
+        y: 0
+        width: 1096
+        height: 704
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f5c0f303eb708a4fab1e387ae033df5
+      internalID: 2029125439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckLightGreen_22
+      rect:
+        serializedVersion: 2
+        x: 2192
+        y: 0
+        width: 1096
+        height: 704
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd9156a5a45d76940a593de7c652a5e1
+      internalID: 1179305681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckLightGreen_23
+      rect:
+        serializedVersion: 2
+        x: 3288
+        y: 0
+        width: 1096
+        height: 704
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e32f5d79f205894a8b9a1c130fc2083
+      internalID: 138381898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckLightGreen_24
+      rect:
+        serializedVersion: 2
+        x: 4384
+        y: 0
+        width: 1096
+        height: 704
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06a010cc91118c248b12dcef4bcaf008
+      internalID: -509701171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckLightGreen_25
+      rect:
+        serializedVersion: 2
+        x: 5480
+        y: 0
+        width: 1096
+        height: 704
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 204b83ce39246c94398e6201f6f7f108
+      internalID: 971481793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckLightGreen_26
+      rect:
+        serializedVersion: 2
+        x: 6576
+        y: 0
+        width: 1096
+        height: 704
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d01530847ba8d0b4c94095bb90d8d830
+      internalID: 1622873051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckLightGreen_27
+      rect:
+        serializedVersion: 2
+        x: 7672
+        y: 0
+        width: 1096
+        height: 704
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f8f9f3574ed5a741b85325b9352e8dc
+      internalID: 858102343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckLightGreen_28
+      rect:
+        serializedVersion: 2
+        x: 8768
+        y: 0
+        width: 1096
+        height: 704
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2bc9273ae9c4a7c4892dc28cf288c06f
+      internalID: 1304046147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckLightGreen_29
+      rect:
+        serializedVersion: 2
+        x: 9864
+        y: 0
+        width: 1096
+        height: 704
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27f5f157c52b4c046a9588f8cf615910
+      internalID: -2049805276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 70a9393c091bef445ba1f38005285691
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      duckLightGreen_0: -790983550
+      duckLightGreen_1: 1813027785
+      duckLightGreen_10: -1330266631
+      duckLightGreen_11: 1105518031
+      duckLightGreen_12: 402063197
+      duckLightGreen_13: -1731305568
+      duckLightGreen_14: 276805075
+      duckLightGreen_15: 1908358496
+      duckLightGreen_16: -582235878
+      duckLightGreen_17: -1285280332
+      duckLightGreen_18: 1355533849
+      duckLightGreen_19: -289648755
+      duckLightGreen_2: -279956183
+      duckLightGreen_20: -513399230
+      duckLightGreen_21: 2029125439
+      duckLightGreen_22: 1179305681
+      duckLightGreen_23: 138381898
+      duckLightGreen_24: -509701171
+      duckLightGreen_25: 971481793
+      duckLightGreen_26: 1622873051
+      duckLightGreen_27: 858102343
+      duckLightGreen_28: 1304046147
+      duckLightGreen_29: -2049805276
+      duckLightGreen_3: 1433296938
+      duckLightGreen_4: 1479366094
+      duckLightGreen_5: -431069343
+      duckLightGreen_6: 549942794
+      duckLightGreen_7: 637409499
+      duckLightGreen_8: -316971065
+      duckLightGreen_9: -868944367
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

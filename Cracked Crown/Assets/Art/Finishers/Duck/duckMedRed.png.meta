@@ -1,0 +1,897 @@
+fileFormatVersion: 2
+guid: 62c7e4149c946c44b96bc2441693d38c
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: duckMedRed_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1920
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 920c9665cc28038468a2903a4b45a975
+      internalID: 2113229971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedRed_1
+      rect:
+        serializedVersion: 2
+        x: 1076
+        y: 1920
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0499bb75da9e6a4098277b932c39e48
+      internalID: 1961746105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedRed_2
+      rect:
+        serializedVersion: 2
+        x: 2152
+        y: 1920
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a87036939621b9b40bfd2ee7d3e763cc
+      internalID: -1429187474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedRed_3
+      rect:
+        serializedVersion: 2
+        x: 3228
+        y: 1920
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69d2e83c9e5b227429d9389606dfe2ed
+      internalID: -384000347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedRed_4
+      rect:
+        serializedVersion: 2
+        x: 4304
+        y: 1920
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8eb229b240c90b418b3c48797ea4705
+      internalID: -1369223326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedRed_5
+      rect:
+        serializedVersion: 2
+        x: 5380
+        y: 1920
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 394cb6cdefb5e3c4882db5ef509bcf54
+      internalID: -1287407140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedRed_6
+      rect:
+        serializedVersion: 2
+        x: 6456
+        y: 1920
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d78b183d136959c4096c40ac36512b6d
+      internalID: -1463185125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedRed_7
+      rect:
+        serializedVersion: 2
+        x: 7532
+        y: 1920
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7f8326815f26f94aa76460a91bcb040
+      internalID: 970045513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedRed_8
+      rect:
+        serializedVersion: 2
+        x: 8608
+        y: 1920
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a258a101787af1b49b56b315fd177372
+      internalID: 449919143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedRed_9
+      rect:
+        serializedVersion: 2
+        x: 9684
+        y: 1920
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7535c295ebc7f840aeb6e9dacbcaa33
+      internalID: -1307551087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedRed_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1280
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ebb82d811ce71642bc7f8925bb96fe6
+      internalID: 1727926281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedRed_11
+      rect:
+        serializedVersion: 2
+        x: 1076
+        y: 1280
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff7d1b63d49dbd54b8bf8d1dff88c0c3
+      internalID: 879226038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedRed_12
+      rect:
+        serializedVersion: 2
+        x: 2152
+        y: 1280
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d148fd439e6ace94880aa19b05dd544f
+      internalID: -1328870616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedRed_13
+      rect:
+        serializedVersion: 2
+        x: 3228
+        y: 1280
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41e55d048d221c649b0bfe5c6c49e04e
+      internalID: -1504332841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedRed_14
+      rect:
+        serializedVersion: 2
+        x: 4304
+        y: 1280
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1cc5dcec289df1247b22c7dd39263898
+      internalID: 1142360759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedRed_15
+      rect:
+        serializedVersion: 2
+        x: 5380
+        y: 1280
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cea7cffe44bad60479691a71c71c584a
+      internalID: -1110119041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedRed_16
+      rect:
+        serializedVersion: 2
+        x: 6456
+        y: 1280
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd44d6de447ae8040a84117019274839
+      internalID: -802260706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedRed_17
+      rect:
+        serializedVersion: 2
+        x: 7532
+        y: 1280
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab6f1d4fa4b428a468340bf09f5bdf6a
+      internalID: 1869123647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedRed_18
+      rect:
+        serializedVersion: 2
+        x: 8608
+        y: 1280
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ccf4fcbedb60e28489fcc092aa0e9336
+      internalID: 181472219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedRed_19
+      rect:
+        serializedVersion: 2
+        x: 9684
+        y: 1280
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c9b8cf69136ebf4e9676a2f97a6a497
+      internalID: 1140610514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedRed_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 640
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75655c970aa3f104da2646ac4e2dde64
+      internalID: 1192789150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedRed_21
+      rect:
+        serializedVersion: 2
+        x: 1076
+        y: 640
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 712fed810d2441f4ba0be839dc0acc4d
+      internalID: -1050223415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedRed_22
+      rect:
+        serializedVersion: 2
+        x: 2152
+        y: 640
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b71b599ac8e096418de34212bc19a90
+      internalID: 82285951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedRed_23
+      rect:
+        serializedVersion: 2
+        x: 3228
+        y: 640
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 951a6c455664d4f4786f927096516d9c
+      internalID: -1554772014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedRed_24
+      rect:
+        serializedVersion: 2
+        x: 4304
+        y: 640
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79901e0943b3fb2469fe2a9291ce2d5a
+      internalID: 1746702680
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedRed_25
+      rect:
+        serializedVersion: 2
+        x: 5380
+        y: 640
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 407fa3c3932d08d4e96f8e6caad595fa
+      internalID: 1692113249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedRed_26
+      rect:
+        serializedVersion: 2
+        x: 6456
+        y: 640
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6115947ab382ad4bb4aaa38de9e7080
+      internalID: 31731979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedRed_27
+      rect:
+        serializedVersion: 2
+        x: 7532
+        y: 640
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb71e35958567e64497efe72f9daf0fd
+      internalID: 880582641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedRed_28
+      rect:
+        serializedVersion: 2
+        x: 8608
+        y: 640
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2bc63355e604db44ab9399cd693ac44f
+      internalID: -799255488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedRed_29
+      rect:
+        serializedVersion: 2
+        x: 9684
+        y: 640
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1395f07dd174e0043859b11a81f5feca
+      internalID: -1392572385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedRed_30
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d1c40a964a51124e9963d0d69cba294
+      internalID: 682748118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedRed_31
+      rect:
+        serializedVersion: 2
+        x: 1076
+        y: 0
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e749bec86b2e934eabe4fc99909b8fb
+      internalID: 1684305081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedRed_32
+      rect:
+        serializedVersion: 2
+        x: 2152
+        y: 0
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 736d91dbda0d6ba43958efb2a285cadb
+      internalID: 1762077875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedRed_33
+      rect:
+        serializedVersion: 2
+        x: 3228
+        y: 0
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff6488e047b5f0847a42c83b20e5a297
+      internalID: 62217806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: duckMedRed_34
+      rect:
+        serializedVersion: 2
+        x: 4304
+        y: 0
+        width: 1076
+        height: 640
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae26eaabee7a07d498fbea1b3ff158b4
+      internalID: -380423838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 6fd0efa0dd37e444dbada3aa60f3b873
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      duckMedRed_0: 2113229971
+      duckMedRed_1: 1961746105
+      duckMedRed_10: 1727926281
+      duckMedRed_11: 879226038
+      duckMedRed_12: -1328870616
+      duckMedRed_13: -1504332841
+      duckMedRed_14: 1142360759
+      duckMedRed_15: -1110119041
+      duckMedRed_16: -802260706
+      duckMedRed_17: 1869123647
+      duckMedRed_18: 181472219
+      duckMedRed_19: 1140610514
+      duckMedRed_2: -1429187474
+      duckMedRed_20: 1192789150
+      duckMedRed_21: -1050223415
+      duckMedRed_22: 82285951
+      duckMedRed_23: -1554772014
+      duckMedRed_24: 1746702680
+      duckMedRed_25: 1692113249
+      duckMedRed_26: 31731979
+      duckMedRed_27: 880582641
+      duckMedRed_28: -799255488
+      duckMedRed_29: -1392572385
+      duckMedRed_3: -384000347
+      duckMedRed_30: 682748118
+      duckMedRed_31: 1684305081
+      duckMedRed_32: 1762077875
+      duckMedRed_33: 62217806
+      duckMedRed_34: -380423838
+      duckMedRed_4: -1369223326
+      duckMedRed_5: -1287407140
+      duckMedRed_6: -1463185125
+      duckMedRed_7: 970045513
+      duckMedRed_8: 449919143
+      duckMedRed_9: -1307551087
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
