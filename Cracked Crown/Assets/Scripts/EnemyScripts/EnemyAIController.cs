@@ -149,6 +149,12 @@ public class EnemyAIController : AdvancedFSM
     public Vector3 targetShockwaveScale;
     public Vector3 shockwaveScaleInitial;
     public GameObject ToothShotLocation;
+    public GameObject Hole;
+
+    //cooldown vars
+    public bool dashOnCD;
+    public bool shockwaveOnCD;
+    public bool shootOnCD;
     
 
     //health, finisher, and death states
@@ -327,6 +333,10 @@ public class EnemyAIController : AdvancedFSM
         }
         noShockCooldown = true;
 
+        //cooldowns
+        dashOnCD = false;
+        shootOnCD = false;
+        shockwaveOnCD = false;
 
 
         ConstructFSM();
@@ -774,8 +784,15 @@ public class EnemyAIController : AdvancedFSM
         else if (tag == "Light")
             yield return new WaitForSeconds(0.3f);
 
-        LevelManager.Instance.EnemyKilled();
-        Destroy(transform.parent.gameObject);
+        if(gameObject.CompareTag("Light") || gameObject.CompareTag("Medium"))
+        {
+            LevelManager.Instance.EnemyKilled();
+            Destroy(transform.parent.gameObject);
+        }
+        else
+        {
+            GameObject holeGO = GameObject.Instantiate(Hole, enemyPosition);
+        }
 
         //yield return null;
     }
@@ -1178,6 +1195,9 @@ public class EnemyAIController : AdvancedFSM
             ResetDashVar();
             Damage.enabled = false;
             EAC.Dashing = false;
+
+            dashOnCD = true;
+            StartCoroutine(cooldown());
         }
         //yield return null;
     }
@@ -1237,6 +1257,9 @@ public class EnemyAIController : AdvancedFSM
             yield return new WaitForSeconds(0.45f);
         }
 
+        shootOnCD = true;
+        StartCoroutine(cooldown());
+
         yield return null;
     }
 
@@ -1275,7 +1298,7 @@ public class EnemyAIController : AdvancedFSM
 
     IEnumerator Shockwave()
     {
-        for (int i = 0; i < 4; i++) 
+        for (int i = 0; i < 3; i++) 
         {
             while(shockwaveCol.transform.localScale.x < targetShockwaveScale.x)
             {
@@ -1287,21 +1310,18 @@ public class EnemyAIController : AdvancedFSM
             shockwaveCol.transform.localScale = shockwaveScaleInitial;
         }
 
-        StartCoroutine(shockwaveCooldown());
+        
         doneShockwave = true;
-        AddHealth(15f);
+        AddHealth(5f);
         canShoot = true;
         shockwaveCol.SetActive(false);
+        shockwaveOnCD = true;
+        StartCoroutine(cooldown());
 
         yield return null;
     }
 
-    IEnumerator shockwaveCooldown()
-    {
-        yield return new WaitForSeconds(5f);
-
-        noShockCooldown = true;
-    }
+    
 
     public void ResetShockVar()
     {
@@ -1349,6 +1369,37 @@ public class EnemyAIController : AdvancedFSM
         //s.color = Color.white;
     }
 
+
+    // all cooldowns
+
+    private IEnumerator cooldown()
+    {
+
+        
+        if(gameObject.CompareTag("Medium"))
+        {
+            if(dashOnCD == true)
+            {
+                yield return new WaitForSeconds(3f);
+                dashOnCD = false;
+            }
+        }
+        else if(gameObject.CompareTag("Heavy"))
+        {
+            if(shockwaveOnCD == true)
+            {
+                yield return new WaitForSeconds(6.5f);
+                shockwaveOnCD = false;
+            }
+            else if(shootOnCD == true) 
+            {
+                yield return new WaitForSeconds(3f);
+                shootOnCD = false;
+            }
+        }
+
+        yield return null;
+    }
 
 
 

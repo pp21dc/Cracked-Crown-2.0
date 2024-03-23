@@ -33,7 +33,7 @@ public class ShockwaveState : FSMState
 
             enemy.ResetShockVar();
 
-            if (IsInCurrentRange(npc, player.position, 15f))
+            if (Vector3.Distance(enemy.ePosition.position, player.position) <= 55f && !enemy.shootOnCD)
             {
                 enemy.PerformTransition(Transition.InShootingRange);
                 return;

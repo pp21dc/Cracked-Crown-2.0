@@ -29,7 +29,7 @@ public class GunState : FSMState
             enemy.PerformTransition(Transition.NoHealth);
             return;
         }
-        else if (enemy.Health <= 50f)
+        else if (enemy.Health <= 50f && !enemy.shockwaveOnCD)
         {
             enemy.PerformTransition(Transition.InShockwaveRange);
             return;

@@ -24,7 +24,7 @@ public class ReloadState : FSMState
             enemy.PerformTransition(Transition.LowHealth);
             return;
         }
-        else if (enemy.Health <= 50f)
+        else if (enemy.Health <= 50f && !enemy.shockwaveOnCD)
         {
             enemy.PerformTransition(Transition.InShockwaveRange);
             return;
@@ -39,7 +39,7 @@ public class ReloadState : FSMState
 
             enemy.ResetReloadVar();
 
-            if (Vector3.Distance(enemy.ePosition.position, player.position) <= 85f)
+            if (Vector3.Distance(enemy.ePosition.position, player.position) <= 55f && !enemy.shootOnCD)
             {
                 enemy.PerformTransition(Transition.InShootingRange);
                 return;
