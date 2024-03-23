@@ -11,6 +11,8 @@ public class EnemyAnimationController : MonoBehaviour
     [SerializeField]
     private RuntimeAnimatorController[] Medium_AC;
     [SerializeField]
+    private RuntimeAnimatorController[] Heavy_AC;
+    [SerializeField]
     public SpriteRenderer SR;
     [SerializeField]
     private EnemyAIController EAIC;
@@ -36,9 +38,11 @@ public class EnemyAnimationController : MonoBehaviour
     public void SetAnimController(int index, int type)
     {
         if (type == 0)
-            animator.runtimeAnimatorController = Light_AC[index-1];
+            animator.runtimeAnimatorController = Light_AC[index - 1];
         else if (type == 1)
-            animator.runtimeAnimatorController = Medium_AC[index-1];
+            animator.runtimeAnimatorController = Medium_AC[index - 1];
+        else if (type == 2)
+            animator.runtimeAnimatorController = Heavy_AC[index - 1];
         if (index-1 == 0)
         {
             EAIC.colour = "Green";
