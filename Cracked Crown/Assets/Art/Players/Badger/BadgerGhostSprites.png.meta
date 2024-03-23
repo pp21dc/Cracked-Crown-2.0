@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f1e07990930374a4b88de765e14e84dc
+guid: ef39f28d7f4947c45b521cf8e8e09064
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -94,19 +94,6 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: Server
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
     buildTarget: iPhone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -132,11 +119,24 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BadgerDropSprites_0
+      name: BadgerGhostSprites_0
       rect:
         serializedVersion: 2
         x: 0
@@ -150,14 +150,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 958db48edddd0214e92fa0f003d10c79
-      internalID: 20006942
+      spriteID: 079b494840c61c74eac1017b5ba45156
+      internalID: 1660193207
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BadgerDropSprites_1
+      name: BadgerGhostSprites_1
       rect:
         serializedVersion: 2
         x: 642
@@ -171,14 +171,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ff02630d2d5f0784f9411ee9db409e7c
-      internalID: 947189815
+      spriteID: 7aaa54984de50474d9304f3c075aafec
+      internalID: 1889815830
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BadgerDropSprites_2
+      name: BadgerGhostSprites_2
       rect:
         serializedVersion: 2
         x: 1284
@@ -192,14 +192,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3fc9c0a81df10184586e2f1588cb6548
-      internalID: -296145849
+      spriteID: e0b416b63d5638c4481235f5a8af2d76
+      internalID: -507683861
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BadgerDropSprites_3
+      name: BadgerGhostSprites_3
       rect:
         serializedVersion: 2
         x: 1926
@@ -213,14 +213,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 82a2751e431c5e84eadf99e6fe2ad823
-      internalID: 1169401045
+      spriteID: 70d9271473efe7049be899c191120f77
+      internalID: 1010676248
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BadgerDropSprites_4
+      name: BadgerGhostSprites_4
       rect:
         serializedVersion: 2
         x: 2568
@@ -234,14 +234,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4ab48da4915fcc04e80cb796b3214f7e
-      internalID: 526498560
+      spriteID: d7a54c047a318bb4eb9cd08fbcdddf8a
+      internalID: 197807411
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BadgerDropSprites_5
+      name: BadgerGhostSprites_5
       rect:
         serializedVersion: 2
         x: 3210
@@ -255,14 +255,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ab3e56e710d0cb1479557b45524855a1
-      internalID: -913526043
+      spriteID: 3c0683aaaf829f84887627d5c8c387c6
+      internalID: 2108522289
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BadgerDropSprites_6
+      name: BadgerGhostSprites_6
       rect:
         serializedVersion: 2
         x: 3852
@@ -276,14 +276,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d289b24b629bbf145bfcdfd612df0beb
-      internalID: 684804671
+      spriteID: 9d7a7217754825d459ab82462fb21213
+      internalID: -2069921727
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BadgerDropSprites_7
+      name: BadgerGhostSprites_7
       rect:
         serializedVersion: 2
         x: 4494
@@ -297,14 +297,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f86509bc79d8b2047a1099c1f14bf7f0
-      internalID: -1670309608
+      spriteID: d4d9f1fd1de1dc34fbc896294235bf98
+      internalID: 1238026783
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BadgerDropSprites_8
+      name: BadgerGhostSprites_8
       rect:
         serializedVersion: 2
         x: 5136
@@ -318,8 +318,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3b1364d961471e548ac8c95525031663
-      internalID: -1069874765
+      spriteID: b0d3d21b0ee2bff48bb9d086c21e8a55
+      internalID: 278438899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BadgerGhostSprites_9
+      rect:
+        serializedVersion: 2
+        x: 5778
+        y: 0
+        width: 642
+        height: 642
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 182efce9a9f4e01429fd8718d14a62b0
+      internalID: 1756684024
       vertices: []
       indices: 
       edges: []
@@ -327,7 +348,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 4fd9ea10a25fb694b9b73ab0a1437d48
+    spriteID: 749c097e6f109044b88d657f2c5c6205
     internalID: 0
     vertices: []
     indices: 
@@ -335,15 +356,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      BadgerDropSprites_0: 20006942
-      BadgerDropSprites_1: 947189815
-      BadgerDropSprites_2: -296145849
-      BadgerDropSprites_3: 1169401045
-      BadgerDropSprites_4: 526498560
-      BadgerDropSprites_5: -913526043
-      BadgerDropSprites_6: 684804671
-      BadgerDropSprites_7: -1670309608
-      BadgerDropSprites_8: -1069874765
+      BadgerGhostSprites_0: 1660193207
+      BadgerGhostSprites_1: 1889815830
+      BadgerGhostSprites_2: -507683861
+      BadgerGhostSprites_3: 1010676248
+      BadgerGhostSprites_4: 197807411
+      BadgerGhostSprites_5: 2108522289
+      BadgerGhostSprites_6: -2069921727
+      BadgerGhostSprites_7: 1238026783
+      BadgerGhostSprites_8: 278438899
+      BadgerGhostSprites_9: 1756684024
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
