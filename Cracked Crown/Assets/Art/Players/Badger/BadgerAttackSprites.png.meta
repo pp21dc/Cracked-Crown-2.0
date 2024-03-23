@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f1e07990930374a4b88de765e14e84dc
+guid: fc63b208a04e73e4288f2ea3f8b52d77
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -94,19 +94,6 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: Server
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
     buildTarget: iPhone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -132,11 +119,24 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BadgerDropSprites_0
+      name: BadgerAttackSprites_0
       rect:
         serializedVersion: 2
         x: 0
@@ -150,14 +150,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 958db48edddd0214e92fa0f003d10c79
-      internalID: 20006942
+      spriteID: 10ea562c7347ea44a9083fe1a60029c6
+      internalID: 1740972706
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BadgerDropSprites_1
+      name: BadgerAttackSprites_1
       rect:
         serializedVersion: 2
         x: 642
@@ -171,155 +171,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ff02630d2d5f0784f9411ee9db409e7c
-      internalID: 947189815
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BadgerDropSprites_2
-      rect:
-        serializedVersion: 2
-        x: 1284
-        y: 0
-        width: 642
-        height: 642
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3fc9c0a81df10184586e2f1588cb6548
-      internalID: -296145849
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BadgerDropSprites_3
-      rect:
-        serializedVersion: 2
-        x: 1926
-        y: 0
-        width: 642
-        height: 642
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 82a2751e431c5e84eadf99e6fe2ad823
-      internalID: 1169401045
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BadgerDropSprites_4
-      rect:
-        serializedVersion: 2
-        x: 2568
-        y: 0
-        width: 642
-        height: 642
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4ab48da4915fcc04e80cb796b3214f7e
-      internalID: 526498560
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BadgerDropSprites_5
-      rect:
-        serializedVersion: 2
-        x: 3210
-        y: 0
-        width: 642
-        height: 642
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ab3e56e710d0cb1479557b45524855a1
-      internalID: -913526043
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BadgerDropSprites_6
-      rect:
-        serializedVersion: 2
-        x: 3852
-        y: 0
-        width: 642
-        height: 642
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d289b24b629bbf145bfcdfd612df0beb
-      internalID: 684804671
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BadgerDropSprites_7
-      rect:
-        serializedVersion: 2
-        x: 4494
-        y: 0
-        width: 642
-        height: 642
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f86509bc79d8b2047a1099c1f14bf7f0
-      internalID: -1670309608
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BadgerDropSprites_8
-      rect:
-        serializedVersion: 2
-        x: 5136
-        y: 0
-        width: 642
-        height: 642
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3b1364d961471e548ac8c95525031663
-      internalID: -1069874765
+      spriteID: aec4df18b3c180544bf3c72425a53598
+      internalID: 1941724847
       vertices: []
       indices: 
       edges: []
@@ -327,7 +180,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 4fd9ea10a25fb694b9b73ab0a1437d48
+    spriteID: 4efacca35cadc06408a5bdac710c97bb
     internalID: 0
     vertices: []
     indices: 
@@ -335,15 +188,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      BadgerDropSprites_0: 20006942
-      BadgerDropSprites_1: 947189815
-      BadgerDropSprites_2: -296145849
-      BadgerDropSprites_3: 1169401045
-      BadgerDropSprites_4: 526498560
-      BadgerDropSprites_5: -913526043
-      BadgerDropSprites_6: 684804671
-      BadgerDropSprites_7: -1670309608
-      BadgerDropSprites_8: -1069874765
+      BadgerAttackSprites_0: 1740972706
+      BadgerAttackSprites_1: 1941724847
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
