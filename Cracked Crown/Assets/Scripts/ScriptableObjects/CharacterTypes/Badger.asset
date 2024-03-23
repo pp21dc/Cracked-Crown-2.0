@@ -15,15 +15,15 @@ MonoBehaviour:
   ID: 0
   moveSpeed: 8
   dashSpeed: 14
-  dashTime: 0.85
+  dashTime: 0.35
   attack: 3
-  attackSpeed: 0
-  moveCd: 0
-  attackDelayTime: 0
+  attackSpeed: 0.4
+  moveCd: 0.4
+  attackDelayTime: 0.25
   attackKnockback: 3.5
   finisherRadius: 40
   executePosition: {x: 8, y: 0, z: 0}
-  corpse: {fileID: 7516477959771602021, guid: 7bd694241a9873c42aec3265fdff34a7, type: 3}
+  corpse: {fileID: 7516477959771602021, guid: 5ad0732b1b849b149a52a476c68bbaca, type: 3}
   hop: 0
   controller: {fileID: 9100000, guid: 7a04a853c9b513249b90591cda56a7d6, type: 2}
   soundeffects:
