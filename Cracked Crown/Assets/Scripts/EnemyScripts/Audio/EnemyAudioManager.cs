@@ -9,14 +9,15 @@ public class EnemyAudioManager : MonoBehaviour
 
     [SerializeField]
     [Tooltip("This list can be exchanged depending on character type")]
-    private AudioClip[] Enemy_AudioClips;
+    public AudioClip[] Enemy_AudioClips;
 
     public enum AudioType
     {
         Attack,
         Die,
         Move,
-        Shoot
+        Shoot,
+        HitReact
     }
 
     public void NewClip(AudioClip newClipToPlay)

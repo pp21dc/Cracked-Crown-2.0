@@ -42,7 +42,8 @@ public class PlayerAudioManager : MonoBehaviour
         Swing4,
         Death,
         Move,
-        Dash
+        Dash,
+        Finisher
     }
 
     public AudioType[] audioTypes;

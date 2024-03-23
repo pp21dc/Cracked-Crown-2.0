@@ -263,9 +263,18 @@ public class GameManager : MonoBehaviour
     public void ReturnToMainMenu()
     {
         //playerGO.SetActive(false);
-        
+        ResetGame(true);
         StartCoroutine("LoadLevel", MainMenuName);
         //currentLevelName = MainMenuName;
+    }
+
+    public void ResetGame(bool ifNotToMainMenu)
+    {
+        LM.ResetLevelManager();
+        SetPlayerPositions();
+        currentLevelName = "";
+        if (!ifNotToMainMenu)
+            ReturnToMainMenu();
     }
 
     public void NextLevel()

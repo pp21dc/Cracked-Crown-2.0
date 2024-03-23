@@ -80,6 +80,17 @@ public class LevelManager : MonoBehaviour
             GM.SetPlayerPositions();
     }
 
+    public void ResetLevelManager()
+    {
+        SpawnTimer = 0;
+        SpawnersActive = false;
+        CURRENT_ROOM = 0;
+        CURRENT_WAVE = 0;
+        Current_Room = Rooms[0];
+        ROOM_CLEARED = true;
+        SpawnersActive = false;
+    }
+
     private void EnemySpawnSystem()
     {
         if (ROOM_CLEARED || !SpawnersActive)
