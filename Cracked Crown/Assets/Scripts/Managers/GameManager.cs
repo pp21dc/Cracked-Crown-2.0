@@ -253,7 +253,7 @@ public class GameManager : MonoBehaviour
         if (!levelName.Equals(MainMenuName) && !levelName.Equals(BossLevelName) && currentLevel <= levelNames.Length && !levelName.Equals(ShopName))
         {
             //AudioManager.LoadLevelComplete();
-            Debug.Log("NEXT LEVEL");
+            //Debug.Log("NEXT LEVEL");
             
             currentLevelName = levelNames[currentLevel];
 
@@ -343,7 +343,7 @@ public class GameManager : MonoBehaviour
         UI.SetActive(true);
         if (currentLevel < levelNames.Length)
         {
-            Debug.Log("LEVEL: " + currentLevel);
+            //Debug.Log("LEVEL: " + currentLevel);
             StartCoroutine("LoadLevel", levelNames[currentLevel]);
         }
         else

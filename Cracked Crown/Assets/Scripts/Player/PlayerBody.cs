@@ -429,14 +429,14 @@ public class PlayerBody : MonoBehaviour
         if (!hitEnemy && (lockHitForward))
         {
 
-            Debug.Log("FORWARD");
+            //Debug.Log("FORWARD");
             float y = rb.velocity.y;
             rb.velocity = (GetMovementVector() * attackKnockback);
             rb.velocity = new Vector3(rb.velocity.x, y, rb.velocity.z);
         }
         else if (hitEnemy && lockHitBackward)
         {
-            Debug.Log("BACK");
+            //Debug.Log("BACK");
             float y = rb.velocity.y;
             rb.velocity = (-GetMovementVector() * attackKnockback);
             rb.velocity = new Vector3(rb.velocity.x, y, rb.velocity.z);
@@ -895,7 +895,7 @@ public class PlayerBody : MonoBehaviour
     {
         canMove = true;
 
-        Debug.Log("REVIVE");
+        //Debug.Log("REVIVE");
         canAttack = true;
         canTakeDamage = true;
         canExecute = true;

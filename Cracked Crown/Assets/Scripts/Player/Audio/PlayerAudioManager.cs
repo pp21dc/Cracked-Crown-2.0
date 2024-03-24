@@ -77,7 +77,7 @@ public class PlayerAudioManager : MonoBehaviour
 
     public void PlayAudio(AudioType type)
     {
-        Debug.Log((int)type);
+        //Debug.Log((int)type);
         if (Player_AudioClips[(int)type] == null)
             return;
         if (type == AudioType.Swing1)
