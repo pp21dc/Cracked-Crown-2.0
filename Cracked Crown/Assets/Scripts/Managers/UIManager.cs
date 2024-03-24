@@ -82,6 +82,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Image CharacterIcon;
     [SerializeField] private Sprite[] CharacterIcons;
     [SerializeField] private GameObject[] iconObjects;
+
+    [Header("Player1 Icon Objects")]
+    [SerializeField] private GameObject p1BunnyIcon;
     public enum characterIcons {Frog, Bunny, Duck, HoneyBadger };
 
     public static UIManager Instance;
