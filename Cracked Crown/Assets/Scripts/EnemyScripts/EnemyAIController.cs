@@ -804,7 +804,7 @@ public class EnemyAIController : AdvancedFSM
     private GameObject eyes;
 
    // chooses a random number in a range for the enemy and drops that many eyes
-    private void DropEyes()
+    public void DropEyes()
     {
         int dropRate = 0;
 
