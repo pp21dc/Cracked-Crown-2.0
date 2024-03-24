@@ -134,8 +134,8 @@ public class PlayerBody : MonoBehaviour
         health = maxHealth;
         canAttack = true;
         canCollect = true;
-        canCollectBomb = true;
-        canCollectPotion = true;
+        canCollectBomb = false;
+        canCollectPotion = false;
         canExecute = true;
         canMove = true;
         canTakeDamage = true;

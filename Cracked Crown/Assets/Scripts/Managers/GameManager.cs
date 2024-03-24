@@ -310,6 +310,7 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < Players.Length; i++)
         {
+            
             Players[i].PB.transform.localPosition = new Vector3(0, 0, 0);
             Players[i].PB.transform.position = spawnPoints[i].position;
             
@@ -331,7 +332,7 @@ public class GameManager : MonoBehaviour
     {
         LM.ResetLevelManager();
         SetPlayerPositions();
-
+        
         MM.trackIndex = -1;
         if (!ifNotToMainMenu)
             ReturnToMainMenu();
