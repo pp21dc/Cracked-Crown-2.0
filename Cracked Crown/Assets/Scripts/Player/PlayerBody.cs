@@ -129,6 +129,20 @@ public class PlayerBody : MonoBehaviour
     private bool hasReachedExecutePoint = false;
     private bool neverReachedExecutePoint = false;
 
+    public void ResetPlayer()
+    {
+        health = maxHealth;
+        canAttack = true;
+        canCollect = true;
+        canCollectBomb = true;
+        canCollectPotion = true;
+        canExecute = true;
+        canMove = true;
+        canTakeDamage = true;
+        playerLock = false;
+        Grabbed = false;
+        ghostCoins = 20;
+    }
 
     private void Update()
     {

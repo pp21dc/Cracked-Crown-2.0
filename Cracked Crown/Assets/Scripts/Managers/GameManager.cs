@@ -146,6 +146,60 @@ public class GameManager : MonoBehaviour
             {
                 UI.SetActive(true);
             }
+
+            if (!lost && AreAllPlayersDead())
+                StartCoroutine(LoseCond());
+
+        }
+    }
+
+
+    bool lost = false;
+    public bool AreAllPlayersDead()
+    {
+        //SkillIssue
+        int x = 0;
+        for (int i = 0; i < Players.Length; i++)
+        {
+            if (Players[i].PB.alreadyDead)
+            {
+                x++;
+            }
+        }
+        if (x == Players.Length)
+        {
+            lost = true;
+            return true;
+        }
+        else
+        {
+            lost = false;
+            return false;
+        }
+    }
+
+    public void RevivePlayers()
+    {
+        for(int i = 0; i < Players.Length; i++)
+        {
+            Players[i].PB.ResetPlayer();
+            SetPlayerPositions();
+        }
+        lost = false;
+    }
+
+    IEnumerator LoseCond()
+    {
+        yield return new WaitForSeconds(5);
+        if (AreAllPlayersDead())
+        {
+            
+            RevivePlayers();
+            ReturnToMainMenu();
+        }
+        else
+        {
+            yield return null;
         }
     }
 
@@ -273,7 +327,7 @@ public class GameManager : MonoBehaviour
         //currentLevelName = MainMenuName;
     }
 
-    public void ResetGame(bool ifNotToMainMenu)
+    private void ResetGame(bool ifNotToMainMenu)
     {
         LM.ResetLevelManager();
         SetPlayerPositions();
