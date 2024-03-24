@@ -787,7 +787,7 @@ public class EnemyAIController : AdvancedFSM
         else if (tag == "Light")
             yield return new WaitForSeconds(0.3f);
 
-        if(gameObject.CompareTag("Light") || gameObject.CompareTag("Medium"))
+        if(gameObject.CompareTag("Light") || gameObject.CompareTag("Medium") || gameObject.CompareTag("Heavy"))
         {
             LevelManager.Instance.EnemyKilled();
             Destroy(transform.parent.gameObject);
