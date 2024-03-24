@@ -150,6 +150,7 @@ public class EnemyAIController : AdvancedFSM
     public Vector3 shockwaveScaleInitial;
     public GameObject ToothShotLocation;
     public GameObject Hole;
+    public Transform HoleSpawnLoc;
 
     //cooldown vars
     public bool dashOnCD;
@@ -792,7 +793,7 @@ public class EnemyAIController : AdvancedFSM
         }
         else
         {
-            GameObject holeGO = GameObject.Instantiate(Hole, enemyPosition);
+            GameObject holeGO = GameObject.Instantiate(Hole, HoleSpawnLoc);
         }
 
         //yield return null;
