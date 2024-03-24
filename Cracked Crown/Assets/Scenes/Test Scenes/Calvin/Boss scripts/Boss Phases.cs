@@ -47,9 +47,7 @@ public class BossPhases : MonoBehaviour
     [SerializeField]
     Sprite[] spriteList;
 
-    private Vector3 preGrabPlayerPosition;
     private Vector3 clawtarget;
-    private float dist;
     public string testAttack;
     private int currSpriteID = 0;
     private bool delayed = false;
@@ -96,6 +94,11 @@ public class BossPhases : MonoBehaviour
 
     void Update()
     {
+        if (bosshealth <= 0)
+        {
+            StopAllCoroutines();
+            return;
+        }
         if (gameObject.name == "clawRight")
         {
             if (!delayed)
@@ -225,7 +228,7 @@ public class BossPhases : MonoBehaviour
     {
         s.material = whiteMat;
 
-        yield return new WaitForSeconds(0.15f);
+        yield return new WaitForSeconds(0.2f);
 
         s.material = baseMat;
 
@@ -314,20 +317,9 @@ public class BossPhases : MonoBehaviour
         if (clawreturn)
         {
             Claw.transform.position = Vector3.MoveTowards(Claw.transform.position, clawtarget, clawspeed * Time.deltaTime);
-            if (preGrabPlayerPosition != Vector3.zero)
+            if (!isGrabbed && GrabbedPlayerBody != null)
             {
-                if (!isGrabbed && GrabbedPlayerBody != null)
-                {
-                    if (dist > 1)
-                    {
-                        dist = Vector3.Distance(GrabbedPlayer.transform.position, preGrabPlayerPosition); // drops the player back to pre-grabbed position
-                        GrabbedPlayer.transform.position = Vector3.MoveTowards(GrabbedPlayer.transform.position, preGrabPlayerPosition, 80 * Time.deltaTime);
-                    }
-                    else
-                    {
-                        GrabbedPlayerBody.playerLock = false;
-                    }
-                }
+                GrabbedPlayerBody.playerLock = false;
             }
         }
         if (isGrabbed)
@@ -364,13 +356,11 @@ public class BossPhases : MonoBehaviour
         if (isGrabbed)  // when the wait function is over, if the player is grabbed, the grabbed timer will start and the player will be lifted into the air
         {
             yield return new WaitForSeconds(0.2f);
-            preGrabPlayerPosition = GrabbedPlayer.transform.position;
             clawtarget = FollowedPlayer.transform.transform.position + FollowedPlayer.transform.TransformDirection(0, 80, 5);
             attacktimer += 3;
             grabbedTimer = 1; // 1 instead of 3 since the grabbedTimer threshold is -2
 
             yield return new WaitForSeconds(3);
-            dist = Vector3.Distance(GrabbedPlayer.transform.position, preGrabPlayerPosition); // marks the place to return the player
         }
         else
         {
@@ -410,11 +400,11 @@ public class BossPhases : MonoBehaviour
         isClawSmash = false;
         if (gameObject.name == "clawRight")
         {
-            Instantiate(ShockWave, ClawSprite.transform.position - new Vector3(8, 25f, 16), Quaternion.Euler(80, 0, 0)); // instantiates the shockwave part of attack
+            Instantiate(ShockWave, ClawSprite.transform.position - new Vector3(8, 25f, 16), Quaternion.Euler(80, 0, 0)); // instantiates the shockwave part of attack (RIGHT)
         }
         else
         {
-            Instantiate(ShockWave, ClawSprite.transform.position - new Vector3(-8, 25f, 16), Quaternion.Euler(80, 0, 0)); // instantiates the shockwave part of attack
+            Instantiate(ShockWave, ClawSprite.transform.position - new Vector3(-8, 25f, 16), Quaternion.Euler(80, 0, 0)); // instantiates the shockwave part of attack (LEFT)
         }
         cameraShake.StartCoroutine(cameraShake.Shake(0.15f, 0.4f));
         yield return new WaitForSeconds(1.95f);
@@ -428,8 +418,9 @@ public class BossPhases : MonoBehaviour
     IEnumerator RoarAttack()
     {
         // animation is called
+        roarSpawn = true;
         yield return new WaitForSeconds(2);
-
+        roarSpawn = false;
 
     }
 
