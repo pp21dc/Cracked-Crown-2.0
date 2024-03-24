@@ -218,7 +218,8 @@ public class GameManager : MonoBehaviour
     private IEnumerator LoadLevel(string levelName)
     {
         isLoading = true;
-        UIManager.Instance.InGameUI.SetActive(false);
+        if (UIManager.Instance != null)
+            UIManager.Instance.InGameUI.SetActive(false);
         if (!levelName.Equals(MainMenuName))
             LoadingScreen.gameObject.SetActive(true);
         MM.PlayNextTrack();
