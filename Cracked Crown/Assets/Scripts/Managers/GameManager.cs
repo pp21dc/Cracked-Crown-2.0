@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
         }
     }
     private LevelManager LM;
-
+    private MusicManager MM;
     public GameObject PIM;
     public PlayerContainer[] Players;
     public PlayerManager[] PMs;
@@ -91,6 +91,7 @@ public class GameManager : MonoBehaviour
             instance = this;
         }
         LM = LevelManager.Instance;
+        MM = MusicManager.instance;
     }
 
     private void Start()
@@ -166,7 +167,9 @@ public class GameManager : MonoBehaviour
 
         if (!levelName.Equals(MainMenuName))
             LoadingScreen.gameObject.SetActive(true);
-        //yield return new WaitForSeconds(0.25f);
+        MM.PlayNextTrack();
+        yield return new WaitForSeconds(0.25f);
+        
 
         if ((!string.IsNullOrEmpty(currentLevelName)))
         {
@@ -181,7 +184,7 @@ public class GameManager : MonoBehaviour
 
         }
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.25f);
 
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(levelName, LoadSceneMode.Additive);
         //AudioManager.Instance.AudioFadeLevelStart();
@@ -197,6 +200,7 @@ public class GameManager : MonoBehaviour
         {
             //AudioManager.LoadLevelComplete();
             Debug.Log("NEXT LEVEL");
+            
             currentLevelName = levelNames[currentLevel];
 
             currentLevelName = levelName;
@@ -216,6 +220,7 @@ public class GameManager : MonoBehaviour
         }
         else if (levelName.Equals(ShopName))
         {
+            //MM.PlayNextTrack();
             LM.ROOM_CLEARED = true;
             IsLevelCleared = true;
             currentLevelName = ShopName;
@@ -272,7 +277,8 @@ public class GameManager : MonoBehaviour
     {
         LM.ResetLevelManager();
         SetPlayerPositions();
-        currentLevelName = "";
+
+        MM.trackIndex = -1;
         if (!ifNotToMainMenu)
             ReturnToMainMenu();
     }

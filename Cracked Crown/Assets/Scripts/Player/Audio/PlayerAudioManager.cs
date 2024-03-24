@@ -33,7 +33,7 @@ public class PlayerAudioManager : MonoBehaviour
 
     public enum AudioType
     {
-        EmptySwing,
+        CoinPickUp,
         EnemyHit, 
         PlayerHit,
         Swing1,
@@ -43,13 +43,15 @@ public class PlayerAudioManager : MonoBehaviour
         Death,
         Move,
         Dash,
-        Finisher
+        Finisher,
+        Finisher2
     }
 
     public AudioType[] audioTypes;
 
     public void NewClip(AudioClip newClipToPlay)
     {
+        
         if (!AS.isPlaying)
         {
             AS.Stop();
@@ -75,6 +77,7 @@ public class PlayerAudioManager : MonoBehaviour
 
     public void PlayAudio(AudioType type)
     {
+        Debug.Log((int)type);
         if (Player_AudioClips[(int)type] == null)
             return;
         if (type == AudioType.Swing1)

@@ -35,7 +35,7 @@ public class LevelManager : MonoBehaviour
     public float WAIT_NEXTSPAWN_UPB;
     [Tooltip("Shortest Time For Next Enemy Spawn")]
     public float WAIT_NEXTSPAWN_LWB;
-    private float WAIT_NEXTSPAWN_VALUE = 0.2f;
+    public float WAIT_NEXTSPAWN_VALUE = 0.2f;
 
     [SerializeField]
     private int CURRENT_WAVE;
@@ -66,7 +66,7 @@ public class LevelManager : MonoBehaviour
         GM = GameManager.Instance;
         persScene = SceneManager.GetSceneByBuildIndex(0);
     }
-    float SpawnTimer = 0;
+    public float SpawnTimer = 0;
     float currentSpawnTotal = 0;
     public bool loc = false;
 
@@ -86,6 +86,8 @@ public class LevelManager : MonoBehaviour
         SpawnersActive = false;
         CURRENT_ROOM = 0;
         CURRENT_WAVE = 0;
+        ENEMIES_KILLED = 0;
+        ENEMIES_SPAWNED = 0;
         Current_Room = Rooms[0];
         ROOM_CLEARED = true;
         SpawnersActive = false;
@@ -149,9 +151,6 @@ public class LevelManager : MonoBehaviour
     {
         CURRENT_WAVE = 1;
         ROOM_CLEARED = !hostile;
-        //GM.SetPlayerPositions();
-        yield return new WaitForSeconds(1);
-        //GM.SetPlayerPositions();
         yield return new WaitForSeconds(WAIT_ONENTER);
         //GM.SetPlayerPositions();
         
@@ -161,6 +160,9 @@ public class LevelManager : MonoBehaviour
             CURRENT_ROOM += 1;
             Current_Room = Rooms[CURRENT_ROOM - 1];
             currentSpawnTotal = Current_Room.EnemyCount_PerWave[CURRENT_ROOM - 1] * (3 + GM.Players.Length / 4);
+            SpawnTimer = 0;
+            WAIT_NEXTSPAWN_VALUE = 0.2f;
+
             SpawnersActive = true;
         }
     }
