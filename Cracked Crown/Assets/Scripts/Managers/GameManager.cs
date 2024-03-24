@@ -140,8 +140,8 @@ public class GameManager : MonoBehaviour
 
                 MainMenu.SetActive(false);
             }
-            if (currentLevelName == MainMenuName)
-                UI.SetActive(false);
+            if (currentLevelName == MainMenuName) { }
+                //UI.SetActive(false);
             else if (!string.IsNullOrEmpty(currentLevelName))
             {
                 UI.SetActive(true);
