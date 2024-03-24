@@ -33,7 +33,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject MainMenu;
 
     [Header("In Game UI")]
-    [SerializeField] private GameObject InGameUI;
+    [SerializeField] public GameObject InGameUI;
 
     //Gold Rings For UI
     [SerializeField] private GameObject player1Ring;

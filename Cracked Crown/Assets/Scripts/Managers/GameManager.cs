@@ -218,7 +218,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator LoadLevel(string levelName)
     {
         isLoading = true;
-
+        UIManager.Instance.InGameUI.SetActive(false);
         if (!levelName.Equals(MainMenuName))
             LoadingScreen.gameObject.SetActive(true);
         MM.PlayNextTrack();
@@ -262,6 +262,7 @@ public class GameManager : MonoBehaviour
             
             LM.Enter_Level(true);
             MainMenu.SetActive(false);
+            UIManager.Instance.InGameUI.SetActive(true);
         }
         else if (levelName.Equals(MainMenuName))
         {
@@ -323,6 +324,13 @@ public class GameManager : MonoBehaviour
     public void ReturnToMainMenu()
     {
         //playerGO.SetActive(false);
+        if (UIManager.Instance != null)
+        {
+            LoadingScreen.SetActive(true);
+            UIManager.Instance.Resume();
+            UIManager.Instance.InGameUI.SetActive(false);
+        }
+
         ResetGame(true);
         StartCoroutine("LoadLevel", MainMenuName);
         //currentLevelName = MainMenuName;
