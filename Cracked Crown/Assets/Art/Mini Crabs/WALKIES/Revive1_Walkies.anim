@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MiniCrabStruggle_Death
+  m_Name: Revive1_Walkies
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,9 +21,11 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 2106420671, guid: 4fc833a31598fb847ad97679d33ac3cb, type: 3}
+      value: {fileID: 1611758519, guid: 36703e4381ed9724dbd0efad733b329c, type: 3}
+    - time: 0.1
+      value: {fileID: -1462529365, guid: 36703e4381ed9724dbd0efad733b329c, type: 3}
     - time: 0.2
-      value: {fileID: 130866286, guid: 4fc833a31598fb847ad97679d33ac3cb, type: 3}
+      value: {fileID: 80964694, guid: 36703e4381ed9724dbd0efad733b329c, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -46,8 +48,9 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 2106420671, guid: 4fc833a31598fb847ad97679d33ac3cb, type: 3}
-    - {fileID: 130866286, guid: 4fc833a31598fb847ad97679d33ac3cb, type: 3}
+    - {fileID: 1611758519, guid: 36703e4381ed9724dbd0efad733b329c, type: 3}
+    - {fileID: -1462529365, guid: 36703e4381ed9724dbd0efad733b329c, type: 3}
+    - {fileID: 80964694, guid: 36703e4381ed9724dbd0efad733b329c, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
