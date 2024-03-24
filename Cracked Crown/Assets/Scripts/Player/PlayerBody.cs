@@ -240,7 +240,7 @@ public class PlayerBody : MonoBehaviour
                 Grabbed = false;
 
                 // delete corpse
-                Destroy(corpse);
+                
                 StartCoroutine(executeAfterRevive());
 
             }
@@ -261,7 +261,7 @@ public class PlayerBody : MonoBehaviour
         yield return new WaitForSeconds(1.2f);
         canExecute = true;
         canCollect = true;
-
+        Destroy(corpse);
         yield return new WaitForSeconds(2.0f);
         canMove = true;
     }
@@ -742,19 +742,12 @@ public class PlayerBody : MonoBehaviour
 
                 yield return new WaitForSeconds(0);
                 toExecute.transform.parent.gameObject.SetActive(false);
-                if (gameManager != null)
-                {
-                    if (enemyAIController.tag == "Light")
-                        gameManager.eyeCount += 2;
-                    else if (enemyAIController.tag == "Medium")
-                        gameManager.eyeCount += 5;
-                    else if (enemyAIController.tag == "Heavy")
-                        gameManager.eyeCount += 8;
-                    if (LevelManager.Instance != null)
-                        LevelManager.Instance.EnemyKilled();
-                }
-                yield return new WaitForSeconds(1.4f);
-
+                if (LevelManager.Instance != null)
+                    LevelManager.Instance.EnemyKilled();
+                yield return new WaitForSeconds(0.75f);
+                enemyAIController.DropEyes();
+                yield return new WaitForSeconds(0.75f);
+                
                 canTakeDamage = true;
                 canMove = true;
                 canAttack = true;
@@ -842,7 +835,6 @@ public class PlayerBody : MonoBehaviour
             canTakeDamage = true;
             Grabbed = false;
 
-            Destroy(corpse);
             StartCoroutine(executeAfterRevive());
         }
     }

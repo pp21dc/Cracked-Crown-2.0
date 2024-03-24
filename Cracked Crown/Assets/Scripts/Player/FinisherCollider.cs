@@ -53,7 +53,7 @@ public class FinisherCollider : MonoBehaviour
                 if (e.gameObject.tag != "MiniCrabExecutable" && !e.gameObject.GetComponent<EnemyAIController>().EAC.Dead)
                 {
                     PB.Execute(e.transform.parent.GetChild(1).gameObject);
-                    e.GetComponent<EnemyAIController>().DropEyes();
+                    
                 }
                 else if (e.gameObject.tag == "MiniCrabExecutable")
                 {
