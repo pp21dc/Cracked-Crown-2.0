@@ -40,8 +40,8 @@ public class Spawner : MonoBehaviour
             E.transform.GetChild(0).tag = "Heavy";
         }
         EnemyAIController e = E.GetComponentInChildren<EnemyAIController>();
-        e.GetComponentInChildren<EnemyAIController>().StartUp();
-        e.GetComponentInChildren<EnemyAIController>().act = true;
+        e.StartUp();
+        e.act = true;
         
         
     }

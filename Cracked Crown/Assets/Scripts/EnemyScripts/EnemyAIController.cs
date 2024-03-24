@@ -554,7 +554,7 @@ public class EnemyAIController : AdvancedFSM
             {
                 closest = null;
             }
-            if (closest == null && !GM.Players[0].PB.alreadyDead)
+            if (closest == null && !GM.Players[0].PB.alreadyDead && !GM.Players[0].PB.Grabbed)
             {
                 closest = GM.Players[0].PB.gameObject;
                 playerTransform = GM.Players[0].PB.transform;
@@ -716,6 +716,7 @@ public class EnemyAIController : AdvancedFSM
             {
                 Debug.Log("LetsGoUp");
                 EAC.Moving = true;//NEW
+                EAC.Stunned = false;
                 Vector3 upVector = new Vector3(enemyPosition.position.x, 30f, enemyPosition.position.z);
                 movementVector = (upVector - enemyPosition.transform.position).normalized * speed;
                 enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player

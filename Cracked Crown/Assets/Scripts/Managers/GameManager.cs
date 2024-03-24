@@ -223,6 +223,7 @@ public class GameManager : MonoBehaviour
         if (!levelName.Equals(MainMenuName))
             LoadingScreen.gameObject.SetActive(true);
         MM.PlayNextTrack();
+        SetPlayerPositions();
         yield return new WaitForSeconds(0.25f);
         
 
@@ -238,7 +239,7 @@ public class GameManager : MonoBehaviour
             }
 
         }
-
+        SetPlayerPositions();
         yield return new WaitForSeconds(0.25f);
 
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(levelName, LoadSceneMode.Additive);
@@ -255,7 +256,7 @@ public class GameManager : MonoBehaviour
         {
             //AudioManager.LoadLevelComplete();
             //Debug.Log("NEXT LEVEL");
-            
+            SetPlayerPositions();
             currentLevelName = levelNames[currentLevel];
 
             currentLevelName = levelName;
@@ -341,7 +342,10 @@ public class GameManager : MonoBehaviour
     {
         LM.ResetLevelManager();
         SetPlayerPositions();
-        
+        RevivePlayers();
+        eyeCount = 0;
+        eyeText.text = "";
+
         MM.trackIndex = -1;
         if (!ifNotToMainMenu)
             ReturnToMainMenu();
