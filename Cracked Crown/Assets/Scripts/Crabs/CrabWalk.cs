@@ -42,8 +42,11 @@ public class CrabWalk : MonoBehaviour
             }
             if (player[i] != null)
             {
-                canMove = true;
-                gameObject.transform.GetChild(0).gameObject.SetActive(true);
+                if (gameObject.tag == "Mini Crab" || gameObject.tag == "MiniCrabExecutable")
+                {
+                    canMove = true;
+                    gameObject.transform.GetChild(0).gameObject.SetActive(true);
+                }
             }
             if (gameObject.tag == "StruggleCrab")
             {
