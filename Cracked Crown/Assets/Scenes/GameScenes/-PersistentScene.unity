@@ -2141,7 +2141,7 @@ MonoBehaviour:
   - {fileID: 413621355}
   - {fileID: 559300803}
   - {fileID: 153074247}
-  dialogue: {fileID: 0}
+  dialogue: {fileID: 1991515701}
   enem: {fileID: 0}
 --- !u!95 &963541658 stripped
 Animator:
@@ -4529,6 +4529,11 @@ PrefabInstance:
       objectReference: {fileID: 963541658}
     - target: {fileID: 8689589588071840687, guid: 503531e7b374a6747862ebfc1b4feef4,
         type: 3}
+      propertyPath: dialogueTimer
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 8689589588071840687, guid: 503531e7b374a6747862ebfc1b4feef4,
+        type: 3}
       propertyPath: player1HealthBarObj
       value: 
       objectReference: {fileID: 147015132}
@@ -4645,7 +4650,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1513603087950209344, guid: 503531e7b374a6747862ebfc1b4feef4,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1991515693}
+      addedObject: {fileID: 1991515701}
   m_SourcePrefab: {fileID: 100100000, guid: 503531e7b374a6747862ebfc1b4feef4, type: 3}
 --- !u!1 &1991515692 stripped
 GameObject:
@@ -4653,7 +4658,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1991515691}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1991515693
+--- !u!114 &1991515701
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4665,10 +4670,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9990cc0ecd4775419ceb87f09da1dab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bunny: []
-  frog: []
-  duck: []
-  badger: []
+  bunny:
+  - {fileID: 11400000, guid: feb2ab68e02ac4a499341f9f5da743b1, type: 2}
+  - {fileID: 11400000, guid: 98f8a6cbfeb69e4408058a33a43f6150, type: 2}
+  - {fileID: 11400000, guid: 7cfe9ef6c47ad6247a316f8ec88df37e, type: 2}
+  frog:
+  - {fileID: 11400000, guid: 3558a7de0b5a9d942ab7fc9a76f31079, type: 2}
+  - {fileID: 11400000, guid: 61e3ab5f03d9573439ba64d4f75201ee, type: 2}
+  - {fileID: 11400000, guid: b7272f67bcc4017458e822e38a1b3d3a, type: 2}
+  duck:
+  - {fileID: 11400000, guid: 07bc606c087e43f4491dabae45d76c95, type: 2}
+  - {fileID: 11400000, guid: 1acc3c4a654a4bb498605e363ea36df6, type: 2}
+  - {fileID: 11400000, guid: f727be4e37bd9e1459485fea3acc7009, type: 2}
+  badger:
+  - {fileID: 11400000, guid: 06bb8c40a86ed384e9f6d1fd184d193b, type: 2}
+  - {fileID: 11400000, guid: 82a1681a05bb5fb4f904b4a209d8766d, type: 2}
+  - {fileID: 11400000, guid: 5f03b4ab83947464eacc30075f0ecebd, type: 2}
   players: 
 --- !u!1 &2027076129
 GameObject:

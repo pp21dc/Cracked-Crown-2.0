@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
     public Transform cam;
 
     [SerializeField]
-    private string[] levelNames;
+    public string[] levelNames;
     private bool isLoading = false;
     private bool LevelCleared = false;
     public bool IsLevelCleared
@@ -307,8 +307,12 @@ public class GameManager : MonoBehaviour
         //isLoading = false;
         SetPlayerPositions();
 
-        if (dialogue != null)
+        if (!levelName.Equals(MainMenuName))
+        {
+            dialogue.GetPlayers();
+        }
             dialogue.SetDialogue();
+            Debug.Log("Called SetDialouge");
 
     }
 

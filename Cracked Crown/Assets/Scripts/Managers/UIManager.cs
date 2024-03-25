@@ -109,7 +109,7 @@ public class UIManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        StartCoroutine(DisplayDialogue("asdf asdf asdf asdf", 0));
+        //StartCoroutine(DisplayDialogue("asdf asdf asdf asdf", 0));
     }
     private void Start()
     {

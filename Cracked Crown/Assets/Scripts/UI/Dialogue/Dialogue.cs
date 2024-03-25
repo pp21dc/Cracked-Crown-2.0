@@ -20,28 +20,33 @@ public class Dialogue : MonoBehaviour
     {
         gm = GameManager.Instance;
         um = UIManager.Instance;
-        foreach (PlayerContainer pc in gm.Players)
-        {
-            players.Add(pc.PB.CharacterType.ID);
-        }
+        
     }
     private void Update()
     {
-        if (gm.currentLevelName == "1-1")
+        Debug.LogWarning(gm.currentLevelName);
+        if(um == null)
+        {
+            um = UIManager.Instance;
+        }
+
+        if (gm.levelNames[gm.CurrentLevel].Equals("1-1"))
         {
             levelCount = 0;
         }
-        else if (gm.currentLevelName == "1-2")
+        else if (gm.levelNames[gm.CurrentLevel].Equals("1-2"))
         {
             levelCount = 1;
         }
-        else if(gm.currentLevelName == "1-3")
+        else if(gm.levelNames[gm.CurrentLevel].Equals("1-3"))
         {
             levelCount = 2;
         }
     }
     public void SetDialogue()
     {
+        Debug.LogWarning("Starting SetDialogue");
+        Debug.LogWarning("Number of Player: " + players.Count);
         for(int i = 0; i < players.Count; i++)
         {
             Debug.Log(players[i]);
@@ -68,7 +73,9 @@ public class Dialogue : MonoBehaviour
     //Get single dialogue based on level
     DialogueSingleSO GetBunnySingle()
     {
+        Debug.LogWarning(levelCount);
         return bunny[levelCount];
+        
     }
     DialogueSingleSO GetFrogSingle()
     {
@@ -83,5 +90,11 @@ public class Dialogue : MonoBehaviour
         return badger[levelCount];
     }
 
-    
+    public void GetPlayers()
+    {
+        foreach (PlayerContainer pc in gm.Players)
+        {
+            players.Add(pc.PB.CharacterType.ID);
+        }
+    }
 }
