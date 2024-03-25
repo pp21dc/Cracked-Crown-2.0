@@ -48,20 +48,20 @@ public class Dialogue : MonoBehaviour
         }
         if (players.Contains(0))
         {   
-            um.DisplayDialogue(GetBadgerSingle().dialogue, GetBadgerSingle().icon);
+            StartCoroutine(um.DisplayDialogue(GetBadgerSingle().dialogue, GetBadgerSingle().icon));
         }
         else if(players.Contains(1)) 
         {
-            um.DisplayDialogue(GetBunnySingle().dialogue, GetBunnySingle().icon);
+            StartCoroutine(um.DisplayDialogue(GetBunnySingle().dialogue, GetBunnySingle().icon));
             Debug.Log(GetBunnySingle().dialogue);
         }
         else if (players.Contains(2))
         {
-            um.DisplayDialogue(GetDuckSingle().dialogue, GetDuckSingle().icon);
+            StartCoroutine(um.DisplayDialogue(GetDuckSingle().dialogue, GetDuckSingle().icon));
         }
         else if (players.Contains(3))
         {
-            um.DisplayDialogue(GetFrogSingle().dialogue, GetFrogSingle().icon);
+            StartCoroutine(um.DisplayDialogue(GetFrogSingle().dialogue, GetFrogSingle().icon));
         }
     }
 

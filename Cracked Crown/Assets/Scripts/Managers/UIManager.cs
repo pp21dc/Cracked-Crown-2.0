@@ -46,7 +46,7 @@ public class UIManager : MonoBehaviour
     private float player2ShineTimer = 0f;
     private float player3ShineTimer = 0f;
     private float player4ShineTimer = 0f;
-
+    [SerializeField] float dialogueTimer = 0.1f;
     [Header("Item Ring Images")]
     [SerializeField] private Image[] playerItems = new Image[4];
 
@@ -109,6 +109,7 @@ public class UIManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        StartCoroutine(DisplayDialogue("asdf asdf asdf asdf", 0));
     }
     private void Start()
     {
@@ -259,12 +260,28 @@ public class UIManager : MonoBehaviour
         Mixer.SetFloat("MusicVol", MusicSlider.value);
     }
 
-    public void DisplayDialogue(string dialogue, characterIcons character)
+    public IEnumerator DisplayDialogue(string dialogue, characterIcons character)
     {
-        DialogueBar.SetText(dialogue);
         CharacterIcon.sprite = CharacterIcons[((int)character)];
         CharacterIcon.SetNativeSize();
         CharacterIcon.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
+
+        char[] ca = dialogue.ToCharArray();
+        char[] temp = new char[100];
+        
+
+        for (int i = 0; i < ca.Length; i++)
+        {
+            for (int j = 0; j <= i; j++)
+            {
+                temp[j] = ca[j];
+                DialogueBar.SetText(temp);
+                yield return new WaitForSeconds(dialogueTimer);
+            }
+        }
+
+
+        
     }
 
     private void GetHealthBarMats()
