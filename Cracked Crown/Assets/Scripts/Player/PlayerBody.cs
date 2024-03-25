@@ -221,7 +221,7 @@ public class PlayerBody : MonoBehaviour
                 lockDash = true;
                 canExecute = false;
             }
-            if (ghostCoins >= 5)
+            if (ghostCoins >= 10)
             {
 
                 gameObject.tag = "Player";
@@ -717,6 +717,7 @@ public class PlayerBody : MonoBehaviour
         dashOnCD = false;
     }
 
+    bool frogExecuted = false;
     private IEnumerator InExecute(GameObject toExecute)
     {
         if (toExecute != null && canExecute && toExecute.transform.position.y <= 8.0f)
@@ -779,13 +780,22 @@ public class PlayerBody : MonoBehaviour
                     transform.parent.GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(false);
 
                     // turn trigger for execute animation on
+                    if (CharacterType.ID == 0)
+                    {
+                        crabController.animator.SetBool("BadgerExecute", true);
+                    }
                     if (CharacterType.ID == 1)
                     {
                         crabController.animator.SetBool("BunnyExecute", true);
                     }
+                    if (CharacterType.ID == 2)
+                    {
+                        crabController.animator.SetBool("DuckExecute", true);
+                    }
                     if (CharacterType.ID == 3)
                     {
                         crabController.animator.SetBool("FrogExecute", true);
+                        frogExecuted = true;
                     }
 
                     yield return new WaitForSeconds(1.1f);
@@ -797,7 +807,20 @@ public class PlayerBody : MonoBehaviour
                     canMovePlayerForexecute = false;
                     lockDash = false;
                     transform.parent.GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(true);
-                    toExecute.transform.parent.gameObject.SetActive(false);
+                    if (!frogExecuted)
+                    {
+                        toExecute.transform.parent.gameObject.SetActive(false);
+                    }
+                    else if (frogExecuted)
+                    {
+                        crabController.animator.SetBool("LeaveSign", true);
+                        crabController.animator.SetBool("FrogExecute", false);
+                        crabController.animator.SetBool("AtPosition", false);
+                        // make so he cannot die now
+                        Debug.Log("toExecute is: " + toExecute.transform.parent.GetChild(0).gameObject);
+                        GameObject test = toExecute.transform.parent.GetChild(0).gameObject;
+                        test.tag = "DontHit";
+                    }
                 }
             }
         }

@@ -9,6 +9,8 @@ public class CrabWalk : MonoBehaviour
     public float health = 1.0f;
     public Animator animator;
     public bool hasDied = false;
+    bool alreadyAtPos = false;
+    bool canMove = false;
 
     [SerializeField]
     private Transform finalPos;
@@ -17,34 +19,54 @@ public class CrabWalk : MonoBehaviour
 
     [SerializeField]
     GameObject bigShadow;
+    GameManager GM;
+
+    private void Awake()
+    {
+        GM = GameManager.Instance;
+    }
 
     // Update is called once per frame
     void Update()
     {
-        if (hasDied)
+        if (GM.PMs[0] != null)
         {
-            animator.SetBool("PermaDead", true);
-            bigShadow.SetActive(false);
+            canMove = true;
         }
-        if (!hasDied)
-        {
-            if (Vector3.Distance(transform.position, finalPos.position) > 5.0f)
-            {
-                transform.position = transform.position + (movementVector * speed * Time.deltaTime);
-            }
-            else
-            {
-                animator.SetBool("AtPosition", true);
-            }
 
-            if (health <= 0)
+        if (canMove)
+        {
+            if (hasDied)
             {
-                // play death animation
-                animator.SetBool("Death", true);
-                speed = 0;
-                StartCoroutine(deathTime());
+                animator.SetBool("PermaDead", true);
+                bigShadow.SetActive(false);
+            }
+            if (!hasDied)
+            {
+                if (Vector3.Distance(transform.position, finalPos.position) > 5.0f)
+                {
+                    transform.position = transform.position + (movementVector * speed * Time.deltaTime);
+                }
+                else
+                {
+                    if (!alreadyAtPos)
+                    {
+                        animator.SetBool("AtPosition", true);
+                        alreadyAtPos = true;
+                    }
+                }
+
+                if (health <= 0)
+                {
+                    // play death animation
+                    animator.SetBool("Death", true);
+                    speed = 0;
+                    StartCoroutine(deathTime());
+                }
+
             }
         }
+
     }
 
     private IEnumerator deathTime()

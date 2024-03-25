@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Revive2_Override
+  m_Controller: {fileID: 9100000, guid: 4b82f1eda9ba2eb4bbdea5e8c499dd31, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 43b3d9648a3990f4888923e7d325c89a, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 3dd64eaf9680864428a931d9528229cd, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 8ad9cf8dcae97ac479c2d21548481b03, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 9ede6faf76aa8fa4e96b8c5281d64d5b, type: 2}

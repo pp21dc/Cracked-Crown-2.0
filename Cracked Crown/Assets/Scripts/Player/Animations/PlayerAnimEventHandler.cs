@@ -58,6 +58,7 @@ public class PlayerAnimEventHandler : MonoBehaviour
         }
         else if (PC.PB.RESETINGGHOST >= 5)
             PC.PB.RevivePlayer();
+        PC.PB.canCollect = true;
 
     }
 
