@@ -87,6 +87,23 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject p1BunnyIcon;
     public enum characterIcons {Frog, Bunny, Duck, HoneyBadger };
 
+    [Header("Ring Icon Animators")]
+    [SerializeField] private Animator p1;
+    [SerializeField] private Animator p2;
+    [SerializeField] private Animator p3;
+    [SerializeField] private Animator p4;
+    [SerializeField] float p1Time = -1f;
+    [SerializeField] float p2Time = -1f;
+    [SerializeField] float p3Time = -1f;
+    [SerializeField] float p4Time = -1f;
+
+    [SerializeField] float p1Timer = 0f;
+    [SerializeField] float p2Timer = 0f;
+    [SerializeField] float p3Timer = 0f;
+    [SerializeField] float p4Timer = 0f;
+
+    [SerializeField] private int topRange = 20;
+
     public static UIManager Instance;
 
     private void Awake()
@@ -168,7 +185,7 @@ public class UIManager : MonoBehaviour
             }
         }
 
-        
+        SetRingShine();
         //RecordPlayerHealths();
     }
 
@@ -260,6 +277,39 @@ public class UIManager : MonoBehaviour
         Debug.Log("got mats");
     }  
 
+    private void SetRingShine()
+    {
+     
+        if (p1Timer > p1Time)
+        {
+            p1.SetTrigger("startShine");
+            p1Timer = 0;
+            p1Time = UnityEngine.Random.Range(3, topRange);
+        }
+        if (p2Timer > p2Time)
+        {
+            p2.SetTrigger("startShine");
+            p2Timer = 0;
+            p2Time = UnityEngine.Random.Range(3, topRange);
+        }
+        if (p3Timer > p3Time)
+        {
+            p3.SetTrigger("startShine");
+            p3Timer = 0f;
+            p3Time = UnityEngine.Random.Range(3, topRange);
+        }
+        if (p4Timer > p4Time)
+        {
+            p4.SetTrigger("startShine");
+            p4Timer = 0;
+            p4Time = UnityEngine.Random.Range(3, topRange);
+        }
+
+        p1Timer += Time.deltaTime;
+        p2Timer += Time.deltaTime;
+        p3Timer += Time.deltaTime;
+        p4Timer += Time.deltaTime;
+    }
    /* IEnumerator ModifyHealthBar(Material healthBar, float prevHealth, float currentHealth)
     {
         float 

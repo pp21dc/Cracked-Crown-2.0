@@ -2143,6 +2143,12 @@ MonoBehaviour:
   - {fileID: 153074247}
   dialogue: {fileID: 0}
   enem: {fileID: 0}
+--- !u!95 &963541658 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7728817042872908541, guid: 503531e7b374a6747862ebfc1b4feef4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1991515691}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &981395910
 GameObject:
   m_ObjectHideFlags: 0
@@ -2754,6 +2760,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &1195359944 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3155039007255071746, guid: 503531e7b374a6747862ebfc1b4feef4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1991515691}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1350698458 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4023697336279280085, guid: 503531e7b374a6747862ebfc1b4feef4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1991515691}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1386950352
 GameObject:
   m_ObjectHideFlags: 0
@@ -3670,6 +3688,12 @@ MonoBehaviour:
   PIM: {fileID: 1823946082}
   persistentScene:
     m_Handle: 0
+--- !u!95 &1836815158 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5323000525659279346, guid: 503531e7b374a6747862ebfc1b4feef4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1991515691}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1847887032
 GameObject:
   m_ObjectHideFlags: 0
@@ -4292,6 +4316,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3155039007255071746, guid: 503531e7b374a6747862ebfc1b4feef4,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 5dd4802b5f44c3349bffabb13ec2fa1b, type: 2}
     - target: {fileID: 3619591951319922113, guid: 503531e7b374a6747862ebfc1b4feef4,
         type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -4343,11 +4372,28 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 7aec43c92904f1f488f5dea235e683f8,
         type: 3}
+    - target: {fileID: 5278361724564118238, guid: 503531e7b374a6747862ebfc1b4feef4,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1746317669, guid: 13f06ac901f62c842b48dac02205d0e2,
+        type: 3}
+    - target: {fileID: 5323000525659279346, guid: 503531e7b374a6747862ebfc1b4feef4,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: bbda1f370d419eb44955a8cafb65779b, type: 2}
     - target: {fileID: 5405596411082170728, guid: 503531e7b374a6747862ebfc1b4feef4,
         type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 7aec43c92904f1f488f5dea235e683f8,
+        type: 3}
+    - target: {fileID: 5444541395277117473, guid: 503531e7b374a6747862ebfc1b4feef4,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1746317669, guid: 13f06ac901f62c842b48dac02205d0e2,
         type: 3}
     - target: {fileID: 5621734877312959799, guid: 503531e7b374a6747862ebfc1b4feef4,
         type: 3}
@@ -4409,11 +4455,22 @@ PrefabInstance:
       propertyPath: m_Colors.m_SelectedColor.r
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7728817042872908541, guid: 503531e7b374a6747862ebfc1b4feef4,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: c5d3a7130ee7c3d43815a0b83368a62b, type: 2}
     - target: {fileID: 7895110281948732470, guid: 503531e7b374a6747862ebfc1b4feef4,
         type: 3}
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 2100000, guid: 19f9c106214a4494cae55acbfad6ebf7, type: 2}
+    - target: {fileID: 7984771041820380881, guid: 503531e7b374a6747862ebfc1b4feef4,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1746317669, guid: 13f06ac901f62c842b48dac02205d0e2,
+        type: 3}
     - target: {fileID: 8052156712919269564, guid: 503531e7b374a6747862ebfc1b4feef4,
         type: 3}
       propertyPath: m_Sprite
@@ -4450,6 +4507,26 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8689589588071840687, guid: 503531e7b374a6747862ebfc1b4feef4,
+        type: 3}
+      propertyPath: p1
+      value: 
+      objectReference: {fileID: 1350698458}
+    - target: {fileID: 8689589588071840687, guid: 503531e7b374a6747862ebfc1b4feef4,
+        type: 3}
+      propertyPath: p2
+      value: 
+      objectReference: {fileID: 1195359944}
+    - target: {fileID: 8689589588071840687, guid: 503531e7b374a6747862ebfc1b4feef4,
+        type: 3}
+      propertyPath: p3
+      value: 
+      objectReference: {fileID: 1836815158}
+    - target: {fileID: 8689589588071840687, guid: 503531e7b374a6747862ebfc1b4feef4,
+        type: 3}
+      propertyPath: p4
+      value: 
+      objectReference: {fileID: 963541658}
     - target: {fileID: 8689589588071840687, guid: 503531e7b374a6747862ebfc1b4feef4,
         type: 3}
       propertyPath: player1HealthBarObj
