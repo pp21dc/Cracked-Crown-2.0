@@ -10,7 +10,11 @@ public class CrabWalk : MonoBehaviour
     public Animator animator;
     public bool hasDied = false;
     bool alreadyAtPos = false;
-    bool canMove = false;
+    public bool canMove = false;
+
+    GameObject[] player = new GameObject[4];
+    GameObject[] ghost = new GameObject[4];
+    PlayerBody[] PB = new PlayerBody[4];
 
     [SerializeField]
     private Transform finalPos;
@@ -29,10 +33,41 @@ public class CrabWalk : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GM.PMs[0] != null)
+        for (int i = 0; i < 4; i++)
         {
-            canMove = true;
+            if (player == null)
+            {
+                player = GameObject.FindGameObjectsWithTag("Player");
+                PB[i] = player[i].gameObject.transform.GetComponent<PlayerBody>();
+            }
+            if (player[i] != null)
+            {
+                canMove = true;
+                gameObject.transform.GetChild(0).gameObject.SetActive(true);
+            }
+            if (gameObject.tag == "StruggleCrab")
+            {
+                if (PB[i].Grabbed == true)
+                {
+                    canMove = true;
+                    gameObject.transform.GetChild(0).gameObject.SetActive(true);
+                }
+            }
         }
+        if (gameObject.tag == "ReviveCrab")
+        {
+            if (ghost == null)
+            {
+                ghost = GameObject.FindGameObjectsWithTag("Ghost");
+            }
+            if (ghost != null)
+            {
+                canMove = true;
+                gameObject.transform.GetChild(0).gameObject.SetActive(true);
+            }
+        }
+
+        // if is grabbed is true in PB set active for struggle crab
 
         if (canMove)
         {
