@@ -166,7 +166,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8111036669476072809
 Transform:
   m_ObjectHideFlags: 0
@@ -307,6 +307,7 @@ MonoBehaviour:
   health: 1
   animator: {fileID: 3812458504739947422}
   hasDied: 0
+  canMove: 0
   finalPos: {fileID: 5819110073219917234}
   movementVector: {x: -1, y: 0, z: 0}
   bigShadow: {fileID: 4768663702283111558}

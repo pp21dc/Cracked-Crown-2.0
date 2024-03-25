@@ -216,7 +216,7 @@ GameObject:
   - component: {fileID: 899669335690413887}
   m_Layer: 0
   m_Name: Body
-  m_TagString: Mini Crab
+  m_TagString: StruggleCrab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -252,6 +252,7 @@ MonoBehaviour:
   health: 1
   animator: {fileID: 8125831888433382235}
   hasDied: 0
+  canMove: 0
   finalPos: {fileID: 8166721731742356623}
   movementVector: {x: -1, y: 0, z: 0}
   bigShadow: {fileID: 4093246217042282141}
@@ -293,7 +294,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7151560988124781556
 Transform:
   m_ObjectHideFlags: 0
