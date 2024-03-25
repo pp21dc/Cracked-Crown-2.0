@@ -9,6 +9,7 @@ public class CrabWalk : MonoBehaviour
     public float health = 1.0f;
     public Animator animator;
     public bool hasDied = false;
+    bool alreadyAtPos = false;
 
     [SerializeField]
     private Transform finalPos;
@@ -34,7 +35,11 @@ public class CrabWalk : MonoBehaviour
             }
             else
             {
-                animator.SetBool("AtPosition", true);
+                if (!alreadyAtPos)
+                {
+                    animator.SetBool("AtPosition", true);
+                    alreadyAtPos = true;
+                }
             }
 
             if (health <= 0)
