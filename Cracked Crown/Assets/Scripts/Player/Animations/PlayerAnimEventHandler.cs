@@ -57,9 +57,11 @@ public class PlayerAnimEventHandler : MonoBehaviour
             PC.PB.canCollect = true;
         }
         else if (PC.PB.RESETINGGHOST >= 5)
+        {
+            Destroy(PC.PB.corpse);
             PC.PB.RevivePlayer();
-        PC.PB.canCollect = true;
-
+            PC.PB.canCollect = true;
+        }
     }
 
     public void SFX(int type)
