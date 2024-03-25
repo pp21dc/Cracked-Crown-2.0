@@ -37,7 +37,7 @@ public class CrabWalk : MonoBehaviour
         {
 
             player = GameObject.FindGameObjectsWithTag("Player");
-            PB = player[0].gameObject.transform.GetComponent<PlayerBody>();
+            PB = player[i].gameObject.transform.GetComponent<PlayerBody>();
 
             if (player[i] != null)
             {
