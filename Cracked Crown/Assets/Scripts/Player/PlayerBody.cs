@@ -109,7 +109,7 @@ public class PlayerBody : MonoBehaviour
     public bool canMovePlayerForexecute = false;
     private bool ifHopper = false;
     private Vector3 respawnPoint;
-    private GameObject corpse;
+    public GameObject corpse;
     private float maxHealth;
     private GameManager gameManager;
     private float attackSpeed;
@@ -149,7 +149,7 @@ public class PlayerBody : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.C))
             hasBomb = true;
         if (Input.GetKey(KeyCode.K))
-            ghostCoins += 5;
+            ghostCoins += 10;
 
         if (sprite != null)
         {
@@ -258,6 +258,7 @@ public class PlayerBody : MonoBehaviour
     float vely = 0;
     private IEnumerator executeAfterRevive()
     {
+        transform.position = respawnPoint;
         yield return new WaitForSeconds(1.2f);
         canExecute = true;
         canCollect = true;
@@ -846,7 +847,7 @@ public class PlayerBody : MonoBehaviour
 
             gameObject.tag = "Player";
 
-            transform.position = respawnPoint;
+            //transform.position = respawnPoint;
 
             animController.Dead = false;
             alreadyDead = false;
