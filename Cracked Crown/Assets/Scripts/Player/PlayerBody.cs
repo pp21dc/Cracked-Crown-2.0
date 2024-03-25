@@ -43,7 +43,7 @@ public class PlayerBody : MonoBehaviour
 
     [Header("Do Not Touch")]
     [SerializeField]
-    private PlayerController controller;
+    public PlayerController controller;
     public PlayerContainer playerContainer;
     [SerializeField]
     public PlayerAudioManager PAM;
@@ -248,7 +248,7 @@ public class PlayerBody : MonoBehaviour
             Dash();
             UseItem();
 
-            if (transform.position.y < 2)
+            if (transform.position.y < 2 || Grabbed) //NEW 3/25
                 vely = 0;
             vely += -9.81f;
 

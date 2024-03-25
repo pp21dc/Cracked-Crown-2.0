@@ -55,21 +55,21 @@ public class PlayerAudioManager : MonoBehaviour
         if (!AS.isPlaying)
         {
             AS.Stop();
-            AS.pitch = Random.Range(0.98f, 1.02f);
+            //AS.pitch = 1;
             AS.clip = newClipToPlay;
             AS.Play();
         }
         else if (!AS2.isPlaying)
         {
             AS2.Stop();
-            AS2.pitch = Random.Range(0.98f, 1.02f);
+            //AS2.pitch = 1;
             AS2.clip = newClipToPlay;
             AS2.Play();
         }
         else if (!AS3.isPlaying)
         {
             AS3.Stop();
-            AS3.pitch = Random.Range(0.98f, 1.02f);
+            //AS3.pitch = 1;
             AS3.clip = newClipToPlay;
             AS3.Play();
         }

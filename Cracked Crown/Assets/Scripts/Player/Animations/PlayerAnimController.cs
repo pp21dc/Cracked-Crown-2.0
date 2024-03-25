@@ -192,6 +192,8 @@ public class PlayerAnimController : MonoBehaviour
             Animator.SetBool("FinishHeavy_Green", finishing_heavy_green);
             Animator.SetBool("FinishHeavy_Purple", finishing_heavy_purple);
             Animator.SetBool("FinishHeavy_Red", finishing_heavy_red);
+            Animator.SetFloat("Input_Horz", PC.PB.controller.HorizontalMagnitude);
+            Animator.SetFloat("Input_Vert", PC.PB.controller.ForwardMagnitude);
             //if (finishing) { finishing = false; }
             if (true )
             {
