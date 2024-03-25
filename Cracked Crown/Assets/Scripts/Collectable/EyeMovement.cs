@@ -32,7 +32,7 @@ public class EyeMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.AddForce(0, -9.8f * rb.mass, 0);
+        rb.AddForce(0, -9.8f, 0, ForceMode.Force);
     }
 
 }

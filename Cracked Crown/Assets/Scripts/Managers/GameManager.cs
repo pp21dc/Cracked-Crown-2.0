@@ -133,6 +133,7 @@ public class GameManager : MonoBehaviour
             if (!waitforvideo && currentLevelName == MainMenuName)
             {
                 MainMenu.SetActive(true);
+                UIManager.Instance.InGameUI.SetActive(true);
                 PIM.SetActive(true);
             }
             else if (MainMenu != null)
@@ -166,7 +167,7 @@ public class GameManager : MonoBehaviour
                 x++;
             }
         }
-        if (x == Players.Length)
+        if (x == Players.Length && Players.Length != 0)
         {
             lost = true;
             return true;
@@ -191,7 +192,7 @@ public class GameManager : MonoBehaviour
     IEnumerator LoseCond()
     {
         yield return new WaitForSeconds(5);
-        if (AreAllPlayersDead())
+        if (AreAllPlayersDead() && PMs[0] != null)
         {
             
             RevivePlayers();
@@ -272,7 +273,7 @@ public class GameManager : MonoBehaviour
             LM.ROOM_CLEARED = true;
             IsLevelCleared = true;
             currentLevelName = MainMenuName;
-            //MainMenu.SetActive(true);
+            //
             currentLevel = -1;
         }
         else if (levelName.Equals(ShopName))
@@ -281,6 +282,7 @@ public class GameManager : MonoBehaviour
             LM.ROOM_CLEARED = true;
             IsLevelCleared = true;
             currentLevelName = ShopName;
+            UIManager.Instance.InGameUI.SetActive(true);
             LM.Enter_Level(false);
         }
         else if (levelName.Equals(BossLevelName))
@@ -288,6 +290,7 @@ public class GameManager : MonoBehaviour
             LM.ROOM_CLEARED = true;
             IsLevelCleared = true;
             currentLevelName = BossLevelName;
+            UIManager.Instance.InGameUI.SetActive(true);
             currentLevel = 5;
         }
         //yield return new WaitForSeconds(0.25f);
@@ -332,7 +335,7 @@ public class GameManager : MonoBehaviour
             UIManager.Instance.Resume();
             UIManager.Instance.InGameUI.SetActive(false);
         }
-
+        //locker = false;
         ResetGame(true);
         StartCoroutine("LoadLevel", MainMenuName);
         //currentLevelName = MainMenuName;

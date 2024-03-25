@@ -91,6 +91,7 @@ public class LevelManager : MonoBehaviour
         Current_Room = Rooms[0];
         ROOM_CLEARED = true;
         SpawnersActive = false;
+        loc = false;
     }
 
     private void EnemySpawnSystem()
