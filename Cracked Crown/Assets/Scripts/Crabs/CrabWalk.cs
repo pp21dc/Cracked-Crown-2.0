@@ -13,8 +13,8 @@ public class CrabWalk : MonoBehaviour
     public bool canMove = false;
 
     GameObject[] player = new GameObject[4];
-    GameObject[] ghost = new GameObject[4];
-    PlayerBody[] PB = new PlayerBody[4];
+    GameObject[] ghost = null;
+    PlayerBody PB;
 
     [SerializeField]
     private Transform finalPos;
@@ -35,11 +35,10 @@ public class CrabWalk : MonoBehaviour
     {
         for (int i = 0; i < 4; i++)
         {
-            if (player == null)
-            {
-                player = GameObject.FindGameObjectsWithTag("Player");
-                PB[i] = player[i].gameObject.transform.GetComponent<PlayerBody>();
-            }
+
+            player = GameObject.FindGameObjectsWithTag("Player");
+            PB = player[0].gameObject.transform.GetComponent<PlayerBody>();
+
             if (player[i] != null)
             {
                 if (gameObject.tag == "Mini Crab" || gameObject.tag == "MiniCrabExecutable")
@@ -50,28 +49,27 @@ public class CrabWalk : MonoBehaviour
             }
             if (gameObject.tag == "StruggleCrab")
             {
-                if (PB[i].Grabbed == true)
+                if (PB != null)
                 {
-                    canMove = true;
-                    gameObject.transform.GetChild(0).gameObject.SetActive(true);
+                    if (PB.Grabbed == true)
+                    {
+                        canMove = true;
+                        gameObject.transform.GetChild(0).gameObject.SetActive(true);
+                    }
+                }
+            }
+            if (gameObject.tag == "ReviveCrab")
+            {
+                if (PB != null)
+                {
+                    if (PB.alreadyDead == true)
+                    {
+                        canMove = true;
+                        gameObject.transform.GetChild(0).gameObject.SetActive(true);
+                    }
                 }
             }
         }
-        if (gameObject.tag == "ReviveCrab")
-        {
-            if (ghost == null)
-            {
-                ghost = GameObject.FindGameObjectsWithTag("Ghost");
-            }
-            if (ghost != null)
-            {
-                canMove = true;
-                gameObject.transform.GetChild(0).gameObject.SetActive(true);
-            }
-        }
-
-        // if is grabbed is true in PB set active for struggle crab
-
         if (canMove)
         {
             if (hasDied)
