@@ -152,6 +152,17 @@ public class EnemyAIController : AdvancedFSM
     public GameObject Hole;
     public Transform HoleSpawnLoc;
 
+    //seperate vars
+    public bool InContact;
+    public SeperateCheck sepCheck;
+    public bool canSeperate;
+    public GameObject otherAI;
+    private bool goLeft;
+    private bool goRight;
+    public Transform SepLoc;
+    public bool doneSeperating;
+    
+
     //cooldown vars
     public bool dashOnCD;
     public bool shockwaveOnCD;
@@ -226,6 +237,10 @@ public class EnemyAIController : AdvancedFSM
         else if (CurrentState.ID == FSMStateID.Reload)
         {
             state = "RELOAD";
+        }
+        else if (CurrentState.ID == FSMStateID.Seperate)
+        {
+            state = "SEPERATE";
         }
         
         
@@ -339,6 +354,12 @@ public class EnemyAIController : AdvancedFSM
         shootOnCD = false;
         shockwaveOnCD = false;
 
+        //seperate vars
+        InContact = false;
+        goLeft = false;
+        goRight = false;
+        doneSeperating = false;
+        canSeperate = true;
 
         ConstructFSM();
     }
@@ -423,6 +444,7 @@ public class EnemyAIController : AdvancedFSM
         findPlayerState.AddTransition(Transition.LowHealth, FSMStateID.Finished);
         findPlayerState.AddTransition(Transition.NoHealth, FSMStateID.Dead);
         findPlayerState.AddTransition(Transition.PlayerDead, FSMStateID.FindPlayer);
+        findPlayerState.AddTransition(Transition.enemiesInContact, FSMStateID.Seperate);
 
         //if at low health it allows the enemy to be finished, tranistions if no health and not finished.
         FinishedState finishedState = new FinishedState(this);
@@ -490,7 +512,10 @@ public class EnemyAIController : AdvancedFSM
         reloadState.AddTransition(Transition.InShockwaveRange, FSMStateID.Shockwave);
         reloadState.AddTransition(Transition.InShootingRange, FSMStateID.Gun);
 
-        
+        SeperateState seperateState = new SeperateState(this);
+        seperateState.AddTransition(Transition.LowHealth, FSMStateID.Finished);
+        seperateState.AddTransition(Transition.NoHealth, FSMStateID.Dead);
+        seperateState.AddTransition(Transition.LookForPlayer, FSMStateID.FindPlayer);
         
 
 
@@ -499,6 +524,7 @@ public class EnemyAIController : AdvancedFSM
         AddFSMState(findPlayerState);
         AddFSMState(finishedState);
         AddFSMState(deadState);
+        AddFSMState(seperateState);
 
         AddFSMState(slamGroundState);
         AddFSMState(carryState);
@@ -616,6 +642,7 @@ public class EnemyAIController : AdvancedFSM
             }
         }
 
+        
 
     }
 
@@ -1237,11 +1264,11 @@ public class EnemyAIController : AdvancedFSM
 
             if(closest.transform.position.x + 1 > enemyPosition.transform.position.x) 
             {
-                ToothShotLocation.transform.position = new Vector3(7.5f, 5.5f, 0);
+                ToothShotLocation.transform.localPosition = new Vector3(7.5f, 5.5f, 0);
             }
             else
             {
-                ToothShotLocation.transform.position = new Vector3(-7.5f, 5.5f, 0);
+                ToothShotLocation.transform.localPosition = new Vector3(-7.5f, 5.5f, 0);
             }
 
             startShooting = false;
@@ -1402,6 +1429,64 @@ public class EnemyAIController : AdvancedFSM
                 shootOnCD = false;
             }
         }
+
+        yield return null;
+    }
+
+    //seperation
+
+    public void StartSeperation()
+    {
+        if(canSeperate)
+        {
+            canSeperate = false;
+            StartCoroutine(Seperation());
+        }
+
+        if(goLeft)
+        {
+            movementVector = (SepLoc.position - enemyPosition.transform.position).normalized * speed;
+            enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
+        }
+        else if (goRight)
+        {
+            movementVector = (SepLoc.position - enemyPosition.transform.position).normalized * speed;
+            enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
+        }
+
+
+
+    }
+
+
+    IEnumerator Seperation()
+    {
+
+        if(otherAI.transform.position.x > enemyPosition.position.x)
+        {
+            SepLoc.localPosition = new Vector3(-5, 0, 0);
+
+            goLeft = true;
+
+            yield return new WaitForSeconds(2f);
+
+            goLeft = false;
+
+        }
+        else
+        {
+            SepLoc.localPosition = new Vector3(5, 0, 0);
+
+            goRight = true;
+
+            yield return new WaitForSeconds(2f);
+
+            goRight = false;
+        }
+
+        sepCheck.enabled = true;
+        canSeperate = true;
+        doneSeperating = true;
 
         yield return null;
     }

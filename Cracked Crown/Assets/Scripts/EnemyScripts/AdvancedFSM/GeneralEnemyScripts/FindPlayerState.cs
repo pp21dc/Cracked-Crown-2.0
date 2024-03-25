@@ -28,6 +28,14 @@ public class FindPlayerState : FSMState
         {
             enemy.PerformTransition(Transition.NoHealth);
         }
+        else if (enemy.InContact == true)
+        {
+            Debug.Log("in the incontact thing");
+            enemy.sepCheck.enabled = false;
+            enemy.InContact = false;
+            enemy.PerformTransition(Transition.enemiesInContact);
+            
+        }
         else if (enemy.CompareTag("Light"))
         {
             if (enemy.startSlam == true && enemy.canPickup && enemy.checkPlayerBelow.IsPlayerBelow())

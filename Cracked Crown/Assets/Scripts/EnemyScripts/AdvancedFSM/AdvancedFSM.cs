@@ -19,6 +19,7 @@ public enum Transition
     NoHealth,
     HealthBack,
     PlayerDead,
+    enemiesInContact,
 
     //Light enemy transitions
     AbovePlayer,
@@ -44,6 +45,7 @@ public enum FSMStateID
     FindPlayer,
     Finished,
     Dead,
+    Seperate,
 
     //light States
     SlamGround,
