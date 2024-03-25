@@ -27,6 +27,7 @@ public class EnemyAnimationController : MonoBehaviour
     public bool Duck_Grabbed;
     public bool Grabbing;
     public bool HitReact;
+    public bool Spawn;
     float timer;
 
     [Header("Medium Enemy")]
@@ -59,43 +60,52 @@ public class EnemyAnimationController : MonoBehaviour
 
     private void Update()
     {
-        animator.SetBool("Dead", Dead);
-        animator.SetBool("Moving", Moving);
-        animator.SetBool("Attacking", Attacking);
-        animator.SetBool("Dashing", Dashing);
-        animator.SetBool("Stunned", Stunned);
-        if (HitReact)
+        
+        if (!Spawn)
         {
-            HitReact = false;
-            if (EAIC.hitBy.position.x + 1 > EAIC.enemyPosition.transform.position.x)
+            animator.SetBool("Dead", Dead);
+            animator.SetBool("Moving", Moving);
+            animator.SetBool("Attacking", Attacking);
+            animator.SetBool("Dashing", Dashing);
+            animator.SetBool("Stunned", Stunned);
+
+            if (HitReact)
             {
-                SR.flipX = false;
+                HitReact = false;
+                if (EAIC.hitBy.position.x + 1 > EAIC.enemyPosition.transform.position.x)
+                {
+                    SR.flipX = false;
+                }
+                else
+                {
+                    SR.flipX = true;
+                }
+                animator.SetTrigger("HitReact");
+            }
+
+            if (transform.parent.parent.CompareTag("Light"))
+            {
+                animator.SetBool("Grab_B", Bunny_Grabbed);
+                animator.SetBool("Grab_D", Duck_Grabbed);
+                animator.SetBool("Grab_F", Frog_Grabbed);
+                animator.SetBool("Grab_Ba", Badger_Grabbed);
+                animator.SetBool("Grabbing", Grabbing);
+            }
+
+
+
+            if (Stunned)
+            {
+                EAIC.stunObj.SetActive(true);
             }
             else
             {
-                SR.flipX = true;
+                EAIC.stunObj.SetActive(false);
             }
-            animator.SetTrigger("HitReact");
-        }
-
-        if (transform.parent.parent.CompareTag("Light"))
-        {
-            animator.SetBool("Grab_B", Bunny_Grabbed);
-            animator.SetBool("Grab_D", Duck_Grabbed);
-            animator.SetBool("Grab_F", Frog_Grabbed);
-            animator.SetBool("Grab_Ba", Badger_Grabbed);
-            animator.SetBool("Grabbing", Grabbing);
-        }
-        
-        
-
-        if (Stunned)
-        {
-            EAIC.stunObj.SetActive(true);
         }
         else
         {
-            EAIC.stunObj.SetActive(false);
+            animator.SetBool("Spawn", Spawn);
         }
     }
 
@@ -115,4 +125,17 @@ public class EnemyAnimationController : MonoBehaviour
         Grabbing = false;
     }
 
+    public void EndSpwan()
+    {
+        Spawn = false;
+        animator.SetBool("Spawn", Spawn);
+    }
+
+    public void Act()
+    {
+        EAIC.act = true;
+    }
+
+
 }
+

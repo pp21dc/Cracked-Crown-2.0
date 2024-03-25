@@ -41,7 +41,8 @@ public class Spawner : MonoBehaviour
         }
         EnemyAIController e = E.GetComponentInChildren<EnemyAIController>();
         e.StartUp();
-        e.act = true;
+        e.EAC.Spawn = true;
+        //e.act = true;
         
         
     }

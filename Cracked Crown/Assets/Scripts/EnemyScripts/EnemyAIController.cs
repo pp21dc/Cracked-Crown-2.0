@@ -1462,7 +1462,7 @@ public class EnemyAIController : AdvancedFSM
     IEnumerator Seperation()
     {
 
-        if(otherAI.transform.position.x > enemyPosition.position.x)
+        if(otherAI != null && otherAI.transform.position.x > enemyPosition.position.x)
         {
             SepLoc.localPosition = new Vector3(-5, 0, 0);
 
