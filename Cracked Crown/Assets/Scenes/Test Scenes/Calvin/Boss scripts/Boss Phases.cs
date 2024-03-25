@@ -83,13 +83,19 @@ public class BossPhases : MonoBehaviour
     private void Awake()
     {
         bosshealth = MAXBOSSHEALTH;
+        CLAWSPAWN = Claw.transform.position; // gets the original claw point
+    }
+
+
+    private void Start()
+    {
         GameObject[] TempList = GameObject.FindGameObjectsWithTag("BossFollowPoint");
         PlayerList = new GameObject[TempList.Length];
         for (int i = 0; i < TempList.Length; i++)
         {
             PlayerList[i] = TempList[i]; // creates a list of all players in the scene
         }
-        CLAWSPAWN = Claw.transform.position; // gets the original claw point
+        bossAnim.Play("clawPassive");
     }
 
     void Update()
@@ -97,6 +103,7 @@ public class BossPhases : MonoBehaviour
         if (bosshealth <= 0)
         {
             StopAllCoroutines();
+            bossAnim.StopPlayback();
             return;
         }
         if (gameObject.name == "clawRight")
@@ -244,7 +251,6 @@ public class BossPhases : MonoBehaviour
         }
 
         prevattack = nextattack;
-        Debug.Log(gameObject + " " + attackList[nextattack]);
         return attackList[nextattack];
     }
 
@@ -255,18 +261,15 @@ public class BossPhases : MonoBehaviour
         {
             case "PincerAttack":
                 attacktimer = 8;
-                Debug.Log("1");
                 StartCoroutine("PincerAttack");
                 break;
             case "ClawSmash":
                 attacktimer = 4.5f;
                 StartCoroutine("ClawSmash");
-                Debug.Log("2");
                 break;
             case "RoarAttack":
                 StartCoroutine("RoarAttack");
-                Debug.Log("3");
-                attacktimer = 1;
+                attacktimer = 2;
                 break;
         }
     }
@@ -296,6 +299,7 @@ public class BossPhases : MonoBehaviour
                 }
             }
         }
+        Debug.Log(selection);
         FollowedPlayer = PlayerList[selection];
     }
 
@@ -324,7 +328,14 @@ public class BossPhases : MonoBehaviour
         }
         if (isGrabbed)
         {
-            GrabbedPlayer.transform.position = Claw.transform.position - FollowedPlayer.transform.TransformDirection(0, 35, 0);
+            if (Claw.name == "clawLeft")
+            {
+                GrabbedPlayer.transform.position = Claw.transform.position - FollowedPlayer.transform.TransformDirection(-10, 25, 0);
+            }
+            else
+            {
+                GrabbedPlayer.transform.position = Claw.transform.position - FollowedPlayer.transform.TransformDirection(10, 25, 0);
+            }
             if (grabbedTimer < -2) // drops the player when the timer is up
             {
                 isGrabbed = false;
@@ -336,23 +347,41 @@ public class BossPhases : MonoBehaviour
     IEnumerator PincerAttack() // handles timings for the pincer function phases
     {
         chooseFollow();
+
+        if (FollowedPlayer == null)
+        {
+            attacktimer = 0f;
+            yield break;
+        }
+
         clawfollow = true; // allows claw to follow player
 
         yield return new WaitForSeconds(4);
 
-        if (FollowedPlayer == null)
-        {
-            Debug.Log("Had to break");
-            attacktimer = 0f;
-            yield break;
-        }
         bossAnim.StopPlayback();
-        bossAnim.enabled = false;
+        if (Claw.name == "clawLeft") // plays the appropriate smash animation for the claw using the script
+        {
+            ClawSprite.transform.localPosition = new Vector3(0.5f, 0, 0);
+        }
+        else
+        {
+            ClawSprite.transform.localPosition = new Vector3(-0.5f, 0, 0);
+        }
+
         clawfollow = false;
-        clawtarget = FollowedPlayer.transform.position + FollowedPlayer.transform.TransformDirection(0, 35, 0); // sets the claw's target to the player
+        clawtarget = FollowedPlayer.transform.position + FollowedPlayer.transform.TransformDirection(0, 35, 5); // sets the claw's target to the player
         clawgrab = true; // allows claw to fall to player position
 
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(0.25f);
+        if (Claw.name == "clawLeft")
+        {
+            bossAnim.Play("grabClipLeft");
+        }
+        else
+        {
+            bossAnim.Play("grabClipRight");
+        }
+        yield return new WaitForSeconds(0.55f);
         if (isGrabbed)  // when the wait function is over, if the player is grabbed, the grabbed timer will start and the player will be lifted into the air
         {
             yield return new WaitForSeconds(0.2f);
@@ -361,50 +390,73 @@ public class BossPhases : MonoBehaviour
             grabbedTimer = 1; // 1 instead of 3 since the grabbedTimer threshold is -2
 
             yield return new WaitForSeconds(3);
+
+            if (Claw.name == "clawLeft")
+            {
+                bossAnim.Play("dropLeft");
+            }
+            else
+            {
+                bossAnim.Play("dropRight");
+            }
         }
         else
         {
             clawgrab = false;
             attacktimer += 1;
-            yield return new WaitForSeconds(1.2f);
+            yield return new WaitForSeconds(1);
+            if (Claw.name == "clawLeft")
+            {
+                bossAnim.Play("dropLeft");
+            }
+            else
+            {
+                bossAnim.Play("dropRight");
+            }
+            yield return new WaitForSeconds(0.2f);
         }
 
         clawgrab = false;
+
         clawreturn = true; // unlocks the coresponding code to return to spawn
 
         clawtarget = CLAWSPAWN; // sets the claw's target to it's spawn
 
-        yield return new WaitForSeconds(3);
-        clawreturn = false; // resets final bool and timer for the grab;
+        bossAnim.Play("clawPassive");
 
+        yield return new WaitForSeconds(3);
+
+        clawreturn = false; // resets final bool and timer for the grab;
         GrabbedPlayer = null;
         isGrabbed = false;
         GrabbedPlayerBody = null;
         FollowedPlayer = null;
-        bossAnim.enabled = true;
+
     }
 
     IEnumerator ClawSmash()
     {
         isClawSmash = true;
-        ClawSprite.transform.localPosition = Vector3.zero;
+
         if (Claw.name == "clawLeft") // plays the appropriate smash animation for the claw using the script
         {
+            ClawSprite.transform.localPosition = new Vector3(0.5f, 0, 0);
             bossAnim.Play("clawSmash");
         }
         else
         {
+            ClawSprite.transform.localPosition = new Vector3(-0.5f, 0, 0);
             bossAnim.Play("clawSmashRight");
         }
         yield return new WaitForSeconds(2.05f);
         isClawSmash = false;
         if (gameObject.name == "clawRight")
         {
-            Instantiate(ShockWave, ClawSprite.transform.position - new Vector3(8, 25f, 16), Quaternion.Euler(80, 0, 0)); // instantiates the shockwave part of attack (RIGHT)
+            Instantiate(ShockWave, ClawSprite.transform.position - new Vector3(8, 5f, 16), Quaternion.Euler(0, 0, 0)); // instantiates the shockwave part of attack (RIGHT)
         }
         else
         {
-            Instantiate(ShockWave, ClawSprite.transform.position - new Vector3(-8, 25f, 16), Quaternion.Euler(80, 0, 0)); // instantiates the shockwave part of attack (LEFT)
+            Instantiate(ShockWave, ClawSprite.transform.position - new Vector3(-8, 5f, 16), Quaternion.Euler(0, 0, 0)); // instantiates the shockwave part of attack (LEFT)
         }
         cameraShake.StartCoroutine(cameraShake.Shake(0.15f, 0.4f));
         yield return new WaitForSeconds(1.95f);
