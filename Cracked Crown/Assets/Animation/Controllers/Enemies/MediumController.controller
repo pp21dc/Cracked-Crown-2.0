@@ -85,6 +85,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: HitReact
     m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: Spawn
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 4898217958429772624}
   m_Solo: 0
@@ -254,6 +257,9 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 1
     m_ConditionEvent: Dead
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: Spawn
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -3972767361203067070}
@@ -647,6 +653,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 2
     m_ConditionEvent: Stunned
     m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: Spawn
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 7449184493030855760}
   m_Solo: 0
@@ -842,6 +851,9 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 1
     m_ConditionEvent: Stunned
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: Spawn
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 141907583840799144}

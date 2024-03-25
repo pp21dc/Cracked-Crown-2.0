@@ -370,7 +370,7 @@ public class EnemyAIController : AdvancedFSM
         GetStateString();
         if (LevelManager.Instance != null)
         {
-            act = !LevelManager.Instance.loc;
+            //act = !LevelManager.Instance.loc;
         }
         else
         {

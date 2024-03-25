@@ -15,9 +15,11 @@ public class SeperateCheck : MonoBehaviour
 
             if(other.CompareTag("Seperate"))
             {
-                Debug.Log(other.tag);
-                AI.InContact = true;
-                AI.otherAI = other.gameObject;
+                if (!AI.EAC.Stunned)
+                {
+                    AI.InContact = true;
+                    AI.otherAI = other.gameObject;
+                }
             }
         }
     }
