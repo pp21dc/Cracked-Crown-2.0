@@ -130,7 +130,9 @@ public class BossPhases : MonoBehaviour
         
         if (roarSpawn)
         {
+            
             LevelManager.Instance.SpawnersActive = true;
+            Debug.Log(LevelManager.Instance.SpawnersActive);
         }
         else
         {

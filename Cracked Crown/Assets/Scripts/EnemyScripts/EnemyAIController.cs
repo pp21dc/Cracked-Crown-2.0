@@ -1515,7 +1515,7 @@ public class EnemyAIController : AdvancedFSM
             }
         }
 
-        if (closest.transform.position.x + 1 > enemyPosition.transform.position.x)
+        if (closest != null && enemyPosition != null && closest.transform.position.x + 1 > enemyPosition.transform.position.x)
         {
             EAC.SR.flipX = false;
         }

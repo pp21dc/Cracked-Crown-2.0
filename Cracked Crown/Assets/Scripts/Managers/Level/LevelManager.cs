@@ -69,9 +69,15 @@ public class LevelManager : MonoBehaviour
     public float SpawnTimer = 0;
     float currentSpawnTotal = 0;
     public bool loc = false;
+    bool boss = false;
 
     private void Update()
     {
+        if (boss)
+        {
+            loc = false;
+        }
+
         if (Input.GetKeyUp(KeyCode.J))
             loc = !loc;
         if (!loc)
@@ -99,13 +105,18 @@ public class LevelManager : MonoBehaviour
         if (ROOM_CLEARED || !SpawnersActive)
             return;
         //Debug.Log(Current_Room.RoomNumber + ": " + CURRENT_WAVE);
-        if (ENEMIES_SPAWNED >= Current_Room.EnemyCount_PerWave[CURRENT_WAVE-1])
+        if (ENEMIES_SPAWNED >= Current_Room.EnemyCount_PerWave[CURRENT_WAVE-1] && !boss)
         {
             if (ENEMIES_KILLED >= ENEMIES_SPAWNED)
             {
                 StartCoroutine(ON_ROUNDEND());
                 return;
             }
+        }
+
+        if (boss)
+        {
+            loc = false;
         }
 
         SpawnTimer += Time.deltaTime;
@@ -135,6 +146,7 @@ public class LevelManager : MonoBehaviour
     {
         CURRENT_WAVE = 1;
         GM.SetPlayerPositions();
+        this.boss = boss;
         StartCoroutine(ON_ENTER(hostile, boss));
     }
 
@@ -162,11 +174,20 @@ public class LevelManager : MonoBehaviour
                 CURRENT_ROOM += 1;
             Current_Room = Rooms[CURRENT_ROOM - 1];
             currentSpawnTotal = Current_Room.EnemyCount_PerWave[CURRENT_ROOM - 1] * (3 + GM.Players.Length / 4);
+
             SpawnTimer = 0;
             WAIT_NEXTSPAWN_VALUE = 0.2f;
+            ENEMIES_SPAWNED = 0;
+            ENEMIES_KILLED = 0;
 
             if (!boss)
                 SpawnersActive = true;
+            else
+            {
+                currentSpawnTotal += 100;
+                CURRENT_ROOM = 3;
+                Current_Room = Rooms[CURRENT_ROOM - 1];
+            }
         }
     }
 
