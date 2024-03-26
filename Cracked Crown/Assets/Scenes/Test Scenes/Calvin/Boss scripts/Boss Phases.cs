@@ -328,7 +328,18 @@ public class BossPhases : MonoBehaviour
         }
         if (otherClaw.FollowedPlayer == PlayerList[selection])
         {
-             return chooseFollow();
+             for (int i = 0; i < PlayerList.Length; i++)
+            {
+                if (PlayerList[selection] != PlayerList[i])
+                {
+                    return PlayerList[i];
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            return null;
         }
         else
         {
