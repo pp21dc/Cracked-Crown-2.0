@@ -24,7 +24,6 @@ public class Dialogue : MonoBehaviour
     }
     private void Update()
     {
-        Debug.LogWarning(gm.currentLevelName);
         if(um == null)
         {
             um = UIManager.Instance;
@@ -45,8 +44,6 @@ public class Dialogue : MonoBehaviour
     }
     public void SetDialogue()
     {
-        Debug.LogWarning("Starting SetDialogue");
-        Debug.LogWarning("Number of Player: " + players.Count);
         for(int i = 0; i < players.Count; i++)
         {
             Debug.Log(players[i]);
