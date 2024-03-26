@@ -69,6 +69,9 @@ public class EnemyAIController : AdvancedFSM
     private float speed = 5f; //speed of the enemy
     [SerializeField]
     private float HeavyDashSpeed = 2f;
+    private float mediumSpeed;
+    private float heavySpeed;
+    private float lightSpeed;
 
     public bool canMove = true;
 
@@ -144,13 +147,17 @@ public class EnemyAIController : AdvancedFSM
     public bool startReload;
     public bool canShoot;
     public bool noShockCooldown;
-    public GameObject tooth;
+    public GameObject toothLeft;
+    public GameObject toothRight;
     public GameObject shockwaveCol;
     public Vector3 targetShockwaveScale;
     public Vector3 shockwaveScaleInitial;
+    public Transform bodyShootLoc;
     public GameObject ToothShotLocation;
     public GameObject Hole;
     public Transform HoleSpawnLoc;
+    private GameObject correctTooth;
+    
 
     //seperate vars
     public bool InContact;
@@ -348,6 +355,7 @@ public class EnemyAIController : AdvancedFSM
             shockwaveScaleInitial = shockwaveCol.transform.localScale;
         }
         noShockCooldown = true;
+        
 
         //cooldowns
         dashOnCD = false;
@@ -360,6 +368,11 @@ public class EnemyAIController : AdvancedFSM
         goRight = false;
         doneSeperating = false;
         canSeperate = true;
+
+        //enemy speeds
+        lightSpeed = 50f;
+        mediumSpeed = 35f;
+        heavySpeed = 25f;
 
         ConstructFSM();
     }
@@ -589,11 +602,15 @@ public class EnemyAIController : AdvancedFSM
             {
                 if(gameObject.CompareTag("Light"))
                 {
-                    setAndMoveToTargetLight(speed);
+                    setAndMoveToTargetLight(lightSpeed);
                 }
-                else
+                else if(gameObject.CompareTag("Medium"))
                 {
-                    setAndMoveToTarget(speed);
+                    setAndMoveToTarget(mediumSpeed);
+                }
+                else if(gameObject.CompareTag("Heavy"))
+                {
+                    setAndMoveToTarget(heavySpeed);
                 }
             }
                 
@@ -983,7 +1000,7 @@ public class EnemyAIController : AdvancedFSM
 
     public IEnumerator ResetPlayerGrab(PlayerBody pb)
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(5f);
         pb.Grabbed = false;
     }
 
@@ -1065,7 +1082,7 @@ public class EnemyAIController : AdvancedFSM
             }
 
             //Debug.Log(randTrans);
-            movementVector = (randTrans - enemyPosition.transform.position).normalized * speed;
+            movementVector = (randTrans - enemyPosition.transform.position).normalized * lightSpeed;
             enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
         }
         //call player carry method, move the light enemy to a random point, if timer runs out, drop player go to find player, use rand on an x and z for a random direction
@@ -1265,10 +1282,12 @@ public class EnemyAIController : AdvancedFSM
             if(closest.transform.position.x + 1 > enemyPosition.transform.position.x) 
             {
                 ToothShotLocation.transform.localPosition = new Vector3(7.5f, 5.5f, 0);
+                correctTooth = toothRight;
             }
             else
             {
                 ToothShotLocation.transform.localPosition = new Vector3(-7.5f, 5.5f, 0);
+                correctTooth = toothLeft;
             }
 
             startShooting = false;
@@ -1283,7 +1302,10 @@ public class EnemyAIController : AdvancedFSM
         while (canShoot)
         {
             EAC.Attacking = true;
-            StartShootTeeth(enemyPosition, ToothShotLocation.transform);
+
+            
+
+            StartShootTeeth(bodyShootLoc, ToothShotLocation.transform, correctTooth);
             heavyBullets--;
             yield return new WaitForSeconds(0.45f);
         }
@@ -1294,16 +1316,19 @@ public class EnemyAIController : AdvancedFSM
         yield return null;
     }
 
-    private void StartShootTeeth(Transform body, Transform fireLocation)
+    private void StartShootTeeth(Transform body, Transform fireLocation, GameObject toothToShoot)
     {
-        if (tooth)
+        if (toothLeft && toothRight)
         {
             Vector3 direction = fireLocation.position - body.position;
             direction.y = 0;
             
             direction.Normalize();
 
-            GameObject ToothGO = GameObject.Instantiate(tooth, enemyPosition.position, Quaternion.identity);
+            GameObject ToothGO = GameObject.Instantiate(toothToShoot, bodyShootLoc.position, Quaternion.identity);
+
+            
+
             Tooth Tooth = ToothGO.GetComponent<Tooth>();
             ToothGO.SetActive(true);
             Tooth.Fire(direction);
@@ -1415,7 +1440,7 @@ public class EnemyAIController : AdvancedFSM
         {
             if(dashOnCD == true)
             {
-                yield return new WaitForSeconds(3f);
+                yield return new WaitForSeconds(1.7f);
                 dashOnCD = false;
             }
         }
@@ -1446,18 +1471,56 @@ public class EnemyAIController : AdvancedFSM
             StartCoroutine(Seperation());
         }
 
-        if(goLeft)
+        
+
+        if (goLeft)
         {
-            movementVector = (SepLoc.position - enemyPosition.transform.position).normalized * speed;
-            enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
+            if(gameObject.CompareTag("Medium"))
+            {
+                movementVector = (SepLoc.position - enemyPosition.transform.position).normalized * mediumSpeed;
+                enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
+
+                
+
+            }
+            else if(gameObject.CompareTag("Heavy"))
+            {
+                movementVector = (SepLoc.position - enemyPosition.transform.position).normalized * heavySpeed;
+                enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
+
+                
+
+            }
+            
         }
         else if (goRight)
         {
-            movementVector = (SepLoc.position - enemyPosition.transform.position).normalized * speed;
-            enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
+            if (gameObject.CompareTag("Medium"))
+            {
+                movementVector = (SepLoc.position - enemyPosition.transform.position).normalized * mediumSpeed;
+                enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
+
+                
+
+            }
+            else if (gameObject.CompareTag("Heavy"))
+            {
+                movementVector = (SepLoc.position - enemyPosition.transform.position).normalized * heavySpeed;
+                enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
+
+                
+
+            }
         }
 
-
+        if (closest.transform.position.x + 1 > enemyPosition.transform.position.x)
+        {
+            EAC.SR.flipX = false;
+        }
+        else
+        {
+            EAC.SR.flipX = true;
+        }
 
     }
 
@@ -1467,7 +1530,9 @@ public class EnemyAIController : AdvancedFSM
 
         if(otherAI != null && otherAI.transform.position.x > enemyPosition.position.x)
         {
-            SepLoc.localPosition = new Vector3(-5, 0, 0);
+            int randLeft = Random.Range(-5, 5);
+
+            SepLoc.localPosition = new Vector3(-5, 0, randLeft);
 
             goLeft = true;
 
@@ -1478,7 +1543,9 @@ public class EnemyAIController : AdvancedFSM
         }
         else
         {
-            SepLoc.localPosition = new Vector3(5, 0, 0);
+            int randRight = Random.Range(-5, 5);
+
+            SepLoc.localPosition = new Vector3(5, 0, randRight);
 
             goRight = true;
 
