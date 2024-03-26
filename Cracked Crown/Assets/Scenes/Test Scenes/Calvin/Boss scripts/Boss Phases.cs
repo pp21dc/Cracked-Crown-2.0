@@ -17,6 +17,8 @@ public class BossPhases : MonoBehaviour
     [SerializeField]
     private Animator bossAnim;
     [SerializeField]
+    private Animator mandibleAnim;
+    [SerializeField]
     private BossPhases otherClaw;
     [SerializeField]
     private GameObject ClawSprite;
@@ -63,6 +65,7 @@ public class BossPhases : MonoBehaviour
     private bool clawgrab = false;
     public bool clawreturn = false;
     public bool roarSpawn = false;
+    private bool clawdead = false;
 
     [SerializeField]
     private CameraShake cameraShake;
@@ -102,6 +105,7 @@ public class BossPhases : MonoBehaviour
     {
         if (bosshealth <= 0)
         {
+            clawdead = true;
             StopAllCoroutines();
             bossAnim.StopPlayback();
             return;
@@ -127,6 +131,19 @@ public class BossPhases : MonoBehaviour
             }
             gameObject.GetComponent<BossPhases>().enabled = false;
             return;
+        }
+        if (roarSpawn)
+        {
+            LevelManager.Instance.SpawnersActive = true;
+        }
+        else
+        {
+            LevelManager.Instance.SpawnersActive = false;
+        }
+
+        if (otherClaw.isDead()) //this var is what ever one you use to tell if boss is dead
+        {
+            GameManager.Instance.win = true;
         }
         /*if (attacktimer <= 0)
         {
@@ -160,6 +177,10 @@ public class BossPhases : MonoBehaviour
        }
     }
 
+    public bool isDead()
+    {
+        return clawdead;
+    }
     public string displayAttack()
     {
         return CurrentAttack;
@@ -249,7 +270,13 @@ public class BossPhases : MonoBehaviour
         {
             nextattack = Random.Range(0, 3);
         }
-
+        if (otherClaw.nextattack == 2)
+        {
+            if (nextattack == 2)
+            {
+                return createNextAttack();
+            }
+        }
         prevattack = nextattack;
         return attackList[nextattack];
     }
@@ -257,6 +284,14 @@ public class BossPhases : MonoBehaviour
     private void startNextAttack()
     {
         CurrentAttack = createNextAttack();
+        if (CurrentAttack == "RoarAttack")
+        {
+            if (Random.Range(0, 2) == 0)
+            {
+                CurrentAttack = createNextAttack();
+            }
+
+        }
         switch (CurrentAttack) // sets attack timer based on the next boss attack
         {
             case "PincerAttack":
@@ -269,12 +304,12 @@ public class BossPhases : MonoBehaviour
                 break;
             case "RoarAttack":
                 StartCoroutine("RoarAttack");
-                attacktimer = 2;
+                attacktimer = 3;
                 break;
         }
     }
 
-    private void chooseFollow()
+    private GameObject chooseFollow()
     {
         float[] playerdist = new float[PlayerList.Length];
         int selection = 0;
@@ -299,8 +334,15 @@ public class BossPhases : MonoBehaviour
                 }
             }
         }
-        Debug.Log(selection);
-        FollowedPlayer = PlayerList[selection];
+        if (otherClaw.FollowedPlayer == PlayerList[selection])
+        {
+            chooseFollow();
+        }
+        else
+        {
+            FollowedPlayer = PlayerList[selection];
+        }
+        return FollowedPlayer;
     }
 
     private void pincerAttack() // handles actions relying on the pincer IEnumerator's timings
@@ -470,9 +512,12 @@ public class BossPhases : MonoBehaviour
     IEnumerator RoarAttack()
     {
         // animation is called
+        mandibleAnim.Play("mandibles");
+        cameraShake.StartCoroutine(cameraShake.Shake(2f, 0.1f));
         roarSpawn = true;
         yield return new WaitForSeconds(2);
         roarSpawn = false;
+        yield return new WaitForSeconds(1);
 
     }
 
