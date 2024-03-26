@@ -48,15 +48,16 @@ public class Dialogue : MonoBehaviour
         {
             Debug.Log(players[i]);
         }
-        if (players.Contains(0))
-        {   
-            StartCoroutine(um.DisplayDialogue(GetBadgerSingle().dialogue, GetBadgerSingle().icon));
-        }
-        else if(players.Contains(1)) 
+        if (players.Contains(1))
         {
             StartCoroutine(um.DisplayDialogue(GetBunnySingle().dialogue, GetBunnySingle().icon));
             Debug.Log(GetBunnySingle().dialogue);
         }
+        else if (players.Contains(0))
+        {   
+            StartCoroutine(um.DisplayDialogue(GetBadgerSingle().dialogue, GetBadgerSingle().icon));
+        }
+        
         else if (players.Contains(2))
         {
             StartCoroutine(um.DisplayDialogue(GetDuckSingle().dialogue, GetDuckSingle().icon));
