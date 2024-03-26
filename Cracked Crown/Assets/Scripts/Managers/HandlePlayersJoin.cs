@@ -34,7 +34,7 @@ public class HandlePlayersJoin : MonoBehaviour
             GM.PMs[x].PB = GM.Players[i].PB;
             if (GM.CampaignStart)
             {
-                SceneManager.MoveGameObjectToScene(GM.PMs[x].PB.playerContainer.gameObject, persistentScene);
+                SceneManager.MoveGameObjectToScene(GM.Players[x].PB.playerContainer.gameObject, persistentScene);
             }
             x++;
         }

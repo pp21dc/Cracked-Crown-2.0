@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3734796956833218277
+--- !u!1 &3353421772918017113
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,25 +8,25 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 690868290865742894}
-  - component: {fileID: 4697298544936112438}
-  - component: {fileID: 2045882124332096101}
-  - component: {fileID: 1806928966219340711}
-  - component: {fileID: 212506021662096080}
+  - component: {fileID: 1168917652520664392}
+  - component: {fileID: 701739450424341797}
+  - component: {fileID: 4406402512733622892}
+  - component: {fileID: 6745871983485547224}
+  - component: {fileID: 7185901536029191798}
   m_Layer: 0
-  m_Name: OpeningVideo
+  m_Name: WINVIDEO
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &690868290865742894
+--- !u!4 &1168917652520664392
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3734796956833218277}
+  m_GameObject: {fileID: 3353421772918017113}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 162.6554, y: 64.239655, z: 6.0256805}
@@ -35,73 +35,15 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!328 &4697298544936112438
+--- !u!328 &701739450424341797
 VideoPlayer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3734796956833218277}
+  m_GameObject: {fileID: 3353421772918017113}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 9c1f50a452813414a8398e9404520656, type: 3}
-  m_TargetCameraAlpha: 1
-  m_TargetCamera3DLayout: 0
-  m_TargetCamera: {fileID: 0}
-  m_TargetTexture: {fileID: 0}
-  m_TimeReference: 0
-  m_TargetMaterialRenderer: {fileID: 0}
-  m_TargetMaterialProperty: <noninit>
-  m_RenderMode: 1
-  m_AspectRatio: 2
-  m_DataSource: 0
-  m_TimeUpdateMode: 2
-  m_PlaybackSpeed: 1
-  m_AudioOutputMode: 2
-  m_TargetAudioSources:
-  - {fileID: 0}
-  m_DirectAudioVolumes:
-  - 1
-  m_Url: 
-  m_EnabledAudioTracks: 01
-  m_DirectAudioMutes: 00
-  m_ControlledAudioTrackCount: 1
-  m_PlayOnAwake: 1
-  m_SkipOnDrop: 1
-  m_Looping: 0
-  m_WaitForFirstFrame: 1
-  m_FrameReadyEventEnabled: 0
-  m_VideoShaders: []
---- !u!114 &2045882124332096101
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3734796956833218277}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b55894eede7998a4098217ab65ea1327, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  videos:
-  - {fileID: 32900000, guid: 9c1f50a452813414a8398e9404520656, type: 3}
-  - {fileID: 32900000, guid: 5dc74f78d4a228e4182d98b83cbbb489, type: 3}
-  - {fileID: 32900000, guid: fadd7724192919d4d9d0e1cb75375246, type: 3}
-  players:
-  - {fileID: 4697298544936112438}
-  - {fileID: 1806928966219340711}
-  - {fileID: 212506021662096080}
-  player: {fileID: 4697298544936112438}
-  active: 1
---- !u!328 &1806928966219340711
-VideoPlayer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3734796956833218277}
-  m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 5dc74f78d4a228e4182d98b83cbbb489, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: a5f1e8224aa696e4ead713b9a0d1de5e, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
@@ -129,15 +71,73 @@ VideoPlayer:
   m_WaitForFirstFrame: 1
   m_FrameReadyEventEnabled: 0
   m_VideoShaders: []
---- !u!328 &212506021662096080
+--- !u!114 &4406402512733622892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3353421772918017113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b55894eede7998a4098217ab65ea1327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  videos:
+  - {fileID: 32900000, guid: a5f1e8224aa696e4ead713b9a0d1de5e, type: 3}
+  - {fileID: 32900000, guid: c6c9fa030563c784ebb06a67f38ec561, type: 3}
+  - {fileID: 32900000, guid: c6e7da664f95f334cb0b4b52f52199a8, type: 3}
+  players:
+  - {fileID: 701739450424341797}
+  - {fileID: 6745871983485547224}
+  - {fileID: 7185901536029191798}
+  player: {fileID: 701739450424341797}
+  active: 0
+--- !u!328 &6745871983485547224
 VideoPlayer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3734796956833218277}
+  m_GameObject: {fileID: 3353421772918017113}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: fadd7724192919d4d9d0e1cb75375246, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: c6c9fa030563c784ebb06a67f38ec561, type: 3}
+  m_TargetCameraAlpha: 1
+  m_TargetCamera3DLayout: 0
+  m_TargetCamera: {fileID: 0}
+  m_TargetTexture: {fileID: 0}
+  m_TimeReference: 0
+  m_TargetMaterialRenderer: {fileID: 0}
+  m_TargetMaterialProperty: <noninit>
+  m_RenderMode: 1
+  m_AspectRatio: 2
+  m_DataSource: 0
+  m_TimeUpdateMode: 2
+  m_PlaybackSpeed: 1
+  m_AudioOutputMode: 2
+  m_TargetAudioSources:
+  - {fileID: 0}
+  m_DirectAudioVolumes:
+  - 1
+  m_Url: 
+  m_EnabledAudioTracks: 01
+  m_DirectAudioMutes: 00
+  m_ControlledAudioTrackCount: 1
+  m_PlayOnAwake: 0
+  m_SkipOnDrop: 1
+  m_Looping: 0
+  m_WaitForFirstFrame: 1
+  m_FrameReadyEventEnabled: 0
+  m_VideoShaders: []
+--- !u!328 &7185901536029191798
+VideoPlayer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3353421772918017113}
+  m_Enabled: 1
+  m_VideoClip: {fileID: 32900000, guid: c6e7da664f95f334cb0b4b52f52199a8, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}

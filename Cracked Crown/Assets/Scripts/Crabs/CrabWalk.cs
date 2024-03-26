@@ -34,7 +34,7 @@ public class CrabWalk : MonoBehaviour
     void Update()
     {
 
-        foreach(PlayerManager pc in GM.PMs) 
+        foreach(PlayerContainer pc in GM.Players) 
         {
             //while (i < player.Length)
             //{
