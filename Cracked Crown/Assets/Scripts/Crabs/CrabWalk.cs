@@ -33,42 +33,46 @@ public class CrabWalk : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        for (int i = 0; i < 4; i++)
+
+        for (int i = 0; i < player.Length; i++)
         {
+            //while (i < player.Length)
+            //{
 
             player = GameObject.FindGameObjectsWithTag("Player");
             PB = player[i].gameObject.transform.GetComponent<PlayerBody>();
 
             if (player[i] != null)
-            {
-                if (gameObject.tag == "Mini Crab" || gameObject.tag == "MiniCrabExecutable")
                 {
-                    canMove = true;
-                    gameObject.transform.GetChild(0).gameObject.SetActive(true);
-                }
-            }
-            if (gameObject.tag == "StruggleCrab")
-            {
-                if (PB != null)
-                {
-                    if (PB.Grabbed == true)
+                    if (gameObject.tag == "Mini Crab" || gameObject.tag == "MiniCrabExecutable")
                     {
                         canMove = true;
                         gameObject.transform.GetChild(0).gameObject.SetActive(true);
                     }
                 }
-            }
-            if (gameObject.tag == "ReviveCrab")
-            {
-                if (PB != null)
+                if (gameObject.tag == "StruggleCrab")
                 {
-                    if (PB.alreadyDead == true)
+                    if (PB != null)
                     {
-                        canMove = true;
-                        gameObject.transform.GetChild(0).gameObject.SetActive(true);
+                        if (PB.Grabbed == true)
+                        {
+                            canMove = true;
+                            gameObject.transform.GetChild(0).gameObject.SetActive(true);
+                        }
                     }
                 }
-            }
+                if (gameObject.tag == "ReviveCrab")
+                {
+                    if (PB != null)
+                    {
+                        if (PB.alreadyDead == true)
+                        {
+                            canMove = true;
+                            gameObject.transform.GetChild(0).gameObject.SetActive(true);
+                        }
+                    }
+                }
+            //}
         }
         if (canMove)
         {
