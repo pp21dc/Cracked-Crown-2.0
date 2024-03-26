@@ -1082,7 +1082,7 @@ public class EnemyAIController : AdvancedFSM
             }
 
             //Debug.Log(randTrans);
-            movementVector = (randTrans - enemyPosition.transform.position).normalized * lightSpeed;
+            movementVector = (randTrans - enemyPosition.transform.position).normalized * speed;
             enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
         }
         //call player carry method, move the light enemy to a random point, if timer runs out, drop player go to find player, use rand on an x and z for a random direction
