@@ -83,6 +83,12 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Sprite[] CharacterIcons;
     [SerializeField] private GameObject[] iconObjects;
 
+    [SerializeField] AudioClip[] badger;
+    [SerializeField] AudioClip[] duck;
+    [SerializeField] AudioClip[] frog;
+    [SerializeField] AudioClip[] bunny;
+    [SerializeField] AudioSource dialogueSource;
+
     [Header("Player1 Icon Objects")]
     [SerializeField] private GameObject p1BunnyIcon;
     public enum characterIcons {Frog, Bunny, Duck, HoneyBadger };
@@ -272,12 +278,19 @@ public class UIManager : MonoBehaviour
 
         for (int i = 0; i < ca.Length; i++)
         {
-            for (int j = 0; j <= i; j++)
-            {
-                temp[j] = ca[j];
+            //for (int j = 0; j <= i; j++)
+            //{
+                temp[i] = ca[i];
+                dialogueSource.pitch = UnityEngine.Random.Range(1, 1.5f);
+                int ct = UnityEngine.Random.Range(0, 2);
+
+            /*if(i % 2 == 0)
+                dialogueSource.PlayOneShot(badger[ct]);*/
+                
                 DialogueBar.SetText(temp);
+            dialogueSource.pitch = 1;
                 yield return new WaitForSeconds(dialogueTimer);
-            }
+            //}
         }
 
 

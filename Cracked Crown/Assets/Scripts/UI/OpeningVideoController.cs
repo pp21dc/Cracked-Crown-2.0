@@ -50,6 +50,7 @@ public class OpeningVideoController : MonoBehaviour
     {
         if (active)
         {
+            Debug.LogWarning("VideoControllerUpdate");
             //Looks to see if a key has been pressed to skip to next video
             if (Input.anyKeyDown && j < players.Length)
             {
