@@ -165,6 +165,24 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /*public void E()
+    {
+        if (roarSpawn)
+        {
+            LevelManager.Instance.SpawnersActive = true;
+        }
+        else
+        {
+            LevelManager.Instance.SpawnersActive = false;
+        }
+
+        if (bossDead)
+        {
+            GameManager.Instance.win = true;
+        }
+
+    }*/
+
 
     bool lost = false;
     public bool AreAllPlayersDead()
@@ -329,6 +347,7 @@ public class GameManager : MonoBehaviour
         locker_Boss = false;
         //isLoading = false;
         SetPlayerPositions();
+        FreezePlayers(false);
 
         if (!levelName.Equals(MainMenuName))
         {

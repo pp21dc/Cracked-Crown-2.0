@@ -39,6 +39,7 @@ public class OpeningVideoController : MonoBehaviour
         for(int i = 0; i < players.Length; i++) 
         {
             players[i].enabled = true;
+            players[i].Prepare();
             j = 0;
 
         }
