@@ -33,7 +33,7 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 3000
   stringTagMap:
     RenderType: Transparent
   disabledShaderPasses:
@@ -95,11 +95,11 @@ Material:
     - _ZTest: 4
     - _ZWrite: 0
     - _ZWriteControl: 0
-    - _blob1Size: 0.054015987
-    - _blob2Size: 0.060871653
-    - _blob3Size: 0.07985895
-    - _blob4Size: 0.056135252
-    - _blob5Size: 0.06608827
+    - _blob1Size: 0.06173454
+    - _blob2Size: 0.079875596
+    - _blob3Size: 0.053962026
+    - _blob4Size: 0.072911665
+    - _blob5Size: 0.06242283
     - _goopFactor: 0.1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
@@ -107,10 +107,10 @@ Material:
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
     - _backgroundColor: {r: 0.57647055, g: 0, b: 0, a: 0}
     - _blobColor: {r: 0.42352936, g: 0, b: 0, a: 0}
-    - _xyPos0: {r: 0.4642685, g: 0.059755616, b: 0, a: 0}
-    - _xyPos1: {r: 0.23630938, g: 0.053642914, b: 0, a: 0}
-    - _xyPos2: {r: 0.4425286, g: 0.059382163, b: 0, a: 0}
-    - _xyPos3: {r: -0.08305647, g: 0.059770487, b: 0, a: 0}
-    - _xyPos4: {r: -0.114679545, g: 0.038015645, b: 0, a: 0}
-    - _xyPos5: {r: 0.34590042, g: 0.07573952, b: 0, a: 0}
+    - _xyPos0: {r: -0.045589343, g: -0.0025309052, b: 0, a: 0}
+    - _xyPos1: {r: -0.2822844, g: 0.09975427, b: 0, a: 0}
+    - _xyPos2: {r: 0.4865128, g: -0.027864315, b: 0, a: 0}
+    - _xyPos3: {r: 0.15136352, g: 0.010165389, b: 0, a: 0}
+    - _xyPos4: {r: 0.3664687, g: 0.07895199, b: 0, a: 0}
+    - _xyPos5: {r: 0.3660051, g: -0.078104675, b: 0, a: 0}
   m_BuildTextureStacks: []
