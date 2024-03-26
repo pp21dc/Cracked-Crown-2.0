@@ -186,9 +186,9 @@ MonoBehaviour:
   - {fileID: 9100000, guid: 8c9e07731ef21ce4e8b916d3183262f7, type: 2}
   - {fileID: 9100000, guid: cac707ea9cb6e4e4594e3ce15ce6c63e, type: 2}
   Heavy_AC:
-  - {fileID: 9100000, guid: 9d9d0beaa53173c47bfab38292be84de, type: 2}
   - {fileID: 9100000, guid: c27b8276fbc385c46a26e5f08607191b, type: 2}
-  - {fileID: 0}
+  - {fileID: 9100000, guid: c27b8276fbc385c46a26e5f08607191b, type: 2}
+  - {fileID: 9100000, guid: cac707ea9cb6e4e4594e3ce15ce6c63e, type: 2}
   SR: {fileID: 5066516171063127712}
   EAIC: {fileID: 3777765676232313991}
   Dead: 0
@@ -202,6 +202,7 @@ MonoBehaviour:
   Grabbing: 0
   HitReact: 0
   Spawn: 0
+  ShockWave: 0
   Dashing: 0
 --- !u!212 &5066516171063127712
 SpriteRenderer:

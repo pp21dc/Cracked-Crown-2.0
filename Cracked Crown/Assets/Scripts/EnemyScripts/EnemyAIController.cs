@@ -1282,11 +1282,12 @@ public class EnemyAIController : AdvancedFSM
     {
         while (canShoot)
         {
+            EAC.Attacking = true;
             StartShootTeeth(enemyPosition, ToothShotLocation.transform);
             heavyBullets--;
             yield return new WaitForSeconds(0.45f);
         }
-
+        EAC.Attacking = false;
         shootOnCD = true;
         StartCoroutine(cooldown());
 
@@ -1318,6 +1319,7 @@ public class EnemyAIController : AdvancedFSM
     {
         if(startShock)
         {
+            EAC.ShockWave = true;
             shockwaveCol.SetActive(true);
             noShockCooldown = false;
             startShock = false;
@@ -1364,6 +1366,7 @@ public class EnemyAIController : AdvancedFSM
 
         if(startReload)
         {
+
             startReload = false;
             StartCoroutine(Reload());
         }
