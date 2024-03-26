@@ -27,7 +27,7 @@ public class StunnedState : FSMState
             enemy.PerformTransition(Transition.NoHealth);
             return;
         }
-        else if (enemy.Health <= enemy.maxHealth * 0.5f)
+        else if (enemy.Health <= enemy.maxHealth * 0.33f)
         {
 
             enemy.PerformTransition(Transition.LowHealth);

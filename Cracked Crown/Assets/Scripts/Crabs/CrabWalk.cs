@@ -12,7 +12,7 @@ public class CrabWalk : MonoBehaviour
     bool alreadyAtPos = false;
     public bool canMove = false;
 
-    GameObject[] player = new GameObject[4];
+    PlayerBody player;
     GameObject[] ghost = null;
     PlayerBody PB;
 
@@ -34,44 +34,42 @@ public class CrabWalk : MonoBehaviour
     void Update()
     {
 
-        for (int i = 0; i < player.Length; i++)
+        foreach(PlayerManager pc in GM.PMs) 
         {
             //while (i < player.Length)
             //{
+            PB = pc.PB;
 
-            player = GameObject.FindGameObjectsWithTag("Player");
-            PB = player[i].gameObject.transform.GetComponent<PlayerBody>();
-
-            if (player[i] != null)
+            if (PB != null)
+            {
+                if (gameObject.tag == "Mini Crab" || gameObject.tag == "MiniCrabExecutable")
                 {
-                    if (gameObject.tag == "Mini Crab" || gameObject.tag == "MiniCrabExecutable")
+                    canMove = true;
+                    gameObject.transform.GetChild(0).gameObject.SetActive(true);
+                }
+            }
+            if (gameObject.tag == "StruggleCrab")
+            {
+                if (PB != null)
+                {
+                    if (PB.Grabbed == true)
                     {
                         canMove = true;
                         gameObject.transform.GetChild(0).gameObject.SetActive(true);
                     }
                 }
-                if (gameObject.tag == "StruggleCrab")
+            }
+            if (gameObject.tag == "ReviveCrab")
+            {
+                if (PB != null)
                 {
-                    if (PB != null)
+                    if (PB.alreadyDead == true)
                     {
-                        if (PB.Grabbed == true)
-                        {
-                            canMove = true;
-                            gameObject.transform.GetChild(0).gameObject.SetActive(true);
-                        }
+                        canMove = true;
+                        gameObject.transform.GetChild(0).gameObject.SetActive(true);
                     }
                 }
-                if (gameObject.tag == "ReviveCrab")
-                {
-                    if (PB != null)
-                    {
-                        if (PB.alreadyDead == true)
-                        {
-                            canMove = true;
-                            gameObject.transform.GetChild(0).gameObject.SetActive(true);
-                        }
-                    }
-                }
+            }
             //}
         }
         if (canMove)
@@ -111,7 +109,7 @@ public class CrabWalk : MonoBehaviour
 
     private IEnumerator deathTime()
     {
-        yield return new WaitForSeconds(0.005f);
+        yield return new WaitForSeconds(0.000f);
         hasDied = true;
     }
 }

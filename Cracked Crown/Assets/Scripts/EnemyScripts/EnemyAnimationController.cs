@@ -28,6 +28,7 @@ public class EnemyAnimationController : MonoBehaviour
     public bool Grabbing;
     public bool HitReact;
     public bool Spawn;
+    public bool ShockWave;
     float timer;
 
     [Header("Medium Enemy")]
@@ -92,6 +93,11 @@ public class EnemyAnimationController : MonoBehaviour
                 animator.SetBool("Grabbing", Grabbing);
             }
 
+            if (transform.parent.parent.CompareTag("Heavy"))
+            {
+                animator.SetBool("ShockWave", ShockWave);
+            }
+
 
 
             if (Stunned)
@@ -109,6 +115,10 @@ public class EnemyAnimationController : MonoBehaviour
         }
     }
 
+    public void EndShockwave()
+    {
+        ShockWave = false;
+    }
 
     public void EndAttack()
     {

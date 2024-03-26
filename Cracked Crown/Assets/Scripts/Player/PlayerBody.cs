@@ -221,6 +221,8 @@ public class PlayerBody : MonoBehaviour
                 lockDash = true;
                 canExecute = false;
             }
+            if (health > 0 && alreadyDead)
+                ghostCoins = 10;
             if (ghostCoins >= 10)
             {
 
@@ -248,6 +250,12 @@ public class PlayerBody : MonoBehaviour
             Dash();
             UseItem();
 
+            if (Grabbed && !lockRelease)
+            {
+                lockRelease = true;
+                StartCoroutine(Release());
+            }
+
             if (transform.position.y < 2 || Grabbed) //NEW 3/25
                 vely = 0;
             vely += -9.81f;
@@ -255,6 +263,15 @@ public class PlayerBody : MonoBehaviour
             rb.velocity = new Vector3(rb.velocity.x, vely, rb.velocity.z);
         }
     }
+
+    bool lockRelease;
+    private IEnumerator Release()
+    {
+        yield return new WaitForSeconds(3.5f);
+        Grabbed = false;
+        lockRelease = false;
+    }
+
     float vely = 0;
     private IEnumerator executeAfterRevive()
     {
