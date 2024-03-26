@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour
     public GameObject LoadingScreen;
    
     public bool CampaignStart = false;
-
+    public bool win = false;
     public bool Pause = false;
     public bool waitforvideo = true;
     public float eyeCount = 0;
@@ -155,7 +155,13 @@ public class GameManager : MonoBehaviour
 
             if (!lost && AreAllPlayersDead())
                 StartCoroutine(LoseCond());
-
+            if (win)
+            {
+                win = false;
+                video_win.PlayVideo();
+                RevivePlayers();
+                ReturnToMainMenu();
+            }
         }
     }
 
