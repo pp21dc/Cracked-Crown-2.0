@@ -108,20 +108,8 @@ public class BossPhases : MonoBehaviour
         {
             clawdead = true;
             StopAllCoroutines();
-            bossAnim.StopPlayback();
+            bossAnim.Play("leave");
             return;
-        }
-        if (gameObject.name == "clawRight")
-        {
-            if (!delayed)
-            {
-                StartCoroutine(delay(3));
-                return;
-            }
-        }
-        else
-        {
-            StartCoroutine(delay(2));
         }
 
         if (bosshealth <= 0)
@@ -135,6 +123,7 @@ public class BossPhases : MonoBehaviour
             return;
         }
 
+        /*
         if (roarSpawn)
         {
             LevelManager.Instance.SpawnersActive = true;
@@ -142,9 +131,9 @@ public class BossPhases : MonoBehaviour
         else
         {
             LevelManager.Instance.SpawnersActive = false;
-        }
+        }*/
 
-        if (otherClaw.isDead()) //this var is what ever one you use to tell if boss is dead
+        if (otherClaw.isDead() && isDead()) //this var is what ever one you use to tell if boss is dead
         {
             GameManager.Instance.win = true;
         }
@@ -242,16 +231,15 @@ public class BossPhases : MonoBehaviour
     public IEnumerator delay(int time)
     {
         yield return new WaitForSeconds(time);
-        delayed = true;
     }
 
     public IEnumerator FlashRed(SpriteRenderer s)
     {
-        s.material = whiteMat;
+        DmgOverlay.GetComponent<SpriteRenderer>().color = Color.red;
 
         yield return new WaitForSeconds(0.2f);
 
-        s.material = baseMat;
+        DmgOverlay.GetComponent<SpriteRenderer>().color = Color.white;
 
     }
 
@@ -304,8 +292,18 @@ public class BossPhases : MonoBehaviour
 
     private GameObject chooseFollow()
     {
+        if (PlayerList.Length == 1)
+        {
+            if (otherClaw.FollowedPlayer != null)
+            {
+                return null;
+            }
+        }
+
+
         float[] playerdist = new float[PlayerList.Length];
         int selection = 0;
+
         for (int i = 0; i < PlayerList.Length; i++)
         {
             playerdist[i] = Vector3.Distance(gameObject.transform.position, PlayerList[i].transform.position);
@@ -329,16 +327,12 @@ public class BossPhases : MonoBehaviour
         }
         if (otherClaw.FollowedPlayer == PlayerList[selection])
         {
-            if (PlayerList.Length != 1)
-            {
-                chooseFollow();
-            }
+             return chooseFollow();
         }
         else
         {
-            FollowedPlayer = PlayerList[selection];
+            return PlayerList[selection];
         }
-        return FollowedPlayer;
     }
 
     private void pincerAttack() // handles actions relying on the pincer IEnumerator's timings
@@ -384,7 +378,7 @@ public class BossPhases : MonoBehaviour
 
     IEnumerator PincerAttack() // handles timings for the pincer function phases
     {
-        chooseFollow();
+        FollowedPlayer = chooseFollow();
 
         if (FollowedPlayer == null)
         {
@@ -395,6 +389,12 @@ public class BossPhases : MonoBehaviour
         clawfollow = true; // allows claw to follow player
 
         yield return new WaitForSeconds(4);
+
+        if (FollowedPlayer == null)
+        {
+            attacktimer = 0f;
+            yield break;
+        }
 
         bossAnim.StopPlayback();
         if (Claw.name == "clawLeft") // plays the appropriate smash animation for the claw using the script
@@ -524,7 +524,7 @@ public class BossPhases : MonoBehaviour
             if (clawgrab && other.gameObject.transform.GetChild(0).GetChild(0).gameObject == FollowedPlayer)
             {
                 GrabbedPlayerBody = other.GetComponent<PlayerBody>();
-                GrabbedPlayerBody.DecHealth(8);
+                GrabbedPlayerBody.DecHealth(4);
                 GrabbedPlayer = other.gameObject;
                 isGrabbed = true;
                 GrabbedPlayerBody.playerLock = true;
