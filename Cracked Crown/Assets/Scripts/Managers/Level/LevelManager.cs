@@ -158,7 +158,7 @@ public class LevelManager : MonoBehaviour
         if (hostile)
         {
             CURRENT_WAVE = 1;
-            if (CURRENT_ROOM < 4)
+            if (CURRENT_ROOM < 3)
                 CURRENT_ROOM += 1;
             Current_Room = Rooms[CURRENT_ROOM - 1];
             currentSpawnTotal = Current_Room.EnemyCount_PerWave[CURRENT_ROOM - 1] * (3 + GM.Players.Length / 4);
