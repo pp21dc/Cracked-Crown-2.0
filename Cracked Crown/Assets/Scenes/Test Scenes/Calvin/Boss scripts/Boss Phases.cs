@@ -104,6 +104,11 @@ public class BossPhases : MonoBehaviour
 
     void Update()
     {
+        if (otherClaw.isDead() && isDead()) //this var is what ever one you use to tell if boss is dead
+        {
+            GameManager.Instance.win = true;
+        }
+
         if (bosshealth <= 0)
         {
             clawdead = true;
@@ -122,7 +127,6 @@ public class BossPhases : MonoBehaviour
             gameObject.GetComponent<BossPhases>().enabled = false;
             return;
         }
-
         /*
         if (roarSpawn)
         {
@@ -132,11 +136,6 @@ public class BossPhases : MonoBehaviour
         {
             LevelManager.Instance.SpawnersActive = false;
         }*/
-
-        if (otherClaw.isDead() && isDead()) //this var is what ever one you use to tell if boss is dead
-        {
-            GameManager.Instance.win = true;
-        }
 
         if (attackLoop)
         {
@@ -496,7 +495,7 @@ public class BossPhases : MonoBehaviour
         {
             Instantiate(ShockWave, ClawSprite.transform.position - new Vector3(-8, 5f, 16), Quaternion.Euler(0, 0, 0)); // instantiates the shockwave part of attack (LEFT)
         }
-        cameraShake.StartCoroutine(cameraShake.Shake(0.15f, 0.4f));
+        cameraShake.StartCoroutine(cameraShake.Shake(0.15f, 2f));
         yield return new WaitForSeconds(1.95f);
         ClawSprite.transform.localPosition = new Vector3(0, 0, 0);
         bossAnim.Play("clawPassive");
@@ -508,12 +507,13 @@ public class BossPhases : MonoBehaviour
     IEnumerator RoarAttack()
     {
         // animation is called
+        mandibleAnim.StopPlayback();
         mandibleAnim.Play("mandibles");
-        cameraShake.StartCoroutine(cameraShake.Shake(2f, 0.1f));
+        cameraShake.StartCoroutine(cameraShake.Shake(2f, 0.4f));
         roarSpawn = true;
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(2.5f);
         roarSpawn = false;
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
 
     }
 
