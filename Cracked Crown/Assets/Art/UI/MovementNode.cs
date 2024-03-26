@@ -61,11 +61,11 @@ public class MovementNode : MonoBehaviour
                 xySpeeds[i].y *= -1;
                 xy[i].y = 0.1f;
             }
-            if(i == 0)
-            Debug.LogWarning(i + ": " + xySpeeds[i]);
+            //if(i == 0)
+            //Debug.LogWarning(i + ": " + xySpeeds[i]);
             
             char[] tempArray = i.ToString().ToCharArray();
-            Debug.LogWarning(tempArray[0]);
+            //Debug.LogWarning(tempArray[0]);
             xyPos[6] = tempArray[0];
             string s = new string(xyPos);
             mat.SetVector(s, xy[i]);

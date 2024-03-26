@@ -22,7 +22,7 @@ public class ResStoneLights : MonoBehaviour
         for (int i = 0; i < gm.PMs.Length; i++)
         {
             float distance = Vector3.Distance(pos, gm.PMs[i].PB.transform.position);
-            Debug.Log(distance);
+            //Debug.Log(distance);
             lights[i].intensity = ((-Mathf.Log(distance)*10+3) * 40) + 1700;
             if(lights[i].intensity < 0)
             {

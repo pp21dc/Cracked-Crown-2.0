@@ -349,11 +349,17 @@ public class GameManager : MonoBehaviour
         SetPlayerPositions();
         FreezePlayers(false);
 
-        if (!levelName.Equals(MainMenuName))
+        if (!levelName.Equals(MainMenuName)/* || !levelName.Equals("TempShop")*/)
         {
-            dialogue.GetPlayers();
+            if (!levelName.Equals("TempShop"))
+            {
+                Debug.LogWarning(levelName);
+                dialogue.GetPlayers();
+                dialogue.SetDialogue();
+            }
+            
         }
-            dialogue.SetDialogue();
+            
             Debug.Log("Called SetDialouge");
 
     }
