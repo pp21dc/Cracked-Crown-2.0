@@ -21,18 +21,21 @@ public class GunState : FSMState
     {
         if (enemy.Health <= 20 && enemy.Health >= 1)
         {
-            
+            enemy.startShooting = true;
+            enemy.heavyBullets = enemy.maxAmmo;
             enemy.PerformTransition(Transition.LowHealth);
             return;
         }
         else if (enemy.Health <= 0)
         {
+
             enemy.PerformTransition(Transition.NoHealth);
             return;
         }
         else if (enemy.Health <= 50f && enemy.shockwaveOnCD == false)
         {
-            
+            enemy.startShooting = true;
+            enemy.heavyBullets = enemy.maxAmmo;
             enemy.PerformTransition(Transition.InShockwaveRange);
             return;
         }
