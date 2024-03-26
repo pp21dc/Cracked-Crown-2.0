@@ -85,7 +85,6 @@ public class PlayerBody : MonoBehaviour
     public bool canExecute = true;
     [HideInInspector]
     public float ghostCoins = 0;
-    [HideInInspector]
     public bool alreadyDead = false;
     [HideInInspector]
     public bool hasBomb = false;
@@ -142,6 +141,7 @@ public class PlayerBody : MonoBehaviour
         playerLock = false;
         Grabbed = false;
         ghostCoins = 20;
+        alreadyDead = false;
     }
 
     private void Update()

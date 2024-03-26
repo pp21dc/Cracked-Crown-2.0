@@ -36,6 +36,11 @@ public class GameManager : MonoBehaviour
     public GameObject[] Characters;
 
     [SerializeField]
+    OpeningVideoController video_lose;
+    [SerializeField]
+    OpeningVideoController video_win;
+
+    [SerializeField]
     public Transform cam;
 
     [SerializeField]
@@ -192,10 +197,12 @@ public class GameManager : MonoBehaviour
     IEnumerator LoseCond()
     {
         yield return new WaitForSeconds(5);
-        if (AreAllPlayersDead() && PMs[0] != null)
+        if (AreAllPlayersDead() && Players[0] != null && !waitforvideo)
         {
             
+            video_lose.PlayVideo();
             RevivePlayers();
+            
             ReturnToMainMenu();
         }
         else
@@ -214,6 +221,15 @@ public class GameManager : MonoBehaviour
             }
         }
         return null;
+    }
+
+    public void FreezePlayers(bool freeze)
+    {
+        foreach (PlayerContainer pc in Players)
+        {
+            if (pc.PB != null)
+                pc.PB.playerLock = freeze;
+        }
     }
 
     private IEnumerator LoadLevel(string levelName)
@@ -263,7 +279,7 @@ public class GameManager : MonoBehaviour
             currentLevelName = levelName;
             IsLevelCleared = false;
             
-            LM.Enter_Level(true);
+            LM.Enter_Level(true, false);
             MainMenu.SetActive(false);
             UIManager.Instance.InGameUI.SetActive(true);
         }
@@ -283,14 +299,15 @@ public class GameManager : MonoBehaviour
             IsLevelCleared = true;
             currentLevelName = ShopName;
             UIManager.Instance.InGameUI.SetActive(true);
-            LM.Enter_Level(false);
+            LM.Enter_Level(false, false);
         }
         else if (levelName.Equals(BossLevelName))
         {
-            LM.ROOM_CLEARED = true;
-            IsLevelCleared = true;
+            LM.ROOM_CLEARED = false;
+            IsLevelCleared = false;
             currentLevelName = BossLevelName;
             UIManager.Instance.InGameUI.SetActive(true);
+            LM.Enter_Level(true, true);
             currentLevel = 5;
         }
         //yield return new WaitForSeconds(0.25f);
@@ -342,6 +359,7 @@ public class GameManager : MonoBehaviour
         //locker = false;
         ResetGame(true);
         StartCoroutine("LoadLevel", MainMenuName);
+        FreezePlayers(true);
         //currentLevelName = MainMenuName;
     }
 

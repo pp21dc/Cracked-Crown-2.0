@@ -11,6 +11,9 @@ public class MoveTowardsClosestPlayer : MonoBehaviour
     [SerializeField]
     private GameObject parent;
 
+    [SerializeField]
+    Rigidbody rb;
+
     private bool playerInRange = false;
     private Transform playerTarget;
     private bool canSpeedUp = true;
@@ -20,7 +23,7 @@ public class MoveTowardsClosestPlayer : MonoBehaviour
     {
         if (playerInRange && playerTarget != null)
         {
-            parent.transform.position = Vector3.MoveTowards(gameObject.transform.position, playerTarget.position, moveSpeed * Time.deltaTime);
+            rb.AddForce((playerTarget.position - gameObject.transform.position) * moveSpeed);
             if (canSpeedUp)
             {
                 StartCoroutine(SpeedUp());

@@ -131,11 +131,11 @@ public class LevelManager : MonoBehaviour
         return 1;
     }
 
-    public void Enter_Level(bool hostile)
+    public void Enter_Level(bool hostile, bool boss)
     {
         CURRENT_WAVE = 1;
         GM.SetPlayerPositions();
-        StartCoroutine(ON_ENTER(hostile));
+        StartCoroutine(ON_ENTER(hostile, boss));
     }
 
     public void EnemySpawned()
@@ -148,7 +148,7 @@ public class LevelManager : MonoBehaviour
         ENEMIES_KILLED += 1;
     }
 
-    private IEnumerator ON_ENTER(bool hostile)
+    private IEnumerator ON_ENTER(bool hostile, bool boss)
     {
         CURRENT_WAVE = 1;
         ROOM_CLEARED = !hostile;
@@ -158,13 +158,15 @@ public class LevelManager : MonoBehaviour
         if (hostile)
         {
             CURRENT_WAVE = 1;
-            CURRENT_ROOM += 1;
+            if (CURRENT_ROOM < 4)
+                CURRENT_ROOM += 1;
             Current_Room = Rooms[CURRENT_ROOM - 1];
             currentSpawnTotal = Current_Room.EnemyCount_PerWave[CURRENT_ROOM - 1] * (3 + GM.Players.Length / 4);
             SpawnTimer = 0;
             WAIT_NEXTSPAWN_VALUE = 0.2f;
 
-            SpawnersActive = true;
+            if (!boss)
+                SpawnersActive = true;
         }
     }
 
