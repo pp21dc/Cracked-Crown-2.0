@@ -99,6 +99,7 @@ public class BossPhases : MonoBehaviour
             PlayerList[i] = TempList[i]; // creates a list of all players in the scene
         }
         bossAnim.Play("clawPassive");
+        cameraShake = FindObjectOfType<CameraShake>();
     }
 
     void Update()
@@ -122,6 +123,7 @@ public class BossPhases : MonoBehaviour
         {
             StartCoroutine(delay(2));
         }
+
         if (bosshealth <= 0)
         {
             if (GrabbedPlayerBody != null)
@@ -132,6 +134,7 @@ public class BossPhases : MonoBehaviour
             gameObject.GetComponent<BossPhases>().enabled = false;
             return;
         }
+
         if (roarSpawn)
         {
             LevelManager.Instance.SpawnersActive = true;
@@ -145,19 +148,9 @@ public class BossPhases : MonoBehaviour
         {
             GameManager.Instance.win = true;
         }
-        /*if (attacktimer <= 0)
-        {
-            testAttack = "empty";
-            TestLoop();
-        }
-        if (testAttack == "pincer")
-        {
-            pincerAttack();
-        }
-        attacktimer -= Time.deltaTime;*/
 
         if (attackLoop)
-       {
+        {
            // attacks called in a continuous loop
            if (attacktimer <= 0)
            {
@@ -336,7 +329,10 @@ public class BossPhases : MonoBehaviour
         }
         if (otherClaw.FollowedPlayer == PlayerList[selection])
         {
-            chooseFollow();
+            if (PlayerList.Length != 1)
+            {
+                chooseFollow();
+            }
         }
         else
         {
