@@ -339,7 +339,16 @@ public class PlayerBody : MonoBehaviour
         {
             animController.Moving = false;
         }
+
+        if (!offSprite && !spriteRenderer.enabled)
+        {
+            offSprite = true;
+            StartCoroutine(SpriteOn());
+        }
+
     }
+    SpriteRenderer sr;
+    bool offSprite;
 
     public Vector3 GetMovementVector()
     {
@@ -347,6 +356,13 @@ public class PlayerBody : MonoBehaviour
         float xInput = controller.HorizontalMagnitude;
         Vector3 mV= new Vector3(xInput, 0, zInput);
         return mV;
+    }
+
+    public IEnumerator SpriteOn()
+    {
+        yield return new WaitForSeconds(7);
+        spriteRenderer.enabled = true;
+        offSprite = false;
     }
 
     public Vector3 movementVector;
@@ -537,6 +553,7 @@ public class PlayerBody : MonoBehaviour
         attackKnockback = CharacterType.attackKnockback;
         deathBody = CharacterType.corpse;
         attackDelayTime = CharacterType.attackDelayTime;
+        
     }
     float x = 0;
     float attackTimer = 0;
