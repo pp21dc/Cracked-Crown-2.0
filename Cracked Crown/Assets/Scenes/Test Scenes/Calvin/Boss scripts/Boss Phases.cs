@@ -127,7 +127,7 @@ public class BossPhases : MonoBehaviour
             gameObject.GetComponent<BossPhases>().enabled = false;
             return;
         }
-        /*
+        
         if (roarSpawn)
         {
             LevelManager.Instance.SpawnersActive = true;
@@ -135,7 +135,7 @@ public class BossPhases : MonoBehaviour
         else
         {
             LevelManager.Instance.SpawnersActive = false;
-        }*/
+        }
 
         if (attackLoop)
         {
