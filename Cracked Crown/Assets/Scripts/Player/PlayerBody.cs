@@ -456,6 +456,7 @@ public class PlayerBody : MonoBehaviour
         if (dashing)
         {
             float dz = dashDirection.z;
+            //canTakeDamage = false;
             dashDirection.z *= 1.1f;
             rb.velocity = (new Vector3(0, rb.velocity.y) + ((dashDirection * dashSpeed * forceMod * 0.9f)) * Time.fixedDeltaTime);
             dashDirection.z = dz;
