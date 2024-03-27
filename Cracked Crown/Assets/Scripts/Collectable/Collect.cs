@@ -21,9 +21,9 @@ public class Collect : MonoBehaviour
         // so it only does it to the bomb and potion
         if (gameObject.tag == "Bomb" || gameObject.tag == "Potion")
         {
-            for (int i = 0; i < gameManager.PMs.Length; i++)
+            for (int i = 0; i < gameManager.Players.Length; i++)
             {
-                float distance = Vector3.Distance(initialPos, gameManager.PMs[i].PB.transform.position);
+                float distance = Vector3.Distance(initialPos, gameManager.Players[i].PB.transform.position);
                 currentPos = ((-Mathf.Log(distance)) + 5);
 
                 if (currentPos >= 3)
