@@ -300,12 +300,12 @@ public class UIManager : MonoBehaviour
 
     private void GetHealthBarMats()
     {
-        Debug.Log("getting Mats");
+        //Debug.Log("getting Mats");
         playerHealthBars[0] = player1HealthBarObj.GetComponent<Image>().material;
         playerHealthBars[1] = player2HealthBarObj.GetComponent<Image>().material;
         playerHealthBars[2] = player3HealthBarObj.GetComponent<Image>().material;
         playerHealthBars[3] = player4HealthBarObj.GetComponent<Image>().material;
-        Debug.Log("got mats");
+        //Debug.Log("got mats");
     }  
 
     private void SetRingShine()
