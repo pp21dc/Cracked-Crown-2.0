@@ -9,7 +9,7 @@ public class Bomb : MonoBehaviour
 {
     public Vector3 direction;
 
-    private float damage = 1000f;
+    public float damage = 1000f;
     private int count = 0;
     private bool playOnce = true;
     private int counter = 0;
@@ -77,23 +77,6 @@ public class Bomb : MonoBehaviour
             playOnce = false;
         }
         rb.velocity += new Vector3(0, gravity, 0) * thing * Time.deltaTime;
-
-        if (enteredTrigger)
-        {
-            if (!enemiesInRange.Contains(currentEnemy))
-            {
-                enemiesInRange.Add(currentEnemy);
-            }
-            enteredTrigger = false;
-        }
-        if (exitedTrigger)
-        {
-            if (enemiesInRange.Contains(currentEnemy))
-            {
-                enemiesInRange.Remove(currentEnemy);
-            }
-            exitedTrigger = false;
-        }
     }
 
     private IEnumerator ColourFlash()
@@ -118,10 +101,8 @@ public class Bomb : MonoBehaviour
         {
             foreach (EnemyAIController enemy in enemiesInRange)
             {
-                if (Vector3.Distance(transform.position, enemy.transform.position) < 10.0f)
-                {
-                    enemy.DecHealth(damage);
-                }
+                enemy.DecHealth(damage);
+                Debug.Log(enemy.name);
             }
         }
 
@@ -151,25 +132,28 @@ public class Bomb : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Light" || other.tag == "Medium" || other.tag == "Heavy")
+
+        if (other.tag == "Enemy")
         {
             currentEnemy = other.transform.parent.GetChild(0).gameObject.GetComponent<EnemyAIController>();
-            enteredTrigger = true;
+            if (!enemiesInRange.Contains(currentEnemy))
+                enemiesInRange.Add(currentEnemy);
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Medium" || other.tag == "Heavy" || other.tag == "Light")
+        if (other.tag == "Enemy")
         {
             currentEnemy = other.transform.parent.GetChild(0).gameObject.GetComponent<EnemyAIController>();
-            exitedTrigger = true;
+            
+            enemiesInRange.Remove(currentEnemy);
         }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Player" || collision.gameObject.tag == "Medium" || collision.gameObject.tag == "Heavy" || collision.gameObject.tag == "Light")
+        if (collision.gameObject.tag == "Ground")
         {
             counter++;
         }
