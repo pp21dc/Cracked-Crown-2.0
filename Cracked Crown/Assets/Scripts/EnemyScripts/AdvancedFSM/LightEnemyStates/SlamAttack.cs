@@ -34,7 +34,7 @@ public class SlamAttack : MonoBehaviour
                 Debug.Log("SLAM HIT");
                 player.Grabbed = true;
                 enemyAIController.StartCoroutine(enemyAIController.ResetPlayerGrab(player));
-                player.DecHealth(0.5f);
+                player.DecHealth(4f);
                 hasHit = true;
                 hitPlayer = player;
                 hitPlayerBody = other.gameObject;

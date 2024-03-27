@@ -12,7 +12,7 @@ public class ShockWaveManager : MonoBehaviour
         {
             PlayerBody pb = other.GetComponent<PlayerBody>();
             StartCoroutine(pb.gotHitKnockback(-pb.GetMovementVector()));
-            pb.DecHealth(3f);
+            pb.DecHealth(8f);
         }
     }
 }

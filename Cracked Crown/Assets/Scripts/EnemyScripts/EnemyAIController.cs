@@ -372,6 +372,7 @@ public class EnemyAIController : AdvancedFSM
         //enemy speeds
         lightSpeed = 50f;
         mediumSpeed = 35f;
+        HeavyDashSpeed = 115f;
         heavySpeed = 25f;
 
         ConstructFSM();
@@ -1233,11 +1234,11 @@ public class EnemyAIController : AdvancedFSM
         {
             EAC.Dashing = true;
 
-            TargetPlayerPos = closest.transform.position;
+            TargetPlayerPos = new Vector3(closest.transform.position.x + Random.Range(-2,2), closest.transform.position.y, closest.transform.position.z + Random.Range(-2,2));
 
             Damage.enabled = true;
 
-            yield return new WaitForSeconds(2.5f);
+            yield return new WaitForSeconds(1.2f);
 
             
             Damage.enabled = false;
@@ -1442,7 +1443,7 @@ public class EnemyAIController : AdvancedFSM
         {
             if(dashOnCD == true)
             {
-                yield return new WaitForSeconds(1.7f);
+                yield return new WaitForSeconds(0.77f);
                 dashOnCD = false;
             }
         }
@@ -1455,7 +1456,7 @@ public class EnemyAIController : AdvancedFSM
             }
             else if(shootOnCD == true) 
             {
-                yield return new WaitForSeconds(3f);
+                yield return new WaitForSeconds(2f);
                 shootOnCD = false;
             }
         }
@@ -1482,7 +1483,14 @@ public class EnemyAIController : AdvancedFSM
                 movementVector = (SepLoc.position - enemyPosition.transform.position).normalized * mediumSpeed;
                 enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
 
-                
+                if (closest != null && enemyPosition != null && closest.transform.position.x + 1 > enemyPosition.transform.position.x)
+                {
+                    EAC.SR.flipX = false;
+                }
+                else
+                {
+                    EAC.SR.flipX = true;
+                }
 
             }
             else if(gameObject.CompareTag("Heavy"))
@@ -1490,7 +1498,14 @@ public class EnemyAIController : AdvancedFSM
                 movementVector = (SepLoc.position - enemyPosition.transform.position).normalized * heavySpeed;
                 enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
 
-                
+                if (closest != null && enemyPosition != null && closest.transform.position.x + 1 > enemyPosition.transform.position.x)
+                {
+                    EAC.SR.flipX = false;
+                }
+                else
+                {
+                    EAC.SR.flipX = true;
+                }
 
             }
             
@@ -1502,7 +1517,14 @@ public class EnemyAIController : AdvancedFSM
                 movementVector = (SepLoc.position - enemyPosition.transform.position).normalized * mediumSpeed;
                 enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
 
-                
+                if (closest != null && enemyPosition != null && closest.transform.position.x + 1 > enemyPosition.transform.position.x)
+                {
+                    EAC.SR.flipX = false;
+                }
+                else
+                {
+                    EAC.SR.flipX = true;
+                }
 
             }
             else if (gameObject.CompareTag("Heavy"))
@@ -1510,19 +1532,19 @@ public class EnemyAIController : AdvancedFSM
                 movementVector = (SepLoc.position - enemyPosition.transform.position).normalized * heavySpeed;
                 enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
 
-                
+                if (closest != null && enemyPosition != null && closest.transform.position.x + 1 > enemyPosition.transform.position.x)
+                {
+                    EAC.SR.flipX = false;
+                }
+                else
+                {
+                    EAC.SR.flipX = true;
+                }
 
             }
         }
 
-        if (closest != null && enemyPosition != null && closest.transform.position.x + 1 > enemyPosition.transform.position.x)
-        {
-            EAC.SR.flipX = false;
-        }
-        else
-        {
-            EAC.SR.flipX = true;
-        }
+        
 
     }
 
@@ -1538,7 +1560,7 @@ public class EnemyAIController : AdvancedFSM
 
             goLeft = true;
 
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(0.6f);
 
             goLeft = false;
 
@@ -1551,7 +1573,7 @@ public class EnemyAIController : AdvancedFSM
 
             goRight = true;
 
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(0.6f);
 
             goRight = false;
         }
