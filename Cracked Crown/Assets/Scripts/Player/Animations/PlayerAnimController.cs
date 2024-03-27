@@ -131,6 +131,7 @@ public class PlayerAnimController : MonoBehaviour
 
     public void Finisher(string size, string colour, bool active)
     {
+        Debug.Log("FINSHER: " + size + " " + colour);
         if (size == "Light")
         {
             if (colour == "Green")
@@ -153,6 +154,7 @@ public class PlayerAnimController : MonoBehaviour
         }
         else if (size == "Heavy")
         {
+            
             if (colour == "Green")
                 finishing_heavy_green = active;
             if (colour == "Purple")

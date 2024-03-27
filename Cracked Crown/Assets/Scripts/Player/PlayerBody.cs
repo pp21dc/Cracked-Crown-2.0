@@ -417,7 +417,8 @@ public class PlayerBody : MonoBehaviour
         }
         if (canMovePlayerForexecute && executeTarget != null)
         {
-            if (Vector3.Distance(transform.position, executeTarget.transform.position + forExecutePosition) < 2.5f && !lockExecAnim && enemyAIController != null)
+            if (enemyAIController != null && ((enemyAIController.tag.Equals("Heavy") && (Vector3.Distance(transform.position, executeTarget.transform.position + forExecutePosition) < 5f)) 
+                || (Vector3.Distance(transform.position, executeTarget.transform.position + forExecutePosition) < 2.5f)) && !lockExecAnim)
             {
                 hasReachedExecutePoint = true;
 
