@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -703,6 +703,157 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 213553884}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &229349664
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 596587528914048046, guid: f0bf9f921dfc2424f975c48883158367,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4034226380256240751, guid: f0bf9f921dfc2424f975c48883158367,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 9.999997
+      objectReference: {fileID: 0}
+    - target: {fileID: 4034226380256240751, guid: f0bf9f921dfc2424f975c48883158367,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4034226380256240751, guid: f0bf9f921dfc2424f975c48883158367,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -41.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4034226380256240751, guid: f0bf9f921dfc2424f975c48883158367,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4034226380256240751, guid: f0bf9f921dfc2424f975c48883158367,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4034226380256240751, guid: f0bf9f921dfc2424f975c48883158367,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4034226380256240751, guid: f0bf9f921dfc2424f975c48883158367,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4034226380256240751, guid: f0bf9f921dfc2424f975c48883158367,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4034226380256240751, guid: f0bf9f921dfc2424f975c48883158367,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4034226380256240751, guid: f0bf9f921dfc2424f975c48883158367,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8733555835880813752, guid: f0bf9f921dfc2424f975c48883158367,
+        type: 3}
+      propertyPath: m_Name
+      value: MiniCrabCost
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f0bf9f921dfc2424f975c48883158367, type: 3}
+--- !u!1001 &235236355
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 596587528914048046, guid: 302b32d12a3848e45915f14817b041ab,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4034226380256240751, guid: 302b32d12a3848e45915f14817b041ab,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4034226380256240751, guid: 302b32d12a3848e45915f14817b041ab,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4034226380256240751, guid: 302b32d12a3848e45915f14817b041ab,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 75.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4034226380256240751, guid: 302b32d12a3848e45915f14817b041ab,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4034226380256240751, guid: 302b32d12a3848e45915f14817b041ab,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4034226380256240751, guid: 302b32d12a3848e45915f14817b041ab,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4034226380256240751, guid: 302b32d12a3848e45915f14817b041ab,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4034226380256240751, guid: 302b32d12a3848e45915f14817b041ab,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4034226380256240751, guid: 302b32d12a3848e45915f14817b041ab,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4034226380256240751, guid: 302b32d12a3848e45915f14817b041ab,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4394292649514202156, guid: 302b32d12a3848e45915f14817b041ab,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8733555835880813752, guid: 302b32d12a3848e45915f14817b041ab,
+        type: 3}
+      propertyPath: m_Name
+      value: MiniCrabLT
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 302b32d12a3848e45915f14817b041ab, type: 3}
 --- !u!1 &237844302
 GameObject:
   m_ObjectHideFlags: 0
@@ -1892,8 +2043,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.061650008, y: 0.01699996, z: 0}
-    m_Extent: {x: 0.89715004, y: 1.2564, z: 0}
+    m_Center: {x: -0.050549984, y: 0.012849987, z: 0}
+    m_Extent: {x: 0.89155, y: 1.2509501, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -3138,6 +3289,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 596587528914048046, guid: 16e6d017752518841b7a0a3785b4c615,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2999982851430817148, guid: 16e6d017752518841b7a0a3785b4c615,
         type: 3}
       propertyPath: m_SortingLayer
@@ -3151,7 +3307,7 @@ PrefabInstance:
     - target: {fileID: 4034226380256240751, guid: 16e6d017752518841b7a0a3785b4c615,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 30.9
+      value: 47.6
       objectReference: {fileID: 0}
     - target: {fileID: 4034226380256240751, guid: 16e6d017752518841b7a0a3785b4c615,
         type: 3}
@@ -3161,7 +3317,7 @@ PrefabInstance:
     - target: {fileID: 4034226380256240751, guid: 16e6d017752518841b7a0a3785b4c615,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -23.1
+      value: -41.3
       objectReference: {fileID: 0}
     - target: {fileID: 4034226380256240751, guid: 16e6d017752518841b7a0a3785b4c615,
         type: 3}
@@ -3879,6 +4035,11 @@ MonoBehaviour:
   CharacterIcon: {fileID: 0}
   CharacterIcons: []
   iconObjects: []
+  badger: []
+  duck: []
+  frog: []
+  bunny: []
+  dialogueSource: {fileID: 0}
   p1BunnyIcon: {fileID: 0}
   p1: {fileID: 0}
   p2: {fileID: 0}
@@ -4127,8 +4288,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.058999985, y: 0.0065000057, z: 0}
-    m_Extent: {x: 0.8971, y: 1.2612, z: 0}
+    m_Center: {x: -0.053249985, y: 0.016300023, z: 0}
+    m_Extent: {x: 0.89175, y: 1.2567999, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -4482,8 +4643,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.06130001, y: 0.020150006, z: 0}
-    m_Extent: {x: 0.8971, y: 1.25875, z: 0}
+    m_Center: {x: -0.059050024, y: 0.017499983, z: 0}
+    m_Extent: {x: 0.89295, y: 1.2602999, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -4498,6 +4659,79 @@ MonoBehaviour:
   - {x: -0.021543214, y: -0.7467256, z: -0.000017904964}
   - {x: 0.3380273, y: 0.033700302, z: -0.0000275252}
   - {x: -0.08934379, y: 0.7713076, z: -0.000020228408}
+--- !u!1001 &1098782641
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 596587528914048046, guid: ce64d05915e2ee6409a8c6f22c609144,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4034226380256240751, guid: ce64d05915e2ee6409a8c6f22c609144,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 28.999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 4034226380256240751, guid: ce64d05915e2ee6409a8c6f22c609144,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4034226380256240751, guid: ce64d05915e2ee6409a8c6f22c609144,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -41.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4034226380256240751, guid: ce64d05915e2ee6409a8c6f22c609144,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4034226380256240751, guid: ce64d05915e2ee6409a8c6f22c609144,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4034226380256240751, guid: ce64d05915e2ee6409a8c6f22c609144,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4034226380256240751, guid: ce64d05915e2ee6409a8c6f22c609144,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4034226380256240751, guid: ce64d05915e2ee6409a8c6f22c609144,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4034226380256240751, guid: ce64d05915e2ee6409a8c6f22c609144,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4034226380256240751, guid: ce64d05915e2ee6409a8c6f22c609144,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8733555835880813752, guid: ce64d05915e2ee6409a8c6f22c609144,
+        type: 3}
+      propertyPath: m_Name
+      value: MiniCrabBuy2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ce64d05915e2ee6409a8c6f22c609144, type: 3}
 --- !u!1001 &1105000420
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6067,8 +6301,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.058800012, y: 0.010049999, z: 0}
-    m_Extent: {x: 0.89250004, y: 1.26315, z: 0}
+    m_Center: {x: -0.057450026, y: 0.01275003, z: 0}
+    m_Extent: {x: 0.89384997, y: 1.25895, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -7964,3 +8198,6 @@ SceneRoots:
   - {fileID: 2010061759}
   - {fileID: 190030096}
   - {fileID: 861772132}
+  - {fileID: 1098782641}
+  - {fileID: 229349664}
+  - {fileID: 235236355}
