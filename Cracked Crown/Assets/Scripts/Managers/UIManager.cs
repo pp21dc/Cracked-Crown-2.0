@@ -183,7 +183,8 @@ public class UIManager : MonoBehaviour
                 }
             }
 
-            if (GM.PMs[0].PC.PauseDown)
+            for (int i = 0; i < GM.PMs.Length; i++)
+            if (GM.PMs[i].PC.PauseDown)
             {
                 if (PauseMenu.activeSelf == false)
                 {
