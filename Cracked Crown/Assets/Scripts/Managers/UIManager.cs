@@ -135,23 +135,23 @@ public class UIManager : MonoBehaviour
             //CheckPlayerHealths();
             for (int i = 0; i < GM.Players.Length; i++)
             {
-                playerHealthBars[i].SetFloat("_Position", 1 - GM.PMs[i].PB.Health / 50);
+                playerHealthBars[i].SetFloat("_Position", 1 - GM.Players[i].PB.Health / 50);
             }
 
 
             for (int i = 0; i < GM.Players.Length; i++)
             {
-                if (GM.PMs[i].PB.hasBomb)
+                if (GM.Players[i].PB.hasBomb)
                 {
                     playerItems[i].color = new Color(1, 1, 1, 1);
                     playerItems[i].sprite = bomb;
                 }
-                else if (GM.PMs[i].PB.hasPotion)
+                else if (GM.Players[i].PB.hasPotion)
                 {
                     playerItems[i].color = new Color(1, 1, 1, 1);
                     playerItems[i].sprite = potion;
                 }
-                else if (!GM.PMs[i].PB.hasPotion && !GM.PMs[i].PB.hasBomb)
+                else if (!GM.Players[i].PB.hasPotion && !GM.Players[i].PB.hasBomb)
                 {
                     playerItems[i].sprite = null;
                     playerItems[i].color = new Color(1, 1, 1, 0);
@@ -160,35 +160,37 @@ public class UIManager : MonoBehaviour
 
             for (int i = 0; i < GM.Players.Length; i++)
             {
-                if (GM.PMs[i].PB.CharacterType.ID == 0)
+                if (GM.Players[i].PB.CharacterType.ID == 0)
                 {
                     iconObjects[i].GetComponent<Image>().sprite = CharacterIcons[0];
                     iconObjects[i].GetComponent<Image>().SetNativeSize();
 
                 }
-                else if (GM.PMs[i].PB.CharacterType.ID == 1)
+                else if (GM.Players[i].PB.CharacterType.ID == 1)
                 {
                     iconObjects[i].GetComponent<Image>().sprite = CharacterIcons[1];
                     iconObjects[i].GetComponent<Image>().SetNativeSize();
                 }
-                else if (GM.PMs[i].PB.CharacterType.ID == 2)
+                else if (GM.Players[i].PB.CharacterType.ID == 2)
                 {
                     iconObjects[i].GetComponent<Image>().sprite = CharacterIcons[2];
                     iconObjects[i].GetComponent<Image>().SetNativeSize();
                 }
-                else if (GM.PMs[i].PB.CharacterType.ID == 3)
+                else if (GM.Players[i].PB.CharacterType.ID == 3)
                 {
                     iconObjects[i].GetComponent<Image>().sprite = CharacterIcons[3];
                     iconObjects[i].GetComponent<Image>().SetNativeSize();
                 }
             }
 
-            for (int i = 0; i < GM.PMs.Length; i++)
-            if (GM.PMs[i].PC.PauseDown)
+            for (int i = 0; i < GM.Players.Length; i++)
             {
-                if (PauseMenu.activeSelf == false)
+                if (GM.Players[i].PC.PauseDown)
                 {
-                    Pause();
+                    if (PauseMenu.activeSelf == false)
+                    {
+                        Pause();
+                    }
                 }
             }
         }

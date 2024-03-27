@@ -84,10 +84,13 @@ public class LevelManager : MonoBehaviour
             EnemySpawnSystem();
         if (Input.GetKey(KeyCode.H))
             GM.SetPlayerPositions();
+        if (GM.currentLevelName == GM.MainMenuName)
+            ResetLevelManager();
     }
 
     public void ResetLevelManager()
     {
+        StopAllCoroutines();
         SpawnTimer = 0;
         SpawnersActive = false;
         CURRENT_ROOM = 0;
