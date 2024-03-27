@@ -44,7 +44,10 @@ public class EnemyAnimationController : MonoBehaviour
         else if (type == 1)
             animator.runtimeAnimatorController = Medium_AC[index - 1];
         else if (type == 2)
+        {
+            transform.localPosition = new Vector3(0, 1.29f, 1.97f);
             animator.runtimeAnimatorController = Heavy_AC[index - 1];
+        }
         if (index-1 == 0)
         {
             EAIC.colour = "Green";
@@ -64,6 +67,7 @@ public class EnemyAnimationController : MonoBehaviour
         
         if (!Spawn)
         {
+            animator.SetBool("Spawn", Spawn);
             animator.SetBool("Dead", Dead);
             animator.SetBool("Moving", Moving);
             animator.SetBool("Attacking", Attacking);

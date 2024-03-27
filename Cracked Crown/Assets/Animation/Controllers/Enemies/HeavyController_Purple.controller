@@ -102,7 +102,7 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: HitReact
     m_EventTreshold: 0
-  - m_ConditionMode: 1
+  - m_ConditionMode: 2
     m_ConditionEvent: Spawn
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
@@ -837,7 +837,7 @@ AnimatorTransition:
   - m_ConditionMode: 2
     m_ConditionEvent: Dead
     m_EventTreshold: 0
-  - m_ConditionMode: 1
+  - m_ConditionMode: 2
     m_ConditionEvent: Spawn
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
