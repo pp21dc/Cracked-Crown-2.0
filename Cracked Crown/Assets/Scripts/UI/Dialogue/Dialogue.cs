@@ -29,18 +29,22 @@ public class Dialogue : MonoBehaviour
             um = UIManager.Instance;
         }
 
-        if (gm.levelNames[gm.CurrentLevel].Equals("1-1"))
+        if(gm.CurrentLevel != -1)
         {
-            levelCount = 0;
+            if (gm.levelNames[gm.CurrentLevel].Equals("1-1"))
+            {
+                levelCount = 0;
+            }
+            else if (gm.levelNames[gm.CurrentLevel].Equals("1-2"))
+            {
+                levelCount = 1;
+            }
+            else if (gm.levelNames[gm.CurrentLevel].Equals("1-3"))
+            {
+                levelCount = 2;
+            }
         }
-        else if (gm.levelNames[gm.CurrentLevel].Equals("1-2"))
-        {
-            levelCount = 1;
-        }
-        else if(gm.levelNames[gm.CurrentLevel].Equals("1-3"))
-        {
-            levelCount = 2;
-        }
+        
     }
     public void SetDialogue()
     {

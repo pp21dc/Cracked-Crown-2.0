@@ -19,9 +19,9 @@ public class ResStoneLights : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        for (int i = 0; i < gm.PMs.Length; i++)
+        for (int i = 0; i < gm.Players.Length; i++)
         {
-            float distance = Vector3.Distance(pos, gm.PMs[i].PB.transform.position);
+            float distance = Vector3.Distance(pos, gm.Players[i].PB.transform.position);
             //Debug.Log(distance);
             lights[i].intensity = ((-Mathf.Log(distance)*10+3) * 40) + 1700;
             if(lights[i].intensity < 0)

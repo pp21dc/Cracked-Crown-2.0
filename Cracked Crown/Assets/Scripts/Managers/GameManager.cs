@@ -104,7 +104,7 @@ public class GameManager : MonoBehaviour
         Physics.IgnoreLayerCollision(7, 6);
         if (CampaignStart)
         {
-            ReturnToMainMenu();
+            ReturnToMainMenu(true);
         }
         
         Application.targetFrameRate = 120;
@@ -127,7 +127,7 @@ public class GameManager : MonoBehaviour
             if (!locker && Input.GetKey(KeyCode.M))
             {
                 locker = true;
-                ReturnToMainMenu();
+                ReturnToMainMenu(false);
             }
             if (!locker_Boss && Input.GetKey(KeyCode.B))
             {
@@ -146,7 +146,10 @@ public class GameManager : MonoBehaviour
 
                 MainMenu.SetActive(false);
             }
-            if (currentLevelName == MainMenuName) { }
+            if (currentLevelName == MainMenuName) 
+            { 
+
+            }
                 //UI.SetActive(false);
             else if (!string.IsNullOrEmpty(currentLevelName))
             {
@@ -160,7 +163,7 @@ public class GameManager : MonoBehaviour
                 win = false;
                 video_win.PlayVideo();
                 RevivePlayers();
-                ReturnToMainMenu();
+                ReturnToMainMenu(true);
             }
         }
     }
@@ -227,7 +230,7 @@ public class GameManager : MonoBehaviour
             video_lose.PlayVideo();
             RevivePlayers();
             
-            ReturnToMainMenu();
+            ReturnToMainMenu(true);
         }
         else
         {
@@ -309,7 +312,7 @@ public class GameManager : MonoBehaviour
         }
         else if (levelName.Equals(MainMenuName))
         {
-            waitforvideo = true;
+            
             LM.ROOM_CLEARED = true;
             IsLevelCleared = true;
             currentLevelName = MainMenuName;
@@ -378,7 +381,7 @@ public class GameManager : MonoBehaviour
             Debug.Log("GAMEMANAGER:: NO SPAWN POINTS SET FOR PLAYERS ON LEVEL CHANGE // GameManager/SetPlayerPositions");
     }
 
-    public void ReturnToMainMenu()
+    public void ReturnToMainMenu(bool cond)
     {
         //playerGO.SetActive(false);
         if (UIManager.Instance != null)
@@ -387,7 +390,9 @@ public class GameManager : MonoBehaviour
             UIManager.Instance.Resume();
             UIManager.Instance.InGameUI.SetActive(false);
         }
+
         //locker = false;
+        waitforvideo = cond;
         ResetGame(true);
         StartCoroutine("LoadLevel", MainMenuName);
         FreezePlayers(true);
@@ -403,8 +408,6 @@ public class GameManager : MonoBehaviour
         eyeText.text = "";
 
         MM.trackIndex = -1;
-        if (!ifNotToMainMenu)
-            ReturnToMainMenu();
     }
 
     public void NextLevel()
