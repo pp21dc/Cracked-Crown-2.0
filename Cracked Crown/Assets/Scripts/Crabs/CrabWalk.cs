@@ -100,6 +100,7 @@ public class CrabWalk : MonoBehaviour
                     animator.SetBool("Death", true);
                     speed = 0;
                     StartCoroutine(deathTime());
+                    StartCoroutine(respawnCrab());
                 }
 
             }
@@ -111,5 +112,16 @@ public class CrabWalk : MonoBehaviour
     {
         yield return new WaitForSeconds(0.000f);
         hasDied = true;
+    }
+
+    private IEnumerator respawnCrab()
+    {
+        yield return new WaitForSeconds(4.0f);
+        Debug.Log("Respawn now");
+        hasDied = false;
+        animator.SetBool("Death", false);
+        animator.SetBool("PermaDead", false);
+        speed = 15.0f;
+        health = 1.0f;
     }
 }
