@@ -835,7 +835,7 @@ public class PlayerBody : MonoBehaviour
                         frogExecuted = true;
                     }
 
-                    yield return new WaitForSeconds(1.1f);
+                    yield return new WaitForSeconds(1.8f);
                    
                     canTakeDamage = true;
                     canMove = true;
@@ -846,7 +846,7 @@ public class PlayerBody : MonoBehaviour
                     transform.parent.GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(true);
                     if (!frogExecuted)
                     {
-                        toExecute.transform.parent.gameObject.SetActive(false);
+                        Destroy(toExecute.transform.parent.gameObject); // this might not even destroy crab, might be sprite
                     }
                     else if (frogExecuted)
                     {
@@ -854,9 +854,12 @@ public class PlayerBody : MonoBehaviour
                         crabController.animator.SetBool("FrogExecute", false);
                         crabController.animator.SetBool("AtPosition", false);
                         // make so he cannot die now
-                        Debug.Log("toExecute is: " + toExecute.transform.parent.GetChild(0).gameObject);
                         GameObject test = toExecute.transform.parent.GetChild(0).gameObject;
                         test.tag = "DontHit";
+
+                        yield return new WaitForSeconds(2.0f);
+
+                        Destroy(test);
                     }
                 }
             }
