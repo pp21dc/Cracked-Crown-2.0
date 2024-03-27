@@ -7,10 +7,44 @@ public class Collect : MonoBehaviour
 
     private PlayerBody body;
     private GameManager gameManager;
+    Vector3 initialPos;
+    float currentPos = 0;
 
     private void Awake()
     {
         gameManager = GameManager.Instance;
+        initialPos = this.transform.position;
+    }
+
+    private void Update()
+    {
+        // so it only does it to the bomb and potion
+        if (gameObject.tag == "Bomb" || gameObject.tag == "Potion")
+        {
+            for (int i = 0; i < gameManager.PMs.Length; i++)
+            {
+                float distance = Vector3.Distance(initialPos, gameManager.PMs[i].PB.transform.position);
+                currentPos = ((-Mathf.Log(distance)) + 5);
+
+                if (currentPos >= 3)
+                {
+                    currentPos = 3;
+                }
+                if (currentPos <= 0)
+                {
+                    currentPos = 0;
+                }
+                if (transform.position.y - initialPos.y >= 3)
+                {
+                    transform.position = initialPos + new Vector3(0, currentPos, 0);
+                }
+                if (transform.position.y - initialPos.y <= 0)
+                {
+                    transform.position = initialPos;
+                }
+                transform.position = initialPos + new Vector3(0, currentPos, 0);
+            }
+        }
     }
 
     private void OnTriggerStay(Collider other)
