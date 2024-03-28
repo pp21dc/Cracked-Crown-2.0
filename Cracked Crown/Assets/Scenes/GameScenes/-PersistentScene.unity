@@ -1682,16 +1682,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Tracks:
-  - {fileID: 0}
-  - {fileID: 8300000, guid: 417c93fecbaa49c42b4c4bcebbbff186, type: 3}
+  - {fileID: 8300000, guid: 76c4adbad742ed14fa6f525a15c9b671, type: 3}
+  - {fileID: 8300000, guid: 72bf0006d9090f54a8bc716894e85c22, type: 3}
   - {fileID: 8300000, guid: 5bfd1f9cd8546e44e9f5e7f7aa18215d, type: 3}
   - {fileID: 8300000, guid: f9a681ea90117e84cb66679cc04532b6, type: 3}
   - {fileID: 8300000, guid: 5bfd1f9cd8546e44e9f5e7f7aa18215d, type: 3}
   - {fileID: 8300000, guid: ad3ae9ab2ff274c46955e7b2c451216a, type: 3}
+  - {fileID: 8300000, guid: 5bfd1f9cd8546e44e9f5e7f7aa18215d, type: 3}
   - {fileID: 8300000, guid: c856ae7e3a751824bbff496efd16ffc2, type: 3}
   AS_Soundtrack: {fileID: 464413574}
-  FadeTime: 0.05
-  PlayDelayTime: 2
+  FadeTime: 0.1
+  PlayDelayTime: 1
   trackIndex: 0
 --- !u!1 &465253891
 GameObject:
@@ -2428,6 +2429,7 @@ MonoBehaviour:
   - 1-2
   - TempShop
   - 1-3
+  - TempShop
   currentLevelName: 
   MainMenuName: MainMenu
   CutSceneName: 

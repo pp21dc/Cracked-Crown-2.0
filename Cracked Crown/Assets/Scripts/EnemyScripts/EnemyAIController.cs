@@ -639,6 +639,8 @@ public class EnemyAIController : AdvancedFSM
             if (!lockKnock)
             {
                 movementVector = (closest.transform.position - enemyPosition.transform.position).normalized * Speed;
+                if (tag != "Light")
+                    movementVector.y = 0;
                 enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
             }
             //enemyBody.transform.position = new Vector3(enemyBody.position.x, 0, enemyBody.position.z); //keeps it on ground
@@ -1202,6 +1204,7 @@ public class EnemyAIController : AdvancedFSM
             if (Vector3.Distance(enemyPosition.transform.position, TargetPlayerPos) > 0.5f && !knockback)
             {
                 movementVector = (TargetPlayerPos - enemyPosition.transform.position).normalized * HeavyDashSpeed;
+                movementVector.y = 0;
                 enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
             }
             else
@@ -1483,6 +1486,7 @@ public class EnemyAIController : AdvancedFSM
             if(gameObject.CompareTag("Medium"))
             {
                 movementVector = (SepLoc.position - enemyPosition.transform.position).normalized * mediumSpeed;
+                movementVector.y = 0;
                 enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
 
                 if (closest != null && enemyPosition != null && closest.transform.position.x + 1 > enemyPosition.transform.position.x)
@@ -1498,6 +1502,7 @@ public class EnemyAIController : AdvancedFSM
             else if(gameObject.CompareTag("Heavy"))
             {
                 movementVector = (SepLoc.position - enemyPosition.transform.position).normalized * heavySpeed;
+                movementVector.y = 0;
                 enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
 
                 if (closest != null && enemyPosition != null && closest.transform.position.x + 1 > enemyPosition.transform.position.x)
@@ -1517,6 +1522,7 @@ public class EnemyAIController : AdvancedFSM
             if (gameObject.CompareTag("Medium"))
             {
                 movementVector = (SepLoc.position - enemyPosition.transform.position).normalized * mediumSpeed;
+                movementVector.y = 0;
                 enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
 
                 if (closest != null && enemyPosition != null && closest.transform.position.x + 1 > enemyPosition.transform.position.x)
@@ -1532,6 +1538,7 @@ public class EnemyAIController : AdvancedFSM
             else if (gameObject.CompareTag("Heavy"))
             {
                 movementVector = (SepLoc.position - enemyPosition.transform.position).normalized * heavySpeed;
+                movementVector.y = 0;
                 enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
 
                 if (closest != null && enemyPosition != null && closest.transform.position.x + 1 > enemyPosition.transform.position.x)

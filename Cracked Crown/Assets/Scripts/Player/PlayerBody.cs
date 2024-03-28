@@ -235,7 +235,7 @@ public class PlayerBody : MonoBehaviour
                 animController.Dead = false;
                 alreadyDead = false;
                 ghostCoins = 0;
-                health = maxHealth*0.8f;
+                health = maxHealth;
                 canAttack = true;
                 lockDash = false;
                 canTakeDamage = true;

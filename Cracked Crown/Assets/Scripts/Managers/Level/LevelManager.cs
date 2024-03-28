@@ -182,11 +182,13 @@ public class LevelManager : MonoBehaviour
             WAIT_NEXTSPAWN_VALUE = 0.2f;
             ENEMIES_SPAWNED = 0;
             ENEMIES_KILLED = 0;
+            this.boss = boss;
 
             if (!boss)
                 SpawnersActive = true;
             else
             {
+                
                 currentSpawnTotal += 100;
                 CURRENT_ROOM = 3;
                 Current_Room = Rooms[CURRENT_ROOM - 1];
