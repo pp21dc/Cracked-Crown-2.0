@@ -229,7 +229,7 @@ public class GameManager : MonoBehaviour
             
             video_lose.PlayVideo();
             RevivePlayers();
-            
+            SetPlayerPositions();
             ReturnToMainMenu(true);
         }
         else

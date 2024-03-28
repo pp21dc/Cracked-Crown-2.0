@@ -13,6 +13,8 @@ public class BossPhases : MonoBehaviour
 
     [Header("Boss Parts")]
     [SerializeField]
+    private BossAudioManager BAM;
+    [SerializeField]
     private GameObject Claw;
     [SerializeField]
     private Animator bossAnim;
@@ -40,6 +42,7 @@ public class BossPhases : MonoBehaviour
     private float MAXBOSSHEALTH;
     [SerializeField]
     private float clawdropspeed;
+    
     
     [Header("Materials and Sprites")]
     [SerializeField]
@@ -128,16 +131,15 @@ public class BossPhases : MonoBehaviour
             return;
         }
         
-        if (roarSpawn)
+        /*if (roarSpawn)
         {
             
             LevelManager.Instance.SpawnersActive = true;
-            Debug.Log(LevelManager.Instance.SpawnersActive);
         }
         else
         {
             LevelManager.Instance.SpawnersActive = false;
-        }
+        }*/
 
         if (attackLoop)
         {
@@ -502,10 +504,12 @@ public class BossPhases : MonoBehaviour
         isClawSmash = false;
         if (gameObject.name == "clawRight")
         {
+            BAM.PlayAudio(BossAudioManager.AudioType.Slam);
             Instantiate(ShockWave, ClawSprite.transform.position - new Vector3(8, 5f, 16), Quaternion.Euler(0, 0, 0)); // instantiates the shockwave part of attack (RIGHT)
         }
         else
         {
+            BAM.PlayAudio(BossAudioManager.AudioType.Slam);
             Instantiate(ShockWave, ClawSprite.transform.position - new Vector3(-8, 5f, 16), Quaternion.Euler(0, 0, 0)); // instantiates the shockwave part of attack (LEFT)
         }
         cameraShake.StartCoroutine(cameraShake.Shake(0.15f, 2f));
@@ -522,10 +526,13 @@ public class BossPhases : MonoBehaviour
         // animation is called
         mandibleAnim.StopPlayback();
         mandibleAnim.Play("mandibles");
+        BAM.PlayAudio(BossAudioManager.AudioType.Roar);
+        LevelManager.Instance.SpawnersActive = true;
         cameraShake.StartCoroutine(cameraShake.Shake(2f, 0.4f));
         roarSpawn = true;
         yield return new WaitForSeconds(2.5f);
         roarSpawn = false;
+        LevelManager.Instance.SpawnersActive = false;
         yield return new WaitForSeconds(0.5f);
 
     }

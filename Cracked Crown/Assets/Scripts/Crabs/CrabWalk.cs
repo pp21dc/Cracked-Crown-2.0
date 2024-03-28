@@ -29,8 +29,7 @@ public class CrabWalk : MonoBehaviour
     private void Awake()
     {
         GM = GameManager.Instance;
-        startPos = gameObject.transform;
-        Debug.Log("startPos = " + startPos.position);
+        startPos = gameObject.transform.parent;
     }
 
     // Update is called once per frame
@@ -120,10 +119,11 @@ public class CrabWalk : MonoBehaviour
     public IEnumerator respawnCrab()
     {
         yield return new WaitForSeconds(2.0f);
-        transform.position = startPos.position;
+        transform.position = transform.position + new Vector3(startPos.position.x, 0, 0);
+        animator.SetBool("AtPosition", false);
+        alreadyAtPos = false;
 
         yield return new WaitForSeconds(4.0f);
-        Debug.Log("Respawn now");
         hasDied = false;
         animator.SetBool("Death", false);
         animator.SetBool("PermaDead", false);
