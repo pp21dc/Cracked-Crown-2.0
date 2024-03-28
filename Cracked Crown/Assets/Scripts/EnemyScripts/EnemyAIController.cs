@@ -1491,11 +1491,11 @@ public class EnemyAIController : AdvancedFSM
 
                 if (closest != null && enemyPosition != null && closest.transform.position.x + 1 > enemyPosition.transform.position.x)
                 {
-                    EAC.SR.flipX = false;
+                    //EAC.SR.flipX = false;
                 }
                 else
                 {
-                    EAC.SR.flipX = true;
+                    //EAC.SR.flipX = true;
                 }
 
             }
@@ -1507,11 +1507,11 @@ public class EnemyAIController : AdvancedFSM
 
                 if (closest != null && enemyPosition != null && closest.transform.position.x + 1 > enemyPosition.transform.position.x)
                 {
-                    EAC.SR.flipX = false;
+                    //EAC.SR.flipX = false;
                 }
                 else
                 {
-                    EAC.SR.flipX = true;
+                    //EAC.SR.flipX = true;
                 }
 
             }
@@ -1527,11 +1527,11 @@ public class EnemyAIController : AdvancedFSM
 
                 if (closest != null && enemyPosition != null && closest.transform.position.x + 1 > enemyPosition.transform.position.x)
                 {
-                    EAC.SR.flipX = false;
+                    //EAC.SR.flipX = false;
                 }
                 else
                 {
-                    EAC.SR.flipX = true;
+                    //EAC.SR.flipX = true;
                 }
 
             }
@@ -1543,11 +1543,11 @@ public class EnemyAIController : AdvancedFSM
 
                 if (closest != null && enemyPosition != null && closest.transform.position.x + 1 > enemyPosition.transform.position.x)
                 {
-                    EAC.SR.flipX = false;
+                    //EAC.SR.flipX = false;
                 }
                 else
                 {
-                    EAC.SR.flipX = true;
+                    //EAC.SR.flipX = true;
                 }
 
             }

@@ -339,6 +339,12 @@ public class GameManager : MonoBehaviour
             LM.ROOM_CLEARED = true;
             IsLevelCleared = true;
             //currentLevelName = ShopName;
+            if (levelName.Equals("GreenShop"))
+                currentLevelName = "GreenShop";
+            else if (levelName.Equals("PurpleShop"))
+                currentLevelName = "PurpleShop";
+            else if (levelName.Equals("RedShop"))
+                currentLevelName = "RedShop";
             UIManager.Instance.InGameUI.SetActive(true);
             LM.Enter_Level(false, false);
         }
