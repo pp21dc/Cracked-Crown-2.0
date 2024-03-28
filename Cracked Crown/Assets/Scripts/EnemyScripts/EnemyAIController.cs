@@ -1282,12 +1282,14 @@ public class EnemyAIController : AdvancedFSM
 
             if(closest.transform.position.x + 1 > enemyPosition.transform.position.x) 
             {
-                ToothShotLocation.transform.localPosition = new Vector3(7.5f, 5.5f, 0);
+                ToothShotLocation.transform.localPosition = new Vector3(7.5f, 11.3f, 0);
+                bodyShootLoc.localPosition = new Vector3(2.2f, 11.3f, 0);
                 correctTooth = toothRight;
             }
             else
             {
-                ToothShotLocation.transform.localPosition = new Vector3(-7.5f, 5.5f, 0);
+                ToothShotLocation.transform.localPosition = new Vector3(-7.5f, 11.3f, 0);
+                bodyShootLoc.localPosition = new Vector3(-2.2f, 11.3f, 0);
                 correctTooth = toothLeft;
             }
 
