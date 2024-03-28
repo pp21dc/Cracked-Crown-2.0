@@ -976,7 +976,7 @@ public class PlayerBody : MonoBehaviour
                     gameManager.eyeCount -= 30;
                     hasBomb = true;
                     collectable.gameObject.SetActive(false);
-
+                    PAM.PlayAudio(PlayerAudioManager.AudioType.Buy);
                     Debug.Log("Player has a bomb: " + hasBomb);
                 }
             }
@@ -991,7 +991,7 @@ public class PlayerBody : MonoBehaviour
                     hasBomb = false;
                     hasPotion = true;
                     collectable.gameObject.SetActive(false);
-
+                    PAM.PlayAudio(PlayerAudioManager.AudioType.Buy);
                     Debug.Log("Player has a bomb: " + hasPotion);
                 }
             }
@@ -1005,7 +1005,7 @@ public class PlayerBody : MonoBehaviour
         Vector3 negativeStinky = new Vector3 (-7.5f, 5, 0);
         Vector3 fortniteFellaBalls = Vector3.zero; // placeholder
 
-        if (controller.ItemDown)
+        if (controller.ItemDown && !alreadyDead)
         {
             if (hasBomb && !Grabbed)
             {
@@ -1022,7 +1022,7 @@ public class PlayerBody : MonoBehaviour
                 Bomb reference = bomb.GetComponent<Bomb>();
                 reference.setDirection(movementVector);
                 reference.SetController(controller);
-
+                PAM.PlayAudio(PlayerAudioManager.AudioType.Swing1);
                 hasBomb = false;
             }
             if (hasPotion & !Grabbed)
@@ -1031,6 +1031,7 @@ public class PlayerBody : MonoBehaviour
                 float healAmount = maxHealth * 0.75f;
                 AddHealth(healAmount);
                 Debug.Log("Player health is: " + health);
+                PAM.PlayAudio(PlayerAudioManager.AudioType.PotionUse);
                 hasPotion = false;
             }
         }
