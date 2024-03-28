@@ -128,6 +128,8 @@ public class PlayerBody : MonoBehaviour
     private bool hasReachedExecutePoint = false;
     private bool neverReachedExecutePoint = false;
 
+    [SerializeField]
+    private GameObject sparkleObject;
     public void ResetPlayer()
     {
         health = maxHealth;
@@ -1025,6 +1027,7 @@ public class PlayerBody : MonoBehaviour
             }
             if (hasPotion & !Grabbed)
             {
+                sparkleObject.GetComponent<Animator>().SetTrigger("startSparkle");
                 float healAmount = maxHealth * 0.75f;
                 AddHealth(healAmount);
                 Debug.Log("Player health is: " + health);
@@ -1033,6 +1036,10 @@ public class PlayerBody : MonoBehaviour
         }
     }
 
+    public void hideSparkleObject() //Runs after the health pot sparkle as an anim event to disable the sparkle effect
+    {
+        sparkleObject.SetActive(false);
+    }
     public void StartSpam()
     {
         canMove = false;
