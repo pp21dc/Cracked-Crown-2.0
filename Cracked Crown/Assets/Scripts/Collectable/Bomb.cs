@@ -9,7 +9,7 @@ public class Bomb : MonoBehaviour
 {
     public Vector3 direction;
 
-    public float damage = 1000f;
+    public float damage = 50f;
     private int count = 0;
     private bool playOnce = true;
     private int counter = 0;
@@ -34,6 +34,7 @@ public class Bomb : MonoBehaviour
     [SerializeField]
     private List<EnemyAIController> enemiesInRange;
     private List<PlayerBody> playersInRange;
+    private List<BossPhases> clawsInRange;
     private Rigidbody rb;
     private PlayerController controller;
     private SpriteRenderer sprite;
@@ -45,6 +46,7 @@ public class Bomb : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         enemiesInRange = new List<EnemyAIController>();
         playersInRange = new List<PlayerBody>();
+        clawsInRange = new List<BossPhases>();
         sprite = transform.GetChild(0).GetComponent<SpriteRenderer>();
         animator = transform.GetChild(1).GetComponent<Animator>();
     }
@@ -109,6 +111,10 @@ public class Bomb : MonoBehaviour
             {
                 pb.DecHealth(damage);
             }
+            foreach (BossPhases bp in clawsInRange)
+            {
+                bp.decHealth(damage);
+            }
         }
 
         yield return new WaitForSeconds(0.5f);
@@ -152,6 +158,12 @@ public class Bomb : MonoBehaviour
                 playersInRange.Add(pb);
             }
         }
+        if (other.tag == "Boss")
+        {
+            BossPhases bp = other.transform.GetComponent<BossPhases>();
+            if (!clawsInRange.Contains(bp))
+                clawsInRange.Add(bp);
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -166,6 +178,11 @@ public class Bomb : MonoBehaviour
         {
             PlayerBody pb = other.transform.GetComponent<PlayerBody>();
             playersInRange.Remove(pb);
+        }
+        if (other.tag == "Boss")
+        {
+            BossPhases bp = other.transform.GetComponent<BossPhases>();
+            clawsInRange.Remove(bp);
         }
     }
 
