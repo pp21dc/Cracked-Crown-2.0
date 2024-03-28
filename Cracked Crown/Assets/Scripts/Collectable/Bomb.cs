@@ -33,6 +33,7 @@ public class Bomb : MonoBehaviour
 
     [SerializeField]
     private List<EnemyAIController> enemiesInRange;
+    private List<PlayerBody> playersInRange;
     private Rigidbody rb;
     private PlayerController controller;
     private SpriteRenderer sprite;
@@ -43,6 +44,7 @@ public class Bomb : MonoBehaviour
         //Debug.Log("controller is: " + controller);
         rb = GetComponent<Rigidbody>();
         enemiesInRange = new List<EnemyAIController>();
+        playersInRange = new List<PlayerBody>();
         sprite = transform.GetChild(0).GetComponent<SpriteRenderer>();
         animator = transform.GetChild(1).GetComponent<Animator>();
     }
@@ -102,7 +104,10 @@ public class Bomb : MonoBehaviour
             foreach (EnemyAIController enemy in enemiesInRange)
             {
                 enemy.DecHealth(damage);
-                Debug.Log(enemy.name);
+            }
+            foreach (PlayerBody pb in playersInRange)
+            {
+                pb.DecHealth(damage);
             }
         }
 
@@ -139,6 +144,14 @@ public class Bomb : MonoBehaviour
             if (!enemiesInRange.Contains(currentEnemy))
                 enemiesInRange.Add(currentEnemy);
         }
+        if (other.tag == "Player")
+        {
+            PlayerBody pb = other.transform.GetComponent<PlayerBody>();
+            if (!playersInRange.Contains(pb))
+            {
+                playersInRange.Add(pb);
+            }
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -148,6 +161,11 @@ public class Bomb : MonoBehaviour
             currentEnemy = other.transform.parent.GetChild(0).gameObject.GetComponent<EnemyAIController>();
             
             enemiesInRange.Remove(currentEnemy);
+        }
+        if (other.tag == "Player")
+        {
+            PlayerBody pb = other.transform.GetComponent<PlayerBody>();
+            playersInRange.Remove(pb);
         }
     }
 
