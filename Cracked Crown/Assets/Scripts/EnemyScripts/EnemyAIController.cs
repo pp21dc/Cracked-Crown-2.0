@@ -372,7 +372,7 @@ public class EnemyAIController : AdvancedFSM
         //enemy speeds
         lightSpeed = 50f;
         mediumSpeed = 35f;
-        HeavyDashSpeed = 115f;
+        HeavyDashSpeed = 95f;
         heavySpeed = 25f;
 
         ConstructFSM();
