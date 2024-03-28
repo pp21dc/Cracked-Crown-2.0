@@ -135,10 +135,6 @@ public class GameManager : MonoBehaviour
 
             if (eyeText != null)
                 eyeText.text = eyeCount.ToString();
-            if (Input.GetKeyUp(KeyCode.KeypadEnter))
-            {
-                StartNewGame();
-            }
             if (Input.GetKeyUp(KeyCode.H))
                 SetPlayerPositions();
             if (!locker && Input.GetKey(KeyCode.M))
@@ -155,7 +151,7 @@ public class GameManager : MonoBehaviour
             if (!waitforvideo && currentLevelName == MainMenuName)
             {
                 MainMenu.SetActive(true);
-                UIManager.Instance.InGameUI.SetActive(true);
+                UIManager.Instance.InGameUI.SetActive(false);
                 PIM.SetActive(true);
             }
             else if (MainMenu != null)
@@ -313,7 +309,8 @@ public class GameManager : MonoBehaviour
 
 
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(levelName));
-        if (!levelName.Equals(MainMenuName) && !levelName.Equals(BossLevelName) && currentLevel <= levelNames.Length && !levelName.Equals(ShopName))
+        if (!levelName.Equals(MainMenuName) && !levelName.Equals(BossLevelName) && currentLevel <= levelNames.Length && 
+            (!levelName.Equals("TempShop") && !levelName.Equals("GreenShop") && !levelName.Equals("PurpleShop") && !levelName.Equals("RedShop")))
         {
             //AudioManager.LoadLevelComplete();
             //Debug.Log("NEXT LEVEL");
@@ -333,15 +330,15 @@ public class GameManager : MonoBehaviour
             LM.ROOM_CLEARED = true;
             IsLevelCleared = true;
             currentLevelName = MainMenuName;
-            //
+            UIManager.Instance.InGameUI.SetActive(false);
             currentLevel = -1;
         }
-        else if (levelName.Equals(ShopName))
+        else if (levelName.Equals(ShopName) || levelName.Equals("GreenShop") || levelName.Equals("RedShop") || levelName.Equals("PurpleShop"))
         {
             //MM.PlayNextTrack();
             LM.ROOM_CLEARED = true;
             IsLevelCleared = true;
-            currentLevelName = ShopName;
+            //currentLevelName = ShopName;
             UIManager.Instance.InGameUI.SetActive(true);
             LM.Enter_Level(false, false);
         }
@@ -371,7 +368,7 @@ public class GameManager : MonoBehaviour
 
         if (!levelName.Equals(MainMenuName)/* || !levelName.Equals("TempShop")*/)
         {
-            if (!levelName.Equals("TempShop"))
+            if (!levelName.Equals("TempShop") || !levelName.Equals("GreenShop") || !levelName.Equals("PurpleShop") || !levelName.Equals("RedShop"))
             {
                 Debug.LogWarning(levelName);
                 dialogue.GetPlayers();
