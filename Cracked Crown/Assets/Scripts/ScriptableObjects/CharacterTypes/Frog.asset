@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: Frog
   m_EditorClassIdentifier: 
   ID: 3
-  moveSpeed: 9
+  health: 40
+  moveSpeed: 11
   dashSpeed: 20
   dashTime: 0.55
-  attack: 3
-  attackSpeed: 0.4
+  attack: 4.5
+  attackSpeed: 0.35
   moveCd: 0.4
   attackDelayTime: 0.15
   attackKnockback: 1.5

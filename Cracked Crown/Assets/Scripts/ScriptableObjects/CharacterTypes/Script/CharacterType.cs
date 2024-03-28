@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 [CreateAssetMenu(fileName = "CharacterType", menuName = "ScriptableObjects/CharacterTypes", order = 1)]
 public class CharacterType : ScriptableObject
 {
     public int ID;
+    public float health; 
     public float moveSpeed;
     public float dashSpeed;
     public float dashTime;

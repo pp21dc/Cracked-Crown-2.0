@@ -101,7 +101,7 @@ public class Bomb : MonoBehaviour
         transform.GetChild(0).gameObject.SetActive(false);
         animator.SetBool("Blow", true);
 
-        if (enemiesInRange != null)
+        if (true)
         {
             foreach (EnemyAIController enemy in enemiesInRange)
             {
@@ -113,9 +113,11 @@ public class Bomb : MonoBehaviour
             }
             foreach (BossPhases bp in clawsInRange)
             {
-                bp.decHealth(damage);
+                bp.decHealth(damage/4);
             }
+
         }
+    
 
         yield return new WaitForSeconds(0.5f);
         gameObject.SetActive(false);

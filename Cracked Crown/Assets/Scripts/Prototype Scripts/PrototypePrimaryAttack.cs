@@ -64,9 +64,9 @@ public class PrototypePrimaryAttack : MonoBehaviour
         {
             PlayerBody otherPlayer = other.gameObject.GetComponent<PlayerBody>();
 
-            if (playerBody.playerID != otherPlayer.playerID && !otherPlayer.gotHit)
+            if (playerBody.playerID != otherPlayer.playerID && !otherPlayer.gotHit && !otherPlayer.alreadyDead)
             {
-                otherPlayer.DecHealth(5f);
+                otherPlayer.DecHealth(3f);
                 StartCoroutine(otherPlayer.gotHitKnockback(playerBody.GetMovementVector()));
             }
         }

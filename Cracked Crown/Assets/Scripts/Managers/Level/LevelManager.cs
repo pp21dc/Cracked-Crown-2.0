@@ -176,7 +176,7 @@ public class LevelManager : MonoBehaviour
             if (CURRENT_ROOM < 3)
                 CURRENT_ROOM += 1;
             Current_Room = Rooms[CURRENT_ROOM - 1];
-            currentSpawnTotal = Current_Room.EnemyCount_PerWave[CURRENT_ROOM - 1] * (3 + GM.Players.Length / 4);
+            currentSpawnTotal = Current_Room.EnemyCount_PerWave[CURRENT_ROOM - 1] * (GM.Players.Length);
 
             SpawnTimer = 0;
             WAIT_NEXTSPAWN_VALUE = 0.2f;

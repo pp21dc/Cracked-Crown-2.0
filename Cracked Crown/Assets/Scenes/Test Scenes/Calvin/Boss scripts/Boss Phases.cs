@@ -103,13 +103,14 @@ public class BossPhases : MonoBehaviour
         }
         bossAnim.Play("clawPassive");
         cameraShake = FindObjectOfType<CameraShake>();
+        GameManager.Instance.claws.Add(this);
     }
 
     void Update()
     {
         if (otherClaw.isDead() && isDead()) //this var is what ever one you use to tell if boss is dead
         {
-            GameManager.Instance.win = true;
+            //GameManager.Instance.win = true;
         }
 
         if (bosshealth <= 0)
@@ -530,7 +531,7 @@ public class BossPhases : MonoBehaviour
         LevelManager.Instance.SpawnersActive = true;
         cameraShake.StartCoroutine(cameraShake.Shake(2f, 0.4f));
         roarSpawn = true;
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(6f);
         roarSpawn = false;
         LevelManager.Instance.SpawnersActive = false;
         yield return new WaitForSeconds(0.5f);

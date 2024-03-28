@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     public PlayerContainer[] Players;
     public PlayerManager[] PMs;
     public GameObject[] Characters;
+    public List<BossPhases> claws;
 
     [SerializeField]
     OpeningVideoController video_lose;
@@ -101,6 +102,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        claws = new List<BossPhases>();
         Physics.IgnoreLayerCollision(7, 6);
         if (CampaignStart)
         {
@@ -116,6 +118,21 @@ public class GameManager : MonoBehaviour
     {
         if (!TEST_SCENE)
         {
+            int x = 0;
+            if (claws != null)
+            {
+                foreach (BossPhases bp in claws)
+                {
+                    if (bp.isDead())
+                        x++;
+                }
+                if (x >= 2)
+                {
+                    claws = new List<BossPhases>();
+                    win = true;
+                }
+            }
+
             if (eyeText != null)
                 eyeText.text = eyeCount.ToString();
             if (Input.GetKeyUp(KeyCode.KeypadEnter))

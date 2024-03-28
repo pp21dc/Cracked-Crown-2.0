@@ -135,7 +135,7 @@ public class UIManager : MonoBehaviour
             //CheckPlayerHealths();
             for (int i = 0; i < GM.Players.Length; i++)
             {
-                playerHealthBars[i].SetFloat("_Position", 1 - GM.Players[i].PB.Health / 50);
+                playerHealthBars[i].SetFloat("_Position", 1 - GM.Players[i].PB.Health / GM.Players[i].PB.maxHealth);
             }
 
 

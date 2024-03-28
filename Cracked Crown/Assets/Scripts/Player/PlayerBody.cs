@@ -109,7 +109,7 @@ public class PlayerBody : MonoBehaviour
     private bool ifHopper = false;
     private Vector3 respawnPoint;
     public GameObject corpse;
-    private float maxHealth;
+    public float maxHealth;
     private GameManager gameManager;
     private float attackSpeed;
     private float moveCooldown;
@@ -454,7 +454,7 @@ public class PlayerBody : MonoBehaviour
                 }
             }
         }
-        if (dashing)
+        if (dashing && !Grabbed)
         {
             float dz = dashDirection.z;
             //canTakeDamage = false;
@@ -555,7 +555,8 @@ public class PlayerBody : MonoBehaviour
         attackKnockback = CharacterType.attackKnockback;
         deathBody = CharacterType.corpse;
         attackDelayTime = CharacterType.attackDelayTime;
-        
+        health = CharacterType.health;
+        maxHealth = health;
     }
     float x = 0;
     float attackTimer = 0;
