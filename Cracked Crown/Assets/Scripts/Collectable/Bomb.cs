@@ -100,6 +100,7 @@ public class Bomb : MonoBehaviour
 
         transform.GetChild(0).gameObject.SetActive(false);
         animator.SetBool("Blow", true);
+        StartCoroutine(CameraShake.instance.Shake(1.5f, 2f));
 
         if (true)
         {

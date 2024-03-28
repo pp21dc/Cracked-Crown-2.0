@@ -44,7 +44,9 @@ public class PlayerAudioManager : MonoBehaviour
         Move,
         Dash,
         Finisher,
-        Finisher2
+        Finisher2,
+        PotionUse,
+        Buy
     }
 
     public AudioType[] audioTypes;

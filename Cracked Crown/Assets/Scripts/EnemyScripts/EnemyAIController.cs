@@ -75,7 +75,7 @@ public class EnemyAIController : AdvancedFSM
 
     public bool canMove = true;
 
-
+    public CameraShake shakeSprite;
 
     //light enemy
     [SerializeField]
@@ -1007,16 +1007,25 @@ public class EnemyAIController : AdvancedFSM
         pb.Grabbed = false;
     }
 
+    int prevHit = 0;
     //method for carrying the player
     public void StartCarry()
     {
 
         PlayerBody body = slamAttack.hitPlayer;
-
         body.StartSpam();
-        if (body.timesHit >= 8)
+        if (body.timesHit >= 7)
         {
+            prevHit = 0;
             canSpam = false;
+            Debug.Log("IN");
+            //StartCoroutine(Drop(body));
+            //body.timesHit = 0;
+        }
+        else if (body.timesHit > prevHit)
+        {
+            prevHit = body.timesHit;
+            StartCoroutine(shakeSprite.Shake(0.35f, 2f));
         }
 
 
@@ -1283,13 +1292,13 @@ public class EnemyAIController : AdvancedFSM
         if(startShooting)
         {
 
-            if(closest.transform.position.x + 1 > enemyPosition.transform.position.x) 
+            if(closest != null && closest.transform.position.x + 1 > enemyPosition.transform.position.x) 
             {
                 ToothShotLocation.transform.localPosition = new Vector3(7.5f, 11.3f, 0);
                 bodyShootLoc.localPosition = new Vector3(2.2f, 11.3f, 0);
                 correctTooth = toothRight;
             }
-            else
+            else if (closest != null)
             {
                 ToothShotLocation.transform.localPosition = new Vector3(-7.5f, 11.3f, 0);
                 bodyShootLoc.localPosition = new Vector3(-2.2f, 11.3f, 0);
