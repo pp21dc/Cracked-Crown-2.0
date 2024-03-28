@@ -340,7 +340,7 @@ public class PlayerBody : MonoBehaviour
             animController.Moving = false;
         }
 
-        if (!offSprite && !spriteRenderer.enabled)
+        if (!offSprite && spriteRenderer != null && !spriteRenderer.enabled)
         {
             offSprite = true;
             StartCoroutine(SpriteOn());
