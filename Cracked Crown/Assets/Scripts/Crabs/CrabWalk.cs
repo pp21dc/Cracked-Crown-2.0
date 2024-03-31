@@ -9,6 +9,7 @@ public class CrabWalk : MonoBehaviour
     public float health = 1.0f;
     public Animator animator;
     public bool hasDied = false;
+    public bool stop = false;
     bool alreadyAtPos = false;
     public bool canMove = false;
     private Transform startPos;
@@ -81,7 +82,7 @@ public class CrabWalk : MonoBehaviour
                 animator.SetBool("PermaDead", true);
                 bigShadow.SetActive(false);
             }
-            if (!hasDied)
+            if (!hasDied && !stop)
             {
                 if (Vector3.Distance(transform.position, finalPos.position) > 5.0f)
                 {
@@ -96,15 +97,16 @@ public class CrabWalk : MonoBehaviour
                     }
                 }
 
-                if (health <= 0)
-                {
-                    // play death animation
-                    animator.SetBool("Death", true);
-                    speed = 0;
-                    StartCoroutine(deathTime());
-                    StartCoroutine(respawnCrab());
-                }
+                
 
+            }
+            if (health <= 0)
+            {
+                // play death animation
+                animator.SetBool("Death", true);
+                speed = 0;
+                StartCoroutine(deathTime());
+                StartCoroutine(respawnCrab());
             }
         }
 
