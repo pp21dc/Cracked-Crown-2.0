@@ -202,7 +202,7 @@ public class PlayerAnimController : MonoBehaviour
                 Animator.SetBool("Dead", dead);
             }
         }
-        else if (CharacterFolder.transform.GetChild(0).GetChild(0).TryGetComponent<Animator>(out Animator anim))
+        else if (transform.GetChild(0).GetChild(0).GetChild(0).TryGetComponent<Animator>(out Animator anim))
         {
             Animator = anim;
         }

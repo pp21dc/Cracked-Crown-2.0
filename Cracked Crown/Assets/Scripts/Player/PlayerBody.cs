@@ -505,8 +505,8 @@ public class PlayerBody : MonoBehaviour
         canTakeDamage = true;
         canAttack = true;
         executeLock = false;
-
-        animController.Finisher(enemyAIController.tag, enemyAIController.colour, true);
+        if (animController != null && enemyAIController != null)
+            animController.Finisher(enemyAIController.tag, enemyAIController.colour, true);
 
         yield return new WaitForSeconds(1.5f);
 
@@ -1027,7 +1027,7 @@ public class PlayerBody : MonoBehaviour
             }
             if (hasPotion & !Grabbed)
             {
-                sparkleObject.GetComponent<Animator>().SetTrigger("startSparkle");
+                //sparkleObject.GetComponent<Animator>().SetTrigger("startSparkle");
                 float healAmount = maxHealth * 0.75f;
                 AddHealth(healAmount);
                 Debug.Log("Player health is: " + health);
@@ -1039,7 +1039,7 @@ public class PlayerBody : MonoBehaviour
 
     public void hideSparkleObject() //Runs after the health pot sparkle as an anim event to disable the sparkle effect
     {
-        sparkleObject.SetActive(false);
+        //sparkleObject.SetActive(false);
     }
     public void StartSpam()
     {
