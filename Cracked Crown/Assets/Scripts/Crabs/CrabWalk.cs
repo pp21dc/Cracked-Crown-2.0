@@ -120,12 +120,12 @@ public class CrabWalk : MonoBehaviour
 
     public IEnumerator respawnCrab()
     {
-        yield return new WaitForSeconds(2.0f);
-        transform.position = transform.position + new Vector3(startPos.position.x, 0, 0);
+        yield return new WaitForSeconds(1.0f);
+        transform.position = startPos.position;
         animator.SetBool("AtPosition", false);
         alreadyAtPos = false;
 
-        yield return new WaitForSeconds(4.0f);
+        yield return new WaitForSeconds(1.5f);
         hasDied = false;
         animator.SetBool("Death", false);
         animator.SetBool("PermaDead", false);
