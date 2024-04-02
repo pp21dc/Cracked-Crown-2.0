@@ -788,6 +788,8 @@ public class EnemyAIController : AdvancedFSM
                 EAC.Stunned = false;
                 Vector3 upVector = new Vector3(enemyPosition.position.x, 30f, enemyPosition.position.z);
                 movementVector = (upVector - enemyPosition.transform.position).normalized * speed;
+                if (tag == "Medium" || tag == "Heavy")
+                    movementVector.y = 0;
                 enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
             }
         }
@@ -937,6 +939,8 @@ public class EnemyAIController : AdvancedFSM
             EAC.Attacking = true;
             Vector3 hit = new Vector3(enemyPosition.position.x, 0, enemyPosition.position.z);
             movementVector = (hit - enemyPosition.transform.position).normalized * slamSpeed;
+            if (tag == "Medium" || tag == "Heavy")
+                movementVector.y = 0;
             enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
         }
         else
@@ -975,6 +979,8 @@ public class EnemyAIController : AdvancedFSM
             EAC.Moving = true;
             EAC.Stunned = false;
             Vector3 upVector = new Vector3(enemyPosition.position.x, 30f, enemyPosition.position.z);
+            if (tag == "Medium" || tag == "Heavy")
+                movementVector.y = 0;
             movementVector = (upVector - enemyPosition.transform.position).normalized * speed;
             enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
         }
@@ -1111,6 +1117,8 @@ public class EnemyAIController : AdvancedFSM
             Debug.Log("Lets go up");
             Vector3 upVector = new Vector3(enemyPosition.position.x, 30f, enemyPosition.position.z);
             movementVector = (upVector - enemyPosition.transform.position).normalized * speed;
+            if (tag == "Medium" || tag == "Heavy")
+                movementVector.y = 0;
             enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
 
             
@@ -1328,7 +1336,9 @@ public class EnemyAIController : AdvancedFSM
         while(knockbackTimer < knockbackTime)
         {
             knockbackTimer += Time.deltaTime;
-            if(knockbackTimer <= 0.05f)
+            if (tag == "Medium" || tag == "Heavy")
+                dir.y = 0;
+            if (knockbackTimer <= 0.05f)
                 enemyPosition.transform.position += dir * Time.deltaTime;
             yield return null;
         }
