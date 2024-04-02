@@ -34,6 +34,7 @@ public class shockWave : MonoBehaviour
             PlayerBody playerScript = other.gameObject.GetComponent<PlayerBody>();
             if (!playerScript.dashing)
             {
+                
                 playerScript.DecHealth(3);
             }
 
