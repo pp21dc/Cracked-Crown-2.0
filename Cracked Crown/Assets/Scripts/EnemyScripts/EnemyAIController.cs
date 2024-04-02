@@ -1029,6 +1029,16 @@ public class EnemyAIController : AdvancedFSM
             StartCoroutine(shakeSprite.Shake(0.35f, 2f));
         }
 
+        if(body.Health <= 0)
+        {
+            doneCarry = true;
+            canSpam = true;
+            body.canRelease = false;
+            body.Grabbed = false;
+            EAC.Grabbing = false;
+            EAC.Attacking = false;
+        }
+
 
         if (body.canRelease && canSpam == false)
         {
@@ -1072,6 +1082,7 @@ public class EnemyAIController : AdvancedFSM
             canCarry = false;
             
             StartCoroutine(Carry(body));
+            StartCoroutine(DOT());
         }
 
         if(startCarryingUp == true)
@@ -1135,7 +1146,24 @@ public class EnemyAIController : AdvancedFSM
         }
 
         yield return null;
-    }  
+    } 
+    
+    IEnumerator DOT()
+    {
+        PlayerBody body = slamAttack.hitPlayer;
+
+        while (doneCarry == false)
+        {
+            yield return new WaitForSeconds(0.75f);
+
+            body.DecHealth(2f);
+
+            yield return new WaitForSeconds(0.75f);
+
+        }
+
+        yield return null;
+    }
     
     IEnumerator Drop(PlayerBody pb)
     {
@@ -1371,6 +1399,9 @@ public class EnemyAIController : AdvancedFSM
 
     IEnumerator Shockwave()
     {
+
+        yield return new WaitForSeconds(0.7f);
+
         for (int i = 0; i < 3; i++) 
         {
             EAC.ShockWave = true;
