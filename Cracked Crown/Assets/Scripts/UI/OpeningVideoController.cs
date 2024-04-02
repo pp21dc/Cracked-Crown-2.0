@@ -14,6 +14,7 @@ public class OpeningVideoController : MonoBehaviour
 
     int j = 0;
     public bool active = false;
+    bool skipLock = true;
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +24,16 @@ public class OpeningVideoController : MonoBehaviour
             players[i].Prepare();
             
         }
+        if (players[0].playOnAwake)
+        {
+            StartCoroutine(skipUnLock());
+        }
+    }
 
+    IEnumerator skipUnLock()
+    {
+        yield return new WaitForSeconds(2);
+        skipLock = false;
     }
 
     public void PlayVideo()
@@ -31,6 +41,7 @@ public class OpeningVideoController : MonoBehaviour
         ResetVideoPlayer();
         GameManager.Instance.waitforvideo = true;
         players[0].Play();
+        StartCoroutine(skipUnLock());
         active = true;
     }
 
@@ -52,7 +63,7 @@ public class OpeningVideoController : MonoBehaviour
         {
             Debug.LogWarning("VideoControllerUpdate");
             //Looks to see if a key has been pressed to skip to next video
-            if (Input.anyKeyDown && j < players.Length)
+            if (Input.anyKeyDown && j < players.Length && !skipLock)
             {
                 players[j].enabled = false;
                 j++;
@@ -66,7 +77,7 @@ public class OpeningVideoController : MonoBehaviour
                     GameManager.Instance.FreezePlayers(false);
                 }
             }
-            else if (Input.anyKeyDown && j >= players.Length)
+            else if (Input.anyKeyDown && j >= players.Length && !skipLock)
             {
                 players[2].enabled = false;
                 GameManager.Instance.waitforvideo = false;
