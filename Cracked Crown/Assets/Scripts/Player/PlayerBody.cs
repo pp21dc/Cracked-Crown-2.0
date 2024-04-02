@@ -829,6 +829,8 @@ public class PlayerBody : MonoBehaviour
                     // turn player sprite off for a second while animation because animation is on crab
                     transform.parent.GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(false);
 
+                    crabController.speed = 0;
+
                     // turn trigger for execute animation on
                     if (CharacterType.ID == 0)
                     {
@@ -850,29 +852,47 @@ public class PlayerBody : MonoBehaviour
 
                     yield return new WaitForSeconds(1.8f);
                    
-                    canTakeDamage = true;
-                    canMove = true;
-                    canAttack = true;
-                    canExecute = true;
-                    canMovePlayerForexecute = false;
-                    lockDash = false;
-                    transform.parent.GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(true);
                     if (!frogExecuted)
                     {
-                        Destroy(toExecute.transform.parent.gameObject); // this might not even destroy crab, might be sprite
+                        yield return new WaitForSeconds(0.2f);
+
+                        canTakeDamage = true;
+                        canMove = true;
+                        canAttack = true;
+                        canExecute = true;
+                        canMovePlayerForexecute = false;
+                        lockDash = false;
+
+                        transform.parent.GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(true);
+                        toExecute.transform.parent.GetChild(0).GetChild(0).gameObject.SetActive(false);
+                        StartCoroutine(crabController.respawnCrab());
                     }
                     else if (frogExecuted)
                     {
                         crabController.animator.SetBool("LeaveSign", true);
                         crabController.animator.SetBool("FrogExecute", false);
                         crabController.animator.SetBool("AtPosition", false);
+                        yield return new WaitForSeconds(0.5f);
+
+                        canTakeDamage = true;
+                        canMove = true;
+                        canAttack = true;
+                        canExecute = true;
+                        canMovePlayerForexecute = false;
+                        lockDash = false;
+
+                        transform.parent.GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(true);
+
                         // make so he cannot die now
                         GameObject test = toExecute.transform.parent.GetChild(0).gameObject;
                         test.tag = "DontHit";
 
                         yield return new WaitForSeconds(2.0f);
 
-                        Destroy(test);
+                        test.tag = "MiniCrabExecutable";
+                        toExecute.transform.parent.GetChild(0).GetChild(0).gameObject.SetActive(false);
+                        StartCoroutine(crabController.respawnCrab());
+
                     }
                 }
             }
