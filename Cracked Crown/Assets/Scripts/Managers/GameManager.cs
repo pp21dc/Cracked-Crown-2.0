@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
     public PlayerManager[] PMs;
     public GameObject[] Characters;
     public List<BossPhases> claws;
+    public CameraShake css;
 
     [SerializeField]
     OpeningVideoController video_lose;
@@ -108,7 +109,7 @@ public class GameManager : MonoBehaviour
         {
             ReturnToMainMenu(true);
         }
-        
+        css = CameraShake.instance;
         Application.targetFrameRate = 120;
     }
     public GameObject enem;
@@ -126,8 +127,9 @@ public class GameManager : MonoBehaviour
                     if (bp.isDead())
                         x++;
                 }
-                if (x >= 2)
+                if ((x >= 2 && Players.Length < 1) || (x >= 4 && Players.Length >= 1))
                 {
+                    Debug.Log("WIN");
                     claws = new List<BossPhases>();
                     win = true;
                 }

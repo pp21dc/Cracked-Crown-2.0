@@ -168,8 +168,14 @@ public class EnemyAIController : AdvancedFSM
     private bool goRight;
     public Transform SepLoc;
     public bool doneSeperating;
-    
 
+    //wall seperation
+    public bool wallContact;
+    private bool wallGo;
+    private bool canWall;
+    public bool doneWall;
+
+    public GameObject shockWave;
     //cooldown vars
     public bool dashOnCD;
     public bool shockwaveOnCD;
@@ -249,6 +255,10 @@ public class EnemyAIController : AdvancedFSM
         {
             state = "SEPERATE";
         }
+        else if (CurrentState.ID == FSMStateID.Wall)
+        {
+            state = "WALL";
+        }
         
         
 
@@ -295,6 +305,7 @@ public class EnemyAIController : AdvancedFSM
         {
             health = 60;
             maxHealth = 60;
+            shockWave.SetActive(true);
         }
 
         if(gameObject.CompareTag("Light"))
@@ -368,6 +379,12 @@ public class EnemyAIController : AdvancedFSM
         goRight = false;
         doneSeperating = false;
         canSeperate = true;
+
+        //wall seperate vars
+        wallContact = false;
+        wallGo = false;
+        canWall = false;
+        doneWall = false;
 
         //enemy speeds
         lightSpeed = 50f;
@@ -530,8 +547,12 @@ public class EnemyAIController : AdvancedFSM
         seperateState.AddTransition(Transition.LowHealth, FSMStateID.Finished);
         seperateState.AddTransition(Transition.NoHealth, FSMStateID.Dead);
         seperateState.AddTransition(Transition.LookForPlayer, FSMStateID.FindPlayer);
+        seperateState.AddTransition(Transition.hitDaWall, FSMStateID.Wall);
         
-
+        WallSeperateState wallState = new WallSeperateState(this);
+        wallState.AddTransition(Transition.LowHealth, FSMStateID.Finished);
+        wallState.AddTransition(Transition.NoHealth, FSMStateID.Dead);
+        wallState.AddTransition(Transition.LookForPlayer, FSMStateID.FindPlayer);
 
         //Add all states to the state list
 
@@ -539,6 +560,7 @@ public class EnemyAIController : AdvancedFSM
         AddFSMState(finishedState);
         AddFSMState(deadState);
         AddFSMState(seperateState);
+        AddFSMState(wallState);
 
         AddFSMState(slamGroundState);
         AddFSMState(carryState);
@@ -678,11 +700,11 @@ public class EnemyAIController : AdvancedFSM
             enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
             if (closest.transform.position.x + 1 > enemyPosition.transform.position.x)
             {
-                EAC.SR.flipX = false;
+                //EAC.SR.flipX = false;
             }
             else
             {
-                EAC.SR.flipX = true;
+                //EAC.SR.flipX = true;
             }
         }
         else
@@ -766,6 +788,8 @@ public class EnemyAIController : AdvancedFSM
                 EAC.Stunned = false;
                 Vector3 upVector = new Vector3(enemyPosition.position.x, 30f, enemyPosition.position.z);
                 movementVector = (upVector - enemyPosition.transform.position).normalized * speed;
+                if (tag == "Medium" || tag == "Heavy")
+                    movementVector.y = 0;
                 enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
             }
         }
@@ -827,16 +851,14 @@ public class EnemyAIController : AdvancedFSM
         yield return new WaitForSeconds(0.01f);
 
         Debug.Log("DEATH");
+        //DropEyes();
+
         DropEyes();
-
-        if (tag == "Medium")
-            yield return new WaitForSeconds(0.5f);
-        else if (tag == "Light")
-            yield return new WaitForSeconds(0.3f);
-
-        if(gameObject.CompareTag("Light") || gameObject.CompareTag("Medium") || gameObject.CompareTag("Heavy"))
+        yield return new WaitForSeconds(0.69f);
+        if (gameObject.CompareTag("Light") || gameObject.CompareTag("Medium") || gameObject.CompareTag("Heavy"))
         {
             LevelManager.Instance.EnemyKilled();
+
             Destroy(transform.parent.gameObject);
         }
         else
@@ -857,20 +879,20 @@ public class EnemyAIController : AdvancedFSM
 
         if (gameObject.CompareTag("Light"))
         {
-            dropRate = Random.Range(1, 3);
+            dropRate = 2;
         }
         else if (gameObject.CompareTag("Medium"))
         {
-            dropRate = Random.Range(2, 6);
+            dropRate = 3;
         }
         else if (gameObject.CompareTag("Heavy"))
         {
-            dropRate = Random.Range(4, 9);
+            dropRate = 7;
         }
 
         for (int i = 0; i < dropRate; i++)
         {
-            Instantiate(eyes, enemyBody.transform.position + new Vector3(Random.Range(-10, 10), transform.position.y, Random.Range(-10, 10)), Quaternion.identity);
+            Instantiate(eyes, enemyBody.transform.position + new Vector3(Random.Range(-10, 10), transform.position.y + 5, Random.Range(-10, 10)), Quaternion.identity);
         }
     }
     
@@ -917,6 +939,8 @@ public class EnemyAIController : AdvancedFSM
             EAC.Attacking = true;
             Vector3 hit = new Vector3(enemyPosition.position.x, 0, enemyPosition.position.z);
             movementVector = (hit - enemyPosition.transform.position).normalized * slamSpeed;
+            if (tag == "Medium" || tag == "Heavy")
+                movementVector.y = 0;
             enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
         }
         else
@@ -955,6 +979,8 @@ public class EnemyAIController : AdvancedFSM
             EAC.Moving = true;
             EAC.Stunned = false;
             Vector3 upVector = new Vector3(enemyPosition.position.x, 30f, enemyPosition.position.z);
+            if (tag == "Medium" || tag == "Heavy")
+                movementVector.y = 0;
             movementVector = (upVector - enemyPosition.transform.position).normalized * speed;
             enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
         }
@@ -1028,6 +1054,16 @@ public class EnemyAIController : AdvancedFSM
             StartCoroutine(shakeSprite.Shake(0.35f, 2f));
         }
 
+        if(body.Health <= 0)
+        {
+            doneCarry = true;
+            canSpam = true;
+            body.canRelease = false;
+            body.Grabbed = false;
+            EAC.Grabbing = false;
+            EAC.Attacking = false;
+        }
+
 
         if (body.canRelease && canSpam == false)
         {
@@ -1071,6 +1107,7 @@ public class EnemyAIController : AdvancedFSM
             canCarry = false;
             
             StartCoroutine(Carry(body));
+            StartCoroutine(DOT());
         }
 
         if(startCarryingUp == true)
@@ -1080,6 +1117,8 @@ public class EnemyAIController : AdvancedFSM
             Debug.Log("Lets go up");
             Vector3 upVector = new Vector3(enemyPosition.position.x, 30f, enemyPosition.position.z);
             movementVector = (upVector - enemyPosition.transform.position).normalized * speed;
+            if (tag == "Medium" || tag == "Heavy")
+                movementVector.y = 0;
             enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
 
             
@@ -1134,7 +1173,24 @@ public class EnemyAIController : AdvancedFSM
         }
 
         yield return null;
-    }  
+    } 
+    
+    IEnumerator DOT()
+    {
+        PlayerBody body = slamAttack.hitPlayer;
+
+        while (doneCarry == false)
+        {
+            yield return new WaitForSeconds(0.35f);
+
+            body.DecHealth(2f);
+
+            yield return new WaitForSeconds(0.35f);
+
+        }
+
+        yield return null;
+    }
     
     IEnumerator Drop(PlayerBody pb)
     {
@@ -1206,11 +1262,12 @@ public class EnemyAIController : AdvancedFSM
         {
             //Debug.Log("Made it to the if statement");
             isHeavyDashing = false;
+            
             StartCoroutine(Dash());
         }
         else
         {
-            if (Vector3.Distance(enemyPosition.transform.position, TargetPlayerPos) > 0.5f && !knockback)
+            if (Vector3.Distance(enemyPosition.transform.position, TargetPlayerPos) > 1f && !knockback)
             {
                 movementVector = (TargetPlayerPos - enemyPosition.transform.position).normalized * HeavyDashSpeed;
                 movementVector.y = 0;
@@ -1223,11 +1280,11 @@ public class EnemyAIController : AdvancedFSM
             }
             if (TargetPlayerPos.x > enemyPosition.transform.position.x)
             {
-                EAC.SR.flipX = false;
+                //EAC.SR.flipX = false;
             }
             else
             {
-                EAC.SR.flipX = true;
+                //EAC.SR.flipX = true;
             }
 
         }
@@ -1279,7 +1336,9 @@ public class EnemyAIController : AdvancedFSM
         while(knockbackTimer < knockbackTime)
         {
             knockbackTimer += Time.deltaTime;
-            if(knockbackTimer <= 0.05f)
+            if (tag == "Medium" || tag == "Heavy")
+                dir.y = 0;
+            if (knockbackTimer <= 0.05f)
                 enemyPosition.transform.position += dir * Time.deltaTime;
             yield return null;
         }
@@ -1370,6 +1429,9 @@ public class EnemyAIController : AdvancedFSM
 
     IEnumerator Shockwave()
     {
+
+        yield return new WaitForSeconds(0.7f);
+
         for (int i = 0; i < 3; i++) 
         {
             EAC.ShockWave = true;
@@ -1599,6 +1661,42 @@ public class EnemyAIController : AdvancedFSM
         sepCheck.enabled = true;
         canSeperate = true;
         doneSeperating = true;
+
+        yield return null;
+    }
+
+    public void StartWallSeperation()
+    {
+        if(canWall)
+        {
+            canWall = false;
+            StartCoroutine(wallSeperation());
+        }
+
+        if(gameObject.CompareTag("Medium"))
+        {
+            movementVector = (SepLoc.position - enemyPosition.transform.position).normalized * mediumSpeed;
+            movementVector.y = 0;
+            enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
+        }
+        else if(gameObject.CompareTag("Heavy"))
+        {
+            movementVector = (SepLoc.position - enemyPosition.transform.position).normalized * heavySpeed;
+            movementVector.y = 0;
+            enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
+        }
+
+    }
+
+    IEnumerator wallSeperation()
+    {
+        SepLoc.localPosition = new Vector3(-SepLoc.localPosition.x, -SepLoc.localPosition.y, -SepLoc.localPosition.z);
+
+        wallGo = true;
+
+        yield return new WaitForSeconds(0.35f);
+
+        wallGo = false;
 
         yield return null;
     }

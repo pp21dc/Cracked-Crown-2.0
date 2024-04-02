@@ -5,7 +5,7 @@ using UnityEngine;
 public class CrabWalk : MonoBehaviour
 {
 
-    private float speed = 15.0f;
+    public float speed = 15.0f;
     public float health = 1.0f;
     public Animator animator;
     public bool hasDied = false;
@@ -120,18 +120,22 @@ public class CrabWalk : MonoBehaviour
 
     public IEnumerator respawnCrab()
     {
-        yield return new WaitForSeconds(2.0f);
-        transform.position = transform.position + new Vector3(startPos.position.x, 0, 0);
+        if (gameObject.tag == "MiniCrabExecutable")
+        {
+            transform.position = startPos.position;
+        }
+
+        yield return new WaitForSeconds(1.0f);
+        transform.position = startPos.position;
         animator.SetBool("AtPosition", false);
         alreadyAtPos = false;
 
-        yield return new WaitForSeconds(4.0f);
+        yield return new WaitForSeconds(1.5f);
         hasDied = false;
         animator.SetBool("Death", false);
         animator.SetBool("PermaDead", false);
         speed = 15.0f;
         health = 1.0f;
-        gameObject.transform.GetChild(0).gameObject.SetActive(true);
 
         if (gameObject.tag == "MiniCrabExecutable")
         {
@@ -141,5 +145,6 @@ public class CrabWalk : MonoBehaviour
             animator.SetBool("FrogExecute", false);
             animator.SetBool("LeaveSign", false);
         }
+        gameObject.transform.GetChild(0).gameObject.SetActive(true);
     }
 }

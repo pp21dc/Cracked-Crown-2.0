@@ -13,7 +13,7 @@ public class EnemyBody : MonoBehaviour
     public float timeToDamage = 2f;
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Player" && transform.parent.tag != "Light" && !EAIC.EAC.Dead)
+        if (other.tag == "Player" && transform.parent.GetChild(0).tag != "Light" && !EAIC.EAC.Dead)
         {
             if (timer > timeToDamage)
             {

@@ -137,6 +137,8 @@ public class PlayerBody : MonoBehaviour
         canCollect = true;
         canCollectBomb = false;
         canCollectPotion = false;
+        hasBomb = false;
+        hasPotion = false;
         canExecute = true;
         canMove = true;
         canTakeDamage = true;
@@ -152,6 +154,8 @@ public class PlayerBody : MonoBehaviour
             hasBomb = true;
         if (Input.GetKey(KeyCode.K))
             ghostCoins += 10;
+        if (Input.GetKey(KeyCode.I))
+            gameManager.eyeCount += 1;
 
         if (sprite != null)
         {
@@ -227,7 +231,6 @@ public class PlayerBody : MonoBehaviour
                 ghostCoins = 10;
             if (ghostCoins >= 10)
             {
-
                 gameObject.tag = "Player";
 
                 // move player back to corpse
@@ -269,7 +272,14 @@ public class PlayerBody : MonoBehaviour
     bool lockRelease;
     private IEnumerator Release()
     {
-        yield return new WaitForSeconds(3.5f);
+        while (true)
+        {
+            if (!Grabbed)
+                break;
+
+            yield return new WaitForSeconds(9f);
+            break;
+        }
         Grabbed = false;
         lockRelease = false;
     }
@@ -785,7 +795,7 @@ public class PlayerBody : MonoBehaviour
                 toExecute.transform.parent.gameObject.SetActive(false);
                 if (LevelManager.Instance != null)
                     LevelManager.Instance.EnemyKilled();
-                yield return new WaitForSeconds(0.75f);
+                yield return new WaitForSeconds(0.8f);
                 enemyAIController.DropEyes();
                 yield return new WaitForSeconds(0.75f);
                 
@@ -819,6 +829,8 @@ public class PlayerBody : MonoBehaviour
                     // turn player sprite off for a second while animation because animation is on crab
                     transform.parent.GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(false);
 
+                    crabController.speed = 0;
+
                     // turn trigger for execute animation on
                     if (CharacterType.ID == 0)
                     {
@@ -840,29 +852,47 @@ public class PlayerBody : MonoBehaviour
 
                     yield return new WaitForSeconds(1.8f);
                    
-                    canTakeDamage = true;
-                    canMove = true;
-                    canAttack = true;
-                    canExecute = true;
-                    canMovePlayerForexecute = false;
-                    lockDash = false;
-                    transform.parent.GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(true);
                     if (!frogExecuted)
                     {
-                        Destroy(toExecute.transform.parent.gameObject); // this might not even destroy crab, might be sprite
+                        yield return new WaitForSeconds(0.2f);
+
+                        canTakeDamage = true;
+                        canMove = true;
+                        canAttack = true;
+                        canExecute = true;
+                        canMovePlayerForexecute = false;
+                        lockDash = false;
+
+                        transform.parent.GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(true);
+                        toExecute.transform.parent.GetChild(0).GetChild(0).gameObject.SetActive(false);
+                        StartCoroutine(crabController.respawnCrab());
                     }
                     else if (frogExecuted)
                     {
                         crabController.animator.SetBool("LeaveSign", true);
                         crabController.animator.SetBool("FrogExecute", false);
                         crabController.animator.SetBool("AtPosition", false);
+                        yield return new WaitForSeconds(0.5f);
+
+                        canTakeDamage = true;
+                        canMove = true;
+                        canAttack = true;
+                        canExecute = true;
+                        canMovePlayerForexecute = false;
+                        lockDash = false;
+
+                        transform.parent.GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(true);
+
                         // make so he cannot die now
                         GameObject test = toExecute.transform.parent.GetChild(0).gameObject;
                         test.tag = "DontHit";
 
                         yield return new WaitForSeconds(2.0f);
 
-                        Destroy(test);
+                        test.tag = "MiniCrabExecutable";
+                        toExecute.transform.parent.GetChild(0).GetChild(0).gameObject.SetActive(false);
+                        StartCoroutine(crabController.respawnCrab());
+
                     }
                 }
             }
@@ -879,10 +909,6 @@ public class PlayerBody : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Enemy")
-        {
-            health = health - 1;
-        }
         if (collision.gameObject.tag == "Revive" && gameObject.tag == "Ghost")
         {
             Debug.Log("Collided With Revive Stone as Ghost");
@@ -978,6 +1004,7 @@ public class PlayerBody : MonoBehaviour
                     collectable.gameObject.SetActive(false);
                     PAM.PlayAudio(PlayerAudioManager.AudioType.Buy);
                     Debug.Log("Player has a bomb: " + hasBomb);
+                    StartCoroutine(resetCollectable(collectable.gameObject));
                 }
             }
         }
@@ -992,10 +1019,17 @@ public class PlayerBody : MonoBehaviour
                     hasPotion = true;
                     collectable.gameObject.SetActive(false);
                     PAM.PlayAudio(PlayerAudioManager.AudioType.Buy);
-                    Debug.Log("Player has a bomb: " + hasPotion);
+                    Debug.Log("Player has a potion: " + hasPotion);
+                    StartCoroutine(resetCollectable(collectable.gameObject));
                 }
             }
         }
+    }
+
+    private IEnumerator resetCollectable(GameObject collectable)
+    {
+        yield return new WaitForSeconds(1.0f);
+        collectable.SetActive(true);
     }
 
     private void UseItem()
