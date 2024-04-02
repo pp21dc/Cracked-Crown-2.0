@@ -25,7 +25,6 @@ public class dropShadowFixed : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
-        Debug.Log(claw.transform.gameObject.activeSelf);
         folX = claw.transform.position.x;
         folZ = claw.transform.position.z;
         gameObject.transform.position = new Vector3(folX + 4, folY - 70, folZ);
