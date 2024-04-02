@@ -21,7 +21,7 @@ public class BossPhases : MonoBehaviour
     [SerializeField]
     private Animator mandibleAnim;
     [SerializeField]
-    private BossPhases otherClaw;
+    private BossPhases[] otherClaw;
     [SerializeField]
     private GameObject ClawSprite;
     [SerializeField]
@@ -103,14 +103,21 @@ public class BossPhases : MonoBehaviour
         }
         bossAnim.Play("clawPassive");
         cameraShake = FindObjectOfType<CameraShake>();
-        GameManager.Instance.claws.Add(this);
+        //GameManager.Instance.claws.Add(this);
     }
 
     void Update()
     {
-        if (otherClaw.isDead() && isDead()) //this var is what ever one you use to tell if boss is dead
+        for (int i = 0; i < otherClaw.Length; i++)
         {
-            //GameManager.Instance.win = true;
+            if (otherClaw[i].isDead() && isDead()) //this var is what ever one you use to tell if boss is dead
+            {
+                //GameManager.Instance.win = true;
+            }
+            else
+            {
+                break;
+            }
         }
 
         if (bosshealth <= 0)
@@ -255,12 +262,16 @@ public class BossPhases : MonoBehaviour
         {
             nextattack = Random.Range(0, 3);
         }
-        if (otherClaw.nextattack == 2)
+        for (int i = 0; i < otherClaw.Length; i++)
         {
-            if (nextattack == 2)
+            if (otherClaw[i].nextattack == 2)
             {
-                return createNextAttack();
+                if (nextattack == 2)
+                {
+                    return createNextAttack();
+                }
             }
+
         }
         prevattack = nextattack;
         return attackList[nextattack];
@@ -296,11 +307,14 @@ public class BossPhases : MonoBehaviour
 
     private GameObject chooseFollow()
     {
-        if (PlayerList.Length == 1)
+        for (int i = 0; i < otherClaw.Length; i++)
         {
-            if (otherClaw.FollowedPlayer != null)
+            if (PlayerList.Length == 1)
             {
-                return null;
+                if (otherClaw[i].FollowedPlayer != null)
+                {
+                    return null;
+                }
             }
         }
 
@@ -314,40 +328,46 @@ public class BossPhases : MonoBehaviour
         }
         for (int i = 0; i < PlayerList.Length; i++)
         {
-            if (otherClaw.FollowedPlayer != PlayerList[i]) // sets the player to be followed to a player not targetted by the other claw
+            for (int w = 0; w < otherClaw.Length; w++)
             {
-                if ((i - 1) >= 0)
+                if (otherClaw[w].FollowedPlayer != PlayerList[i]) // sets the player to be followed to a player not targetted by the other claw
                 {
-                    if (playerdist[selection] > playerdist[i])
+                    if ((i - 1) >= 0)
+                    {
+                        if (playerdist[selection] > playerdist[i])
+                        {
+                            selection = i;
+                        }
+                    }
+                    else
                     {
                         selection = i;
                     }
                 }
-                else
-                {
-                    selection = i;
-                }
             }
         }
-        if (otherClaw.FollowedPlayer == PlayerList[selection])
+        for (int i = 0; i < otherClaw.Length; i++)
         {
-             for (int i = 0; i < PlayerList.Length; i++)
+            if (otherClaw[i].FollowedPlayer == PlayerList[selection])
             {
-                if (PlayerList[selection] != PlayerList[i])
+                for (int w = 0; w < PlayerList.Length; w++)
                 {
-                    return PlayerList[i];
-                }
-                else
-                {
-                    return null;
+                    if (PlayerList[selection] != PlayerList[w])
+                    {
+                        return PlayerList[w];
+                    }
+                    else
+                    {
+                        return null;
+                    }
                 }
             }
-            return null;
+            else
+            {
+                return PlayerList[selection];
+            }
         }
-        else
-        {
-            return PlayerList[selection];
-        }
+        return null;
     }
 
     private void pincerAttack() // handles actions relying on the pincer IEnumerator's timings
@@ -528,12 +548,12 @@ public class BossPhases : MonoBehaviour
         mandibleAnim.StopPlayback();
         mandibleAnim.Play("mandibles");
         BAM.PlayAudio(BossAudioManager.AudioType.Roar);
-        LevelManager.Instance.SpawnersActive = true;
+        //LevelManager.Instance.SpawnersActive = true;
         cameraShake.StartCoroutine(cameraShake.Shake(2f, 0.4f));
         roarSpawn = true;
         yield return new WaitForSeconds(6f);
         roarSpawn = false;
-        LevelManager.Instance.SpawnersActive = false;
+        //LevelManager.Instance.SpawnersActive = false;
         yield return new WaitForSeconds(0.5f);
 
     }
