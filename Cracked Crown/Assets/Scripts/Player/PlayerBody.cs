@@ -227,7 +227,6 @@ public class PlayerBody : MonoBehaviour
                 ghostCoins = 10;
             if (ghostCoins >= 10)
             {
-
                 gameObject.tag = "Player";
 
                 // move player back to corpse
