@@ -59,7 +59,7 @@ public class Collect : MonoBehaviour
                 {
                     if (body.alreadyDead)
                     {
-                        body.ghostCoins = body.ghostCoins + 1;
+                        body.ghostCoins = body.ghostCoins + 0.5f;
                         //Debug.Log(body.ghostCoins);
                         body.PAM.PlayAudio(PlayerAudioManager.AudioType.CoinPickUp);
                         Destroy(gameObject.transform.parent.gameObject);
@@ -67,7 +67,7 @@ public class Collect : MonoBehaviour
                     else
                     {
                         body.PAM.PlayAudio(PlayerAudioManager.AudioType.CoinPickUp);
-                        gameManager.eyeCount = gameManager.eyeCount + 1;
+                        gameManager.eyeCount = gameManager.eyeCount + 0.5f;
                         Destroy(gameObject.transform.parent.gameObject);
                     }
                 }
