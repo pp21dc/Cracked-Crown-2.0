@@ -137,6 +137,8 @@ public class PlayerBody : MonoBehaviour
         canCollect = true;
         canCollectBomb = false;
         canCollectPotion = false;
+        hasBomb = false;
+        hasPotion = false;
         canExecute = true;
         canMove = true;
         canTakeDamage = true;
@@ -152,6 +154,8 @@ public class PlayerBody : MonoBehaviour
             hasBomb = true;
         if (Input.GetKey(KeyCode.K))
             ghostCoins += 10;
+        if (Input.GetKey(KeyCode.I))
+            gameManager.eyeCount += 1;
 
         if (sprite != null)
         {
@@ -227,7 +231,6 @@ public class PlayerBody : MonoBehaviour
                 ghostCoins = 10;
             if (ghostCoins >= 10)
             {
-
                 gameObject.tag = "Player";
 
                 // move player back to corpse
@@ -269,7 +272,7 @@ public class PlayerBody : MonoBehaviour
     bool lockRelease;
     private IEnumerator Release()
     {
-        yield return new WaitForSeconds(3.5f);
+        yield return new WaitForSeconds(9f);
         Grabbed = false;
         lockRelease = false;
     }

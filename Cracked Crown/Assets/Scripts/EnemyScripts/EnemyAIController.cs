@@ -679,11 +679,11 @@ public class EnemyAIController : AdvancedFSM
             enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
             if (closest.transform.position.x + 1 > enemyPosition.transform.position.x)
             {
-                EAC.SR.flipX = false;
+                //EAC.SR.flipX = false;
             }
             else
             {
-                EAC.SR.flipX = true;
+                //EAC.SR.flipX = true;
             }
         }
         else
@@ -1235,11 +1235,12 @@ public class EnemyAIController : AdvancedFSM
         {
             //Debug.Log("Made it to the if statement");
             isHeavyDashing = false;
+            
             StartCoroutine(Dash());
         }
         else
         {
-            if (Vector3.Distance(enemyPosition.transform.position, TargetPlayerPos) > 0.5f && !knockback)
+            if (Vector3.Distance(enemyPosition.transform.position, TargetPlayerPos) > 0.75f && !knockback)
             {
                 movementVector = (TargetPlayerPos - enemyPosition.transform.position).normalized * HeavyDashSpeed;
                 movementVector.y = 0;
@@ -1252,11 +1253,11 @@ public class EnemyAIController : AdvancedFSM
             }
             if (TargetPlayerPos.x > enemyPosition.transform.position.x)
             {
-                EAC.SR.flipX = false;
+                //EAC.SR.flipX = false;
             }
             else
             {
-                EAC.SR.flipX = true;
+                //EAC.SR.flipX = true;
             }
 
         }
