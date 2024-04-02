@@ -127,8 +127,9 @@ public class GameManager : MonoBehaviour
                     if (bp.isDead())
                         x++;
                 }
-                if (x >= 4)
+                if ((x >= 2 && Players.Length < 1) || (x >= 4 && Players.Length >= 1))
                 {
+                    Debug.Log("WIN");
                     claws = new List<BossPhases>();
                     win = true;
                 }
