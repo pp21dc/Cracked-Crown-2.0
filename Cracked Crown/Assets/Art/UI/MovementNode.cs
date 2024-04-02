@@ -11,26 +11,36 @@ public class MovementNode : MonoBehaviour
     [SerializeField] char[] xyPos;
     [SerializeField] Material mat;
 
+    [SerializeField] float leftLimit = 0.5f;
+    [SerializeField] float rightLimit = -0.5f;
+    [SerializeField] float topLimit = -0.1f;
+    [SerializeField] float bottomLimit = 0.1f;
+
+    [SerializeField] float maxSpeedX = 0.08f;
+    [SerializeField] float maxSpeedY = 0.03f;
+
+    [SerializeField] float blobMaxSize = 0.08f;
+    [SerializeField] float blobMinSize = 0.05f;
     private void Start()
     {
         //Starting size
-        mat.SetFloat("_blob1Size", Random.Range(0.05f, 0.08f));
-        mat.SetFloat("_blob2Size", Random.Range(0.05f, 0.08f));
-        mat.SetFloat("_blob3Size", Random.Range(0.05f, 0.08f));
-        mat.SetFloat("_blob4Size", Random.Range(0.05f, 0.08f));
-        mat.SetFloat("_blob5Size", Random.Range(0.05f, 0.08f));
-        mat.SetFloat("_blob6Size", Random.Range(0.05f, 0.08f));
+        mat.SetFloat("_blob1Size", Random.Range(blobMinSize, blobMaxSize));
+        mat.SetFloat("_blob2Size", Random.Range(blobMinSize, blobMaxSize));
+        mat.SetFloat("_blob3Size", Random.Range(blobMinSize, blobMaxSize));
+        mat.SetFloat("_blob4Size", Random.Range(blobMinSize, blobMaxSize));
+        mat.SetFloat("_blob5Size", Random.Range(blobMinSize, blobMaxSize));
+        mat.SetFloat("_blob6Size", Random.Range(blobMinSize, blobMaxSize));
 
         
         for (int i = 0; i < 6; i++)
         {
             //startingPos
-            xy[i].x = Random.Range(-0.5f, 0.5f);
-            xy[i].y = Random.Range(-0.1f, 0.1f);
+            xy[i].x = Random.Range(rightLimit, leftLimit);
+            xy[i].y = Random.Range(topLimit, bottomLimit);
 
             //speeds
-            xySpeeds[i].x = Random.Range(-0.08f, 0.08f);
-            xySpeeds[i].y = Random.Range(-0.03f, 0.03f);
+            xySpeeds[i].x = Random.Range(-maxSpeedX, maxSpeedX);
+            xySpeeds[i].y = Random.Range(-maxSpeedY, maxSpeedY);
         }
     }
 
@@ -40,26 +50,26 @@ public class MovementNode : MonoBehaviour
         {
             xy[i] += new Vector2(Time.deltaTime * xySpeeds[i].x, Time.deltaTime * xySpeeds[i].y);
 
-            if (xy[i].x < -0.5f)
+            if (xy[i].x < rightLimit)
             {
                 xySpeeds[i].x *= -1;
-                xy[i].x = -0.5f;
+                xy[i].x = rightLimit;
             }
-            if (xy[i].x > 0.5f)
+            if (xy[i].x > leftLimit)
             {
                 xySpeeds[i].x *= -1;
-                xy[i].x = 0.5f;
+                xy[i].x = leftLimit;
             }
                 
-            if (xy[i].y < -0.1f)
+            if (xy[i].y < topLimit)
             {
                 xySpeeds[i].y *= -1;
-                xy[i].y = -0.1f;
+                xy[i].y = topLimit;
             }
-            if (xy[i].y > 0.1f)
+            if (xy[i].y > bottomLimit)
             {
                 xySpeeds[i].y *= -1;
-                xy[i].y = 0.1f;
+                xy[i].y = bottomLimit;
             }
             //if(i == 0)
             //Debug.LogWarning(i + ": " + xySpeeds[i]);
