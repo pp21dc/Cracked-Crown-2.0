@@ -1259,7 +1259,7 @@ public class EnemyAIController : AdvancedFSM
         }
         else
         {
-            if (Vector3.Distance(enemyPosition.transform.position, TargetPlayerPos) > 0.75f && !knockback)
+            if (Vector3.Distance(enemyPosition.transform.position, TargetPlayerPos) > 1f && !knockback)
             {
                 movementVector = (TargetPlayerPos - enemyPosition.transform.position).normalized * HeavyDashSpeed;
                 movementVector.y = 0;

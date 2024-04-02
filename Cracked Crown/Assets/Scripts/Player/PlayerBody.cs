@@ -272,7 +272,14 @@ public class PlayerBody : MonoBehaviour
     bool lockRelease;
     private IEnumerator Release()
     {
-        yield return new WaitForSeconds(9f);
+        while (true)
+        {
+            if (!Grabbed)
+                break;
+
+            yield return new WaitForSeconds(9f);
+            break;
+        }
         Grabbed = false;
         lockRelease = false;
     }
@@ -788,7 +795,7 @@ public class PlayerBody : MonoBehaviour
                 toExecute.transform.parent.gameObject.SetActive(false);
                 if (LevelManager.Instance != null)
                     LevelManager.Instance.EnemyKilled();
-                yield return new WaitForSeconds(0.75f);
+                yield return new WaitForSeconds(0.8f);
                 enemyAIController.DropEyes();
                 yield return new WaitForSeconds(0.75f);
                 
