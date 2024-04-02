@@ -110,7 +110,10 @@ public class BossPhases : MonoBehaviour
         }
         bossAnim.Play("clawPassive");
         cameraShake = FindObjectOfType<CameraShake>();
-        //GameManager.Instance.claws.Add(this);
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.claws.Add(this);
+        }
     }
 
     void Update()
@@ -287,14 +290,6 @@ public class BossPhases : MonoBehaviour
     private void startNextAttack()
     {
         CurrentAttack = createNextAttack();
-        if (CurrentAttack == "RoarAttack")
-        {
-            if (Random.Range(0, 2) == 0)
-            {
-                CurrentAttack = createNextAttack();
-            }
-
-        }
         switch (CurrentAttack) // sets attack timer based on the next boss attack
         {
             case "PincerAttack":
