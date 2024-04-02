@@ -540,7 +540,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EAIC: {fileID: 3777765676232313991}
-  timeToDamage: 3
+  timeToDamage: 9
 --- !u!1 &1861108863918195726
 GameObject:
   m_ObjectHideFlags: 0
@@ -690,6 +690,7 @@ MonoBehaviour:
   otherAI: {fileID: 0}
   SepLoc: {fileID: 4490055925084942224}
   doneSeperating: 0
+  shockWave: {fileID: 4787176899576346564}
   dashOnCD: 0
   shockwaveOnCD: 0
   shootOnCD: 0
@@ -914,7 +915,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5270522913278422398
 Transform:
   m_ObjectHideFlags: 0

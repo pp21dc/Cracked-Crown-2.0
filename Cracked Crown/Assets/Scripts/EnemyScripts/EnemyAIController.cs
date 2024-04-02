@@ -168,8 +168,8 @@ public class EnemyAIController : AdvancedFSM
     private bool goRight;
     public Transform SepLoc;
     public bool doneSeperating;
-    
 
+    public GameObject shockWave;
     //cooldown vars
     public bool dashOnCD;
     public bool shockwaveOnCD;
@@ -295,6 +295,7 @@ public class EnemyAIController : AdvancedFSM
         {
             health = 60;
             maxHealth = 60;
+            shockWave.SetActive(true);
         }
 
         if(gameObject.CompareTag("Light"))
