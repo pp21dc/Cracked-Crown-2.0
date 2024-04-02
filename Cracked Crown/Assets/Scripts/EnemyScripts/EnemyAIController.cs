@@ -840,16 +840,14 @@ public class EnemyAIController : AdvancedFSM
         yield return new WaitForSeconds(0.01f);
 
         Debug.Log("DEATH");
+        //DropEyes();
+
         DropEyes();
-
-        if (tag == "Medium")
-            yield return new WaitForSeconds(0.5f);
-        else if (tag == "Light")
-            yield return new WaitForSeconds(0.3f);
-
-        if(gameObject.CompareTag("Light") || gameObject.CompareTag("Medium") || gameObject.CompareTag("Heavy"))
+        yield return new WaitForSeconds(0.69f);
+        if (gameObject.CompareTag("Light") || gameObject.CompareTag("Medium") || gameObject.CompareTag("Heavy"))
         {
             LevelManager.Instance.EnemyKilled();
+
             Destroy(transform.parent.gameObject);
         }
         else
@@ -870,20 +868,20 @@ public class EnemyAIController : AdvancedFSM
 
         if (gameObject.CompareTag("Light"))
         {
-            dropRate = Random.Range(1, 3);
+            dropRate = 2;
         }
         else if (gameObject.CompareTag("Medium"))
         {
-            dropRate = Random.Range(2, 6);
+            dropRate = 3;
         }
         else if (gameObject.CompareTag("Heavy"))
         {
-            dropRate = Random.Range(4, 9);
+            dropRate = 7;
         }
 
         for (int i = 0; i < dropRate; i++)
         {
-            Instantiate(eyes, enemyBody.transform.position + new Vector3(Random.Range(-10, 10), transform.position.y, Random.Range(-10, 10)), Quaternion.identity);
+            Instantiate(eyes, enemyBody.transform.position + new Vector3(Random.Range(-10, 10), transform.position.y + 5, Random.Range(-10, 10)), Quaternion.identity);
         }
     }
     
