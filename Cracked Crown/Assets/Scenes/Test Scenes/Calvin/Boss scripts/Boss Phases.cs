@@ -101,6 +101,13 @@ public class BossPhases : MonoBehaviour
         {
             PlayerList[i] = TempList[i]; // creates a list of all players in the scene
         }
+        if (PlayerList.Length == 1)
+        {
+            if (Claw.name == "clawLeft_2" || Claw.name == "clawRight_2")
+            {
+                gameObject.SetActive(false);
+            }
+        }
         bossAnim.Play("clawPassive");
         cameraShake = FindObjectOfType<CameraShake>();
         //GameManager.Instance.claws.Add(this);
@@ -395,7 +402,7 @@ public class BossPhases : MonoBehaviour
         }
         if (isGrabbed)
         {
-            if (Claw.name == "clawLeft")
+            if (Claw.name == "clawLeft" || Claw.name == "clawLeft_2")
             {
                 GrabbedPlayer.transform.position = Claw.transform.position - FollowedPlayer.transform.TransformDirection(-10, 25, 0);
             }
@@ -432,7 +439,7 @@ public class BossPhases : MonoBehaviour
         }
 
         bossAnim.StopPlayback();
-        if (Claw.name == "clawLeft") // plays the appropriate smash animation for the claw using the script
+        if (Claw.name == "clawLeft" || Claw.name == "clawLeft_2") // plays the appropriate smash animation for the claw using the script
         {
             ClawSprite.transform.localPosition = new Vector3(0.5f, 0, 0);
         }
@@ -446,7 +453,7 @@ public class BossPhases : MonoBehaviour
         clawgrab = true; // allows claw to fall to player position
 
         yield return new WaitForSeconds(0.25f);
-        if (Claw.name == "clawLeft")
+        if (Claw.name == "clawLeft" || Claw.name == "clawLeft_2")
         {
             bossAnim.Play("grabClipLeft");
         }
@@ -464,7 +471,7 @@ public class BossPhases : MonoBehaviour
 
             yield return new WaitForSeconds(3);
 
-            if (Claw.name == "clawLeft")
+            if (Claw.name == "clawLeft" || Claw.name == "clawLeft_2")
             {
                 bossAnim.Play("dropLeft");
             }
@@ -478,7 +485,7 @@ public class BossPhases : MonoBehaviour
             clawgrab = false;
             attacktimer += 1;
             yield return new WaitForSeconds(1);
-            if (Claw.name == "clawLeft")
+            if (Claw.name == "clawLeft" || Claw.name == "clawLeft_2")
             {
                 bossAnim.Play("dropLeft");
             }
@@ -511,7 +518,7 @@ public class BossPhases : MonoBehaviour
     {
         isClawSmash = true;
 
-        if (Claw.name == "clawLeft") // plays the appropriate smash animation for the claw using the script
+        if (Claw.name == "clawLeft" || Claw.name == "clawLeft_2") // plays the appropriate smash animation for the claw using the script
         {
             ClawSprite.transform.localPosition = new Vector3(0.5f, 0, 0);
             bossAnim.Play("clawSmash");
@@ -576,7 +583,7 @@ public class BossPhases : MonoBehaviour
 
     IEnumerator bossEntry()
     {
-        if (gameObject.name == "clawLeft")
+        if (gameObject.name == "clawLeft" || Claw.name == "clawLeft_2")
         {
             bossAnim.Play("enterLeft");
         }
