@@ -39,6 +39,7 @@ public class Bomb : MonoBehaviour
     private PlayerController controller;
     private SpriteRenderer sprite;
     private Animator animator;
+    private CameraShake css;
 
     private void Awake()
     {
@@ -51,12 +52,18 @@ public class Bomb : MonoBehaviour
         animator = transform.GetChild(1).GetComponent<Animator>();
     }
 
+    private void Start()
+    {
+        
+    }
+
+
     int thing = 1;
     // Update is called once per frame
     bool flashing;
     void Update()
     {
-
+        css = GameManager.Instance.css;
         if (colourCount <= 180 && !flashing)
         {
             flashing = true;
@@ -100,7 +107,8 @@ public class Bomb : MonoBehaviour
 
         transform.GetChild(0).gameObject.SetActive(false);
         animator.SetBool("Blow", true);
-        StartCoroutine(CameraShake.instance.Shake(1.5f, 2f));
+        if (css != null)
+            StartCoroutine(css.Shake(1.5f, 2f));
 
         if (true)
         {
