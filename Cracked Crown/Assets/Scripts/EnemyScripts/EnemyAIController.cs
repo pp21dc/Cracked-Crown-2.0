@@ -169,6 +169,12 @@ public class EnemyAIController : AdvancedFSM
     public Transform SepLoc;
     public bool doneSeperating;
 
+    //wall seperation
+    public bool wallContact;
+    private bool wallGo;
+    private bool canWall;
+    public bool doneWall;
+
     public GameObject shockWave;
     //cooldown vars
     public bool dashOnCD;
@@ -369,6 +375,12 @@ public class EnemyAIController : AdvancedFSM
         goRight = false;
         doneSeperating = false;
         canSeperate = true;
+
+        //wall seperate vars
+        wallContact = false;
+        wallGo = false;
+        canWall = false;
+        doneWall = false;
 
         //enemy speeds
         lightSpeed = 50f;
@@ -1154,11 +1166,11 @@ public class EnemyAIController : AdvancedFSM
 
         while (doneCarry == false)
         {
-            yield return new WaitForSeconds(0.75f);
+            yield return new WaitForSeconds(0.35f);
 
             body.DecHealth(2f);
 
-            yield return new WaitForSeconds(0.75f);
+            yield return new WaitForSeconds(0.35f);
 
         }
 
@@ -1632,6 +1644,42 @@ public class EnemyAIController : AdvancedFSM
         sepCheck.enabled = true;
         canSeperate = true;
         doneSeperating = true;
+
+        yield return null;
+    }
+
+    public void StartWallSeperation()
+    {
+        if(canWall)
+        {
+            canWall = false;
+            StartCoroutine(wallSeperation());
+        }
+
+        if(gameObject.CompareTag("Medium"))
+        {
+            movementVector = (SepLoc.position - enemyPosition.transform.position).normalized * mediumSpeed;
+            movementVector.y = 0;
+            enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
+        }
+        else if(gameObject.CompareTag("Heavy"))
+        {
+            movementVector = (SepLoc.position - enemyPosition.transform.position).normalized * heavySpeed;
+            movementVector.y = 0;
+            enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
+        }
+
+    }
+
+    IEnumerator wallSeperation()
+    {
+        SepLoc.localPosition = new Vector3(-SepLoc.localPosition.x, -SepLoc.localPosition.y, -SepLoc.localPosition.z);
+
+        wallGo = true;
+
+        yield return new WaitForSeconds(0.35f);
+
+        wallGo = false;
 
         yield return null;
     }
