@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
-public class SeperateState : FSMState
+public class WallSeperateState : FSMState
 {
 
     private EnemyAIController enemy;//grabs the enemy controller
 
-    public SeperateState(EnemyAIController controller)
+    public WallSeperateState(EnemyAIController controller)
     {
-        stateID = FSMStateID.Seperate;//sets the FSM state ID to Idle
+        stateID = FSMStateID.Wall;//sets the FSM state ID to Idle
         enemy = controller;
         curSpeed = 0.0f;
         curRotSpeed = 0.0f;
@@ -33,17 +33,11 @@ public class SeperateState : FSMState
             return;
         }
 
-        if(enemy.wallContact == true)
+        if (enemy.doneWall == true)
         {
-            enemy.PerformTransition(Transition.hitDaWall);
-        }
-
-        if (enemy.doneSeperating == true)
-        {
-            enemy.doneSeperating = false;
+            enemy.doneWall = false;
             enemy.PerformTransition(Transition.LookForPlayer);
         }
-
 
 
     }
@@ -52,6 +46,6 @@ public class SeperateState : FSMState
     public override void Act(Transform player, Transform npc)
     {
         Debug.Log("oh hi mark");
-        enemy.StartSeperation();
+        enemy.StartWallSeperation();
     }
 }

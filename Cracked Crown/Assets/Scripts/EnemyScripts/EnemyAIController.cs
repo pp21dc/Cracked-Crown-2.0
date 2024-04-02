@@ -255,6 +255,10 @@ public class EnemyAIController : AdvancedFSM
         {
             state = "SEPERATE";
         }
+        else if (CurrentState.ID == FSMStateID.Wall)
+        {
+            state = "WALL";
+        }
         
         
 
@@ -543,8 +547,12 @@ public class EnemyAIController : AdvancedFSM
         seperateState.AddTransition(Transition.LowHealth, FSMStateID.Finished);
         seperateState.AddTransition(Transition.NoHealth, FSMStateID.Dead);
         seperateState.AddTransition(Transition.LookForPlayer, FSMStateID.FindPlayer);
+        seperateState.AddTransition(Transition.hitDaWall, FSMStateID.Wall);
         
-
+        WallSeperateState wallState = new WallSeperateState(this);
+        wallState.AddTransition(Transition.LowHealth, FSMStateID.Finished);
+        wallState.AddTransition(Transition.NoHealth, FSMStateID.Dead);
+        wallState.AddTransition(Transition.LookForPlayer, FSMStateID.FindPlayer);
 
         //Add all states to the state list
 
@@ -552,6 +560,7 @@ public class EnemyAIController : AdvancedFSM
         AddFSMState(finishedState);
         AddFSMState(deadState);
         AddFSMState(seperateState);
+        AddFSMState(wallState);
 
         AddFSMState(slamGroundState);
         AddFSMState(carryState);
