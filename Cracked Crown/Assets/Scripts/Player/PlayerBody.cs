@@ -879,10 +879,6 @@ public class PlayerBody : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Enemy")
-        {
-            health = health - 1;
-        }
         if (collision.gameObject.tag == "Revive" && gameObject.tag == "Ghost")
         {
             Debug.Log("Collided With Revive Stone as Ghost");
@@ -978,6 +974,7 @@ public class PlayerBody : MonoBehaviour
                     collectable.gameObject.SetActive(false);
                     PAM.PlayAudio(PlayerAudioManager.AudioType.Buy);
                     Debug.Log("Player has a bomb: " + hasBomb);
+                    StartCoroutine(resetCollectable(collectable.gameObject));
                 }
             }
         }
@@ -992,10 +989,17 @@ public class PlayerBody : MonoBehaviour
                     hasPotion = true;
                     collectable.gameObject.SetActive(false);
                     PAM.PlayAudio(PlayerAudioManager.AudioType.Buy);
-                    Debug.Log("Player has a bomb: " + hasPotion);
+                    Debug.Log("Player has a potion: " + hasPotion);
+                    StartCoroutine(resetCollectable(collectable.gameObject));
                 }
             }
         }
+    }
+
+    private IEnumerator resetCollectable(GameObject collectable)
+    {
+        yield return new WaitForSeconds(1.0f);
+        collectable.SetActive(true);
     }
 
     private void UseItem()
