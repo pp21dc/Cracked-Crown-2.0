@@ -198,9 +198,15 @@ public class PlayerBody : MonoBehaviour
             if (PM != null)
             {
                 if (controller.InteractDown && lockIN == -1 && PM.CheckPlayers(currentIN))
+                {
                     lockIN = currentIN;
-                else if (controller.InteractDown && lockIN != -1)
+                    PM.LockIN(true);
+                }
+                else if (controller.DashDown && lockIN != -1)
+                {
                     lockIN = -1;
+                    PM.LockIN(false);
+                }
             }
             collect();
             onNoDamage();
@@ -260,12 +266,59 @@ public class PlayerBody : MonoBehaviour
                 lockRelease = true;
                 StartCoroutine(Release());
             }
-
-            if (transform.position.y < 2 || Grabbed) //NEW 3/25
+            if (transform.position.y < 1 || Grabbed)
+            {
+                animController.Falling = false;
                 vely = 0;
-            vely += -9.81f;
+            }
+            else
+            {
+                animController.Falling = true;
+                vely += -250 * Time.deltaTime;
+            }
 
             rb.velocity = new Vector3(rb.velocity.x, vely, rb.velocity.z);
+        }
+    }
+    float vely = 0;
+
+    public void ExitLevel()
+    {
+        playerLock = true;
+        StopPlayer();
+        StartCoroutine(FadeSprite(0.001f, 0.5f));
+    }
+
+    public void EnterLevel()
+    {
+        StopCoroutine(FadeSprite(0.001f, 0.5f));
+        StartCoroutine(FadeSprite(0.999f, 1));
+    }
+
+    public void StopPlayer()
+    {
+        rb.velocity = Vector3.zero;
+    }
+
+    private IEnumerator FadeSprite(float to, float speed)
+    {
+        if (to < 0.5f)
+        {
+            while (spriteRenderer != null && spriteRenderer.color.a >= to)
+            {
+                spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, spriteRenderer.color.a - (speed * Time.deltaTime));
+                yield return new WaitForEndOfFrame();
+            }
+            dropShadow.SetActive(false);
+        }
+        else
+        {
+            while (spriteRenderer != null && spriteRenderer.color.a <= to)
+            {
+                spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, spriteRenderer.color.a + (speed * Time.deltaTime));
+                yield return new WaitForEndOfFrame();
+            }
+            dropShadow.SetActive(true);
         }
     }
 
@@ -284,7 +337,7 @@ public class PlayerBody : MonoBehaviour
         lockRelease = false;
     }
 
-    float vely = 0;
+    
     private IEnumerator executeAfterRevive()
     {
         transform.position = respawnPoint;

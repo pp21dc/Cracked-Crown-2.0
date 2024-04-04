@@ -22,8 +22,9 @@ public class LevelChange : MonoBehaviour
         //Debug.Log(players.Count + " // " + GM.Players.Length + " // " + locked + " // " + GM.IsLevelCleared);
         //DEBUG BYPASS
         //GM.IsLevelCleared = true;
-        if ((players.Count >= GM.Players.Length && !locked && GM.Players.Length > 0 && GM.IsLevelCleared) || (Input.GetKey(KeyCode.N) && !locked))
+        if ((players.Count >= GM.Players.Length+1 && !locked && GM.Players.Length > 0 && GM.IsLevelCleared) || (Input.GetKey(KeyCode.N) && !locked))
         {
+            openDoor = false;
             GM.IsLevelCleared = false;  //Set new level to not cleared
             locked = true;              //Lock out level change while changing
             GM.NextLevel();             //Call game manager to change the level
@@ -50,9 +51,12 @@ public class LevelChange : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //If a player enters the level change collider add them to the player list
-        if (other.gameObject.tag == "Player")
+        if ((other.gameObject.tag == "Player" || other.gameObject.tag == "Ghost") && GM.IsLevelCleared && openDoor)
         {
+            PlayerBody pb = other.GetComponent<PlayerBody>();
+            pb.ExitLevel();
             players.Add(other.gameObject);
+
         }
     }
 

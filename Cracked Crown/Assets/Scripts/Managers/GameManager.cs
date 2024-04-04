@@ -283,6 +283,7 @@ public class GameManager : MonoBehaviour
             LoadingScreen.gameObject.SetActive(true);
         MM.PlayNextTrack();
         SetPlayerPositions();
+        
         yield return new WaitForSeconds(0.25f);
         
 
@@ -393,7 +394,8 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < Players.Length; i++)
         {
-            
+            Players[i].PB.playerLock = false;
+            Players[i].PB.EnterLevel();
             Players[i].PB.transform.localPosition = new Vector3(0, 0, 0);
             Players[i].PB.transform.position = spawnPoints[i].position;
             

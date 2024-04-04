@@ -2224,6 +2224,7 @@ MonoBehaviour:
   - {fileID: 4633882350821034748, guid: 91f6a09d9a9e95a44a69b31163ed9434, type: 3}
   - {fileID: 4633882350821034748, guid: f9c77d6c9f327c54d9cc940bf4947d24, type: 3}
   claws: []
+  css: {fileID: 0}
   video_lose: {fileID: 183520591}
   video_win: {fileID: 869479138}
   cam: {fileID: 0}
@@ -4515,6 +4516,11 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2971645732194105555, guid: c4f57132f27226e4a9bef2b747496e78,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4349038593886077051, guid: c4f57132f27226e4a9bef2b747496e78,
         type: 3}
       propertyPath: m_fontColor.b
@@ -4544,6 +4550,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8280694598476292703, guid: c4f57132f27226e4a9bef2b747496e78,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8280694598476292703, guid: c4f57132f27226e4a9bef2b747496e78,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8280694598476292703, guid: c4f57132f27226e4a9bef2b747496e78,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8576788328952788411, guid: c4f57132f27226e4a9bef2b747496e78,
         type: 3}

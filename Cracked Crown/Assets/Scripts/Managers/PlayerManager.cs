@@ -20,6 +20,9 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     private int arrayPos = 0;
 
+    [SerializeField]
+    Image readyUpBox;
+
     GameManager gm;
     public PlayerInput PI;
     public PlayerController PC;
@@ -45,6 +48,7 @@ public class PlayerManager : MonoBehaviour
         if (launch && !launch_lock)
         {
             int lnch = CheckPlayersIndex();
+            Debug.Log("LAUNCH: " + lnch);
             PB.currentIN = lnch;
             launch_lock = true;
             START_Text.SetActive(false);
@@ -57,6 +61,14 @@ public class PlayerManager : MonoBehaviour
             launch = true;
             CallUI();
         }
+    }
+
+    public void LockIN(bool active)
+    {
+        if (!active)
+            readyUpBox.color = Color.white;
+        else
+            readyUpBox.color = Color.green;
     }
 
     private void CallUI()
@@ -131,6 +143,7 @@ public class PlayerManager : MonoBehaviour
     }
     public int CheckPlayersIndex()
     {
+        int x = 0;
         for (int i = 0; i < 3; i++)
         {
             foreach (PlayerContainer pc in GameManager.Instance.Players)
@@ -139,9 +152,14 @@ public class PlayerManager : MonoBehaviour
                 {
                     break;
                 }
+                else
+                {
+                    x++;
+                }
                 
             }
-            return i;
+            if (x >= GameManager.Instance.Players.Length)
+                return i;
         }
         return 0;
     }

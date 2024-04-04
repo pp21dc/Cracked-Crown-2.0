@@ -121,6 +121,13 @@ public class PlayerAnimController : MonoBehaviour
         set { finishing_heavy_red = value; }
     }
 
+    private bool falling;
+    public bool Falling
+    {
+        get { return falling; }
+        set { falling = value; }
+    }
+
     PlayerContainer PC;
 
     private void Awake()
@@ -182,6 +189,7 @@ public class PlayerAnimController : MonoBehaviour
         if (Animator != null && PC.PB.CharacterType != null)
         {
             Animator.runtimeAnimatorController = PC.PB.CharacterType.controller;
+            Animator.SetBool("Falling", falling); 
             Animator.SetBool("Moving", moving);
             Animator.SetBool("Dashing", dashing);
             Animator.SetBool("Attacking", attacking);
