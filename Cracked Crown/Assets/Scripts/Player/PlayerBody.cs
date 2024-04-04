@@ -429,9 +429,11 @@ public class PlayerBody : MonoBehaviour
         }
         if (canMovePlayerForexecute && executeTarget != null)
         {
+            
             if (enemyAIController != null && ((enemyAIController.tag.Equals("Heavy") && (Vector3.Distance(transform.position, executeTarget.transform.position + forExecutePosition) < 5f)) 
-                || (Vector3.Distance(transform.position, executeTarget.transform.position + forExecutePosition) < 2.5f)) && !lockExecAnim)
+                || (Vector3.Distance(transform.position, executeTarget.transform.position + forExecutePosition) < 1f)) && !lockExecAnim)
             {
+                animController.Moving = false;
                 hasReachedExecutePoint = true;
 
                 animController.Finisher(enemyAIController.tag, enemyAIController.colour, true);
@@ -442,8 +444,9 @@ public class PlayerBody : MonoBehaviour
                     StartCoroutine(TurnOffExecuteMovement());
                 }
             }
-            else if (Vector3.Distance(transform.position, executeTarget.transform.position + forExecutePosition) > 1.0f)
+            else if (Vector3.Distance(transform.position, executeTarget.transform.position + forExecutePosition) > 0.85f)
             {
+                animController.Moving = true;
                 Vector3 epicgamer = executeTarget.transform.position + forExecutePosition;
                 rb.velocity = Vector3.zero;
                 Vector3 test = Vector3.MoveTowards(gameObject.transform.position, epicgamer, executeMoveSpeed * Time.fixedDeltaTime);

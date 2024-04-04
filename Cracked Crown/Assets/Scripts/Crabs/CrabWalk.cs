@@ -26,6 +26,8 @@ public class CrabWalk : MonoBehaviour
     [SerializeField]
     GameObject bigShadow;
     GameManager GM;
+    [SerializeField]
+    AudioSource AS_S;
 
     private void Awake()
     {
@@ -100,23 +102,21 @@ public class CrabWalk : MonoBehaviour
                 
 
             }
-            if (health <= 0)
+            if (health <= 0 && !hasDied)
             {
                 // play death animation
                 animator.SetBool("Death", true);
                 speed = 0;
-                StartCoroutine(deathTime());
+                if (!AS_S.isPlaying)
+                    AS_S.Play();
+                hasDied = true;
                 StartCoroutine(respawnCrab());
             }
         }
 
     }
 
-    private IEnumerator deathTime()
-    {
-        yield return new WaitForSeconds(0.000f);
-        hasDied = true;
-    }
+
 
     public IEnumerator respawnCrab()
     {

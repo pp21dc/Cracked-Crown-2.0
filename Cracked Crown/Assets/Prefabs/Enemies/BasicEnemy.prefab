@@ -289,7 +289,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.35
+  m_Volume: 0.25
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -392,7 +392,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.8026521, y: 4.1999993, z: 0.19999999}
+  m_Size: {x: 1.65, y: 4.1999993, z: 0.19999999}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1809686768658751937
 MonoBehaviour:
@@ -474,10 +474,10 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
-  m_Size: {x: 10.472778, y: 7.2629, z: 4.710378}
-  m_Center: {x: 0.40534216, y: 3.1906378, z: 1.0093555}
+  m_Size: {x: 6.220436, y: 7.2629, z: 4.710378}
+  m_Center: {x: 0.10067177, y: 3.1906378, z: 1.0093555}
 --- !u!54 &5493214263850978981
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -583,7 +583,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6949310528298810098}
   - component: {fileID: 3777765676232313991}
-  - component: {fileID: 2243525588475844062}
+  - component: {fileID: 6901536273665180682}
   m_Layer: 0
   m_Name: Enemy controller
   m_TagString: Heavy
@@ -691,6 +691,8 @@ MonoBehaviour:
   otherAI: {fileID: 0}
   SepLoc: {fileID: 4490055925084942224}
   doneSeperating: 0
+  wallContact: 0
+  doneWall: 0
   shockWave: {fileID: 4787176899576346564}
   dashOnCD: 0
   shockwaveOnCD: 0
@@ -705,8 +707,8 @@ MonoBehaviour:
   eyes: {fileID: 762308542787843838, guid: 73588d92fc1736749844c0712e309327, type: 3}
   lockKnock: 0
   knockback: 0
---- !u!65 &2243525588475844062
-BoxCollider:
+--- !u!136 &6901536273665180682
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -720,12 +722,14 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 16.07, y: 9.66, z: 15.81}
-  m_Center: {x: 0, y: 2, z: 0}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2.67
+  m_Height: 9.33
+  m_Direction: 1
+  m_Center: {x: 0, y: 2.5, z: 0}
 --- !u!1 &3509591467178738380
 GameObject:
   m_ObjectHideFlags: 0
