@@ -270,7 +270,10 @@ public class GameManager : MonoBehaviour
         foreach (PlayerContainer pc in Players)
         {
             if (pc.PB != null)
+            {
                 pc.PB.playerLock = freeze;
+                pc.PB.canMove = freeze;
+            }
         }
     }
 
@@ -379,19 +382,20 @@ public class GameManager : MonoBehaviour
         {
             if (!levelName.Equals("TempShop") || !levelName.Equals("GreenShop") || !levelName.Equals("PurpleShop") || !levelName.Equals("RedShop"))
             {
-                Debug.LogWarning(levelName);
+                //Debug.LogWarning(levelName);
                 dialogue.GetPlayers();
                 dialogue.SetDialogue();
             }
             
         }
             
-            Debug.Log("Called SetDialouge");
+            //Debug.Log("Called SetDialouge");
 
     }
 
     public void SetPlayerPositions()
     {
+        //Debug.Log("SET POS");
         for (int i = 0; i < Players.Length; i++)
         {
             Players[i].PB.playerLock = false;

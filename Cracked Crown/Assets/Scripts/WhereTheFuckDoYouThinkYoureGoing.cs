@@ -15,6 +15,7 @@ public class WhereTheFuckDoYouThinkYoureGoing : MonoBehaviour
     {
         if (other.tag.Equals("Player"))
         {
+            Debug.Log(other.name);
             GM.SetPlayerPositions();
         }
     }

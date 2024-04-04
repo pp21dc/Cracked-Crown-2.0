@@ -144,11 +144,11 @@ public class PlayerManager : MonoBehaviour
     public int CheckPlayersIndex()
     {
         int x = 0;
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i <= 3; i++)
         {
             foreach (PlayerContainer pc in GameManager.Instance.Players)
             {
-                if (pc.PB.lockIN == i)
+                if (pc.PB.currentIN == i)
                 {
                     break;
                 }
@@ -158,7 +158,7 @@ public class PlayerManager : MonoBehaviour
                 }
                 
             }
-            if (x >= GameManager.Instance.Players.Length)
+            if (x >= GameManager.Instance.Players.Length-1)
                 return i;
         }
         return 0;

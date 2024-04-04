@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class LevelChange : MonoBehaviour
 {
@@ -24,16 +25,34 @@ public class LevelChange : MonoBehaviour
         //GM.IsLevelCleared = true;
         if ((players.Count >= GM.Players.Length+1 && !locked && GM.Players.Length > 0 && GM.IsLevelCleared) || (Input.GetKey(KeyCode.N) && !locked))
         {
-            openDoor = false;
-            GM.IsLevelCleared = false;  //Set new level to not cleared
-            locked = true;              //Lock out level change while changing
-            GM.NextLevel();             //Call game manager to change the level
+            if (CheckLockedIn())
+            {
+                Debug.Log("NEXT");
+                openDoor = false;
+                GM.IsLevelCleared = false;  //Set new level to not cleared
+                locked = true;              //Lock out level change while changing
+                GM.NextLevel();             //Call game manager to change the level
+            }
         }
         else if (GM.IsLevelCleared && !openDoor)
         {
             openDoor = true;
             StartCoroutine(ShutEye());
         }
+    }
+
+    private bool CheckLockedIn()
+    {
+        int x = 0;
+        foreach(PlayerContainer player in GM.Players)
+        {
+            if (player.PB.lockIN != -1)
+                x++;
+        }
+        if (x >= GM.Players.Length+1)
+            return true;
+        else
+            return false;
     }
 
     bool openDoor;
@@ -54,8 +73,12 @@ public class LevelChange : MonoBehaviour
         if ((other.gameObject.tag == "Player" || other.gameObject.tag == "Ghost") && GM.IsLevelCleared && openDoor)
         {
             PlayerBody pb = other.GetComponent<PlayerBody>();
-            pb.ExitLevel();
-            players.Add(other.gameObject);
+            if (pb.lockIN != -1)
+            {
+                pb.ExitLevel();
+                players.Add(other.gameObject);
+            }
+            
 
         }
     }
@@ -65,7 +88,7 @@ public class LevelChange : MonoBehaviour
         //Remove players from player list if they leave the collider
         if (other.gameObject.tag == "Player")
         {
-            players.Remove(other.gameObject);
+            //players.Remove(other.gameObject);
         }
     }
 }

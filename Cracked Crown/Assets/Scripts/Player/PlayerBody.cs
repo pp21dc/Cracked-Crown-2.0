@@ -27,7 +27,7 @@ public class PlayerBody : MonoBehaviour
     private GameObject deathBody;
 
     public int lockIN = -1;
-    public int currentIN;
+    public int currentIN = -1;
 
     [Header("CHARACTER DESIGN")]
     public float KnockbackTime = 0.025f;
@@ -285,12 +285,15 @@ public class PlayerBody : MonoBehaviour
     public void ExitLevel()
     {
         playerLock = true;
+        //rb.isKinematic = true;
+        canMove = false;
         StopPlayer();
         StartCoroutine(FadeSprite(0.001f, 0.5f));
     }
 
     public void EnterLevel()
     {
+        //rb.isKinematic = false;
         StopCoroutine(FadeSprite(0.001f, 0.5f));
         StartCoroutine(FadeSprite(0.999f, 1));
     }
@@ -436,122 +439,125 @@ public class PlayerBody : MonoBehaviour
     private bool executeLock = false;
     private void Move()
     {
-        if (canMove)
+        if (!playerLock)
         {
-            float zInput = controller.ForwardMagnitude;
-            float xInput = controller.HorizontalMagnitude;
-            movementVector = new Vector3(xInput, 0, zInput);
-            if (canMove /*&& !GameManager.Instance.Pause/*/)
+            if (canMove)
             {
-                
-                primaryAttackSpawnPoint.localPosition = (movementVector) * 10;
-                primaryAttackSpawnPoint.localRotation = primaryAttackPoint.localRotation;
-                primaryAttackPoint.LookAt(primaryAttackSpawnPoint);
-                primaryAttackPoint.eulerAngles = new Vector3(0, primaryAttackPoint.eulerAngles.y, 0);
-
-                if (movementVector.magnitude > 1)
+                float zInput = controller.ForwardMagnitude;
+                float xInput = controller.HorizontalMagnitude;
+                movementVector = new Vector3(xInput, 0, zInput);
+                if (canMove /*&& !GameManager.Instance.Pause/*/)
                 {
-                    movementVector.Normalize();
-                    
-                }
-                else if (movementVector.magnitude == 0 && !lockHitForward && !gotHit)
-                {
-                    rb.velocity = new Vector3(0, rb.velocity.y, 0);
-                }
-                movementVector.z = movementVector.z * 1.5f;
-                movementVector = (movementVector * movementSpeed);
 
-                if (!lockHitForward && !gotHit)
-                {
-                    float y = rb.velocity.y;
-                    rb.velocity = (movementVector * forceMod * Time.fixedDeltaTime);
-                    rb.velocity = new Vector3(rb.velocity.x, y, rb.velocity.z);
-                }
+                    primaryAttackSpawnPoint.localPosition = (movementVector) * 10;
+                    primaryAttackSpawnPoint.localRotation = primaryAttackPoint.localRotation;
+                    primaryAttackPoint.LookAt(primaryAttackSpawnPoint);
+                    primaryAttackPoint.eulerAngles = new Vector3(0, primaryAttackPoint.eulerAngles.y, 0);
 
-
-                if ((rb.velocity.magnitude > 30f || movementVector.magnitude > 1) & Mathf.Abs(movementVector.magnitude) > 0 && !alreadyDead)
-                {
-                    animController.Moving = true;
-                }
-                else
-                {
-                    animController.Moving = false;
-                }
-            }
-            
-        }
-        if (canMovePlayerForexecute && executeTarget != null)
-        {
-            
-            if (enemyAIController != null && ((enemyAIController.tag.Equals("Heavy") && (Vector3.Distance(transform.position, executeTarget.transform.position + forExecutePosition) < 5f)) 
-                || (Vector3.Distance(transform.position, executeTarget.transform.position + forExecutePosition) < 1f)) && !lockExecAnim)
-            {
-                animController.Moving = false;
-                hasReachedExecutePoint = true;
-
-                animController.Finisher(enemyAIController.tag, enemyAIController.colour, true);
-
-                lockExecAnim = true;
-                if (executeLock == false)
-                {
-                    StartCoroutine(TurnOffExecuteMovement());
-                }
-            }
-            else if (Vector3.Distance(transform.position, executeTarget.transform.position + forExecutePosition) > 0.85f)
-            {
-                animController.Moving = true;
-                Vector3 epicgamer = executeTarget.transform.position + forExecutePosition;
-                rb.velocity = Vector3.zero;
-                Vector3 test = Vector3.MoveTowards(gameObject.transform.position, epicgamer, executeMoveSpeed * Time.fixedDeltaTime);
-                test.y = 0;
-                transform.position = test;
-                lockDash = true;
-                canMove = false;
-
-                if (enemyAIController != null)
-                {
-                    if (enemyAIController.tag.Equals("Light"))
+                    if (movementVector.magnitude > 1)
                     {
-                        animController.Finisher(enemyAIController.tag, enemyAIController.colour, true);
+                        movementVector.Normalize();
+
+                    }
+                    else if (movementVector.magnitude == 0 && !lockHitForward && !gotHit)
+                    {
+                        rb.velocity = new Vector3(0, rb.velocity.y, 0);
+                    }
+                    movementVector.z = movementVector.z * 1.5f;
+                    movementVector = (movementVector * movementSpeed);
+
+                    if (!lockHitForward && !gotHit)
+                    {
+                        float y = rb.velocity.y;
+                        rb.velocity = (movementVector * forceMod * Time.fixedDeltaTime);
+                        rb.velocity = new Vector3(rb.velocity.x, y, rb.velocity.z);
+                    }
+
+
+                    if ((rb.velocity.magnitude > 30f || movementVector.magnitude > 1) & Mathf.Abs(movementVector.magnitude) > 0 && !alreadyDead)
+                    {
+                        animController.Moving = true;
+                    }
+                    else
+                    {
+                        animController.Moving = false;
                     }
                 }
 
-                if (executeLock == false)
+            }
+            if (canMovePlayerForexecute && executeTarget != null)
+            {
+
+                if (enemyAIController != null && ((enemyAIController.tag.Equals("Heavy") && (Vector3.Distance(transform.position, executeTarget.transform.position + forExecutePosition) < 5f))
+                    || (Vector3.Distance(transform.position, executeTarget.transform.position + forExecutePosition) < 1f)) && !lockExecAnim)
                 {
-                    StartCoroutine(TurnOffExecuteMovement());
+                    animController.Moving = false;
+                    hasReachedExecutePoint = true;
+
+                    animController.Finisher(enemyAIController.tag, enemyAIController.colour, true);
+
+                    lockExecAnim = true;
+                    if (executeLock == false)
+                    {
+                        StartCoroutine(TurnOffExecuteMovement());
+                    }
+                }
+                else if (Vector3.Distance(transform.position, executeTarget.transform.position + forExecutePosition) > 0.85f)
+                {
+                    animController.Moving = true;
+                    Vector3 epicgamer = executeTarget.transform.position + forExecutePosition;
+                    rb.velocity = Vector3.zero;
+                    Vector3 test = Vector3.MoveTowards(gameObject.transform.position, epicgamer, executeMoveSpeed * Time.fixedDeltaTime);
+                    test.y = 0;
+                    transform.position = test;
+                    lockDash = true;
+                    canMove = false;
+
+                    if (enemyAIController != null)
+                    {
+                        if (enemyAIController.tag.Equals("Light"))
+                        {
+                            animController.Finisher(enemyAIController.tag, enemyAIController.colour, true);
+                        }
+                    }
+
+                    if (executeLock == false)
+                    {
+                        StartCoroutine(TurnOffExecuteMovement());
+                    }
                 }
             }
-        }
-        if (dashing && !Grabbed)
-        {
-            float dz = dashDirection.z;
-            //canTakeDamage = false;
-            dashDirection.z *= 1.1f;
-            rb.velocity = (new Vector3(0, rb.velocity.y) + ((dashDirection * dashSpeed * forceMod * 0.9f)) * Time.fixedDeltaTime);
-            dashDirection.z = dz;
-        }
-        if (!hitEnemy && (lockHitForward))
-        {
+            if (dashing && !Grabbed)
+            {
+                float dz = dashDirection.z;
+                //canTakeDamage = false;
+                dashDirection.z *= 1.1f;
+                rb.velocity = (new Vector3(0, rb.velocity.y) + ((dashDirection * dashSpeed * forceMod * 0.9f)) * Time.fixedDeltaTime);
+                dashDirection.z = dz;
+            }
+            if (!hitEnemy && (lockHitForward))
+            {
 
-            //Debug.Log("FORWARD");
-            float y = rb.velocity.y;
-            rb.velocity = (GetMovementVector() * attackKnockback);
-            rb.velocity = new Vector3(rb.velocity.x, y, rb.velocity.z);
-        }
-        else if (hitEnemy && lockHitBackward)
-        {
-            //Debug.Log("BACK");
-            float y = rb.velocity.y;
-            rb.velocity = (-GetMovementVector() * attackKnockback);
-            rb.velocity = new Vector3(rb.velocity.x, y, rb.velocity.z);
-        }
-        else if (canTakeDamage && gotHit)
-        {
-            float y = rb.velocity.y;
-            Debug.Log(otherPlayerMV);
-            rb.velocity = (otherPlayerMV * takenDamageKnockback);
-            rb.velocity = new Vector3(rb.velocity.x, y, rb.velocity.z);
-            StartCoroutine(GotHitReset());
+                //Debug.Log("FORWARD");
+                float y = rb.velocity.y;
+                rb.velocity = (GetMovementVector() * attackKnockback);
+                rb.velocity = new Vector3(rb.velocity.x, y, rb.velocity.z);
+            }
+            else if (hitEnemy && lockHitBackward)
+            {
+                //Debug.Log("BACK");
+                float y = rb.velocity.y;
+                rb.velocity = (-GetMovementVector() * attackKnockback);
+                rb.velocity = new Vector3(rb.velocity.x, y, rb.velocity.z);
+            }
+            else if (canTakeDamage && gotHit)
+            {
+                float y = rb.velocity.y;
+                Debug.Log(otherPlayerMV);
+                rb.velocity = (otherPlayerMV * takenDamageKnockback);
+                rb.velocity = new Vector3(rb.velocity.x, y, rb.velocity.z);
+                StartCoroutine(GotHitReset());
+            }
         }
     }
 
