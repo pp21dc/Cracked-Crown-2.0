@@ -30,6 +30,7 @@ public enum Transition
     //Medium Enemy Tranisitions
     InFirstRange,
     
+    
 
     //Heavy Enemy Transitions
     InShootingRange,
@@ -56,7 +57,7 @@ public enum FSMStateID
 
     //Medium States
     HeavyDash,
-
+    Roam,
 
     //Heavy States
     Gun,
