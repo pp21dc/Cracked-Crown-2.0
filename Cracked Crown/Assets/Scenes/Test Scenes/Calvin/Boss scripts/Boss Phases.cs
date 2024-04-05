@@ -343,20 +343,25 @@ public class BossPhases : MonoBehaviour
 
     private GameObject chooseFollow()
     {
-        for (int i = 0; i < otherClaw.Length; i++)
+        if (PlayerList.Length == 1)
         {
-            if (PlayerList.Length == 1)
+            bool empty = true;
+            for (int i = 0; i < otherClaw.Length; i++)
             {
                 if (otherClaw[i].FollowedPlayer != null)
                 {
-                    return null;
+                    empty = false;
                 }
+            }
+            if (!empty)
+            {
+                return null;
             }
         }
 
 
         float[] playerdist = new float[PlayerList.Length];
-        int selection = 0;
+        int selection = -1;
 
         for (int i = 0; i < PlayerList.Length; i++)
         {
@@ -364,44 +369,29 @@ public class BossPhases : MonoBehaviour
         }
         for (int i = 0; i < PlayerList.Length; i++)
         {
+            bool tainted = false;
             for (int w = 0; w < otherClaw.Length; w++)
             {
-                if (otherClaw[w].FollowedPlayer != PlayerList[i]) // sets the player to be followed to a player not targetted by the other claw
+                if (otherClaw[w].FollowedPlayer == PlayerList[i]) // sets the player to be followed to a player not targetted by the other claw
                 {
-                    if ((i - 1) >= 0)
-                    {
-                        if (playerdist[selection] > playerdist[i])
-                        {
-                            selection = i;
-                        }
-                    }
-                    else
-                    {
-                        selection = i;
-                    }
+                    tainted = true;
+                }
+            }
+            if (!tainted)
+            {
+                if (selection == -1)
+                {
+                    selection = i;
+                }
+                else if (playerdist[selection] > playerdist[i])
+                {
+                    selection = i;
                 }
             }
         }
-        for (int i = 0; i < otherClaw.Length; i++)
+        if (selection != -1)
         {
-            if (otherClaw[i].FollowedPlayer == PlayerList[selection])
-            {
-                for (int w = 0; w < PlayerList.Length; w++)
-                {
-                    if (PlayerList[selection] != PlayerList[w])
-                    {
-                        return PlayerList[w];
-                    }
-                    else
-                    {
-                        return null;
-                    }
-                }
-            }
-            else
-            {
-                return PlayerList[selection];
-            }
+            return PlayerList[selection];
         }
         return null;
     }
