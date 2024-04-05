@@ -32,9 +32,8 @@ public class shockWave : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             PlayerBody playerScript = other.gameObject.GetComponent<PlayerBody>();
-            if (!playerScript.dashing)
+            if (!playerScript.dashing && !playerScript.alreadyDead)
             {
-                
                 playerScript.DecHealth(3);
             }
 

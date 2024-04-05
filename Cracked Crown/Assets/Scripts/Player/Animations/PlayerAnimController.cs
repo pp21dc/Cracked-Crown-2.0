@@ -128,6 +128,13 @@ public class PlayerAnimController : MonoBehaviour
         set { falling = value; }
     }
 
+    private bool hitreact;
+    public bool HitReact
+    {
+        get { return hitreact; }
+        set { hitreact = value; }
+    }
+
     PlayerContainer PC;
 
     private void Awake()
@@ -184,6 +191,16 @@ public class PlayerAnimController : MonoBehaviour
         finishing_heavy_red = active;
     }
 
+    public void SetAll()
+    {
+        SetFinishers(false);
+        falling = false;
+        moving = false;
+        dashing = false;
+        attacking = false;
+        hitreact = false;
+    }
+
     private void FixedUpdate()
     {
         if (Animator != null && PC.PB.CharacterType != null)
@@ -204,6 +221,7 @@ public class PlayerAnimController : MonoBehaviour
             Animator.SetBool("FinishHeavy_Red", finishing_heavy_red);
             Animator.SetFloat("Input_Horz", PC.PB.controller.HorizontalMagnitude);
             Animator.SetFloat("Input_Vert", PC.PB.controller.ForwardMagnitude);
+            Animator.SetBool("HitReact", hitreact);
             //if (finishing) { finishing = false; }
             if (true )
             {

@@ -8367,13 +8367,14 @@ MonoBehaviour:
   isClawSmash: 0
   clawreturn: 0
   roarSpawn: 0
-  cameraShake: {fileID: 0}
+  cameraShake: {fileID: 1956628210}
   FollowedPlayer: {fileID: 0}
   PlayerList:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  PlayerBodyList: []
   GrabbedPlayer: {fileID: 0}
 --- !u!65 &611748469
 BoxCollider:
@@ -9336,12 +9337,12 @@ PrefabInstance:
     - target: {fileID: 2261965388512353620, guid: 4c4f37bf10df3e44d864255882aaa6e8,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4319459481737998479, guid: 4c4f37bf10df3e44d864255882aaa6e8,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6228782752336933579, guid: 4c4f37bf10df3e44d864255882aaa6e8,
         type: 3}
@@ -11136,9 +11137,14 @@ MonoBehaviour:
   isClawSmash: 0
   clawreturn: 0
   roarSpawn: 0
-  cameraShake: {fileID: 0}
+  cameraShake: {fileID: 1956628210}
   FollowedPlayer: {fileID: 0}
   PlayerList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  PlayerBodyList:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -20628,12 +20634,12 @@ PrefabInstance:
     - target: {fileID: 2261965388512353620, guid: 4c4f37bf10df3e44d864255882aaa6e8,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4319459481737998479, guid: 4c4f37bf10df3e44d864255882aaa6e8,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6228782752336933579, guid: 4c4f37bf10df3e44d864255882aaa6e8,
         type: 3}
@@ -21070,9 +21076,18 @@ MonoBehaviour:
   isClawSmash: 0
   clawreturn: 0
   roarSpawn: 0
-  cameraShake: {fileID: 0}
+  cameraShake: {fileID: 1956628210}
   FollowedPlayer: {fileID: 0}
   PlayerList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  PlayerBodyList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -21670,12 +21685,14 @@ MonoBehaviour:
   isClawSmash: 0
   clawreturn: 0
   roarSpawn: 0
-  cameraShake: {fileID: 0}
+  cameraShake: {fileID: 1956628210}
   FollowedPlayer: {fileID: 0}
   PlayerList:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  PlayerBodyList:
   - {fileID: 0}
   GrabbedPlayer: {fileID: 0}
 --- !u!4 &6229632737933196671
@@ -22409,7 +22426,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &7868623373045528301
 MonoBehaviour:
   m_ObjectHideFlags: 0
