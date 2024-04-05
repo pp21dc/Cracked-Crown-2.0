@@ -303,6 +303,10 @@ public class GameManager : MonoBehaviour
 
         }
         SetPlayerPositions();
+        foreach (PlayerContainer pc in Players)
+        {
+            pc.PB.EnterLevel();
+        }
         yield return new WaitForSeconds(0.25f);
 
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(levelName, LoadSceneMode.Additive);
@@ -366,7 +370,7 @@ public class GameManager : MonoBehaviour
         //yield return new WaitForSeconds(0.25f);
         //AudioManager.Instance.AudioFadeLevelStart();
 
-
+        
 
         //PlayerUI.SetActive(false);
         // playerGO.SetActive(false);
