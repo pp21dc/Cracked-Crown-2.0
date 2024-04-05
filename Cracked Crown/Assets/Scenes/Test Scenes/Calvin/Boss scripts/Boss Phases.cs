@@ -448,23 +448,27 @@ public class BossPhases : MonoBehaviour
     IEnumerator BossRage()
     {
         for (int i = 0; i < otherClaw.Length; i++) {
+
             float biggestTimer = 0;
+
             if (otherClaw[i].attacktimer > biggestTimer)
             {
                 biggestTimer = otherClaw[i].attacktimer;
             }
+            Debug.Log(biggestTimer);
             yield return new WaitForSeconds(biggestTimer);
         }
+
         CurrentAttack = "RageAttack";
         attacktimer = 5.85f;
 
         if (Claw.name == "clawLeft")
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.6f);
         }
         else if (Claw.name == "clawLeft_2")
         {
-            yield return new WaitForSeconds(0.25f);
+            yield return new WaitForSeconds(0.5f);
         }
         else if (Claw.name == "clawRight")
         {
@@ -475,23 +479,29 @@ public class BossPhases : MonoBehaviour
             yield return new WaitForSeconds(0.4f);
         }
 
-        startrage = true;
+        startrage = true; // return to spawn
+
         clawtarget = CLAWSPAWN;
         yield return new WaitForSeconds(1);
+
         startrage = false;
-        bossAnim.Play("bossRage");
+
+        bossAnim.Play("bossRage"); // Play animation
         yield return new WaitForSeconds(2.35f);
-        startrage = true;
+
+        startrage = true; // return to spawn
+
         yield return new WaitForSeconds(1.5f);
+
         startrage = false;
 
         if (Claw.name == "clawLeft")
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.4f);
         }
         else if (Claw.name == "clawLeft_2")
         {
-            yield return new WaitForSeconds(0.75f);
+            yield return new WaitForSeconds(0.4f);
         }
         else if (Claw.name == "clawRight")
         {
