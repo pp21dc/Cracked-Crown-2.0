@@ -87,6 +87,8 @@ public class BossPhases : MonoBehaviour
     [SerializeField]
     private GameObject[] PlayerList;
     [SerializeField]
+    private PlayerBody[] PlayerBodyList;
+    [SerializeField]
     private GameObject GrabbedPlayer;
 
     
@@ -101,9 +103,13 @@ public class BossPhases : MonoBehaviour
     {
         GameObject[] TempList = GameObject.FindGameObjectsWithTag("BossFollowPoint");
         PlayerList = new GameObject[TempList.Length];
+        PlayerBodyList = new PlayerBody[TempList.Length];
         for (int i = 0; i < TempList.Length; i++)
         {
             PlayerList[i] = TempList[i]; // creates a list of all players in the scene
+
+            PlayerBodyList[i] = TempList[i].transform.parent.parent.gameObject.GetComponent<PlayerBody>();
+            Debug.Log(TempList[i]);
         }
         if (PlayerList.Length == 1)
         {
@@ -217,7 +223,6 @@ public class BossPhases : MonoBehaviour
         healthTotal += bosshealth;
         if (healthTotal <= MAXBOSSHEALTH * realclaws / 2)
         {
-            raging = true;
             canRage = false;
             StartCoroutine(BossRage());
         }
@@ -343,19 +348,23 @@ public class BossPhases : MonoBehaviour
 
     private GameObject chooseFollow()
     {
-        if (PlayerList.Length == 1)
+        if (PlayerList.Length == 1) // if there is only one player, checks it
         {
             bool empty = true;
             for (int i = 0; i < otherClaw.Length; i++)
             {
-                if (otherClaw[i].FollowedPlayer != null)
+                if (otherClaw[i].FollowedPlayer != null && !PlayerBodyList[0].alreadyDead)
                 {
                     empty = false;
                 }
             }
-            if (!empty)
+            if (!empty) // returns null if another claw is following the player otherwise returns the only player in the list
             {
                 return null;
+            }
+            else
+            {
+                return PlayerList[0];
             }
         }
 
@@ -363,7 +372,7 @@ public class BossPhases : MonoBehaviour
         float[] playerdist = new float[PlayerList.Length];
         int selection = -1;
 
-        for (int i = 0; i < PlayerList.Length; i++)
+        for (int i = 0; i < PlayerList.Length; i++) // makes a list of distance to each player
         {
             playerdist[i] = Vector3.Distance(gameObject.transform.position, PlayerList[i].transform.position);
         }
@@ -372,14 +381,14 @@ public class BossPhases : MonoBehaviour
             bool tainted = false;
             for (int w = 0; w < otherClaw.Length; w++)
             {
-                if (otherClaw[w].FollowedPlayer == PlayerList[i]) // sets the player to be followed to a player not targetted by the other claw
+                if (otherClaw[w].FollowedPlayer == PlayerList[i] || PlayerBodyList[i].alreadyDead) // "taints" the search if one of the claws follows the player
                 {
                     tainted = true;
                 }
             }
-            if (!tainted)
+            if (!tainted) // checks for a tainted player, if not proceeds with selection logic
             {
-                if (selection == -1)
+                if (selection == -1) // selects based on distance to player
                 {
                     selection = i;
                 }
@@ -389,7 +398,7 @@ public class BossPhases : MonoBehaviour
                 }
             }
         }
-        if (selection != -1)
+        if (selection != -1) // checks if no elligible players were found, if one was, returns a player
         {
             return PlayerList[selection];
         }
@@ -429,11 +438,10 @@ public class BossPhases : MonoBehaviour
             {
                 GrabbedPlayer.transform.position = Claw.transform.position - FollowedPlayer.transform.TransformDirection(10, 25, 0);
             }
-            if (grabbedTimer < -2) // drops the player when the timer is up
+            if (!clawgrab) // drops the player when the timer is up
             {
                 isGrabbed = false;
             }
-            grabbedTimer -= Time.deltaTime;
         }
     }
 
@@ -447,20 +455,28 @@ public class BossPhases : MonoBehaviour
 
     IEnumerator BossRage()
     {
+        float biggestTimer = 0;
         for (int i = 0; i < otherClaw.Length; i++) {
-
-            float biggestTimer = 0;
-
             if (otherClaw[i].attacktimer > biggestTimer)
             {
                 biggestTimer = otherClaw[i].attacktimer;
             }
-            Debug.Log(biggestTimer);
-            yield return new WaitForSeconds(biggestTimer);
+            if (biggestTimer < attacktimer)
+            {
+                biggestTimer = attacktimer;
+            }
         }
+        Debug.Log(biggestTimer);
+        yield return new WaitForSeconds(biggestTimer);
+        raging = true;
 
         CurrentAttack = "RageAttack";
-        attacktimer = 5.85f;
+        attacktimer = 6.85f;
+
+        startrage = true; // return to spawn
+        clawtarget = CLAWSPAWN;
+        yield return new WaitForSeconds(2);
+        startrage = false;
 
         if (Claw.name == "clawLeft")
         {
@@ -478,13 +494,6 @@ public class BossPhases : MonoBehaviour
         {
             yield return new WaitForSeconds(0.4f);
         }
-
-        startrage = true; // return to spawn
-
-        clawtarget = CLAWSPAWN;
-        yield return new WaitForSeconds(1);
-
-        startrage = false;
 
         bossAnim.Play("bossRage"); // Play animation
         yield return new WaitForSeconds(2.35f);
@@ -564,7 +573,7 @@ public class BossPhases : MonoBehaviour
         if (isGrabbed)  // when the wait function is over, if the player is grabbed, the grabbed timer will start and the player will be lifted into the air
         {
             yield return new WaitForSeconds(0.2f);
-            clawtarget = FollowedPlayer.transform.transform.position + FollowedPlayer.transform.TransformDirection(0, 80, 5);
+            clawtarget = FollowedPlayer.transform.position + new Vector3(0, 60, 0);
             attacktimer += 3;
             grabbedTimer = 1; // 1 instead of 3 since the grabbedTimer threshold is -2
 
@@ -582,6 +591,7 @@ public class BossPhases : MonoBehaviour
         else
         {
             clawgrab = false;
+
             attacktimer += 1;
             yield return new WaitForSeconds(1);
             if (Claw.name == "clawLeft" || Claw.name == "clawLeft_2")
@@ -596,6 +606,7 @@ public class BossPhases : MonoBehaviour
         }
 
         clawgrab = false;
+        GrabbedPlayerBody.playerLock = false;
 
         clawreturn = true; // unlocks the coresponding code to return to spawn
 

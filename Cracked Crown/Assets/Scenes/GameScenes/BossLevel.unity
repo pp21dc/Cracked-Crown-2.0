@@ -8367,13 +8367,14 @@ MonoBehaviour:
   isClawSmash: 0
   clawreturn: 0
   roarSpawn: 0
-  cameraShake: {fileID: 0}
+  cameraShake: {fileID: 1956628210}
   FollowedPlayer: {fileID: 0}
   PlayerList:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  PlayerBodyList: []
   GrabbedPlayer: {fileID: 0}
 --- !u!65 &611748469
 BoxCollider:
@@ -11136,9 +11137,14 @@ MonoBehaviour:
   isClawSmash: 0
   clawreturn: 0
   roarSpawn: 0
-  cameraShake: {fileID: 0}
+  cameraShake: {fileID: 1956628210}
   FollowedPlayer: {fileID: 0}
   PlayerList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  PlayerBodyList:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -21070,9 +21076,18 @@ MonoBehaviour:
   isClawSmash: 0
   clawreturn: 0
   roarSpawn: 0
-  cameraShake: {fileID: 0}
+  cameraShake: {fileID: 1956628210}
   FollowedPlayer: {fileID: 0}
   PlayerList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  PlayerBodyList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -21670,13 +21685,14 @@ MonoBehaviour:
   isClawSmash: 0
   clawreturn: 0
   roarSpawn: 0
-  cameraShake: {fileID: 0}
+  cameraShake: {fileID: 1956628210}
   FollowedPlayer: {fileID: 0}
   PlayerList:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  PlayerBodyList: []
   GrabbedPlayer: {fileID: 0}
 --- !u!4 &6229632737933196671
 Transform:
