@@ -38,7 +38,7 @@ public class PlayerManager : MonoBehaviour
 
     private void Start()
     {
-        
+        gm = GameManager.Instance;
     }
 
     private void Update()
@@ -55,11 +55,37 @@ public class PlayerManager : MonoBehaviour
             CharacterImages[lnch].SetActive(true);
             PB.CharacterType = CharacterTypes[lnch];
             PB.SetCharacterData();
+            foreach (PlayerContainer container in gm.Players)
+            {
+                //SetAllMarkers();
+                container.PB.PM.SetMarkers();
+            }
+            Debug.Log(gm.Players.Length);
         }
         if (PI != null)
         {
             launch = true;
             CallUI();
+        }
+    }
+
+    public void SetMarkers()
+    {
+        if (PB.CharacterFolder.transform.childCount == 0 && gm.Players != null)
+            return;
+        SetAllMarkers();
+        for (int i = 0; i < gm.Players.Length; i++)
+        {
+            if (gm.Players[i].PB.playerID == PB.playerContainer.PB.playerID)
+                PB.CharacterFolder.transform.GetChild(0).GetChild(1).GetChild(i).gameObject.SetActive(true);
+        }
+    }
+
+    private void SetAllMarkers()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            PB.CharacterFolder.transform.GetChild(0).GetChild(1).GetChild(i).gameObject.SetActive(false);
         }
     }
 
@@ -79,6 +105,7 @@ public class PlayerManager : MonoBehaviour
                 nextButton(1);
             else if (PC.NavLeft)
                 nextButton(-1);
+            SetMarkers();
         }
     }
 
@@ -113,6 +140,7 @@ public class PlayerManager : MonoBehaviour
                 PB.SetCharacterData();
                 CharacterImages[arrayPos].SetActive(true);
                 PB.currentIN = arrayPos;
+                SetMarkers();
             }
             else
             {
