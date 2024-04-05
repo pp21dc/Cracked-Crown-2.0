@@ -491,6 +491,31 @@ public class PlayerBody : MonoBehaviour
                 if (enemyAIController != null && ((enemyAIController.tag.Equals("Heavy") && (Vector3.Distance(transform.position, executeTarget.transform.position + forExecutePosition) < 5f))
                     || (Vector3.Distance(transform.position, executeTarget.transform.position + forExecutePosition) < 1f)) && !lockExecAnim)
                 {
+<<<<<<< Updated upstream
+=======
+
+                    if (executingCrab)
+                    {
+                        if (CharacterType.ID == 0) // badger
+                        {
+                            crabController.animator.SetBool("BadgerExecute", true);
+                        }
+                        if (CharacterType.ID == 1) // bunny
+                        {
+                            crabController.animator.SetBool("BunnyExecute", true);
+                        }
+                        if (CharacterType.ID == 2) // duck
+                        {
+                            crabController.animator.SetBool("DuckExecute", true);
+                        }
+                        if (CharacterType.ID == 3) // frog
+                        {
+                            crabController.animator.SetBool("FrogExecute", true);
+                        }
+                        transform.parent.GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(false);
+                    }
+
+>>>>>>> Stashed changes
                     animController.Moving = false;
                     hasReachedExecutePoint = true;
 
@@ -892,14 +917,22 @@ public class PlayerBody : MonoBehaviour
                     canMovePlayerForexecute = true;
                     lockDash = true;
 
+<<<<<<< Updated upstream
                     // turn player sprite off for a second while animation because animation is on crab
                     transform.parent.GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(false);
+=======
+                    executingCrab = true;
+                    canMovePlayerForexecute = true;
+
+                    //transform.parent.GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(false);
+>>>>>>> Stashed changes
 
                     crabController.speed = 0;
 
                     // turn trigger for execute animation on
                     if (CharacterType.ID == 0)
                     {
+<<<<<<< Updated upstream
                         crabController.animator.SetBool("BadgerExecute", true);
                     }
                     if (CharacterType.ID == 1)
@@ -909,10 +942,63 @@ public class PlayerBody : MonoBehaviour
                     if (CharacterType.ID == 2)
                     {
                         crabController.animator.SetBool("DuckExecute", true);
+=======
+                        //crabController.animator.SetBool("BadgerExecute", true);
+
+                        yield return new WaitForSeconds(1.3f);
+
+                        canTakeDamage = true;
+                        canMove = true;
+                        canAttack = true;
+                        canExecute = true;
+                        canMovePlayerForexecute = false;
+                        lockDash = false;
+
+                        transform.parent.GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(true);
+                        toExecute.transform.parent.GetChild(0).GetChild(0).gameObject.SetActive(false);
+                        crabController.hasBeenExecuted = true;
+                        StartCoroutine(crabController.respawnCrab());
+                    }
+                    if (CharacterType.ID == 1)
+                    {
+                        //crabController.animator.SetBool("BunnyExecute", true);
+
+                        yield return new WaitForSeconds(1.4f);
+
+                        canTakeDamage = true;
+                        canMove = true;
+                        canAttack = true;
+                        canExecute = true;
+                        canMovePlayerForexecute = false;
+                        lockDash = false;
+
+                        transform.parent.GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(true);
+                        toExecute.transform.parent.GetChild(0).GetChild(0).gameObject.SetActive(false);
+                        crabController.hasBeenExecuted = true;
+                        StartCoroutine(crabController.respawnCrab());
+                    }
+                    if (CharacterType.ID == 2)
+                    {
+                        //crabController.animator.SetBool("DuckExecute", true);
+
+                        yield return new WaitForSeconds(1.0f);
+
+                        canTakeDamage = true;
+                        canMove = true;
+                        canAttack = true;
+                        canExecute = true;
+                        canMovePlayerForexecute = false;
+                        lockDash = false;
+
+                        transform.parent.GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(true);
+                        toExecute.transform.parent.GetChild(0).GetChild(0).gameObject.SetActive(false);
+                        crabController.hasBeenExecuted = true;
+                        StartCoroutine(crabController.respawnCrab());
+>>>>>>> Stashed changes
                     }
                     if (CharacterType.ID == 3)
                     {
-                        crabController.animator.SetBool("FrogExecute", true);
+                        //crabController.animator.SetBool("FrogExecute", true);
                         frogExecuted = true;
                     }
 
