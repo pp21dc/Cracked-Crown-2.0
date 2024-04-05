@@ -72,6 +72,7 @@ public class EnemyAIController : AdvancedFSM
     private float mediumSpeed;
     private float heavySpeed;
     private float lightSpeed;
+    private float mediumRoamSpeed;
 
     public bool canMove = true;
 
@@ -180,6 +181,11 @@ public class EnemyAIController : AdvancedFSM
     public bool dashOnCD;
     public bool shockwaveOnCD;
     public bool shootOnCD;
+
+    //roam vars
+    private Vector3 roamLoc;
+    private bool firstRoam;
+    private bool isRoaming;
     
 
     //health, finisher, and death states
@@ -260,12 +266,18 @@ public class EnemyAIController : AdvancedFSM
         {
             state = "WALL";
         }
+        else if (CurrentState.ID == FSMStateID.Roam)
+        {
+            state = "ROAM";
+        }
         
         
 
 
         return state;
     }
+
+    
 
     //intializes the enemy with the player location and sets enemy health to 100 theb calls Construct FSM
     protected override void Initialize()
@@ -345,6 +357,9 @@ public class EnemyAIController : AdvancedFSM
 
         noTransform = true;
 
+        firstRoam = true;
+        isRoaming = true;
+
         shockwaveCol.SetActive(false);
 
         randTrans = new Vector3(0,0,0);
@@ -368,6 +383,7 @@ public class EnemyAIController : AdvancedFSM
         }
         noShockCooldown = true;
         
+        firstRoam = true;
 
         //cooldowns
         dashOnCD = false;
@@ -390,12 +406,15 @@ public class EnemyAIController : AdvancedFSM
         //enemy speeds
         lightSpeed = 50f;
         mediumSpeed = 35f;
+        mediumRoamSpeed = 12f;
         HeavyDashSpeed = 95f;
         heavySpeed = 25f;
 
         //heavy enemy arcs
         shootUp = false;
         shootDown = false;
+
+        roamLoc = new Vector3(enemyPosition.localPosition.x + (int)Random.Range(-130, 130), 0, enemyPosition.localPosition.z + (int)Random.Range(-130, 130));
 
         ConstructFSM();
     }
@@ -470,6 +489,14 @@ public class EnemyAIController : AdvancedFSM
     //lets us add states and transitions in which we can use to move to other states when needed.
     private void ConstructFSM()
     {
+
+        RoamState roamState = new RoamState(this);
+        roamState.AddTransition(Transition.LowHealth, FSMStateID.Finished);
+        roamState.AddTransition(Transition.NoHealth, FSMStateID.Dead);
+        roamState.AddTransition(Transition.LookForPlayer, FSMStateID.FindPlayer);
+        roamState.AddTransition(Transition.enemiesInContact, FSMStateID.Seperate);
+        roamState.AddTransition(Transition.hitDaWall, FSMStateID.Wall);
+
 
         //follows player, transitions out if it is above the player
         FindPlayerState findPlayerState = new FindPlayerState(this);
@@ -561,6 +588,7 @@ public class EnemyAIController : AdvancedFSM
 
         //Add all states to the state list
 
+        AddFSMState(roamState);
         AddFSMState(findPlayerState);
         AddFSMState(finishedState);
         AddFSMState(deadState);
@@ -580,6 +608,26 @@ public class EnemyAIController : AdvancedFSM
         
         
         
+    }
+
+    public void StartRoam()
+    {
+        
+ 
+
+        if (Random.Range(0,1000) < 2)
+        {
+            roamLoc = new Vector3(enemyPosition.localPosition.x + (int)Random.Range(-130, 130), 0, enemyPosition.localPosition.z + (int)Random.Range(-130, 130));
+        }
+
+        movementVector = (roamLoc - enemyPosition.transform.position).normalized * mediumRoamSpeed;
+        enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
+
+        if(Vector3.Distance(enemyPosition.localPosition, roamLoc) <= 5f)
+        {
+            roamLoc = new Vector3(enemyPosition.localPosition.x + (int)Random.Range(-130, 130), 0, enemyPosition.localPosition.z + (int)Random.Range(-130, 130));
+        }
+
     }
 
     
