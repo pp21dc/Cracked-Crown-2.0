@@ -358,8 +358,8 @@ public class EnemyAIController : AdvancedFSM
         startShock = true;
         startShooting = true;
         canShoot = true;
-        maxAmmo = 10;
-        heavyBullets = 10;
+        maxAmmo = 6;
+        heavyBullets = 6;
         if (shockwaveCol != null)
         {
             targetShockwaveScale = new Vector3(35, shockwaveCol.transform.localScale.y, 35);
@@ -1353,13 +1353,13 @@ public class EnemyAIController : AdvancedFSM
 
             if(closest != null && closest.transform.position.x + 1 > enemyPosition.transform.position.x) 
             {
-                ToothShotLocation.transform.localPosition = new Vector3(7.5f, 5.5f, 0);
+                ToothShotLocation.transform.localPosition = new Vector3(7.5f, 5.5f, 1.5f);
                 bodyShootLoc.localPosition = new Vector3(2.2f, 5.5f, 0);
                 correctTooth = toothRight;
             }
             else if (closest != null)
             {
-                ToothShotLocation.transform.localPosition = new Vector3(-7.5f, 5.5f, 0);
+                ToothShotLocation.transform.localPosition = new Vector3(-7.5f, 5.5f, 1.5f);
                 bodyShootLoc.localPosition = new Vector3(-2.2f, 5.5f, 0);
                 correctTooth = toothLeft;
             }
@@ -1373,16 +1373,22 @@ public class EnemyAIController : AdvancedFSM
 
     IEnumerator ShootRoutine()
     {
+
+        
+
         while (canShoot)
         {
             EAC.Attacking = true;
 
-            
+            ToothShotLocation.transform.localPosition -= new Vector3(0,0,0.5f);
 
             StartShootTeeth(bodyShootLoc, ToothShotLocation.transform, correctTooth);
             heavyBullets--;
             yield return new WaitForSeconds(0.45f);
         }
+
+        ToothShotLocation.transform.localPosition = new Vector3(7.5f,5.5f, 1.5f);
+
         EAC.Attacking = false;
         shootOnCD = true;
         StartCoroutine(cooldown());
@@ -1483,7 +1489,7 @@ public class EnemyAIController : AdvancedFSM
 
         yield return new WaitForSeconds(3f);
 
-        heavyBullets = 10;
+        heavyBullets = maxAmmo;
         doneReloading = true;
 
         yield return null;
