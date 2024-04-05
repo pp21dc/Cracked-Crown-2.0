@@ -13,6 +13,7 @@ public class CrabWalk : MonoBehaviour
     bool alreadyAtPos = false;
     public bool canMove = false;
     private Transform startPos;
+    public bool hasBeenExecuted = false;
 
     PlayerBody player;
     GameObject[] ghost = null;
@@ -120,8 +121,9 @@ public class CrabWalk : MonoBehaviour
 
     public IEnumerator respawnCrab()
     {
-        if (gameObject.tag == "MiniCrabExecutable")
+        if (gameObject.tag == "MiniCrabExecutable" && hasBeenExecuted)
         {
+            hasBeenExecuted = false;
             transform.position = startPos.position;
         }
 
@@ -130,7 +132,7 @@ public class CrabWalk : MonoBehaviour
         animator.SetBool("AtPosition", false);
         alreadyAtPos = false;
 
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0.5f);
         hasDied = false;
         animator.SetBool("Death", false);
         animator.SetBool("PermaDead", false);
