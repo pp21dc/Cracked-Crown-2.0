@@ -513,7 +513,7 @@ public class PlayerBody : MonoBehaviour
                     {
                         if (CharacterType.ID == 0) // badger
                         {
-                            offSet = new Vector3(14, 0, -18);
+                            offSet = new Vector3(-18, 0, -11);
                         }
                         if (CharacterType.ID == 1) // bunny
                         {
@@ -934,7 +934,7 @@ public class PlayerBody : MonoBehaviour
                     {
                         crabController.animator.SetBool("BadgerExecute", true);
 
-                        yield return new WaitForSeconds(0.8f);
+                        yield return new WaitForSeconds(1.3f);
 
                         canTakeDamage = true;
                         canMove = true;
