@@ -181,6 +181,7 @@ public class EnemyAIController : AdvancedFSM
     public bool dashOnCD;
     public bool shockwaveOnCD;
     public bool shootOnCD;
+    private bool roamOnCD;
 
     //roam vars
     private Vector3 roamLoc;
@@ -359,6 +360,7 @@ public class EnemyAIController : AdvancedFSM
 
         firstRoam = true;
         isRoaming = true;
+        roamOnCD = false;
 
         shockwaveCol.SetActive(false);
 
@@ -613,12 +615,16 @@ public class EnemyAIController : AdvancedFSM
     public void StartRoam()
     {
         
- 
-
-        if (Random.Range(0,1000) < 2)
+        if(!roamOnCD)
         {
-            roamLoc = new Vector3(enemyPosition.localPosition.x + (int)Random.Range(-130, 130), 0, enemyPosition.localPosition.z + (int)Random.Range(-130, 130));
+            if (Random.Range(0, 1000) < 2)
+            {
+                roamLoc = new Vector3(enemyPosition.localPosition.x + (int)Random.Range(-130, 130), 0, enemyPosition.localPosition.z + (int)Random.Range(-130, 130));
+                roamOnCD = true;
+            }
         }
+
+        
 
         movementVector = (roamLoc - enemyPosition.transform.position).normalized * mediumRoamSpeed;
         enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
@@ -686,7 +692,7 @@ public class EnemyAIController : AdvancedFSM
                 }
                 else if(gameObject.CompareTag("Heavy"))
                 {
-                    setAndMoveToTarget(heavySpeed);
+                    setAndMoveToTargetHeavy(heavySpeed);
                 }
             }
                 
@@ -786,9 +792,52 @@ public class EnemyAIController : AdvancedFSM
 
     }
 
-    
+    private void setAndMoveToTargetHeavy(float Speed)
+    {
+        if (Speed > 0.5f)
+        {
+            EAC.Moving = true;
+        }
+        else
+        {
+            EAC.Moving = false;
+        }
+        Debug.Log(closest == null);
+        if (closest != null)
+        {
+            if (!lockKnock)
+            {
+                movementVector = (closest.transform.position - enemyPosition.transform.position).normalized * Speed;
+                if (tag != "Light")
+                    movementVector.y = 0;
+                enemyPosition.transform.position -= movementVector * Time.deltaTime;//moves to player
+            }
+            //enemyBody.transform.position = new Vector3(enemyBody.position.x, 0, enemyBody.position.z); //keeps it on ground
+            if (closest.transform.position.x + 1 > enemyPosition.transform.position.x)
+            {
+                EAC.SR.flipX = true;
+            }
+            else
+            {
+                EAC.SR.flipX = false;
+            }
+        }
+        else
+        {
+            PlayerBody tmp = GM.Players[Random.Range(0, GM.Players.Length)].PB;
+            if (!tmp.alreadyDead && !tmp.Grabbed)
+            {
+                closest = tmp.gameObject;
+            }
+        }
 
-    
+
+
+    }
+
+
+
+
     //shooting code from franks class
     IEnumerator GoopRoutine()
     {
@@ -1615,6 +1664,12 @@ public class EnemyAIController : AdvancedFSM
                 yield return new WaitForSeconds(0.77f);
                 dashOnCD = false;
             }
+            else if(roamOnCD == true)
+            {
+                yield return new WaitForSeconds(0.77f);
+                roamOnCD = false;
+            }
+
         }
         else if(gameObject.CompareTag("Heavy"))
         {
