@@ -192,8 +192,9 @@ public class EnemyAIController : AdvancedFSM
     private Collider Damage;
 
 
-    
-
+    //heavy enemy shoot arc
+    private bool shootUp;
+    private bool shootDown;
     
     public float Health
     {
@@ -391,6 +392,10 @@ public class EnemyAIController : AdvancedFSM
         mediumSpeed = 35f;
         HeavyDashSpeed = 95f;
         heavySpeed = 25f;
+
+        //heavy enemy arcs
+        shootUp = false;
+        shootDown = false;
 
         ConstructFSM();
     }
@@ -1353,15 +1358,38 @@ public class EnemyAIController : AdvancedFSM
 
             if(closest != null && closest.transform.position.x + 1 > enemyPosition.transform.position.x) 
             {
-                ToothShotLocation.transform.localPosition = new Vector3(7.5f, 5.5f, 1.5f);
+                
                 bodyShootLoc.localPosition = new Vector3(2.2f, 5.5f, 0);
                 correctTooth = toothRight;
+
+                if(closest.transform.position.z + 1 < enemyPosition.transform.position.z)
+                {
+                    ToothShotLocation.transform.localPosition = new Vector3(7.5f, 5.5f, 1.75f);
+                    shootDown = true;
+                }
+                else
+                {
+                    ToothShotLocation.transform.localPosition = new Vector3(7.5f, 5.5f, -1.75f);
+                    shootUp = true;
+                }
+
             }
             else if (closest != null)
             {
-                ToothShotLocation.transform.localPosition = new Vector3(-7.5f, 5.5f, 1.5f);
+                
                 bodyShootLoc.localPosition = new Vector3(-2.2f, 5.5f, 0);
                 correctTooth = toothLeft;
+
+                if (closest.transform.position.z + 1 < enemyPosition.transform.position.z)
+                {
+                    ToothShotLocation.transform.localPosition = new Vector3(-7.5f, 5.5f, 1.75f);
+                    shootDown = true;
+                }
+                else
+                {
+                    ToothShotLocation.transform.localPosition = new Vector3(-7.5f, 5.5f, -1.75f);
+                    shootUp = true;
+                }
             }
 
             startShooting = false;
@@ -1380,17 +1408,28 @@ public class EnemyAIController : AdvancedFSM
         {
             EAC.Attacking = true;
 
-            ToothShotLocation.transform.localPosition -= new Vector3(0,0,0.5f);
+            if(shootUp)
+            {
+                ToothShotLocation.transform.localPosition += new Vector3(0, 0, 0.75f);
+            }
+            else if(shootDown) 
+            {
+                ToothShotLocation.transform.localPosition -= new Vector3(0, 0, 0.75f);
+            }
+
+            
 
             StartShootTeeth(bodyShootLoc, ToothShotLocation.transform, correctTooth);
             heavyBullets--;
-            yield return new WaitForSeconds(0.45f);
+            yield return new WaitForSeconds(0.25f);
         }
 
-        ToothShotLocation.transform.localPosition = new Vector3(7.5f,5.5f, 1.5f);
+        ToothShotLocation.transform.localPosition = new Vector3(7.5f,5.5f, 1.75f);
 
         EAC.Attacking = false;
         shootOnCD = true;
+        shootUp = false;
+        shootDown = false;
         StartCoroutine(cooldown());
 
         yield return null;
@@ -1487,7 +1526,7 @@ public class EnemyAIController : AdvancedFSM
     IEnumerator Reload()
     {
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(0.75f);
 
         heavyBullets = maxAmmo;
         doneReloading = true;
