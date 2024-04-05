@@ -912,19 +912,17 @@ public class PlayerBody : MonoBehaviour
                         frogExecuted = true;
                     }
 
-                    yield return new WaitForSeconds(1.8f);
-                   
+                    yield return new WaitForSeconds(1.6f);
+
+                    canTakeDamage = true;
+                    canMove = true;
+                    canAttack = true;
+                    canExecute = true;
+                    canMovePlayerForexecute = false;
+                    lockDash = false;
+
                     if (!frogExecuted)
                     {
-                        yield return new WaitForSeconds(0.2f);
-
-                        canTakeDamage = true;
-                        canMove = true;
-                        canAttack = true;
-                        canExecute = true;
-                        canMovePlayerForexecute = false;
-                        lockDash = false;
-
                         transform.parent.GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(true);
                         toExecute.transform.parent.GetChild(0).GetChild(0).gameObject.SetActive(false);
                         StartCoroutine(crabController.respawnCrab());
