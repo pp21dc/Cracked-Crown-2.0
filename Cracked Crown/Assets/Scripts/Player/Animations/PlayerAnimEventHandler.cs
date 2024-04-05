@@ -38,6 +38,11 @@ public class PlayerAnimEventHandler : MonoBehaviour
         PC.PB.lockExecAnim = false;
     }
 
+    public void HitReactEnd()
+    {
+        PC.PAC.HitReact = false;
+    }
+
     public void FinishEnter()
     {
         PC.PAC.SetFinishers(false);

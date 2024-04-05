@@ -602,10 +602,14 @@ public class PlayerBody : MonoBehaviour
 
     public void DecHealth(float amount) 
     {
-        StartCoroutine(DamageColourFlash());
+        
         if (canTakeDamage)
         {
+            Debug.Log("DAMAGE");
+            StartCoroutine(DamageColourFlash());
             PAM.PlayAudio(PlayerAudioManager.AudioType.PlayerHit);
+            animController.SetAll();
+            animController.HitReact = true;
             health = Mathf.Max(0, health - amount); // allows taking health from the player
         }
     }
