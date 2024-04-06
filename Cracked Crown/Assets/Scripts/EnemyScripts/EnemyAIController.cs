@@ -629,7 +629,7 @@ public class EnemyAIController : AdvancedFSM
             }
         }
 
-        
+        EAC.Moving = true;
 
         movementVector = (roamLoc - enemyPosition.transform.position).normalized * mediumRoamSpeed;
         enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
@@ -693,7 +693,7 @@ public class EnemyAIController : AdvancedFSM
                 }
                 else if(gameObject.CompareTag("Medium"))
                 {
-                    setAndMoveToTarget(mediumSpeed);
+                    setAndMoveToTarget(mediumSpeed * 0.8f);
                 }
                 else if(gameObject.CompareTag("Heavy"))
                 {
@@ -719,7 +719,6 @@ public class EnemyAIController : AdvancedFSM
         {
             EAC.Moving = false;
         }
-        Debug.Log(closest == null);
         if (closest != null)
         {
             if (!lockKnock)

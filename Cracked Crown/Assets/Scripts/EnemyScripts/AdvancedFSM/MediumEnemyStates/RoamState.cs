@@ -38,7 +38,7 @@ public class RoamState : FSMState
             enemy.PerformTransition(Transition.LookForPlayer);
             return;
         }
-        else if (Vector3.Distance(enemy.ePosition.position, player.position) <= 14f)
+        else if (Vector3.Distance(enemy.ePosition.position, player.position) <= 60.0f)
         {
 
 
