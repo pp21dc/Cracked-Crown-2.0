@@ -292,7 +292,8 @@ public class PlayerBody : MonoBehaviour
     {
         playerLock = false;
         StopAllCoroutines();
-        spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 1);
+        if (spriteRenderer != null)
+            spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 1);
         GameManager.Instance.FreezePlayers(false);
     }
 
@@ -681,6 +682,7 @@ public class PlayerBody : MonoBehaviour
         attackDelayTime = CharacterType.attackDelayTime;
         health = CharacterType.health;
         maxHealth = health;
+        spriteRenderer = CharacterFolder.transform.GetChild(0).GetComponent<SpriteRenderer>();
     }
     float x = 0;
     float attackTimer = 0;
@@ -955,6 +957,7 @@ public class PlayerBody : MonoBehaviour
                         canExecute = true;
                         canMovePlayerForexecute = false;
                         lockDash = false;
+                        executingCrab = false;
 
                         transform.parent.GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(true);
                         toExecute.transform.parent.GetChild(0).GetChild(0).gameObject.SetActive(false);
@@ -972,6 +975,7 @@ public class PlayerBody : MonoBehaviour
                         canExecute = true;
                         canMovePlayerForexecute = false;
                         lockDash = false;
+                        executingCrab = false;
 
                         transform.parent.GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(true);
                         toExecute.transform.parent.GetChild(0).GetChild(0).gameObject.SetActive(false);
@@ -989,6 +993,7 @@ public class PlayerBody : MonoBehaviour
                         canExecute = true;
                         canMovePlayerForexecute = false;
                         lockDash = false;
+                        executingCrab = false;
 
                         transform.parent.GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(true);
                         toExecute.transform.parent.GetChild(0).GetChild(0).gameObject.SetActive(false);
@@ -1014,6 +1019,7 @@ public class PlayerBody : MonoBehaviour
                         canExecute = true;
                         canMovePlayerForexecute = false;
                         lockDash = false;
+                        executingCrab = false;
 
                         transform.parent.GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(true);
 
@@ -1029,6 +1035,7 @@ public class PlayerBody : MonoBehaviour
                         StartCoroutine(crabController.respawnCrab());
 
                     }
+
                 }
             }
         }

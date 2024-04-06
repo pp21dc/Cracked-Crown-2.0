@@ -7,7 +7,7 @@ public class WallCheck : MonoBehaviour
     public EnemyAIController AI;
     public Collider checker;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (checker != null)
         {
@@ -18,6 +18,22 @@ public class WallCheck : MonoBehaviour
                 if (!AI.EAC.Stunned)
                 {
                     AI.wallContact = true;
+                }
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (checker != null)
+        {
+
+
+            if (other.CompareTag("Wall"))
+            {
+                if (!AI.EAC.Stunned)
+                {
+                    AI.wallContact = false;
                 }
             }
         }

@@ -28,7 +28,8 @@ public class WallSeperateState : FSMState
 
         if (enemy.Health <= enemy.maxHealth * 0.74f && enemy.Health >= 1)
         {
-
+            enemy.canWall = true;
+            enemy.doneWall = false;
             enemy.PerformTransition(Transition.LowHealth);
             return;
         }
@@ -36,7 +37,9 @@ public class WallSeperateState : FSMState
         if (enemy.doneWall == true)
         {
             enemy.doneWall = false;
+            enemy.canWall = true;
             enemy.PerformTransition(Transition.LookForPlayer);
+            return;
         }
 
 

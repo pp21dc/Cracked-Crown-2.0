@@ -36,12 +36,14 @@ public class SeperateState : FSMState
         if(enemy.wallContact == true)
         {
             enemy.PerformTransition(Transition.hitDaWall);
+            return;
         }
 
         if (enemy.doneSeperating == true)
         {
             enemy.doneSeperating = false;
             enemy.PerformTransition(Transition.LookForPlayer);
+            return;
         }
 
 

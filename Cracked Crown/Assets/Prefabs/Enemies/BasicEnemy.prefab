@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 1809686768658751937}
   m_Layer: 9
   m_Name: GFX
-  m_TagString: Heavy
+  m_TagString: Medium
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -586,7 +586,7 @@ GameObject:
   - component: {fileID: 6901536273665180682}
   m_Layer: 0
   m_Name: Enemy controller
-  m_TagString: Heavy
+  m_TagString: Medium
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -692,6 +692,7 @@ MonoBehaviour:
   SepLoc: {fileID: 4490055925084942224}
   doneSeperating: 0
   wallContact: 0
+  canWall: 0
   doneWall: 0
   shockWave: {fileID: 4787176899576346564}
   dashOnCD: 0
@@ -1615,6 +1616,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3030251198429451711}
   - component: {fileID: 7667108779744003808}
+  - component: {fileID: 6808741114817391736}
   m_Layer: 0
   m_Name: Wall Check
   m_TagString: Seperate
@@ -1656,8 +1658,22 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 8.205908
+  m_Radius: 4
   m_Center: {x: -0.30772376, y: 0, z: 0}
+--- !u!114 &6808741114817391736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8452451731103131965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 940fe4dd2b9cd2443a85a229c683d662, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AI: {fileID: 3777765676232313991}
+  checker: {fileID: 7667108779744003808}
 --- !u!1 &8884725704369577542
 GameObject:
   m_ObjectHideFlags: 0

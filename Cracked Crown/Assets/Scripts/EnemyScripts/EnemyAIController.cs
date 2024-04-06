@@ -173,7 +173,7 @@ public class EnemyAIController : AdvancedFSM
     //wall seperation
     public bool wallContact;
     private bool wallGo;
-    private bool canWall;
+    public bool canWall;
     public bool doneWall;
 
     public GameObject shockWave;
@@ -453,7 +453,7 @@ public class EnemyAIController : AdvancedFSM
 
             if (CompareTag("Light"))
             {
-                dropShadow.transform.localScale = new Vector3(7, 1.5f, 0.5f);
+                dropShadow.transform.localScale = new Vector3(8, 1.5f, 0.5f);
             }
             else
             {
@@ -515,6 +515,7 @@ public class EnemyAIController : AdvancedFSM
         findPlayerState.AddTransition(Transition.NoHealth, FSMStateID.Dead);
         findPlayerState.AddTransition(Transition.PlayerDead, FSMStateID.FindPlayer);
         findPlayerState.AddTransition(Transition.enemiesInContact, FSMStateID.Seperate);
+        findPlayerState.AddTransition(Transition.hitDaWall, FSMStateID.Wall);
 
         //if at low health it allows the enemy to be finished, tranistions if no health and not finished.
         FinishedState finishedState = new FinishedState(this);
@@ -1825,17 +1826,23 @@ public class EnemyAIController : AdvancedFSM
             StartCoroutine(wallSeperation());
         }
 
-        if(gameObject.CompareTag("Medium"))
+        if(gameObject.CompareTag("Medium") && wallGo)
         {
             movementVector = (SepLoc.position - enemyPosition.transform.position).normalized * mediumSpeed;
             movementVector.y = 0;
             enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
         }
-        else if(gameObject.CompareTag("Heavy"))
+        else if(gameObject.CompareTag("Heavy") && wallGo)
         {
+            //Debug.Log("HEAVY WALL HIT");
             movementVector = (SepLoc.position - enemyPosition.transform.position).normalized * heavySpeed;
             movementVector.y = 0;
             enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
+        }
+        else
+        {
+            doneWall = true;
+
         }
 
     }
@@ -1846,9 +1853,13 @@ public class EnemyAIController : AdvancedFSM
 
         wallGo = true;
 
-        yield return new WaitForSeconds(0.35f);
-
+        if (CompareTag("Medium"))
+            yield return new WaitForSeconds(0.35f);
+        else
+            yield return new WaitForSeconds(1);
         wallGo = false;
+        doneWall = true;
+        wallContact = false;
 
         yield return null;
     }

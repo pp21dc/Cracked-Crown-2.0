@@ -36,6 +36,11 @@ public class FindPlayerState : FSMState
             enemy.PerformTransition(Transition.enemiesInContact);
             
         }
+        else if (enemy.wallContact == true)
+        {
+            enemy.PerformTransition(Transition.hitDaWall);
+            return;
+        }
         else if (enemy.CompareTag("Light"))
         {
             if (enemy.startSlam == true && enemy.canPickup && enemy.checkPlayerBelow.IsPlayerBelow())
@@ -59,7 +64,7 @@ public class FindPlayerState : FSMState
         }
         else if (enemy.CompareTag("Heavy") && player != null)
         {
-            if (Vector3.Distance(enemy.ePosition.position,player.position) >= 105f && enemy.shootOnCD == false)
+            if (Vector3.Distance(enemy.ePosition.position,player.position) >= 10 && enemy.shootOnCD == false)
             {
                 enemy.PerformTransition(Transition.InShootingRange);
                 return;
