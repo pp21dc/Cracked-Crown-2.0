@@ -272,7 +272,7 @@ public class GameManager : MonoBehaviour
             if (pc.PB != null)
             {
                 pc.PB.playerLock = freeze;
-                pc.PB.canMove = freeze;
+                pc.PB.canMove = !freeze;
             }
         }
     }

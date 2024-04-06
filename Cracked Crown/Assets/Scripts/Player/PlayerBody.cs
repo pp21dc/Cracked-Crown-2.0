@@ -284,22 +284,21 @@ public class PlayerBody : MonoBehaviour
 
     public void ExitLevel()
     {
-        playerLock = true;
-        //rb.isKinematic = true;
-        canMove = false;
         StopPlayer();
         StartCoroutine(FadeSprite(0.001f, 0.5f));
     }
 
     public void EnterLevel()
     {
-        //rb.isKinematic = false;
-        StopCoroutine(FadeSprite(0.001f, 0.5f));
-        StartCoroutine(FadeSprite(0.999f, 1));
+        playerLock = false;
+        StopAllCoroutines();
+        spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 1);
+        GameManager.Instance.FreezePlayers(false);
     }
 
     public void StopPlayer()
     {
+        playerLock = true;
         rb.velocity = Vector3.zero;
     }
 
