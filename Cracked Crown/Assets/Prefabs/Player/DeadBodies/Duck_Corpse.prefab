@@ -93,6 +93,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5606250235028797019}
+  - component: {fileID: 7887925606035364623}
   m_Layer: 0
   m_Name: Duck_Corpse
   m_TagString: Untagged
@@ -116,3 +117,15 @@ Transform:
   - {fileID: 7323260997279100437}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7887925606035364623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7516477959771602021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9f559a52df12ab438cbaa82b014515e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

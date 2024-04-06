@@ -344,6 +344,10 @@ public class PlayerBody : MonoBehaviour
     private IEnumerator executeAfterRevive()
     {
         transform.position = respawnPoint;
+
+        String tag = "BeenRevived";
+        corpse.tag = tag;
+
         yield return new WaitForSeconds(1.2f);
         canExecute = true;
         canCollect = true;
