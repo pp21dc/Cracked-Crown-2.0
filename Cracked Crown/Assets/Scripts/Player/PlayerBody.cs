@@ -195,7 +195,7 @@ public class PlayerBody : MonoBehaviour
 
         if (!playerLock)
         {
-            if (PM != null)
+            if (PM != null && PM.isActiveAndEnabled)
             {
                 if (controller.InteractDown && lockIN == -1 && PM.CheckPlayers(currentIN))
                 {
