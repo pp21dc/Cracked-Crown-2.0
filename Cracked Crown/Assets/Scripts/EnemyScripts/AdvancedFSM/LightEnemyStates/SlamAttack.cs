@@ -33,7 +33,7 @@ public class SlamAttack : MonoBehaviour
             {
                 Debug.Log("SLAM HIT");
                 enemyAIController.carrying = false;
-                enemyAIController.canPickup = false;
+                //enemyAIController.canPickup = false;
                 enemyAIController.doneCarry = false;
                 player.Grabbed = true;
                 //enemyAIController.StartCoroutine(enemyAIController.ResetPlayerGrab(player));

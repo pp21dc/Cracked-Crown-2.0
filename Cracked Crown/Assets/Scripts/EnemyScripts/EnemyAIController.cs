@@ -1068,6 +1068,7 @@ public class EnemyAIController : AdvancedFSM
         EAC.Attacking = false;
         moveToCarry = false;
         moveToStunned = false;
+       
     }
 
     //if light enemy is stunned, runs the following code
@@ -1153,7 +1154,8 @@ public class EnemyAIController : AdvancedFSM
     //method for carrying the player
     public void StartCarry()
     {
-
+        if (slamAttack.hitPlayer == null)
+            return;
         PlayerBody body = slamAttack.hitPlayer;
         body.StartSpam();
         carrying = true;
@@ -1164,7 +1166,8 @@ public class EnemyAIController : AdvancedFSM
             canSpam = false;
 
             Debug.Log("IN");
-            couts.Add(StartCoroutine(Drop(body)));
+            if (couts.Count == 0)
+                couts.Add(StartCoroutine(Drop(body)));
             body.timesHit = 0;
             body.Grabbed = false;
             body.canRelease = true;
@@ -1288,7 +1291,8 @@ public class EnemyAIController : AdvancedFSM
         if (slamAttack.hitPlayer != null)
         {
             Debug.Log("TIMED DROP");
-            couts.Add(StartCoroutine(Drop(pb)));
+            if (couts.Count == 0)
+                couts.Add(StartCoroutine(Drop(pb)));
             EAC.Attacking = false;
             EAC.Grabbing = false;
             pb.Grabbed = false;
@@ -1352,7 +1356,7 @@ public class EnemyAIController : AdvancedFSM
         StopDrops();
     }
 
-    IEnumerator PickUpAgainCoolDown()
+    public IEnumerator PickUpAgainCoolDown()
     {
         yield return new WaitForSeconds(2);
         Debug.Log("PICKUP AGAIN COOLDOWN: COMPLETE");
@@ -1362,12 +1366,12 @@ public class EnemyAIController : AdvancedFSM
         canCarry = true;
         startSlam = false;
         doneCarry = false;
-
+        carrying = false;
     }
     
     public void ResetCarryVar()
     {
-        //canCarry = true;
+        couts = new List<Coroutine>();
         startCarryingUp = false;
         startCarrying = false;
         //doneCarry = false;
@@ -1375,6 +1379,7 @@ public class EnemyAIController : AdvancedFSM
         canSpam = false;
         doneStun = false;
         //canPickup = true;
+        StartCoroutine(PickUpAgainCoolDown());
         randTrans = new Vector3(0, 0, 0);
     }
 

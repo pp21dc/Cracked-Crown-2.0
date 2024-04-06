@@ -350,7 +350,8 @@ public class PlayerBody : MonoBehaviour
         transform.position = respawnPoint;
 
         String tag = "BeenRevived";
-        corpse.tag = tag;
+        if (corpse != null)
+            corpse.tag = tag;
 
         yield return new WaitForSeconds(1.2f);
         canExecute = true;
@@ -1279,7 +1280,7 @@ public class PlayerBody : MonoBehaviour
         {
             i += Time.deltaTime;
             rb.velocity = Vector3.zero;
-            rb.MovePosition(new Vector3(enemyBody.transform.position.x, enemyBody.transform.position.y - 20, enemyBody.transform.position.z));
+            rb.MovePosition(new Vector3(enemyBody.transform.position.x, enemyBody.transform.position.y - 15, enemyBody.transform.position.z));
         }
         i = 0;
     }

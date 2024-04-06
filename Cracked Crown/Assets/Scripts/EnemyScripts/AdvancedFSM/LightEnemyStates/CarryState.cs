@@ -25,7 +25,7 @@ public class CarryState : FSMState
         if (enemy.doneCarry == true) 
         {
             enemy.ResetCarryVar();
-
+            
             enemy.PerformTransition(Transition.LookForPlayer);
         }
  

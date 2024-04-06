@@ -39,7 +39,7 @@ public class SlamGroundState : FSMState
         {
             
             enemy.ResetSlamVar();
-            
+            enemy.doneCarry = false;
             enemy.PerformTransition(Transition.SlamSuceeded);
         }
         else if (enemy.moveToStunned) 
