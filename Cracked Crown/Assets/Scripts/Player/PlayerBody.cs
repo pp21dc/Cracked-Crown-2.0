@@ -109,6 +109,7 @@ public class PlayerBody : MonoBehaviour
     private bool ifHopper = false;
     private Vector3 respawnPoint;
     public GameObject corpse;
+    public Transform resStonePos;
     public float maxHealth;
     private GameManager gameManager;
     private float attackSpeed;
