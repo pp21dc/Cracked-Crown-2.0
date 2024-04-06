@@ -67,7 +67,7 @@ public class LevelManager : MonoBehaviour
         persScene = SceneManager.GetSceneByBuildIndex(0);
     }
     public float SpawnTimer = 0;
-    float currentSpawnTotal = 0;
+    public float currentSpawnTotal = 0;
     public bool loc = false;
     bool boss = false;
 
@@ -108,7 +108,7 @@ public class LevelManager : MonoBehaviour
         if (ROOM_CLEARED || !SpawnersActive)
             return;
         //Debug.Log(Current_Room.RoomNumber + ": " + CURRENT_WAVE);
-        if (ENEMIES_SPAWNED >= Current_Room.EnemyCount_PerWave[CURRENT_WAVE-1] && !boss)
+        if (ENEMIES_SPAWNED >= currentSpawnTotal && !boss)
         {
             if (ENEMIES_KILLED >= ENEMIES_SPAWNED)
             {
@@ -123,7 +123,7 @@ public class LevelManager : MonoBehaviour
         }
 
         SpawnTimer += Time.deltaTime;
-        if (SpawnTimer > WAIT_NEXTSPAWN_VALUE && ENEMIES_SPAWNED < Current_Room.EnemyCount_PerWave[CURRENT_WAVE-1])
+        if (SpawnTimer > WAIT_NEXTSPAWN_VALUE && ENEMIES_SPAWNED < currentSpawnTotal)
         {
             SpawnTimer = 0;
             WAIT_NEXTSPAWN_VALUE = Current_Room.SpawnRate[CURRENT_WAVE - 1] * Random.Range(0.8f, 1f);
@@ -176,8 +176,8 @@ public class LevelManager : MonoBehaviour
             if (CURRENT_ROOM < 3)
                 CURRENT_ROOM += 1;
             Current_Room = Rooms[CURRENT_ROOM - 1];
-            currentSpawnTotal = Current_Room.EnemyCount_PerWave[CURRENT_ROOM - 1] * (GM.Players.Length);
-
+            currentSpawnTotal = Current_Room.EnemyCount_PerWave[0] * (GM.Players.Length*0.25f) + 1;
+            Debug.Log(currentSpawnTotal);
             SpawnTimer = 0;
             WAIT_NEXTSPAWN_VALUE = 0.2f;
             ENEMIES_SPAWNED = 0;
@@ -189,7 +189,7 @@ public class LevelManager : MonoBehaviour
             else
             {
                 
-                currentSpawnTotal += 100;
+                currentSpawnTotal += 999;
                 CURRENT_ROOM = 3;
                 Current_Room = Rooms[CURRENT_ROOM - 1];
             }
@@ -201,6 +201,8 @@ public class LevelManager : MonoBehaviour
         SpawnersActive = false;
         if (CURRENT_WAVE < 3)
         {
+            currentSpawnTotal = Current_Room.EnemyCount_PerWave[CURRENT_WAVE] * (GM.Players.Length / 4) + 1;
+            
             yield return new WaitForSeconds(WAIT_NEXTROUND);
             CURRENT_WAVE++;
             ENEMIES_SPAWNED = 0;
