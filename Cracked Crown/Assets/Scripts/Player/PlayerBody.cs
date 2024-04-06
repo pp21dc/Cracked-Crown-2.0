@@ -266,7 +266,7 @@ public class PlayerBody : MonoBehaviour
                 lockRelease = true;
                 StartCoroutine(Release());
             }
-            if (transform.position.y < 1 || Grabbed)
+            if (transform.position.y < 2.5f || Grabbed)
             {
                 animController.Falling = false;
                 vely = 0;
