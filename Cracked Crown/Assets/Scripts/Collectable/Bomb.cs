@@ -122,7 +122,7 @@ public class Bomb : MonoBehaviour
             }
             foreach (BossPhases bp in clawsInRange)
             {
-                bp.decHealth(damage/4);
+                bp.decHealth(20.0f);
             }
 
         }
