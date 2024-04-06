@@ -35,7 +35,7 @@ public class SlamAttack : MonoBehaviour
                 enemyAIController.carrying = false;
                 //enemyAIController.canPickup = false;
                 enemyAIController.doneCarry = false;
-                player.Grabbed = true;
+                //player.Grabbed = true;
                 //enemyAIController.StartCoroutine(enemyAIController.ResetPlayerGrab(player));
                 player.DecHealth(4f);
                 hasHit = true;

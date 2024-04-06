@@ -447,7 +447,8 @@ public class EnemyAIController : AdvancedFSM
         }
         if (CurrentState != null && act)
         {
-            
+            if (!shaking && !CompareTag("Heavy"))
+                EAC.transform.localPosition = new Vector3(0, 6f, 5.15f);
             
 
             if (CompareTag("Light"))
@@ -1151,13 +1152,15 @@ public class EnemyAIController : AdvancedFSM
     }
 
     int prevHit = 0;
+    bool shaking;
     //method for carrying the player
     public void StartCarry()
     {
-        if (slamAttack.hitPlayer == null)
+        if (slamAttack.hitPlayer == null || doneCarry)
             return;
         PlayerBody body = slamAttack.hitPlayer;
         body.StartSpam();
+        
         carrying = true;
         body.MoveToEnemy(enemyPosition.gameObject);
         if (body.timesHit >= 7)
@@ -1165,38 +1168,34 @@ public class EnemyAIController : AdvancedFSM
             prevHit = 0;
             canSpam = false;
 
-            Debug.Log("IN");
-            if (couts.Count == 0)
-                couts.Add(StartCoroutine(Drop(body)));
+            //couts.Add(StartCoroutine(Drop(body)));
             body.timesHit = 0;
-            body.Grabbed = false;
             body.canRelease = true;
         }
         else if (body.timesHit > prevHit)
         {
+            shaking = true;
             prevHit = body.timesHit;
-            StartCoroutine(shakeSprite.Shake(0.35f, 2f));
+            StartCoroutine(shakeSprite.Shake(0.35f, 1.8f));
         }
 
         if(body.Health <= 0)
         {
             doneCarry = true;
             canSpam = true;
-            body.canRelease = false;
-            body.Grabbed = false;
+            GM.ResetPlayer(body);
+            StartCoroutine(Drop(body));
             EAC.Grabbing = false;
             EAC.Attacking = false;
-            GM.ResetPlayer(body);
         }
 
 
         if (body.canRelease && canSpam == false)
         {
-            doneCarry = true;
+            Debug.Log("RELEASE DROP");
             canSpam = true;
             GM.ResetPlayer(body);
-            //StartCoroutine(Drop(body));
-
+            StartCoroutine(Drop(body));
             SetGrabAnim(body, false);
             EAC.Grabbing = false;
             EAC.Attacking = false;
@@ -1230,7 +1229,7 @@ public class EnemyAIController : AdvancedFSM
         if (canCarry == true)
         {
             canCarry = false;
-            
+            body.Grabbed = true;
             StartCoroutine(Carry(body));
             StartCoroutine(DOT());
         }
@@ -1320,17 +1319,10 @@ public class EnemyAIController : AdvancedFSM
     
     IEnumerator Drop(PlayerBody pb)
     {
-        startCarrying = false;
-        startCarryingUp = false;
-        canPickup = false;
-        canCarry = false;
-        doneCarry = true;
-        startSlam = false;
-        carrying = false;
+        shaking = false;
         pb.timesHit = 0;
         GM.ResetPlayer(pb);
         pb.Grabbed = false;
-        Debug.Log("DROP");
         pb.MoveToEnemy(enemyPosition.gameObject); // asks to move player to enemy
         StartCoroutine(PickUpAgainCoolDown());
         if(!pb.spriteRenderer.enabled)
@@ -1338,14 +1330,11 @@ public class EnemyAIController : AdvancedFSM
 
         SetGrabAnim(pb, false);
         EAC.Grabbing = false;
-        doneCarry = true;
-        canWait = true;
-        doneStun = false;
-        canStun = true;
         belowChecker.enabled = false;
         slamAttack.enabled = false;
         pb.Grabbed = false;
-
+        pb.playerLock = false;
+        pb.canRelease = false;
         ResetCarryVar();
 
         doneCarry = true;
@@ -1353,7 +1342,7 @@ public class EnemyAIController : AdvancedFSM
         
 
         yield return null;
-        StopDrops();
+        //StopDrops();
     }
 
     public IEnumerator PickUpAgainCoolDown()
