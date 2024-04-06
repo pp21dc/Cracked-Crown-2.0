@@ -201,8 +201,8 @@ public class LevelManager : MonoBehaviour
         SpawnersActive = false;
         if (CURRENT_WAVE < 3)
         {
-            currentSpawnTotal = Current_Room.EnemyCount_PerWave[CURRENT_WAVE] * (GM.Players.Length / 4) + 1;
-            
+            currentSpawnTotal = Current_Room.EnemyCount_PerWave[CURRENT_WAVE] * (GM.Players.Length * 0.25f) + 1;
+            Debug.Log("Current Total RE: " + currentSpawnTotal);
             yield return new WaitForSeconds(WAIT_NEXTROUND);
             CURRENT_WAVE++;
             ENEMIES_SPAWNED = 0;

@@ -299,7 +299,12 @@ public class EnemyAIController : AdvancedFSM
         if(Players.Length <= 0) { Players = null; }
         if (Players != null)
         {
-            playerTransform = Players[0].transform;
+            playerTransform = Players[0].transform.GetChild(1);
+            closest = playerTransform.gameObject;
+        }
+        if (GameManager.Instance != null)
+        {
+            playerTransform = GameManager.Instance.Players[0].transform.GetChild(1);
             closest = playerTransform.gameObject;
         }
         Damage = gameObject.GetComponent<Collider>();
