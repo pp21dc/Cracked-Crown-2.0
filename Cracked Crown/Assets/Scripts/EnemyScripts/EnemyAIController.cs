@@ -5,8 +5,7 @@ using System.Runtime.InteropServices;
 using System.Runtime.CompilerServices;
 using UnityEngine.Rendering;
 using Unity.VisualScripting;
-
-
+using System.Collections.Generic;
 
 [System.Serializable]
 public abstract class AIProperties // the properties that are most commonly used by all states and are now accesible to those states
@@ -653,7 +652,7 @@ public class EnemyAIController : AdvancedFSM
             float check;
             currShortest = 10000;
             float closestInt = 0;
-            closest = null;
+            //closest = null;
             //simple distance check where it checks the current shortest and compares to the other players, replacing when neccisary
             for (int i = 0; i < GM.Players.Length; i++)
             {
@@ -1056,15 +1055,17 @@ public class EnemyAIController : AdvancedFSM
         }
     }
 
-    
-    
+
+
     //checks slam code for if it has ti the player or the ground
-  
+
     //resets all of the slam variables
+    public bool carrying;
     public void ResetSlamVar()
     {
         slamAttack.hasHit = false;
-        //slamAttack.HitGround = false;
+        slamAttack.HitGround = false;
+        EAC.Attacking = false;
         moveToCarry = false;
         moveToStunned = false;
     }
@@ -1131,13 +1132,21 @@ public class EnemyAIController : AdvancedFSM
         EAC.Moving = false;
         EAC.Attacking = false;
         body.Grabbed = active;
-        StartCoroutine(ResetPlayerGrab(body));
+        //StartCoroutine(ResetPlayerGrab(body));
     }
 
     public IEnumerator ResetPlayerGrab(PlayerBody pb)
     {
         yield return new WaitForSeconds(5f);
         pb.Grabbed = false;
+    }
+
+    public void StopDrops()
+    {
+        foreach (Coroutine cout in couts)
+        {
+            StopCoroutine(cout);
+        }
     }
 
     int prevHit = 0;
@@ -1147,13 +1156,18 @@ public class EnemyAIController : AdvancedFSM
 
         PlayerBody body = slamAttack.hitPlayer;
         body.StartSpam();
+        carrying = true;
+        body.MoveToEnemy(enemyPosition.gameObject);
         if (body.timesHit >= 7)
         {
             prevHit = 0;
             canSpam = false;
+
             Debug.Log("IN");
-            //StartCoroutine(Drop(body));
-            //body.timesHit = 0;
+            couts.Add(StartCoroutine(Drop(body)));
+            body.timesHit = 0;
+            body.Grabbed = false;
+            body.canRelease = true;
         }
         else if (body.timesHit > prevHit)
         {
@@ -1169,6 +1183,7 @@ public class EnemyAIController : AdvancedFSM
             body.Grabbed = false;
             EAC.Grabbing = false;
             EAC.Attacking = false;
+            GM.ResetPlayer(body);
         }
 
 
@@ -1176,9 +1191,9 @@ public class EnemyAIController : AdvancedFSM
         {
             doneCarry = true;
             canSpam = true;
-            body.canRelease = false;
-            StartCoroutine(Drop(body));
-            body.Grabbed = false;
+            GM.ResetPlayer(body);
+            //StartCoroutine(Drop(body));
+
             SetGrabAnim(body, false);
             EAC.Grabbing = false;
             EAC.Attacking = false;
@@ -1248,7 +1263,7 @@ public class EnemyAIController : AdvancedFSM
         
 
     }
-
+    List<Coroutine> couts = new List<Coroutine>();
     IEnumerator Carry(PlayerBody pb)
     {
         //call a method on the player that sets the sprite active to false and sets movement to false
@@ -1273,7 +1288,7 @@ public class EnemyAIController : AdvancedFSM
         if (slamAttack.hitPlayer != null)
         {
             Debug.Log("TIMED DROP");
-            StartCoroutine(Drop(pb));
+            couts.Add(StartCoroutine(Drop(pb)));
             EAC.Attacking = false;
             EAC.Grabbing = false;
             pb.Grabbed = false;
@@ -1307,8 +1322,10 @@ public class EnemyAIController : AdvancedFSM
         canCarry = false;
         doneCarry = true;
         startSlam = false;
+        carrying = false;
         pb.timesHit = 0;
-
+        GM.ResetPlayer(pb);
+        pb.Grabbed = false;
         Debug.Log("DROP");
         pb.MoveToEnemy(enemyPosition.gameObject); // asks to move player to enemy
         StartCoroutine(PickUpAgainCoolDown());
@@ -1332,11 +1349,12 @@ public class EnemyAIController : AdvancedFSM
         
 
         yield return null;
+        StopDrops();
     }
 
     IEnumerator PickUpAgainCoolDown()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(2);
         Debug.Log("PICKUP AGAIN COOLDOWN: COMPLETE");
         belowChecker.enabled = true;
         slamAttack.enabled = true;
@@ -1344,6 +1362,7 @@ public class EnemyAIController : AdvancedFSM
         canCarry = true;
         startSlam = false;
         doneCarry = false;
+
     }
     
     public void ResetCarryVar()

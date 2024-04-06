@@ -277,6 +277,65 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void ResetPlayers()
+    {
+        foreach (PlayerContainer pc in Players)
+        {
+            PlayerBody pb = pc.PB;
+            if (pb != null)
+            {
+                pb.canMove = true;
+                pb.canCollect = true;
+                pb.canAttack = true;
+                pb.canCollectBomb = true;
+                pb.canCollectPotion = true;
+                pb.canExecute = true;
+                pb.canMovePlayerForexecute = false;
+                pb.canTakeDamage = true;
+                pb.canUseItem = true;
+                pb.gotHit = false;
+                pb.timesHit = 0;
+                pb.lockDash = false;
+                if (pb.alreadyDead)
+                {
+                    pb.canAttack = false;
+                    pb.canTakeDamage = false;
+                    pb.canUseItem = false;
+                    pb.lockDash = true;
+                }
+            }
+        }
+    }
+
+    public void ResetPlayer(PlayerBody pb)
+    {
+        if (pb != null)
+        {
+            pb.playerLock = false;
+            pb.canMove = true;
+            pb.canCollect = true;
+            pb.canAttack = true;
+            pb.canCollectBomb = true;
+            pb.canCollectPotion = true;
+            pb.canExecute = true;
+            pb.canMovePlayerForexecute = false;
+            pb.canTakeDamage = true;
+            pb.canUseItem = true;
+            pb.gotHit = false;
+            pb.timesHit = 0;
+            pb.lockDash = false;
+            pb.Grabbed = false;
+            if (pb.alreadyDead)
+            {
+                pb.canAttack = false;
+                pb.canExecute = false;
+                pb.canTakeDamage = false;
+                pb.canUseItem = false;
+                pb.lockDash = true;
+            }
+        }
+    }
+
     private IEnumerator LoadLevel(string levelName)
     {
         isLoading = true;
@@ -286,6 +345,7 @@ public class GameManager : MonoBehaviour
             LoadingScreen.gameObject.SetActive(true);
         MM.PlayNextTrack();
         SetPlayerPositions();
+        ResetPlayers();
         
         yield return new WaitForSeconds(0.25f);
         

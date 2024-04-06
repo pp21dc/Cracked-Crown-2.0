@@ -246,7 +246,7 @@ SpriteRenderer:
   m_SortingLayerID: -2109643221
   m_SortingLayer: 5
   m_SortingOrder: 6
-  m_Sprite: {fileID: 437630491, guid: bf8e7be4202d11e4ca4b53955fec3b52, type: 3}
+  m_Sprite: {fileID: -1168954617, guid: b38fd7c255c173346af8491a1200db4e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -707,6 +707,7 @@ MonoBehaviour:
   inFinish: 0
   eyes: {fileID: 762308542787843838, guid: 73588d92fc1736749844c0712e309327, type: 3}
   lockKnock: 0
+  carrying: 0
   knockback: 0
 --- !u!136 &6901536273665180682
 CapsuleCollider:
@@ -1048,7 +1049,7 @@ Transform:
   m_GameObject: {fileID: 4870108666953378511}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.95, z: -1.36}
+  m_LocalPosition: {x: 0, y: 0.64, z: -1.36}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

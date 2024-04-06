@@ -26,14 +26,17 @@ public class SlamAttack : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if(other.CompareTag("Player") && enemyAIController.canPickup && enemyAIController.CompareTag("Light"))
+        if(other.CompareTag("Player") && enemyAIController.canPickup && !enemyAIController.carrying && enemyAIController.CompareTag("Light"))
         {
             PlayerBody player = other.GetComponent<PlayerBody>();
             if (!player.alreadyDead && !HitGround && !player.Grabbed && enemyAIController.canPickup)
             {
                 Debug.Log("SLAM HIT");
+                enemyAIController.carrying = false;
+                enemyAIController.canPickup = false;
+                enemyAIController.doneCarry = false;
                 player.Grabbed = true;
-                enemyAIController.StartCoroutine(enemyAIController.ResetPlayerGrab(player));
+                //enemyAIController.StartCoroutine(enemyAIController.ResetPlayerGrab(player));
                 player.DecHealth(4f);
                 hasHit = true;
                 hitPlayer = player;
@@ -42,7 +45,7 @@ public class SlamAttack : MonoBehaviour
             }
         }
 
-        if(other.CompareTag("Ground"))
+        if(other.CompareTag("Ground") && enemyAIController.CompareTag("Light"))
         {
             HitGround = true;
         }

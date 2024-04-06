@@ -194,6 +194,9 @@ public class PlayerBody : MonoBehaviour
             dropShadow.SetActive(true);
         }
 
+        if (Grabbed)
+            playerLock = true;
+
         if (!playerLock)
         {
             if (PM != null && PM.isActiveAndEnabled)
@@ -265,19 +268,19 @@ public class PlayerBody : MonoBehaviour
             if (Grabbed && !lockRelease)
             {
                 lockRelease = true;
-                StartCoroutine(Release());
+                //StartCoroutine(Release());
             }
             if (transform.position.y < 2.5f || Grabbed)
             {
                 animController.Falling = false;
-                vely = 0;
             }
-            else
+            else if (!alreadyDead)
             {
                 animController.Falling = true;
-                vely += -250 * Time.deltaTime;
             }
-
+            vely += -250 * Time.deltaTime;
+            if (transform.position.y < 0.2f)
+                vely = 0;
             rb.velocity = new Vector3(rb.velocity.x, vely, rb.velocity.z);
         }
     }
@@ -292,7 +295,7 @@ public class PlayerBody : MonoBehaviour
     public void EnterLevel()
     {
         playerLock = false;
-        StopAllCoroutines();
+        //StopAllCoroutines();
         if (spriteRenderer != null)
             spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 1);
         GameManager.Instance.FreezePlayers(false);
@@ -796,7 +799,7 @@ public class PlayerBody : MonoBehaviour
         StartCoroutine(InExecute(enemy));
     }
 
-    bool lockDash;
+    public bool lockDash;
     public bool dashing;
     Vector3 dashDirection;
     private void Dash()
@@ -1267,14 +1270,16 @@ public class PlayerBody : MonoBehaviour
 
         canMove = true;
         canAttack = true;
+
     }
     float i = 0;
     public void MoveToEnemy(GameObject enemyBody)
     {
-        while (i < 5)
+        while (i < 2)
         {
             i += Time.deltaTime;
-            gameObject.transform.position = new Vector3(enemyBody.transform.position.x, enemyBody.transform.position.y - 5, enemyBody.transform.position.z);
+            rb.velocity = Vector3.zero;
+            rb.MovePosition(new Vector3(enemyBody.transform.position.x, enemyBody.transform.position.y - 20, enemyBody.transform.position.z));
         }
         i = 0;
     }

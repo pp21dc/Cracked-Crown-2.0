@@ -89,7 +89,7 @@ public class EnemyAnimationController : MonoBehaviour
                 animator.SetTrigger("HitReact");
             }
 
-            if (transform.parent.parent.CompareTag("Light"))
+            if (transform.parent.parent.GetChild(0).CompareTag("Light"))
             {
                 animator.SetBool("Grab_B", Bunny_Grabbed);
                 animator.SetBool("Grab_D", Duck_Grabbed);
@@ -98,7 +98,7 @@ public class EnemyAnimationController : MonoBehaviour
                 animator.SetBool("Grabbing", Grabbing);
             }
 
-            if (transform.parent.parent.CompareTag("Heavy"))
+            if (transform.parent.parent.GetChild(0).CompareTag("Heavy"))
             {
                 animator.SetBool("ShockWave", ShockWave);
             }

@@ -23,10 +23,12 @@ public class FindPlayerState : FSMState
         if (enemy.Health <= enemy.maxHealth * 0.74f && enemy.Health >= 1) 
         {
             enemy.PerformTransition(Transition.LowHealth);
+            return;
         }
         else if (enemy.Health < 1)
         {
             enemy.PerformTransition(Transition.NoHealth);
+            return;
         }
         else if (enemy.InContact == true)
         {
@@ -34,7 +36,7 @@ public class FindPlayerState : FSMState
             enemy.sepCheck.enabled = false;
             enemy.InContact = false;
             enemy.PerformTransition(Transition.enemiesInContact);
-            
+            return;
         }
         else if (enemy.wallContact == true)
         {
