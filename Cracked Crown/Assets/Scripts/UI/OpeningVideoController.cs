@@ -16,6 +16,7 @@ public class OpeningVideoController : MonoBehaviour
     public bool active = false;
     bool skipLock = true;
     bool startAudio;
+    bool stopAudio;
 
     // Start is called before the first frame update
     void Start()
@@ -115,13 +116,16 @@ public class OpeningVideoController : MonoBehaviour
                 MusicManager.instance.PlayNextTrack();
             }
 
-            //Closes the video player setup once the 3rd video is done
-            if ((j == 5 && players[5].isPaused))
+            //Closes the video player setup once the 5th video is done
+            if ((!players[5].enabled) && !stopAudio)
             {
                 players[5].enabled = false;
                 GameManager.Instance.waitforvideo = false;
-                active = false;
                 GameManager.Instance.FreezePlayers(false);
+                stopAudio = true;
+                MusicManager.instance.PlayNextTrack();
+                //gameObject.SetActive(false);
+
             }
         }
     }

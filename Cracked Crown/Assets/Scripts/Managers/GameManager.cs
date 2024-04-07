@@ -364,6 +364,8 @@ public class GameManager : MonoBehaviour
         else
         {
             MM.PlayNextTrack();
+            if (levelName.Equals(MainMenuName))
+                MM.PlayNextTrack();
         }
         SetPlayerPositions();
         

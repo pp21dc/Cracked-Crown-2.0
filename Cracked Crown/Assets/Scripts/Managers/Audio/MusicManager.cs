@@ -28,9 +28,9 @@ public class MusicManager : MonoBehaviour
         while (true)
         {
             AS_Soundtrack.volume -= FadeTime * Time.deltaTime;
-            yield return new WaitForEndOfFrame();
-            if (AS_Soundtrack.volume <= 0.075f)
+            if (AS_Soundtrack.volume <= 0.025f)
                 break;
+            yield return new WaitForEndOfFrame();
         }
         AS_Soundtrack.Stop();
         AS_Soundtrack.clip = Tracks[trackIndex];
@@ -40,9 +40,9 @@ public class MusicManager : MonoBehaviour
         while (true)
         {
             AS_Soundtrack.volume += FadeTime * Time.deltaTime;
-            yield return new WaitForEndOfFrame();
             if (AS_Soundtrack.volume >= 0.2f)
                 break;
+            yield return new WaitForEndOfFrame();
         }
         
         
