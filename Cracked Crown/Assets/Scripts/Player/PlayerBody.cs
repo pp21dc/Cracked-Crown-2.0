@@ -295,6 +295,7 @@ public class PlayerBody : MonoBehaviour
 
     public void EnterLevel()
     {
+        StopAllCoroutines();
         playerLock = false;
         //StopAllCoroutines();
         if (spriteRenderer != null)
