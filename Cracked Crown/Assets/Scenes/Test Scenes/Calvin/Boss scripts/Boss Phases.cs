@@ -275,7 +275,7 @@ public class BossPhases : MonoBehaviour
         }
         else if (bosshealth / MAXBOSSHEALTH * 100 > 50)
         {
-            currSpriteID = 1;   
+            currSpriteID = 1;
         }
         else if (bosshealth / MAXBOSSHEALTH * 100 > 25)
         {
@@ -422,7 +422,7 @@ public class BossPhases : MonoBehaviour
         }
         if (clawreturn)
         {
-            Claw.transform.position = Vector3.MoveTowards(Claw.transform.position, clawtarget, clawspeed * Time.deltaTime);
+            Claw.transform.position = Vector3.MoveTowards(Claw.transform.position, CLAWSPAWN, clawspeed * Time.deltaTime);
             if (!isGrabbed && GrabbedPlayerBody != null)
             {
                 GrabbedPlayerBody.playerLock = false;
@@ -606,16 +606,24 @@ public class BossPhases : MonoBehaviour
         }
 
         clawgrab = false;
-        GrabbedPlayerBody.playerLock = false;
+        if (GrabbedPlayerBody != null)
+        {
+            if (GrabbedPlayerBody.playerLock != false)
+            {
+                GrabbedPlayerBody.playerLock = false;
+            }
+        }
 
         clawreturn = true; // unlocks the coresponding code to return to spawn
 
         clawtarget = CLAWSPAWN; // sets the claw's target to it's spawn
 
         bossAnim.Play("clawPassive");
-
+        Debug.Log(clawtarget);
         yield return new WaitForSeconds(3);
+
         ResetPincer();
+
         runningpincer = false;
     }
 
@@ -654,7 +662,7 @@ public class BossPhases : MonoBehaviour
             BAM.PlayAudio(BossAudioManager.AudioType.Slam);
             Instantiate(ShockWave, ClawSprite.transform.position - new Vector3(-8, 5f, 16), Quaternion.Euler(0, 0, 0)); // instantiates the shockwave part of attack (LEFT)
         }
-        cameraShake.StartCoroutine(cameraShake.Shake(0.15f, 2f));
+        cameraShake.StartCoroutine(cameraShake.Shake(0.15f, 6f));
         yield return new WaitForSeconds(1.95f);
         ClawSprite.transform.localPosition = new Vector3(0, 0, 0);
         bossAnim.Play("clawPassive");
@@ -676,7 +684,7 @@ public class BossPhases : MonoBehaviour
             LevelManager.Instance.SpawnersActive = true;
         }
 
-        cameraShake.StartCoroutine(cameraShake.Shake(2f, 0.4f));
+        cameraShake.StartCoroutine(cameraShake.Shake(2f, 1f));
 
         roarSpawn = true;
         yield return new WaitForSeconds(6f);
