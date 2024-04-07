@@ -586,7 +586,7 @@ GameObject:
   - component: {fileID: 6901536273665180682}
   m_Layer: 0
   m_Name: Enemy controller
-  m_TagString: Medium
+  m_TagString: Heavy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -692,6 +692,7 @@ MonoBehaviour:
   SepLoc: {fileID: 4490055925084942224}
   doneSeperating: 0
   wallContact: 0
+  wallCheck: {fileID: 6808741114817391736}
   canWall: 0
   doneWall: 0
   shockWave: {fileID: 4787176899576346564}

@@ -40,6 +40,7 @@ public class FindPlayerState : FSMState
         }
         else if (enemy.wallContact == true)
         {
+            
             enemy.PerformTransition(Transition.hitDaWall);
             return;
         }
@@ -57,7 +58,7 @@ public class FindPlayerState : FSMState
         else if (enemy.CompareTag("Medium") == true && player != null)
         {
             //Debug.Log("Found the Medium");
-            if (Vector3.Distance(enemy.ePosition.position,player.position) <= 60f && enemy.dashOnCD == false)
+            if (Vector3.Distance(enemy.ePosition.position,player.position) <= 35f && enemy.dashOnCD == false)
             {
                 enemy.PerformTransition(Transition.InFirstRange);
                 return;
@@ -66,7 +67,7 @@ public class FindPlayerState : FSMState
         }
         else if (enemy.CompareTag("Heavy") && player != null)
         {
-            if (Vector3.Distance(enemy.ePosition.position,player.position) >= 10 && enemy.shootOnCD == false)
+            if (Vector3.Distance(enemy.ePosition.position,player.position) >= 43f && Vector3.Distance(enemy.ePosition.position, player.position) <=55f && enemy.shootOnCD == false)
             {
                 enemy.PerformTransition(Transition.InShootingRange);
                 return;

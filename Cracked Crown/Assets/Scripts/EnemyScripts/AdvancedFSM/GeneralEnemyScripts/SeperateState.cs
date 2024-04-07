@@ -35,6 +35,7 @@ public class SeperateState : FSMState
 
         if(enemy.wallContact == true)
         {
+            
             enemy.PerformTransition(Transition.hitDaWall);
             return;
         }

@@ -171,6 +171,9 @@ public class EnemyAIController : AdvancedFSM
 
     //wall seperation
     public bool wallContact;
+    [SerializeField]
+    public WallCheck wallCheck;
+
     private bool wallGo;
     public bool canWall;
     public bool doneWall;
@@ -311,18 +314,18 @@ public class EnemyAIController : AdvancedFSM
         isHeavyDashing = true;
         if (CompareTag("Medium"))
         {
-            health = 40;
-            maxHealth = 40;
+            health = 55;
+            maxHealth = 55;
         }
         else if (CompareTag("Light"))
         {
-            health = 25;
-            maxHealth = 25;
+            health = 35;
+            maxHealth = 35;
         }
         else if (CompareTag("Heavy"))
         {
-            health = 60;
-            maxHealth = 60;
+            health = 80;
+            maxHealth = 80;
             shockWave.SetActive(true);
         }
 
@@ -810,22 +813,45 @@ public class EnemyAIController : AdvancedFSM
         Debug.Log(closest == null);
         if (closest != null)
         {
-            if (!lockKnock)
+            if(Vector3.Distance(this.ePosition.position, closest.transform.position) <= 55f)
             {
-                movementVector = (closest.transform.position - enemyPosition.transform.position).normalized * Speed;
-                if (tag != "Light")
-                    movementVector.y = 0;
-                enemyPosition.transform.position -= movementVector * Time.deltaTime;//moves to player
+                if (!lockKnock)
+                {
+                    movementVector = (closest.transform.position - enemyPosition.transform.position).normalized * Speed;
+                    if (tag != "Light")
+                        movementVector.y = 0;
+                    enemyPosition.transform.position -= movementVector * Time.deltaTime;//moves to player
+                }
+                //enemyBody.transform.position = new Vector3(enemyBody.position.x, 0, enemyBody.position.z); //keeps it on ground
+                if (closest.transform.position.x + 1 > enemyPosition.transform.position.x)
+                {
+                    EAC.SR.flipX = true;
+                }
+                else
+                {
+                    EAC.SR.flipX = false;
+                }
             }
-            //enemyBody.transform.position = new Vector3(enemyBody.position.x, 0, enemyBody.position.z); //keeps it on ground
-            if (closest.transform.position.x + 1 > enemyPosition.transform.position.x)
+            else if (Vector3.Distance(this.ePosition.position, closest.transform.position) >= 75f)
             {
-                EAC.SR.flipX = true;
+                if (!lockKnock)
+                {
+                    movementVector = (closest.transform.position - enemyPosition.transform.position).normalized * Speed;
+                    if (tag != "Light")
+                        movementVector.y = 0;
+                    enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
+                }
+                //enemyBody.transform.position = new Vector3(enemyBody.position.x, 0, enemyBody.position.z); //keeps it on ground
+                if (closest.transform.position.x + 1 > enemyPosition.transform.position.x)
+                {
+                    EAC.SR.flipX = false;
+                }
+                else
+                {
+                    EAC.SR.flipX = true;
+                }
             }
-            else
-            {
-                EAC.SR.flipX = false;
-            }
+            
         }
         else
         {
@@ -1472,7 +1498,8 @@ public class EnemyAIController : AdvancedFSM
 
             if(closest != null && closest.transform.position.x + 1 > enemyPosition.transform.position.x) 
             {
-                
+
+                EAC.SR.flipX = false;
                 bodyShootLoc.localPosition = new Vector3(2.2f, 5.5f, 0);
                 correctTooth = toothRight;
 
@@ -1490,7 +1517,7 @@ public class EnemyAIController : AdvancedFSM
             }
             else if (closest != null)
             {
-                
+                EAC.SR.flipX = true;
                 bodyShootLoc.localPosition = new Vector3(-2.2f, 5.5f, 0);
                 correctTooth = toothLeft;
 
@@ -1868,13 +1895,23 @@ public class EnemyAIController : AdvancedFSM
         wallGo = true;
 
         if (CompareTag("Medium"))
+        {
             yield return new WaitForSeconds(0.35f);
+        }     
         else
-            yield return new WaitForSeconds(1);
+        {
+            yield return new WaitForSeconds(2f);
+        }
+
+
+            
         wallGo = false;
         doneWall = true;
         wallContact = false;
+        
 
+
+        
         yield return null;
     }
 
