@@ -75,7 +75,7 @@ public class GameManager : MonoBehaviour
     public GameObject WinScreen;
     public GameObject MainMenu;
     public GameObject UI;
-    public GameObject LoadingScreen;
+    //public GameObject LoadingScreen;
    
     public bool CampaignStart = false;
     public bool win = false;
@@ -91,6 +91,13 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private Dialogue dialogue;
+
+    [SerializeField]
+    private int loadCount = -1;
+
+    [SerializeField]
+    private GameObject[] LoadingScreen;
+
     private void Awake()
     {
         if (instance == null)
@@ -352,14 +359,13 @@ public class GameManager : MonoBehaviour
             UIManager.Instance.InGameUI.SetActive(false);
         if (!levelName.Equals(MainMenuName))
         {
-            LoadingScreen.gameObject.SetActive(true);
+            LoadingScreen[loadCount + 1].SetActive(true);
             
         }
         ResetPlayers(levelName.Equals(MainMenuName));
         if (!star)
         {
             star = true;
-            
         }
         else
         {
@@ -453,12 +459,13 @@ public class GameManager : MonoBehaviour
         //yield return new WaitForSeconds(0.25f);
         //AudioManager.Instance.AudioFadeLevelStart();
 
-        
+
+        yield return new WaitForSeconds(5f);
 
         //PlayerUI.SetActive(false);
         // playerGO.SetActive(false);
         Time.timeScale = 1;
-        LoadingScreen.gameObject.SetActive(false);
+        LoadingScreen[loadCount+1].SetActive(false);
         locker = false;
         locker_Boss = false;
         //isLoading = false;
@@ -475,9 +482,7 @@ public class GameManager : MonoBehaviour
             }
             
         }
-            
-            //Debug.Log("Called SetDialouge");
-
+        loadCount++;
     }
 
     public void SetPlayerPositions()
@@ -501,7 +506,7 @@ public class GameManager : MonoBehaviour
         //playerGO.SetActive(false);
         if (UIManager.Instance != null)
         {
-            LoadingScreen.SetActive(true);
+            LoadingScreen[0].SetActive(true);
             UIManager.Instance.Resume();
             UIManager.Instance.InGameUI.SetActive(false);
         }
