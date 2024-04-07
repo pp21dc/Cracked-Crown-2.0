@@ -14,7 +14,7 @@ public class CrabWalk : MonoBehaviour
     public bool canMove = false;
     private Transform startPos;
     public bool hasBeenExecuted = false;
-
+    public bool crown = false;
     PlayerBody player;
     GameObject[] ghost = null;
     PlayerBody PB;
@@ -96,6 +96,8 @@ public class CrabWalk : MonoBehaviour
                     if (!alreadyAtPos)
                     {
                         animator.SetBool("AtPosition", true);
+                        if (crown)
+                            gameObject.SetActive(false);
                         alreadyAtPos = true;
                     }
                 }
