@@ -713,6 +713,7 @@ public class PlayerBody : MonoBehaviour
     }
     public void AddHealth(float amount) 
     {
+        PAM.PlayAudio(PlayerAudioManager.AudioType.PotionUse);
         health = Mathf.Min(maxHealth, health + amount); //allows us to add health to the player
     }
 
