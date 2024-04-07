@@ -58,7 +58,8 @@ public class PrototypePrimaryAttack : MonoBehaviour
         if (other.tag == "Mini Crab" || other.tag == "MiniCrabExecutable" || other.tag == "StruggleCrab" || other.tag == "ReviveCrab")
         {
             miniCrab = other.GetComponent<CrabWalk>();
-            miniCrab.health = 0;
+            if (!miniCrab.crown)
+                miniCrab.health = 0;
         }
         if (other.tag == "Player")
         {
