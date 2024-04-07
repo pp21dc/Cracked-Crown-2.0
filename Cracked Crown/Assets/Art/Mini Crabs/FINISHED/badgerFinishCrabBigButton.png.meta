@@ -6,7 +6,7 @@ TextureImporter:
   serializedVersion: 12
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -37,13 +37,13 @@ TextureImporter:
     filterMode: 1
     aniso: 1
     mipBias: 0
-    wrapU: 0
-    wrapV: 0
+    wrapU: 1
+    wrapV: 1
     wrapW: 0
-  nPOTScale: 1
+  nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 0
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -52,9 +52,9 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
-  alphaIsTransparency: 0
+  alphaIsTransparency: 1
   spriteTessellationDetail: -1
-  textureType: 0
+  textureType: 8
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
@@ -69,10 +69,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -108,18 +108,810 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: badgerFinishCrabBigButton_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 6224
+        width: 1802.5
+        height: 778
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5521b0e0857825e4e974b6cf0c714381
+      internalID: 771899055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: badgerFinishCrabBigButton_1
+      rect:
+        serializedVersion: 2
+        x: 1802
+        y: 6224
+        width: 1802.5
+        height: 778
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe4d914dba655ad49916f0ac38761e3d
+      internalID: -1616873154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: badgerFinishCrabBigButton_2
+      rect:
+        serializedVersion: 2
+        x: 3604
+        y: 6224
+        width: 1802.5
+        height: 778
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ef9c609e674c894e8d4f5bebf0a6150
+      internalID: -1458960472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: badgerFinishCrabBigButton_3
+      rect:
+        serializedVersion: 2
+        x: 5406
+        y: 6224
+        width: 1802.5
+        height: 778
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9655628393900e141b2b73fd75a89de8
+      internalID: 1417726526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: badgerFinishCrabBigButton_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 5446
+        width: 1802.5
+        height: 778
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d6a08a719d977f46bf8d8fb410c1756
+      internalID: -1525784795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: badgerFinishCrabBigButton_5
+      rect:
+        serializedVersion: 2
+        x: 1802
+        y: 5446
+        width: 1802.5
+        height: 778
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62805c1be50b2ec479dc8ecf6f5ec743
+      internalID: 1807486797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: badgerFinishCrabBigButton_6
+      rect:
+        serializedVersion: 2
+        x: 3604
+        y: 5446
+        width: 1802.5
+        height: 778
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f25bfd93b883d2649a79e836e76c809e
+      internalID: -410990701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: badgerFinishCrabBigButton_7
+      rect:
+        serializedVersion: 2
+        x: 5406
+        y: 5446
+        width: 1802.5
+        height: 778
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47dd8948611f6a440bbdc5ac5703e185
+      internalID: -1509227833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: badgerFinishCrabBigButton_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4668
+        width: 1802.5
+        height: 778
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e4f61da3538edf44860f07282175b3e
+      internalID: -706757260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: badgerFinishCrabBigButton_9
+      rect:
+        serializedVersion: 2
+        x: 1802
+        y: 4668
+        width: 1802.5
+        height: 778
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3574f08dbea0f4541a26ef8daa09158e
+      internalID: 874682755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: badgerFinishCrabBigButton_10
+      rect:
+        serializedVersion: 2
+        x: 3604
+        y: 4668
+        width: 1802.5
+        height: 778
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f2fa1f820d118942b618e24ddae5559
+      internalID: 679223420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: badgerFinishCrabBigButton_11
+      rect:
+        serializedVersion: 2
+        x: 5406
+        y: 4668
+        width: 1802.5
+        height: 778
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34addc7cb6f1c7a45a0deda61ea366b0
+      internalID: 1795470084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: badgerFinishCrabBigButton_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3890
+        width: 1802.5
+        height: 778
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8423e9973319f75419b1e80fa6b3dc18
+      internalID: 915062044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: badgerFinishCrabBigButton_13
+      rect:
+        serializedVersion: 2
+        x: 1802
+        y: 3890
+        width: 1802.5
+        height: 778
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae8a770c8610fa649b6befe670e74aff
+      internalID: -1569620232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: badgerFinishCrabBigButton_14
+      rect:
+        serializedVersion: 2
+        x: 3604
+        y: 3890
+        width: 1802.5
+        height: 778
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 282fa71124f6e8e4397c592f1211caa0
+      internalID: 893177806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: badgerFinishCrabBigButton_15
+      rect:
+        serializedVersion: 2
+        x: 5406
+        y: 3890
+        width: 1802.5
+        height: 778
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11de30cd62ea0604fa6e49ada80fa50d
+      internalID: 1049974106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: badgerFinishCrabBigButton_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3112
+        width: 1802.5
+        height: 778
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 770361dcfded30349ad6c0cbf4f62aac
+      internalID: -519825466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: badgerFinishCrabBigButton_17
+      rect:
+        serializedVersion: 2
+        x: 1802
+        y: 3112
+        width: 1802.5
+        height: 778
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9dd36eee549c8649b8ceb67235ea472
+      internalID: -998793322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: badgerFinishCrabBigButton_18
+      rect:
+        serializedVersion: 2
+        x: 3604
+        y: 3112
+        width: 1802.5
+        height: 778
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce40355f4eb285744bc82fbbb474ff88
+      internalID: -118010025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: badgerFinishCrabBigButton_19
+      rect:
+        serializedVersion: 2
+        x: 5406
+        y: 3112
+        width: 1802.5
+        height: 778
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a6039dad9063fe4aabb73d5009cbdfa
+      internalID: 1165344216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: badgerFinishCrabBigButton_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2334
+        width: 1802.5
+        height: 778
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8b366d4e77d9b14b9ba6ab24cb4c558
+      internalID: -2032950061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: badgerFinishCrabBigButton_21
+      rect:
+        serializedVersion: 2
+        x: 1802
+        y: 2334
+        width: 1802.5
+        height: 778
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d76393e9d6e9442448cd289d275f5f26
+      internalID: -311098030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: badgerFinishCrabBigButton_22
+      rect:
+        serializedVersion: 2
+        x: 3604
+        y: 2334
+        width: 1802.5
+        height: 778
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e05027da861252488c135c9a97df94d
+      internalID: -848199626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: badgerFinishCrabBigButton_23
+      rect:
+        serializedVersion: 2
+        x: 5406
+        y: 2334
+        width: 1802.5
+        height: 778
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a570a49cd67b90428ff302dfd5a9a55
+      internalID: -548797655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: badgerFinishCrabBigButton_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1556
+        width: 1802.5
+        height: 778
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dfc7d140fcbbbf84397ff3c53aa07738
+      internalID: 1508960906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: badgerFinishCrabBigButton_25
+      rect:
+        serializedVersion: 2
+        x: 1802
+        y: 1556
+        width: 1802.5
+        height: 778
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 056c3b93f47f92c4cac577da84bddc37
+      internalID: 121380923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: badgerFinishCrabBigButton_26
+      rect:
+        serializedVersion: 2
+        x: 3604
+        y: 1556
+        width: 1802.5
+        height: 778
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7656ff17b90d41f408553b8366100bfe
+      internalID: 1842934982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: badgerFinishCrabBigButton_27
+      rect:
+        serializedVersion: 2
+        x: 5406
+        y: 1556
+        width: 1802.5
+        height: 778
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6c9908f5e4a1064189a52befe76a819
+      internalID: -1511572687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: badgerFinishCrabBigButton_28
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 778
+        width: 1802.5
+        height: 778
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2c3121fc970b4940b8385d9129099a2
+      internalID: 1456304491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: badgerFinishCrabBigButton_29
+      rect:
+        serializedVersion: 2
+        x: 1802
+        y: 778
+        width: 1802.5
+        height: 778
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9c8e56023b87ae43921c1a992e68c4e
+      internalID: 896033531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: badgerFinishCrabBigButton_30
+      rect:
+        serializedVersion: 2
+        x: 3604
+        y: 778
+        width: 1802.5
+        height: 778
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a039c14b8b4b6634ea5f1c0fcfe78ea2
+      internalID: -1215802800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: badgerFinishCrabBigButton_31
+      rect:
+        serializedVersion: 2
+        x: 5406
+        y: 778
+        width: 1802.5
+        height: 778
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f22a86bbf9b87e4c83e1670f23ce696
+      internalID: 150379296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: badgerFinishCrabBigButton_32
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1802.5
+        height: 778
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b616b971295bdf44f9bacfc5dc3aa193
+      internalID: 1864414275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: badgerFinishCrabBigButton_33
+      rect:
+        serializedVersion: 2
+        x: 1802
+        y: 0
+        width: 1802.5
+        height: 778
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2d45c1e78dfa054aa482d453cd963be
+      internalID: -332812551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: badgerFinishCrabBigButton_34
+      rect:
+        serializedVersion: 2
+        x: 3604
+        y: 0
+        width: 1802.5
+        height: 778
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90c9f738d6cb6ec47adee5328a8ec962
+      internalID: 1966888379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: badgerFinishCrabBigButton_35
+      rect:
+        serializedVersion: 2
+        x: 5406
+        y: 0
+        width: 1802.5
+        height: 778
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a904f4a55a396be4987881a92a50bd37
+      internalID: -548641608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 38b20df0a05e2914a993e065ddbcd0d2
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      badgerFinishCrabBigButton_0: 771899055
+      badgerFinishCrabBigButton_1: -1616873154
+      badgerFinishCrabBigButton_10: 679223420
+      badgerFinishCrabBigButton_11: 1795470084
+      badgerFinishCrabBigButton_12: 915062044
+      badgerFinishCrabBigButton_13: -1569620232
+      badgerFinishCrabBigButton_14: 893177806
+      badgerFinishCrabBigButton_15: 1049974106
+      badgerFinishCrabBigButton_16: -519825466
+      badgerFinishCrabBigButton_17: -998793322
+      badgerFinishCrabBigButton_18: -118010025
+      badgerFinishCrabBigButton_19: 1165344216
+      badgerFinishCrabBigButton_2: -1458960472
+      badgerFinishCrabBigButton_20: -2032950061
+      badgerFinishCrabBigButton_21: -311098030
+      badgerFinishCrabBigButton_22: -848199626
+      badgerFinishCrabBigButton_23: -548797655
+      badgerFinishCrabBigButton_24: 1508960906
+      badgerFinishCrabBigButton_25: 121380923
+      badgerFinishCrabBigButton_26: 1842934982
+      badgerFinishCrabBigButton_27: -1511572687
+      badgerFinishCrabBigButton_28: 1456304491
+      badgerFinishCrabBigButton_29: 896033531
+      badgerFinishCrabBigButton_3: 1417726526
+      badgerFinishCrabBigButton_30: -1215802800
+      badgerFinishCrabBigButton_31: 150379296
+      badgerFinishCrabBigButton_32: 1864414275
+      badgerFinishCrabBigButton_33: -332812551
+      badgerFinishCrabBigButton_34: 1966888379
+      badgerFinishCrabBigButton_35: -548641608
+      badgerFinishCrabBigButton_4: -1525784795
+      badgerFinishCrabBigButton_5: 1807486797
+      badgerFinishCrabBigButton_6: -410990701
+      badgerFinishCrabBigButton_7: -1509227833
+      badgerFinishCrabBigButton_8: -706757260
+      badgerFinishCrabBigButton_9: 874682755
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
