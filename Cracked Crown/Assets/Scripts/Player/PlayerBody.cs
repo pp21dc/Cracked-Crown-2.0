@@ -147,8 +147,15 @@ public class PlayerBody : MonoBehaviour
         canTakeDamage = true;
         playerLock = false;
         Grabbed = false;
-        ghostCoins = 20;
+        ghostCoins = 0;
         //alreadyDead = false;
+        canMovePlayerForexecute = false;
+        canUseItem = true;
+        gotHit = false;
+        timesHit = 0;
+        lockDash = false;
+        Grabbed = false;
+        gameObject.tag = "Player";
     }
 
     private void Update()
@@ -230,7 +237,9 @@ public class PlayerBody : MonoBehaviour
                 canMove = false;
                 canAttack = false;
                 canExecute = false;
+                canTakeDamage = false;
                 lockDash = true;
+                Grabbed = false;
                 StartCoroutine(deathAnim());
             }
             if (alreadyDead && enumDone)
@@ -258,9 +267,8 @@ public class PlayerBody : MonoBehaviour
                 lockDash = false;
                 canTakeDamage = true;
                 Grabbed = false;
+
                 ResetPlayer();
-                // delete corpse
-                
                 StartCoroutine(executeAfterRevive());
 
             }
@@ -1142,7 +1150,7 @@ public class PlayerBody : MonoBehaviour
             canTakeDamage = true;
             Grabbed = false;
 
-
+            ResetPlayer();
             StartCoroutine(executeAfterRevive());
         }
     }
