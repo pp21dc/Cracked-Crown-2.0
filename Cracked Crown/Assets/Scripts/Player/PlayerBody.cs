@@ -111,7 +111,7 @@ public class PlayerBody : MonoBehaviour
     private bool ifHopper = false;
     private Vector3 respawnPoint;
     public GameObject corpse;
-    public Transform resStonePos;
+    public Vector3 resStonePos;
     public float maxHealth;
     private GameManager gameManager;
     private float attackSpeed;
@@ -285,9 +285,24 @@ public class PlayerBody : MonoBehaviour
             if (transform.position.y < 0.2f)
                 vely = 0;
             rb.velocity = new Vector3(rb.velocity.x, vely, rb.velocity.z);
+
+            if (!alreadyMovedCorpse && gameManager.currentLevelName == "GreenShop" || gameManager.currentLevelName == "RedShop" || gameManager.currentLevelName == "PurpleShop")
+            {
+                GameObject[] resStone = GameObject.FindGameObjectsWithTag("Revive");
+
+                resStonePos = new Vector3(resStone[0].transform.parent.position.x, 0f, resStone[0].transform.parent.position.z - 20.0f);
+                respawnPoint = resStonePos;
+
+                if (corpse != null)
+                {
+                    alreadyMovedCorpse = true;
+                    corpse.transform.position = resStonePos;
+                }
+            }
         }
     }
     float vely = 0;
+    bool alreadyMovedCorpse = false;
 
     public void ExitLevel()
     {
@@ -352,6 +367,7 @@ public class PlayerBody : MonoBehaviour
     private IEnumerator executeAfterRevive()
     {
         transform.position = respawnPoint;
+        Destroy(corpse);
 
         String tag = "BeenRevived";
         if (corpse != null)
@@ -360,7 +376,6 @@ public class PlayerBody : MonoBehaviour
         yield return new WaitForSeconds(1.2f);
         canExecute = true;
         canCollect = true;
-        Destroy(corpse);
         yield return new WaitForSeconds(2.0f);
         canMove = true;
     }
@@ -1113,11 +1128,9 @@ public class PlayerBody : MonoBehaviour
     {
         if (collision.gameObject.tag == "Revive" && gameObject.tag == "Ghost")
         {
-            Debug.Log("Collided With Revive Stone as Ghost");
-
             gameObject.tag = "Player";
 
-            //transform.position = respawnPoint;
+            transform.position = respawnPoint;
 
             animController.Dead = false;
             //alreadyDead = false;
