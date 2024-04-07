@@ -1315,14 +1315,7 @@ public class PlayerBody : MonoBehaviour
     public void ResetSprite(string msg)
     {
         Debug.Log("RESET SPRITE " + msg);
-        if (spriteRenderer.enabled == true)
-            spriteRenderer.enabled = false;
-        else if(spriteRenderer.enabled == false)
-            spriteRenderer.enabled = true;
-
-        canMove = true;
-        canAttack = true;
-
+        spriteRenderer.enabled = !spriteRenderer.enabled;
     }
     float i = 0;
     public void MoveToEnemy(GameObject enemyBody)

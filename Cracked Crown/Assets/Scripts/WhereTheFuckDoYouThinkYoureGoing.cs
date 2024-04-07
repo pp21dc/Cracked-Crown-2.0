@@ -18,6 +18,10 @@ public class WhereTheFuckDoYouThinkYoureGoing : MonoBehaviour
             Debug.Log(other.name);
             GM.SetPlayerPositions();
         }
+        if (other.tag.Equals("Tooth"))
+        {
+            Destroy(other.gameObject);
+        }
     }
 
 }

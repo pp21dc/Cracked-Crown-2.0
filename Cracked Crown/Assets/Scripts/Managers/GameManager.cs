@@ -132,6 +132,7 @@ public class GameManager : MonoBehaviour
                     Debug.Log("WIN");
                     claws = new List<BossPhases>();
                     win = true;
+
                 }
             }
 
@@ -176,11 +177,18 @@ public class GameManager : MonoBehaviour
             if (win)
             {
                 win = false;
-                video_win.PlayVideo();
-                RevivePlayers();
-                ReturnToMainMenu(true);
+                StartCoroutine(WINGAME());
             }
         }
+    }
+
+    IEnumerator WINGAME()
+    {
+        win = false;
+        yield return new WaitForSeconds(3);
+        video_win.PlayVideo();
+        RevivePlayers();
+        ReturnToMainMenu(true);
     }
 
     /*public void E()
@@ -287,8 +295,8 @@ public class GameManager : MonoBehaviour
                 pb.canMove = true;
                 pb.canCollect = true;
                 pb.canAttack = true;
-                //pb.canCollectBomb = true;
-                //pb.canCollectPotion = true;
+                pb.canCollectBomb = false;
+                pb.canCollectPotion = false;
                 pb.canExecute = true;
                 pb.canMovePlayerForexecute = false;
                 pb.canTakeDamage = true;

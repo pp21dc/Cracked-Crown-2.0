@@ -45,7 +45,7 @@ public class PrototypePrimaryAttack : MonoBehaviour
                 {
                     enemyController.hitBy = playerBody.transform;
                     enemyController.lockKnock = true;
-                    enemyController.StartCoroutine(enemyController.KB(playerBody.AttackVector * 15 * playerBody.forceMod));
+                    enemyController.StartCoroutine(enemyController.KB(playerBody.AttackVector * 20 * playerBody.forceMod));
                 }
             }
         }

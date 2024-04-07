@@ -1269,6 +1269,7 @@ public class EnemyAIController : AdvancedFSM
     {
         //call a method on the player that sets the sprite active to false and sets movement to false
         pb.ResetSprite("FROM CARRY CORUT");
+        pb.spriteRenderer.enabled = false;
         SetGrabAnim(pb, true);
          
         startCarryingUp = true;
