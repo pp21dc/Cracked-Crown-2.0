@@ -3433,6 +3433,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4697298544936112438, guid: 7acccd95381b96b48889c66c1561f6ac,
         type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4697298544936112438, guid: 7acccd95381b96b48889c66c1561f6ac,
+        type: 3}
       propertyPath: m_TargetCamera
       value: 
       objectReference: {fileID: 1105187860}
@@ -3441,6 +3446,31 @@ PrefabInstance:
       propertyPath: m_TimeUpdateMode
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4951242443825287625, guid: 7acccd95381b96b48889c66c1561f6ac,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4951242443825287625, guid: 7acccd95381b96b48889c66c1561f6ac,
+        type: 3}
+      propertyPath: m_TargetCamera
+      value: 
+      objectReference: {fileID: 1105187860}
+    - target: {fileID: 6322457022641579415, guid: 7acccd95381b96b48889c66c1561f6ac,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6322457022641579415, guid: 7acccd95381b96b48889c66c1561f6ac,
+        type: 3}
+      propertyPath: m_TargetCamera
+      value: 
+      objectReference: {fileID: 1105187860}
+    - target: {fileID: 8211015659238049578, guid: 7acccd95381b96b48889c66c1561f6ac,
+        type: 3}
+      propertyPath: m_TargetCamera
+      value: 
+      objectReference: {fileID: 1105187860}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

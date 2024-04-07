@@ -15,6 +15,7 @@ public class OpeningVideoController : MonoBehaviour
     int j = 0;
     public bool active = false;
     bool skipLock = true;
+    bool startAudio;
 
     // Start is called before the first frame update
     void Start()
@@ -61,14 +62,21 @@ public class OpeningVideoController : MonoBehaviour
     {
         if (active)
         {
-            Debug.LogWarning("VideoControllerUpdate");
+            //Debug.LogWarning("VideoControllerUpdate");
             //Looks to see if a key has been pressed to skip to next video
-            if (Input.anyKeyDown && j < players.Length && !skipLock)
+            if ((Input.anyKeyDown || (!players[j].isPlaying)) && j < players.Length && !skipLock)
             {
                 players[j].enabled = false;
                 j++;
+                
                 if (j < players.Length)
+                {
+                    if (j != 2 && j != 3 && j != 5)
+                        players[j].isLooping = true;
+                    else
+                        players[j].isLooping = false;
                     players[j].Play();
+                }
                 else
                 {
                     players[2].enabled = false;
@@ -94,14 +102,23 @@ public class OpeningVideoController : MonoBehaviour
                     j++;
 
                     players[j].Play();
-                    players[j].isLooping = true;
+                    if (j != 2 && j != 5)
+                        players[j].isLooping = true;
                 }
             }
 
             //Closes the video player setup once the 3rd video is done
-            if ((j == 2 && players[2].isPaused))
+            if ((!players[2].enabled) && !startAudio)
             {
+                startAudio = true;
                 players[2].enabled = false;
+                MusicManager.instance.PlayNextTrack();
+            }
+
+            //Closes the video player setup once the 3rd video is done
+            if ((j == 5 && players[5].isPaused))
+            {
+                players[5].enabled = false;
                 GameManager.Instance.waitforvideo = false;
                 active = false;
                 GameManager.Instance.FreezePlayers(false);

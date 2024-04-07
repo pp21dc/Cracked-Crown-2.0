@@ -344,7 +344,7 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-
+    bool star;
     private IEnumerator LoadLevel(string levelName)
     {
         isLoading = true;
@@ -356,7 +356,15 @@ public class GameManager : MonoBehaviour
             
         }
         ResetPlayers(levelName.Equals(MainMenuName));
-        MM.PlayNextTrack();
+        if (!star)
+        {
+            star = true;
+            
+        }
+        else
+        {
+            MM.PlayNextTrack();
+        }
         SetPlayerPositions();
         
         
