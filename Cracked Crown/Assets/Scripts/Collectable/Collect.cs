@@ -79,6 +79,7 @@ public class Collect : MonoBehaviour
                     if (gameObject.tag == "Bomb")
                     {
                         body.collectable = this;
+                        body.canCollectPotion = false;
                         body.canCollectBomb = true;
                     }
                 }
@@ -90,6 +91,7 @@ public class Collect : MonoBehaviour
                     if (gameObject.tag == "Potion")
                     {
                         body.collectable = this;
+                        body.canCollectBomb = false;
                         body.canCollectPotion = true;
                     }
                 }

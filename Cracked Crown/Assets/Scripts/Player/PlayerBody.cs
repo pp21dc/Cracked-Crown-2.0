@@ -1151,10 +1151,10 @@ public class PlayerBody : MonoBehaviour
                 if (gameManager.eyeCount >= 30 && hasPotion == false && hasBomb == false)
                 {
                     gameManager.eyeCount -= 30;
+                    hasPotion = false;
                     hasBomb = true;
                     collectable.gameObject.SetActive(false);
                     PAM.PlayAudio(PlayerAudioManager.AudioType.Buy);
-                    Debug.Log("Player has a bomb: " + hasBomb);
                     StartCoroutine(resetCollectable(collectable.gameObject));
                 }
             }
@@ -1170,7 +1170,6 @@ public class PlayerBody : MonoBehaviour
                     hasPotion = true;
                     collectable.gameObject.SetActive(false);
                     PAM.PlayAudio(PlayerAudioManager.AudioType.Buy);
-                    Debug.Log("Player has a potion: " + hasPotion);
                     StartCoroutine(resetCollectable(collectable.gameObject));
                 }
             }
@@ -1194,6 +1193,10 @@ public class PlayerBody : MonoBehaviour
         {
             if (hasBomb && !Grabbed)
             {
+
+                hasBomb = false;
+                hasPotion = false;
+
                 if (controller.HorizontalMagnitude >= 0)
                 {
                     fortniteFellaBalls = transform.position + movementVector + stinky;
@@ -1208,10 +1211,12 @@ public class PlayerBody : MonoBehaviour
                 reference.setDirection(movementVector);
                 reference.SetController(controller);
                 PAM.PlayAudio(PlayerAudioManager.AudioType.Swing1);
-                hasBomb = false;
             }
             if (hasPotion & !Grabbed)
             {
+                hasPotion = false;
+                hasBomb = false;
+
                 //sparkleObject.GetComponent<Animator>().SetTrigger("startSparkle");
                 float healAmount = maxHealth * 0.75f;
                 AddHealth(healAmount);
