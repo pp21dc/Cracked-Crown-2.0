@@ -277,7 +277,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void ResetPlayers()
+    public void ResetPlayers(bool main)
     {
         foreach (PlayerContainer pc in Players)
         {
@@ -296,7 +296,7 @@ public class GameManager : MonoBehaviour
                 pb.gotHit = false;
                 pb.timesHit = 0;
                 pb.lockDash = false;
-                if (pb.alreadyDead)
+                if (pb.alreadyDead && !main)
                 {
                     pb.canAttack = false;
                     pb.canTakeDamage = false;
@@ -342,10 +342,14 @@ public class GameManager : MonoBehaviour
         if (UIManager.Instance != null)
             UIManager.Instance.InGameUI.SetActive(false);
         if (!levelName.Equals(MainMenuName))
+        {
             LoadingScreen.gameObject.SetActive(true);
+            
+        }
+        ResetPlayers(levelName.Equals(MainMenuName));
         MM.PlayNextTrack();
         SetPlayerPositions();
-        ResetPlayers();
+        
         
         yield return new WaitForSeconds(0.25f);
         
