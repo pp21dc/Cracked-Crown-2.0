@@ -449,7 +449,7 @@ public class EnemyAIController : AdvancedFSM
         {
             if (!shaking && !CompareTag("Heavy"))
                 EAC.transform.localPosition = new Vector3(0, 6f, 5.15f);
-            
+                
 
             if (CompareTag("Light"))
             {
@@ -1181,12 +1181,11 @@ public class EnemyAIController : AdvancedFSM
 
         if(body.Health <= 0)
         {
-            doneCarry = true;
-            canSpam = true;
-            GM.ResetPlayer(body);
-            StartCoroutine(Drop(body));
-            EAC.Grabbing = false;
-            EAC.Attacking = false;
+            canSpam = false;
+
+            //couts.Add(StartCoroutine(Drop(body)));
+            body.timesHit = 0;
+            body.canRelease = true;
         }
 
 
@@ -1290,8 +1289,7 @@ public class EnemyAIController : AdvancedFSM
         if (slamAttack.hitPlayer != null)
         {
             Debug.Log("TIMED DROP");
-            if (couts.Count == 0)
-                couts.Add(StartCoroutine(Drop(pb)));
+            StartCoroutine(Drop(pb));
             EAC.Attacking = false;
             EAC.Grabbing = false;
             pb.Grabbed = false;

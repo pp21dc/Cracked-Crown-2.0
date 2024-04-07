@@ -6,7 +6,7 @@ public class SwitchPlayerLayer : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("BushCollision") || other.gameObject.CompareTag("Medium") || other.gameObject.CompareTag("Heavy") || other.gameObject.CompareTag("Light"))
+        if (other.gameObject.CompareTag("BushCollision"))
             other.gameObject.GetComponent<SpriteRenderer>().sortingLayerID = SortingLayer.NameToID("Behind Bush");
 
         Debug.Log("Enter Trigger");
@@ -14,7 +14,7 @@ public class SwitchPlayerLayer : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("BushCollision") || other.gameObject.CompareTag("Medium") || other.gameObject.CompareTag("Heavy") || other.gameObject.CompareTag("Light"))
+        if (other.gameObject.CompareTag("BushCollision"))
             other.gameObject.GetComponent<SpriteRenderer>().sortingLayerID = SortingLayer.NameToID("Infront of Bush");
 
         Debug.Log("Exit Trigger");

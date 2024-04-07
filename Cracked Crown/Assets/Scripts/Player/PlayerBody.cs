@@ -146,7 +146,7 @@ public class PlayerBody : MonoBehaviour
         playerLock = false;
         Grabbed = false;
         ghostCoins = 20;
-        alreadyDead = false;
+        //alreadyDead = false;
     }
 
     private void Update()
@@ -227,6 +227,7 @@ public class PlayerBody : MonoBehaviour
                 alreadyDead = true;
                 canMove = false;
                 canAttack = false;
+                canExecute = false;
                 lockDash = true;
                 StartCoroutine(deathAnim());
             }
@@ -239,7 +240,7 @@ public class PlayerBody : MonoBehaviour
             }
             if (health > 0 && alreadyDead)
                 ghostCoins = 10;
-            if (ghostCoins >= 10)
+            if (ghostCoins >= 10 && alreadyDead)
             {
                 gameObject.tag = "Player";
 
@@ -255,7 +256,7 @@ public class PlayerBody : MonoBehaviour
                 lockDash = false;
                 canTakeDamage = true;
                 Grabbed = false;
-
+                ResetPlayer();
                 // delete corpse
                 
                 StartCoroutine(executeAfterRevive());
@@ -1113,8 +1114,8 @@ public class PlayerBody : MonoBehaviour
             //transform.position = respawnPoint;
 
             animController.Dead = false;
-            alreadyDead = false;
-            ghostCoins = 0;
+            //alreadyDead = false;
+            ghostCoins = 10;
             health = maxHealth * 0.8f;
             canAttack = true;
             canMove = true;

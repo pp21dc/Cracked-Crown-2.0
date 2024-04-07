@@ -311,6 +311,7 @@ public class GameManager : MonoBehaviour
     {
         if (pb != null)
         {
+            //Debug.Log("RESETING PLAYER");
             pb.playerLock = false;
             pb.canMove = true;
             pb.canCollect = true;
@@ -463,7 +464,7 @@ public class GameManager : MonoBehaviour
 
     public void SetPlayerPositions()
     {
-        //Debug.Log("SET POS");
+        Debug.Log("SET POS");
         for (int i = 0; i < Players.Length; i++)
         {
             Players[i].PB.playerLock = false;
