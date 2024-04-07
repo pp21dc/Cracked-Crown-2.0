@@ -28,12 +28,21 @@ public class CrabWalk : MonoBehaviour
     GameObject bigShadow;
     GameManager GM;
     [SerializeField]
-    AudioSource AS_S;
+    public AudioSource AS_S;
 
     private void Awake()
     {
         GM = GameManager.Instance;
         startPos = gameObject.transform.parent;
+    }
+
+    private void Start()
+    {
+        if (crown)
+        {
+            canMove = false;
+            animator.SetBool("Moving", false);
+        }
     }
 
     // Update is called once per frame
@@ -51,6 +60,7 @@ public class CrabWalk : MonoBehaviour
                 if (gameObject.tag == "Mini Crab" || gameObject.tag == "MiniCrabExecutable")
                 {
                     canMove = true;
+                    animator.SetBool("Moving", true);
                     gameObject.transform.GetChild(0).gameObject.SetActive(true);
                 }
             }
@@ -140,7 +150,7 @@ public class CrabWalk : MonoBehaviour
         animator.SetBool("PermaDead", false);
         speed = 15.0f;
         health = 1.0f;
-
+        
         if (gameObject.tag == "MiniCrabExecutable")
         {
             animator.SetBool("BadgerExecute", false);

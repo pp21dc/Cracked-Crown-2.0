@@ -40,6 +40,8 @@ public class Bomb : MonoBehaviour
     private SpriteRenderer sprite;
     private Animator animator;
     private CameraShake css;
+    [SerializeField]
+    AudioSource AS;
 
     private void Awake()
     {
@@ -103,10 +105,13 @@ public class Bomb : MonoBehaviour
     private IEnumerator Explode()
     {
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.7f);
+        AS.Play();
+        yield return new WaitForSeconds(0.3f);
 
         transform.GetChild(0).gameObject.SetActive(false);
         animator.SetBool("Blow", true);
+        
         if (css != null)
             StartCoroutine(css.Shake(1.5f, 2f));
 
@@ -128,7 +133,7 @@ public class Bomb : MonoBehaviour
         }
     
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(2.5f);
         gameObject.SetActive(false);
 
     }
