@@ -1556,16 +1556,18 @@ public class EnemyAIController : AdvancedFSM
         {
             Vector3 direction = fireLocation.position - body.position;
             direction.y = 0;
-            
+            GameObject ToothGO = null;
             direction.Normalize();
+            if (toothToShoot != null)
+                ToothGO = GameObject.Instantiate(toothToShoot, bodyShootLoc.position, Quaternion.identity);
 
-            GameObject ToothGO = GameObject.Instantiate(toothToShoot, bodyShootLoc.position, Quaternion.identity);
 
-            
-
-            Tooth Tooth = ToothGO.GetComponent<Tooth>();
-            ToothGO.SetActive(true);
-            Tooth.Fire(direction);
+            if (ToothGO != null)
+            {
+                Tooth Tooth = ToothGO.GetComponent<Tooth>();
+                ToothGO.SetActive(true);
+                Tooth.Fire(direction);
+            }
         }
     }
 

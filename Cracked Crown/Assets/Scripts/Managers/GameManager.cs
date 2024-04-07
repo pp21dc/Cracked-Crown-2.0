@@ -287,8 +287,8 @@ public class GameManager : MonoBehaviour
                 pb.canMove = true;
                 pb.canCollect = true;
                 pb.canAttack = true;
-                pb.canCollectBomb = true;
-                pb.canCollectPotion = true;
+                //pb.canCollectBomb = true;
+                //pb.canCollectPotion = true;
                 pb.canExecute = true;
                 pb.canMovePlayerForexecute = false;
                 pb.canTakeDamage = true;
@@ -315,8 +315,8 @@ public class GameManager : MonoBehaviour
             pb.canMove = true;
             pb.canCollect = true;
             pb.canAttack = true;
-            pb.canCollectBomb = true;
-            pb.canCollectPotion = true;
+            //pb.canCollectBomb = true;
+            //pb.canCollectPotion = true;
             pb.canExecute = true;
             pb.canMovePlayerForexecute = false;
             pb.canTakeDamage = true;
