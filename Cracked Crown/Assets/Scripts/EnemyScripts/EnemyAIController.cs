@@ -813,7 +813,7 @@ public class EnemyAIController : AdvancedFSM
         Debug.Log(closest == null);
         if (closest != null)
         {
-            if(Vector3.Distance(this.ePosition.position, closest.transform.position) <= 55f)
+            if(Vector3.Distance(this.ePosition.position, closest.transform.position) <= 75f)
             {
                 if (!lockKnock)
                 {
@@ -832,7 +832,7 @@ public class EnemyAIController : AdvancedFSM
                     EAC.SR.flipX = false;
                 }
             }
-            else if (Vector3.Distance(this.ePosition.position, closest.transform.position) >= 75f)
+            else if (Vector3.Distance(this.ePosition.position, closest.transform.position) > 75f)
             {
                 if (!lockKnock)
                 {
@@ -1586,6 +1586,7 @@ public class EnemyAIController : AdvancedFSM
             direction.Normalize();
             if (toothToShoot != null)
                 ToothGO = GameObject.Instantiate(toothToShoot, bodyShootLoc.position, Quaternion.identity);
+                
 
 
             if (ToothGO != null)

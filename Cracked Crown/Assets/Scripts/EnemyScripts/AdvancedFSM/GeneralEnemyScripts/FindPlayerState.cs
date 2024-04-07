@@ -20,7 +20,7 @@ public class FindPlayerState : FSMState
     {
         //Debug.Log("Made it to the Find player Reasoning");
 
-        if (enemy.Health <= enemy.maxHealth * 0.74f && enemy.Health >= 1) 
+        if (enemy.Health <= enemy.maxHealth * 0.20f && enemy.Health >= 1) 
         {
             enemy.PerformTransition(Transition.LowHealth);
             return;

@@ -26,7 +26,7 @@ public class WallSeperateState : FSMState
             return;
         }
 
-        if (enemy.Health <= enemy.maxHealth * 0.74f && enemy.Health >= 1)
+        if (enemy.Health <= enemy.maxHealth * 0.20f && enemy.Health >= 1)
         {
             enemy.canWall = true;
             enemy.doneWall = false;

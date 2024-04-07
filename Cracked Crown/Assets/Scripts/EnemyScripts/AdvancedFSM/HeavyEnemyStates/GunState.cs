@@ -19,7 +19,7 @@ public class GunState : FSMState
     //creates transition reasoning for if the enemy has no health, die, if the enemy has low health, flee, and if the enemy is in range of the player, attack
     public override void Reason(Transform player, Transform npc)
     {
-        if (enemy.Health <= 20 && enemy.Health >= 1)
+        if (enemy.Health <= enemy.maxHealth * 0.20f && enemy.Health >= 1)
         {
             enemy.startShooting = true;
             enemy.heavyBullets = enemy.maxAmmo;
