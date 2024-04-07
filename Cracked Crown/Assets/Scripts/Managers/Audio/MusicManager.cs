@@ -28,7 +28,7 @@ public class MusicManager : MonoBehaviour
         while (true)
         {
             AS_Soundtrack.volume -= FadeTime * Time.deltaTime;
-            if (AS_Soundtrack.volume <= 0.025f)
+            if (AS_Soundtrack.volume <= 0f)
                 break;
             yield return new WaitForEndOfFrame();
         }

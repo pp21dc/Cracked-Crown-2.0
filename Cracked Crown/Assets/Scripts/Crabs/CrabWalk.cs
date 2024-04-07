@@ -23,7 +23,8 @@ public class CrabWalk : MonoBehaviour
     private Transform finalPos;
     [SerializeField]
     private Vector3 movementVector;
-
+    [SerializeField]
+    SpriteRenderer spriteRenderer;
     [SerializeField]
     GameObject bigShadow;
     GameManager GM;
@@ -105,9 +106,11 @@ public class CrabWalk : MonoBehaviour
                 {
                     if (!alreadyAtPos)
                     {
-                        animator.SetBool("AtPosition", true);
+                        
                         if (crown)
-                            gameObject.SetActive(false);
+                            StartCoroutine(FadeSprite(0, 1));
+                        else
+                            animator.SetBool("AtPosition", true);
                         alreadyAtPos = true;
                     }
                 }
@@ -130,6 +133,27 @@ public class CrabWalk : MonoBehaviour
     }
 
 
+    private IEnumerator FadeSprite(float to, float speed)
+    {
+        if (to < 0.5f)
+        {
+            while (spriteRenderer != null && spriteRenderer.color.a >= to)
+            {
+                spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, spriteRenderer.color.a - (speed * Time.deltaTime));
+                yield return new WaitForEndOfFrame();
+            }
+            //dropShadow.SetActive(false);
+        }
+        else
+        {
+            while (spriteRenderer != null && spriteRenderer.color.a <= to)
+            {
+                spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, spriteRenderer.color.a + (speed * Time.deltaTime));
+                yield return new WaitForEndOfFrame();
+            }
+            //dropShadow.SetActive(true);
+        }
+    }
 
     public IEnumerator respawnCrab()
     {

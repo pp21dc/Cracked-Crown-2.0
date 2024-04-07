@@ -72,6 +72,8 @@ public class PlayerBody : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     [SerializeField]
     private CrabWalk crabController;
+    [SerializeField]
+    private Animator healAnimator;
 
     public GameObject CharacterFolder;
     public bool canMove = true;
@@ -713,6 +715,7 @@ public class PlayerBody : MonoBehaviour
     }
     public void AddHealth(float amount) 
     {
+        healAnimator.SetTrigger("PlayHeal");
         PAM.PlayAudio(PlayerAudioManager.AudioType.PotionUse);
         health = Mathf.Min(maxHealth, health + amount); //allows us to add health to the player
     }
@@ -1268,8 +1271,6 @@ public class PlayerBody : MonoBehaviour
                 //sparkleObject.GetComponent<Animator>().SetTrigger("startSparkle");
                 float healAmount = maxHealth * 0.75f;
                 AddHealth(healAmount);
-                Debug.Log("Player health is: " + health);
-                PAM.PlayAudio(PlayerAudioManager.AudioType.PotionUse);
                 hasPotion = false;
             }
         }
