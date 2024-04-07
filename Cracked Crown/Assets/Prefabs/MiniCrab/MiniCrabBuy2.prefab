@@ -240,11 +240,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16f9ee0f57138e3479dea69adeada783, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 15
   health: 1
   animator: {fileID: 2837456037150670661}
   hasDied: 0
   stop: 0
   canMove: 0
+  hasBeenExecuted: 0
+  crown: 0
   finalPos: {fileID: 4394292649514202156}
   movementVector: {x: 1, y: 0, z: 0}
   bigShadow: {fileID: 603278043811416130}
@@ -279,7 +282,8 @@ AudioSource:
   m_GameObject: {fileID: 2696700953442150875}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -277217406098842769, guid: a8598c5d9d1ee544e832031bcb33e15d,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: dff9a3b66c1cc78489b83ee8f65af535, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
