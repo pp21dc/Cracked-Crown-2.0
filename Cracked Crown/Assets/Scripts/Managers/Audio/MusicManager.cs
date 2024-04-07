@@ -22,6 +22,14 @@ public class MusicManager : MonoBehaviour
         StartCoroutine(FadeToNext());
     }
 
+    public void PlayNextTrack(bool instant)
+    {
+        //AS_Soundtrack.volume = 0;
+        trackIndex++;
+        AS_Soundtrack.clip = Tracks[trackIndex];
+        AS_Soundtrack.Play();
+    }
+
     IEnumerator FadeToNext()
     {
         trackIndex++;

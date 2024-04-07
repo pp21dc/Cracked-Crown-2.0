@@ -160,14 +160,14 @@ public class GameManager : MonoBehaviour
 
             if (!waitforvideo && currentLevelName == MainMenuName)
             {
-                MainMenu.SetActive(true);
+                //MainMenu.SetActive(true);
                 UIManager.Instance.InGameUI.SetActive(false);
                 PIM.SetActive(true);
             }
             else if (MainMenu != null)
             {
 
-                MainMenu.SetActive(false);
+                //MainMenu.SetActive(false);
             }
             if (currentLevelName == MainMenuName) 
             { 
@@ -192,7 +192,8 @@ public class GameManager : MonoBehaviour
     IEnumerator WINGAME()
     {
         win = false;
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(15);
+        eyeCount = 0;
         video_win.PlayVideo();
         RevivePlayers();
         ReturnToMainMenu(true);
@@ -256,7 +257,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(5);
         if (AreAllPlayersDead() && Players[0] != null && !waitforvideo)
         {
-            
+            eyeCount = 0;
             video_lose.PlayVideo();
             RevivePlayers();
             SetPlayerPositions();
@@ -341,6 +342,7 @@ public class GameManager : MonoBehaviour
             pb.timesHit = 0;
             pb.lockDash = false;
             pb.Grabbed = false;
+            pb.ghostCoins = 0;
             if (pb.alreadyDead)
             {
                 pb.canAttack = false;
@@ -360,20 +362,22 @@ public class GameManager : MonoBehaviour
         if (!levelName.Equals(MainMenuName))
         {
             LoadingScreen[loadCount + 1].SetActive(true);
-            
-        }
-        ResetPlayers(levelName.Equals(MainMenuName));
-        if (!star)
-        {
-            star = true;
+            MainMenu.SetActive(false);
+            if (star)
+            {
+                MM.PlayNextTrack(true);
+            }
         }
         else
         {
-            MM.PlayNextTrack();
-            if (levelName.Equals(MainMenuName))
-                MM.PlayNextTrack();
+            Debug.Log("ON");
+            if (!waitforvideo)
+                MainMenu.SetActive(true);
+            
+            LoadingScreen[loadCount + 1].SetActive(false);
         }
-        SetPlayerPositions();
+        ResetPlayers(levelName.Equals(MainMenuName));
+        
         
         
         yield return new WaitForSeconds(0.25f);
@@ -396,7 +400,7 @@ public class GameManager : MonoBehaviour
         {
             pc.PB.EnterLevel();
         }
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(5.25f);
 
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(levelName, LoadSceneMode.Additive);
         //AudioManager.Instance.AudioFadeLevelStart();
@@ -405,7 +409,8 @@ public class GameManager : MonoBehaviour
             SetPlayerPositions();
             yield return null;
         }
-
+        
+        SetPlayerPositions();
 
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(levelName));
         if (!levelName.Equals(MainMenuName) && !levelName.Equals(BossLevelName) && currentLevel <= levelNames.Length && 
@@ -425,7 +430,7 @@ public class GameManager : MonoBehaviour
         }
         else if (levelName.Equals(MainMenuName))
         {
-            
+            star = false;
             LM.ROOM_CLEARED = true;
             IsLevelCleared = true;
             currentLevelName = MainMenuName;
@@ -459,8 +464,17 @@ public class GameManager : MonoBehaviour
         //yield return new WaitForSeconds(0.25f);
         //AudioManager.Instance.AudioFadeLevelStart();
 
+        if (!star)
+        {
+            star = true;
+        }
+        else
+        {
+            MM.PlayNextTrack();
+            if (levelName.Equals(MainMenuName))
+                MM.PlayNextTrack();
+        }
 
-        yield return new WaitForSeconds(5f);
 
         //PlayerUI.SetActive(false);
         // playerGO.SetActive(false);

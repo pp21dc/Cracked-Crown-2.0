@@ -119,11 +119,12 @@ public class OpeningVideoController : MonoBehaviour
             }
 
             //Closes the video player setup once the 5th video is done
-            if ((!players[5].enabled) && !stopAudio)
+            if ((!players[players.Length-1].enabled) && !stopAudio)
             {
-                players[5].enabled = false;
+                players[players.Length-1].enabled = false;
                 GameManager.Instance.waitforvideo = false;
                 GameManager.Instance.FreezePlayers(false);
+                GameManager.Instance.MainMenu.SetActive(true);
                 stopAudio = true;
                 if (openingVideo)
                     MusicManager.instance.PlayNextTrack();
