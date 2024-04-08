@@ -288,9 +288,20 @@ public class UIManager : MonoBehaviour
             Debug.LogWarning(dialogueSource.pitch);
                 int ct = UnityEngine.Random.Range(0, 5);
 
-                dialogueSource.PlayOneShot(badger[ct]);
+            if(character == characterIcons.Frog)
+                dialogueSource.PlayOneShot(frog[ct]);
                 
-                DialogueBar.SetText(temp);
+            if(character == characterIcons.Bunny)
+                dialogueSource.PlayOneShot(bunny[ct]);
+
+            if (character == characterIcons.HoneyBadger)
+                dialogueSource.PlayOneShot(badger[ct]);
+
+            if (character == characterIcons.Duck)
+                dialogueSource.PlayOneShot(duck[ct]);
+
+
+            DialogueBar.SetText(temp);
                 //dialogueSource.pitch = 1;
                 yield return new WaitForSeconds(dialogueTimer);
             //}
