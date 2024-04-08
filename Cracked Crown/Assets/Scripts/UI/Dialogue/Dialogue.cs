@@ -99,4 +99,9 @@ public class Dialogue : MonoBehaviour
             players.Add(pc.PB.CharacterType.ID);
         }
     }
+
+    public void ResetDialoguePlayerList()
+    {
+        players = new List<int>();
+    }
 }

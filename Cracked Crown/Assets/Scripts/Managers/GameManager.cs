@@ -552,6 +552,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine("LoadLevel", MainMenuName);
         FreezePlayers(true);
         //currentLevelName = MainMenuName;
+        dialogue.ResetDialoguePlayerList();
     }
 
     private void ResetGame(bool ifNotToMainMenu)
