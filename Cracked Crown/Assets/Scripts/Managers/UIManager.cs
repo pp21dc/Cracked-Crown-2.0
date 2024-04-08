@@ -46,7 +46,7 @@ public class UIManager : MonoBehaviour
     private float player2ShineTimer = 0f;
     private float player3ShineTimer = 0f;
     private float player4ShineTimer = 0f;
-    [SerializeField] float dialogueTimer = 0.1f;
+    [SerializeField] float dialogueTimer = 0.3f;
     [Header("Item Ring Images")]
     [SerializeField] private Image[] playerItems = new Image[4];
 
@@ -284,14 +284,14 @@ public class UIManager : MonoBehaviour
             //for (int j = 0; j <= i; j++)
             //{
                 temp[i] = ca[i];
-                dialogueSource.pitch = UnityEngine.Random.Range(1, 1.5f);
-                int ct = UnityEngine.Random.Range(0, 2);
+                dialogueSource.pitch = UnityEngine.Random.Range(0.8f, 1.5f);
+            Debug.LogWarning(dialogueSource.pitch);
+                int ct = UnityEngine.Random.Range(0, 5);
 
-            /*if(i % 2 == 0)
-                dialogueSource.PlayOneShot(badger[ct]);*/
+                dialogueSource.PlayOneShot(badger[ct]);
                 
                 DialogueBar.SetText(temp);
-            dialogueSource.pitch = 1;
+                //dialogueSource.pitch = 1;
                 yield return new WaitForSeconds(dialogueTimer);
             //}
         }
