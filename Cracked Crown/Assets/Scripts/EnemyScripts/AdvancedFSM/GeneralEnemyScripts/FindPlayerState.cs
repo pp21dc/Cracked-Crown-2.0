@@ -67,7 +67,7 @@ public class FindPlayerState : FSMState
         }
         else if (enemy.CompareTag("Heavy") && player != null)
         {
-            if (Vector3.Distance(enemy.ePosition.position,player.position) >= 43f && Vector3.Distance(enemy.ePosition.position, player.position) <=55f && enemy.shootOnCD == false)
+            if (Vector3.Distance(enemy.ePosition.position,player.position) >= 30f && enemy.shootOnCD == false)
             {
                 enemy.PerformTransition(Transition.InShootingRange);
                 return;

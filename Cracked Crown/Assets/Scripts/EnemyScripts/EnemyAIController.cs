@@ -154,7 +154,8 @@ public class EnemyAIController : AdvancedFSM
     public Vector3 shockwaveScaleInitial;
     public Transform bodyShootLoc;
     public GameObject ToothShotLocation;
-    public GameObject Hole;
+    public GameObject redHole;
+    public GameObject purpHole;
     public Transform HoleSpawnLoc;
     private GameObject correctTooth;
     
@@ -813,7 +814,7 @@ public class EnemyAIController : AdvancedFSM
         Debug.Log(closest == null);
         if (closest != null)
         {
-            if(Vector3.Distance(this.ePosition.position, closest.transform.position) <= 75f)
+            if(Vector3.Distance(this.ePosition.position, closest.transform.position) <= 50f)
             {
                 if (!lockKnock)
                 {
@@ -832,7 +833,7 @@ public class EnemyAIController : AdvancedFSM
                     EAC.SR.flipX = false;
                 }
             }
-            else if (Vector3.Distance(this.ePosition.position, closest.transform.position) > 75f)
+            else if (Vector3.Distance(this.ePosition.position, closest.transform.position) > 50f)
             {
                 if (!lockKnock)
                 {
@@ -936,6 +937,7 @@ public class EnemyAIController : AdvancedFSM
         if (!dead)
         {
             dead = true;
+            heavyBullets = 0;
             StartCoroutine(Death());
             
         }
@@ -988,7 +990,7 @@ public class EnemyAIController : AdvancedFSM
 
         DropEyes();
         yield return new WaitForSeconds(0.69f);
-        if (gameObject.CompareTag("Light") || gameObject.CompareTag("Medium") || gameObject.CompareTag("Heavy"))
+        if (gameObject.CompareTag("Light") || gameObject.CompareTag("Medium"))
         {
             LevelManager.Instance.EnemyKilled();
 
@@ -996,7 +998,16 @@ public class EnemyAIController : AdvancedFSM
         }
         else
         {
-            GameObject holeGO = GameObject.Instantiate(Hole, HoleSpawnLoc);
+            if(colour == "Purple")
+            {
+                GameObject holeGO = GameObject.Instantiate(purpHole, HoleSpawnLoc);
+            }
+            else
+            {
+                GameObject holeGO = GameObject.Instantiate(redHole, HoleSpawnLoc);
+            }
+
+            
         }
 
         //yield return null;

@@ -1194,7 +1194,6 @@ MonoBehaviour:
   WinScreen: {fileID: 0}
   MainMenu: {fileID: 0}
   UI: {fileID: 0}
-  LoadingScreen: {fileID: 0}
   CampaignStart: 0
   win: 0
   Pause: 0
@@ -1204,6 +1203,8 @@ MonoBehaviour:
   TEST_SCENE: 1
   spawnPoints: []
   dialogue: {fileID: 0}
+  loadCount: -1
+  LoadingScreen: []
   enem: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
