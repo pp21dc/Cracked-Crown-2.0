@@ -396,7 +396,7 @@ public class PlayerBody : MonoBehaviour
         canCollect = true;
         yield return new WaitForSeconds(2.0f);
         canMove = true;
-        rb.MovePosition(respawnPoint);
+        //rb.MovePosition(respawnPoint);
         rb.velocity = Vector3.zero;
         ResetPlayer();
     }
