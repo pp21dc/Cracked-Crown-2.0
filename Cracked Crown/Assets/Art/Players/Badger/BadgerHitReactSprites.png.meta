@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 92ce57899a7cd3640a7443b2544081b4
+guid: ec9d55932d9ecd94f811da981cd0bd16
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 8192
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: 4
     textureCompression: 1
@@ -106,50 +106,263 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 4096
-    resizeAlgorithm: 0
-    textureFormat: 4
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: iPhone
-    maxTextureSize: 4096
-    resizeAlgorithm: 0
-    textureFormat: 4
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 4096
-    resizeAlgorithm: 0
-    textureFormat: 4
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
       name: BadgerHitReactSprites_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1926
+        width: 642
+        height: 642
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c72d6cbc11c54274a84f0cf85a241d1b
+      internalID: -876296910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BadgerHitReactSprites_1
+      rect:
+        serializedVersion: 2
+        x: 642
+        y: 1926
+        width: 642
+        height: 642
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4147cee53725e9b4bbbb7165a5229e07
+      internalID: -617528790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BadgerHitReactSprites_2
+      rect:
+        serializedVersion: 2
+        x: 1284
+        y: 1926
+        width: 642
+        height: 642
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14962a3d1d5af674295b194b9292e2b4
+      internalID: -332666161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BadgerHitReactSprites_3
+      rect:
+        serializedVersion: 2
+        x: 1926
+        y: 1926
+        width: 642
+        height: 642
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ce9993cba0cf69459f2e58c32a18e23
+      internalID: -702717423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BadgerHitReactSprites_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1284
+        width: 642
+        height: 642
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0fa1a695632a8674b8859f17ddcc3ea3
+      internalID: 1382612572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BadgerHitReactSprites_5
+      rect:
+        serializedVersion: 2
+        x: 642
+        y: 1284
+        width: 642
+        height: 642
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c91946dc4ef8a744ac5f7fd34d9f98c
+      internalID: 1671524495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BadgerHitReactSprites_6
+      rect:
+        serializedVersion: 2
+        x: 1284
+        y: 1284
+        width: 642
+        height: 642
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34b3d93fce49f0845a185ac5a54333e3
+      internalID: 1264430584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BadgerHitReactSprites_7
+      rect:
+        serializedVersion: 2
+        x: 1926
+        y: 1284
+        width: 642
+        height: 642
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2653f372f1d5a2142af71a4e82440d49
+      internalID: 1436786191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BadgerHitReactSprites_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 642
+        width: 642
+        height: 642
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d65c3a75d42d918408f52d37051555a6
+      internalID: -117501644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BadgerHitReactSprites_9
+      rect:
+        serializedVersion: 2
+        x: 642
+        y: 642
+        width: 642
+        height: 642
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c68d2156b3aea5f468521de081b53159
+      internalID: -484508063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BadgerHitReactSprites_10
+      rect:
+        serializedVersion: 2
+        x: 1284
+        y: 642
+        width: 642
+        height: 642
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3124a2f52dee5e14494e41418e8032d5
+      internalID: 735894937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BadgerHitReactSprites_11
+      rect:
+        serializedVersion: 2
+        x: 1926
+        y: 642
+        width: 642
+        height: 642
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c50e2e0cc73eff4099edf9719b42982
+      internalID: 801137384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BadgerHitReactSprites_12
       rect:
         serializedVersion: 2
         x: 0
@@ -163,14 +376,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6b811f65fb8a02e409447f0983c96d12
-      internalID: 572228929
+      spriteID: 84005fc3804e3974fa78d18b0258f629
+      internalID: 862738659
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BadgerHitReactSprites_1
+      name: BadgerHitReactSprites_13
       rect:
         serializedVersion: 2
         x: 642
@@ -184,14 +397,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e2ad668e0edeb0a4ea173d9aaac5a4e6
-      internalID: 1913995002
+      spriteID: 8991dce905372054783965d9b3289a75
+      internalID: -1850068552
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BadgerHitReactSprites_2
+      name: BadgerHitReactSprites_14
       rect:
         serializedVersion: 2
         x: 1284
@@ -205,14 +418,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 025b6c05b37baec4da56fb07ad101074
-      internalID: 525585040
+      spriteID: 62e030e073f33e94a847faed3fc1ab9f
+      internalID: -225145168
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BadgerHitReactSprites_3
+      name: BadgerHitReactSprites_15
       rect:
         serializedVersion: 2
         x: 1926
@@ -226,155 +439,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 84114346e114ea045b7e08e60a758b4c
-      internalID: -1386218449
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BadgerHitReactSprites_4
-      rect:
-        serializedVersion: 2
-        x: 2568
-        y: 0
-        width: 642
-        height: 642
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2825877dcda8d5943811cce9f4edfdb3
-      internalID: -950678938
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BadgerHitReactSprites_5
-      rect:
-        serializedVersion: 2
-        x: 3210
-        y: 0
-        width: 642
-        height: 642
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3c8ea8cb3c8ef5549be7642abf494e19
-      internalID: 664253810
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BadgerHitReactSprites_6
-      rect:
-        serializedVersion: 2
-        x: 3852
-        y: 0
-        width: 642
-        height: 642
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6b03bea0fb21dfa4798c44d5d845ac15
-      internalID: 1067303519
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BadgerHitReactSprites_7
-      rect:
-        serializedVersion: 2
-        x: 4494
-        y: 0
-        width: 642
-        height: 642
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e6cc1c56a5914ae40abdc0d314f71169
-      internalID: 426210701
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BadgerHitReactSprites_8
-      rect:
-        serializedVersion: 2
-        x: 5136
-        y: 0
-        width: 642
-        height: 642
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1cf0db4e2cfd40e46aba14d4807d4053
-      internalID: -1254912343
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BadgerHitReactSprites_9
-      rect:
-        serializedVersion: 2
-        x: 5778
-        y: 0
-        width: 642
-        height: 642
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d0654f7d2200afe47afe1294183662c2
-      internalID: 297388809
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BadgerHitReactSprites_10
-      rect:
-        serializedVersion: 2
-        x: 6420
-        y: 0
-        width: 642
-        height: 642
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bf628735f72ed264b9e1be2547754cdf
-      internalID: -2024255765
+      spriteID: 7e985bbeda646904bad0211c7083f91a
+      internalID: 1830483510
       vertices: []
       indices: 
       edges: []
@@ -382,7 +448,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 37612a497bf2d324e9a897f8dd9d51ba
+    spriteID: 364e4c0b639e78b4a943f9ffa9eef0de
     internalID: 0
     vertices: []
     indices: 
@@ -390,17 +456,22 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      BadgerHitReactSprites_0: 572228929
-      BadgerHitReactSprites_1: 1913995002
-      BadgerHitReactSprites_10: -2024255765
-      BadgerHitReactSprites_2: 525585040
-      BadgerHitReactSprites_3: -1386218449
-      BadgerHitReactSprites_4: -950678938
-      BadgerHitReactSprites_5: 664253810
-      BadgerHitReactSprites_6: 1067303519
-      BadgerHitReactSprites_7: 426210701
-      BadgerHitReactSprites_8: -1254912343
-      BadgerHitReactSprites_9: 297388809
+      BadgerHitReactSprites_0: -876296910
+      BadgerHitReactSprites_1: -617528790
+      BadgerHitReactSprites_10: 735894937
+      BadgerHitReactSprites_11: 801137384
+      BadgerHitReactSprites_12: 862738659
+      BadgerHitReactSprites_13: -1850068552
+      BadgerHitReactSprites_14: -225145168
+      BadgerHitReactSprites_15: 1830483510
+      BadgerHitReactSprites_2: -332666161
+      BadgerHitReactSprites_3: -702717423
+      BadgerHitReactSprites_4: 1382612572
+      BadgerHitReactSprites_5: 1671524495
+      BadgerHitReactSprites_6: 1264430584
+      BadgerHitReactSprites_7: 1436786191
+      BadgerHitReactSprites_8: -117501644
+      BadgerHitReactSprites_9: -484508063
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
