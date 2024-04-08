@@ -73,15 +73,12 @@ public class OpeningVideoController : MonoBehaviour
                 
                 if (j < players.Length)
                 {
-                    if (j != 2 && j != 3 && j != 5)
-                        players[j].isLooping = true;
-                    else
-                        players[j].isLooping = false;
+                    
                     players[j].Play();
                 }
                 else
                 {
-                    players[2].enabled = false;
+                    players[players.Length-1].enabled = false;
                     GameManager.Instance.waitforvideo = false;
                     active = false;
                     GameManager.Instance.FreezePlayers(false);
@@ -110,10 +107,10 @@ public class OpeningVideoController : MonoBehaviour
             }
 
             //Closes the video player setup once the 3rd video is done
-            if ((!players[2].enabled) && !startAudio)
+            if ((!players[5].enabled) && !startAudio)
             {
                 startAudio = true;
-                players[2].enabled = false;
+                players[5].enabled = false;
                 if (openingVideo)
                     MusicManager.instance.PlayNextTrack();
             }

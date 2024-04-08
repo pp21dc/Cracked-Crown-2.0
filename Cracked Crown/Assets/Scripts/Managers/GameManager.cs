@@ -402,7 +402,9 @@ public class GameManager : MonoBehaviour
         {
             pc.PB.EnterLevel();
         }
-        yield return new WaitForSeconds(5.25f);
+
+        if (star)
+            yield return new WaitForSeconds(5.25f);
 
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(levelName, LoadSceneMode.Additive);
         //AudioManager.Instance.AudioFadeLevelStart();
