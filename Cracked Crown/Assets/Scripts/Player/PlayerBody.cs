@@ -130,6 +130,7 @@ public class PlayerBody : MonoBehaviour
 
     private bool hasReachedExecutePoint = false;
     private bool neverReachedExecutePoint = false;
+    private Animator walrusAnimator;
 
     [SerializeField]
     private GameObject sparkleObject;
@@ -307,6 +308,11 @@ public class PlayerBody : MonoBehaviour
                     alreadyMovedCorpse = true;
                     corpse.transform.position = resStonePos;
                 }
+            }
+            if (gameManager.currentLevelName == "GreenShop" || gameManager.currentLevelName == "RedShop" || gameManager.currentLevelName == "PurpleShop")
+            {
+                GameObject walrus = GameObject.FindGameObjectWithTag("Walrus");
+                walrusAnimator = walrus.GetComponent<Animator>();
             }
         }
     }
@@ -1228,6 +1234,10 @@ public class PlayerBody : MonoBehaviour
             {
                 if (gameManager.eyeCount >= 30 && hasPotion == false && hasBomb == false)
                 {
+                    if (walrusAnimator != null)
+                    {
+                        walrusAnimator.SetTrigger("EatEye");
+                    }
                     gameManager.eyeCount -= 30;
                     hasPotion = false;
                     hasBomb = true;
@@ -1243,6 +1253,10 @@ public class PlayerBody : MonoBehaviour
             {
                 if (gameManager.eyeCount >= 30 && hasPotion == false && hasBomb == false)
                 {
+                    if (walrusAnimator != null)
+                    {
+                        walrusAnimator.SetTrigger("EatEye");
+                    }
                     gameManager.eyeCount -= 30;
                     hasBomb = false;
                     hasPotion = true;
