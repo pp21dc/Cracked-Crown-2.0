@@ -19,6 +19,8 @@ public class OpeningVideoController : MonoBehaviour
     bool stopAudio;
     public bool openingVideo;
 
+    [SerializeField]
+    GameObject rt;
     // Start is called before the first frame update
     void Start()
     {
@@ -125,8 +127,10 @@ public class OpeningVideoController : MonoBehaviour
                 stopAudio = true;
                 if (openingVideo)
                     MusicManager.instance.PlayNextTrack();
+
                 //gameObject.SetActive(false);
 
+                rt.SetActive(false);
             }
         }
     }
