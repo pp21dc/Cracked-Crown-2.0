@@ -33,6 +33,7 @@ public class Bomb : MonoBehaviour
 
     [SerializeField]
     private List<EnemyAIController> enemiesInRange;
+    [SerializeField]
     private List<PlayerBody> playersInRange;
     private List<BossPhases> clawsInRange;
     private Rigidbody rb;
@@ -148,14 +149,17 @@ public class Bomb : MonoBehaviour
         controller = playerControls;
     }
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.tag == "Light" || other.tag == "Medium" || other.tag == "Heavy")
-    //    {
-    //        currentEnemy = other.transform.parent.GetChild(0).gameObject.GetComponent<EnemyAIController>();
-    //        enteredTrigger = true;
-    //    }
-    //}
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            PlayerBody pb = other.transform.GetComponent<PlayerBody>();
+            if (!playersInRange.Contains(pb))
+            {
+                playersInRange.Add(pb);
+            }
+        }
+    }
 
     private void OnTriggerStay(Collider other)
     {
