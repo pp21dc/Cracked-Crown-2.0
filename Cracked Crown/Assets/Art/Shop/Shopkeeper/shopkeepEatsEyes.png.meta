@@ -6,7 +6,7 @@ TextureImporter:
   serializedVersion: 12
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -37,13 +37,13 @@ TextureImporter:
     filterMode: 1
     aniso: 1
     mipBias: 0
-    wrapU: 0
-    wrapV: 0
+    wrapU: 1
+    wrapV: 1
     wrapW: 0
-  nPOTScale: 1
+  nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 0
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -52,9 +52,9 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
-  alphaIsTransparency: 0
+  alphaIsTransparency: 1
   spriteTessellationDetail: -1
-  textureType: 0
+  textureType: 8
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
@@ -69,10 +69,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -108,18 +108,401 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: shopkeepEatsEyes_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2720
+        width: 680
+        height: 680
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65d2c64ea5a725049ae7e250b85e010c
+      internalID: -59813134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shopkeepEatsEyes_1
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 2720
+        width: 680
+        height: 680
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28c20c65aa182e04b8edbbec4947aaf7
+      internalID: -1894428245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shopkeepEatsEyes_2
+      rect:
+        serializedVersion: 2
+        x: 1360
+        y: 2720
+        width: 680
+        height: 680
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 898c917218a5dfb469691f35c4146fa0
+      internalID: -761784677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shopkeepEatsEyes_3
+      rect:
+        serializedVersion: 2
+        x: 2040
+        y: 2720
+        width: 680
+        height: 680
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77e2c50d775ffa846adc65b8caff9984
+      internalID: 2071851982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shopkeepEatsEyes_4
+      rect:
+        serializedVersion: 2
+        x: 2720
+        y: 2720
+        width: 680
+        height: 680
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 762b0440223a4b74eb66d304bf091d48
+      internalID: -1985353020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shopkeepEatsEyes_5
+      rect:
+        serializedVersion: 2
+        x: 3400
+        y: 2720
+        width: 680
+        height: 680
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8921aae2ea727541a9131a60749a08c
+      internalID: 1758322424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shopkeepEatsEyes_6
+      rect:
+        serializedVersion: 2
+        x: 4080
+        y: 2720
+        width: 680
+        height: 680
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: adbda40d5f936ec4c930c30424ce4a3d
+      internalID: 358500281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shopkeepEatsEyes_7
+      rect:
+        serializedVersion: 2
+        x: 4760
+        y: 2720
+        width: 680
+        height: 680
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c149573216d5ad45b9c374ad158de40
+      internalID: -958566394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shopkeepEatsEyes_8
+      rect:
+        serializedVersion: 2
+        x: 5440
+        y: 2720
+        width: 680
+        height: 680
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 741a0764eddeadf4c9146daa12479f35
+      internalID: 1844459224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shopkeepEatsEyes_9
+      rect:
+        serializedVersion: 2
+        x: 6120
+        y: 2720
+        width: 680
+        height: 680
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e2cc8d41c0430244a073b43d1d683f7
+      internalID: -816754068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shopkeepEatsEyes_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2040
+        width: 680
+        height: 680
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca8479a1e8a3bab47b9f89cdd488a230
+      internalID: -705613100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shopkeepEatsEyes_11
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 2040
+        width: 680
+        height: 680
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3448f84c4b5d1046a0f48d465e48455
+      internalID: 1522416632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shopkeepEatsEyes_12
+      rect:
+        serializedVersion: 2
+        x: 1360
+        y: 2040
+        width: 680
+        height: 680
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8d98d457724c574c84a91200b83b401
+      internalID: -1788899785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shopkeepEatsEyes_13
+      rect:
+        serializedVersion: 2
+        x: 2040
+        y: 2040
+        width: 680
+        height: 680
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 246aed84189316a49bc78cc0bf50ea0c
+      internalID: -2076680427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shopkeepEatsEyes_14
+      rect:
+        serializedVersion: 2
+        x: 2720
+        y: 2040
+        width: 680
+        height: 680
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 358336fed0e7c3d48bf0773be783cb83
+      internalID: 200539708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shopkeepEatsEyes_15
+      rect:
+        serializedVersion: 2
+        x: 3400
+        y: 2040
+        width: 680
+        height: 680
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb58f1df39cd1224e95795a837c734bf
+      internalID: -828887339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 087e04177410b7a409a17a22e9f29f88
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      shopkeepEatsEyes_0: -59813134
+      shopkeepEatsEyes_1: -1894428245
+      shopkeepEatsEyes_10: -705613100
+      shopkeepEatsEyes_11: 1522416632
+      shopkeepEatsEyes_12: -1788899785
+      shopkeepEatsEyes_13: -2076680427
+      shopkeepEatsEyes_14: 200539708
+      shopkeepEatsEyes_15: -828887339
+      shopkeepEatsEyes_16: -1268422167
+      shopkeepEatsEyes_17: 1711422885
+      shopkeepEatsEyes_18: -1687233627
+      shopkeepEatsEyes_19: -835201470
+      shopkeepEatsEyes_2: -761784677
+      shopkeepEatsEyes_20: -1493262707
+      shopkeepEatsEyes_21: -2019070690
+      shopkeepEatsEyes_22: 277669382
+      shopkeepEatsEyes_23: 1543464788
+      shopkeepEatsEyes_24: -1577760478
+      shopkeepEatsEyes_25: 1299645042
+      shopkeepEatsEyes_26: 1966975873
+      shopkeepEatsEyes_27: 1434553822
+      shopkeepEatsEyes_28: -508545688
+      shopkeepEatsEyes_29: -1690228643
+      shopkeepEatsEyes_3: 2071851982
+      shopkeepEatsEyes_30: 430056817
+      shopkeepEatsEyes_31: -53837096
+      shopkeepEatsEyes_32: 281141109
+      shopkeepEatsEyes_33: 775282901
+      shopkeepEatsEyes_34: 480780147
+      shopkeepEatsEyes_35: -177278262
+      shopkeepEatsEyes_36: 1465809386
+      shopkeepEatsEyes_37: -782360933
+      shopkeepEatsEyes_38: 868910765
+      shopkeepEatsEyes_39: -378940074
+      shopkeepEatsEyes_4: -1985353020
+      shopkeepEatsEyes_40: 1973291374
+      shopkeepEatsEyes_41: -1280711356
+      shopkeepEatsEyes_42: 1441577799
+      shopkeepEatsEyes_43: 932706105
+      shopkeepEatsEyes_44: 1007454276
+      shopkeepEatsEyes_45: 1696637605
+      shopkeepEatsEyes_46: 389914492
+      shopkeepEatsEyes_5: 1758322424
+      shopkeepEatsEyes_6: 358500281
+      shopkeepEatsEyes_7: -958566394
+      shopkeepEatsEyes_8: 1844459224
+      shopkeepEatsEyes_9: -816754068
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
