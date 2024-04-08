@@ -300,7 +300,7 @@ public class PlayerBody : MonoBehaviour
             {
                 GameObject[] resStone = GameObject.FindGameObjectsWithTag("Revive");
 
-                if (resStone != null || resStone[0] != null)
+                if (resStone != null && resStone[0] != null)
                     resStonePos = new Vector3(resStone[0].transform.parent.position.x, 0f, resStone[0].transform.parent.position.z - 20.0f);
                 respawnPoint = resStonePos;
 
