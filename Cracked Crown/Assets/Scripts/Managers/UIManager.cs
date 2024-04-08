@@ -185,7 +185,7 @@ public class UIManager : MonoBehaviour
 
             for (int i = 0; i < GM.Players.Length; i++)
             {
-                if (GM.Players[i].PC.PauseDown)
+                if (GM.Players[i].PC.PauseDown && !GM.waitforvideo)
                 {
                     if (PauseMenu.activeSelf == false)
                     {

@@ -260,6 +260,7 @@ MonoBehaviour:
   crown: 0
   finalPos: {fileID: 8166721731742356623}
   movementVector: {x: -1, y: 0, z: 0}
+  spriteRenderer: {fileID: 0}
   bigShadow: {fileID: 4093246217042282141}
   AS_S: {fileID: 7828999582967059495}
 --- !u!65 &899669335690413887
@@ -453,8 +454,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 296061455
-  m_SortingLayer: 3
+  m_SortingLayerID: -2109643221
+  m_SortingLayer: 5
   m_SortingOrder: 6
   m_Sprite: {fileID: -1953573728, guid: 3e18277f4e3b6d84f8f80494a7d2c001, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

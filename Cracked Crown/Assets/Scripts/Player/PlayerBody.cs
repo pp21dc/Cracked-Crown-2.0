@@ -154,6 +154,7 @@ public class PlayerBody : MonoBehaviour
         gotHit = false;
         timesHit = 0;
         lockDash = false;
+        dashing = false;
         Grabbed = false;
         gameObject.tag = "Player";
     }
@@ -268,7 +269,7 @@ public class PlayerBody : MonoBehaviour
                 canTakeDamage = true;
                 Grabbed = false;
 
-                ResetPlayer();
+                
                 StartCoroutine(executeAfterRevive());
 
             }
@@ -374,8 +375,10 @@ public class PlayerBody : MonoBehaviour
     
     private IEnumerator executeAfterRevive()
     {
-        transform.position = respawnPoint;
+        rb.MovePosition(respawnPoint);
+        rb.velocity = Vector3.zero;
         Destroy(corpse);
+        canMove = false;
 
         String tag = "BeenRevived";
         if (corpse != null)
@@ -386,6 +389,9 @@ public class PlayerBody : MonoBehaviour
         canCollect = true;
         yield return new WaitForSeconds(2.0f);
         canMove = true;
+        rb.MovePosition(respawnPoint);
+        rb.velocity = Vector3.zero;
+        ResetPlayer();
     }
 
     private IEnumerator deathAnim()

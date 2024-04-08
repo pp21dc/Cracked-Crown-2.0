@@ -312,6 +312,7 @@ public class GameManager : MonoBehaviour
                 pb.gotHit = false;
                 pb.timesHit = 0;
                 pb.lockDash = false;
+                pb.dashing = false;
                 if (pb.alreadyDead && !main)
                 {
                     pb.canAttack = false;
@@ -343,6 +344,7 @@ public class GameManager : MonoBehaviour
             pb.lockDash = false;
             pb.Grabbed = false;
             pb.ghostCoins = 0;
+            pb.dashing = false;
             if (pb.alreadyDead)
             {
                 pb.canAttack = false;
@@ -524,7 +526,7 @@ public class GameManager : MonoBehaviour
             UIManager.Instance.Resume();
             UIManager.Instance.InGameUI.SetActive(false);
         }
-
+        MM.trackIndex = -1;
         //locker = false;
         waitforvideo = cond;
         ResetGame(true);
@@ -541,7 +543,7 @@ public class GameManager : MonoBehaviour
         eyeCount = 0;
         eyeText.text = "";
 
-        MM.trackIndex = -1;
+       
     }
 
     public void NextLevel()

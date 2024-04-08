@@ -19,6 +19,7 @@ public class MusicManager : MonoBehaviour
 
     public void PlayNextTrack()
     {
+        //Debug.Log("AUDIO");
         StartCoroutine(FadeToNext());
     }
 
@@ -36,7 +37,7 @@ public class MusicManager : MonoBehaviour
         while (true)
         {
             AS_Soundtrack.volume -= FadeTime * Time.deltaTime;
-            if (AS_Soundtrack.volume <= 0f)
+            if (AS_Soundtrack.volume <= 0.01f)
                 break;
             yield return new WaitForEndOfFrame();
         }

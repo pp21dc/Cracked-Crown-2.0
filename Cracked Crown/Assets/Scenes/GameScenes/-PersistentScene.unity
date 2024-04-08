@@ -1731,7 +1731,7 @@ MonoBehaviour:
   AS_Soundtrack: {fileID: 464413574}
   FadeTime: 0.1
   PlayDelayTime: 1
-  trackIndex: 0
+  trackIndex: -1
 --- !u!1 &465253891
 GameObject:
   m_ObjectHideFlags: 0
@@ -5332,6 +5332,11 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3976429778755196286, guid: 503531e7b374a6747862ebfc1b4feef4,
+        type: 3}
+      propertyPath: m_text
+      value: Options
+      objectReference: {fileID: 0}
     - target: {fileID: 4440255704394256807, guid: 503531e7b374a6747862ebfc1b4feef4,
         type: 3}
       propertyPath: m_SizeDelta.x
@@ -5398,6 +5403,16 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7761607854478330197, guid: 503531e7b374a6747862ebfc1b4feef4,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -138.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7761607854478330197, guid: 503531e7b374a6747862ebfc1b4feef4,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -198.4
+      objectReference: {fileID: 0}
     - target: {fileID: 7765056114151245817, guid: 503531e7b374a6747862ebfc1b4feef4,
         type: 3}
       propertyPath: m_IsActive
@@ -5437,6 +5452,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.9350487
+      objectReference: {fileID: 0}
+    - target: {fileID: 8876358156581975020, guid: 503531e7b374a6747862ebfc1b4feef4,
+        type: 3}
+      propertyPath: m_text
+      value: Main Menu
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

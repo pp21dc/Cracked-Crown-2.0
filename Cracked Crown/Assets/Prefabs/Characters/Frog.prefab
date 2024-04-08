@@ -498,6 +498,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 333914622876902093}
     m_Modifications:
+    - target: {fileID: 400825975550909986, guid: 2ac7448da033f35418d3f65b6297b766,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 419902728755252010, guid: 2ac7448da033f35418d3f65b6297b766,
         type: 3}
       propertyPath: m_IsActive
@@ -511,12 +516,12 @@ PrefabInstance:
     - target: {fileID: 3287784809708244382, guid: 2ac7448da033f35418d3f65b6297b766,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.15
+      value: 4.68
       objectReference: {fileID: 0}
     - target: {fileID: 3287784809708244382, guid: 2ac7448da033f35418d3f65b6297b766,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3287784809708244382, guid: 2ac7448da033f35418d3f65b6297b766,
         type: 3}
@@ -553,10 +558,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5540486384685273990, guid: 2ac7448da033f35418d3f65b6297b766,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6686866873677039763, guid: 2ac7448da033f35418d3f65b6297b766,
         type: 3}
       propertyPath: m_Name
       value: Markers
+      objectReference: {fileID: 0}
+    - target: {fileID: 8312875578576842209, guid: 2ac7448da033f35418d3f65b6297b766,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
