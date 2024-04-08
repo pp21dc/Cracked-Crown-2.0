@@ -361,7 +361,7 @@ public class GameManager : MonoBehaviour
         isLoading = true;
         if (UIManager.Instance != null)
             UIManager.Instance.InGameUI.SetActive(false);
-        if (!levelName.Equals(MainMenuName))
+        if (!levelName.Equals(MainMenuName) || star)
         {
             LoadingScreen[loadCount + 1].SetActive(true);
             MainMenu.SetActive(false);
@@ -403,8 +403,7 @@ public class GameManager : MonoBehaviour
             pc.PB.EnterLevel();
         }
 
-        if (star)
-            yield return new WaitForSeconds(5.25f);
+        
 
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(levelName, LoadSceneMode.Additive);
         //AudioManager.Instance.AudioFadeLevelStart();
@@ -413,7 +412,9 @@ public class GameManager : MonoBehaviour
             SetPlayerPositions();
             yield return null;
         }
-        
+
+        if (star)
+            yield return new WaitForSeconds(5.25f);
         SetPlayerPositions();
 
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(levelName));
@@ -434,11 +435,14 @@ public class GameManager : MonoBehaviour
         }
         else if (levelName.Equals(MainMenuName))
         {
+            if (star)
+                MainMenu.SetActive(true);
             star = false;
             LM.ROOM_CLEARED = true;
             IsLevelCleared = true;
             currentLevelName = MainMenuName;
             UIManager.Instance.InGameUI.SetActive(false);
+            
             currentLevel = -1;
         }
         else if (levelName.Equals(ShopName) || levelName.Equals("GreenShop") || levelName.Equals("RedShop") || levelName.Equals("PurpleShop"))
@@ -521,14 +525,27 @@ public class GameManager : MonoBehaviour
 
     public void ReturnToMainMenu(bool cond)
     {
-        //playerGO.SetActive(false);
-        if (UIManager.Instance != null)
+        if (star)
         {
-            LoadingScreen[0].SetActive(true);
-            UIManager.Instance.Resume();
-            UIManager.Instance.InGameUI.SetActive(false);
+            //playerGO.SetActive(false);
+            if (UIManager.Instance != null)
+            {
+                loadCount = 0;
+                //LoadingScreen[0].SetActive(true);
+                UIManager.Instance.Resume();
+                UIManager.Instance.InGameUI.SetActive(false);
+            }
+            MM.trackIndex = -1;
+            MM.PlayNextTrack(false);
         }
-        MM.trackIndex = -1;
+        else
+        {
+            if(UIManager.Instance != null)
+            {
+                UIManager.Instance.Resume();
+                UIManager.Instance.InGameUI.SetActive(false);
+            }
+        }
         //locker = false;
         waitforvideo = cond;
         ResetGame(true);
