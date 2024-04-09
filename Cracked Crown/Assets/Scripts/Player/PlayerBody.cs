@@ -194,10 +194,18 @@ public class PlayerBody : MonoBehaviour
         if (CharacterType != null)
         {
             if (CharacterType.ID != 2)
-                dropShadowPos = new Vector3(transform.position.x, -2f, transform.position.z);
+                dropShadowPos = new Vector3(transform.position.x, -2.25f, transform.position.z);
             else
             {
-                dropShadowPos = new Vector3(transform.position.x, -4f, transform.position.z);
+                dropShadowPos = new Vector3(transform.position.x, -3f, transform.position.z);
+            }
+            if (CharacterType.ID == 0)
+            {
+                dropShadow.transform.localScale = new Vector3(17.5f, 3.5f, 1);
+            }
+            else
+            {
+                dropShadow.transform.localScale = new Vector3(11.4164305f, 2.56681347f, 0.443150014f);
             }
 
             dropShadow.transform.position = dropShadowPos;
