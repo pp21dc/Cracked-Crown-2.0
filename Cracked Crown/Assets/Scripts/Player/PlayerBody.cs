@@ -301,10 +301,10 @@ public class PlayerBody : MonoBehaviour
 
             if (!alreadyMovedCorpse && gameManager.currentLevelName == "GreenShop" || gameManager.currentLevelName == "RedShop" || gameManager.currentLevelName == "PurpleShop")
             {
-                GameObject[] resStone = GameObject.FindGameObjectsWithTag("Revive");
+                GameObject resStone = GameObject.FindGameObjectWithTag("Revive");
 
-                if (resStone != null && resStone[0] != null)
-                    resStonePos = new Vector3(resStone[0].transform.parent.position.x, 0f, resStone[0].transform.parent.position.z - 20.0f);
+                if (resStone != null)
+                    resStonePos = new Vector3(resStone.transform.parent.position.x, 0f, resStone.transform.parent.position.z - 20.0f);
                 respawnPoint = resStonePos;
 
                 if (corpse != null)
@@ -316,7 +316,10 @@ public class PlayerBody : MonoBehaviour
             if (gameManager.currentLevelName == "GreenShop" || gameManager.currentLevelName == "RedShop" || gameManager.currentLevelName == "PurpleShop")
             {
                 GameObject walrus = GameObject.FindGameObjectWithTag("Walrus");
-                walrusAnimator = walrus.GetComponent<Animator>();
+                if (walrus != null)
+                {
+                    walrusAnimator = walrus.GetComponent<Animator>();
+                }
             }
         }
     }
