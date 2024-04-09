@@ -162,7 +162,7 @@ public class UIManager : MonoBehaviour
             {
                 if (GM.Players[i].PB.CharacterType.ID == 0)
                 {
-                    iconObjects[i].GetComponent<Image>().sprite = CharacterIcons[0];
+                    iconObjects[i].GetComponent<Image>().sprite = CharacterIcons[3];
                     iconObjects[i].GetComponent<Image>().SetNativeSize();
 
                 }
@@ -178,7 +178,7 @@ public class UIManager : MonoBehaviour
                 }
                 else if (GM.Players[i].PB.CharacterType.ID == 3)
                 {
-                    iconObjects[i].GetComponent<Image>().sprite = CharacterIcons[3];
+                    iconObjects[i].GetComponent<Image>().sprite = CharacterIcons[0];
                     iconObjects[i].GetComponent<Image>().SetNativeSize();
                 }
             }
