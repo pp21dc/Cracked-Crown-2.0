@@ -469,7 +469,7 @@ public class GameManager : MonoBehaviour
         }
         else if (levelName.Equals(MainMenuName))
         {
-
+            SetPlayerPositions();
             if (star && !waitforvideo)
             {
                 MainMenu.SetActive(true);
@@ -624,7 +624,8 @@ public class GameManager : MonoBehaviour
 
     public void LoadAScene(string sceneName)
     {
-        StartCoroutine("LoadLevel", sceneName);
+        if (!isLoading)
+            StartCoroutine("LoadLevel", sceneName);
     }
 
 }

@@ -722,9 +722,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2653974931603395976, guid: 2ef74e3567762f744a6e0aab0622ef89,
         type: 3}
+      propertyPath: m_RenderMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2653974931603395976, guid: 2ef74e3567762f744a6e0aab0622ef89,
+        type: 3}
       propertyPath: m_TargetCamera
       value: 
       objectReference: {fileID: 1105187860}
+    - target: {fileID: 2653974931603395976, guid: 2ef74e3567762f744a6e0aab0622ef89,
+        type: 3}
+      propertyPath: m_TargetTexture
+      value: 
+      objectReference: {fileID: 8400000, guid: 3c061d174baaff1428f5e0d10e939b0d, type: 2}
     - target: {fileID: 3475283337148167280, guid: 2ef74e3567762f744a6e0aab0622ef89,
         type: 3}
       propertyPath: m_Name
@@ -732,9 +742,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5185438643073458946, guid: 2ef74e3567762f744a6e0aab0622ef89,
         type: 3}
+      propertyPath: m_RenderMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5185438643073458946, guid: 2ef74e3567762f744a6e0aab0622ef89,
+        type: 3}
       propertyPath: m_TargetCamera
       value: 
       objectReference: {fileID: 1105187860}
+    - target: {fileID: 5185438643073458946, guid: 2ef74e3567762f744a6e0aab0622ef89,
+        type: 3}
+      propertyPath: m_TargetTexture
+      value: 
+      objectReference: {fileID: 8400000, guid: 3c061d174baaff1428f5e0d10e939b0d, type: 2}
     - target: {fileID: 5541360619746335601, guid: 2ef74e3567762f744a6e0aab0622ef89,
         type: 3}
       propertyPath: rt
@@ -771,9 +791,19 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 7741467383465358238, guid: 2ef74e3567762f744a6e0aab0622ef89,
         type: 3}
+      propertyPath: m_RenderMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7741467383465358238, guid: 2ef74e3567762f744a6e0aab0622ef89,
+        type: 3}
       propertyPath: m_TargetCamera
       value: 
       objectReference: {fileID: 1105187860}
+    - target: {fileID: 7741467383465358238, guid: 2ef74e3567762f744a6e0aab0622ef89,
+        type: 3}
+      propertyPath: m_TargetTexture
+      value: 
+      objectReference: {fileID: 8400000, guid: 3c061d174baaff1428f5e0d10e939b0d, type: 2}
     - target: {fileID: 9212937495989702549, guid: 2ef74e3567762f744a6e0aab0622ef89,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2341,9 +2371,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 701739450424341797, guid: a58fe362b3684744882514a335e4b28e,
         type: 3}
+      propertyPath: m_RenderMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 701739450424341797, guid: a58fe362b3684744882514a335e4b28e,
+        type: 3}
       propertyPath: m_TargetCamera
       value: 
       objectReference: {fileID: 1105187860}
+    - target: {fileID: 701739450424341797, guid: a58fe362b3684744882514a335e4b28e,
+        type: 3}
+      propertyPath: m_TargetTexture
+      value: 
+      objectReference: {fileID: 8400000, guid: 3c061d174baaff1428f5e0d10e939b0d, type: 2}
     - target: {fileID: 1168917652520664392, guid: a58fe362b3684744882514a335e4b28e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2411,14 +2451,34 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6745871983485547224, guid: a58fe362b3684744882514a335e4b28e,
         type: 3}
+      propertyPath: m_RenderMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6745871983485547224, guid: a58fe362b3684744882514a335e4b28e,
+        type: 3}
       propertyPath: m_TargetCamera
       value: 
       objectReference: {fileID: 1105187860}
+    - target: {fileID: 6745871983485547224, guid: a58fe362b3684744882514a335e4b28e,
+        type: 3}
+      propertyPath: m_TargetTexture
+      value: 
+      objectReference: {fileID: 8400000, guid: 3c061d174baaff1428f5e0d10e939b0d, type: 2}
+    - target: {fileID: 7185901536029191798, guid: a58fe362b3684744882514a335e4b28e,
+        type: 3}
+      propertyPath: m_RenderMode
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7185901536029191798, guid: a58fe362b3684744882514a335e4b28e,
         type: 3}
       propertyPath: m_TargetCamera
       value: 
       objectReference: {fileID: 1105187860}
+    - target: {fileID: 7185901536029191798, guid: a58fe362b3684744882514a335e4b28e,
+        type: 3}
+      propertyPath: m_TargetTexture
+      value: 
+      objectReference: {fileID: 8400000, guid: 3c061d174baaff1428f5e0d10e939b0d, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2508,6 +2568,7 @@ MonoBehaviour:
   - PurpleShop
   - 1-3
   - RedShop
+  isLoading: 0
   currentLevelName: 
   MainMenuName: MainMenu
   CutSceneName: 

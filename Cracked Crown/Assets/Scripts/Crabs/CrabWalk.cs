@@ -92,7 +92,7 @@ public class CrabWalk : MonoBehaviour
             }
             //}
         }
-        if (canMove)
+        if (canMove && !GameManager.Instance.isLoading)
         {
             if (hasDied)
             {
