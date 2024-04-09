@@ -54,7 +54,7 @@ public class OpeningVideoController : MonoBehaviour
 
     void ResetVideoPlayer()
     {
-        //rt.SetActive(true);
+        rt.SetActive(true);
         skipLock = true;
         for(int i = 0; i < players.Length; i++) 
         {
@@ -125,6 +125,7 @@ public class OpeningVideoController : MonoBehaviour
             if ((!players[players.Length-1].enabled) && !stopAudio && (openingVideo || winVideo || deathVideo))
             {
                 players[players.Length-1].enabled = false;
+ 
                 GameManager.Instance.waitforvideo = false;
                 GameManager.Instance.FreezePlayers(false);
                 GameManager.Instance.MainMenu.SetActive(true);
@@ -137,7 +138,7 @@ public class OpeningVideoController : MonoBehaviour
                     if (openingVideo)
                         enabled = false;
                 }
-
+                
                 //gameObject.SetActive(false);
 
                 
