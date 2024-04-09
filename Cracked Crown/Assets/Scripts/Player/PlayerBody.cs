@@ -102,7 +102,7 @@ public class PlayerBody : MonoBehaviour
 
     
     public bool gotHit = false;
-    private bool dashOnCD = false;
+    public bool dashOnCD = false;
     public bool canTakeDamage = true;
     public float executeHeal;
     private float executeMoveSpeed = 150f;
@@ -162,6 +162,7 @@ public class PlayerBody : MonoBehaviour
         lockDash = false;
         dashing = false;
         Grabbed = false;
+        dashOnCD = false;
         gameObject.tag = "Player";
     }
 
