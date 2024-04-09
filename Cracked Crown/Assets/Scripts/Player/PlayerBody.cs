@@ -210,6 +210,7 @@ public class PlayerBody : MonoBehaviour
 
         if (Grabbed)
             playerLock = true;
+        
 
         if (!playerLock)
         {
@@ -1235,10 +1236,6 @@ public class PlayerBody : MonoBehaviour
             respawnPoint = transform.position;
 
             canMove = false;
-
-            GameObject c = Instantiate(deathBody, transform.position, Quaternion.identity);
-            SceneManager.MoveGameObjectToScene(c, persistScene);
-            corpse = c;
             canTakeDamage = false;
 
             // turn player sprite to ghost sprite
@@ -1253,6 +1250,9 @@ public class PlayerBody : MonoBehaviour
     private IEnumerator resetCanMoveOnRevive()
     {
         canMove = false;
+        GameObject c = Instantiate(deathBody, transform.position, Quaternion.identity);
+        SceneManager.MoveGameObjectToScene(c, persistScene);
+        corpse = c;
         yield return new WaitForSeconds(1.0f);
     }
 
