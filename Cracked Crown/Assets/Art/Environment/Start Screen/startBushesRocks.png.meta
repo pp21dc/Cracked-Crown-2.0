@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 012a13857ce998046be7b77ad230dad3
+guid: e078d2f88a6d9f74d930dc8bd38d85e2
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -147,7 +147,112 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: startBushesRocks_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 26
+        width: 255
+        height: 163
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2aa40c4459846846bf5cf5b47a355f1
+      internalID: -1875761801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: startBushesRocks_1
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 25
+        width: 132
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 457c9ac40fa7426429d668a83c4524b7
+      internalID: 458955261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: startBushesRocks_2
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 68
+        width: 153
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 436dc7553bac0eb48a218bc64c4e75b1
+      internalID: 1931149667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: startBushesRocks_3
+      rect:
+        serializedVersion: 2
+        x: 598
+        y: 27
+        width: 207
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 711ae53d045a1c449bb283e1e75badf5
+      internalID: -813138784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: startBushesRocks_4
+      rect:
+        serializedVersion: 2
+        x: 824
+        y: 28
+        width: 203
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed8279e4e47805e49a5391b6d04de797
+      internalID: -1912594112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -158,7 +263,12 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      startBushesRocks_0: -1875761801
+      startBushesRocks_1: 458955261
+      startBushesRocks_2: 1931149667
+      startBushesRocks_3: -813138784
+      startBushesRocks_4: -1912594112
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
