@@ -454,10 +454,17 @@ public class EnemyAIController : AdvancedFSM
         if (tag == "Medium")
         {
             dropShadow.transform.localPosition = new Vector3(dropShadow.transform.localPosition.x, -0.25f, 0.52f);
+            Vector3 e = enemyBody.transform.localPosition;
+            enemyBody.transform.localPosition = new Vector3(e.x,0,e.z);
         }
         else if (tag == "Light")
         {
             dropShadow.transform.position = new Vector3(dropShadow.transform.position.x, -0.5f, EAC.transform.position.z - 1.1f);
+        }
+        else if (tag == "Heavy")
+        {
+            Vector3 e = enemyBody.transform.localPosition;
+            enemyBody.transform.localPosition = new Vector3(e.x, 0, e.z);
         }
         if (CurrentState != null && act)
         {
