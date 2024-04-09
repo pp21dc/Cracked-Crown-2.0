@@ -804,7 +804,7 @@ public class PlayerBody : MonoBehaviour
     public bool lockHitForward;
     bool lockHitBackward;
     bool attacking;
-    bool attackImpLock = false;
+    public bool attackImpLock = false;
     public float timer_ifswung;
     int time_resetSwung = 2;
     private void swingTimer()
