@@ -35,7 +35,7 @@ public class PlayerBody : MonoBehaviour
     [SerializeField]
     public float attackKnockback = 100;
     public float takenDamageKnockback = 100;
-    public float Health { get { return health; } }
+    public float Health = 0;
     public float damage = 3f;
 
     [SerializeField]

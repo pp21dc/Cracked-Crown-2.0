@@ -18,6 +18,7 @@ public class OpeningVideoController : MonoBehaviour
     bool startAudio;
     bool stopAudio;
     public bool openingVideo;
+    public bool deathVideo;
 
     [SerializeField]
     GameObject rt;
@@ -118,7 +119,7 @@ public class OpeningVideoController : MonoBehaviour
             }
 
             //Closes the video player setup once the 5th video is done
-            if ((!players[players.Length-1].enabled) && !stopAudio)
+            if ((!players[players.Length-1].enabled) && !stopAudio && openingVideo)
             {
                 players[players.Length-1].enabled = false;
                 GameManager.Instance.waitforvideo = false;

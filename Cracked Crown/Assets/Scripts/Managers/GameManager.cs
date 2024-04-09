@@ -261,6 +261,7 @@ public class GameManager : MonoBehaviour
             video_lose.PlayVideo();
             RevivePlayers();
             SetPlayerPositions();
+            star = false;
             ReturnToMainMenu(true);
         }
         else
@@ -316,7 +317,11 @@ public class GameManager : MonoBehaviour
                 pb.lockDash = false;
                 pb.dashing = false;
                 pb.dashQueue = false;
-
+                if (main)
+                {
+                    pb.ghostCoins = 0;
+                    pb.Health = pb.maxHealth;
+                }
                 if (pb.alreadyDead && !main)
                 {
                     pb.canAttack = false;
@@ -527,23 +532,13 @@ public class GameManager : MonoBehaviour
     public void ReturnToMainMenu(bool cond)
     {
         if (star)
+            loadCount = 0;
+
+
+        if (UIManager.Instance != null)
         {
-            //playerGO.SetActive(false);
-            if (UIManager.Instance != null)
-            {
-                loadCount = 0;
-                //LoadingScreen[0].SetActive(true);
-                UIManager.Instance.Resume();
-                UIManager.Instance.InGameUI.SetActive(false);
-            }
-        }
-        else
-        {
-            if(UIManager.Instance != null)
-            {
-                UIManager.Instance.Resume();
-                UIManager.Instance.InGameUI.SetActive(false);
-            }
+            UIManager.Instance.Resume();
+            UIManager.Instance.InGameUI.SetActive(false);
         }
         //locker = false;
         waitforvideo = cond;
