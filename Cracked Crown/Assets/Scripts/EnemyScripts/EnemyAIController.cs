@@ -201,6 +201,8 @@ public class EnemyAIController : AdvancedFSM
     [SerializeField]
     private Collider Damage;
 
+    private GameObject center;
+
 
     //heavy enemy shoot arc
     private bool shootUp;
@@ -372,6 +374,8 @@ public class EnemyAIController : AdvancedFSM
         firstRoam = true;
         isRoaming = true;
         roamOnCD = false;
+
+        center = GameObject.FindGameObjectWithTag("Center");
 
         shockwaveCol.SetActive(false);
 
@@ -1943,14 +1947,14 @@ public class EnemyAIController : AdvancedFSM
 
         if(gameObject.CompareTag("Medium") && wallGo)
         {
-            movementVector = (SepLoc.position - enemyPosition.transform.position).normalized * mediumSpeed;
+            movementVector = (center.transform.position - enemyPosition.transform.position).normalized * mediumSpeed;
             movementVector.y = 0;
             enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
         }
         else if(gameObject.CompareTag("Heavy") && wallGo)
         {
             //Debug.Log("HEAVY WALL HIT");
-            movementVector = (SepLoc.position - enemyPosition.transform.position).normalized * heavySpeed;
+            movementVector = (center.transform.position - enemyPosition.transform.position).normalized * heavySpeed;
             movementVector.y = 0;
             enemyPosition.transform.position += movementVector * Time.deltaTime;//moves to player
         }
@@ -1964,7 +1968,7 @@ public class EnemyAIController : AdvancedFSM
 
     IEnumerator wallSeperation()
     {
-        SepLoc.localPosition = new Vector3(-SepLoc.localPosition.x, -SepLoc.localPosition.y, -SepLoc.localPosition.z);
+        SepLoc.localPosition = new Vector3(-SepLoc.localPosition.x, 0, -SepLoc.localPosition.z);
 
         wallGo = true;
 
