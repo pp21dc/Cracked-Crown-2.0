@@ -323,6 +323,9 @@ public class GameManager : MonoBehaviour
                 pb.canUseItem = true;
                 pb.gotHit = false;
                 pb.timesHit = 0;
+                pb.timesSwung = 0;
+                pb.timer_ifswung = 0;
+                pb.attackImpLock = false;
                 pb.lockDash = false;
                 pb.dashing = false;
                 pb.dashQueue = false;
@@ -362,6 +365,9 @@ public class GameManager : MonoBehaviour
             pb.canAttack = true;
             //pb.canCollectBomb = true;
             //pb.canCollectPotion = true;
+            pb.timesSwung = 0;
+            pb.timer_ifswung = 0;
+            pb.attackImpLock = false;
             pb.canExecute = true;
             pb.canMovePlayerForexecute = false;
             pb.canTakeDamage = true;
