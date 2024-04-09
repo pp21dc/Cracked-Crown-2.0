@@ -2,17 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class fadeIn : MonoBehaviour
+public class FadeIn : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    float alpha;
+    SpriteRenderer sr;
+    [SerializeField]
+    float fadetime;
+    private void Awake()
     {
-        
+        alpha = 0f;
+        sr = gameObject.GetComponent<SpriteRenderer>();
     }
-
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        if (alpha < 1)
+        {
+            Debug.Log(alpha);
+            StartCoroutine(fadeIn(alpha));
+            alpha += Time.deltaTime/fadetime;
+        }
+        else
+        {
+            alpha = 1;
+            enabled = false;
+        }
+    }
+    public IEnumerator fadeIn (float a)
+    {
+        sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, a);
+
+        yield return new WaitForEndOfFrame();
     }
 }

@@ -440,7 +440,7 @@ public class BossPhases : MonoBehaviour
                 GrabbedPlayerBody.playerLock = false;
             }
         }
-        if (isGrabbed)
+        if (isGrabbed && GrabbedPlayer != null && FollowedPlayer != null)
         {
             if (Claw.name == "clawLeft" || Claw.name == "clawLeft_2")
             {
@@ -736,7 +736,7 @@ public class BossPhases : MonoBehaviour
         {
             bossAnim.Play("enter");
         }
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(3);
         delayed = 2;
     }
 }

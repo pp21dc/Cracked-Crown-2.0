@@ -238,6 +238,7 @@ GameObject:
   m_Component:
   - component: {fileID: 37703110}
   - component: {fileID: 37703111}
+  - component: {fileID: 37703112}
   m_Layer: 0
   m_Name: BossBody
   m_TagString: Untagged
@@ -312,6 +313,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &37703112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 37703109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12f5155b6074b2b4a99ca95f800ef256, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadetime: 7
 --- !u!1 &47932934
 GameObject:
   m_ObjectHideFlags: 0
@@ -5511,6 +5525,7 @@ GameObject:
   m_Component:
   - component: {fileID: 200856296}
   - component: {fileID: 200856295}
+  - component: {fileID: 200856297}
   m_Layer: 0
   m_Name: Eye
   m_TagString: Untagged
@@ -5585,6 +5600,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4882277521094373228}
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+--- !u!114 &200856297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 200856294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12f5155b6074b2b4a99ca95f800ef256, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadetime: 1
 --- !u!1 &242848608
 GameObject:
   m_ObjectHideFlags: 0
@@ -8881,8 +8909,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.0044499934, y: 0.00045001507, z: 0}
-    m_Extent: {x: 1.00035, y: 1.00045, z: 0}
+    m_Center: {x: -0.0013499856, y: 0.00024998188, z: 0}
+    m_Extent: {x: 1.0027499, y: 0.99935, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -9940,6 +9968,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1902841301}
   - component: {fileID: 1902841302}
+  - component: {fileID: 1902841304}
   - component: {fileID: 1902841303}
   m_Layer: 0
   m_Name: crabMouth
@@ -10036,6 +10065,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1902841304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1902841300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12f5155b6074b2b4a99ca95f800ef256, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadetime: 5
 --- !u!114 &1956628210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15853,12 +15895,12 @@ PrefabInstance:
     - target: {fileID: 2261965388512353620, guid: 4c4f37bf10df3e44d864255882aaa6e8,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4319459481737998479, guid: 4c4f37bf10df3e44d864255882aaa6e8,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6228782752336933579, guid: 4c4f37bf10df3e44d864255882aaa6e8,
         type: 3}
@@ -17750,7 +17792,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &7868623373045528301
 MonoBehaviour:
   m_ObjectHideFlags: 0
