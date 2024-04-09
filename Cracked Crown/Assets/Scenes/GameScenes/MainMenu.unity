@@ -5186,7 +5186,7 @@ Transform:
   m_GameObject: {fileID: 77680488}
   serializedVersion: 2
   m_LocalRotation: {x: 0.17364816, y: -0, z: -0, w: 0.9848078}
-  m_LocalPosition: {x: -98.5, y: 8, z: -32.3}
+  m_LocalPosition: {x: -98.5, y: 8.63, z: -32.07}
   m_LocalScale: {x: 0.11681759, y: 0.11681761, z: 0.11681761}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -16251,7 +16251,7 @@ Transform:
   m_GameObject: {fileID: 449577407}
   serializedVersion: 2
   m_LocalRotation: {x: 0.17364816, y: -0, z: -0, w: 0.9848078}
-  m_LocalPosition: {x: 23.400002, y: 8.4, z: -35.2}
+  m_LocalPosition: {x: 23.400002, y: 9.01, z: -34.98}
   m_LocalScale: {x: 0.14916371, y: 0.14916374, z: 0.14916374}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -17670,6 +17670,7 @@ GameObject:
   m_Component:
   - component: {fileID: 688632302}
   - component: {fileID: 688632301}
+  - component: {fileID: 688632303}
   m_Layer: 0
   m_Name: startTreeStump
   m_TagString: Untagged
@@ -17738,12 +17739,33 @@ Transform:
   m_GameObject: {fileID: 688632300}
   serializedVersion: 2
   m_LocalRotation: {x: 0.17364816, y: -0, z: -0, w: 0.9848078}
-  m_LocalPosition: {x: -111.6, y: 6.4, z: -72.9}
+  m_LocalPosition: {x: -111.6, y: 7.54, z: -72.48}
   m_LocalScale: {x: 0.14, y: 0.14000002, z: 0.14000002}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1298379661}
   m_LocalEulerAnglesHint: {x: 20, y: 0, z: 0}
+--- !u!65 &688632303
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 688632300}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 184.00002, y: 88.00001, z: 5.558639}
+  m_Center: {x: 0, y: -0.00000005164603, z: 0.7991007}
 --- !u!1 &722893762
 GameObject:
   m_ObjectHideFlags: 0
@@ -26961,6 +26983,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1676934970}
   - component: {fileID: 1676934969}
+  - component: {fileID: 1676934971}
   m_Layer: 0
   m_Name: startTreeStump (1)
   m_TagString: Untagged
@@ -27029,12 +27052,33 @@ Transform:
   m_GameObject: {fileID: 1676934968}
   serializedVersion: 2
   m_LocalRotation: {x: 0.17364816, y: -0, z: -0, w: 0.9848078}
-  m_LocalPosition: {x: 0, y: 9.2, z: 0}
+  m_LocalPosition: {x: 0, y: 8.65, z: -0.2}
   m_LocalScale: {x: 0.15, y: 0.15000002, z: 0.15000002}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1298379661}
   m_LocalEulerAnglesHint: {x: 20, y: 0, z: 0}
+--- !u!65 &1676934971
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1676934968}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 183.99998, y: 87.99999, z: 8.317728}
+  m_Center: {x: 0, y: -0.0000000019691875, z: 1.6627874}
 --- !u!1 &1708973024
 GameObject:
   m_ObjectHideFlags: 0
@@ -27733,6 +27777,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1981548832}
   - component: {fileID: 1981548831}
+  - component: {fileID: 1981548833}
   m_Layer: 0
   m_Name: startBushesRocks_0
   m_TagString: Untagged
@@ -27807,6 +27852,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1298379661}
   m_LocalEulerAnglesHint: {x: 20, y: 0, z: 0}
+--- !u!65 &1981548833
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1981548830}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 255.00005, y: 163, z: 13.05378}
+  m_Center: {x: 0.00006597085, y: -0.000000023209855, z: 1.18953}
 --- !u!1001 &2003811047
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27965,6 +28031,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2027383549}
   - component: {fileID: 2027383548}
+  - component: {fileID: 2027383550}
   m_Layer: 0
   m_Name: startBushesRocks_2
   m_TagString: Untagged
@@ -28033,12 +28100,33 @@ Transform:
   m_GameObject: {fileID: 2027383547}
   serializedVersion: 2
   m_LocalRotation: {x: 0.17364816, y: -0, z: -0, w: 0.9848078}
-  m_LocalPosition: {x: 47.6, y: 9.5, z: -36.9}
+  m_LocalPosition: {x: 47.6, y: 9.87, z: -36.77}
   m_LocalScale: {x: 0.12, y: 0.12000001, z: 0.12000001}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1298379661}
   m_LocalEulerAnglesHint: {x: 20, y: 0, z: 0}
+--- !u!65 &2027383550
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2027383547}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 153, y: 139.99991, z: 6.173777}
+  m_Center: {x: 0, y: -0.000000029949778, z: 1.4957236}
 --- !u!1001 &2066957012
 PrefabInstance:
   m_ObjectHideFlags: 0
