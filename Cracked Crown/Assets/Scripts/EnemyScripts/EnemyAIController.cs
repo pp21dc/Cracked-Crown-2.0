@@ -1187,6 +1187,7 @@ public class EnemyAIController : AdvancedFSM
 
         if (doneOnGround)
         {
+            doneStun = true;
             slamAttack.HitGround = false;  
             Debug.Log("LetsGoUp");
             EAC.Moving = true;
