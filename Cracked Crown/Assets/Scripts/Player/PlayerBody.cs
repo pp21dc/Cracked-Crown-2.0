@@ -805,7 +805,7 @@ public class PlayerBody : MonoBehaviour
     bool lockHitBackward;
     bool attacking;
     bool attackImpLock = false;
-    float timer_ifswung;
+    public float timer_ifswung;
     int time_resetSwung = 2;
     private void swingTimer()
     {
@@ -877,7 +877,7 @@ public class PlayerBody : MonoBehaviour
         }
         if (hitEnemy && !lockHitBackward)
         {
-            if (!eac_cur.EAC.Dead)
+            if (eac_cur != null && !eac_cur.EAC.Dead)
                 PAM.PlayAudio(PlayerAudioManager.AudioType.EnemyHit);
             //StartCoroutine(backwardHit());
         }
