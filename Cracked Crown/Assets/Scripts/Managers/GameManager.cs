@@ -326,6 +326,7 @@ public class GameManager : MonoBehaviour
                 pb.lockDash = false;
                 pb.dashing = false;
                 pb.dashQueue = false;
+                gameObject.tag = "Player";
                 if (main)
                 {
                     pb.ghostCoins = 0;
@@ -339,6 +340,7 @@ public class GameManager : MonoBehaviour
                     pb.canTakeDamage = false;
                     pb.canUseItem = false;
                     pb.lockDash = true;
+                    gameObject.tag = "Ghost";
                 }
                 else
                 {
@@ -553,7 +555,7 @@ public class GameManager : MonoBehaviour
     {
         if (star)
             loadCount = 0;
-
+        loadCount = -1;
 
         if (UIManager.Instance != null)
         {

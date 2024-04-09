@@ -1253,9 +1253,19 @@ public class PlayerBody : MonoBehaviour
     private IEnumerator resetCanMoveOnRevive()
     {
         canMove = false;
-        GameObject c = Instantiate(deathBody, transform.position, Quaternion.identity);
+        GameObject c = Instantiate(deathBody, spriteRenderer.gameObject.transform.position, Quaternion.identity);
         SceneManager.MoveGameObjectToScene(c, persistScene);
         corpse = c;
+        if (sprite.localScale.x < 0)
+        {
+            c.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = true;
+        }
+        if (sprite.localScale.x > 0)
+        {
+            c.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = false;
+        }
+        
+        
         yield return new WaitForSeconds(1.0f);
     }
 

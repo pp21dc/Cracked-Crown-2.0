@@ -70,12 +70,12 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1785375243
-  m_SortingLayer: 2
+  m_SortingLayerID: 296061455
+  m_SortingLayer: 3
   m_SortingOrder: 5
   m_Sprite: {fileID: 929249019, guid: 10056d7c4e23df84ea5de9bd9a14d3ec, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 6.770834, y: 6.6680913}
@@ -94,6 +94,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5606250235028797019}
   - component: {fileID: 6553475179380371086}
+  - component: {fileID: 6168724876805642924}
+  - component: {fileID: 1909861514523656586}
   m_Layer: 0
   m_Name: Frog_Corpse
   m_TagString: Untagged
@@ -129,3 +131,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9f559a52df12ab438cbaa82b014515e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6168724876805642924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7516477959771602021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8862ed5b54ec75b4194230c23a56adbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &1909861514523656586
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7516477959771602021}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.89, y: 1, z: 15.63}
+  m_Center: {x: -0.63, y: -1.42, z: 7.82}
