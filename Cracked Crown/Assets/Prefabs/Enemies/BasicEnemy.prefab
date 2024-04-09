@@ -671,7 +671,7 @@ MonoBehaviour:
   doneShockwave: 0
   startShooting: 0
   startShock: 0
-  startReload: 0
+  startReload: 1
   canShoot: 0
   noShockCooldown: 0
   toothLeft: {fileID: 6204167168562671087, guid: 4c937eedbfd5dc641902125fd2d1a4c8,
@@ -683,7 +683,9 @@ MonoBehaviour:
   shockwaveScaleInitial: {x: 0, y: 0, z: 0}
   bodyShootLoc: {fileID: 4571654548693407281}
   ToothShotLocation: {fileID: 5226805560839978540}
-  Hole: {fileID: 0}
+  redHole: {fileID: 7357353520499070755, guid: 39db58769e7c50a4786e174a6559d047, type: 3}
+  purpHole: {fileID: 7357353520499070755, guid: 183a158d0807545429f8d63a0e0e7c76,
+    type: 3}
   HoleSpawnLoc: {fileID: 8553142271624506097}
   InContact: 0
   sepCheck: {fileID: 2654834475263193355}

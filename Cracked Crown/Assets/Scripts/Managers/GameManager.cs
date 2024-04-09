@@ -298,6 +298,7 @@ public class GameManager : MonoBehaviour
         foreach (PlayerContainer pc in Players)
         {
             PlayerBody pb = pc.PB;
+            //Debug.Log(pb.CharacterType.name);
             if (pb != null)
             {
                 pb.canMove = true;
@@ -313,12 +314,19 @@ public class GameManager : MonoBehaviour
                 pb.timesHit = 0;
                 pb.lockDash = false;
                 pb.dashing = false;
+                pb.dashQueue = false;
+
                 if (pb.alreadyDead && !main)
                 {
                     pb.canAttack = false;
                     pb.canTakeDamage = false;
                     pb.canUseItem = false;
                     pb.lockDash = true;
+                }
+                else
+                {
+                    pb.animController.SetAll();
+                    pb.alreadyDead = false;
                 }
             }
         }
@@ -378,6 +386,7 @@ public class GameManager : MonoBehaviour
             
             LoadingScreen[loadCount + 1].SetActive(false);
         }
+        FreezePlayers(true);
         ResetPlayers(levelName.Equals(MainMenuName));
         
         

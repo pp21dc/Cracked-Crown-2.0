@@ -13,6 +13,8 @@ public class CharacterType : ScriptableObject
     public float dashTime;
     public float attack;
     public float attackSpeed;
+    public int swingCount;
+    public float swingRecoverTime;
     public float moveCd;
     public float attackDelayTime;
     public float attackKnockback;

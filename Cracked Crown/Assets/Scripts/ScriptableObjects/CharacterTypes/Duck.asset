@@ -17,11 +17,13 @@ MonoBehaviour:
   moveSpeed: 8
   dashSpeed: 20
   dashTime: 0.45
-  attack: 11
-  attackSpeed: 0.4
-  moveCd: 0.4
-  attackDelayTime: 0.2
-  attackKnockback: 10
+  attack: 15
+  attackSpeed: 0.8
+  swingCount: 1
+  swingRecoverTime: 1
+  moveCd: 0.8
+  attackDelayTime: 0.25
+  attackKnockback: 1000
   finisherRadius: 40
   executePosition: {x: 8, y: 0, z: 0}
   corpse: {fileID: 7516477959771602021, guid: a02bd79f2ac5a11499521a07eaf75139, type: 3}

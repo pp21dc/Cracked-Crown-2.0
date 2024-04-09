@@ -33,8 +33,8 @@ public class PlayerBody : MonoBehaviour
     public float KnockbackTime = 0.025f;
     public float KnockForwardTime = 0.025f;
     [SerializeField]
-    private float attackKnockback = 100;
-    public float takenDamageKnockback = 1000;
+    public float attackKnockback = 100;
+    public float takenDamageKnockback = 100;
     public float Health { get { return health; } }
     public float damage = 3f;
 
@@ -50,7 +50,7 @@ public class PlayerBody : MonoBehaviour
     public PlayerManager PM;
     public FinisherCollider executeCollideScript;
     [SerializeField]
-    private PlayerAnimController animController;
+    public PlayerAnimController animController;
     [SerializeField]
     private Rigidbody rb;
     [SerializeField]
@@ -127,6 +127,9 @@ public class PlayerBody : MonoBehaviour
     //hey Ian dont know where you will want this bool
     public bool canRelease = false;
     public int playerID;
+
+    int swings;
+    float swingRecoverTime;
 
     private bool hasReachedExecutePoint = false;
     private bool neverReachedExecutePoint = false;
@@ -325,10 +328,21 @@ public class PlayerBody : MonoBehaviour
         StopPlayer();
         StartCoroutine(FadeSprite(0.001f, 0.5f));
     }
+    public int timesSwung = 0;
+    bool waitingforImproved;
+    IEnumerator AttackImproved()
+    {
+        canAttack = false;
+        waitingforImproved = true;
+        yield return new WaitForSeconds(swingRecoverTime);
+        canAttack = true;
+        waitingforImproved = false;
+        attackImpLock = false;
+    }
 
     public void EnterLevel()
     {
-        StopAllCoroutines();
+        //StopAllCoroutines();
         playerLock = false;
         //StopAllCoroutines();
         if (spriteRenderer != null)
@@ -633,22 +647,22 @@ public class PlayerBody : MonoBehaviour
                 rb.velocity = (new Vector3(0, rb.velocity.y) + ((dashDirection * dashSpeed * forceMod * 0.9f)) * Time.fixedDeltaTime);
                 dashDirection.z = dz;
             }
-            if (!hitEnemy && (lockHitForward))
-            {
+            //if (!hitEnemy && (lockHitForward))
+            //{
 
-                //Debug.Log("FORWARD");
-                float y = rb.velocity.y;
-                rb.velocity = (GetMovementVector() * attackKnockback);
-                rb.velocity = new Vector3(rb.velocity.x, y, rb.velocity.z);
-            }
-            else if (hitEnemy && lockHitBackward)
-            {
-                //Debug.Log("BACK");
-                float y = rb.velocity.y;
-                rb.velocity = (-GetMovementVector() * attackKnockback);
-                rb.velocity = new Vector3(rb.velocity.x, y, rb.velocity.z);
-            }
-            else if (canTakeDamage && gotHit)
+            //    //Debug.Log("FORWARD");
+            //    float y = rb.velocity.y;
+            //    rb.velocity = (GetMovementVector() * attackKnockback);
+            //    rb.velocity = new Vector3(rb.velocity.x, y, rb.velocity.z);
+            //}
+            //else if (hitEnemy && lockHitBackward)
+            //{
+            //    //Debug.Log("BACK");
+            //    float y = rb.velocity.y;
+            //    rb.velocity = (-GetMovementVector() * attackKnockback);
+            //    rb.velocity = new Vector3(rb.velocity.x, y, rb.velocity.z);
+            //}
+            if (canTakeDamage && gotHit)
             {
                 float y = rb.velocity.y;
                 Debug.Log(otherPlayerMV);
@@ -773,6 +787,8 @@ public class PlayerBody : MonoBehaviour
         attackDelayTime = CharacterType.attackDelayTime;
         health = CharacterType.health;
         maxHealth = health;
+        swings = CharacterType.swingCount;
+        swingRecoverTime = CharacterType.swingRecoverTime;
         spriteRenderer = CharacterFolder.transform.GetChild(0).GetComponent<SpriteRenderer>();
     }
     float x = 0;
@@ -781,10 +797,33 @@ public class PlayerBody : MonoBehaviour
     public bool lockHitForward;
     bool lockHitBackward;
     bool attacking;
+    bool attackImpLock = false;
+    float timer_ifswung;
+    int time_resetSwung = 2;
+    private void swingTimer()
+    {
+        if (timesSwung > 0 && timer_ifswung < time_resetSwung)
+        {
+            timer_ifswung += Time.deltaTime;
+
+        }
+        else if (timer_ifswung >= time_resetSwung)
+        {
+            timesSwung = 0;
+            timer_ifswung = 0;
+        }
+        else if (timesSwung == 0)
+        {
+            timer_ifswung = 0;
+        }
+    }
     private void Attack()
     {
-        if (controller.PrimaryAttackDown && canAttack && !dashing)
+        swingTimer();
+
+        if (controller.PrimaryAttackDown && canAttack && !dashing && timesSwung <= swings-1)
         {
+            timesSwung++;
             canMove = false;
             canAttack = false;
             attacking = true;
@@ -794,6 +833,12 @@ public class PlayerBody : MonoBehaviour
             StartCoroutine(attackDelay());
             StartCoroutine(attackCooldown());
             StartCoroutine(attackMoveCooldown());
+        }
+        else if (!attackImpLock && timesSwung > swings-1)
+        {
+            timesSwung = 0;
+            attackImpLock = true;
+            StartCoroutine(AttackImproved());
         }
         
 
@@ -821,13 +866,13 @@ public class PlayerBody : MonoBehaviour
         SwordSlash.sword.Play();
         if (!hitEnemy && !lockHitForward)
         {
-            StartCoroutine(forwardHit());
+            //StartCoroutine(forwardHit());
         }
         if (hitEnemy && !lockHitBackward)
         {
             if (!eac_cur.EAC.Dead)
                 PAM.PlayAudio(PlayerAudioManager.AudioType.EnemyHit);
-            StartCoroutine(backwardHit());
+            //StartCoroutine(backwardHit());
         }
         animController.Attacking = false;
     }
@@ -848,17 +893,24 @@ public class PlayerBody : MonoBehaviour
         lockHitBackward = false;
         hitEnemy = false;
     }
-
+    public PlayerBody pbOther;
     public IEnumerator gotHitKnockback(Vector3 movementVect)
     {
         otherPlayerMV = Vector3.zero;
         otherPlayerMV = movementVect;
+        if (otherPlayerMV.magnitude < 0.2f && otherPlayerMV.magnitude > -0.2f)
+        {
+            otherPlayerMV += new Vector3(0.5f, 0, 0.5f);
+            otherPlayerMV *= 1;
+        }
         gotHit = true;
         dontForward = false;
         yield return new WaitForSeconds(KnockbackTime);
         dontForward = true;
         gotHit = false;
         lockHitForward = false;
+        otherPlayerMV = Vector3.zero;
+        rb.velocity = Vector3.zero;
         Debug.Log("COT");
     }
 
@@ -867,7 +919,8 @@ public class PlayerBody : MonoBehaviour
         yield return new WaitForSeconds(attackSpeed * 0.95f);
         attacking = false;
         yield return new WaitForSeconds(attackSpeed * 0.05f);
-        canAttack = true;
+        if (!waitingforImproved)
+            canAttack = true;
         AttackVector = Vector3.zero;
     }
 

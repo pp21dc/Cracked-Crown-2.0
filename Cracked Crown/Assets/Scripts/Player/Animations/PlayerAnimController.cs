@@ -208,7 +208,7 @@ public class PlayerAnimController : MonoBehaviour
             Animator.runtimeAnimatorController = PC.PB.CharacterType.controller;
             Animator.SetBool("Falling", falling); 
             Animator.SetBool("Moving", moving);
-            Animator.SetBool("Dashing", dashing);
+            Animator.SetBool("Dashing", PC.PB.dashing);
             Animator.SetBool("Attacking", attacking);
             Animator.SetBool("FinishMed_Green", finishing_medium_green);
             Animator.SetBool("FinishMed_Purple", finishing_medium_purple);

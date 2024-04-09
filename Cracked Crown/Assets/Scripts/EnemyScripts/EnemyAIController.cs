@@ -938,6 +938,7 @@ public class EnemyAIController : AdvancedFSM
         {
             dead = true;
             heavyBullets = 0;
+            StopAllCoroutines();
             StartCoroutine(Death());
             
         }
@@ -953,7 +954,7 @@ public class EnemyAIController : AdvancedFSM
 
         while (health < maxHealth*(0.75))
         {
-            health += Time.deltaTime * 2;
+            health += Time.deltaTime * 5;
             //Debug.Log("HEALTH");
             yield return null;
         }
@@ -967,6 +968,7 @@ public class EnemyAIController : AdvancedFSM
 
             yield return new WaitForSeconds(2f);
 
+            heavyBullets = maxAmmo;
             EAC.Stunned = false;
             doneStun = true;
         }
@@ -998,7 +1000,9 @@ public class EnemyAIController : AdvancedFSM
         }
         else
         {
-            if(colour == "Purple")
+            
+
+            if (colour == "Purple")
             {
                 GameObject holeGO = GameObject.Instantiate(purpHole, HoleSpawnLoc);
             }
@@ -1007,7 +1011,9 @@ public class EnemyAIController : AdvancedFSM
                 GameObject holeGO = GameObject.Instantiate(redHole, HoleSpawnLoc);
             }
 
-            
+            LevelManager.Instance.EnemyKilled();
+            Destroy(transform.parent.gameObject);
+
         }
 
         //yield return null;

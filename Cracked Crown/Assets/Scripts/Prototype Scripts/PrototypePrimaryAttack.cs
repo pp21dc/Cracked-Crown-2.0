@@ -45,7 +45,7 @@ public class PrototypePrimaryAttack : MonoBehaviour
                 {
                     enemyController.hitBy = playerBody.transform;
                     enemyController.lockKnock = true;
-                    enemyController.StartCoroutine(enemyController.KB(playerBody.AttackVector * 20 * playerBody.forceMod));
+                    enemyController.StartCoroutine(enemyController.KB(playerBody.AttackVector * 20 * playerBody.attackKnockback));
                 }
             }
         }
@@ -68,6 +68,7 @@ public class PrototypePrimaryAttack : MonoBehaviour
             if (playerBody.playerID != otherPlayer.playerID && !otherPlayer.gotHit && !otherPlayer.alreadyDead)
             {
                 otherPlayer.DecHealth(3f);
+                otherPlayer.pbOther = playerBody;
                 StartCoroutine(otherPlayer.gotHitKnockback(playerBody.GetMovementVector()));
             }
         }
