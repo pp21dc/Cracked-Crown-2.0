@@ -22,7 +22,7 @@ public class PlayerBody : MonoBehaviour
     [SerializeField]
     private float finisherRadius = 20f;
     [SerializeField]
-    private float health = 50f;
+    public float health = 50f;
     [SerializeField]
     private GameObject deathBody;
 
