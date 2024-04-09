@@ -148,7 +148,7 @@ public class LevelManager : MonoBehaviour
     public void Enter_Level(bool hostile, bool boss)
     {
         CURRENT_WAVE = 1;
-        GM.SetPlayerPositions();
+        //GM.SetPlayerPositions();
         this.boss = boss;
         StartCoroutine(ON_ENTER(hostile, boss));
     }

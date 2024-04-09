@@ -139,7 +139,9 @@ public class PlayerBody : MonoBehaviour
     private GameObject sparkleObject;
     public void ResetPlayer()
     {
+        StopAllCoroutines();
         health = maxHealth;
+        alreadyDead = true;
         canAttack = true;
         canCollect = true;
         canCollectBomb = false;
@@ -165,6 +167,7 @@ public class PlayerBody : MonoBehaviour
 
     private void Update()
     {
+        Health = health;
         if (Input.GetKeyUp(KeyCode.C))
             hasBomb = true;
         if (Input.GetKey(KeyCode.K))
@@ -416,7 +419,7 @@ public class PlayerBody : MonoBehaviour
         canMove = true;
         //rb.MovePosition(respawnPoint);
         rb.velocity = Vector3.zero;
-        ResetPlayer();
+        GameManager.Instance.ResetPlayer(this);
     }
 
     private IEnumerator deathAnim()
@@ -495,7 +498,7 @@ public class PlayerBody : MonoBehaviour
 
     public IEnumerator SpriteOn()
     {
-        yield return new WaitForSeconds(7);
+        yield return new WaitForSeconds(9);
         spriteRenderer.enabled = true;
         offSprite = false;
     }

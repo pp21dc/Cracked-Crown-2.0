@@ -16,9 +16,10 @@ public class OpeningVideoController : MonoBehaviour
     public bool active = false;
     bool skipLock = true;
     bool startAudio;
-    bool stopAudio;
+    public bool stopAudio;
     public bool openingVideo;
     public bool deathVideo;
+    public bool winVideo;
 
     [SerializeField]
     GameObject rt;
@@ -53,6 +54,7 @@ public class OpeningVideoController : MonoBehaviour
 
     void ResetVideoPlayer()
     {
+        //rt.SetActive(true);
         for(int i = 0; i < players.Length; i++) 
         {
             players[i].enabled = true;
@@ -110,16 +112,16 @@ public class OpeningVideoController : MonoBehaviour
             }
 
             //Closes the video player setup once the 3rd video is done
-            if (openingVideo && (!players[3].enabled) && !startAudio)
+            if (openingVideo && (!players[4].enabled) && !startAudio)
             {
                 startAudio = true;
-                players[3].enabled = false;
+                players[4].enabled = false;
                 if (openingVideo)
                     MusicManager.instance.PlayTrack(MusicManager.TrackTypes.intro);
             }
 
             //Closes the video player setup once the 5th video is done
-            if ((!players[players.Length-1].enabled) && !stopAudio && openingVideo)
+            if ((!players[players.Length-1].enabled) && !stopAudio && (openingVideo || winVideo || deathVideo))
             {
                 players[players.Length-1].enabled = false;
                 GameManager.Instance.waitforvideo = false;
@@ -127,11 +129,12 @@ public class OpeningVideoController : MonoBehaviour
                 GameManager.Instance.MainMenu.SetActive(true);
                 stopAudio = true;
                 rt.SetActive(false);
-                if (openingVideo)
+                skipLock = true;
+                if (openingVideo || deathVideo || winVideo)
                 {
                     MusicManager.instance.PlayTrack(MusicManager.TrackTypes.windy);
-
-                    enabled = false;
+                    if (openingVideo)
+                        enabled = false;
                 }
 
                 //gameObject.SetActive(false);

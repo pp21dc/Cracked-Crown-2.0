@@ -8,6 +8,8 @@ using System;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using TMPro;
+using System.Threading;
+
 public class GameManager : MonoBehaviour
 {
     private static GameManager instance;
@@ -192,10 +194,14 @@ public class GameManager : MonoBehaviour
     IEnumerator WINGAME()
     {
         win = false;
-        yield return new WaitForSeconds(15);
+        yield return new WaitForSeconds(5);
         eyeCount = 0;
+        video_win.stopAudio = false;
         video_win.PlayVideo();
+        MM.PlayTrack(MusicManager.TrackTypes.loading);
         RevivePlayers();
+        SetPlayerPositions();
+        star = true;
         ReturnToMainMenu(true);
     }
 
@@ -258,10 +264,12 @@ public class GameManager : MonoBehaviour
         if (AreAllPlayersDead() && Players[0] != null && !waitforvideo)
         {
             eyeCount = 0;
+            video_lose.stopAudio = false;
             video_lose.PlayVideo();
+            MM.PlayTrack(MusicManager.TrackTypes.loading);
             RevivePlayers();
             SetPlayerPositions();
-            star = false;
+            star = true;
             ReturnToMainMenu(true);
         }
         else
@@ -303,6 +311,7 @@ public class GameManager : MonoBehaviour
             //Debug.Log(pb.CharacterType.name);
             if (pb != null)
             {
+                pb.StopAllCoroutines();
                 pb.canMove = true;
                 pb.canCollect = true;
                 pb.canAttack = true;
@@ -320,7 +329,9 @@ public class GameManager : MonoBehaviour
                 if (main)
                 {
                     pb.ghostCoins = 0;
-                    pb.Health = pb.maxHealth;
+                    pb.health = pb.maxHealth;
+                    //pb.alreadyDead = true;
+                    pb.playerLock = false;
                 }
                 if (pb.alreadyDead && !main)
                 {
@@ -373,9 +384,10 @@ public class GameManager : MonoBehaviour
     private IEnumerator LoadLevel(string levelName)
     {
         isLoading = true;
+        SetPlayerPositions();
         if (UIManager.Instance != null)
             UIManager.Instance.InGameUI.SetActive(false);
-        if (!levelName.Equals(MainMenuName) || star)
+        if ((!levelName.Equals(MainMenuName) || star) && !waitforvideo)
         {
             MM.PlayTrack(MusicManager.TrackTypes.loading);
             LoadingScreen[loadCount + 1].SetActive(true);
@@ -386,6 +398,8 @@ public class GameManager : MonoBehaviour
             Debug.Log("ON");
             if (!waitforvideo)
                 MainMenu.SetActive(true);
+            else
+                MainMenu.SetActive(false);
             
             LoadingScreen[loadCount + 1].SetActive(false);
         }
@@ -409,6 +423,7 @@ public class GameManager : MonoBehaviour
         foreach (PlayerContainer pc in Players)
         {
             pc.PB.EnterLevel();
+            FreezePlayers(true);
         }
 
         
@@ -421,16 +436,18 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
         FreezePlayers(true);
-        if (star)
+        if (!waitforvideo)
             yield return new WaitForSeconds(5.25f);
-        SetPlayerPositions();
+        else if (levelName.Equals (MainMenuName))
+            RevivePlayers();
+        //SetPlayerPositions();
         FreezePlayers(true);
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(levelName));
         if (!levelName.Equals(MainMenuName) && !levelName.Equals(BossLevelName) && currentLevel <= levelNames.Length &&
             (!levelName.Equals("TempShop") && !levelName.Equals("GreenShop") && !levelName.Equals("PurpleShop") && !levelName.Equals("RedShop")))
         {
             MM.PlayTrack((MusicManager.TrackTypes)LM.CURRENT_ROOM + 4);
-            SetPlayerPositions();
+            //SetPlayerPositions();
             currentLevelName = levelNames[currentLevel];
 
             currentLevelName = levelName;
@@ -443,7 +460,7 @@ public class GameManager : MonoBehaviour
         else if (levelName.Equals(MainMenuName))
         {
 
-            if (star)
+            if (star && !waitforvideo)
             {
                 MainMenu.SetActive(true);
                 MM.PlayTrack(MusicManager.TrackTypes.windy);
@@ -497,8 +514,10 @@ public class GameManager : MonoBehaviour
         locker = false;
         locker_Boss = false;
         //isLoading = false;
+        
+        if (!waitforvideo)
+            FreezePlayers(false);
         SetPlayerPositions();
-        FreezePlayers(false);
 
         if (!levelName.Equals(MainMenuName)/* || !levelName.Equals("TempShop")*/)
         {
@@ -511,6 +530,7 @@ public class GameManager : MonoBehaviour
             
         }
         loadCount++;
+        isLoading = false;
     }
 
     public void SetPlayerPositions()
@@ -543,7 +563,9 @@ public class GameManager : MonoBehaviour
         //locker = false;
         waitforvideo = cond;
         ResetGame(true);
-        StartCoroutine("LoadLevel", MainMenuName);
+        if (!isLoading)
+            StartCoroutine("LoadLevel", MainMenuName);
+        isLoading = true;
         FreezePlayers(true);
         //currentLevelName = MainMenuName;
         dialogue.ResetDialoguePlayerList();

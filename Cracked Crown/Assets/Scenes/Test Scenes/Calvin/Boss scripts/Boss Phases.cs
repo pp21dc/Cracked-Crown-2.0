@@ -132,7 +132,7 @@ public class BossPhases : MonoBehaviour
             GameManager.Instance.claws.Add(this);
         }
     }
-
+    bool sendToWin;
     void Update()
     {
         if (delayed == 0)
@@ -151,8 +151,9 @@ public class BossPhases : MonoBehaviour
 
         for (int i = 0; i < otherClaw.Length; i++)
         {
-            if (otherClaw[i].isDead() && isDead()) //this var is what ever one you use to tell if boss is dead
+            if (otherClaw[i].isDead() && isDead() && !sendToWin) //this var is what ever one you use to tell if boss is dead
             {
+                sendToWin = true;
                 if (GameManager.Instance != null)
                 {
                     GameManager.Instance.win = true;
