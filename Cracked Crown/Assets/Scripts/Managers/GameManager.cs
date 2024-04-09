@@ -329,6 +329,7 @@ public class GameManager : MonoBehaviour
                 pb.lockDash = false;
                 pb.dashing = false;
                 pb.dashQueue = false;
+                pb.dashOnCD = false;
                 gameObject.tag = "Player";
                 if (main)
                 {
@@ -378,6 +379,7 @@ public class GameManager : MonoBehaviour
             pb.Grabbed = false;
             pb.ghostCoins = 0;
             pb.dashing = false;
+            pb.dashOnCD = false;
             if (pb.alreadyDead)
             {
                 pb.canAttack = false;
