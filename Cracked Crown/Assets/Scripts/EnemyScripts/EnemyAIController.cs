@@ -205,6 +205,9 @@ public class EnemyAIController : AdvancedFSM
     //heavy enemy shoot arc
     private bool shootUp;
     private bool shootDown;
+
+    private bool startFlee;
+    private bool stillFlee;
     
     public float Health
     {
@@ -423,6 +426,9 @@ public class EnemyAIController : AdvancedFSM
         //heavy enemy arcs
         shootUp = false;
         shootDown = false;
+
+        stillFlee = false;
+        startFlee = true;
 
         roamLoc = new Vector3(enemyPosition.localPosition.x + (int)Random.Range(-130, 130), 0, enemyPosition.localPosition.z + (int)Random.Range(-130, 130));
 
@@ -814,26 +820,24 @@ public class EnemyAIController : AdvancedFSM
         Debug.Log(closest == null);
         if (closest != null)
         {
-            if(Vector3.Distance(this.ePosition.position, closest.transform.position) <= 50f)
+
+            if(Vector3.Distance(this.ePosition.position, closest.transform.position) <= 20f)
             {
-                if (!lockKnock)
-                {
-                    movementVector = (closest.transform.position - enemyPosition.transform.position).normalized * Speed;
-                    if (tag != "Light")
-                        movementVector.y = 0;
-                    enemyPosition.transform.position -= movementVector * Time.deltaTime;//moves to player
-                }
-                //enemyBody.transform.position = new Vector3(enemyBody.position.x, 0, enemyBody.position.z); //keeps it on ground
-                if (closest.transform.position.x + 1 > enemyPosition.transform.position.x)
-                {
-                    EAC.SR.flipX = true;
-                }
-                else
-                {
-                    EAC.SR.flipX = false;
-                }
+                stillFlee = true;
             }
-            else if (Vector3.Distance(this.ePosition.position, closest.transform.position) > 50f)
+
+            if(stillFlee == true)
+            {
+                    flee();
+
+                if(startFlee)
+                {
+                    startFlee = false;
+                    StartCoroutine(FleeTimer());
+                }
+
+            }
+            else
             {
                 if (!lockKnock)
                 {
@@ -867,7 +871,36 @@ public class EnemyAIController : AdvancedFSM
 
     }
 
+    private void flee()
+    {
+        if (!lockKnock)
+        {
+            movementVector = (closest.transform.position - enemyPosition.transform.position).normalized * heavySpeed;
+            if (tag != "Light")
+                movementVector.y = 0;
+            enemyPosition.transform.position -= movementVector * Time.deltaTime;//moves to player
+        }
+        //enemyBody.transform.position = new Vector3(enemyBody.position.x, 0, enemyBody.position.z); //keeps it on ground
+        if (closest.transform.position.x + 1 > enemyPosition.transform.position.x)
+        {
+            EAC.SR.flipX = true;
+        }
+        else
+        {
+            EAC.SR.flipX = false;
+        }
+    }
+    
+    IEnumerator FleeTimer()
+    {
 
+        yield return new WaitForSeconds(2);
+
+        stillFlee = false;
+        startFlee = true;
+
+        yield return null;
+    }
 
 
     //shooting code from franks class
@@ -1023,7 +1056,7 @@ public class EnemyAIController : AdvancedFSM
 
     IEnumerator SpawnPHole()
     {
-        Instantiate(purpHole, HoleSpawnLoc.position, Quaternion.identity);
+               Instantiate(purpHole, HoleSpawnLoc.position, Quaternion.identity);
 
         yield return null;
     }
