@@ -10,7 +10,7 @@ public class CrabWalk : MonoBehaviour
     public Animator animator;
     public bool hasDied = false;
     public bool stop = false;
-    bool alreadyAtPos = false;
+    public bool alreadyAtPos = false;
     public bool canMove = false;
     private Transform startPos;
     public bool hasBeenExecuted = false;
@@ -60,9 +60,12 @@ public class CrabWalk : MonoBehaviour
             {
                 if (gameObject.tag == "Mini Crab" || gameObject.tag == "MiniCrabExecutable")
                 {
-                    canMove = true;
-                    animator.SetBool("Moving", true);
-                    gameObject.transform.GetChild(0).gameObject.SetActive(true);
+                    if (!alreadyAtPos)
+                    {
+                        canMove = true;
+                        animator.SetBool("Moving", true);
+                        gameObject.transform.GetChild(0).gameObject.SetActive(true);
+                    }
                 }
             }
             if (gameObject.tag == "StruggleCrab")
