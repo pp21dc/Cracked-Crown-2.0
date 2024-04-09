@@ -55,7 +55,7 @@ public class BossPhases : MonoBehaviour
     private Vector3 clawtarget;
     public string testAttack;
     private int currSpriteID = 0;
-    private bool delayed = false;
+    private int delayed = 0;
 
     private int nextattack;
     private int prevattack;
@@ -95,7 +95,14 @@ public class BossPhases : MonoBehaviour
     private void Awake()
     {
         bosshealth = MAXBOSSHEALTH;
-        CLAWSPAWN = Claw.transform.position; // gets the original claw point
+        if (Claw.name == "clawLeft" || Claw.name == "clawLeft_2")
+        {
+            CLAWSPAWN = new Vector3(0.5f, 0, 0); // gets the original claw point
+        }
+        else
+        {
+            CLAWSPAWN = new Vector3(-0.5f, 0, 0);
+        }
     }
 
 
@@ -128,6 +135,15 @@ public class BossPhases : MonoBehaviour
 
     void Update()
     {
+        if (delayed == 0)
+        {
+            StartCoroutine(BossEntry());
+        }
+        if (delayed == 1)
+        {
+            return;
+        }
+
         if (canRage)
         {
             CheckRage();
@@ -227,43 +243,7 @@ public class BossPhases : MonoBehaviour
             StartCoroutine(BossRage());
         }
     }
-
-    /*private void TestLoop()
-    {
-        if (gameObject.name == "clawLeft")
-        {
-            if (Input.GetKeyDown("7"))
-            {
-                attacktimer = 8;
-                StartCoroutine("PincerAttack");
-                testAttack = "pincer";
-                Debug.Log(attacktimer);
-            }
-            if (Input.GetKeyDown("8"))
-            {
-                attacktimer = 4.5f;
-                StartCoroutine("ClawSmash");
-                testAttack = "smash";
-                Debug.Log(attacktimer);
-            }
-        }
-        if (gameObject.name == "clawRight")
-        {
-            if (Input.GetKeyDown("9"))
-            {
-                attacktimer = 8;
-                StartCoroutine("PincerAttack");
-                testAttack = "pincer";
-            }
-            if (Input.GetKeyDown("0"))
-            {
-                attacktimer = 4.5f;
-                StartCoroutine("ClawSmash");
-                testAttack = "smash";
-            }
-        }
-    } */
-
+    
     public void decHealth(float amount)
     {
         bosshealth -= amount;
@@ -286,11 +266,6 @@ public class BossPhases : MonoBehaviour
             currSpriteID = 3;
         }
         DmgOverlay.GetComponent<SpriteRenderer>().sprite = spriteList[currSpriteID];
-    }
-
-    public IEnumerator delay(int time)
-    {
-        yield return new WaitForSeconds(time);
     }
 
     public IEnumerator FlashRed(SpriteRenderer s)
@@ -329,6 +304,16 @@ public class BossPhases : MonoBehaviour
     private void startNextAttack()
     {
         CurrentAttack = createNextAttack();
+
+        if (CurrentAttack == "RoarAttack")
+        {
+            createNextAttack();
+
+            if (CurrentAttack == "RoarAttack")
+            {
+                createNextAttack();
+            }
+        }
         switch (CurrentAttack) // sets attack timer based on the next boss attack
         {
             case "PincerAttack":
@@ -619,7 +604,6 @@ public class BossPhases : MonoBehaviour
         clawtarget = CLAWSPAWN; // sets the claw's target to it's spawn
 
         bossAnim.Play("clawPassive");
-        Debug.Log(clawtarget);
         yield return new WaitForSeconds(3);
 
         ResetPincer();
@@ -714,8 +698,9 @@ public class BossPhases : MonoBehaviour
         }
     }
 
-    IEnumerator bossEntry()
+    private IEnumerator BossEntry()
     {
+        delayed = 1;
         if (gameObject.name == "clawLeft" || Claw.name == "clawLeft_2")
         {
             bossAnim.Play("enterLeft");
@@ -725,5 +710,6 @@ public class BossPhases : MonoBehaviour
             bossAnim.Play("enter");
         }
         yield return new WaitForSeconds(2);
+        delayed = 2;
     }
 }
