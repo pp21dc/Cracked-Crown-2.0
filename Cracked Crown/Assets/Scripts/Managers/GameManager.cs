@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     public string[] levelNames;
-    private bool isLoading = false;
+    public bool isLoading = false;
     private bool LevelCleared = false;
     public bool IsLevelCleared
     {

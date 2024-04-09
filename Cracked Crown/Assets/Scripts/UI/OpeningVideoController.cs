@@ -55,6 +55,7 @@ public class OpeningVideoController : MonoBehaviour
     void ResetVideoPlayer()
     {
         //rt.SetActive(true);
+        skipLock = true;
         for(int i = 0; i < players.Length; i++) 
         {
             players[i].enabled = true;
