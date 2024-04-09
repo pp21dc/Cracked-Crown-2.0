@@ -17,11 +17,32 @@ public class MusicManager : MonoBehaviour
         instance = this;
     }
 
+    public enum TrackTypes
+    {
+        intro,
+        windy,
+        loading,
+        shop,
+        room1,
+        room2,
+        room3,
+        boss
+    }
+
     public void PlayNextTrack()
     {
         //Debug.Log("AUDIO");
-        StartCoroutine(FadeToNext());
+        StopAllCoroutines();
+        StartCoroutine(FadeToNext(trackIndex+1));
     }
+
+    public void PlayTrack(TrackTypes track)
+    {
+        trackIndex = (int)track;
+        StopAllCoroutines();
+        StartCoroutine(FadeToNext(trackIndex));
+    }
+
 
     public void PlayNextTrack(bool instant)
     {
@@ -31,9 +52,8 @@ public class MusicManager : MonoBehaviour
         AS_Soundtrack.Play();
     }
 
-    IEnumerator FadeToNext()
+    IEnumerator FadeToNext(int trackTo)
     {
-        trackIndex++;
         while (true)
         {
             AS_Soundtrack.volume -= FadeTime * Time.deltaTime;
@@ -42,9 +62,7 @@ public class MusicManager : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         AS_Soundtrack.Stop();
-        AS_Soundtrack.clip = Tracks[trackIndex];
-        if (trackIndex == 2 || trackIndex == 4)
-            yield return new WaitForSeconds(PlayDelayTime);
+        AS_Soundtrack.clip = Tracks[trackTo];
         AS_Soundtrack.Play();
         while (true)
         {

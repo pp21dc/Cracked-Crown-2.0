@@ -109,12 +109,12 @@ public class OpeningVideoController : MonoBehaviour
             }
 
             //Closes the video player setup once the 3rd video is done
-            if ((!players[5].enabled) && !startAudio)
+            if (openingVideo && (!players[3].enabled) && !startAudio)
             {
                 startAudio = true;
-                players[5].enabled = false;
+                players[3].enabled = false;
                 if (openingVideo)
-                    MusicManager.instance.PlayNextTrack();
+                    MusicManager.instance.PlayTrack(MusicManager.TrackTypes.intro);
             }
 
             //Closes the video player setup once the 5th video is done
@@ -125,12 +125,18 @@ public class OpeningVideoController : MonoBehaviour
                 GameManager.Instance.FreezePlayers(false);
                 GameManager.Instance.MainMenu.SetActive(true);
                 stopAudio = true;
+                rt.SetActive(false);
                 if (openingVideo)
-                    MusicManager.instance.PlayNextTrack();
+                {
+                    MusicManager.instance.PlayTrack(MusicManager.TrackTypes.windy);
+
+                    enabled = false;
+                }
 
                 //gameObject.SetActive(false);
 
-                rt.SetActive(false);
+                
+
             }
         }
     }

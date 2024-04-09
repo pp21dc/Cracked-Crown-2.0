@@ -288,7 +288,8 @@ public class GameManager : MonoBehaviour
             if (pc.PB != null)
             {
                 pc.PB.playerLock = freeze;
-                pc.PB.canMove = !freeze;
+                if (freeze)
+                    pc.PB.StopPlayer();
             }
         }
     }
@@ -371,12 +372,9 @@ public class GameManager : MonoBehaviour
             UIManager.Instance.InGameUI.SetActive(false);
         if (!levelName.Equals(MainMenuName) || star)
         {
+            MM.PlayTrack(MusicManager.TrackTypes.loading);
             LoadingScreen[loadCount + 1].SetActive(true);
             MainMenu.SetActive(false);
-            if (star)
-            {
-                MM.PlayNextTrack(true);
-            }
         }
         else
         {
@@ -388,10 +386,6 @@ public class GameManager : MonoBehaviour
         }
         FreezePlayers(true);
         ResetPlayers(levelName.Equals(MainMenuName));
-        
-        
-        
-        yield return new WaitForSeconds(0.25f);
         
 
         if ((!string.IsNullOrEmpty(currentLevelName)))
@@ -421,31 +415,35 @@ public class GameManager : MonoBehaviour
             SetPlayerPositions();
             yield return null;
         }
-
+        FreezePlayers(true);
         if (star)
             yield return new WaitForSeconds(5.25f);
         SetPlayerPositions();
-
+        FreezePlayers(true);
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(levelName));
-        if (!levelName.Equals(MainMenuName) && !levelName.Equals(BossLevelName) && currentLevel <= levelNames.Length && 
+        if (!levelName.Equals(MainMenuName) && !levelName.Equals(BossLevelName) && currentLevel <= levelNames.Length &&
             (!levelName.Equals("TempShop") && !levelName.Equals("GreenShop") && !levelName.Equals("PurpleShop") && !levelName.Equals("RedShop")))
         {
-            //AudioManager.LoadLevelComplete();
-            //Debug.Log("NEXT LEVEL");
+            MM.PlayTrack((MusicManager.TrackTypes)LM.CURRENT_ROOM + 4);
             SetPlayerPositions();
             currentLevelName = levelNames[currentLevel];
 
             currentLevelName = levelName;
             IsLevelCleared = false;
-            
+
             LM.Enter_Level(true, false);
             MainMenu.SetActive(false);
             UIManager.Instance.InGameUI.SetActive(true);
         }
         else if (levelName.Equals(MainMenuName))
         {
+
             if (star)
+            {
                 MainMenu.SetActive(true);
+                MM.PlayTrack(MusicManager.TrackTypes.windy);
+            }
+
             star = false;
             LM.ROOM_CLEARED = true;
             IsLevelCleared = true;
@@ -484,12 +482,6 @@ public class GameManager : MonoBehaviour
         if (!star)
         {
             star = true;
-        }
-        else
-        {
-            MM.PlayNextTrack();
-            if (levelName.Equals(MainMenuName))
-                MM.PlayNextTrack();
         }
 
 
@@ -544,8 +536,6 @@ public class GameManager : MonoBehaviour
                 UIManager.Instance.Resume();
                 UIManager.Instance.InGameUI.SetActive(false);
             }
-            MM.trackIndex = -1;
-            MM.PlayNextTrack(false);
         }
         else
         {
