@@ -80,6 +80,7 @@ public class BossPhases : MonoBehaviour
 
     private bool isGrabbed = false;
     private float grabbedTimer;
+    bool sendToWin;
 
     // gets references for players
     [Header("Player List")]
@@ -103,13 +104,14 @@ public class BossPhases : MonoBehaviour
         GameObject[] TempList = GameObject.FindGameObjectsWithTag("BossFollowPoint");
         PlayerList = new GameObject[TempList.Length];
         PlayerBodyList = new PlayerBody[TempList.Length];
+
         for (int i = 0; i < TempList.Length; i++)
         {
             PlayerList[i] = TempList[i]; // creates a list of all players in the scene
 
             PlayerBodyList[i] = TempList[i].transform.parent.parent.gameObject.GetComponent<PlayerBody>();
-            Debug.Log(TempList[i]);
         }
+
         if (PlayerList.Length == 1)
         {
             if (Claw.name == "clawLeft_2" || Claw.name == "clawRight_2")
@@ -117,16 +119,42 @@ public class BossPhases : MonoBehaviour
                 gameObject.SetActive(false);
             }
         }
+
         bossAnim.Play("clawPassive");
         cameraShake = FindObjectOfType<CameraShake>();
+
         if (GameManager.Instance != null)
         {
             GameManager.Instance.claws.Add(this);
         }
     }
-    bool sendToWin;
+
     void Update()
     {
+        if (GameManager.Instance != null)
+        {
+            while (GameManager.Instance.isLoading) // stops boss script while the level is loading
+            {
+                //haha loser
+            }
+        }
+
+        for (int i = 0; i < otherClaw.Length; i++)
+        {
+            if (otherClaw[i].isDead() && isDead() && !sendToWin) // this var is what ever one you use to tell if boss is dead
+            {
+                sendToWin = true;
+                if (GameManager.Instance != null)
+                {
+                    GameManager.Instance.win = true;
+                }
+            }
+            else
+            {
+                break;
+            }
+        }
+
         if (delayed == 0)
         {
             StartCoroutine(BossEntry());
@@ -147,22 +175,6 @@ public class BossPhases : MonoBehaviour
             {
                 checkingInput = true;
                 StartCoroutine(CheckPlayerInput());
-            }
-        }
-
-        for (int i = 0; i < otherClaw.Length; i++)
-        {
-            if (otherClaw[i].isDead() && isDead() && !sendToWin) //this var is what ever one you use to tell if boss is dead
-            {
-                sendToWin = true;
-                if (GameManager.Instance != null)
-                {
-                    GameManager.Instance.win = true;
-                }
-            }
-            else
-            {
-                break;
             }
         }
 
