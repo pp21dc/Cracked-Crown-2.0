@@ -3,8 +3,6 @@ using System.Collections;
 
 public class BossPhases : MonoBehaviour
 {
-
-    [SerializeField]
     private Vector3 CLAWSPAWN;
 
     [SerializeField] // list for the possible boss attacks
@@ -73,6 +71,7 @@ public class BossPhases : MonoBehaviour
     private bool runningpincer = false;
     private bool raging = false;
     private bool canRage = true;
+    private bool checkingInput = false;
 
     [SerializeField]
     private CameraShake cameraShake;
@@ -95,14 +94,7 @@ public class BossPhases : MonoBehaviour
     private void Awake()
     {
         bosshealth = MAXBOSSHEALTH;
-        if (Claw.name == "clawLeft" || Claw.name == "clawLeft_2")
-        {
-            CLAWSPAWN = new Vector3(0.5f, 0, 0); // gets the original claw point
-        }
-        else
-        {
-            CLAWSPAWN = new Vector3(-0.5f, 0, 0);
-        }
+        CLAWSPAWN = Claw.transform.position;
     }
 
 
@@ -147,6 +139,15 @@ public class BossPhases : MonoBehaviour
         if (canRage)
         {
             CheckRage();
+        }
+
+        if (GrabbedPlayer != null)
+        {
+            if (!checkingInput)
+            {
+                checkingInput = true;
+                StartCoroutine(CheckPlayerInput());
+            }
         }
 
         for (int i = 0; i < otherClaw.Length; i++)
@@ -276,7 +277,32 @@ public class BossPhases : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
 
         DmgOverlay.GetComponent<SpriteRenderer>().color = Color.white;
+    }
 
+    private IEnumerator CheckPlayerInput ()
+    {
+        int buttonpresses = 0; 
+        while (buttonpresses < 18)
+        {
+            if (GrabbedPlayerBody != null && GrabbedPlayerBody.controller.InteractDown)
+            {
+                buttonpresses++;
+                yield return null;
+            }
+            else if (GrabbedPlayer == null)
+            {
+                yield break;
+            }
+            yield return null;
+        }
+        if (GrabbedPlayer != null)
+        {
+            GrabbedPlayerBody.playerLock = false;
+            GrabbedPlayer = null;
+            GrabbedPlayerBody = null;
+        }
+        checkingInput = false;
+        yield return null;
     }
 
     private string createNextAttack() // randomizes the attacks
