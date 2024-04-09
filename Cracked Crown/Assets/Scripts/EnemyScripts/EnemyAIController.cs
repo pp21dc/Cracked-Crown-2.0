@@ -980,6 +980,7 @@ public class EnemyAIController : AdvancedFSM
     IEnumerator Death()
     {
 
+        
 
         //animation here
         EAC.Dead = true;
@@ -1002,13 +1003,14 @@ public class EnemyAIController : AdvancedFSM
         {
             
 
+
             if (colour == "Purple")
             {
-                GameObject holeGO = GameObject.Instantiate(purpHole, HoleSpawnLoc);
+                StartCoroutine(SpawnPHole());
             }
             else
             {
-                GameObject holeGO = GameObject.Instantiate(redHole, HoleSpawnLoc);
+                StartCoroutine(SpawnRHole());
             }
 
             LevelManager.Instance.EnemyKilled();
@@ -1017,6 +1019,20 @@ public class EnemyAIController : AdvancedFSM
         }
 
         //yield return null;
+    }
+
+    IEnumerator SpawnPHole()
+    {
+        Instantiate(purpHole, HoleSpawnLoc.position, Quaternion.identity);
+
+        yield return null;
+    }
+
+    IEnumerator SpawnRHole()
+    {
+        Instantiate(redHole, HoleSpawnLoc.position, Quaternion.identity);
+
+        yield return null;
     }
 
     [SerializeField]
