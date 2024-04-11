@@ -33,4 +33,24 @@ public class Scoreboard
         Debug.Log(Struggled);
 
     }
+
+    public string CreateString()
+    {
+        string output = "";
+        output = "Swings:\t\t" + TimesSwung + "\n";
+        output += "Kills:\t\t\t" + EnemiesKilled + "\n";
+        output += "Executes:\t\t" + ExecutesDone+ "\n";
+        output += "Bombs Thrown:\t" + BombsThrown + "\n";
+        output += "Potions Used:\t" + PotionsUsed + "\n";
+        output += "Deaths:\t\t" + Deaths + "\n";
+        output += "Revives:\t\t" + Revives + "\n";
+        output += "Eyes Collected:\t" + CoinsCollected + "\n";
+        output += "Steps:\t\t\t" + Steps + "\n";
+        output += "Dashes:\t\t" + Dashes + "\n";
+        output += "Struggled:\t\t" + Struggled + "\n";
+
+
+        return output;
+    }
+
 }

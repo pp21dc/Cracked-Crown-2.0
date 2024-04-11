@@ -12,6 +12,9 @@ public class OpeningVideoController : MonoBehaviour
     [SerializeField]
     VideoPlayer player;
 
+    [SerializeField]
+    GameObject scoreboard;
+
     int j = 0;
     public bool active = false;
     bool skipLock = true;
@@ -137,6 +140,8 @@ public class OpeningVideoController : MonoBehaviour
                     MusicManager.instance.PlayTrack(MusicManager.TrackTypes.windy);
                     if (openingVideo)
                         enabled = false;
+                    if (!openingVideo)
+                        ScoreBoardManager.instance.On();
                 }
                 
                 //gameObject.SetActive(false);

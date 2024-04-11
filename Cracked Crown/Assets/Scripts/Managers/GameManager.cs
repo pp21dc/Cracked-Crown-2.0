@@ -190,7 +190,7 @@ public class GameManager : MonoBehaviour
     IEnumerator WINGAME()
     {
         win = false;
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(1);
         eyeCount = 0;
         video_win.stopAudio = false;
         video_win.PlayVideo();
@@ -254,6 +254,21 @@ public class GameManager : MonoBehaviour
         lost = false;
     }
 
+    private void SetPlayerScore()
+    {
+        foreach(PlayerContainer pb in Players)
+        {
+            if (pb.PB.CharacterType.ID == 1)
+                ScoreBoardManager.instance.SetBunnyStats(pb.PB.scoreboard.CreateString());
+            else if (pb.PB.CharacterType.ID == 2)
+                ScoreBoardManager.instance.SetDuckStats(pb.PB.scoreboard.CreateString());
+            else if (pb.PB.CharacterType.ID == 3)
+                ScoreBoardManager.instance.SetFrogStats(pb.PB.scoreboard.CreateString());
+            else if (pb.PB.CharacterType.ID == 0)
+                ScoreBoardManager.instance.SetBadgerStats(pb.PB.scoreboard.CreateString());
+        }
+    }
+
     IEnumerator LoseCond()
     {
         yield return new WaitForSeconds(10);
@@ -266,6 +281,7 @@ public class GameManager : MonoBehaviour
             RevivePlayers();
             SetPlayerPositions();
             star = true;
+            SetPlayerScore();
             ReturnToMainMenu(true);
         }
         else
@@ -273,6 +289,7 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
         lost = false;
+        yield return null;
     }
 
     public PlayerInput GetPlayer(int ID)
@@ -544,7 +561,7 @@ public class GameManager : MonoBehaviour
 
     public void SetPlayerPositions()
     {
-        Debug.Log("SET POS");
+        //Debug.Log("SET POS");
         for (int i = 0; i < Players.Length; i++)
         {
             Players[i].PB.playerLock = false;
