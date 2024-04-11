@@ -83,7 +83,7 @@ public class BossPhases : MonoBehaviour
 
     private bool isGrabbed = false;
     private float grabbedTimer;
-    bool sendToWin;
+    public bool sendToWin = false;
 
     // gets references for players
     [Header("Player List")]

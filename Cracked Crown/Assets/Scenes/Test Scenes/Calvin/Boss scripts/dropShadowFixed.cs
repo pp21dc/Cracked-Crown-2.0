@@ -21,6 +21,10 @@ public class dropShadowFixed : MonoBehaviour
 
     void Update()
     {
+        if (claw.GetComponent<BossPhases>().isDead())
+        {
+            gameObject.transform.position = new Vector3(folX + 4, folY - 70, folZ);
+        }
         if (!claw.transform.parent.gameObject.activeSelf)
         {
             gameObject.SetActive(false);
