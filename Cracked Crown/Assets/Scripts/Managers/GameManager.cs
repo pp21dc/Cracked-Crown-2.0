@@ -9,6 +9,8 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using TMPro;
 using System.Threading;
+using UnityEditor;
+//using System.Diagnostics;
 
 public class GameManager : MonoBehaviour
 {
@@ -119,7 +121,7 @@ public class GameManager : MonoBehaviour
             ReturnToMainMenu(true);
         }
         css = CameraShake.instance;
-        Application.targetFrameRate = 120;
+        Application.targetFrameRate = 60;
     }
     public GameObject enem;
     bool locker;
@@ -131,12 +133,12 @@ public class GameManager : MonoBehaviour
             int x = 0;
             if (claws != null)
             {
-                foreach (BossPhases bp in claws)
+                for (int i = 0; i < claws.Count; i++)
                 {
-                    if (bp.isDead())
+                    if (claws[i].isDead())
                         x++;
                 }
-                if ((x >= 2 && Players.Length < 1) || (x >= 4 && Players.Length >= 1))
+                if ((x >= 2 && Players.Length < 1) || (x >= 2 && Players.Length >= 1))
                 {
                     Debug.Log("WIN");
                     claws = new List<BossPhases>();
@@ -149,15 +151,16 @@ public class GameManager : MonoBehaviour
                 eyeText.text = eyeCount.ToString();
             if (Input.GetKeyUp(KeyCode.H))
                 SetPlayerPositions();
-            if (!locker && Input.GetKey(KeyCode.M))
+            if (!locker && Input.GetKeyUp(KeyCode.M))
             {
                 locker = true;
                 ReturnToMainMenu(false);
             }
-            if (!locker_Boss && Input.GetKey(KeyCode.B))
+            if (!locker_Boss && Input.GetKeyUp(KeyCode.B))
             {
                 locker_Boss = true;
-                LoadAScene("BossLevel");
+                Debug.Break();
+                LoadAScene(BossLevelName);
             }
 
             if (!waitforvideo && currentLevelName == MainMenuName)
@@ -166,23 +169,16 @@ public class GameManager : MonoBehaviour
                 UIManager.Instance.InGameUI.SetActive(false);
                 PIM.SetActive(true);
             }
-            else if (MainMenu != null)
-            {
-
-                //MainMenu.SetActive(false);
-            }
-            if (currentLevelName == MainMenuName) 
-            { 
-
-            }
-                //UI.SetActive(false);
             else if (!string.IsNullOrEmpty(currentLevelName))
             {
                 UI.SetActive(true);
             }
 
-            if (!lost && AreAllPlayersDead())
+            if (AreAllPlayersDead() && lost)
+            {
+                lost = false;
                 StartCoroutine(LoseCond());
+            }
             if (win)
             {
                 win = false;
@@ -260,7 +256,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator LoseCond()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(10);
         if (AreAllPlayersDead() && Players[0] != null && !waitforvideo)
         {
             eyeCount = 0;
@@ -276,6 +272,7 @@ public class GameManager : MonoBehaviour
         {
             yield return null;
         }
+        lost = false;
     }
 
     public PlayerInput GetPlayer(int ID)
@@ -391,6 +388,7 @@ public class GameManager : MonoBehaviour
         }
     }
     bool star;
+    public float progress = 0;
     private IEnumerator LoadLevel(string levelName)
     {
         isLoading = true;
@@ -413,8 +411,8 @@ public class GameManager : MonoBehaviour
             
             LoadingScreen[loadCount + 1].SetActive(false);
         }
-        FreezePlayers(true);
-        ResetPlayers(levelName.Equals(MainMenuName));
+        //FreezePlayers(true);
+        //ResetPlayers(levelName.Equals(MainMenuName));
         
 
         if ((!string.IsNullOrEmpty(currentLevelName)))
@@ -424,27 +422,26 @@ public class GameManager : MonoBehaviour
             //yield return AudioManager.Instance.UnloadLevel();
             while (!asyncUnload.isDone)
             {
-                //loadingScreen.UpdateSlider(asyncUnload.progress / 2);
+                progress = asyncUnload.progress;
                 yield return null;
             }
 
         }
-        SetPlayerPositions();
-        foreach (PlayerContainer pc in Players)
-        {
-            pc.PB.EnterLevel();
-            FreezePlayers(true);
-        }
-
-        
-
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(levelName, LoadSceneMode.Additive);
         //AudioManager.Instance.AudioFadeLevelStart();
         while (!asyncLoad.isDone)
         {
-            SetPlayerPositions();
+            progress = asyncLoad.progress;
             yield return null;
         }
+
+        foreach (PlayerContainer pc in Players)
+        {
+            pc.PB.EnterLevel();
+            FreezePlayers(true);
+            yield return null;
+        }
+
         FreezePlayers(true);
         if (!waitforvideo)
             yield return new WaitForSeconds(5.25f);
@@ -469,7 +466,7 @@ public class GameManager : MonoBehaviour
         }
         else if (levelName.Equals(MainMenuName))
         {
-            SetPlayerPositions();
+            //SetPlayerPositions();
             if (star && !waitforvideo)
             {
                 MainMenu.SetActive(true);
@@ -507,6 +504,7 @@ public class GameManager : MonoBehaviour
             UIManager.Instance.InGameUI.SetActive(true);
             LM.Enter_Level(true, true);
             currentLevel = 5;
+            MM.PlayTrack(MusicManager.TrackTypes.boss);
         }
         //yield return new WaitForSeconds(0.25f);
         //AudioManager.Instance.AudioFadeLevelStart();
@@ -522,6 +520,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         LoadingScreen[loadCount+1].SetActive(false);
         locker = false;
+
         locker_Boss = false;
         //isLoading = false;
         
@@ -624,6 +623,11 @@ public class GameManager : MonoBehaviour
 
     public void LoadAScene(string sceneName)
     {
+        waitforvideo = false;
+        star = false;
+        currentLevel = 5;
+        currentLevelName = MainMenuName;
+        StopAllCoroutines();
         if (!isLoading)
             StartCoroutine("LoadLevel", sceneName);
     }

@@ -126,8 +126,10 @@ public class LevelManager : MonoBehaviour
         if (SpawnTimer > WAIT_NEXTSPAWN_VALUE && ENEMIES_SPAWNED < currentSpawnTotal)
         {
             SpawnTimer = 0;
-            WAIT_NEXTSPAWN_VALUE = Current_Room.SpawnRate[CURRENT_WAVE - 1] * Random.Range(0.8f, 1f);
-            
+            if (!boss)
+                WAIT_NEXTSPAWN_VALUE = Current_Room.SpawnRate[CURRENT_WAVE - 1] * Random.Range(0.8f, 1f);
+            else
+                WAIT_NEXTSPAWN_VALUE = (1 / (GM.Players.Length + 1)) + 2f;
             Spawner.SpawnEnemy(PickEnemy());
         }
     }
@@ -192,8 +194,10 @@ public class LevelManager : MonoBehaviour
                 currentSpawnTotal += 999;
                 CURRENT_ROOM = 3;
                 Current_Room = Rooms[CURRENT_ROOM - 1];
+                WAIT_NEXTSPAWN_VALUE = 0.2f;
             }
         }
+        yield return null;
     }
 
     private IEnumerator ON_ROUNDEND()

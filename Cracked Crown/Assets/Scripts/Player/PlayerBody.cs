@@ -1,12 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Data;
-using System.Runtime.CompilerServices;
+//using System.Data;
+//using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
-using static UnityEngine.EventSystems.EventTrigger;
+//using UnityEngine.UIElements;
+using UnityEngine.UI;
+//using static UnityEngine.EventSystems.EventTrigger;
 using UnityEngine.SceneManagement;
 public class PlayerBody : MonoBehaviour
 {
@@ -100,6 +101,8 @@ public class PlayerBody : MonoBehaviour
     public Collect collectable;
     public bool canCollect = true;
 
+    public Slider ghostCoinSlider;
+    public GameObject ghostCoinSlider_obj;
     
     public bool gotHit = false;
     public bool dashOnCD = false;
@@ -168,6 +171,18 @@ public class PlayerBody : MonoBehaviour
 
     private void Update()
     {
+        if (alreadyDead) 
+        {
+            ghostCoinSlider_obj.SetActive(true);
+            ghostCoinSlider.value = ghostCoins;
+        }
+        else
+        {
+            ghostCoinSlider.value = 0;
+            ghostCoinSlider_obj.SetActive(false);
+        }
+
+
         Health = health;
         if (Input.GetKeyUp(KeyCode.C))
             hasBomb = true;
@@ -197,15 +212,15 @@ public class PlayerBody : MonoBehaviour
                 dropShadowPos = new Vector3(transform.position.x, -2.25f, transform.position.z);
             else
             {
-                dropShadowPos = new Vector3(transform.position.x, -3f, transform.position.z);
+                dropShadowPos = new Vector3(transform.position.x, -3.25f, transform.position.z);
             }
             if (CharacterType.ID == 0)
             {
-                dropShadow.transform.localScale = new Vector3(17.5f, 3.5f, 1);
+                dropShadow.transform.localScale = new Vector3(17.5f, 3.75f, 1);
             }
             else
             {
-                dropShadow.transform.localScale = new Vector3(11.4164305f, 2.56681347f, 0.443150014f);
+                dropShadow.transform.localScale = new Vector3(11.5f, 2.5f, 0.45f);
             }
 
             dropShadow.transform.position = dropShadowPos;
@@ -886,7 +901,7 @@ public class PlayerBody : MonoBehaviour
         }
         if (hitEnemy && !lockHitBackward)
         {
-            if (eac_cur != null && !eac_cur.EAC.Dead)
+            if (eac_cur != null && eac_cur.Health <= 0 && eac_cur.transform.parent.gameObject.activeSelf)
                 PAM.PlayAudio(PlayerAudioManager.AudioType.EnemyHit);
             //StartCoroutine(backwardHit());
         }
