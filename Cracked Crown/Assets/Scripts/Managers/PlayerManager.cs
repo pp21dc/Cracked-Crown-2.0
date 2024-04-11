@@ -19,7 +19,8 @@ public class PlayerManager : MonoBehaviour
     private PlayerInputManager inputManager;
     [SerializeField]
     private int arrayPos = 0;
-
+    [SerializeField]
+    GameObject LockIn_F;
     [SerializeField]
     Image readyUpBox;
 
@@ -47,11 +48,13 @@ public class PlayerManager : MonoBehaviour
             PB.PM = this;
         if (launch && !launch_lock)
         {
+
             int lnch = CheckPlayersIndex();
             Debug.Log("LAUNCH: " + lnch);
             PB.currentIN = lnch;
             launch_lock = true;
             START_Text.SetActive(false);
+            LockIn_F.SetActive(true);
             CharacterImages[lnch].SetActive(true);
             PB.CharacterType = CharacterTypes[lnch];
             PB.SetCharacterData();
