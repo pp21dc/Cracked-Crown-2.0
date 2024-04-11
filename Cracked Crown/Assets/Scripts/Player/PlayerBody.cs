@@ -631,7 +631,7 @@ public class PlayerBody : MonoBehaviour
                         StartCoroutine(TurnOffExecuteMovement());
                     }
                 }
-                else if (Vector3.Distance(transform.position, toEnemy) > 0.85f)
+                else if (Vector3.Distance(transform.position, executeTarget.transform.position + forExecutePosition) > 0.85f)
                 {
                     animController.Moving = true;
                     if (executingCrab)
