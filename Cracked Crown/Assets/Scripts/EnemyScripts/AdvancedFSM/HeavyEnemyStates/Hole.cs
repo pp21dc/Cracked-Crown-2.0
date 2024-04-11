@@ -31,7 +31,7 @@ public class Hole : MonoBehaviour
 
         animator.SetTrigger("Delete"); 
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1.1f);
 
         Destroy(papa);
 
