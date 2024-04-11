@@ -215,7 +215,14 @@ public class EnemyAIController : AdvancedFSM
     {
         get { return health; }
     }
-    public void DecHealth(float amount) { health = Mathf.Max(0, health - amount); StartCoroutine(FlashRed(EAC.SR)); }//allows us to decrease the health of an enemy
+    public void DecHealth(float amount, PlayerBody pb) 
+    { 
+        health = Mathf.Max(0, health - amount);
+        if (health <= 0 && pb != null)
+            pb.scoreboard.EnemiesKilled++;
+        StartCoroutine(FlashRed(EAC.SR)); 
+    
+    }//allows us to decrease the health of an enemy
     public void AddHealth(float amount) { health = Mathf.Min(100, health + amount); }//allows us to add health to the enemy
 
     
@@ -1040,7 +1047,6 @@ public class EnemyAIController : AdvancedFSM
         if (gameObject.CompareTag("Light") || gameObject.CompareTag("Medium"))
         {
             LevelManager.Instance.EnemyKilled();
-
             Destroy(transform.parent.gameObject);
         }
         else

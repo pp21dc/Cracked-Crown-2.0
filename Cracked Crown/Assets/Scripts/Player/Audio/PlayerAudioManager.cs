@@ -86,6 +86,8 @@ public class PlayerAudioManager : MonoBehaviour
             NewClip(Player_AudioClips[Random.Range(3, 7)]);
         else
             NewClip(Player_AudioClips[(int)type]);
+        if (type == AudioType.Move)
+            PC.PB.scoreboard.Steps++;
     }
 
 
