@@ -159,7 +159,7 @@ public class GameManager : MonoBehaviour
             if (!locker_Boss && Input.GetKeyUp(KeyCode.B))
             {
                 locker_Boss = true;
-                Debug.Break();
+                //Debug.Break();
                 LoadAScene(BossLevelName);
             }
 
