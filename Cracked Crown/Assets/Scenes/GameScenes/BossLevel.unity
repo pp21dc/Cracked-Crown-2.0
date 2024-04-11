@@ -6810,8 +6810,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.00020000339, y: 0.00455004, z: 0}
-    m_Extent: {x: 0.99829996, y: 1.00155, z: 0}
+    m_Center: {x: -0.0023500025, y: 0.0026499927, z: 0}
+    m_Extent: {x: 1.00195, y: 1.00005, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -7290,7 +7290,7 @@ SpriteRenderer:
   m_SortingLayerID: -1843858281
   m_SortingLayer: 4
   m_SortingOrder: 5
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b,
+  m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847,
     type: 3}
   m_Color: {r: 0.009433985, g: 0.009433985, b: 0.009433985, a: 0.6156863}
   m_FlipX: 0
@@ -12974,6 +12974,8 @@ GameObject:
   - component: {fileID: 2076165294}
   - component: {fileID: 2076165295}
   - component: {fileID: 2076165296}
+  - component: {fileID: 2076165297}
+  - component: {fileID: 2076165298}
   m_Layer: 0
   m_Name: bossEye
   m_TagString: Untagged
@@ -13037,7 +13039,7 @@ SpriteRenderer:
   m_SortingLayerID: -1843858281
   m_SortingLayer: 4
   m_SortingOrder: 5
-  m_Sprite: {fileID: 373339450, guid: 42c1f7c9d88d5eb47b76c219c6cd9d4b, type: 3}
+  m_Sprite: {fileID: -273437344, guid: d7bc12ea6dff7c54cbd9a60bca15bea7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -13069,6 +13071,33 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2076165297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2076165293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce78a8395353dc54da409bd7aaa317a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  claw: {fileID: 6208238368874790157}
+  anim: {fileID: 2076165296}
+--- !u!114 &2076165298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2076165293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12f5155b6074b2b4a99ca95f800ef256, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadetime: 1
 --- !u!1 &2076720859
 GameObject:
   m_ObjectHideFlags: 0

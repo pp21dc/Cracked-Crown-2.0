@@ -5,8 +5,10 @@ using UnityEngine;
 public class eyeMovement : MonoBehaviour
 {
     [SerializeField]
-    private GameObject claw;
-
+    private BossPhases claw;
+    [SerializeField]
+    private Animator anim;
+    bool running = false;
     void Update()
     {
         if (GameManager.Instance != null)
@@ -16,9 +18,32 @@ public class eyeMovement : MonoBehaviour
                 return;
             }
         }
-        if (!claw.GetComponent<BossPhases>().sendToWin)
+        if (!claw.sendToWin && !running)
         {
-
+            StartCoroutine(idle());
         }
+        else if (claw.sendToWin && !running)
+        {
+            running = true;
+            anim.Play("dying");
+        }
+    }
+
+    IEnumerator idle ()
+    {
+        running = true;
+        yield return new WaitForSeconds(5);
+        int coin = Random.Range(0, 1);
+        Debug.Log(coin);
+        if (coin == 0)
+        {
+            anim.Play("IdleBlinking");
+        }
+        if (coin == 1)
+        {
+            anim.Play("IdleBlinkingRight");
+        }
+        yield return new WaitForSeconds(1);
+        running = false;
     }
 }

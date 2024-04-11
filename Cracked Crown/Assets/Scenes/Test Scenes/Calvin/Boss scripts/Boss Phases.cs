@@ -134,7 +134,7 @@ public class BossPhases : MonoBehaviour
                 //haha loser
             }
         }
-        if (otherClaw.isDead() && isDead() && !sendToWin) // this var is what ever one you use to tell if boss is dead
+        if (otherClaw.isDead() && isDead() && !sendToWin && Claw.name == "clawLeft") // this var is what ever one you use to tell if boss is dead
         {
             sendToWin = true;
             StartCoroutine(Death());
@@ -331,6 +331,14 @@ public class BossPhases : MonoBehaviour
             if (CurrentAttack == "RoarAttack")
             {
                 createNextAttack();
+                if (CurrentAttack == "RoarAttack")
+                {
+                    int coinflip = Random.Range(0, 1);
+                    if (coinflip == 0)
+                    {
+                        createNextAttack();
+                    }
+                }
             }
         }
         switch (CurrentAttack) // sets attack timer based on the next boss attack
@@ -718,7 +726,7 @@ public class BossPhases : MonoBehaviour
     IEnumerator Death ()
     {
         yield return new WaitForSeconds(attacktimer);
-
+        yield return new WaitForSeconds(3);
         Crown.GetComponent<Animator>().Play("crownBreak");
         yield return new WaitForSeconds(4);
         
