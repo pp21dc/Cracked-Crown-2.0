@@ -37,7 +37,7 @@ public class PrototypePrimaryAttack : MonoBehaviour
                 playerBody.eac_cur = enemyController;
                 Rigidbody rb;
 
-                enemyController.DecHealth(playerBody.damage);
+                enemyController.DecHealth(playerBody.damage, playerBody);
                 rb = other.GetComponent<Rigidbody>();
                 if (!enemyController.EAC.HitReact)
                     enemyController.EAC.HitReact = true;

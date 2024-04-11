@@ -140,6 +140,7 @@ public class PlayerBody : MonoBehaviour
 
     [SerializeField]
     private GameObject sparkleObject;
+    public Scoreboard scoreboard;
     public void ResetPlayer()
     {
         StopAllCoroutines();
@@ -261,6 +262,7 @@ public class PlayerBody : MonoBehaviour
 
             if ((health <= 0 || Input.GetKey(KeyCode.O)) && alreadyDead == false)
             {
+                scoreboard.Deaths++;
                 rb.velocity = Vector3.zero;
                 animController.Moving = false;
                 animController.dashing = false;
@@ -286,6 +288,7 @@ public class PlayerBody : MonoBehaviour
                 ghostCoins = 10;
             if (ghostCoins >= 10 && alreadyDead)
             {
+                scoreboard.Revives++;
                 gameObject.tag = "Player";
 
                 // move player back to corpse
@@ -344,7 +347,7 @@ public class PlayerBody : MonoBehaviour
             if (gameManager.currentLevelName == "GreenShop" || gameManager.currentLevelName == "RedShop" || gameManager.currentLevelName == "PurpleShop")
             {
                 GameObject walrus = GameObject.FindGameObjectWithTag("Walrus");
-                if (walrus != null)
+                if (walrus != null && walrusAnimator == null)
                 {
                     walrusAnimator = walrus.GetComponent<Animator>();
                 }
@@ -429,7 +432,7 @@ public class PlayerBody : MonoBehaviour
     {
         rb.MovePosition(respawnPoint);
         rb.velocity = Vector3.zero;
-        Destroy(corpse);
+        
         canMove = false;
 
         String tag = "BeenRevived";
@@ -437,6 +440,7 @@ public class PlayerBody : MonoBehaviour
             corpse.tag = tag;
 
         yield return new WaitForSeconds(1.2f);
+        Destroy(corpse);
         canExecute = true;
         canCollect = true;
         yield return new WaitForSeconds(2.0f);
@@ -696,7 +700,6 @@ public class PlayerBody : MonoBehaviour
             if (canTakeDamage && gotHit)
             {
                 float y = rb.velocity.y;
-                Debug.Log(otherPlayerMV);
                 rb.velocity = (otherPlayerMV * takenDamageKnockback);
                 rb.velocity = new Vector3(rb.velocity.x, y, rb.velocity.z);
                 StartCoroutine(GotHitReset());
@@ -786,7 +789,6 @@ public class PlayerBody : MonoBehaviour
         
         if (canTakeDamage)
         {
-            Debug.Log("DAMAGE");
             StartCoroutine(DamageColourFlash());
             PAM.PlayAudio(PlayerAudioManager.AudioType.PlayerHit);
             animController.SetAll();
@@ -854,6 +856,7 @@ public class PlayerBody : MonoBehaviour
 
         if (controller.PrimaryAttackDown && canAttack && !dashing && timesSwung <= swings-1)
         {
+            scoreboard.TimesSwung++;
             timesSwung++;
             canMove = false;
             canAttack = false;
@@ -973,6 +976,7 @@ public class PlayerBody : MonoBehaviour
     {
         if (((controller.DashDown && dashOnCD == false) || (!controller.DashDown && dashQueue && !dashing && !dashOnCD)) && !attacking && !lockDash && sprite != null)
         {
+            scoreboard.Dashes++;
             float scale = Mathf.Abs(sprite.localScale.x);
             if (!dashQueue)
             {
@@ -1088,6 +1092,7 @@ public class PlayerBody : MonoBehaviour
                     LevelManager.Instance.EnemyKilled();
                 yield return new WaitForSeconds(0.8f);
                 enemyAIController.DropEyes();
+                scoreboard.ExecutesDone++;
                 yield return new WaitForSeconds(0.75f);
                 
                 canTakeDamage = true;
@@ -1225,7 +1230,7 @@ public class PlayerBody : MonoBehaviour
     {
         if (controller.NoDamageDown && enemyAIController != null)
         {
-            enemyAIController.canMove = !enemyAIController.canMove;
+            //enemyAIController.canMove = !enemyAIController.canMove; //NEWW
         }
     }
 
@@ -1379,7 +1384,7 @@ public class PlayerBody : MonoBehaviour
         {
             if (hasBomb && !Grabbed)
             {
-
+                scoreboard.BombsThrown++;
                 hasBomb = false;
                 hasPotion = false;
 
@@ -1400,6 +1405,7 @@ public class PlayerBody : MonoBehaviour
             }
             if (hasPotion & !Grabbed)
             {
+                scoreboard.PotionsUsed++;
                 hasPotion = false;
                 hasBomb = false;
 
@@ -1422,8 +1428,8 @@ public class PlayerBody : MonoBehaviour
         
         if (controller.InteractDown)
         {
+            scoreboard.Struggled++;
             timesHit++;
-            Debug.Log(timesHit);
         }
 
         if (timesHit >= 8)
@@ -1433,9 +1439,7 @@ public class PlayerBody : MonoBehaviour
             canAttack = true;
             lockDash = false;
             canExecute = true;
-            Grabbed = false;
-            Debug.Log("Free");
-                
+            Grabbed = false;  
         }
     }
 

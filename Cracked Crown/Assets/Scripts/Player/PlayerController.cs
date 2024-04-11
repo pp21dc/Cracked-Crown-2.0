@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private PlayerInput PI;
     [SerializeField]
-    private PlayerBody PB;
+    public PlayerBody PB;
 
     private int ID;
     public int id
