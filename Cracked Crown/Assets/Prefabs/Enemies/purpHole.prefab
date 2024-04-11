@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6173004832166795640}
   - component: {fileID: 6425162146038176811}
+  - component: {fileID: 6647140428920237493}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -25,12 +26,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1951302066606362349}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.3420201, y: 0, z: 0, w: 0.9396927}
+  m_LocalRotation: {x: 0.3420201, y: -0, z: -0, w: 0.9396927}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.06666666, y: 0.14739561, z: 0.10851238}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5488700470386638146}
+  m_Father: {fileID: 4283118987647551495}
   m_LocalEulerAnglesHint: {x: 40, y: 0, z: 0}
 --- !u!212 &6425162146038176811
 SpriteRenderer:
@@ -84,6 +85,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &6647140428920237493
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1951302066606362349}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 822a10781b51c8c41847de6ee7303802, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7337058128832662760
 GameObject:
   m_ObjectHideFlags: 0
@@ -99,7 +121,7 @@ GameObject:
   - component: {fileID: 4558830374575968772}
   m_Layer: 0
   m_Name: HoleBody
-  m_TagString: Untagged
+  m_TagString: Purple
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -116,7 +138,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 15, y: 1, z: 15}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 6173004832166795640}
   m_Father: {fileID: 5488700470386638146}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5433999017407526169
@@ -202,6 +225,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b293c42f14a2559488bd11328628edd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  papa: {fileID: 7357353520499070755}
+  animator: {fileID: 6647140428920237493}
 --- !u!1 &7357353520499070755
 GameObject:
   m_ObjectHideFlags: 0
@@ -232,6 +257,5 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4283118987647551495}
-  - {fileID: 6173004832166795640}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

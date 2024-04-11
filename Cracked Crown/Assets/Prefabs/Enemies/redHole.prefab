@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6173004832166795640}
   - component: {fileID: 6425162146038176811}
+  - component: {fileID: 6548981879843760653}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -84,6 +85,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &6548981879843760653
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1951302066606362349}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 20e20a058fff33543a6cb4d6293701e5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7337058128832662760
 GameObject:
   m_ObjectHideFlags: 0
@@ -99,7 +121,7 @@ GameObject:
   - component: {fileID: 4558830374575968772}
   m_Layer: 0
   m_Name: HoleBody
-  m_TagString: Untagged
+  m_TagString: Red
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -202,6 +224,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b293c42f14a2559488bd11328628edd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  papa: {fileID: 7357353520499070755}
+  animator: {fileID: 6548981879843760653}
 --- !u!1 &7357353520499070755
 GameObject:
   m_ObjectHideFlags: 0
