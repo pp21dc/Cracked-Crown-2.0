@@ -133,9 +133,9 @@ public class BossPhases : MonoBehaviour
     {
         if (GameManager.Instance != null)
         {
-            while (GameManager.Instance.isLoading) // stops boss script while the level is loading
+            if (GameManager.Instance.isLoading) // stops boss script while the level is loading
             {
-                break;
+                return;
                 //haha loser
             }
         }
