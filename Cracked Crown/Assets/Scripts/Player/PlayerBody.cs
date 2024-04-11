@@ -590,33 +590,40 @@ public class PlayerBody : MonoBehaviour
             {
 
                 if (enemyAIController != null && ((enemyAIController.tag.Equals("Heavy") && (Vector3.Distance(transform.position, executeTarget.transform.position + forExecutePosition) < 5f))
-                    || (Vector3.Distance(transform.position, executeTarget.transform.position + forExecutePosition) < 1f)) && !lockExecAnim)
+                    || (Vector3.Distance(transform.position, executeTarget.transform.position + forExecutePosition) < 1f)) && !lockExecAnim || ((executingCrab == true) && Vector3.Distance(transform.position, executeTarget.transform.position + offSet) < 5.0f))
                 {
-                    //if (executingCrab)
-                    //{
-                    //    transform.parent.GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(false);
-                    //    if (CharacterType.ID == 0) // badger
-                    //    {
-                    //        crabController.animator.SetBool("BadgerExecute", true);
-                    //    }
-                    //    if (CharacterType.ID == 1) // bunny
-                    //    {
-                    //        crabController.animator.SetBool("BunnyExecute", true);
-                    //    }
-                    //    if (CharacterType.ID == 2) // duck
-                    //    {
-                    //        crabController.animator.SetBool("DuckExecute", true);
-                    //    }
-                    //    if (CharacterType.ID == 3) // frog
-                    //    {
-                    //        crabController.animator.SetBool("FrogExecute", true);
-                    //    }
-                    //}
+                    if (executingCrab)
+                    {
+
+                        if (CharacterType.ID == 0) // badger
+                        {
+                            crabController.animator.SetBool("BadgerExecute", true);
+                            StartCoroutine(PlayAnimAnyways());
+                        }
+                        if (CharacterType.ID == 1) // bunny
+                        {
+                            crabController.animator.SetBool("BunnyExecute", true);
+                            StartCoroutine(PlayAnimAnyways());
+                        }
+                        if (CharacterType.ID == 2) // duck
+                        {
+                            crabController.animator.SetBool("DuckExecute", true);
+                            StartCoroutine(PlayAnimAnyways());
+                        }
+                        if (CharacterType.ID == 3) // frog
+                        {
+                            crabController.animator.SetBool("FrogExecute", true);
+                            StartCoroutine(PlayAnimAnyways());
+                        }
+                    }
 
                     animController.Moving = false;
                     hasReachedExecutePoint = true;
 
-                    animController.Finisher(enemyAIController.tag, enemyAIController.colour, true);
+                    if (enemyAIController != null)
+                    {
+                        animController.Finisher(enemyAIController.tag, enemyAIController.colour, true);
+                    }
 
                     lockExecAnim = true;
                     if (executeLock == false)
@@ -624,31 +631,30 @@ public class PlayerBody : MonoBehaviour
                         StartCoroutine(TurnOffExecuteMovement());
                     }
                 }
-                else if (Vector3.Distance(transform.position, executeTarget.transform.position + forExecutePosition) > 0.85f)
+                else if (Vector3.Distance(transform.position, toEnemy) > 0.85f)
                 {
                     animController.Moving = true;
                     if (executingCrab)
                     {
                         if (CharacterType.ID == 0) // badger
                         {
-                            offSet = new Vector3(-20, 0, -9);
+                            offSet = new Vector3(-20, 0, -4);
+                            transform.parent.GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(false);
                         }
                         if (CharacterType.ID == 1) // bunny
                         {
-                            offSet = new Vector3(15, 0, -18);
+                            offSet = new Vector3(20, 0, -5);
                         }
                         if (CharacterType.ID == 2) // duck
                         {
-                            offSet = new Vector3(5, 0, -9);
+                            offSet = new Vector3(5, 0, -4);
                         }
                         if (CharacterType.ID == 3) // frog
                         {
-                            offSet = new Vector3(13, 0, -13);
+                            offSet = new Vector3(12, 0, 0);
                         }
 
                         toEnemy = executeTarget.transform.position + offSet;
-
-                        StartCoroutine(PlayAnimAnyways());
                     }
                     else
                     {
@@ -711,39 +717,85 @@ public class PlayerBody : MonoBehaviour
 
     private IEnumerator PlayAnimAnyways()
     {
-        yield return new WaitForSeconds(0f);
+        yield return new WaitForSeconds(0.1f);
+        transform.parent.GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(false);
 
         if (CharacterType.ID == 0) // badger
         {
-            crabController.animator.SetBool("BadgerExecute", true);
-            transform.parent.GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(false);
-            yield return new WaitForSeconds(1.25f);
+            // move to 
+            //offSet = new Vector3(-20, 0, -4);
+            //toEnemy = executeTarget.transform.position + offSet;
+            //Vector3 test = Vector3.MoveTowards(gameObject.transform.position, toEnemy, executeMoveSpeed * Time.fixedDeltaTime);
+            //test.y = 0;
+            //transform.position = test;
+
+            yield return new WaitForSeconds(1.3f);
+            canTakeDamage = true;
+            canMove = true;
+            canAttack = true;
+            canExecute = true;
+            canMovePlayerForexecute = false;
+            lockDash = false;
+            executingCrab = false;
+
+            //transform.parent.GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(true);
             transform.parent.GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(true);
+            executeTarget.transform.parent.GetChild(0).GetChild(0).gameObject.SetActive(false);
+            crabController.hasBeenExecuted = true;
+            StartCoroutine(crabController.respawnCrab());
         }
         if (CharacterType.ID == 1) // bunny
         {
-            crabController.animator.SetBool("BunnyExecute", true);
-            yield return new WaitForSeconds(0.12f);
-            transform.parent.GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(false);
-            yield return new WaitForSeconds(1.25f);
+            yield return new WaitForSeconds(1.4f);
+            canTakeDamage = true;
+            canMove = true;
+            canAttack = true;
+            canExecute = true;
+            canMovePlayerForexecute = false;
+            lockDash = false;
+            executingCrab = false;
+
+            //transform.parent.GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(true);
             transform.parent.GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(true);
+            executeTarget.transform.parent.GetChild(0).GetChild(0).gameObject.SetActive(false);
+            crabController.hasBeenExecuted = true;
+            StartCoroutine(crabController.respawnCrab());
         }
         if (CharacterType.ID == 2) // duck
         {
-            crabController.animator.SetBool("DuckExecute", true);
-            yield return new WaitForSeconds(0.13f);
-            transform.parent.GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(false);
             yield return new WaitForSeconds(0.9f);
+            canTakeDamage = true;
+            canMove = true;
+            canAttack = true;
+            canExecute = true;
+            canMovePlayerForexecute = false;
+            lockDash = false;
+            executingCrab = false;
+
+            //transform.parent.GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(true);
             transform.parent.GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(true);
+            executeTarget.transform.parent.GetChild(0).GetChild(0).gameObject.SetActive(false);
+            crabController.hasBeenExecuted = true;
+            StartCoroutine(crabController.respawnCrab());
         }
-        //if (CharacterType.ID == 3) // frog
-        //{
-        //    crabController.animator.SetBool("FrogExecute", true);
-        //    yield return new WaitForSeconds(0.125f);
-        //    transform.parent.GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(false);
-        //    yield return new WaitForSeconds(2.0f);
-        //    transform.parent.GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(true);
-        //}
+        if (CharacterType.ID == 3) // frog
+        {
+            yield return new WaitForSeconds(1.4f);
+
+            canTakeDamage = true;
+            canMove = true;
+            canAttack = true;
+            canExecute = true;
+            canMovePlayerForexecute = false;
+            lockDash = false;
+            executingCrab = false;
+
+            //transform.parent.GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(true);
+            transform.parent.GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(true);
+            executeTarget.transform.parent.GetChild(0).GetChild(0).gameObject.SetActive(false);
+            crabController.hasBeenExecuted = true;
+            StartCoroutine(crabController.respawnCrab());
+        }
     }
 
     IEnumerator GotHitReset()
@@ -1126,102 +1178,6 @@ public class PlayerBody : MonoBehaviour
                     canMovePlayerForexecute = true;
 
                     crabController.speed = 0;
-
-                    if (CharacterType.ID == 0)
-                    {
-
-                        yield return new WaitForSeconds(1.3f);
-
-                        canTakeDamage = true;
-                        canMove = true;
-                        canAttack = true;
-                        canExecute = true;
-                        canMovePlayerForexecute = false;
-                        lockDash = false;
-                        executingCrab = false;
-
-                        //transform.parent.GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(true);
-                        toExecute.transform.parent.GetChild(0).GetChild(0).gameObject.SetActive(false);
-                        crabController.hasBeenExecuted = true;
-                        StartCoroutine(crabController.respawnCrab());
-                    }
-                    if (CharacterType.ID == 1)
-                    {
-
-                        yield return new WaitForSeconds(1.4f);
-
-                        canTakeDamage = true;
-                        canMove = true;
-                        canAttack = true;
-                        canExecute = true;
-                        canMovePlayerForexecute = false;
-                        lockDash = false;
-                        executingCrab = false;
-
-                        //transform.parent.GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(true);
-                        toExecute.transform.parent.GetChild(0).GetChild(0).gameObject.SetActive(false);
-                        crabController.hasBeenExecuted = true;
-                        StartCoroutine(crabController.respawnCrab());
-                    }
-                    if (CharacterType.ID == 2)
-                    {
-
-                        yield return new WaitForSeconds(1.0f);
-
-                        canTakeDamage = true;
-                        canMove = true;
-                        canAttack = true;
-                        canExecute = true;
-                        canMovePlayerForexecute = false;
-                        lockDash = false;
-                        executingCrab = false;
-
-                        //transform.parent.GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(true);
-                        toExecute.transform.parent.GetChild(0).GetChild(0).gameObject.SetActive(false);
-                        crabController.hasBeenExecuted = true;
-                        StartCoroutine(crabController.respawnCrab());
-
-                    }
-                    if (CharacterType.ID == 3)
-                    {
-                        frogExecuted = true;
-
-                        crabController.animator.SetBool("FrogExecute", true);
-                        yield return new WaitForSeconds(0.1f);
-                        transform.parent.GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(false);
-                        canMovePlayerForexecute = false;
-
-                        yield return new WaitForSeconds(1.0f);
-
-                        crabController.animator.SetBool("LeaveSign", true);
-                        crabController.animator.SetBool("FrogExecute", false);
-                        crabController.animator.SetBool("AtPosition", false);
-
-                        yield return new WaitForSeconds(0.85f);
-
-                        canTakeDamage = true;
-                        canMove = true;
-                        canAttack = true;
-                        canExecute = true;
-                        canMovePlayerForexecute = false;
-                        lockDash = false;
-                        executingCrab = false;
-
-                        transform.parent.GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(true);
-
-                        // make so he cannot die now
-                        GameObject test = toExecute.transform.parent.GetChild(0).gameObject;
-                        test.tag = "DontHit";
-
-                        yield return new WaitForSeconds(2.0f);
-
-                        test.tag = "MiniCrabExecutable";
-                        toExecute.transform.parent.GetChild(0).GetChild(0).gameObject.SetActive(false);
-                        crabController.hasBeenExecuted = true;
-                        StartCoroutine(crabController.respawnCrab());
-
-                    }
-
                 }
             }
         }

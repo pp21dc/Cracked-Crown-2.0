@@ -518,7 +518,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8111036669476072809
 Transform:
   m_ObjectHideFlags: 0
@@ -664,6 +664,7 @@ MonoBehaviour:
   animator: {fileID: 3812458504739947422}
   hasDied: 0
   stop: 0
+  alreadyAtPos: 0
   canMove: 0
   hasBeenExecuted: 0
   crown: 0
