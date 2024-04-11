@@ -183,6 +183,7 @@ public class PlayerBody : MonoBehaviour
             ghostCoinSlider_obj.SetActive(false);
         }
 
+        //scoreboard.LogAll();
 
         Health = health;
         if (Input.GetKeyUp(KeyCode.C))
@@ -475,7 +476,7 @@ public class PlayerBody : MonoBehaviour
         maxHealth = health;
         executeHeal = maxHealth * (1.0f / 2.0f);
         canCollect = true;
-
+        scoreboard = new Scoreboard();
         playerID = gameObject.GetInstanceID();
     }
     bool dontForward;
