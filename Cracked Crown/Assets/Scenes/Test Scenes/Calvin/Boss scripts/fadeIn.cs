@@ -15,9 +15,16 @@ public class FadeIn : MonoBehaviour
     }
     private void Update()
     {
+        if (GameManager.Instance != null)
+        {
+            if (GameManager.Instance.isLoading) // stops boss script while the level is loading
+            {
+                return;
+                //haha loser
+            }
+        }
         if (alpha < 1)
         {
-            Debug.Log(alpha);
             StartCoroutine(fadeIn(alpha));
             alpha += Time.deltaTime/fadetime;
         }
