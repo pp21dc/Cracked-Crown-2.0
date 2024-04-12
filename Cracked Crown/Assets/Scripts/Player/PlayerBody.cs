@@ -299,7 +299,7 @@ public class PlayerBody : MonoBehaviour
                 gameObject.tag = "Player";
                 gameObject.layer = 3;
                 // move player back to corpse
-                transform.position = respawnPoint;
+                //transform.position = respawnPoint;
 
                 // change back to normal
                 //animController.Dead = false;
@@ -313,9 +313,6 @@ public class PlayerBody : MonoBehaviour
                 
                 if (canMove)
                 {
-                    Debug.Log("OVER RUN!?");
-                    rb.MovePosition(respawnPoint);
-                    rb.velocity = Vector3.zero;
                     StartCoroutine(executeAfterRevive());
                 }
 
@@ -447,6 +444,14 @@ public class PlayerBody : MonoBehaviour
     private IEnumerator executeAfterRevive()
     {
         
+        while (Vector3.Distance(transform.position, respawnPoint) > 3.5f)
+        {
+            canMove = false;
+            Debug.Log("RUN: " + Vector3.Distance(transform.position, respawnPoint));
+            respawnPoint.y = 0;
+            rb.MovePosition(Vector3.MoveTowards(transform.position, respawnPoint, 80 * Time.deltaTime));
+            yield return new WaitForEndOfFrame();
+        }
         
         canMove = false;
 
@@ -454,7 +459,21 @@ public class PlayerBody : MonoBehaviour
         if (corpse != null)
             corpse.tag = tag;
 
+        
+
         yield return new WaitForSeconds(1.2f);
+        if (corpse != null)
+        {
+            Transform e = CharacterFolder.transform.GetChild(0).GetChild(0).transform;
+            if (corpse.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX)
+            {
+                e.localScale = new Vector3(3.5f, 3.5f, 1);
+            }
+            else
+            {
+                e.localScale = new Vector3(-3.5f, 3.5f, 1);
+            }
+        }
         animController.Dead = false;
         animController.Revive = true;
         Debug.Log("REVIVING");
@@ -1271,13 +1290,12 @@ public class PlayerBody : MonoBehaviour
         GameObject c = Instantiate(deathBody, spriteRenderer.gameObject.transform.position, Quaternion.identity);
         SceneManager.MoveGameObjectToScene(c, persistScene);
         corpse = c;
-        if (sprite != null)
-            sprite = CharacterFolder.transform.GetChild(0).GetChild(0).transform;
-        if (sprite.localScale.x < 0)
+        Transform e = CharacterFolder.transform.GetChild(0).GetChild(0).transform;
+        if (e.localScale.x < 0)
         {
             c.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = true;
         }
-        if (sprite.localScale.x > 0)
+        if (e.localScale.x > 0)
         {
             c.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = false;
         }

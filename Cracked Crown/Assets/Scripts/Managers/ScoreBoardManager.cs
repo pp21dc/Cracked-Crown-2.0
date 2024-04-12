@@ -29,6 +29,7 @@ public class ScoreBoardManager : MonoBehaviour
         {
             Scoreboard.SetActive(false);
             canExit = false;
+            //GameManager.Instance.FreezePlayers(false);
             ResetScores();
         }
     }
@@ -36,6 +37,7 @@ public class ScoreBoardManager : MonoBehaviour
     public void On()
     {
         StartCoroutine(Skip());
+        //GameManager.Instance.FreezePlayers(true);
         Scoreboard.SetActive(true);
     }
 

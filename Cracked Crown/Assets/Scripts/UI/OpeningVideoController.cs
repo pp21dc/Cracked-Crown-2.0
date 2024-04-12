@@ -85,13 +85,6 @@ public class OpeningVideoController : MonoBehaviour
                     
                     players[j].Play();
                 }
-                else
-                {
-                    players[players.Length-1].enabled = false;
-                    GameManager.Instance.waitforvideo = false;
-                    active = false;
-                    GameManager.Instance.FreezePlayers(false);
-                }
             }
             /*else if (Input.anyKeyDown && j >= players.Length && !skipLock)
             {

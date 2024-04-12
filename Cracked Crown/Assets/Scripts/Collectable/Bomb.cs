@@ -120,7 +120,8 @@ public class Bomb : MonoBehaviour
         {
             foreach (EnemyAIController enemy in enemiesInRange)
             {
-                enemy.DecHealth(damage, controller.PB);
+                if (enemy != null)
+                    enemy.DecHealth(damage, controller.PB);
             }
             foreach (PlayerBody pb in playersInRange)
             {
