@@ -110,12 +110,15 @@ public class GameManager : MonoBehaviour
         }
         LM = LevelManager.Instance;
         MM = MusicManager.instance;
+
     }
 
     private void Start()
     {
         claws = new List<BossPhases>();
         Physics.IgnoreLayerCollision(7, 6);
+        Physics.IgnoreLayerCollision(7, 3);
+        Physics.IgnoreLayerCollision(7, 9);
         if (CampaignStart)
         {
             ReturnToMainMenu(true);
@@ -486,7 +489,7 @@ public class GameManager : MonoBehaviour
                 MainMenu.SetActive(true);
                 MM.PlayTrack(MusicManager.TrackTypes.windy);
             }
-
+            RevivePlayers();
             star = false;
             LM.ROOM_CLEARED = true;
             IsLevelCleared = true;
@@ -598,8 +601,8 @@ public class GameManager : MonoBehaviour
     private void ResetGame(bool ifNotToMainMenu)
     {
         LM.ResetLevelManager();
-        SetPlayerPositions();
-        RevivePlayers();
+        //SetPlayerPositions();
+        
         eyeCount = 0;
         eyeText.text = "";
 

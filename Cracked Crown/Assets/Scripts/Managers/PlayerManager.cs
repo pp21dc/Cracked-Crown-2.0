@@ -50,14 +50,20 @@ public class PlayerManager : MonoBehaviour
         {
 
             int lnch = CheckPlayersIndex();
-            Debug.Log("LAUNCH: " + lnch);
             PB.currentIN = lnch;
             launch_lock = true;
             START_Text.SetActive(false);
             LockIn_F.SetActive(true);
+
+            Destroy(PB.CharacterFolder.transform.GetChild(0).gameObject);
+            Instantiate(CharacterPrefabs[lnch], PB.CharacterFolder.transform);
+
+            for (int i = 0; i < 4; i++)
+                CharacterImages[i].SetActive(false);
             CharacterImages[lnch].SetActive(true);
             PB.CharacterType = CharacterTypes[lnch];
             PB.SetCharacterData();
+            PB.spriteRenderer = PB.CharacterFolder.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>(); 
             foreach (PlayerContainer container in gm.Players)
             {
                 //SetAllMarkers();

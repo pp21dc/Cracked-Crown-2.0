@@ -19,6 +19,8 @@ public class PlayerContainer : MonoBehaviour
 
     public PlayerAnimController PAC;
 
+    int orderJoined = -1;
+
     private void FixedUpdate()
     {
         if (PAC == null)

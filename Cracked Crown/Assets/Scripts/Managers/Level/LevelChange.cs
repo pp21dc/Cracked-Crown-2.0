@@ -23,10 +23,10 @@ public class LevelChange : MonoBehaviour
         //Debug.Log(players.Count + " // " + GM.Players.Length + " // " + locked + " // " + GM.IsLevelCleared);
         //DEBUG BYPASS
         //GM.IsLevelCleared = true;
-        if ((players.Count-1 >= GM.Players.Length && !locked && GM.Players.Length > 0 && GM.IsLevelCleared) || (Input.GetKey(KeyCode.N) && !locked))
+        if ((players.Count >= GM.Players.Length && !locked && GM.Players.Length > 0 && GM.IsLevelCleared) || (Input.GetKey(KeyCode.N) && !locked))
         {
             
-            if (CheckLockedIn())
+            if (CheckLockedIn() && !GM.isLoading)
             {
                 Debug.Log("NEXT");
                 openDoor = false;
@@ -68,10 +68,10 @@ public class LevelChange : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         //If a player enters the level change collider add them to the player list
-        if ((other.gameObject.tag == "Player" || other.gameObject.tag == "Ghost") && GM.IsLevelCleared && openDoor)
+        if (!players.Contains(other.gameObject) && (other.gameObject.tag == "Player" || other.gameObject.tag == "Ghost") && GM.IsLevelCleared && openDoor)
         {
             PlayerBody pb = other.GetComponent<PlayerBody>();
             if (pb.lockIN != -1)
