@@ -345,7 +345,7 @@ public class PlayerBody : MonoBehaviour
             ghostCoins = 10;
         if (ghostCoins >= 10 && alreadyDead)
         {
-            scoreboard.Revives++;
+            
             gameObject.tag = "Player";
             gameObject.layer = 3;
             ghostCoins = 0;
@@ -485,6 +485,7 @@ public class PlayerBody : MonoBehaviour
         
         canMove = true;
         health = maxHealth;
+        scoreboard.Revives++;
         GameManager.Instance.ResetPlayer(this);
     }
 
