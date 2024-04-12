@@ -135,6 +135,13 @@ public class PlayerAnimController : MonoBehaviour
         set { hitreact = value; }
     }
 
+    private bool revive;
+    public bool Revive
+    {
+        get { return revive; }
+        set { revive = value; }
+    }
+
     PlayerContainer PC;
 
     private void Awake()
@@ -199,6 +206,8 @@ public class PlayerAnimController : MonoBehaviour
         dashing = false;
         attacking = false;
         hitreact = false;
+        revive = false;
+        dead = false;
     }
 
     private void FixedUpdate()
@@ -222,6 +231,7 @@ public class PlayerAnimController : MonoBehaviour
             Animator.SetFloat("Input_Horz", PC.PB.controller.HorizontalMagnitude);
             Animator.SetFloat("Input_Vert", PC.PB.controller.ForwardMagnitude);
             Animator.SetBool("HitReact", hitreact);
+            Animator.SetBool("Revive", revive);
             //if (finishing) { finishing = false; }
             if (true )
             {

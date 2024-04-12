@@ -41,7 +41,7 @@ public class ScoreBoardManager : MonoBehaviour
 
     IEnumerator Skip()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(6.5f);
         canExit = true;
     }
 

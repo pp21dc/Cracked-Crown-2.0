@@ -141,9 +141,13 @@ public class PlayerBody : MonoBehaviour
     [SerializeField]
     private GameObject sparkleObject;
     public Scoreboard scoreboard;
-    public void ResetPlayer()
+    public void ResetPlayer(bool seAll)
     {
-        StopAllCoroutines();
+        if (seAll)
+        {
+            animController.SetAll();
+            StopAllCoroutines();
+        }
         health = maxHealth;
         alreadyDead = true;
         canAttack = true;
@@ -168,6 +172,7 @@ public class PlayerBody : MonoBehaviour
         Grabbed = false;
         dashOnCD = false;
         gameObject.tag = "Player";
+        gameObject.layer = 3;
     }
 
     private void Update()
@@ -188,8 +193,8 @@ public class PlayerBody : MonoBehaviour
         Health = health;
         if (Input.GetKeyUp(KeyCode.C))
             hasBomb = true;
-        if (Input.GetKey(KeyCode.K))
-            ghostCoins += 10;
+        if (Input.GetKeyUp(KeyCode.K))
+            ghostCoins = 10;
         if (Input.GetKey(KeyCode.I))
             gameManager.eyeCount += 1;
 
@@ -277,6 +282,7 @@ public class PlayerBody : MonoBehaviour
                 lockDash = true;
                 Grabbed = false;
                 StartCoroutine(deathAnim());
+                StartCoroutine(resetCanMoveOnRevive());
             }
             if (alreadyDead && enumDone)
             {
@@ -291,22 +297,27 @@ public class PlayerBody : MonoBehaviour
             {
                 scoreboard.Revives++;
                 gameObject.tag = "Player";
-
+                gameObject.layer = 3;
                 // move player back to corpse
                 transform.position = respawnPoint;
 
                 // change back to normal
-                animController.Dead = false;
-                alreadyDead = false;
+                //animController.Dead = false;
+                //alreadyDead = false;
                 ghostCoins = 0;
-                health = maxHealth;
+                
                 canAttack = true;
                 lockDash = false;
                 canTakeDamage = true;
                 Grabbed = false;
-
                 
-                StartCoroutine(executeAfterRevive());
+                if (canMove)
+                {
+                    Debug.Log("OVER RUN!?");
+                    rb.MovePosition(respawnPoint);
+                    rb.velocity = Vector3.zero;
+                    StartCoroutine(executeAfterRevive());
+                }
 
             }
             Attack();
@@ -360,7 +371,7 @@ public class PlayerBody : MonoBehaviour
 
     public void ExitLevel()
     {
-        StopPlayer();
+        StopPlayer(true);
         StartCoroutine(FadeSprite(0.001f, 0.5f));
     }
     public int timesSwung = 0;
@@ -379,15 +390,17 @@ public class PlayerBody : MonoBehaviour
     {
         //StopAllCoroutines();
         playerLock = false;
-        //StopAllCoroutines();
+        StopAllCoroutines();
         if (spriteRenderer != null)
             spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 1);
         GameManager.Instance.FreezePlayers(false);
+        rb.isKinematic = false;
     }
 
-    public void StopPlayer()
+    public void StopPlayer(bool kine)
     {
         playerLock = true;
+        rb.isKinematic = kine;
         rb.velocity = Vector3.zero;
     }
 
@@ -398,18 +411,20 @@ public class PlayerBody : MonoBehaviour
             while (spriteRenderer != null && spriteRenderer.color.a >= to)
             {
                 spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, spriteRenderer.color.a - (speed * Time.deltaTime));
+                dropShadow.SetActive(false);
                 yield return new WaitForEndOfFrame();
             }
-            dropShadow.SetActive(false);
+            
         }
         else
         {
             while (spriteRenderer != null && spriteRenderer.color.a <= to)
             {
                 spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, spriteRenderer.color.a + (speed * Time.deltaTime));
+                dropShadow.SetActive(true);
                 yield return new WaitForEndOfFrame();
             }
-            dropShadow.SetActive(true);
+            
         }
     }
 
@@ -431,8 +446,7 @@ public class PlayerBody : MonoBehaviour
     
     private IEnumerator executeAfterRevive()
     {
-        rb.MovePosition(respawnPoint);
-        rb.velocity = Vector3.zero;
+        
         
         canMove = false;
 
@@ -441,13 +455,22 @@ public class PlayerBody : MonoBehaviour
             corpse.tag = tag;
 
         yield return new WaitForSeconds(1.2f);
-        Destroy(corpse);
+        animController.Dead = false;
+        animController.Revive = true;
+        Debug.Log("REVIVING");
         canExecute = true;
         canCollect = true;
-        yield return new WaitForSeconds(2.0f);
-        canMove = true;
-        //rb.MovePosition(respawnPoint);
+        yield return new WaitForSeconds(1.0f);
+        Destroy(corpse);
+        yield return new WaitForSeconds(0.5f);
+        animController.Revive = false;
+        
         rb.velocity = Vector3.zero;
+        RevivePlayer();
+        alreadyDead = false;
+        
+        canMove = true;
+        health = maxHealth;
         GameManager.Instance.ResetPlayer(this);
     }
 
@@ -589,8 +612,10 @@ public class PlayerBody : MonoBehaviour
             if (canMovePlayerForexecute && executeTarget != null)
             {
 
-                if (enemyAIController != null && ((enemyAIController.tag.Equals("Heavy") && (Vector3.Distance(transform.position, executeTarget.transform.position + forExecutePosition) < 5f))
-                    || (Vector3.Distance(transform.position, executeTarget.transform.position + forExecutePosition) < 1f)) && !lockExecAnim || ((executingCrab == true) && Vector3.Distance(transform.position, executeTarget.transform.position + offSet) < 5.0f))
+                if ((enemyAIController != null && ((enemyAIController.tag.Equals("Heavy") && (Vector3.Distance(transform.position, executeTarget.transform.position + forExecutePosition) < 5f))
+                    || (Vector3.Distance(transform.position, executeTarget.transform.position + forExecutePosition) < 1f)) 
+                    || ((executingCrab == true) && Vector3.Distance(transform.position, executeTarget.transform.position + offSet) < 5.0f)) 
+                    && !lockExecAnim)
                 {
                     if (executingCrab)
                     {
@@ -628,6 +653,7 @@ public class PlayerBody : MonoBehaviour
                     lockExecAnim = true;
                     if (executeLock == false)
                     {
+                        executeLock = true;
                         StartCoroutine(TurnOffExecuteMovement());
                     }
                 }
@@ -814,6 +840,7 @@ public class PlayerBody : MonoBehaviour
         canTakeDamage = true;
         canAttack = true;
         executeLock = false;
+        lockExecAnim = false;
         if (animController != null && enemyAIController != null)
             animController.Finisher(enemyAIController.tag, enemyAIController.colour, true);
 
@@ -840,12 +867,13 @@ public class PlayerBody : MonoBehaviour
     public void DecHealth(float amount) 
     {
         
-        if (canTakeDamage)
+        if (canTakeDamage && !alreadyDead)
         {
             StartCoroutine(DamageColourFlash());
             PAM.PlayAudio(PlayerAudioManager.AudioType.PlayerHit);
-            animController.SetAll();
-            animController.HitReact = true;
+            if (!animController.Dead)
+                animController.SetAll();
+            //animController.HitReact = true;
             health = Mathf.Max(0, health - amount); // allows taking health from the player
         }
     }
@@ -1199,7 +1227,7 @@ public class PlayerBody : MonoBehaviour
 
             transform.position = respawnPoint;
 
-            animController.Dead = false;
+            //animController.Dead = false;
             //alreadyDead = false;
             ghostCoins = 10;
             health = maxHealth * 0.8f;
@@ -1209,7 +1237,7 @@ public class PlayerBody : MonoBehaviour
             canTakeDamage = true;
             Grabbed = false;
 
-            ResetPlayer();
+            ResetPlayer(false);
             StartCoroutine(executeAfterRevive());
         }
     }
@@ -1239,9 +1267,12 @@ public class PlayerBody : MonoBehaviour
     private IEnumerator resetCanMoveOnRevive()
     {
         canMove = false;
+        yield return new WaitForSeconds(1.2f);
         GameObject c = Instantiate(deathBody, spriteRenderer.gameObject.transform.position, Quaternion.identity);
         SceneManager.MoveGameObjectToScene(c, persistScene);
         corpse = c;
+        if (sprite != null)
+            sprite = CharacterFolder.transform.GetChild(0).GetChild(0).transform;
         if (sprite.localScale.x < 0)
         {
             c.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = true;
@@ -1251,8 +1282,7 @@ public class PlayerBody : MonoBehaviour
             c.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = false;
         }
         
-        
-        yield return new WaitForSeconds(1.0f);
+        respawnPoint = c.transform.position;
     }
 
     public void GhostPlayer()
@@ -1262,22 +1292,22 @@ public class PlayerBody : MonoBehaviour
         canExecute = false;
         canUseItem = false;
         lockDash = true;
+        gameObject.tag = "Ghost";
         gameObject.layer = 7;
         canCollect = true;
-        StartCoroutine(resetCanMoveOnRevive());
+        //resetCanMoveOnRevive();
     }
 
     public void RevivePlayer()
     {
         canMove = true;
-
-        //Debug.Log("REVIVE");
         canAttack = true;
         canTakeDamage = true;
         canExecute = true;
         canUseItem = true;
         lockDash = false;
         RESETINGGHOST = 0;
+        gameObject.tag = "Player";
         gameObject.layer = 3;
         canCollect = true;
     }

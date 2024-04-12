@@ -93,13 +93,13 @@ public class OpeningVideoController : MonoBehaviour
                     GameManager.Instance.FreezePlayers(false);
                 }
             }
-            else if (Input.anyKeyDown && j >= players.Length && !skipLock)
+            /*else if (Input.anyKeyDown && j >= players.Length && !skipLock)
             {
                 players[2].enabled = false;
                 GameManager.Instance.waitforvideo = false;
                 active = false;
                 GameManager.Instance.FreezePlayers(false);
-            }
+            }*/
             //checks if first video is finished and starts looping seccond video (showing text with anim)
             if (player.isPaused)
             {
@@ -135,6 +135,7 @@ public class OpeningVideoController : MonoBehaviour
                 stopAudio = true;
                 rt.SetActive(false);
                 skipLock = true;
+                active = false;
                 if (openingVideo || deathVideo || winVideo)
                 {
                     MusicManager.instance.PlayTrack(MusicManager.TrackTypes.windy);

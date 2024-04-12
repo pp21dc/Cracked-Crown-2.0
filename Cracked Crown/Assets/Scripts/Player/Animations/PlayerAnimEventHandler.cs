@@ -50,7 +50,7 @@ public class PlayerAnimEventHandler : MonoBehaviour
 
     public void DeathFinish()
     {
-        //PC.PB.canCollect = false;
+        /*//PC.PB.canCollect = false;
         PC.PB.RESETINGGHOST += 1;
         PC.PB.canMove = false;
         PC.PB.canTakeDamage = false;
@@ -66,8 +66,10 @@ public class PlayerAnimEventHandler : MonoBehaviour
             Destroy(PC.PB.corpse);
             PC.PB.RevivePlayer();
             PC.PB.canCollect = true;
-        }
+        }*/
+
     }
+
 
     public void SFX(int type)
     {

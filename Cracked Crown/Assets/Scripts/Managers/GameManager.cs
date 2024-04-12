@@ -198,6 +198,7 @@ public class GameManager : MonoBehaviour
         RevivePlayers();
         SetPlayerPositions();
         star = true;
+        SetPlayerScore();
         ReturnToMainMenu(true);
     }
 
@@ -248,7 +249,7 @@ public class GameManager : MonoBehaviour
     {
         for(int i = 0; i < Players.Length; i++)
         {
-            Players[i].PB.ResetPlayer();
+            Players[i].PB.ResetPlayer(true);
             SetPlayerPositions();
         }
         lost = false;
@@ -284,12 +285,8 @@ public class GameManager : MonoBehaviour
             SetPlayerScore();
             ReturnToMainMenu(true);
         }
-        else
-        {
-            yield return null;
-        }
+
         lost = false;
-        yield return null;
     }
 
     public PlayerInput GetPlayer(int ID)
@@ -312,7 +309,7 @@ public class GameManager : MonoBehaviour
             {
                 pc.PB.playerLock = freeze;
                 if (freeze)
-                    pc.PB.StopPlayer();
+                    pc.PB.StopPlayer(freeze);
             }
         }
     }
@@ -325,7 +322,7 @@ public class GameManager : MonoBehaviour
             //Debug.Log(pb.CharacterType.name);
             if (pb != null)
             {
-                pb.StopAllCoroutines();
+                //pb.StopAllCoroutines();
                 pb.canMove = true;
                 pb.canCollect = true;
                 pb.canAttack = true;
@@ -511,6 +508,7 @@ public class GameManager : MonoBehaviour
             else if (levelName.Equals("RedShop"))
                 currentLevelName = "RedShop";
             UIManager.Instance.InGameUI.SetActive(true);
+            MM.PlayTrack(MusicManager.TrackTypes.shop);
             LM.Enter_Level(false, false);
         }
         else if (levelName.Equals(BossLevelName))

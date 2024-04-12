@@ -9,7 +9,7 @@ public class CorpseDelete : MonoBehaviour
     {
         if (gameObject.tag == "BeenRevived")
         {
-            StartCoroutine(destroyIncaseOfBug());
+            //StartCoroutine(destroyIncaseOfBug());
         }
     }
 
