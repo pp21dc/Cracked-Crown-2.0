@@ -193,7 +193,7 @@ public class GameManager : MonoBehaviour
     IEnumerator WINGAME()
     {
         win = false;
-        yield return new WaitForSeconds(7);
+        yield return new WaitForSeconds(10.5f);
         eyeCount = 0;
         video_win.stopAudio = false;
         video_win.PlayVideo();
