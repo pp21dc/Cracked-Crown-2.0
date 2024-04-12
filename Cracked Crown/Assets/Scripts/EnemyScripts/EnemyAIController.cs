@@ -1103,7 +1103,7 @@ public class EnemyAIController : AdvancedFSM
         }
         else if (gameObject.CompareTag("Heavy"))
         {
-            dropRate = 7;
+            dropRate = 5;
         }
 
         for (int i = 0; i < dropRate; i++)
