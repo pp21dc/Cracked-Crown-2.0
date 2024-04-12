@@ -1580,6 +1580,9 @@ public class EnemyAIController : AdvancedFSM
         if(startShooting)
         {
 
+            StopCoroutine(ShootRoutine());
+            heavyBullets = maxAmmo;
+
             if(closest != null && closest.transform.position.x + 1 > enemyPosition.transform.position.x) 
             {
 

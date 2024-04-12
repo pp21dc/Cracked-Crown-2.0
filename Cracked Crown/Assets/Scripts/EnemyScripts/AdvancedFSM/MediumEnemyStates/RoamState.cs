@@ -20,7 +20,7 @@ public class RoamState : FSMState
     public override void Reason(Transform player, Transform npc)
     {
 
-        if (enemy.Health <= enemy.maxHealth * 0.20f && enemy.Health >= 1)
+        if (enemy.Health <= enemy.maxHealth * 0.45f && enemy.Health >= 1)
         {
 
             enemy.PerformTransition(Transition.LowHealth);

@@ -20,7 +20,7 @@ public class ShockwaveState : FSMState
     //creates transition reasoning for if the enemy has no health, die, if the enemy has low health, flee, and if the enemy is in range of the player, attack
     public override void Reason(Transform player, Transform npc)
     {
-        if (enemy.Health <= enemy.maxHealth * 0.25f && enemy.Health >= 1)
+        if (enemy.Health <= enemy.maxHealth * 0.45f && enemy.Health >= 1)
         {
             
             enemy.PerformTransition(Transition.LowHealth);
