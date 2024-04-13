@@ -107,7 +107,7 @@ public class PlayerController : MonoBehaviour
     public void OnPause()
     {
         pauseDown = true;
-        Debug.Log("Pause Down");
+        //Debug.Log("Pause Down");
     }
 
     public void OnNavigate(InputValue inputValue)

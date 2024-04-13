@@ -129,7 +129,7 @@ public class LevelManager : MonoBehaviour
             if (!boss)
                 WAIT_NEXTSPAWN_VALUE = Current_Room.SpawnRate[CURRENT_WAVE - 1] * Random.Range(0.8f, 1f);
             else
-                WAIT_NEXTSPAWN_VALUE = (1 / (GM.Players.Length + 1)) + 0.8f;
+                WAIT_NEXTSPAWN_VALUE = 1.75f - (GM.Players.Length * 0.25f);
             Spawner.SpawnEnemy(PickEnemy());
         }
     }

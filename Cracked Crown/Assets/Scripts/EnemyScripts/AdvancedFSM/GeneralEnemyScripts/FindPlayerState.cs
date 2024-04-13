@@ -32,7 +32,7 @@ public class FindPlayerState : FSMState
         }
         else if (enemy.InContact == true)
         {
-            Debug.Log("in the incontact thing");
+            //Debug.Log("in the incontact thing");
             enemy.sepCheck.enabled = false;
             enemy.InContact = false;
             enemy.PerformTransition(Transition.enemiesInContact);

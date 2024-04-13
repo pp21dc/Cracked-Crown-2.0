@@ -54,7 +54,7 @@ public class SeperateState : FSMState
     //no need for anything in act as you are jsut standing there until a player attacks you or you see them
     public override void Act(Transform player, Transform npc)
     {
-        Debug.Log("oh hi mark");
+        //Debug.Log("oh hi mark");
         enemy.StartSeperation();
     }
 }

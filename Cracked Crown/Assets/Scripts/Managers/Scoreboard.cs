@@ -17,6 +17,22 @@ public class Scoreboard
     public int Dashes = 0;//
     public int Struggled = 0;//
 
+    public void Reset()
+    {
+        TimesSwung = 0;//
+        EnemiesKilled = 0;//
+        ExecutesDone = 0;//
+        BombsThrown = 0;//
+        PotionsUsed = 0;//
+        Deaths = 0;//
+        Revives = 0;//
+        CoinsCollected = 0;//
+        GhostCoinsCollected = 0;//
+        Steps = 0;
+        Dashes = 0;//
+        Struggled = 0;//
+    }
+
     public void LogAll()
     {
         Debug.Log(TimesSwung);

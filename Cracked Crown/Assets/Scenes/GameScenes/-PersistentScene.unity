@@ -807,6 +807,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5541360619746335601, guid: 2ef74e3567762f744a6e0aab0622ef89,
         type: 3}
+      propertyPath: scoreboard
+      value: 
+      objectReference: {fileID: 683128636}
+    - target: {fileID: 5541360619746335601, guid: 2ef74e3567762f744a6e0aab0622ef89,
+        type: 3}
       propertyPath: videos.Array.data[0]
       value: 
       objectReference: {fileID: 32900000, guid: 6b2424a6866ce3c4fb8c1b03303264d2,
@@ -2907,6 +2912,11 @@ PrefabInstance:
       propertyPath: winVideo
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4406402512733622892, guid: a58fe362b3684744882514a335e4b28e,
+        type: 3}
+      propertyPath: scoreboard
+      value: 
+      objectReference: {fileID: 683128636}
     - target: {fileID: 6745871983485547224, guid: a58fe362b3684744882514a335e4b28e,
         type: 3}
       propertyPath: m_RenderMode
@@ -3061,6 +3071,7 @@ MonoBehaviour:
   - {fileID: 1172947795}
   - {fileID: 1685187329}
   enem: {fileID: 0}
+  lost: 0
   progress: 0
 --- !u!1 &899017009
 GameObject:

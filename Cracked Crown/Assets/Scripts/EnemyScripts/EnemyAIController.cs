@@ -789,7 +789,7 @@ public class EnemyAIController : AdvancedFSM
     private void setAndMoveToTargetLight(float Speed)
     {
 
-        Debug.Log(closest);
+        //Debug.Log(closest);
         if (closest != null)
         {
             EAC.Moving = true;
@@ -841,7 +841,7 @@ public class EnemyAIController : AdvancedFSM
         {
             EAC.Moving = false;
         }
-        Debug.Log(closest == null);
+        //Debug.Log(closest == null);
         if (closest != null)
         {
 
@@ -974,7 +974,7 @@ public class EnemyAIController : AdvancedFSM
             EAC.Moving = true;//NEW
             if (doneStun == false)
             {
-                Debug.Log("LetsGoUp");
+                //Debug.Log("LetsGoUp");
                 EAC.Moving = true;//NEW
                 EAC.Stunned = false;
                 Vector3 upVector = new Vector3(enemyPosition.position.x, 30f, enemyPosition.position.z);
@@ -1045,7 +1045,7 @@ public class EnemyAIController : AdvancedFSM
 
         yield return new WaitForSeconds(0.01f);
 
-        Debug.Log("DEATH");
+        //Debug.Log("DEATH");
         //DropEyes();
 
         DropEyes();
@@ -1145,7 +1145,7 @@ public class EnemyAIController : AdvancedFSM
             //EAC.Attacking = false;
             moveToCarry = true;
             
-            Debug.Log("Carry");
+            //Debug.Log("Carry");
 
         }
         else if (slamAttack.HitGround == true && !slamAttack.hasHit)
@@ -1153,7 +1153,7 @@ public class EnemyAIController : AdvancedFSM
             EAC.Attacking = false;
             EAC.Stunned = true;
             moveToStunned = true;
-            Debug.Log("Stunned");
+            //Debug.Log("Stunned");
              
         }
         else if (slamAttack.hasHit == false && slamAttack.HitGround == false)

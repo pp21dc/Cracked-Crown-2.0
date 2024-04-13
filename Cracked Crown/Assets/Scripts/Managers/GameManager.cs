@@ -10,6 +10,7 @@ using UnityEngine.InputSystem;
 using TMPro;
 using System.Threading;
 using UnityEditor;
+using Unity.VisualScripting;
 //using System.Diagnostics;
 
 public class GameManager : MonoBehaviour
@@ -177,12 +178,16 @@ public class GameManager : MonoBehaviour
                 UI.SetActive(true);
             }
 
-            if (AreAllPlayersDead() && lost)
+            if (AreAllPlayersDead() && lost && !waitforvideo)
             {
                 lost = false;
                 StartCoroutine(LoseCond());
             }
-            if (win)
+            else
+            {
+                lost = false;
+            }
+            if (win && !waitforvideo)
             {
                 win = false;
                 Debug.Log("WIN");
@@ -225,14 +230,14 @@ public class GameManager : MonoBehaviour
     }*/
 
 
-    bool lost = false;
+    public bool lost = false;
     public bool AreAllPlayersDead()
     {
         //SkillIssue
         int x = 0;
         for (int i = 0; i < Players.Length; i++)
         {
-            if (Players[i].PB.alreadyDead)
+            if (Players[i].PB.alreadyDead && !Players[i].PB.reving && !waitforvideo)
             {
                 x++;
             }
@@ -289,7 +294,6 @@ public class GameManager : MonoBehaviour
             SetPlayerScore();
             ReturnToMainMenu(true);
         }
-
         lost = false;
     }
 
@@ -312,8 +316,7 @@ public class GameManager : MonoBehaviour
             if (pc.PB != null)
             {
                 pc.PB.playerLock = freeze;
-                if (freeze)
-                    pc.PB.StopPlayer(freeze);
+                pc.PB.StopPlayer(freeze);
             }
         }
     }
@@ -422,7 +425,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("ON");
+            //Debug.Log("ON");
             if (!waitforvideo)
                 MainMenu.SetActive(true);
             else

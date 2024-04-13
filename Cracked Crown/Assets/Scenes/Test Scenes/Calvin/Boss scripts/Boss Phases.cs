@@ -716,7 +716,7 @@ public class BossPhases : MonoBehaviour
     }
     IEnumerator ClawDeath ()
     {
-        Debug.Log("working");
+        //Debug.Log("working");
         dyingreturn = true;
         yield return new WaitForSeconds(attacktimer);
         dyingreturn = false;

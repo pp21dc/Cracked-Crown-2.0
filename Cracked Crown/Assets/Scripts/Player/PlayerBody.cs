@@ -162,7 +162,7 @@ public class PlayerBody : MonoBehaviour
         playerLock = false;
         Grabbed = false;
         ghostCoins = 0;
-        //alreadyDead = false;
+        reving = false;
         canMovePlayerForexecute = false;
         canUseItem = true;
         gotHit = false;
@@ -244,9 +244,9 @@ public class PlayerBody : MonoBehaviour
 
         if (Grabbed)
             playerLock = true;
-
+        
         DeathAndRevive();
-        if (!playerLock)
+        if (!playerLock && !gameManager.waitforvideo)
         {
             if (PM != null && PM.isActiveAndEnabled)
             {
@@ -381,8 +381,7 @@ public class PlayerBody : MonoBehaviour
 
     public void EnterLevel()
     {
-        //StopAllCoroutines();
-        playerLock = false;
+        StopPlayer(false);
         StopAllCoroutines();
         if (spriteRenderer != null)
             spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 1);
@@ -392,7 +391,7 @@ public class PlayerBody : MonoBehaviour
 
     public void StopPlayer(bool kine)
     {
-        playerLock = true;
+        playerLock = kine;
         rb.isKinematic = kine;
         rb.velocity = Vector3.zero;
     }
@@ -446,7 +445,7 @@ public class PlayerBody : MonoBehaviour
             while (Vector3.Distance(transform.position, respawnPoint) > 3.5f)
             {
                 canMove = false;
-                Debug.Log("RUN: " + Vector3.Distance(transform.position, respawnPoint));
+                //Debug.Log("RUN: " + Vector3.Distance(transform.position, respawnPoint));
                 respawnPoint.y = 0;
                 rb.MovePosition(Vector3.MoveTowards(transform.position, respawnPoint, 80 * Time.deltaTime));
                 yield return new WaitForEndOfFrame();
@@ -527,7 +526,7 @@ public class PlayerBody : MonoBehaviour
     bool lookingLeft = false;
     private void FixedUpdate()
     {
-        if (!playerLock)
+        if (!playerLock  && !gameManager.waitforvideo)
         {
             if (canMove && !dashing && sprite != null && !canMovePlayerForexecute)
             {
@@ -1051,7 +1050,7 @@ public class PlayerBody : MonoBehaviour
         lockHitForward = false;
         otherPlayerMV = Vector3.zero;
         rb.velocity = Vector3.zero;
-        Debug.Log("COT");
+        //Debug.Log("COT");
     }
 
     private IEnumerator attackCooldown()

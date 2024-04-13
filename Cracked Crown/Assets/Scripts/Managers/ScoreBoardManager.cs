@@ -9,6 +9,7 @@ public class ScoreBoardManager : MonoBehaviour
     public static ScoreBoardManager instance;
     public GameObject Scoreboard;
     bool canExit = false;
+    public bool active;
     [SerializeField]
     private TextMeshProUGUI BunnyStats;
     [SerializeField]
@@ -27,17 +28,20 @@ public class ScoreBoardManager : MonoBehaviour
     {
         if (Input.anyKeyDown && canExit)
         {
+            active = false;
             Scoreboard.SetActive(false);
             canExit = false;
-            //GameManager.Instance.FreezePlayers(false);
+            GameManager.Instance.FreezePlayers(false);
+            //GameManager.Instance.RevivePlayers();
             ResetScores();
         }
     }
 
     public void On()
     {
+        active = true;
         StartCoroutine(Skip());
-        //GameManager.Instance.FreezePlayers(true);
+        GameManager.Instance.FreezePlayers(true);
         Scoreboard.SetActive(true);
     }
 
@@ -73,6 +77,10 @@ public class ScoreBoardManager : MonoBehaviour
         DuckStats.text = "";
         FrogStats.text = "";
         BadgerStats.text = "";
+        foreach(PlayerContainer pc in GameManager.Instance.Players)
+        {
+            pc.PB.scoreboard.Reset();
+        }
     }
 
 }

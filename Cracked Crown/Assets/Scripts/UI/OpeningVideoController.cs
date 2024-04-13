@@ -48,6 +48,7 @@ public class OpeningVideoController : MonoBehaviour
 
     public void PlayVideo()
     {
+        Debug.Log("PLAY VIDEO");
         ResetVideoPlayer();
         GameManager.Instance.waitforvideo = true;
         players[0].Play();
@@ -68,9 +69,27 @@ public class OpeningVideoController : MonoBehaviour
         }
     }
 
+    private void DisableVideoPlayer()
+    {
+        rt.SetActive(false);
+        active = false;
+        GameManager.Instance.waitforvideo = false;
+        for (int i = 0; i < players.Length; i++)
+        {
+
+            players[i].enabled = false;
+            //players[i].Prepare();
+            j = 0;
+
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
+        if (ScoreBoardManager.instance.active)
+            DisableVideoPlayer();
+
         if (active)
         {
             //Debug.LogWarning("VideoControllerUpdate");
@@ -121,14 +140,18 @@ public class OpeningVideoController : MonoBehaviour
             if ((!players[players.Length-1].enabled) && !stopAudio && (openingVideo || winVideo || deathVideo))
             {
                 players[players.Length-1].enabled = false;
- 
+                GameManager.Instance.win = false;
+                GameManager.Instance.lost = false;
                 GameManager.Instance.waitforvideo = false;
-                GameManager.Instance.FreezePlayers(false);
+                
+                GameManager.Instance.RevivePlayers();
                 GameManager.Instance.MainMenu.SetActive(true);
+                DisableVideoPlayer();
                 //stopAudio = true;
                 rt.SetActive(false);
                 skipLock = true;
                 active = false;
+                j = 0;
                 if (openingVideo || deathVideo || winVideo)
                 {
                     MusicManager.instance.PlayTrack(MusicManager.TrackTypes.windy);
