@@ -125,7 +125,7 @@ public class OpeningVideoController : MonoBehaviour
                 GameManager.Instance.waitforvideo = false;
                 GameManager.Instance.FreezePlayers(false);
                 GameManager.Instance.MainMenu.SetActive(true);
-                stopAudio = true;
+                //stopAudio = true;
                 rt.SetActive(false);
                 skipLock = true;
                 active = false;

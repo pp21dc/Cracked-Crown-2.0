@@ -336,24 +336,17 @@ public class PlayerBody : MonoBehaviour
         }
         if (alreadyDead && enumDone)
         {
-            canMove = true;
+            //canMove = true;
             canAttack = false;
             lockDash = true;
             canExecute = false;
         }
-        if (health > 0 && alreadyDead)
+        if (health > 0 && alreadyDead && !reving)
             ghostCoins = 10;
-        if (ghostCoins >= 10 && alreadyDead)
+        if (ghostCoins >= 10 && alreadyDead && !reving)
         {
-            
-            gameObject.tag = "Player";
-            gameObject.layer = 3;
+            reving = true;
             ghostCoins = 0;
-
-            canAttack = true;
-            lockDash = false;
-            canTakeDamage = true;
-            Grabbed = false;
 
             if (canMove && gameManager.currentLevelName != gameManager.MainMenuName)
             {
@@ -363,9 +356,11 @@ public class PlayerBody : MonoBehaviour
             {
                 StartCoroutine(executeAfterRevive(true));
             }
+            
 
         }
     }
+    public bool reving;
     public void ExitLevel()
     {
         StopPlayer(true);
@@ -445,6 +440,7 @@ public class PlayerBody : MonoBehaviour
     
     private IEnumerator executeAfterRevive(bool skipMoveTo)
     {
+        canMove = false;
         if (!skipMoveTo)
         {
             while (Vector3.Distance(transform.position, respawnPoint) > 3.5f)
@@ -466,17 +462,22 @@ public class PlayerBody : MonoBehaviour
 
             yield return new WaitForSeconds(1.2f);
         }
+        else
+        {
+            rb.MovePosition(respawnPoint);
+        }
         animController.Dead = false;
         animController.Revive = true;
         Debug.Log("REVIVING");
-        canExecute = true;
-        canCollect = true;
-        if (!skipMoveTo)
+        canMove = false;
+        if (true)
             yield return new WaitForSeconds(1.0f);
+        canMove = false;
         if (corpse != null)
             Destroy(corpse);
-        if (!skipMoveTo)
-            yield return new WaitForSeconds(0.5f);
+        if (true)
+            yield return new WaitForSeconds(1.5f);
+        canMove = false;
         animController.Revive = false;
         
         rb.velocity = Vector3.zero;
@@ -484,9 +485,12 @@ public class PlayerBody : MonoBehaviour
         alreadyDead = false;
         
         canMove = true;
+        canExecute = true;
+        canCollect = true;
         health = maxHealth;
         scoreboard.Revives++;
         GameManager.Instance.ResetPlayer(this);
+        reving = false;
     }
 
     private IEnumerator deathAnim()
@@ -1244,11 +1248,7 @@ public class PlayerBody : MonoBehaviour
     {
         if (collision.gameObject.tag == "Revive" && gameObject.tag == "Ghost")
         {
-            gameObject.tag = "Player";
-            gameObject.layer = 3;
-
-            //ResetPlayer(false);
-            StartCoroutine(executeAfterRevive(false));
+            StartCoroutine(executeAfterRevive(true));
         }
     }
     public int RESETINGGHOST; //gets the state of the players death cycle
@@ -1333,6 +1333,7 @@ public class PlayerBody : MonoBehaviour
                     {
                         walrusAnimator.SetTrigger("EatEye");
                     }
+                    canCollectBomb = false;
                     gameManager.eyeCount -= 30;
                     hasPotion = false;
                     hasBomb = true;
@@ -1352,6 +1353,7 @@ public class PlayerBody : MonoBehaviour
                     {
                         walrusAnimator.SetTrigger("EatEye");
                     }
+                    canCollectPotion = false;
                     gameManager.eyeCount -= 30;
                     hasBomb = false;
                     hasPotion = true;

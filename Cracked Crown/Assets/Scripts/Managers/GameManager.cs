@@ -185,6 +185,7 @@ public class GameManager : MonoBehaviour
             if (win)
             {
                 win = false;
+                Debug.Log("WIN");
                 StartCoroutine(WINGAME());
             }
         }
@@ -378,8 +379,9 @@ public class GameManager : MonoBehaviour
             pb.canMove = true;
             pb.canCollect = true;
             pb.canAttack = true;
-            //pb.canCollectBomb = true;
-            //pb.canCollectPotion = true;
+            pb.canCollectBomb = false;
+            pb.canCollectPotion = false;
+            pb.reving = false;
             pb.timesSwung = 0;
             pb.timer_ifswung = 0;
             pb.attackImpLock = false;

@@ -458,6 +458,12 @@ public class EnemyAIController : AdvancedFSM
         {
             act = true;
         }
+        if (GameManager.Instance != null)
+        {
+            if (GameManager.Instance.win)
+                health = 0;
+        }
+
         if (tag == "Medium")
         {
             dropShadow.transform.localPosition = new Vector3(dropShadow.transform.localPosition.x, -0.25f, 0.52f);
