@@ -399,6 +399,7 @@ public class GameManager : MonoBehaviour
             pb.ghostCoins = 0;
             pb.dashing = false;
             pb.dashOnCD = false;
+            pb.dashQueue = false;
             if (pb.alreadyDead)
             {
                 pb.canAttack = false;
