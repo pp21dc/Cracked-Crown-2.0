@@ -162,11 +162,6 @@ public class BossPhases : MonoBehaviour
             return;
         }
 
-        if (canRage)
-        {
-            CheckRage();
-        }
-
         if (GrabbedPlayer != null)
         {
             if (!checkingInput)
@@ -226,20 +221,6 @@ public class BossPhases : MonoBehaviour
     public string displayAttack()
     {
         return CurrentAttack;
-    }
-
-    private void CheckRage ()
-    {
-        float healthTotal = 0;
-
-        healthTotal += otherClaw.bosshealth;
-        healthTotal += bosshealth;
-
-        if (healthTotal <= MAXBOSSHEALTH / 2)
-        {
-            canRage = false;
-            StartCoroutine(BossRage());
-        }
     }
     
     public void decHealth(float amount)
@@ -457,59 +438,6 @@ public class BossPhases : MonoBehaviour
         {
             Claw.transform.position = Vector3.MoveTowards(Claw.transform.position, clawtarget, clawspeed * Time.deltaTime);
         }
-    }
-
-    IEnumerator BossRage()
-    {
-        float biggestTimer = 0;
-        if (otherClaw.attacktimer > biggestTimer)
-        {
-            biggestTimer = otherClaw.attacktimer;
-        }
-        if (biggestTimer < attacktimer)
-        {
-            biggestTimer = attacktimer;
-        }
-        yield return new WaitForSeconds(biggestTimer);
-        raging = true;
-
-        CurrentAttack = "RageAttack";
-        attacktimer = 6.85f;
-
-        startrage = true; // return to spawn
-        clawtarget = CLAWSPAWN;
-        yield return new WaitForSeconds(2);
-        startrage = false;
-
-        if (Claw.name == "clawLeft")
-        {
-            yield return new WaitForSeconds(0.6f);
-        }
-        else if (Claw.name == "clawRight")
-        {
-            yield return new WaitForSeconds(0.7f);
-        }
-
-        bossAnim.Play("bossRage"); // Play animation
-        yield return new WaitForSeconds(2.35f);
-
-        startrage = true; // return to spawn
-
-        yield return new WaitForSeconds(1.5f);
-
-        startrage = false;
-
-        if (Claw.name == "clawLeft")
-        {
-            yield return new WaitForSeconds(0.4f);
-        }
-        else if (Claw.name == "clawRight")
-        {
-            yield return new WaitForSeconds(0.3f);
-        }
-
-        raging = false;
-        bossAnim.Play("clawPassive");
     }
 
     IEnumerator PincerAttack() // handles timings for the pincer function phases
