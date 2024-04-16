@@ -10,6 +10,10 @@ public class LevelChange : MonoBehaviour
     GameManager GM;             //GameManager
     bool locked;                //Locks level transition to avoid multiple level skips
     public SpriteRenderer Eye;
+
+    [SerializeField]
+    GameObject doorLight;
+
     private void Awake()
     {
         //Declaring vars
@@ -59,6 +63,7 @@ public class LevelChange : MonoBehaviour
     bool openDoor;
     IEnumerator ShutEye()
     {
+        doorLight.SetActive(true);
         while (Eye.color.a > 0.01f)
         {
             Eye.color = new Color(Eye.color.r, Eye.color.g, Eye.color.b, Eye.color.a-0.25f * Time.deltaTime);

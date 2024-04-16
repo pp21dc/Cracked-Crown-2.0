@@ -6319,7 +6319,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1843858281
   m_SortingLayer: 4
-  m_SortingOrder: 6
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 75015b35f6c2bf844989d09813d3f1b7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -9163,7 +9163,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1843858281
   m_SortingLayer: 4
-  m_SortingOrder: 6
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 2af9770fb573f5c48a4ca86ef704104b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -16383,6 +16383,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Eye: {fileID: 301577979}
+  doorLight: {fileID: 655870248988183757}
 --- !u!65 &1331609558
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19493,6 +19494,36 @@ PrefabInstance:
       propertyPath: m_Name
       value: doorOpenLight
       objectReference: {fileID: 0}
+    - target: {fileID: 5208941708455529566, guid: f32b92a7041f63246a720514db96d5b3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6567542372453148795, guid: f32b92a7041f63246a720514db96d5b3,
+        type: 3}
+      propertyPath: m_Intensity
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6567542372453148795, guid: f32b92a7041f63246a720514db96d5b3,
+        type: 3}
+      propertyPath: m_LocalBounds.m_Center.x
+      value: -0.0018000007
+      objectReference: {fileID: 0}
+    - target: {fileID: 6567542372453148795, guid: f32b92a7041f63246a720514db96d5b3,
+        type: 3}
+      propertyPath: m_LocalBounds.m_Center.y
+      value: -0.14690003
+      objectReference: {fileID: 0}
+    - target: {fileID: 6567542372453148795, guid: f32b92a7041f63246a720514db96d5b3,
+        type: 3}
+      propertyPath: m_LocalBounds.m_Extent.x
+      value: 0.9961
+      objectReference: {fileID: 0}
+    - target: {fileID: 6567542372453148795, guid: f32b92a7041f63246a720514db96d5b3,
+        type: 3}
+      propertyPath: m_LocalBounds.m_Extent.y
+      value: 0.8605
+      objectReference: {fileID: 0}
     - target: {fileID: 7314561999385210226, guid: f32b92a7041f63246a720514db96d5b3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -19548,14 +19579,21 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f32b92a7041f63246a720514db96d5b3, type: 3}
+--- !u!1 &655870248988183757 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5208941708455529566, guid: f32b92a7041f63246a720514db96d5b3,
+    type: 3}
+  m_PrefabInstance: {fileID: 655870248988183756}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 301577980}
   - {fileID: 1237795676}
   - {fileID: 547456692}
   - {fileID: 1331609561}
+  - {fileID: 301577980}
+  - {fileID: 655870248988183756}
   - {fileID: 1896394145}
   - {fileID: 1566066761}
   - {fileID: 1919747840}
@@ -19565,4 +19603,3 @@ SceneRoots:
   - {fileID: 46967345}
   - {fileID: 1469599190}
   - {fileID: 1637668004}
-  - {fileID: 655870248988183756}

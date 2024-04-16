@@ -276,17 +276,17 @@ public class UIManager : MonoBehaviour
         CharacterIcon.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
 
         char[] ca = dialogue.ToCharArray();
-        char[] temp = new char[100];
+        char[] temp = new char[200];
         
 
         for (int i = 0; i < ca.Length; i++)
         {
             //for (int j = 0; j <= i; j++)
             //{
-                temp[i] = ca[i];
-                dialogueSource.pitch = UnityEngine.Random.Range(0.8f, 1.5f);
-            Debug.LogWarning(dialogueSource.pitch);
-                int ct = UnityEngine.Random.Range(0, 5);
+            temp[i] = ca[i];
+            dialogueSource.pitch = UnityEngine.Random.Range(0.8f, 1.5f);
+         
+            int ct = UnityEngine.Random.Range(0, 5);
 
             if(character == characterIcons.Frog)
                 dialogueSource.PlayOneShot(frog[ct]);

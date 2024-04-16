@@ -29,7 +29,7 @@ public class Dialogue : MonoBehaviour
             um = UIManager.Instance;
         }
 
-        if(gm.CurrentLevel != -1)
+        if(gm.CurrentLevel != -1 && gm.CurrentLevel < gm.levelNames.Length)
         {
             if (gm.levelNames[gm.CurrentLevel].Equals("1-1"))
             {
