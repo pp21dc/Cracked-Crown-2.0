@@ -187,7 +187,7 @@ public class UIManager : MonoBehaviour
             {
                 if (GM.Players[i].PC.PauseDown && !GM.waitforvideo)
                 {
-                    if (PauseMenu.activeSelf == false)
+                    if (PauseMenu.activeSelf == false && SettingsMenu.activeSelf == false)
                     {
                         Pause();
                     }
