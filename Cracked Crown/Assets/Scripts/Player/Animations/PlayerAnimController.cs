@@ -141,6 +141,13 @@ public class PlayerAnimController : MonoBehaviour
         get { return revive; }
         set { revive = value; }
     }
+    
+    private bool clawstruggle;
+    public bool Clawstruggle
+    {
+        get { return clawstruggle; }
+        set { clawstruggle = value; }
+    }
 
     PlayerContainer PC;
 
@@ -232,6 +239,7 @@ public class PlayerAnimController : MonoBehaviour
             Animator.SetFloat("Input_Vert", PC.PB.controller.ForwardMagnitude);
             Animator.SetBool("HitReact", hitreact);
             Animator.SetBool("Revive", revive);
+            Animator.SetBool("ClawStruggle", clawstruggle);
             //if (finishing) { finishing = false; }
             if (true )
             {

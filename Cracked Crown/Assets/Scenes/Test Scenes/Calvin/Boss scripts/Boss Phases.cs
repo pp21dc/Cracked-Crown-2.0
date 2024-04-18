@@ -176,6 +176,7 @@ public class BossPhases : MonoBehaviour
             if (GrabbedPlayerBody != null)
             {
                 GrabbedPlayerBody.playerLock = false;
+                GrabbedPlayerBody.animController.Clawstruggle = false;
                 StopAllCoroutines();
             }
             gameObject.GetComponent<BossPhases>().enabled = false;
@@ -259,7 +260,7 @@ public class BossPhases : MonoBehaviour
     private IEnumerator CheckPlayerInput ()
     {
         int buttonpresses = 0; 
-        while (buttonpresses < 18)
+        while (buttonpresses < 8)
         {
             if (GrabbedPlayerBody != null && GrabbedPlayerBody.controller.InteractDown)
             {
@@ -275,6 +276,7 @@ public class BossPhases : MonoBehaviour
         if (GrabbedPlayer != null)
         {
             GrabbedPlayerBody.playerLock = false;
+            GrabbedPlayerBody.animController.Clawstruggle = false;
             GrabbedPlayer = null;
             GrabbedPlayerBody = null;
         }
@@ -413,6 +415,7 @@ public class BossPhases : MonoBehaviour
             if (!isGrabbed && GrabbedPlayerBody != null)
             {
                 GrabbedPlayerBody.playerLock = false;
+                GrabbedPlayerBody.animController.Clawstruggle = false;
             }
         }
         if (isGrabbed && GrabbedPlayer != null && FollowedPlayer != null)
@@ -526,6 +529,7 @@ public class BossPhases : MonoBehaviour
             if (GrabbedPlayerBody.playerLock != false)
             {
                 GrabbedPlayerBody.playerLock = false;
+                GrabbedPlayerBody.animController.Clawstruggle = false;
             }
         }
 
@@ -623,6 +627,7 @@ public class BossPhases : MonoBehaviour
                 GrabbedPlayer = other.gameObject;
                 isGrabbed = true;
                 GrabbedPlayerBody.playerLock = true;
+                GrabbedPlayerBody.animController.Clawstruggle = true;
                 grabbedTimer = 1;
             }
         }
