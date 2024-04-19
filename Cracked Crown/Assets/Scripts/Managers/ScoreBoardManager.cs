@@ -32,7 +32,7 @@ public class ScoreBoardManager : MonoBehaviour
             Scoreboard.SetActive(false);
             canExit = false;
             GameManager.Instance.FreezePlayers(false);
-            GameManager.Instance.RevivePlayers();
+            //GameManager.Instance.RevivePlayers();
             ResetScores();
         }
     }

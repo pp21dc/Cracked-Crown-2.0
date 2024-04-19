@@ -73,6 +73,11 @@ public class OpeningVideoController : MonoBehaviour
     {
         rt.SetActive(false);
         active = false;
+        GameManager.Instance.win = false;
+        GameManager.Instance.lost = false;
+        GameManager.Instance.winLock = false;
+        GameManager.Instance.loseLock = false;
+        GameManager.Instance.MainMenu.SetActive(true);
         GameManager.Instance.waitforvideo = false;
         for (int i = 0; i < players.Length; i++)
         {
@@ -140,12 +145,7 @@ public class OpeningVideoController : MonoBehaviour
             if ((!players[players.Length-1].enabled) && !stopAudio && (openingVideo || winVideo || deathVideo))
             {
                 players[players.Length-1].enabled = false;
-                GameManager.Instance.win = false;
-                GameManager.Instance.lost = false;
-                GameManager.Instance.waitforvideo = false;
                 
-                GameManager.Instance.RevivePlayers();
-                GameManager.Instance.MainMenu.SetActive(true);
                 DisableVideoPlayer();
                 //stopAudio = true;
                 rt.SetActive(false);

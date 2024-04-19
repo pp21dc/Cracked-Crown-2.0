@@ -53,7 +53,7 @@ public class PlayerBody : MonoBehaviour
     [SerializeField]
     public PlayerAnimController animController;
     [SerializeField]
-    private Rigidbody rb;
+    public Rigidbody rb;
     [SerializeField]
     private GameObject prefabForAttack;
     [SerializeField]
@@ -246,7 +246,7 @@ public class PlayerBody : MonoBehaviour
             playerLock = true;
         
         DeathAndRevive();
-        if (!playerLock && !gameManager.waitforvideo)
+        if (!playerLock && !gameManager.waitforvideo && !gameManager.isLoading)
         {
             if (PM != null && PM.isActiveAndEnabled)
             {
@@ -526,7 +526,7 @@ public class PlayerBody : MonoBehaviour
     bool lookingLeft = false;
     private void FixedUpdate()
     {
-        if (!playerLock  && !gameManager.waitforvideo)
+        if (!playerLock && !gameManager.waitforvideo && !gameManager.isLoading)
         {
             if (canMove && !dashing && sprite != null && !canMovePlayerForexecute)
             {

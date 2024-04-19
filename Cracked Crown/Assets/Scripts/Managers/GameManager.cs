@@ -178,27 +178,27 @@ public class GameManager : MonoBehaviour
                 UI.SetActive(true);
             }
 
-            if (AreAllPlayersDead() && lost && !waitforvideo)
+            if (!loseLock && AreAllPlayersDead() && lost && !waitforvideo && !currentLevelName.Equals(MainMenuName))
             {
-                lost = false;
                 StartCoroutine(LoseCond());
             }
             else
             {
                 lost = false;
             }
-            if (win && !waitforvideo)
+            if (!winLock && win && !waitforvideo && !currentLevelName.Equals(MainMenuName))
             {
-                win = false;
-                Debug.Log("WIN");
+                winLock = true;
                 StartCoroutine(WINGAME());
             }
         }
     }
 
+    public bool winLock = false;
+    public bool loseLock = false;
+
     IEnumerator WINGAME()
     {
-        win = false;
         yield return new WaitForSeconds(10.5f);
         eyeCount = 0;
         video_win.stopAudio = false;
@@ -294,7 +294,6 @@ public class GameManager : MonoBehaviour
             SetPlayerScore();
             ReturnToMainMenu(true);
         }
-        lost = false;
     }
 
     public PlayerInput GetPlayer(int ID)
@@ -330,6 +329,7 @@ public class GameManager : MonoBehaviour
             if (pb != null)
             {
                 //pb.StopAllCoroutines();
+                pb.rb.isKinematic = false;
                 pb.canMove = true;
                 pb.canCollect = true;
                 pb.canAttack = true;
@@ -434,8 +434,8 @@ public class GameManager : MonoBehaviour
             
             LoadingScreen[loadCount + 1].SetActive(false);
         }
-        //FreezePlayers(true);
-        //ResetPlayers(levelName.Equals(MainMenuName));
+        FreezePlayers(true);
+        ResetPlayers(levelName.Equals(MainMenuName));
         
 
         if ((!string.IsNullOrEmpty(currentLevelName)))
@@ -445,6 +445,7 @@ public class GameManager : MonoBehaviour
             //yield return AudioManager.Instance.UnloadLevel();
             while (!asyncUnload.isDone)
             {
+                
                 progress = asyncUnload.progress;
                 yield return null;
             }
@@ -452,26 +453,23 @@ public class GameManager : MonoBehaviour
         }
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(levelName, LoadSceneMode.Additive);
         //AudioManager.Instance.AudioFadeLevelStart();
+        Debug.Log("WEEEE");
         while (!asyncLoad.isDone)
         {
             progress = asyncLoad.progress;
             yield return null;
         }
-
+        SetPlayerPositions();
+        FreezePlayers(true);
         foreach (PlayerContainer pc in Players)
         {
             pc.PB.EnterLevel();
-            FreezePlayers(true);
-            yield return null;
         }
+        if (levelName.Equals(MainMenuName))
+            RevivePlayers();
 
-        FreezePlayers(true);
         if (!waitforvideo)
             yield return new WaitForSeconds(5.25f);
-        else if (levelName.Equals (MainMenuName))
-            RevivePlayers();
-        //SetPlayerPositions();
-        FreezePlayers(true);
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(levelName));
         if (!levelName.Equals(MainMenuName) && !levelName.Equals(BossLevelName) && currentLevel <= levelNames.Length &&
             (!levelName.Equals("TempShop") && !levelName.Equals("GreenShop") && !levelName.Equals("PurpleShop") && !levelName.Equals("RedShop")))
@@ -495,7 +493,7 @@ public class GameManager : MonoBehaviour
                 MainMenu.SetActive(true);
                 MM.PlayTrack(MusicManager.TrackTypes.windy);
             }
-            RevivePlayers();
+            
             star = false;
             LM.ROOM_CLEARED = true;
             IsLevelCleared = true;
@@ -575,7 +573,8 @@ public class GameManager : MonoBehaviour
             Players[i].PB.EnterLevel();
             Players[i].PB.transform.localPosition = new Vector3(0, 0, 0);
             Players[i].PB.transform.position = spawnPoints[i].position;
-            
+            if (Players[i].PB.spriteRenderer != null)
+                Players[i].PB.spriteRenderer.color = new Color(1, 1, 1, 1);
             //Debug.Log(Players[i].PB.transform.position);
         }
         if (spawnPoints.Length <= 0)
@@ -608,7 +607,10 @@ public class GameManager : MonoBehaviour
     {
         LM.ResetLevelManager();
         //SetPlayerPositions();
-        
+        win = false;
+        lost = false;
+        winLock = false;
+        loseLock = false;
         eyeCount = 0;
         eyeText.text = "";
 

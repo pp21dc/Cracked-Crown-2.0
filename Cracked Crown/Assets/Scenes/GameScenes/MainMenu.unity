@@ -17220,6 +17220,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5271016554624952791, guid: 774d0d170f07be5468c9aede3f4daf39,
+        type: 3}
+      propertyPath: m_TagString
+      value: Mini Crab
+      objectReference: {fileID: 0}
     - target: {fileID: 5819110073219917234, guid: 774d0d170f07be5468c9aede3f4daf39,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -17254,6 +17259,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SortingLayerID
       value: -1843858281
+      objectReference: {fileID: 0}
+    - target: {fileID: 7885973986123222847, guid: 774d0d170f07be5468c9aede3f4daf39,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8111036669476072809, guid: 774d0d170f07be5468c9aede3f4daf39,
         type: 3}
@@ -19817,6 +19827,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Eye: {fileID: 1511044280}
+  doorLight: {fileID: 1577958204}
 --- !u!1 &1091117261
 GameObject:
   m_ObjectHideFlags: 0
@@ -27551,6 +27562,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f32b92a7041f63246a720514db96d5b3, type: 3}
+--- !u!1 &1577958204 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5208941708455529566, guid: f32b92a7041f63246a720514db96d5b3,
+    type: 3}
+  m_PrefabInstance: {fileID: 1577958203}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1607833358
 PrefabInstance:
   m_ObjectHideFlags: 0

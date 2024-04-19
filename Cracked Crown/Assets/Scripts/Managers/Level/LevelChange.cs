@@ -27,7 +27,7 @@ public class LevelChange : MonoBehaviour
         //Debug.Log(players.Count + " // " + GM.Players.Length + " // " + locked + " // " + GM.IsLevelCleared);
         //DEBUG BYPASS
         //GM.IsLevelCleared = true;
-        if ((players.Count >= GM.Players.Length && !locked && GM.Players.Length > 0 && GM.IsLevelCleared) || (Input.GetKey(KeyCode.N) && !locked))
+        if ((players.Count >= GM.Players.Length && !locked && GM.Players.Length > 0 && GM.IsLevelCleared && !GM.waitforvideo) || (Input.GetKey(KeyCode.N) && !locked))
         {
             
             if (CheckLockedIn() && !GM.isLoading)
