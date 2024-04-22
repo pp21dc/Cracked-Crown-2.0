@@ -400,6 +400,7 @@ public class GameManager : MonoBehaviour
             pb.dashing = false;
             pb.dashOnCD = false;
             pb.dashQueue = false;
+            pb.rb.isKinematic = false;
             if (pb.alreadyDead)
             {
                 pb.canAttack = false;

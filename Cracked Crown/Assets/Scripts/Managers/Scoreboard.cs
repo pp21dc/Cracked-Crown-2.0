@@ -16,6 +16,8 @@ public class Scoreboard
     public int Steps = 0;
     public int Dashes = 0;//
     public int Struggled = 0;//
+    public int PlayersKilled = 0;
+    public int CrabsKilled = 0;
 
     public void Reset()
     {
@@ -31,6 +33,8 @@ public class Scoreboard
         Steps = 0;
         Dashes = 0;//
         Struggled = 0;//
+        PlayersKilled = 0;
+        CrabsKilled = 0;
     }
 
     public void LogAll()
@@ -64,7 +68,8 @@ public class Scoreboard
         output += "Steps:\t\t\t" + Steps + "\n";
         output += "Dashes:\t\t" + Dashes + "\n";
         output += "Struggled:\t\t" + Struggled + "\n";
-
+        output += "Players Killed:\t" + PlayersKilled + "\n";
+        output += "Crabs Killed:\t" + CrabsKilled + "\n";
 
         return output;
     }

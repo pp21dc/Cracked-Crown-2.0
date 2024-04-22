@@ -129,6 +129,8 @@ public class CrabWalk : MonoBehaviour
                 if (!AS_S.isPlaying)
                     AS_S.Play();
                 hasDied = true;
+                if (player != null)
+                    player.scoreboard.CrabsKilled++;
                 StartCoroutine(respawnCrab());
             }
         }

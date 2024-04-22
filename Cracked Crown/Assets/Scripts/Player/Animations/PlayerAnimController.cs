@@ -215,6 +215,7 @@ public class PlayerAnimController : MonoBehaviour
         hitreact = false;
         revive = false;
         dead = false;
+        clawstruggle = false;
     }
 
     private void FixedUpdate()

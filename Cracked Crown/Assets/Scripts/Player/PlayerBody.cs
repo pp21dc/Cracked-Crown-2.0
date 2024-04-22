@@ -445,6 +445,7 @@ public class PlayerBody : MonoBehaviour
             while (Vector3.Distance(transform.position, respawnPoint) > 3.5f)
             {
                 canMove = false;
+                rb.isKinematic = true;
                 //Debug.Log("RUN: " + Vector3.Distance(transform.position, respawnPoint));
                 respawnPoint.y = 0;
                 rb.MovePosition(Vector3.MoveTowards(transform.position, respawnPoint, 80 * Time.deltaTime));
@@ -487,6 +488,7 @@ public class PlayerBody : MonoBehaviour
         canExecute = true;
         canCollect = true;
         health = maxHealth;
+        rb.isKinematic = false;
         scoreboard.Revives++;
         GameManager.Instance.ResetPlayer(this);
         reving = false;
