@@ -264,6 +264,7 @@ public class BossPhases : MonoBehaviour
         {
             if (GrabbedPlayerBody != null && GrabbedPlayerBody.controller.InteractDown)
             {
+                GrabbedPlayerBody.scoreboard.Struggled++;
                 buttonpresses++;
                 yield return null;
             }
@@ -430,6 +431,7 @@ public class BossPhases : MonoBehaviour
             }
             if (!clawgrab) // drops the player when the timer is up
             {
+                GameManager.Instance.ResetPlayer(GrabbedPlayerBody);
                 isGrabbed = false;
             }
         }
@@ -509,7 +511,7 @@ public class BossPhases : MonoBehaviour
         else
         {
             clawgrab = false;
-
+            GameManager.Instance.ResetPlayer(GrabbedPlayerBody);
             attacktimer += 1;
             yield return new WaitForSeconds(1);
             if (Claw.name == "clawLeft")
@@ -526,6 +528,7 @@ public class BossPhases : MonoBehaviour
         clawgrab = false;
         if (GrabbedPlayerBody != null)
         {
+            GameManager.Instance.ResetPlayer(GrabbedPlayerBody);
             if (GrabbedPlayerBody.playerLock != false)
             {
                 GrabbedPlayerBody.playerLock = false;
@@ -623,7 +626,7 @@ public class BossPhases : MonoBehaviour
             if (clawgrab && other.gameObject.transform.GetChild(0).GetChild(0).gameObject == FollowedPlayer)
             {
                 GrabbedPlayerBody = other.GetComponent<PlayerBody>();
-                GrabbedPlayerBody.DecHealth(4);
+                GrabbedPlayerBody.DecHealth(12);
                 GrabbedPlayer = other.gameObject;
                 isGrabbed = true;
                 GrabbedPlayerBody.playerLock = true;
@@ -649,7 +652,8 @@ public class BossPhases : MonoBehaviour
     }
     IEnumerator ClawDeath ()
     {
-        //Debug.Log("working");
+        if (GrabbedPlayerBody != null)
+            GameManager.Instance.ResetPlayer(GrabbedPlayerBody);
         dyingreturn = true;
         yield return new WaitForSeconds(attacktimer);
         dyingreturn = false;

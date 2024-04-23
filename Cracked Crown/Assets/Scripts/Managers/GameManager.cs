@@ -377,7 +377,7 @@ public class GameManager : MonoBehaviour
     {
         if (pb != null)
         {
-            //Debug.Log("RESETING PLAYER");
+            pb.animController.SetAll();
             pb.playerLock = false;
             pb.canMove = true;
             pb.canCollect = true;
